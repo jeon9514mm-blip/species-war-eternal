@@ -1,0 +1,1306 @@
+{
+  "baseline": "v83-2",
+  "images": {
+    "assets/monsters/moonrest-wolf.png": {
+      "sha256": "d9587fec9e7835b423cfc30a59c4c5cf24762dcff637797e414e70922f538c4b",
+      "identical": true
+    },
+    "assets/monsters/moonrest-mushroom.png": {
+      "sha256": "e073c929f26b93c9e30ee7dab9b31f0e1da233ef87ad76b4a2e5106566c989ba",
+      "identical": true
+    },
+    "assets/monsters/moonrest-deer.png": {
+      "sha256": "28c3d7770e137fbb324bfd63379bdede46720660c3aaad26cb02b48cfed8b28a",
+      "identical": true
+    },
+    "assets/monsters/forgotten-mine-boss.png": {
+      "sha256": "df6ac8a985f7f1a0e29ee287b262cbc852fd09024e1c74d33a40d40308feb0d0",
+      "identical": true
+    },
+    "assets/monsters/moonrest-boss.png": {
+      "sha256": "5e0c6294748377970c7dfa283892ee50eb3cbd17c698e72db079590b579cefef",
+      "identical": true
+    },
+    "assets/monsters/forgotten-mine-orc.png": {
+      "sha256": "a1f9aa693a08442069852a4f0b6455ede8ec0edd9cf5b682eb58dd5b9d46bfc2",
+      "identical": true
+    },
+    "assets/monsters/moonrest-wraith.png": {
+      "sha256": "d42a58ba80e9893a0f807e85f84387fad90fc875bdad4cf762c64ee1574fbf1a",
+      "identical": true
+    },
+    "assets/monsters/forgotten-mine-bat.png": {
+      "sha256": "3ab27ae6ddb171ee9e1566d9d18b60e51ef70073a624fb65bc8e3803132dbf16",
+      "identical": true
+    },
+    "assets/monsters/forgotten-mine-spider.png": {
+      "sha256": "e66b2dac209b2d0052dc234084bef0e0ee55b6e316b0d95d7dd88ec330673dc0",
+      "identical": true
+    },
+    "assets/monsters/gray-meadow-goblin.png": {
+      "sha256": "172b23e65c53e4813c8a24314d1f2a796871b4262cc563249bda9ecc051b4f1c",
+      "identical": true
+    },
+    "assets/monsters/gray-meadow-wolves.png": {
+      "sha256": "51c966476611112ccfcca7ac8b5541d62a1c9bf143f7ba3f28f4df4092528bdf",
+      "identical": true
+    },
+    "assets/monsters/forgotten-mine-mole.png": {
+      "sha256": "434f489b329c9538baef1f4a49242ef1f8849daff9c76c9e367fcbb5988de9a4",
+      "identical": true
+    },
+    "assets/monsters/moonrest-raven.png": {
+      "sha256": "18fd19b4b0af0579df8d35143ae3c3e495c6585cb14fec4a462e31ac9d43db3e",
+      "identical": true
+    },
+    "assets/monsters/gray-meadow-boss.png": {
+      "sha256": "1128091b4fb281a6f4f7f1f25e0a05147cbdd96d09cd13f1245afd15863dd23a",
+      "identical": true
+    },
+    "assets/monsters/gray-meadow-crow.png": {
+      "sha256": "a20dc05021bc5d8c8da09bb50438fa8eb71c9325f7c890f4bfb83a8e3ed555d6",
+      "identical": true
+    },
+    "assets/monsters/gray-meadow-boar.png": {
+      "sha256": "33c69c6b9b46cb028c577b79703ed665917abb9c5ba9fe5e6c698dae99ccb7ef",
+      "identical": true
+    },
+    "assets/terrain-v70/crimson-canyon.png": {
+      "sha256": "8d62855e26eb39d5aac8f96e43ae30271705cff9c14d77e74fde7bbc78b8ba8e",
+      "identical": true
+    },
+    "assets/terrain-v70/crimson-header.png": {
+      "sha256": "397ba0f7b42102121c1fb9d24d9b78e259e17cee70ae2068716c10bf82fb35be",
+      "identical": true
+    },
+    "assets/terrain-v70/evergreen-overview.png": {
+      "sha256": "e8818c0afb6c0005c94f28e0026b787f06faadab2a9e364653dbf95920a6c1b8",
+      "identical": true
+    },
+    "assets/terrain-v70/evergreen-meadow.png": {
+      "sha256": "f2e246e97611a15790606631e969952e5079bc5f7b877dc42d7d0bc486d89c12",
+      "identical": true
+    },
+    "assets/terrain-v70/slate-boulder.png": {
+      "sha256": "9c4fd5ac63032f300ea9f4efa5bb76adbcf18661cd5e1925cd6010d510109f1b",
+      "identical": true
+    },
+    "assets/terrain-v70/arcane-sanctuary.png": {
+      "sha256": "a40924f0defc6c9eaaacafae79b3baca2760668fae6336f1581183a7e7391d32",
+      "identical": true
+    },
+    "assets/terrain-v70/evergreen-header.png": {
+      "sha256": "4195a6a945779624e5845faa1f906c9259aaf2f36a8b18f28215fdeb1765f9ab",
+      "identical": true
+    },
+    "assets/terrain-v70/arcane-header.png": {
+      "sha256": "521d773c0ff4c3aa75d5af5b779a54d1dc98da24ce0a5e7bf22612dfff34acf5",
+      "identical": true
+    },
+    "assets/sprites/mira-sheet.png": {
+      "sha256": "4d354ddf6b658c1bd40fa3520f1ead83dfc859828d2899417facb76065cca711",
+      "identical": true
+    },
+    "assets/sprites/elisia-sheet.png": {
+      "sha256": "f1306fd3d3244f88ac4a7a4dde94929791162b332e58e69be71cad8d9248bc07",
+      "identical": true
+    },
+    "assets/sprites/leonhardt-sheet.png": {
+      "sha256": "14378e75aff141eb11f330ca780447cadc61dba06bb2b30da8fc8322c91a94b5",
+      "identical": true
+    },
+    "assets/heroes/pixel-v32/a01-board.png": {
+      "sha256": "d1ff4618b874d7f1e37b2a41f00032113a79ab872a6cf88ac4efd86659b483ee",
+      "identical": true
+    },
+    "assets/heroes/pixel-v32/n01-board.png": {
+      "sha256": "d4b1b09fbe4879b652b5fe55b7d888321e59ab43f268bcedba76179a9b6d68e8",
+      "identical": true
+    },
+    "assets/heroes/pixel-v32/a11-board.png": {
+      "sha256": "b0891c68cd546f5e542999873dcb394ef9313989cadd873d1e78afe48b856b53",
+      "identical": true
+    },
+    "assets/heroes/pixel-v32/n11-board.png": {
+      "sha256": "11eef0b1e7e79e4ee229c611ba5787e0355378e1b48ef2572f0d3b153fcc115f",
+      "identical": true
+    },
+    "assets/heroes/pixel-v32/a06-board.png": {
+      "sha256": "1501598a48fcbaae065b2faf4d15c212cb15c16fc7d761641602b563ecc9d700",
+      "identical": true
+    },
+    "assets/heroes/pixel-v32/n06-board.png": {
+      "sha256": "5d07c53e3fd6f050188c80f2784cab7a6f07d33a6ce90a9d921069e971bb829a",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/bora/atlas.png": {
+      "sha256": "66ade93831b197ddf4b46c2e6874639feba0a762e494d3122cb5851c9cdbeb28",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/ragna/atlas.png": {
+      "sha256": "6efdbc3c7bffc12e278e873f93934da2202542b2ae7c8dd9204ae1869bb7e6e1",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/morgas/atlas.png": {
+      "sha256": "3ab0361c2991f98053868ed2e0ea7543a8723b1a48015a257e79a5e184797759",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/veyra/atlas.png": {
+      "sha256": "2d5005149beb7391e5aef10c549fac5a69de38892e84de4b1c90602a999c42cd",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/nyx/atlas.png": {
+      "sha256": "378b0ad101affdb221b0c414fd86b55a0da01ee002da34ed0923fd8fcdf19bc0",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/ulric/atlas.png": {
+      "sha256": "6f16439f62f5bdef2b0d41cd8274af740b102fe437b3785b379c3dab4c6707fe",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/corvin/atlas.png": {
+      "sha256": "3b0a88a792c4b974797a078ceca51089d13be1fa9a6a028ebdb9865b337b3a2d",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/selene/atlas.png": {
+      "sha256": "feb889d6b0ec3777de56548a417aeddeb3f8ba6bf01bc40592f8c6c41c9d56cd",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/lucien/atlas.png": {
+      "sha256": "edd5be2d895147303827e0c030f0145fa689d826f4bb7b143dbc796a6b9e7024",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/isolde/atlas.png": {
+      "sha256": "17afd3194001c5ce6bfa4fc566aa5ed1902fc9a3826cb9db85445b87fb21a504",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/rokan/atlas.png": {
+      "sha256": "25d4246d1927d9296cd9dc529c0d2bb6d53706633f7e883366674d64ce24b7d2",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/fenris/atlas.png": {
+      "sha256": "30fd20ec90402bc616d8ae753a564c069601a473662ae2d39cc7813e32e088d1",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/bron/atlas.png": {
+      "sha256": "5919a87459ba2657585556197df0576996030225934881e7ab856f5eb4f49c1d",
+      "identical": true
+    },
+    "assets/heroes/noxfera-motion-v42/garm/atlas.png": {
+      "sha256": "85fd6f8012aa4257e8b22bf0030ca0361fede77ad86e2cff93019033daf31b30",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/ultimate-00.png": {
+      "sha256": "96c833ef0e34e0836b3b19869490082ff6821e0428c04f5e1b6f82f5edbdcb1a",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/idle-00.png": {
+      "sha256": "82f8abf20014f05243ba1f03e601dbc84bd6c5311280446e9c19b20bf07c0562",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/attack_2-01.png": {
+      "sha256": "0988a36e9d4a37ee9b840fd750c859eb5141a649ca5b0f2e98be785d206dd55e",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/walk-00.png": {
+      "sha256": "05b842fd37a710591689ba27e5aa8fef9b4bf3bff9c91872a31e1fd44839c108",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/run-01.png": {
+      "sha256": "53dc44a2ef52b6ba941164c77d86d6b47a9396524194042aa178b675712a5113",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/hit-00.png": {
+      "sha256": "9b7dfff310f983789ca79eac588848bfb51a9b4114044dffcfd30d756e1c209d",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/dodge-00.png": {
+      "sha256": "f341b1da05b13eb90e60bcb14ebc23e66a225d2f1c9f5b61ea88527bf5a6eed5",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/death-00.png": {
+      "sha256": "d2a364717bbde444d33ba775a98058ac81ab7e2c67f63a02cf1f1bc018ebe3a8",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/skill-01.png": {
+      "sha256": "b31f40fd0ea77eda858b60224178ca637faabfe96d6d1be53269b46567366135",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/skill-00.png": {
+      "sha256": "f9a345c01ef3f33143bcc3a977b04b67a2fd8cde59dc2668e311986fdc8d91d2",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/victory-00.png": {
+      "sha256": "af4aff839f5b3c844eb0e8b25b055818678d3cd8f34164db402cc0be31d74664",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/buff-00.png": {
+      "sha256": "13ac1d503c6fcde432d7b2bbe6ea221913114a85c6252169aeca4adc57b62830",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/walk-01.png": {
+      "sha256": "67a1b57f88072131f78ba58fe7d4b3a5bc676e3dd24635cbb828b1bb72422c34",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/knockback-00.png": {
+      "sha256": "c4f733cb0c575ada562b7f2d5f5b7b9c0e484f87e629c67e98d73a594d945819",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/attack_1-00.png": {
+      "sha256": "4536d4514080d85ef710959e0831478d02594627d79eb358782afa6bbc3de200",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/ultimate-01.png": {
+      "sha256": "ddabe1eaae63c942983efa3b94325f56e07d87b79b4a56e789ac3e0c31fd1a64",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/attack_1-01.png": {
+      "sha256": "387faa410b49fd0ba6c7848bed7ea695edbf48755c01c7a9b0364002e09cfbbf",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/run-00.png": {
+      "sha256": "d51e9191bf964d2d21b6a80d29a0967824a6236a66ec8cda5e51aca26a29ffcd",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/atlas.png": {
+      "sha256": "161f1327c0aca123582b73517eec7891feae1d35b9a7a52712557bf2df8afce9",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/run-02.png": {
+      "sha256": "0d42cf7a142537387e413262020c6232048e32500eb504b8808246e00dd3f811",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/guard-00.png": {
+      "sha256": "27b138a7339e0f48378ad73d341862ea7328a6b84beb224d0c69853a93f0734d",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/attack_2-00.png": {
+      "sha256": "31529a9f821fcd4806fdea7db0b573e94f0c1c704832781ccdf613fcce9e9e63",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/valeria/debuff-00.png": {
+      "sha256": "c4d1e07a1d75557df9db76c3d1b6c8406af3d0c21cc7fcaa7bde903a3ba42af0",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/ultimate-00.png": {
+      "sha256": "3648eed33659265a5257c2fd8c38e06bbb4af3794273572ce908a9bcba4116a5",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/idle-00.png": {
+      "sha256": "1f7f5d7cb2ea1259b14a25a04e5e6938b6baa74768f6e43fcf4277e2b8663d69",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/attack_2-01.png": {
+      "sha256": "62b7af76530c8a6518a7f8ab67aa031898a262808fe6ff6f766fa5f986d4deb4",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/walk-00.png": {
+      "sha256": "bc3374a47e821a2f4a8f4eb39f3953aac074a7994d8350e7971b16847b68fc68",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/idle-01.png": {
+      "sha256": "29cff6252d7ffc41fc423f17f19532c34974a35d58437e9a95f33af70f1a5428",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/run-01.png": {
+      "sha256": "032d179177c7a00477cc7e4884e8ba2d12867f99069bcbec009a9c2336239907",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/hit-00.png": {
+      "sha256": "56747bd34ae267caa1183294780280e56f4b60241efb827d52840cd549b62e10",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/dodge-00.png": {
+      "sha256": "9e128aaf4151ee6d9ac032c01f27913b160965edc264f388879055ff340f48af",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/dodge-01.png": {
+      "sha256": "2c440446544ce6ba2ede14a148ce4ffd381a41c8e7b56743f3e895ddf9df1dee",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/attack_2-02.png": {
+      "sha256": "3aac1cb2d2ec9600e14f960f101e1ad7ae8db19844a9f93e3e434c5d0019d7d8",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/buff-02.png": {
+      "sha256": "12e521acc7c1c3a7fbacdbd741a450a0fe7a825c1d2c545ddc7e9ac902b03d05",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/death-01.png": {
+      "sha256": "bf9a1fc3e6f2324f4d7d609cd8d0fbb241b1ebf13dda29f96ffea5a33792f757",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/debuff-02.png": {
+      "sha256": "9e4d5e3fe9d1966a44dde70616aff0e8691f08607646c290262249a962e1c3f6",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/death-00.png": {
+      "sha256": "3e5531525a5ccc4172e70914f8680e8ec22c25a0efa8b173861da9a02faf8f93",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/guard-01.png": {
+      "sha256": "cbc986fd435bb53ead120437d7c1a2ff18ffead5196ff186c6525e8318601745",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/buff-01.png": {
+      "sha256": "fbbc8878828ca9d2ddacacbcc6f4dd95971c17759d7e055b6bb03073e7923fd3",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/skill-01.png": {
+      "sha256": "8a1ccb4047aed2b26e0902565725e611ac1784393a399e21760fe3287126eff0",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/skill-00.png": {
+      "sha256": "031eb51266966859dde2282ba83b0f79078fde4cdb5597f165d2e9b84cf714e0",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/idle-02.png": {
+      "sha256": "01f2a1b3ccd2f5fa3b1f8ec380af794185f54700ccbce892e6d8f8bc57ccc55e",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/victory-00.png": {
+      "sha256": "9669c7a8c817c7d47488e70148da81570748512ab7e1c6341010a1b49d113305",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/buff-00.png": {
+      "sha256": "984c827d00a4ac0b87e9a515ebc414a752b900e8efa31cd2c832ea12cc522878",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/walk-01.png": {
+      "sha256": "d7b4bbaa14ebbfd4dff74b25702d3b18bbe5ff97defa439d6067702a9bf5fee4",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/knockback-00.png": {
+      "sha256": "82fd685faed2f0810d7dad7bc9dfbff497481494095a7e013e514c6e85d99afd",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/skill-02.png": {
+      "sha256": "6388c25fb4e6898f8ffb28e8167ebe92c621bd1b0f4f4befc3dc4225178000b2",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/knockback-01.png": {
+      "sha256": "58ed3f8320e862d017c710e3576cc6556da92d5386c78506f08027bc5fce3749",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/attack_1-02.png": {
+      "sha256": "8f4159968680d9b1c5dbce0f473a952e965f52687f1fed61dd27b2f92e449064",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/attack_1-00.png": {
+      "sha256": "cb66f6a33d0c8fe03d80f31297cacf097de23db5232e98606e1225fed2a0530c",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/hit-01.png": {
+      "sha256": "dcfcece8851f755d32b667a0a6ac8e0d245cb879fed6c3259265f5b1ac55cefb",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/walk-02.png": {
+      "sha256": "0af6bf12474b0d6058ffa9a89afc7ec34d10c09ba182b9f6184fb94442d8b6b3",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/ultimate-01.png": {
+      "sha256": "3c0918a27dbf4a3715a512bab01f4216741b6135577891dab176562f7eafbff8",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/attack_1-01.png": {
+      "sha256": "6381f99558f2fda869d2f7a70664c0168de89f0b6f10bc67e8db3113dbb790e9",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/run-00.png": {
+      "sha256": "a8dc47afd232f257be9db97c430779eb12bcbeaecc082677e8b20755a3d55f01",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/victory-01.png": {
+      "sha256": "1919e1921b708ab5449f205b3bdfdef5aab33d8751bc5e844ff2ebd089cf26f6",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/victory-02.png": {
+      "sha256": "13c9ff066f740f74387eec6e7b3ae3a41f2895774b223d7f1a0947fadaf6ec7f",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/atlas.png": {
+      "sha256": "64eb544f5ee8bf10678aba0fae6114a3619192f61f1bef82b7524322a5ea1f14",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/run-02.png": {
+      "sha256": "663d46805d83a2026236ec9efd6b50f19cec8460ff275fbd8633bab671f77bed",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/guard-02.png": {
+      "sha256": "4b2759e5c2f95852eba48f091eb5539e506cc712a88b3917e04f760e0d691ecd",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/debuff-01.png": {
+      "sha256": "c5cf6020a4b436bcd90ed8fc7d1ad5a569cc1abc2ed0ec585e624730e52c608d",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/guard-00.png": {
+      "sha256": "ad73ebe04f7de2d57f5639606f8226b58e139893ca3280e65a271c8299e4303c",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/attack_2-00.png": {
+      "sha256": "816f1bf3b161d8ab1e9f7a05e52b9eed3faf03f1f42e60abdc553422350e1d55",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/debuff-00.png": {
+      "sha256": "6c7173bbc23a74eaf96cf2a6c152236948453e4c9f166a17a4a2cb7659d6b493",
+      "identical": true
+    },
+    "assets/heroes/actions-v37/leonhardt/hit-02.png": {
+      "sha256": "c11afc8b91f92f579d8de7e19a8e830d57194aeee1b0217c73aa64644b8e7c07",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/sael.png": {
+      "sha256": "6df5c20a113e1b003b8d1f6c431f7cc64628456892aca2ca4675dd5bd30aca0a",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/orwin.png": {
+      "sha256": "6541f88cbecc46891cf5a3c7abd5e491b01620ab7c6a3507466d9762eac64188",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/valeria.png": {
+      "sha256": "f473a60f108a1d85cb4e445e34f8785a9b52b3f344377c0a928cefb416d378e1",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/leonhardt.png": {
+      "sha256": "8ff837ed7ca53279ffc1ac966d5015db2bc432c7d9f7a758f7c742c7a9b31772",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/odelia.png": {
+      "sha256": "95c7e770085d3b126559f775c44b068fd6d91f94b7d787d5d0f9513285626fac",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/tessa.png": {
+      "sha256": "161292b7bc3585a9e837b130397ce3ecac7e31c0e1bfad649bc447cb2095b803",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/caelum.png": {
+      "sha256": "15b2cd594c8d96c875199eeda31744a88ab2115de99f2a3280cba725f8a6794f",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/seria.png": {
+      "sha256": "9fef7aa1bbd344d8bb5fe25ccdd3b7870ed547ea521701d461d249c076399ee5",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/rokan.png": {
+      "sha256": "4ae0a0a60c9aef77b85eba79ce5629c45d2800528a0f8edf80aac83e70b80714",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/ragna.png": {
+      "sha256": "711fb3f2e89cadde4c887857a6cda8a17d19b675c5d64af12fc1dae2d51e31e0",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/bron.png": {
+      "sha256": "a4f2339a05c8df4321082a4c362b5de7dc4f81b479b6cccab1bf1b98361fb6a0",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/elisia.png": {
+      "sha256": "5b84d3ec66a4fed26217a90c18fa591eed3656e3b15305c96106ce082eb177dc",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/isolde.png": {
+      "sha256": "38d9e88ad4463b8b0687b91e32cec02778dbdcb6e26679a630e8bcba0befb018",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/naia.png": {
+      "sha256": "b7ddc501e02396b2e85dd16c18bb9ff7ba8c1981e482d1ffeb3fe11a9c44a1ea",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/lucien.png": {
+      "sha256": "62cbd93ac366079b2d872bf37621743f65152312d5143991d6337ec31071f247",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/kairen.png": {
+      "sha256": "78fde846c8f94f0308f389ac2954414e78f920d28889bdc5298ca83fee5abc47",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/fenris.png": {
+      "sha256": "e39ba113c229dafcbd460caf57d7817f75e8c1b312e1b4cbab6ba865a7633c74",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/darius.png": {
+      "sha256": "b6244bca1ca0bfa2ef86417b6b2b18ef78a28ed96bd832d4fdf045ce7c361543",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/morgas.png": {
+      "sha256": "d1db4a8f4b136dc75febd2d83893868b67625fed48a820facda99c4c024d3e9f",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/corvin.png": {
+      "sha256": "03df7639f5ed1f82751a6d88f374e3ae95c68cfaa95f9f9790d41e7e5c5dd82c",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/garm.png": {
+      "sha256": "f80bb1cf4103b1d73cd25ca9f7fb67333fa33f232ae61cbe8a4cc694b3c59fe4",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/veyra.png": {
+      "sha256": "e8f060338df69e82eace8a85f5b4829f724ab4ba5c5c017b2a0dca41e76bbeb6",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/lunea.png": {
+      "sha256": "7f6710e7c04d7def9a948b8966ce63c42ff6bf7f191102288ebb2e8dff31ad78",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/astel.png": {
+      "sha256": "5f93c7cb36e9fac8e315dc8faf007125c920e11f8c9a23df4c65faf896917cbb",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/bora.png": {
+      "sha256": "34c8753811798b60e772020d1ebb8658120cb5dbbdcb60ca4e52d5121f4473e6",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/mira.png": {
+      "sha256": "a11a3a4a5c278e183e3cf47e99fb9be62f667b1f6e62a0579142951d81599116",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/selene.png": {
+      "sha256": "e04498ad9c60d95ff4726e95e87309bd0582dad2f6ce7c6f9fab4613677841d4",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/adrien.png": {
+      "sha256": "c4bba773e3bde962cc48fd9c0017deda4ddb826c45ca8cfb7ec242cf7c5f0514",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/nyx.png": {
+      "sha256": "03c7838046409d1abd8679c78de7ef9d776d3191ae3294c54705a3b4e5684db5",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/bodies/ulric.png": {
+      "sha256": "59d340ff1e59416aade67ec0ff5a0ea44c52bd03f5eabb9bc3b60229b59e9de4",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/garm-motion.png": {
+      "sha256": "12a4b23f557bbda177bd2897c0072cac45acf2accda4db2751b39082e4e1c87f",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/selene-motion.png": {
+      "sha256": "7e5197c23de1cd1fa1f96ebd1b7ac672d42fa6c10ca2b662295e8a24f0105553",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/leonhardt-pose.png": {
+      "sha256": "d8d40adfdbd23b10dbb1ef679ccf85b7d06e40b3f23b040e46fcc9bca58789b6",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/mira-motion.png": {
+      "sha256": "0cf7e3777b5966c8bd5fdc1ad62e691e938ef49b344efb8f2d251c111c992181",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/lucien-pose.png": {
+      "sha256": "f06bfe05296de100ae96bbf1d86ab195db88c766379d762fc45550a4e912d802",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/ulric-motion.png": {
+      "sha256": "4e325cff08212b7ce539b4a02049893dcb1fe1de4f435ea0ad9b21cf2a23f0ce",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/adrien-pose.png": {
+      "sha256": "f6728e534cdff1fefe50f0aad92c8882f91c1016842f63c0857b0ba87bf1e614",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/mira-pose.png": {
+      "sha256": "3e21d65ac138953587eb7319902fb5493223f0f0c1f48e7b58126c10ccbc0c50",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/ragna-motion.png": {
+      "sha256": "4ce51d8b26d58573f0e8b604efbf5b05c3109c633482390491f3c0b9ae4c1335",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/bron-motion.png": {
+      "sha256": "f5722b78bdb987d5bf7d1d6703d15731890974aade73c73a49f98dbaa716b8cd",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/lunea-pose.png": {
+      "sha256": "4b5655ead8fb2cc5a6ec6c7a6158ff62c5ee6a658d367e9815c8a5ffd336a60d",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/sael-pose.png": {
+      "sha256": "e2df3c4f22f2690c9f485c014d387a41eeac7ef945880ce0bfbafc8126b6e866",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/bron-pose.png": {
+      "sha256": "ed26b812ff9073db7785d82e3b0bb1ec13ef2e6ce298a1972a1584d2e5595ccb",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/orwin-pose.png": {
+      "sha256": "adb8d14b7aa9ecc0063dfaea385aa4acca99c14abb9c57bceb42995a5bf77caa",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/darius-pose.png": {
+      "sha256": "deadb65a57eae5e7e49402eceab6da1526cd7e7bebe81e25ff8be894817bd15c",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/corvin-pose.png": {
+      "sha256": "4545c990e5c9eb52868d7ee3ad8dbddf4142e3a07d587e9452cae9b87acd50de",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/isolde-motion.png": {
+      "sha256": "fbca771c051db2861e3d0c6371aa45b72a25abf25ef1bb1b6c9ed3b8ba8f4531",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/astel-pose.png": {
+      "sha256": "0f4b1b7530de4cdcf2603e7b05038a59e77aff9094498ae4d1000ee038e2a937",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/fenris-motion.png": {
+      "sha256": "ce838cb74ef6ef7c0ce316fb215eaedb6ffc2163b5db63bf433321d892bf0fa8",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/odelia-motion.png": {
+      "sha256": "aa83cff442a994012c163876a7b116bfc6771e9f20b5ed206a52a878225cb2f2",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/valeria-pose.png": {
+      "sha256": "468a89d3c8ea58b18254d4e1d53e7331eddbbfea649ebdc8d6b333e858d7b90e",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/ulric-pose.png": {
+      "sha256": "16a3ab64f9bf6fc1eb2e5e48e169972488fe18d3b0b9a1583b5d15e7c02c3b41",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/veyra-motion.png": {
+      "sha256": "b1fe1d2c4115d7c518eabbd44410ca42087ef23819750293a0375caac41df9f1",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/tessa-motion.png": {
+      "sha256": "bd3d845ce9a07061073281b0d17a20ce9979693903105048e92115dfac2d7c6e",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/nyx-motion.png": {
+      "sha256": "ca8663100ae5c8328499450c05c6dfbf60cdc95974cd9dfc2078f09ca9e0ef78",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/orwin-motion.png": {
+      "sha256": "264a1808126b34d5103bbaac4e34a4395b3479940c999a4c7a629101e5617f12",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/rokan-pose.png": {
+      "sha256": "ba0e3b7ffffd97240900ecbb3edef6ecb551388aece0f1bb2e223664e14c2609",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/bora-motion.png": {
+      "sha256": "994473682993bb4f4d391dd83ccc3645c5a2abedaa0f03f740da7f9e9b0dae54",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/corvin-motion.png": {
+      "sha256": "e965b0de079fe46096e8f7687e189f707d0c9df19143c38acc9b701887e0b4e6",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/nyx-pose.png": {
+      "sha256": "e4c8e51ec23d03be9de4fa52f48c9fe78df8bcb67a33b9363e61cc45c100500e",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/naia-pose.png": {
+      "sha256": "602155be41a2051867cd7e265e8495c58483dfa974c2fbb58498aa94642739a3",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/caelum-pose.png": {
+      "sha256": "cee162b4ef4c218cca5f71c7b98acfb2bba8f1ec1df4e3b61fd70b5e36319212",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/fenris-pose.png": {
+      "sha256": "51810393e53bc73e5db8aea267ee7bcb0583d0da69e27d404eda07b4de0634b7",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/lucien-motion.png": {
+      "sha256": "e187e56ae6626ad8715590c3e3902d33930b4ecc72e4e05abf8a58b5853d7cfa",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/astel-motion.png": {
+      "sha256": "5c7f2ca97c22fccdfcfe71f4d68ae8d8493e9d2087f2ef5b2ab6f0ded384c608",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/morgas-pose.png": {
+      "sha256": "03e6e2fcf587b0f9629e84370d6869ce919d4a31ec1ec8eebe07be59eabf8c45",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/valeria-motion.png": {
+      "sha256": "a3fcffb55fc5665d59f5b8dc7fd9a5e191182ea7ed80a00a08de21576c0ae0d6",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/selene-pose.png": {
+      "sha256": "373d77f0eeca2fe4e81872275210b0f7b13c0781ec911702dcbe0b6b6a62a386",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/rokan-motion.png": {
+      "sha256": "3c41d6942c24bfb3cb3454ae23ae8b14f70ba35f976c3d396a30d9641185b7bd",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/adrien-motion.png": {
+      "sha256": "d9f01111bd3754e9f4cf90b3426901a49232f92ba436ab80c8bc43b0cf14901b",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/kairen-pose.png": {
+      "sha256": "8939bc5de3434553a2e81d3196baca9b9e2663c0e04ace63b39d1c4e3db59c66",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/tessa-pose.png": {
+      "sha256": "b2ff1ba9059dfe34f407a3af6c9a8433357a9c786d23969e57d37fa1bf041e46",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/lunea-motion.png": {
+      "sha256": "aa63c66afacc022ab152a2c73339809bfd76c08103c2295ccd9250a26cd49dc4",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/isolde-pose.png": {
+      "sha256": "4795c752a991689e638ccc596f739822f8733539fe88b48ae0cbea0d215522d4",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/naia-motion.png": {
+      "sha256": "112972459813a454422bdac7f9cb350c2e8a5d8962d2f22490240a8e0d73daf3",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/seria-pose.png": {
+      "sha256": "152c415a4a094af1203374f46b2111197b82964b9ee86c42605f064ccbb5d9a1",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/morgas-motion.png": {
+      "sha256": "7cf4848abb53233e77bc3c388e7e4c373a93562f2bc9c9eb4380d8afb09bafdb",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/elisia-motion.png": {
+      "sha256": "f92aad94737d5fbb35e5d7f2616df5d22038c51e4c1bb07d48bc809b06d18c31",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/kairen-motion.png": {
+      "sha256": "b94204d361af0614fed31b11a6161390317a6bf116e7db12af8abf6ea20754c6",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/caelum-motion.png": {
+      "sha256": "50f96ee24aad19297c6450d8488cb1e265a3828ffcd4c07bb7ae61568acf9316",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/seria-motion.png": {
+      "sha256": "987b0f6881090585dd53808f61faf692a0cdc3b5e789286838e7e8351e3c5ff1",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/elisia-pose.png": {
+      "sha256": "334e36a69a5083396b27eaea1f9f362678ec4366ebc7fca56dc0ff09a1b21bc6",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/darius-motion.png": {
+      "sha256": "6f8f8f102ff14f5bbcba2b33bd6b7f8b680ef0bc97d5e7925947449d7180feb3",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/odelia-pose.png": {
+      "sha256": "363790ab04e474a55d1425c9fbf599a868e1aeb1607690aa33067dedcd257231",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/veyra-pose.png": {
+      "sha256": "0ebcaab4c50fb8f4b49993c2fc11d87b57cf1435c9ceb42b28d76f177e444ed5",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/ragna-pose.png": {
+      "sha256": "07358f858507d360acdfe8f8e6751ed9090a61cf9ee3172bef231880ba8c6a83",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/garm-pose.png": {
+      "sha256": "21177b0f6a9e8e44d85aeeadce4dd2a00ffb49957ca334f3c0ff03693100102b",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/sael-motion.png": {
+      "sha256": "0bd827a448dccda9749d6a10c9f830b107c7bc376b6b8a8238ced26a510a4edb",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/bora-pose.png": {
+      "sha256": "825fef9fcf45b6857c2c99a3ce34e913450e7e079aebc5086ce118a5948bf21f",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/sheets/leonhardt-motion.png": {
+      "sha256": "0b85b90f2b638947d9bf3e161811be59ee2dfc89db9c5e201096ec2d24943e37",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/sael.png": {
+      "sha256": "60340a42e47279b17e0c41e47ece8c29154b6ae60ca2db3a217f23d4fbfc3260",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/orwin.png": {
+      "sha256": "0c9be05ab8074f8337950e4eb819f3590d1d17563d7df2ad0c6be80d2cebdcf8",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/valeria.png": {
+      "sha256": "d998049a95a7dc818b03587d9c5c3d9662fb5c78d7ae58f74f2d78bc223c1b83",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/leonhardt.png": {
+      "sha256": "2dfebd2420cc4e2fd7d06c0e5c427991960b1b3f2a3722f881017903b2cb77fb",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/odelia.png": {
+      "sha256": "063dac66cabcf6d5f0af687f19dc040c188c610d80e401aefcd2b01bb56bc06a",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/tessa.png": {
+      "sha256": "bb5f71f8c76990c51a55cd3db9bfc6083c931c5e1ac299de916c0c257ff9bbe0",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/caelum.png": {
+      "sha256": "a9f320bb8bd6d79920acc478192321ad4455c4ead55abbc26a803deb8c8dccfc",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/seria.png": {
+      "sha256": "14ac8cb25af9fd027a1924ed60ce39b383dcc610e8b64aa7e37bf57e4c63c6ad",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/rokan.png": {
+      "sha256": "4a21defef29004fedb0a16187581e33815b35916ff1d2c57bf1a450582c82ea1",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/ragna.png": {
+      "sha256": "23fe6b860ec68803db0cb6666a739ca170fc2ddbde91b49414b13bda2c493fa8",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/bron.png": {
+      "sha256": "53543b9611c8aa838c89e879680f8c81e4f2343cc786455842a16ebcf7bf0902",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/elisia.png": {
+      "sha256": "dd115fcc83b1575472d612f17996764ea7b1bf1f4345dd52763e48d7f839a6a0",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/isolde.png": {
+      "sha256": "97bafb8d1187dc16f0ea8a7cb3c3efc9c29cd1fb0d88d655b18489c6dcc6eed0",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/naia.png": {
+      "sha256": "1ca622d58db4dc0dde070906013853f8d1a6d23070fa08914a74a1d1d158c0e0",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/lucien.png": {
+      "sha256": "d64c898a33cd5f3a4f8519225b1d26411d198cf0b89902db8553079839e384e1",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/kairen.png": {
+      "sha256": "f5b91d84af5d8f4bb10b34affea7d1ee1936191e82316135ecc8e26ba374c352",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/fenris.png": {
+      "sha256": "2d33757a57d13997ae45f40ed49d1cb2a1985a53fd88e7a77a248bbc67d4866d",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/darius.png": {
+      "sha256": "0e8a34b9f6673e5d2e8b1b42179ef32c9b44c75836f555cc9e168737649bb195",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/morgas.png": {
+      "sha256": "a81123c6279882e05676d03d101d231af809c343b2fb72ce9a0f7c569ac48e7b",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/corvin.png": {
+      "sha256": "143364c0114e0097d493a06de5c27a631d074899d5f75fd88c1689c42b8ae124",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/garm.png": {
+      "sha256": "d39084223ea29df7bfc955a68bba8d595e01fea7428ed7147d97ab9aaa303d58",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/veyra.png": {
+      "sha256": "91093c81f1f59d9b972ba27497e8c0595f33373882a33e578a7571831be2ba76",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/lunea.png": {
+      "sha256": "18c9577ff76a4f6709edc009723da3135cda6189b592c216b3ffba8ce7bc199f",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/astel.png": {
+      "sha256": "bbb4f590d4d44640a220b70f8edc2709733ce19e1facb2f7883752a9cc134bf2",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/bora.png": {
+      "sha256": "9fab29d6704d8f378741db2ef7ddaac18f8e0a2727663d9db5a6e512036afad2",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/mira.png": {
+      "sha256": "b8c7ac4ae649fed9fa7140ba7c2afb07b634ee4060fef317ea6341ab3f5902f0",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/selene.png": {
+      "sha256": "d23c2e2efa66ad1c17631d9e3aa8f4eb0f6f34db38886c46b0018372c8f1e6dc",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/adrien.png": {
+      "sha256": "922f74ce9bfe4838a18d596cb582db3088b545a163866e4eb5e66ec904d361bd",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/nyx.png": {
+      "sha256": "44c7a513d3e4f1ef9d59aca9feaa858ae6fb7bfe7220c806719cf57641e090b7",
+      "identical": true
+    },
+    "assets/heroes/sd-v36/portraits/ulric.png": {
+      "sha256": "e79f2e9969db59bfe5da969d45f63b28bfa2a1a85b57f19e35be3c1af5cf9ef6",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/caelum/atlas.png": {
+      "sha256": "67e9059a6b03238db09c4d0bc668b3a5eb28895a7bc855b8dfd32f4bb8f7931f",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/astel/atlas.png": {
+      "sha256": "c5e4ee80c33dc8f82f3dda4bf8b87fd9ef8e8d47e6878f8dc466c8fa4cd027bf",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/sael/atlas.png": {
+      "sha256": "4d3339aa95429b3609fd008935452a5756c7878d1fb72e77d2b771a843d84c9c",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/tessa/atlas.png": {
+      "sha256": "1497f343f9503b132177bf1a61ca98d38df6afb3432a866a63b05d8e75d2c8d0",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/kairen/atlas.png": {
+      "sha256": "88d69c572f21867c1271df5abdfbb74eaed861df230fe070e4493170349a27c5",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/seria/atlas.png": {
+      "sha256": "26f0d40dd59db255ce159594557f8e4db1dbb159e8068cea772113dce724ea82",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/lunea/atlas.png": {
+      "sha256": "4462e3824d66f035fcb43c41570732bb293ea0491bd40894d623542d92d952fb",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/elisia/atlas.png": {
+      "sha256": "85426a9b1e5004467e42daaec16513442e1ee2e79bc35b6861b40440db427ce9",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/adrien/atlas.png": {
+      "sha256": "a6c5be82ec25271af9b14eda4f623af3c0a49230e53b2c379726572fbdc1ccdc",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/orwin/atlas.png": {
+      "sha256": "ddcd8209d436d27b0b2e4a0336439a78909027e81667f99b6990de2d4770c12b",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/mira/atlas.png": {
+      "sha256": "8fde333ba4cc87a7232933de7b695f51cec1c31e06deb394880cb6c1caa7f2f9",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/odelia/atlas.png": {
+      "sha256": "306a5866c5c46107e3c2baf0110300c72f96ada97f747c796ea9ac53e4510844",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/naia/atlas.png": {
+      "sha256": "e2afd0a43db93eb087c8e1dba4582100aa1f6c2fa357ed003dd3ea2c5e830c74",
+      "identical": true
+    },
+    "assets/heroes/aurelia-motion-v41/darius/atlas.png": {
+      "sha256": "1b4e5be777578cf04f5e93d4d4d03c4f10f000505e8fbe0d3c139ed377d711bc",
+      "identical": true
+    },
+    "assets/sprites/bright-v28/orwin-sheet.png": {
+      "sha256": "f7710c93e6e7ec69f9a3829341c9245719742ec8a61bee44ba12c095ee4e1a94",
+      "identical": true
+    },
+    "assets/sprites/bright-v28/mira-sheet.png": {
+      "sha256": "861ba4c1d8c8fb4f224eecdbc33674494d35eafb40338a5c11be3b09dd8c4ae1",
+      "identical": true
+    },
+    "assets/sprites/bright-v28/darius-sheet.png": {
+      "sha256": "1035432c01e45326328e2dcab49e45987072925d4520fc615b1b33ed9b2ad662",
+      "identical": true
+    },
+    "assets/sprites/bright-v28/caelum-sheet.png": {
+      "sha256": "f594d656e314c674cead9f441814dbfede0d1ad9683bace8daefbeab3f3f6103",
+      "identical": true
+    },
+    "assets/sprites/bright-v28/leonhardt-sheet.png": {
+      "sha256": "e7c61fd4ca2292314b9bb858f38d1b9c55ebc8a3588d1a5ee8572745da5584a7",
+      "identical": true
+    },
+    "assets/sprites/pixel-v32/kairen-sheet.png": {
+      "sha256": "baef8ff4b15c1bc7840a83e2b1505d1a9d6acbce202f829dac22c9bea6bbba22",
+      "identical": true
+    },
+    "assets/sprites/heroes-v31/a11-sheet.png": {
+      "sha256": "f565b56497b7a7b261b3c98aab9de9a2830c18516cee096ecee4dd08152cb6ef",
+      "identical": true
+    },
+    "assets/sprites/heroes-v31/n11-sheet.png": {
+      "sha256": "adc1f26e6b35adff046b004b03753b6e378ae0d74501a5d357ede55e11f121cd",
+      "identical": true
+    },
+    "assets/sprites/heroes-v31/n06-sheet.png": {
+      "sha256": "6493783fb86b7de94fc39ceb7ebfbed95fbe9ba260e589394077715a72133611",
+      "identical": true
+    },
+    "assets/sprites/heroes-v31/n01-sheet.png": {
+      "sha256": "3588b9bc46ff26927b95010d500f5deebcb783c160d3e59167ea059c3e994e62",
+      "identical": true
+    },
+    "assets/sprites/heroes-v31/a06-sheet.png": {
+      "sha256": "4fee733989307f028d25c0298259f6791e38701e34eb9893626b8347499a26d9",
+      "identical": true
+    },
+    "assets/sprites/heroes-v31/a01-sheet.png": {
+      "sha256": "b5be73e0e027980101a1476f5ca0f02390287f95c6442168212d48733b165a24",
+      "identical": true
+    },
+    "assets/ui/pixel-v32/equipment-icons-v32.png": {
+      "sha256": "b3337bb2faf825df832dc07d9e417c9fdce43ffd3137a5add6cbda0e34ce365e",
+      "identical": true
+    },
+    "assets/ui/portrait/portrait-sky.png": {
+      "sha256": "747a05ca484356dc85ca760f112ad112617658b131724e0bf1292e5aa64e299b",
+      "identical": true
+    },
+    "assets/ui/portrait/casual-meadow.svg": {
+      "sha256": "6009fbfca6b4466352b6f97b214e86a7d701694e86af2b4bb88d117bd3b73ee1",
+      "identical": true
+    },
+    "assets/ui/portrait/portrait-sky.svg": {
+      "sha256": "f30b22576dfa7d753a8d4d34787a3398d75f955934c792a6772db63e6ceb182e",
+      "identical": true
+    },
+    "assets/ui/v30/expedition-key-art.png": {
+      "sha256": "087da064d01f1840abd25fff50dc64cf1500c1c97047d23be424a1f083a79eac",
+      "identical": true
+    },
+    "assets/fx/pixel-v32/elemental-spell-atlas-v32.png": {
+      "sha256": "90bed54e4d9a3e0b3fd99f731fadd24eea2fd9588322400f9180b4626600f693",
+      "identical": true
+    },
+    "assets/monsters/bright-v28/field-monsters-atlas.png": {
+      "sha256": "b87a88d86bf98eefabfb435b9312b0d33f35d186c16ae8fc67e4caab1c65db8a",
+      "identical": true
+    },
+    "assets/monsters/pixel-v32/depths-seven-safe-atlas.png": {
+      "sha256": "184d3e7e81fa3da035fb22fa0fb5e923da242720ac384cc060db60aea6c35843",
+      "identical": true
+    },
+    "assets/monsters/pixel-v32/boss-three-atlas.png": {
+      "sha256": "fe204d3bbe8b640de0d2f21def0840d490140e8abc121ef52fbc15a2ab208192",
+      "identical": true
+    },
+    "assets/monsters/pixel-v32/meadow-six-atlas.png": {
+      "sha256": "f36f34b8575234d2e3be74bce114f94dd8c5bca1a7bbd40a74bcfeb81b92df67",
+      "identical": true
+    },
+    "assets/monsters/casual-v58/depths-seven-atlas.png": {
+      "sha256": "e7e26a8c0cdf73b31b9bce9d633fede0719feeb830bfad321b5eeb98bb910421",
+      "identical": true
+    },
+    "assets/monsters/casual-v58/boss-three-atlas.png": {
+      "sha256": "445695914c72678e1bdd2290bc3f0d1bf3f6ee6cd6dd61e2f1ada0dcff4ef594",
+      "identical": true
+    },
+    "assets/monsters/casual-v58/meadow-six-atlas.png": {
+      "sha256": "13b4fd7aed5484e3605e6bc81ff7f739812824a11b363133a9fc58ad97828ffe",
+      "identical": true
+    },
+    "assets/monsters/meadow-v60/goblin-four.png": {
+      "sha256": "e4c29a4b1b20ca8d69644f75424964e5dc7139569c1d06886cd7e1c2c8989faf",
+      "identical": true
+    },
+    "assets/monsters/meadow-v60/bristle-boar-four.png": {
+      "sha256": "4485867d48361e0c622b619f7ced2b095ac8341eb9ed82e1bbb1837a29046b6f",
+      "identical": true
+    },
+    "assets/monsters/meadow-v60/wild-dog-four.png": {
+      "sha256": "149f4e727b646f04095e453d0c01f38d381acadcd039675ff1b5437ca536eeca",
+      "identical": true
+    },
+    "assets/backgrounds/raid-v59/eclipse-grove.png": {
+      "sha256": "8fee52151b7e87ba2626a02540a6dcefdefc2ca92c82546fb7243b88881cec2b",
+      "identical": true
+    },
+    "assets/backgrounds/raid-v59/crystal-forge.png": {
+      "sha256": "cdea07329aaaac830bc8f643303c08c6f051278e5a97fe224347806652a5be6a",
+      "identical": true
+    },
+    "assets/backgrounds/raid-v59/stone-circle.png": {
+      "sha256": "4c3e4b0d3e4b05df29130c5b4562f1f80f86fa0e9eae031420688ac62e6e253e",
+      "identical": true
+    },
+    "assets/props/field-v61/moon-tree.png": {
+      "sha256": "bc75f9409e61f96f8a7698b6eb2b912a0e7fecb9cd413edfdf6b26dc28eabd31",
+      "identical": true
+    },
+    "assets/props/field-v61/mine-crystal.png": {
+      "sha256": "6667a1ddec6d81fae75748cdf58b82acb2c5563ab921bbae7523219b75ed7aca",
+      "identical": true
+    },
+    "assets/props/meadow-v60/canopy-tree.png": {
+      "sha256": "0c78dfcfa5cb834fedc41619370acc98b8745e0aa8fddb559e53bcd2c1e3a3c4",
+      "identical": true
+    }
+  },
+  "audio": {
+    "audio/v82/ultimate.wav": {
+      "sha256": "3c20a3ae66bd0378536b5bbe4db7e2b5b2760ef13b63173006c6c52d3c98590b",
+      "identical": true
+    },
+    "audio/v82/sword.wav": {
+      "sha256": "1df763c5dbc228eaf0e0e830b33a0e93be7e92057029e3310e370f7ec789d7ac",
+      "identical": true
+    },
+    "audio/v82/magic.wav": {
+      "sha256": "f9ed957078469213d8c46986e43454395c5d4b0db58184921e1d045d11a862b4",
+      "identical": true
+    },
+    "audio/v82/defeat.wav": {
+      "sha256": "de38ab431b10be6429decdd74d2b2812188218e8b4e4c599b1d1793961fd777e",
+      "identical": true
+    },
+    "audio/v82/boss.ogg": {
+      "sha256": "b34a80f1618b3f1c02d58b142776b607c119650b179937fc654a474121c78b82",
+      "identical": true
+    },
+    "audio/v82/ambient_mine.ogg": {
+      "sha256": "6a05d9d91629cf29124d4dfd71c15c6eaae45cf7d72087ab88db7b2dd126772f",
+      "identical": true
+    },
+    "audio/v82/reward.wav": {
+      "sha256": "01f9ce5c9bcd49a4f6ca3e79817aeb55d53f0105ad2c3ab509cc11c798d65eeb",
+      "identical": true
+    },
+    "audio/v82/forest.ogg": {
+      "sha256": "95769cdbb0d0e50f62fba2e0c62971ceb58e22fe594f6b39527464274cbfd12b",
+      "identical": true
+    },
+    "audio/v82/critical.wav": {
+      "sha256": "eb3d93ab9ea86cdd25645d118aa66569671d781af7465fa83d9d18b3a51cf840",
+      "identical": true
+    },
+    "audio/v82/guard.wav": {
+      "sha256": "f3e519c882da5d333fc42594619465df19cef4e8ffb5058b03a33bd4bbd5b9e0",
+      "identical": true
+    },
+    "audio/v82/boss_warning.wav": {
+      "sha256": "4b56af350e07a3dc9304a1a9273de6e043bf098a274a89aeff47a7e7f3f79699",
+      "identical": true
+    },
+    "audio/v82/heal.wav": {
+      "sha256": "01c6bd6d0ab7e7ef3f5b8d95bc98442aa16b1fd299f1177b0d7a41464f9fd077",
+      "identical": true
+    },
+    "audio/v82/meadow.ogg": {
+      "sha256": "ac69bd1b9a13369b798cc0296395296044ab18dad5d6ea9ed5902a72530c586d",
+      "identical": true
+    },
+    "audio/v82/bow.wav": {
+      "sha256": "145d9171452aa225f509c9f24ff3ef525b4d4bb19381873989213c646e495c56",
+      "identical": true
+    },
+    "audio/v82/upgrade.wav": {
+      "sha256": "e76dd82cb5a1c758dc189d9b5b7da01e14fe9c8ab9aaa9b9aa5a397a36c1d114",
+      "identical": true
+    },
+    "audio/v82/ambient_meadow.ogg": {
+      "sha256": "d7f67a5e741a2afe387743606e058e2c7dbb67eeb206a7674866930215f4a83a",
+      "identical": true
+    },
+    "audio/v82/control.wav": {
+      "sha256": "2807af0299090fdb48f9065b7a87f8825bbe54193186e6d73ab235b4a3021f55",
+      "identical": true
+    },
+    "audio/v82/ui_click.wav": {
+      "sha256": "120934766369d3e37575bad34f1543333cdaa2b9d048d65de7bc68635ad2b288",
+      "identical": true
+    },
+    "audio/v82/mine.ogg": {
+      "sha256": "f578257dcecf2db83267d54230bd3d866d40aaa6f08aef764102d1723db9f7b4",
+      "identical": true
+    },
+    "audio/v82/victory.wav": {
+      "sha256": "11d71ce0ffcea6167ce6d2f12b625ae76de26450b522a7c9bcee08525fd5f332",
+      "identical": true
+    },
+    "audio/v82/ambient_forest.ogg": {
+      "sha256": "2312c5edf9b3cf1a569aa2baa047d64b2f567313c9be85ade8e996bac85bd205",
+      "identical": true
+    },
+    "audio/v82/summon.wav": {
+      "sha256": "e2c0ea3da4a81ecd4f6ac09275c58f632f29247b9cb6a23f39a7a4e6c8696b70",
+      "identical": true
+    },
+    "audio/v82/shield_break.wav": {
+      "sha256": "5e6983832e566f764ca506504c6b6f6b082019030c3c3875205dd9707a846d9b",
+      "identical": true
+    },
+    "audio/v82/equip.wav": {
+      "sha256": "7786b493a7f943f008711928ed924e1e107a108e6d1c19b148768bcbc2751b5c",
+      "identical": true
+    }
+  },
+  "core_rules": {
+    "scripts/HeroRosterCatalog.gd": {
+      "identical": true,
+      "sha256": "c09e9c2788398b9ed50ebfd5649befd4978adeae448db07626cac4538294afaf"
+    },
+    "scripts/HeroCombatRules.gd": {
+      "identical": true,
+      "sha256": "16a42cd50b510c8de1b18893605484ac663c7c0df951f71f6d6f9c229c96ddb0"
+    },
+    "scripts/EquipmentRules.gd": {
+      "identical": true,
+      "sha256": "037dbf76d6e87a773ed395325c01b61d7e9e49598af27e2f8e69bd4298e7f742"
+    },
+    "scripts/GuardianCatalog.gd": {
+      "identical": true,
+      "sha256": "11e2e07e4e4ac7504b334915209c1ba207729ef733ad63f8f9ac8f56a45b9255"
+    },
+    "scripts/RaidBossDesign.gd": {
+      "identical": true,
+      "sha256": "3b4cef0f1cbc002b266b853adabddf18246eaecfaaeac5ecdec9d47f93ed9ddf"
+    },
+    "scripts/RaidBattlefield.gd": {
+      "identical": true,
+      "sha256": "942581f7eab0e7c445649fad82b8ab4bc97b61bda2061efe087f7233b2c52211"
+    },
+    "scripts/DailyDungeonBattleRules.gd": {
+      "identical": true,
+      "sha256": "e169ce0bcebce760af981ab86b89a5146a076f8e21b08701be26f5aea28d6ab5"
+    },
+    "scripts/TowerBattleRules.gd": {
+      "identical": true,
+      "sha256": "928261dec54061142f5e6cb975251dda4edc20eac1f91307ffe672dd78cfd218"
+    },
+    "scripts/WeeklyAbyssBattleRules.gd": {
+      "identical": true,
+      "sha256": "b439b6f5989fa30c2b0b85d61b0472d619d46ac975ea3e404868f1e2f9c34aee"
+    },
+    "scripts/AutoHuntController.gd": {
+      "identical": true,
+      "sha256": "a819aa2f69b0aaa12109d3083ef385a5b83ed3d7e9e88bfc3970f5cc9d4dd713"
+    },
+    "scripts/RoamingHuntDirector.gd": {
+      "identical": true,
+      "sha256": "0d152b1b6b7fd68424a02101ed565f54ec6911882c7cbbf5bb0abff5d6f94023"
+    }
+  },
+  "changed_other": [
+    "CURRENT_DEVELOPMENT.md",
+    "DEVELOPMENT_STATUS.json",
+    "START_HERE_KO.md",
+    "README.md",
+    "scripts/GameUiTheme.gd",
+    "scripts/HeroScreens.gd",
+    "scripts/V80TowerSettlementSmokeTest.gd",
+    "scripts/WeeklyAbyssProgressionService.gd",
+    "scripts/TowerProgressionService.gd",
+    "scripts/ChallengeReportScreens.gd",
+    "scripts/ChallengeBattleDirector.gd",
+    "scripts/SaveStore.gd",
+    "scripts/ChallengeCombatLedger.gd",
+    "scripts/ContentScreens.gd",
+    "scripts/V80AbyssSettlementSmokeTest.gd",
+    "scripts/Main.gd",
+    "scripts/GameSaveCoordinator.gd",
+    "scripts/SaveValidation.gd",
+    "scripts/LongTermGoalsService.gd",
+    "scripts/ChallengeBattleSession.gd",
+    "scripts/V81GoalSaveSmokeTest.gd",
+    "scripts/LongTermGoalCatalog.gd",
+    "scripts/portrait/PortraitMain.gd",
+    "scripts/portrait/PortraitPages.gd",
+    "scripts/portrait/PortraitMenus.gd",
+    "scripts/portrait/PortraitSkin.gd"
+  ],
+  "removed_font_files": [
+    "assets/fonts/NanumGothic-Regular.ttf.import",
+    "assets/fonts/NanumGothic-Regular.ttf"
+  ],
+  "totals": {
+    "images": 280,
+    "audio": 24,
+    "core_rules": 11
+  }
+}

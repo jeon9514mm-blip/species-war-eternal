@@ -1,0 +1,54 @@
+{
+  "passed": 8,
+  "total": 8,
+  "results": [
+    {
+      "test": "BMSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.6,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nbm_smoke_test_ok gems=45 unclaimed_gold=250 ad_count=3\n"
+    },
+    {
+      "test": "IdleSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.61,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\noffline_reward_ok gold=315 xp=198\nidle_chest_ok stage=2 chest_gold=300 chest_xp=125\nidle_claim_ok wallet_gold=615 wallet_xp=323\n"
+    },
+    {
+      "test": "V10UiUxSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.25,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv10_ui_ux_smoke_test_ok nav=ok world=ok detail=ok codex=ok equip=ok summon_fx=ok badges=ok salvage=ok\n"
+    },
+    {
+      "test": "V22UiUpgradeSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.94,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv22_ui_upgrade_smoke_test_ok lobby=dashboard heroes=filter_sort combat=chips world=dashboard war=command_dashboard\n"
+    },
+    {
+      "test": "V27RaidIntegrationSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.99,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_raid_integration checks=19 failures=0 encounters=[{\"boss_hp\":10205,\"elapsed\":15.2,\"faction\":\"aurelia\",\"heroes\":3,\"outcome\":\"defeat\",\"patterns\":3},{\"boss_hp\":10637,\"elapsed\":7.1,\"faction\":\"noxfera\",\"heroes\":3,\"outcome\":\"defeat\",\"patterns\":1}]\n"
+    },
+    {
+      "test": "V29RosterUiSaveSmokeTest.gd",
+      "passed": true,
+      "seconds": 18.92,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv29_roster_ui_save checks=276 failures=0\n"
+    },
+    {
+      "test": "V28BrightUiSmokeTest.gd",
+      "passed": true,
+      "seconds": 5.03,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv28_bright_ui_ok checks=66\n"
+    },
+    {
+      "test": "V28FieldFxSmokeTest.gd",
+      "passed": true,
+      "seconds": 5.01,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv28_field_fx_smoke_test_ok compact_skill=ok targeted_fx=ok ultimate=ok bounded_damage=ok\nWARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).\n   at: cleanup (core/object/object.cpp:2536)\n"
+    }
+  ]
+}

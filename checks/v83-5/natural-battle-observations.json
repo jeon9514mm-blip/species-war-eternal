@@ -1,0 +1,272 @@
+[
+  {
+    "case": [
+      "tower",
+      10,
+      ""
+    ],
+    "cast_ticks": 0,
+    "effective_hp": 7920,
+    "elapsed": 20.3666666666668,
+    "faction": "aurelia",
+    "healers_seen": 1,
+    "metrics": {},
+    "pattern": {
+      "hint": "지원몹 우선 처치 또는 집중 공격 · 우두머리 회복은 지원몹당 최대 3회",
+      "id": "healing_guard",
+      "label": "회복 지원대",
+      "version": 1
+    },
+    "pattern_waves": 1,
+    "raw_hp": 8000,
+    "reason": "waves_cleared"
+  },
+  {
+    "case": [
+      "tower",
+      11,
+      ""
+    ],
+    "cast_ticks": 0,
+    "effective_hp": 3392,
+    "elapsed": 9.03333333333331,
+    "faction": "aurelia",
+    "healers_seen": 0,
+    "metrics": {},
+    "pattern": {
+      "hint": "2초 시전 중 기절로 차단 · 방어·회복으로 버티거나 대상이 사거리 밖으로 이탈",
+      "id": "charged_strike",
+      "label": "차단 가능한 강타",
+      "version": 1
+    },
+    "pattern_waves": 1,
+    "raw_hp": 3392,
+    "reason": "waves_cleared"
+  },
+  {
+    "case": [
+      "tower",
+      12,
+      ""
+    ],
+    "cast_ticks": 0,
+    "effective_hp": 3616,
+    "elapsed": 7.93333333333331,
+    "faction": "aurelia",
+    "healers_seen": 0,
+    "metrics": {},
+    "pattern": {
+      "hint": "분산된 적 · 광역 공격과 후열 보호를 비교하세요",
+      "id": "split_pack",
+      "label": "분산 포위",
+      "version": 1
+    },
+    "pattern_waves": 1,
+    "raw_hp": 3708,
+    "reason": "waves_cleared"
+  },
+  {
+    "case": [
+      "weekly",
+      1,
+      "2961"
+    ],
+    "cast_ticks": 0,
+    "effective_hp": 146024,
+    "elapsed": 90.0,
+    "faction": "aurelia",
+    "healers_seen": 22,
+    "metrics": {
+      "healed_hp": 1512,
+      "heals": 2
+    },
+    "pattern": {
+      "hint": "지원몹 우선 처치 또는 집중 공격 · 우두머리 회복은 지원몹당 최대 3회",
+      "id": "healing_guard",
+      "label": "회복 지원대",
+      "version": 1
+    },
+    "pattern_waves": 11,
+    "raw_hp": 147536,
+    "reason": "score_finished"
+  },
+  {
+    "case": [
+      "weekly",
+      1,
+      "2962"
+    ],
+    "cast_ticks": 0,
+    "effective_hp": 144000,
+    "elapsed": 90.0,
+    "faction": "aurelia",
+    "healers_seen": 0,
+    "metrics": {},
+    "pattern": {
+      "hint": "2초 시전 중 기절로 차단 · 방어·회복으로 버티거나 대상이 사거리 밖으로 이탈",
+      "id": "charged_strike",
+      "label": "차단 가능한 강타",
+      "version": 1
+    },
+    "pattern_waves": 14,
+    "raw_hp": 144000,
+    "reason": "score_finished"
+  },
+  {
+    "case": [
+      "weekly",
+      1,
+      "2963"
+    ],
+    "cast_ticks": 0,
+    "effective_hp": 126000,
+    "elapsed": 90.0,
+    "faction": "aurelia",
+    "healers_seen": 0,
+    "metrics": {},
+    "pattern": {
+      "hint": "분산된 적 · 광역 공격과 후열 보호를 비교하세요",
+      "id": "split_pack",
+      "label": "분산 포위",
+      "version": 1
+    },
+    "pattern_waves": 13,
+    "raw_hp": 126000,
+    "reason": "score_finished"
+  },
+  {
+    "case": [
+      "tower",
+      10,
+      ""
+    ],
+    "cast_ticks": 0,
+    "effective_hp": 7920,
+    "elapsed": 17.4,
+    "faction": "noxfera",
+    "healers_seen": 1,
+    "metrics": {},
+    "pattern": {
+      "hint": "지원몹 우선 처치 또는 집중 공격 · 우두머리 회복은 지원몹당 최대 3회",
+      "id": "healing_guard",
+      "label": "회복 지원대",
+      "version": 1
+    },
+    "pattern_waves": 1,
+    "raw_hp": 7920,
+    "reason": "waves_cleared"
+  },
+  {
+    "case": [
+      "tower",
+      11,
+      ""
+    ],
+    "cast_ticks": 0,
+    "effective_hp": 3392,
+    "elapsed": 9.16666666666664,
+    "faction": "noxfera",
+    "healers_seen": 0,
+    "metrics": {},
+    "pattern": {
+      "hint": "2초 시전 중 기절로 차단 · 방어·회복으로 버티거나 대상이 사거리 밖으로 이탈",
+      "id": "charged_strike",
+      "label": "차단 가능한 강타",
+      "version": 1
+    },
+    "pattern_waves": 1,
+    "raw_hp": 3478,
+    "reason": "waves_cleared"
+  },
+  {
+    "case": [
+      "tower",
+      12,
+      ""
+    ],
+    "cast_ticks": 0,
+    "effective_hp": 3616,
+    "elapsed": 8.63333333333331,
+    "faction": "noxfera",
+    "healers_seen": 0,
+    "metrics": {},
+    "pattern": {
+      "hint": "분산된 적 · 광역 공격과 후열 보호를 비교하세요",
+      "id": "split_pack",
+      "label": "분산 포위",
+      "version": 1
+    },
+    "pattern_waves": 1,
+    "raw_hp": 3708,
+    "reason": "waves_cleared"
+  },
+  {
+    "case": [
+      "weekly",
+      1,
+      "2961"
+    ],
+    "cast_ticks": 0,
+    "effective_hp": 148170,
+    "elapsed": 90.0,
+    "faction": "noxfera",
+    "healers_seen": 22,
+    "metrics": {
+      "healed_hp": 3024,
+      "heals": 4
+    },
+    "pattern": {
+      "hint": "지원몹 우선 처치 또는 집중 공격 · 우두머리 회복은 지원몹당 최대 3회",
+      "id": "healing_guard",
+      "label": "회복 지원대",
+      "version": 1
+    },
+    "pattern_waves": 11,
+    "raw_hp": 150438,
+    "reason": "score_finished"
+  },
+  {
+    "case": [
+      "weekly",
+      1,
+      "2962"
+    ],
+    "cast_ticks": 0,
+    "effective_hp": 144000,
+    "elapsed": 90.0,
+    "faction": "noxfera",
+    "healers_seen": 0,
+    "metrics": {},
+    "pattern": {
+      "hint": "2초 시전 중 기절로 차단 · 방어·회복으로 버티거나 대상이 사거리 밖으로 이탈",
+      "id": "charged_strike",
+      "label": "차단 가능한 강타",
+      "version": 1
+    },
+    "pattern_waves": 14,
+    "raw_hp": 144000,
+    "reason": "score_finished"
+  },
+  {
+    "case": [
+      "weekly",
+      1,
+      "2963"
+    ],
+    "cast_ticks": 0,
+    "effective_hp": 126000,
+    "elapsed": 90.0,
+    "faction": "noxfera",
+    "healers_seen": 0,
+    "metrics": {},
+    "pattern": {
+      "hint": "분산된 적 · 광역 공격과 후열 보호를 비교하세요",
+      "id": "split_pack",
+      "label": "분산 포위",
+      "version": 1
+    },
+    "pattern_waves": 13,
+    "raw_hp": 126000,
+    "reason": "score_finished"
+  }
+]

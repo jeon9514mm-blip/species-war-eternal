@@ -1,0 +1,36 @@
+{
+  "version": 32,
+  "mode": "built-in image_gen",
+  "assets": [
+    {
+      "path": "res://assets/ui/pixel-v32/equipment-icons-v32.png",
+      "original": "/workspace/scratch/b4d947fe7908/generated_images/exec-5d5311bf-57f3-4bfa-a22c-2a73b78cf9e3.png",
+      "prompt": "Use case: stylized-concept. Asset type: production raster equipment icon atlas for a SNES-inspired 16-bit / detailed 32-bit pixel art fantasy RPG.\nCreate exactly 12 distinct inventory icons in a precise FOUR COLUMNS by THREE ROWS regular atlas grid. Canvas aspect ratio 4:3, ideally 1536x1152. Each of the 12 equal square cells contains one centered dark charcoal rounded-square pixel-beveled frame, full object readable at 64 pixels; all frames same size and evenly aligned. Whole canvas opaque deep charcoal. Padding each cell at least 10%. NO letters, numbers, captions, dividers, borders around atlas, logo or watermark.\nRow 1 left to right: 1 plain worn steel hunting sword with leather hilt; 2 elegant rare blue-star longbow with blue string and star gem; 3 legendary dawn holy sword, gold hilt, ivory blade, amber jewel; 4 ornate legendary fire wizard staff with small red ruby and crisp orange flame crown.\nRow 2: 1 sturdy brown leather cuirass; 2 rare moonlight blue scale armor; 3 legendary immortal guardian gold-and-ivory heavy cuirass; 4 simple novice leather cuirass with lighter tan straps.\nRow 3: 1 faded folded parchment charm tied with brown cord; 2 magic silver ring with luminous blue gem; 3 legendary kingdom-heart red heart-shaped ruby pendant with gold wings; 4 plain novice steel sword.\nHand-crafted sharply stepped pixel clusters, crisp dark outline, colored shadow ramps, selective ordered dithering, limited 16-color palette per icon, luminous highlights made of hard pixels. Rich depth but no smooth gradient, no 3D render, no vector art, no photorealism, no blur, no anti-aliased edges. Clear silhouette and materials; accurate requested item types.",
+      "grid": [
+        4,
+        3
+      ],
+      "pixel_size": [
+        1448,
+        1086
+      ],
+      "notes": "Eleven exact or starter item illustrations; fire staff is art-only sample (cell3), not a new drop."
+    },
+    {
+      "path": "res://assets/fx/pixel-v32/elemental-spell-atlas-v32.png",
+      "original": "/workspace/scratch/b4d947fe7908/generated_images/exec-b611187a-136c-4d5d-97c0-5dbd88a11f8f.png",
+      "prompt": "Use case: stylized-concept. Asset type: real production transparent pixel-art battle spell animation sprite sheet.\nCreate one square 1024x1024 PNG with actual alpha-transparent background. Absolutely no black baked backdrop, no checkerboard backdrop, no scene. Exactly FOUR COLUMNS and FOUR ROWS, sixteen equally sized 256x256 animation cells. Each cell is independent with at least 26 pixels clear transparent padding on every side. Each effect is centered precisely on its own cell center. NO text, labels, numbers, grids, separating lines, watermark, frame or panels.\nFour rows are four different elemental effects, each row left to right has four coherent timeframes: tiny anticipation, growing shape, fullest impact, breaking-up dissipation. Each row repeats same exact visual motif coherently. All must read as sharply drawn SNES era 16-bit pixel game art, chunky 2-to-4 pixel clusters, dark stepped outlines and hard stepped color ramps, hard edged pixel particles. No glow blur, no gradients, no smooth shading, no anti-aliasing, no photo, no 3D.\nRow 1: compact glowing orange gold magical flame burst, lively curled fire crown and tiny red embers.\nRow 2: cyan white magical lightning impact, hard jagged bolt inside a small broken diamond-shaped cyan mana circuit, tiny blue square sparks.\nRow 3: emerald and mint healing pulse, a small two-leaf sprout with rising golden pollen stars, protective gently upward movement, not lightning.\nRow 4: ruby and crimson magical shield, angular diamond-shaped woven crystal barrier with ivory stitching crossing its surface and small ruby fragments, NOT flame.\nConsistent strict sixteen-cell grid, effects confined safely in their own cells, transparent alpha preserved, saturated clear spell colors. Actual animation game atlas, not a presentation.",
+      "correction": "Edit this transparent VFX sprite atlas only to fix unsafe sprite cell margins. Keep the four motifs and exact four-row/four-column order and transparent alpha. Re-layout all sixteen sprites precisely within a 4 by 4 regular grid: each effect INCLUDING every spark fully inside the CENTRAL SIXTY PERCENT of its cell, leaving TWENTY PERCENT transparent margin on ALL FOUR sides. Make frame 3 smaller to stay inside that limit. Use a clean square 1024x1024 canvas, each invisible cell exactly256x256. Sprite centers(128,128),(384,128),(640,128),(896,128); row2 y384,row3y640,row4y896. No pixels whatsoever in the outer 40 pixels of each cell. Keep original crisp chunky pixel outlines, saturated limited color ramps, flame, cyan jagged lightning, green sprout healing, ruby stitched diamond barrier. Maintain genuine transparency; no black or checkered backing. Do not add text, frames or visible grid. This is a production animation atlas where sprites must not touch another cell.",
+      "grid": [
+        4,
+        4
+      ],
+      "pixel_size": [
+        1254,
+        1254
+      ],
+      "alpha": true,
+      "notes": "Finite supplementary raster layer for actual recipients: Caelum solar damage, Tessa rune damage, Elisia healing, Selene shield. No status/damage/target/proc changes; other signature motifs preserved."
+    }
+  ]
+}

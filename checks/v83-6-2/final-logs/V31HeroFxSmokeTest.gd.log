@@ -1,0 +1,743 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+V27 HERO PASS: leonhardt/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: leonhardt/a1
+V27 HERO PASS: leonhardt/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: leonhardt/a2
+V27 HERO PASS: leonhardt/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: leonhardt/ultimate
+V27 HERO PASS: mira/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: mira/a1
+V27 HERO PASS: mira/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: mira/a2
+V27 HERO PASS: mira/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: mira/ultimate
+V27 HERO PASS: elisia/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: elisia/a1
+V27 HERO PASS: elisia/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: elisia/a2
+V27 HERO PASS: elisia/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: elisia/ultimate
+V27 HERO PASS: kairen/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: kairen/a1
+V27 HERO PASS: kairen/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: kairen/a2
+V27 HERO PASS: kairen/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: kairen/ultimate
+V27 HERO PASS: orwin/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: orwin/a1
+V27 HERO PASS: orwin/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: orwin/a2
+V27 HERO PASS: orwin/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: orwin/ultimate
+V27 HERO PASS: seria/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: seria/a1
+V27 HERO PASS: seria/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: seria/a2
+V27 HERO PASS: seria/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: seria/ultimate
+V27 HERO PASS: astel/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: astel/a1
+V27 HERO PASS: astel/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: astel/a2
+V27 HERO PASS: astel/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: astel/ultimate
+V27 HERO PASS: darius/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: darius/a1
+V27 HERO PASS: darius/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: darius/a2
+V27 HERO PASS: darius/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: darius/ultimate
+V27 HERO PASS: lunea/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: lunea/a1
+V27 HERO PASS: lunea/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: lunea/a2
+V27 HERO PASS: lunea/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: lunea/ultimate
+V27 HERO PASS: caelum/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: caelum/a1
+V27 HERO PASS: caelum/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: caelum/a2
+V27 HERO PASS: caelum/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: caelum/ultimate
+V27 HERO PASS: valeria/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: valeria/a1
+V27 HERO PASS: valeria/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: valeria/a2
+V27 HERO PASS: valeria/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: valeria/ultimate
+V27 HERO PASS: morgas/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: morgas/a1
+V27 HERO PASS: morgas/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: morgas/a2
+V27 HERO PASS: morgas/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: morgas/ultimate
+V27 HERO PASS: ragna/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: ragna/a1
+V27 HERO PASS: ragna/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: ragna/a2
+V27 HERO PASS: ragna/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: ragna/ultimate
+V27 HERO PASS: bron/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: bron/a1
+V27 HERO PASS: bron/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: bron/a2
+V27 HERO PASS: bron/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: bron/ultimate
+V27 HERO PASS: nyx/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: nyx/a1
+V27 HERO PASS: nyx/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: nyx/a2
+V27 HERO PASS: nyx/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: nyx/ultimate
+V27 HERO PASS: fenris/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: fenris/a1
+V27 HERO PASS: fenris/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: fenris/a2
+V27 HERO PASS: fenris/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: fenris/ultimate
+V27 HERO PASS: isolde/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: isolde/a1
+V27 HERO PASS: isolde/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: isolde/a2
+V27 HERO PASS: isolde/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: isolde/ultimate
+V27 HERO PASS: garm/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: garm/a1
+V27 HERO PASS: garm/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: garm/a2
+V27 HERO PASS: garm/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: garm/ultimate
+V27 HERO PASS: veyra/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: veyra/a1
+V27 HERO PASS: veyra/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: veyra/a2
+V27 HERO PASS: veyra/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: veyra/ultimate
+V27 HERO PASS: ulric/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: ulric/a1
+V27 HERO PASS: ulric/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: ulric/a2
+V27 HERO PASS: ulric/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: ulric/ultimate
+V27 HERO PASS: adrien/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: adrien/a1
+V27 HERO PASS: adrien/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: adrien/a2
+V27 HERO PASS: adrien/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: adrien/ultimate
+V27 HERO PASS: tessa/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: tessa/a1
+V27 HERO PASS: tessa/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: tessa/a2
+V27 HERO PASS: tessa/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: tessa/ultimate
+V27 HERO PASS: naia/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: naia/a1
+V27 HERO PASS: naia/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: naia/a2
+V27 HERO PASS: naia/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: naia/ultimate
+V27 HERO PASS: sael/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: sael/a1
+V27 HERO PASS: sael/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: sael/a2
+V27 HERO PASS: sael/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: sael/ultimate
+V27 HERO PASS: odelia/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: odelia/a1
+V27 HERO PASS: odelia/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: odelia/a2
+V27 HERO PASS: odelia/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: odelia/ultimate
+V27 HERO PASS: lucien/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: lucien/a1
+V27 HERO PASS: lucien/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: lucien/a2
+V27 HERO PASS: lucien/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: lucien/ultimate
+V27 HERO PASS: corvin/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: corvin/a1
+V27 HERO PASS: corvin/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: corvin/a2
+V27 HERO PASS: corvin/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: corvin/ultimate
+V27 HERO PASS: rokan/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: rokan/a1
+V27 HERO PASS: rokan/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: rokan/a2
+V27 HERO PASS: rokan/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: rokan/ultimate
+V27 HERO PASS: bora/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: bora/a1
+V27 HERO PASS: bora/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: bora/a2
+V27 HERO PASS: bora/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: bora/ultimate
+V27 HERO PASS: selene/a1/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: selene/a1
+V27 HERO PASS: selene/a2/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: selene/a2
+V27 HERO PASS: selene/ultimate/field uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: selene/ultimate
+V27 HERO PASS: leonhardt/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: leonhardt/a1
+V27 HERO PASS: leonhardt/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: leonhardt/a2
+V27 HERO PASS: leonhardt/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: leonhardt/ultimate
+V27 HERO PASS: mira/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: mira/a1
+V27 HERO PASS: mira/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: mira/a2
+V27 HERO PASS: mira/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: mira/ultimate
+V27 HERO PASS: elisia/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: elisia/a1
+V27 HERO PASS: elisia/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: elisia/a2
+V27 HERO PASS: elisia/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: elisia/ultimate
+V27 HERO PASS: kairen/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: kairen/a1
+V27 HERO PASS: kairen/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: kairen/a2
+V27 HERO PASS: kairen/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: kairen/ultimate
+V27 HERO PASS: orwin/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: orwin/a1
+V27 HERO PASS: orwin/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: orwin/a2
+V27 HERO PASS: orwin/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: orwin/ultimate
+V27 HERO PASS: seria/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: seria/a1
+V27 HERO PASS: seria/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: seria/a2
+V27 HERO PASS: seria/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: seria/ultimate
+V27 HERO PASS: astel/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: astel/a1
+V27 HERO PASS: astel/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: astel/a2
+V27 HERO PASS: astel/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: astel/ultimate
+V27 HERO PASS: darius/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: darius/a1
+V27 HERO PASS: darius/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: darius/a2
+V27 HERO PASS: darius/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: darius/ultimate
+V27 HERO PASS: lunea/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: lunea/a1
+V27 HERO PASS: lunea/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: lunea/a2
+V27 HERO PASS: lunea/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: lunea/ultimate
+V27 HERO PASS: caelum/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: caelum/a1
+V27 HERO PASS: caelum/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: caelum/a2
+V27 HERO PASS: caelum/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: caelum/ultimate
+V27 HERO PASS: valeria/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: valeria/a1
+V27 HERO PASS: valeria/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: valeria/a2
+V27 HERO PASS: valeria/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: valeria/ultimate
+V27 HERO PASS: morgas/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: morgas/a1
+V27 HERO PASS: morgas/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: morgas/a2
+V27 HERO PASS: morgas/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: morgas/ultimate
+V27 HERO PASS: ragna/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: ragna/a1
+V27 HERO PASS: ragna/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: ragna/a2
+V27 HERO PASS: ragna/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: ragna/ultimate
+V27 HERO PASS: bron/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: bron/a1
+V27 HERO PASS: bron/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: bron/a2
+V27 HERO PASS: bron/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: bron/ultimate
+V27 HERO PASS: nyx/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: nyx/a1
+V27 HERO PASS: nyx/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: nyx/a2
+V27 HERO PASS: nyx/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: nyx/ultimate
+V27 HERO PASS: fenris/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: fenris/a1
+V27 HERO PASS: fenris/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: fenris/a2
+V27 HERO PASS: fenris/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: fenris/ultimate
+V27 HERO PASS: isolde/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: isolde/a1
+V27 HERO PASS: isolde/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: isolde/a2
+V27 HERO PASS: isolde/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: isolde/ultimate
+V27 HERO PASS: garm/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: garm/a1
+V27 HERO PASS: garm/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: garm/a2
+V27 HERO PASS: garm/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: garm/ultimate
+V27 HERO PASS: veyra/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: veyra/a1
+V27 HERO PASS: veyra/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: veyra/a2
+V27 HERO PASS: veyra/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: veyra/ultimate
+V27 HERO PASS: ulric/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: ulric/a1
+V27 HERO PASS: ulric/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: ulric/a2
+V27 HERO PASS: ulric/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: ulric/ultimate
+V27 HERO PASS: adrien/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: adrien/a1
+V27 HERO PASS: adrien/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: adrien/a2
+V27 HERO PASS: adrien/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: adrien/ultimate
+V27 HERO PASS: tessa/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: tessa/a1
+V27 HERO PASS: tessa/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: tessa/a2
+V27 HERO PASS: tessa/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: tessa/ultimate
+V27 HERO PASS: naia/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: naia/a1
+V27 HERO PASS: naia/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: naia/a2
+V27 HERO PASS: naia/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: naia/ultimate
+V27 HERO PASS: sael/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: sael/a1
+V27 HERO PASS: sael/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: sael/a2
+V27 HERO PASS: sael/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: sael/ultimate
+V27 HERO PASS: odelia/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: odelia/a1
+V27 HERO PASS: odelia/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: odelia/a2
+V27 HERO PASS: odelia/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: odelia/ultimate
+V27 HERO PASS: lucien/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: lucien/a1
+V27 HERO PASS: lucien/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: lucien/a2
+V27 HERO PASS: lucien/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: lucien/ultimate
+V27 HERO PASS: corvin/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: corvin/a1
+V27 HERO PASS: corvin/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: corvin/a2
+V27 HERO PASS: corvin/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: corvin/ultimate
+V27 HERO PASS: rokan/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: rokan/a1
+V27 HERO PASS: rokan/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: rokan/a2
+V27 HERO PASS: rokan/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: rokan/ultimate
+V27 HERO PASS: bora/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: bora/a1
+V27 HERO PASS: bora/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: bora/a2
+V27 HERO PASS: bora/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: bora/ultimate
+V27 HERO PASS: selene/a1/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: selene/a1
+V27 HERO PASS: selene/a2/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: selene/a2
+V27 HERO PASS: selene/ultimate/raid uses actual cast and unique icon
+V27 HERO PASS: canonical profile was not mutated
+V27 HERO PASS: effects toggle preserves all combat state: selene/ultimate
+V27 HERO PASS: leonhardt/field real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: leonhardt
+V27 HERO PASS: mira/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: mira
+V27 HERO PASS: elisia/field real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: elisia
+V27 HERO PASS: kairen/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: kairen
+V27 HERO PASS: orwin/field real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: orwin
+V27 HERO PASS: seria/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: seria
+V27 HERO PASS: astel/field real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: astel
+V27 HERO PASS: darius/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: darius
+V27 HERO PASS: lunea/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: lunea
+V27 HERO PASS: caelum/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: caelum
+V27 HERO PASS: valeria/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: valeria
+V27 HERO PASS: morgas/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: morgas
+V27 HERO PASS: ragna/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: ragna
+V27 HERO PASS: bron/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: bron
+V27 HERO PASS: nyx/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: nyx
+V27 HERO PASS: fenris/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: fenris
+V27 HERO PASS: isolde/field real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: isolde
+V27 HERO PASS: garm/field real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: garm
+V27 HERO PASS: veyra/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: veyra
+V27 HERO PASS: ulric/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: ulric
+V27 HERO PASS: adrien/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: adrien
+V27 HERO PASS: tessa/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: tessa
+V27 HERO PASS: naia/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: naia
+V27 HERO PASS: sael/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: sael
+V27 HERO PASS: odelia/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: odelia
+V27 HERO PASS: lucien/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: lucien
+V27 HERO PASS: corvin/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: corvin
+V27 HERO PASS: rokan/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: rokan
+V27 HERO PASS: bora/field real Main A1 entry emits the hero signature
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: bora
+V27 HERO PASS: selene/field real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: selene
+V27 HERO PASS: leonhardt/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: leonhardt
+V27 HERO PASS: mira/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: mira
+V27 HERO PASS: elisia/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: elisia
+V27 HERO PASS: kairen/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: kairen
+V27 HERO PASS: orwin/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: orwin
+V27 HERO PASS: seria/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: seria
+V27 HERO PASS: astel/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: astel
+V27 HERO PASS: darius/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: darius
+V27 HERO PASS: lunea/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: lunea
+V27 HERO PASS: caelum/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: caelum
+V27 HERO PASS: valeria/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: valeria
+V27 HERO PASS: morgas/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: morgas
+V27 HERO PASS: ragna/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: ragna
+V27 HERO PASS: bron/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: bron
+V27 HERO PASS: nyx/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: nyx
+V27 HERO PASS: fenris/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: fenris
+V27 HERO PASS: isolde/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: isolde
+V27 HERO PASS: garm/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: garm
+V27 HERO PASS: veyra/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: veyra
+V27 HERO PASS: ulric/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: ulric
+V27 HERO PASS: adrien/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: adrien
+V27 HERO PASS: tessa/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: tessa
+V27 HERO PASS: naia/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: naia
+V27 HERO PASS: sael/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: sael
+V27 HERO PASS: odelia/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: odelia
+V27 HERO PASS: lucien/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: lucien
+V27 HERO PASS: corvin/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: corvin
+V27 HERO PASS: rokan/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: rokan
+V27 HERO PASS: bora/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: raid A1 anchors only to the real boss
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: bora
+V27 HERO PASS: selene/raid real Main A1 entry emits the hero signature
+V27 HERO PASS: support A1 has only actual ally recipients
+V27 HERO PASS: Main A1 effects toggle preserves all combat state: selene
+V27 HERO PASS: leonhardt actual passive proc selects its unique icon
+V27 HERO PASS: mira actual passive proc selects its unique icon
+V27 HERO PASS: elisia actual passive proc selects its unique icon
+V27 HERO PASS: kairen actual passive proc selects its unique icon
+V27 HERO PASS: orwin actual passive proc selects its unique icon
+V27 HERO PASS: seria actual passive proc selects its unique icon
+V27 HERO PASS: astel actual passive proc selects its unique icon
+V27 HERO PASS: darius actual passive proc selects its unique icon
+V27 HERO PASS: lunea actual passive proc selects its unique icon
+V27 HERO PASS: caelum actual passive proc selects its unique icon
+V27 HERO PASS: valeria actual passive proc selects its unique icon
+V27 HERO PASS: morgas actual passive proc selects its unique icon
+V27 HERO PASS: ragna actual passive proc selects its unique icon
+V27 HERO PASS: bron actual passive proc selects its unique icon
+V27 HERO PASS: nyx actual passive proc selects its unique icon
+V27 HERO PASS: fenris actual passive proc selects its unique icon
+V27 HERO PASS: isolde actual passive proc selects its unique icon
+V27 HERO PASS: garm actual passive proc selects its unique icon
+V27 HERO PASS: veyra actual passive proc selects its unique icon
+V27 HERO PASS: ulric actual passive proc selects its unique icon
+V27 HERO PASS: adrien actual passive proc selects its unique icon
+V27 HERO PASS: tessa actual passive proc selects its unique icon
+V27 HERO PASS: naia actual passive proc selects its unique icon
+V27 HERO PASS: sael actual passive proc selects its unique icon
+V27 HERO PASS: odelia actual passive proc selects its unique icon
+V27 HERO PASS: lucien actual passive proc selects its unique icon
+V27 HERO PASS: corvin actual passive proc selects its unique icon
+V27 HERO PASS: rokan actual passive proc selects its unique icon
+V27 HERO PASS: bora actual passive proc selects its unique icon
+V27 HERO PASS: selene actual passive proc selects its unique icon
+V27 HERO PASS: retargeted volley preserves exact per-target visual hit counts
+V27 HERO PASS: shield visual uses actual non-caster recipient
+V27 HERO PASS: failed passive condition emits nothing
+V27 HERO PASS: confirmed passive emits one badge
+V27 HERO PASS: cooldown/tick never repeats passive badge
+V27 HERO PASS: paused hunt freezes signature
+V27 HERO PASS: suspended application freezes signature
+V27 HERO PASS: resume advances signature
+V27 HERO PASS: signatures are clipped to the actual field
+V27 HERO PASS: effects OFF clears existing signature
+V27 HERO PASS: effects OFF creates no new signature
+V27 HERO PASS: navigation cleans up existing signature
+V27 HERO PASS: signature expires after its finite lifetime
+v31_hero_fx checks=740 failures=0 kit_casts=180 main_a1_casts=60 passive_procs=30

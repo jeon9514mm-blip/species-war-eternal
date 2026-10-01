@@ -1,0 +1,431 @@
+{
+	"checks": 3029,
+	"failures": [],
+	"heroes": [
+		{
+			"id": "leonhardt",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/bright-v28/leonhardt-sheet.png"
+		},
+		{
+			"id": "mira",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/bright-v28/mira-sheet.png"
+		},
+		{
+			"id": "elisia",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/a01-sheet.png"
+		},
+		{
+			"id": "kairen",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/pixel-v32/kairen-sheet.png"
+		},
+		{
+			"id": "orwin",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/bright-v28/orwin-sheet.png"
+		},
+		{
+			"id": "seria",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/a06-sheet.png"
+		},
+		{
+			"id": "astel",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/a06-sheet.png"
+		},
+		{
+			"id": "darius",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/bright-v28/darius-sheet.png"
+		},
+		{
+			"id": "lunea",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/a06-sheet.png"
+		},
+		{
+			"id": "caelum",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/bright-v28/caelum-sheet.png"
+		},
+		{
+			"id": "valeria",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n01-sheet.png"
+		},
+		{
+			"id": "morgas",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n01-sheet.png"
+		},
+		{
+			"id": "ragna",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n01-sheet.png"
+		},
+		{
+			"id": "bron",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n01-sheet.png"
+		},
+		{
+			"id": "nyx",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n01-sheet.png"
+		},
+		{
+			"id": "fenris",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n06-sheet.png"
+		},
+		{
+			"id": "isolde",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n06-sheet.png"
+		},
+		{
+			"id": "garm",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n06-sheet.png"
+		},
+		{
+			"id": "veyra",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n06-sheet.png"
+		},
+		{
+			"id": "ulric",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n06-sheet.png"
+		},
+		{
+			"id": "adrien",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/a11-sheet.png"
+		},
+		{
+			"id": "tessa",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/a11-sheet.png"
+		},
+		{
+			"id": "naia",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/a11-sheet.png"
+		},
+		{
+			"id": "sael",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/a11-sheet.png"
+		},
+		{
+			"id": "odelia",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/a11-sheet.png"
+		},
+		{
+			"id": "lucien",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n11-sheet.png"
+		},
+		{
+			"id": "corvin",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n11-sheet.png"
+		},
+		{
+			"id": "rokan",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n11-sheet.png"
+		},
+		{
+			"id": "bora",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n11-sheet.png"
+		},
+		{
+			"id": "selene",
+			"pixel_material": true,
+			"sprite_path": "res://assets/sprites/heroes-v31/n11-sheet.png"
+		}
+	],
+	"items": [
+		{
+			"cell": 0,
+			"region": "[P: (0.0, 0.0), S: (362.0, 362.0)]"
+		},
+		{
+			"cell": 1,
+			"region": "[P: (362.0, 0.0), S: (362.0, 362.0)]"
+		},
+		{
+			"cell": 2,
+			"region": "[P: (724.0, 0.0), S: (362.0, 362.0)]"
+		},
+		{
+			"cell": 3,
+			"region": "[P: (1086.0, 0.0), S: (362.0, 362.0)]"
+		},
+		{
+			"cell": 4,
+			"region": "[P: (0.0, 362.0), S: (362.0, 362.0)]"
+		},
+		{
+			"cell": 5,
+			"region": "[P: (362.0, 362.0), S: (362.0, 362.0)]"
+		},
+		{
+			"cell": 6,
+			"region": "[P: (724.0, 362.0), S: (362.0, 362.0)]"
+		},
+		{
+			"cell": 7,
+			"region": "[P: (1086.0, 362.0), S: (362.0, 362.0)]"
+		},
+		{
+			"cell": 8,
+			"region": "[P: (0.0, 724.0), S: (362.0, 362.0)]"
+		},
+		{
+			"cell": 9,
+			"region": "[P: (362.0, 724.0), S: (362.0, 362.0)]"
+		},
+		{
+			"cell": 10,
+			"region": "[P: (724.0, 724.0), S: (362.0, 362.0)]"
+		},
+		{
+			"cell": 11,
+			"region": "[P: (1086.0, 724.0), S: (362.0, 362.0)]"
+		}
+	],
+	"monsters": [
+		{
+			"field_height": 38.0000004768372,
+			"name": "초원 고블린",
+			"path": "res://assets/monsters/pixel-v32/meadow-six-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 36.0000012516975,
+			"name": "들개 무리",
+			"path": "res://assets/monsters/pixel-v32/meadow-six-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 42.0000028610229,
+			"name": "가시 멧돼지",
+			"path": "res://assets/monsters/pixel-v32/meadow-six-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 43.9999997615814,
+			"name": "바람 까마귀",
+			"path": "res://assets/monsters/pixel-v32/depths-seven-safe-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 43.9999996125698,
+			"name": "광산 오크",
+			"path": "res://assets/monsters/pixel-v32/depths-seven-safe-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 38.0000028610229,
+			"name": "철갑 두더지",
+			"path": "res://assets/monsters/pixel-v32/meadow-six-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 44.0000006556511,
+			"name": "용암 박쥐",
+			"path": "res://assets/monsters/pixel-v32/depths-seven-safe-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 43.9999989271164,
+			"name": "수정 거미",
+			"path": "res://assets/monsters/pixel-v32/depths-seven-safe-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 44.0000005662441,
+			"name": "달빛 늑대",
+			"path": "res://assets/monsters/pixel-v32/meadow-six-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 44.0000027418137,
+			"name": "숲의 망령",
+			"path": "res://assets/monsters/pixel-v32/depths-seven-safe-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 38.0000030994415,
+			"name": "독버섯 정령",
+			"path": "res://assets/monsters/pixel-v32/meadow-six-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 44.0000039339066,
+			"name": "밤까마귀",
+			"path": "res://assets/monsters/pixel-v32/depths-seven-safe-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 44.0000023841858,
+			"name": "서리 사슴",
+			"path": "res://assets/monsters/pixel-v32/depths-seven-safe-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 99.9999990463257,
+			"name": "초원왕 그룬",
+			"path": "res://assets/monsters/pixel-v32/boss-three-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 100.000001490116,
+			"name": "광맥의 거인 모르굴",
+			"path": "res://assets/monsters/pixel-v32/boss-three-atlas.png",
+			"poses": 4
+		},
+		{
+			"field_height": 99.9999912679195,
+			"name": "월식의 여왕 셀레네",
+			"path": "res://assets/monsters/pixel-v32/boss-three-atlas.png",
+			"poses": 4
+		}
+	],
+	"rendered_screenshot": false,
+	"vfx": [
+		{
+			"effect": "solar_flare",
+			"frame": 0,
+			"region": "[P: (0.0, 0.0), S: (313.0, 313.0)]"
+		},
+		{
+			"effect": "solar_flare",
+			"frame": 1,
+			"region": "[P: (313.0, 0.0), S: (314.0, 313.0)]"
+		},
+		{
+			"effect": "solar_flare",
+			"frame": 2,
+			"region": "[P: (627.0, 0.0), S: (313.0, 313.0)]"
+		},
+		{
+			"effect": "solar_flare",
+			"frame": 3,
+			"region": "[P: (940.0, 0.0), S: (314.0, 313.0)]"
+		},
+		{
+			"effect": "rune_spark",
+			"frame": 0,
+			"region": "[P: (0.0, 313.0), S: (313.0, 314.0)]"
+		},
+		{
+			"effect": "rune_spark",
+			"frame": 1,
+			"region": "[P: (313.0, 313.0), S: (314.0, 314.0)]"
+		},
+		{
+			"effect": "rune_spark",
+			"frame": 2,
+			"region": "[P: (627.0, 313.0), S: (313.0, 314.0)]"
+		},
+		{
+			"effect": "rune_spark",
+			"frame": 3,
+			"region": "[P: (940.0, 313.0), S: (314.0, 314.0)]"
+		},
+		{
+			"effect": "leaf_heal",
+			"frame": 0,
+			"region": "[P: (0.0, 627.0), S: (313.0, 313.0)]"
+		},
+		{
+			"effect": "leaf_heal",
+			"frame": 1,
+			"region": "[P: (313.0, 627.0), S: (314.0, 313.0)]"
+		},
+		{
+			"effect": "leaf_heal",
+			"frame": 2,
+			"region": "[P: (627.0, 627.0), S: (313.0, 313.0)]"
+		},
+		{
+			"effect": "leaf_heal",
+			"frame": 3,
+			"region": "[P: (940.0, 627.0), S: (314.0, 313.0)]"
+		},
+		{
+			"effect": "ruby_shield",
+			"frame": 0,
+			"region": "[P: (0.0, 940.0), S: (313.0, 314.0)]"
+		},
+		{
+			"effect": "ruby_shield",
+			"frame": 1,
+			"region": "[P: (313.0, 940.0), S: (314.0, 314.0)]"
+		},
+		{
+			"effect": "ruby_shield",
+			"frame": 2,
+			"region": "[P: (627.0, 940.0), S: (313.0, 314.0)]"
+		},
+		{
+			"effect": "ruby_shield",
+			"frame": 3,
+			"region": "[P: (940.0, 940.0), S: (314.0, 314.0)]"
+		}
+	],
+	"worlds": [
+		{
+			"path": "res://assets/backgrounds/pixel-v32/gray-meadow-world.png",
+			"size": [
+				1585,
+				992
+			],
+			"uv": [
+				0.0,
+				0.0,
+				1.0,
+				1.0
+			],
+			"zone": "gray_meadow"
+		},
+		{
+			"path": "res://assets/backgrounds/pixel-v32/forgotten-mine-world.png",
+			"size": [
+				1586,
+				992
+			],
+			"uv": [
+				0.140000000596046,
+				0.140000000596046,
+				0.720000028610229,
+				0.720000028610229
+			],
+			"zone": "forgotten_mine"
+		},
+		{
+			"path": "res://assets/backgrounds/pixel-v32/moonrest-forest-world.png",
+			"size": [
+				1586,
+				992
+			],
+			"uv": [
+				0.159999996423721,
+				0.159999996423721,
+				0.680000007152557,
+				0.680000007152557
+			],
+			"zone": "moonrest_forest"
+		}
+	]
+}

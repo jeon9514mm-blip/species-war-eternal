@@ -1,0 +1,33 @@
+Species War: Eternal v79 validation report
+Date: 2026-09-30
+Base: v78 convenience UI
+
+Implemented
+- Hero detail: 3-stat summary, preserved combat-stat label, quick Growth/Bag/Breakthrough actions
+- Hero skills: compact two-column cards
+- Hero equipment/progression sections split for clearer information hierarchy
+- Growth: previous/direct/next hero picker, point metrics, role-based recommendation, per-branch progress cards
+- Equipment detail: fixed selected-item context, task hints, Info/Enhance/Options/Implant quick task flow
+- Equipment compare: current -> candidate power delta before equipping
+- Equipment enhance: current level/power and after-enhance preview before spending
+- Summon: top mode tabs, currency summary, pity state next to summon action
+- Breakthrough: previous/direct/next hero picker and current/owned/required metrics
+- Guardian summon: legendary/mythic pity metrics and progress bars
+
+Preserved
+- v78 bag summary/filters/pagination
+- v78 10-slot formation, 4-column roster, presets
+- v78 five-tab bottom navigation and secondary menu sheet
+- Main combat, auto-hunt, hero rules, roster, equipment rules, guardian data, raid rules, project.godot unchanged
+- Save format and gameplay numbers unchanged
+
+Validation
+STATIC VALIDATION OK | gd=240 smoke=135 resources=ok links=ok
+GODOT 4.7 COMPAT SCAN OK
+V79 SOURCE ASSERT: hero/growth/summon/equipment flow nodes OK
+V79 PRESERVATION ASSERT OK | gameplay=unchanged v78_inventory=unchanged formation_nav=unchanged
+
+Runtime limitation
+- Godot executable is not installed in this environment.
+- V79ConvenienceFlowSmokeTest.gd is included but could not be executed here.
+- Android touch, scrolling, safe-area, FPS and real render appearance require Godot/device verification.

@@ -1,0 +1,30 @@
+{
+  "assets_identical": true,
+  "asset_files": 602,
+  "preserved_files": [
+    "scripts/DailyDungeonBattleRules.gd",
+    "scripts/DailyDungeonProgress.gd",
+    "scripts/TowerBattleRules.gd",
+    "scripts/TowerProgressionService.gd",
+    "scripts/HeroRosterCatalog.gd",
+    "scripts/EquipmentRules.gd",
+    "scripts/GuardianCatalog.gd",
+    "scripts/RaidBossDesign.gd",
+    "scripts/RaidBattlefield.gd",
+    "scripts/AutoHuntController.gd",
+    "scripts/RoamingHuntDirector.gd",
+    "project.godot"
+  ],
+  "gdsyntax": {
+    "checker": "gdtoolkit grammar / Lark (not Godot)",
+    "files": 260,
+    "syntax_ok": 260,
+    "errors": [],
+    "seconds": 10.24,
+    "godot_runtime_executed": false
+  },
+  "source_contracts": 225,
+  "python_runner_unit_tests_passed": 8,
+  "godot_tests_executed": 0,
+  "android_tests_executed": 0
+}

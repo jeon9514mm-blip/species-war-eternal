@@ -1,0 +1,8 @@
+{
+  "test": "V28MovingHuntSmokeTest.gd",
+  "passed": true,
+  "exit_code": 0,
+  "source_commit": "5305a088bc0faf07ec7113abd6e8840fd2647832",
+  "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV28 moving hunt: checks=23 clears=9 max_step=0.19500 nav={\"astar_queries\":67,\"move_calls\":5388,\"routes\":0}\nv28_moving_hunt_smoke_test_ok\n",
+  "evidence": "v28-reach-fixture-final.json"
+}

@@ -1,0 +1,15 @@
+{
+  "returncode": 0,
+  "seconds": 19.235030453000036,
+  "passed": true,
+  "warnings": [
+    "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  ],
+  "log": "/mnt/data/v83_5_checks/war-ui-render.log",
+  "captures": [
+    "v83-5-war-report.png",
+    "v83-5-scout.png",
+    "v83-5-war-actions.png",
+    "v83-5-weekly-hints.png"
+  ]
+}

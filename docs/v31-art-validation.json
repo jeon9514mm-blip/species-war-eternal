@@ -1,0 +1,1545 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "passed": 11,
+  "total": 11,
+  "results": [
+    {
+      "test": "CombatControlsSmokeTest.gd",
+      "passed": true,
+      "seconds": 6.12,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\ncombat_controls_ok visible_buttons=4 scrollable_buttons=3 no_overlap=true pause_resume=true\n"
+    },
+    {
+      "test": "CombatSpriteSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.9,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\ncombat_sprite_smoke_test_ok heroes=3 monsters=16 states=idle,attack,hit\n"
+    },
+    {
+      "test": "SpriteSheetSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.95,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nsprite_sheet_smoke_test_ok heroes=3 animations_per_hero=20\n"
+    },
+    {
+      "test": "V27SaveRecoverySmokeTest.gd",
+      "passed": true,
+      "seconds": 5.78,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_save_recovery_smoke_test_ok checks=80 atomic=ok backup=ok checksum=ok schema=ok migration=ok future=preserved pause=once isolation=ok\n"
+    },
+    {
+      "test": "V28BrightSpriteSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.57,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv28_bright_sprite_smoke_test_ok checks=1172 frames=104 failures=0\n"
+    },
+    {
+      "test": "V28FieldFxSmokeTest.gd",
+      "passed": true,
+      "seconds": 5.47,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv28_field_fx_smoke_test_ok compact_skill=ok targeted_fx=ok ultimate=ok bounded_damage=ok\nWARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).\n   at: cleanup (core/object/object.cpp:2536)\n"
+    },
+    {
+      "test": "V29RosterKitSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.57,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV27 HERO PASS: thirty canonical hero IDs\nV27 HERO PASS: leonhardt_a1 name/id unique\nV27 HERO PASS: leonhardt_a2 name/id unique\nV27 HERO PASS: leonhardt_passive name/id unique\nV27 HERO PASS: leonhardt_ultimate name/id unique\nV27 HERO PASS: leonhardt has exactly two actives, one passive, one ultimate\nV27 HERO PASS: mira_a1 name/id unique\nV27 HERO PASS: mira_a2 name/id unique\nV27 HERO PASS: mira_passive name/id unique\nV27 HERO PASS: mira_ultimate name/id unique\nV27 HERO PASS: mira has exactly two actives, one passive, one ultimate\nV27 HERO PASS: elisia_a1 name/id unique\nV27 HERO PASS: elisia_a2 name/id unique\nV27 HERO PASS: elisia_passive name/id unique\nV27 HERO PASS: elisia_ultimate name/id unique\nV27 HERO PASS: elisia has exactly two actives, one passive, one ultimate\nV27 HERO PASS: kairen_a1 name/id unique\nV27 HERO PASS: kairen_a2 name/id unique\nV27 HERO PASS: kairen_passive name/id unique\nV27 HERO PASS: kairen_ultimate name/id unique\nV27 HERO PASS: kairen has exactly two actives, one passive, one ultimate\nV27 HERO PASS: orwin_a1 name/id unique\nV27 HERO PASS: orwin_a2 name/id unique\nV27 HERO PASS: orwin_passive name/id unique\nV27 HERO PASS: orwin_ultimate name/id unique\nV27 HERO PASS: orwin has exactly two actives, one passive, one ultimate\nV27 HERO PASS: seria_a1 name/id unique\nV27 HERO PASS: seria_a2 name/id unique\nV27 HERO PASS: seria_passive name/id unique\nV27 HERO PASS: seria_ultimate name/id unique\nV27 HERO PASS: seria has exactly two actives, one passive, one ultimate\nV27 HERO PASS: astel_a1 name/id unique\nV27 HERO PASS: astel_a2 name/id unique\nV27 HERO PASS: astel_passive name/id unique\nV27 HERO PASS: astel_ultimate name/id unique\nV27 HERO PASS: astel has exactly two actives, one passive, one ultimate\nV27 HERO PASS: darius_a1 name/id unique\nV27 HERO PASS: darius_a2 name/id unique\nV27 HERO PASS: darius_passive name/id unique\nV27 HERO PASS: darius_ultimate name/id unique\nV27 HERO PASS: darius has exactly two actives, one passive, one ultimate\nV27 HERO PASS: lunea_a1 name/id unique\nV27 HERO PASS: lunea_a2 name/id unique\nV27 HERO PASS: lunea_passive name/id unique\nV27 HERO PASS: lunea_ultimate name/id unique\nV27 HERO PASS: lunea has exactly two actives, one passive, one ultimate\nV27 HERO PASS: caelum_a1 name/id unique\nV27 HERO PASS: caelum_a2 name/id unique\nV27 HERO PASS: caelum_passive name/id unique\nV27 HERO PASS: caelum_ultimate name/id unique\nV27 HERO PASS: caelum has exactly two actives, one passive, one ultimate\nV27 HERO PASS: adrien_a1 name/id unique\nV27 HERO PASS: adrien_a2 name/id unique\nV27 HERO PASS: adrien_passive name/id unique\nV27 HERO PASS: adrien_ultimate name/id unique\nV27 HERO PASS: adrien has exactly two actives, one passive, one ultimate\nV27 HERO PASS: tessa_a1 name/id unique\nV27 HERO PASS: tessa_a2 name/id unique\nV27 HERO PASS: tessa_passive name/id unique\nV27 HERO PASS: tessa_ultimate name/id unique\nV27 HERO PASS: tessa has exactly two actives, one passive, one ultimate\nV27 HERO PASS: naia_a1 name/id unique\nV27 HERO PASS: naia_a2 name/id unique\nV27 HERO PASS: naia_passive name/id unique\nV27 HERO PASS: naia_ultimate name/id unique\nV27 HERO PASS: naia has exactly two actives, one passive, one ultimate\nV27 HERO PASS: sael_a1 name/id unique\nV27 HERO PASS: sael_a2 name/id unique\nV27 HERO PASS: sael_passive name/id unique\nV27 HERO PASS: sael_ultimate name/id unique\nV27 HERO PASS: sael has exactly two actives, one passive, one ultimate\nV27 HERO PASS: odelia_a1 name/id unique\nV27 HERO PASS: odelia_a2 name/id unique\nV27 HERO PASS: odelia_passive name/id unique\nV27 HERO PASS: odelia_ultimate name/id unique\nV27 HERO PASS: odelia has exactly two actives, one passive, one ultimate\nV27 HERO PASS: aurelia exact 8/4/3 quota\nV27 HERO PASS: valeria_a1 name/id unique\nV27 HERO PASS: valeria_a2 name/id unique\nV27 HERO PASS: valeria_passive name/id unique\nV27 HERO PASS: valeria_ultimate name/id unique\nV27 HERO PASS: valeria has exactly two actives, one passive, one ultimate\nV27 HERO PASS: morgas_a1 name/id unique\nV27 HERO PASS: morgas_a2 name/id unique\nV27 HERO PASS: morgas_passive name/id unique\nV27 HERO PASS: morgas_ultimate name/id unique\nV27 HERO PASS: morgas has exactly two actives, one passive, one ultimate\nV27 HERO PASS: ragna_a1 name/id unique\nV27 HERO PASS: ragna_a2 name/id unique\nV27 HERO PASS: ragna_passive name/id unique\nV27 HERO PASS: ragna_ultimate name/id unique\nV27 HERO PASS: ragna has exactly two actives, one passive, one ultimate\nV27 HERO PASS: bron_a1 name/id unique\nV27 HERO PASS: bron_a2 name/id unique\nV27 HERO PASS: bron_passive name/id unique\nV27 HERO PASS: bron_ultimate name/id unique\nV27 HERO PASS: bron has exactly two actives, one passive, one ultimate\nV27 HERO PASS: nyx_a1 name/id unique\nV27 HERO PASS: nyx_a2 name/id unique\nV27 HERO PASS: nyx_passive name/id unique\nV27 HERO PASS: nyx_ultimate name/id unique\nV27 HERO PASS: nyx has exactly two actives, one passive, one ultimate\nV27 HERO PASS: fenris_a1 name/id unique\nV27 HERO PASS: fenris_a2 name/id unique\nV27 HERO PASS: fenris_passive name/id unique\nV27 HERO PASS: fenris_ultimate name/id unique\nV27 HERO PASS: fenris has exactly two actives, one passive, one ultimate\nV27 HERO PASS: isolde_a1 name/id unique\nV27 HERO PASS: isolde_a2 name/id unique\nV27 HERO PASS: isolde_passive name/id unique\nV27 HERO PASS: isolde_ultimate name/id unique\nV27 HERO PASS: isolde has exactly two actives, one passive, one ultimate\nV27 HERO PASS: garm_a1 name/id unique\nV27 HERO PASS: garm_a2 name/id unique\nV27 HERO PASS: garm_passive name/id unique\nV27 HERO PASS: garm_ultimate name/id unique\nV27 HERO PASS: garm has exactly two actives, one passive, one ultimate\nV27 HERO PASS: veyra_a1 name/id unique\nV27 HERO PASS: veyra_a2 name/id unique\nV27 HERO PASS: veyra_passive name/id unique\nV27 HERO PASS: veyra_ultimate name/id unique\nV27 HERO PASS: veyra has exactly two actives, one passive, one ultimate\nV27 HERO PASS: ulric_a1 name/id unique\nV27 HERO PASS: ulric_a2 name/id unique\nV27 HERO PASS: ulric_passive name/id unique\nV27 HERO PASS: ulric_ultimate name/id unique\nV27 HERO PASS: ulric has exactly two actives, one passive, one ultimate\nV27 HERO PASS: lucien_a1 name/id unique\nV27 HERO PASS: lucien_a2 name/id unique\nV27 HERO PASS: lucien_passive name/id unique\nV27 HERO PASS: lucien_ultimate name/id unique\nV27 HERO PASS: lucien has exactly two actives, one passive, one ultimate\nV27 HERO PASS: corvin_a1 name/id unique\nV27 HERO PASS: corvin_a2 name/id unique\nV27 HERO PASS: corvin_passive name/id unique\nV27 HERO PASS: corvin_ultimate name/id unique\nV27 HERO PASS: corvin has exactly two actives, one passive, one ultimate\nV27 HERO PASS: rokan_a1 name/id unique\nV27 HERO PASS: rokan_a2 name/id unique\nV27 HERO PASS: rokan_passive name/id unique\nV27 HERO PASS: rokan_ultimate name/id unique\nV27 HERO PASS: rokan has exactly two actives, one passive, one ultimate\nV27 HERO PASS: bora_a1 name/id unique\nV27 HERO PASS: bora_a2 name/id unique\nV27 HERO PASS: bora_passive name/id unique\nV27 HERO PASS: bora_ultimate name/id unique\nV27 HERO PASS: bora has exactly two actives, one passive, one ultimate\nV27 HERO PASS: selene_a1 name/id unique\nV27 HERO PASS: selene_a2 name/id unique\nV27 HERO PASS: selene_passive name/id unique\nV27 HERO PASS: selene_ultimate name/id unique\nV27 HERO PASS: selene has exactly two actives, one passive, one ultimate\nV27 HERO PASS: noxfera exact 8/4/3 quota\nV27 HERO PASS: one hundred twenty distinct skill IDs\nV27 HERO PASS: old progress preserved and new hero progress accepted\nV27 HERO PASS: new shards/party persist, unknown IDs rejected\nV27 HERO PASS: leonhardt/a1/field actual effect and resource consumed\nV27 HERO PASS: leonhardt/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: leonhardt/a2/field actual effect and resource consumed\nV27 HERO PASS: leonhardt/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: leonhardt/ultimate/field actual effect and resource consumed\nV27 HERO PASS: leonhardt/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: mira/a1/field actual effect and resource consumed\nV27 HERO PASS: mira/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: mira/a2/field actual effect and resource consumed\nV27 HERO PASS: mira/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: mira/ultimate/field actual effect and resource consumed\nV27 HERO PASS: mira/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: elisia/a1/field actual effect and resource consumed\nV27 HERO PASS: elisia/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: elisia/a2/field actual effect and resource consumed\nV27 HERO PASS: elisia/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: elisia/ultimate/field actual effect and resource consumed\nV27 HERO PASS: elisia/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: kairen/a1/field actual effect and resource consumed\nV27 HERO PASS: kairen/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: kairen/a2/field actual effect and resource consumed\nV27 HERO PASS: kairen/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: kairen/ultimate/field actual effect and resource consumed\nV27 HERO PASS: kairen/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: orwin/a1/field actual effect and resource consumed\nV27 HERO PASS: orwin/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: orwin/a2/field actual effect and resource consumed\nV27 HERO PASS: orwin/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: orwin/ultimate/field actual effect and resource consumed\nV27 HERO PASS: orwin/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: seria/a1/field actual effect and resource consumed\nV27 HERO PASS: seria/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: seria/a2/field actual effect and resource consumed\nV27 HERO PASS: seria/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: seria/ultimate/field actual effect and resource consumed\nV27 HERO PASS: seria/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: astel/a1/field actual effect and resource consumed\nV27 HERO PASS: astel/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: astel/a2/field actual effect and resource consumed\nV27 HERO PASS: astel/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: astel/ultimate/field actual effect and resource consumed\nV27 HERO PASS: astel/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: darius/a1/field actual effect and resource consumed\nV27 HERO PASS: darius/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: darius/a2/field actual effect and resource consumed\nV27 HERO PASS: darius/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: darius/ultimate/field actual effect and resource consumed\nV27 HERO PASS: darius/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lunea/a1/field actual effect and resource consumed\nV27 HERO PASS: lunea/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lunea/a2/field actual effect and resource consumed\nV27 HERO PASS: lunea/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lunea/ultimate/field actual effect and resource consumed\nV27 HERO PASS: lunea/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: caelum/a1/field actual effect and resource consumed\nV27 HERO PASS: caelum/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: caelum/a2/field actual effect and resource consumed\nV27 HERO PASS: caelum/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: caelum/ultimate/field actual effect and resource consumed\nV27 HERO PASS: caelum/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: valeria/a1/field actual effect and resource consumed\nV27 HERO PASS: valeria/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: valeria/a2/field actual effect and resource consumed\nV27 HERO PASS: valeria/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: valeria/ultimate/field actual effect and resource consumed\nV27 HERO PASS: valeria/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: morgas/a1/field actual effect and resource consumed\nV27 HERO PASS: morgas/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: morgas/a2/field actual effect and resource consumed\nV27 HERO PASS: morgas/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: morgas/ultimate/field actual effect and resource consumed\nV27 HERO PASS: morgas/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ragna/a1/field actual effect and resource consumed\nV27 HERO PASS: ragna/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ragna/a2/field actual effect and resource consumed\nV27 HERO PASS: ragna/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ragna/ultimate/field actual effect and resource consumed\nV27 HERO PASS: ragna/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bron/a1/field actual effect and resource consumed\nV27 HERO PASS: bron/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bron/a2/field actual effect and resource consumed\nV27 HERO PASS: bron/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bron/ultimate/field actual effect and resource consumed\nV27 HERO PASS: bron/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: nyx/a1/field actual effect and resource consumed\nV27 HERO PASS: nyx/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: nyx/a2/field actual effect and resource consumed\nV27 HERO PASS: nyx/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: nyx/ultimate/field actual effect and resource consumed\nV27 HERO PASS: nyx/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: fenris/a1/field actual effect and resource consumed\nV27 HERO PASS: fenris/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: fenris/a2/field actual effect and resource consumed\nV27 HERO PASS: fenris/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: fenris/ultimate/field actual effect and resource consumed\nV27 HERO PASS: fenris/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: isolde/a1/field actual effect and resource consumed\nV27 HERO PASS: isolde/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: isolde/a2/field actual effect and resource consumed\nV27 HERO PASS: isolde/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: isolde/ultimate/field actual effect and resource consumed\nV27 HERO PASS: isolde/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: garm/a1/field actual effect and resource consumed\nV27 HERO PASS: garm/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: garm/a2/field actual effect and resource consumed\nV27 HERO PASS: garm/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: garm/ultimate/field actual effect and resource consumed\nV27 HERO PASS: garm/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: veyra/a1/field actual effect and resource consumed\nV27 HERO PASS: veyra/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: veyra/a2/field actual effect and resource consumed\nV27 HERO PASS: veyra/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: veyra/ultimate/field actual effect and resource consumed\nV27 HERO PASS: veyra/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ulric/a1/field actual effect and resource consumed\nV27 HERO PASS: ulric/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ulric/a2/field actual effect and resource consumed\nV27 HERO PASS: ulric/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ulric/ultimate/field actual effect and resource consumed\nV27 HERO PASS: ulric/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: adrien/a1/field actual effect and resource consumed\nV27 HERO PASS: adrien/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: adrien/a2/field actual effect and resource consumed\nV27 HERO PASS: adrien/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: adrien/ultimate/field actual effect and resource consumed\nV27 HERO PASS: adrien/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: tessa/a1/field actual effect and resource consumed\nV27 HERO PASS: tessa/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: tessa/a2/field actual effect and resource consumed\nV27 HERO PASS: tessa/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: tessa/ultimate/field actual effect and resource consumed\nV27 HERO PASS: tessa/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: naia/a1/field actual effect and resource consumed\nV27 HERO PASS: naia/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: naia/a2/field actual effect and resource consumed\nV27 HERO PASS: naia/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: naia/ultimate/field actual effect and resource consumed\nV27 HERO PASS: naia/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: sael/a1/field actual effect and resource consumed\nV27 HERO PASS: sael/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: sael/a2/field actual effect and resource consumed\nV27 HERO PASS: sael/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: sael/ultimate/field actual effect and resource consumed\nV27 HERO PASS: sael/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: odelia/a1/field actual effect and resource consumed\nV27 HERO PASS: odelia/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: odelia/a2/field actual effect and resource consumed\nV27 HERO PASS: odelia/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: odelia/ultimate/field actual effect and resource consumed\nV27 HERO PASS: odelia/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lucien/a1/field actual effect and resource consumed\nV27 HERO PASS: lucien/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lucien/a2/field actual effect and resource consumed\nV27 HERO PASS: lucien/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lucien/ultimate/field actual effect and resource consumed\nV27 HERO PASS: lucien/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: corvin/a1/field actual effect and resource consumed\nV27 HERO PASS: corvin/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: corvin/a2/field actual effect and resource consumed\nV27 HERO PASS: corvin/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: corvin/ultimate/field actual effect and resource consumed\nV27 HERO PASS: corvin/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: rokan/a1/field actual effect and resource consumed\nV27 HERO PASS: rokan/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: rokan/a2/field actual effect and resource consumed\nV27 HERO PASS: rokan/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: rokan/ultimate/field actual effect and resource consumed\nV27 HERO PASS: rokan/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bora/a1/field actual effect and resource consumed\nV27 HERO PASS: bora/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bora/a2/field actual effect and resource consumed\nV27 HERO PASS: bora/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bora/ultimate/field actual effect and resource consumed\nV27 HERO PASS: bora/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: selene/a1/field actual effect and resource consumed\nV27 HERO PASS: selene/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: selene/a2/field actual effect and resource consumed\nV27 HERO PASS: selene/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: selene/ultimate/field actual effect and resource consumed\nV27 HERO PASS: selene/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: leonhardt/a1/raid actual effect and resource consumed\nV27 HERO PASS: leonhardt/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: leonhardt/a2/raid actual effect and resource consumed\nV27 HERO PASS: leonhardt/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: leonhardt/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: leonhardt/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: mira/a1/raid actual effect and resource consumed\nV27 HERO PASS: mira/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: mira/a2/raid actual effect and resource consumed\nV27 HERO PASS: mira/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: mira/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: mira/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: elisia/a1/raid actual effect and resource consumed\nV27 HERO PASS: elisia/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: elisia/a2/raid actual effect and resource consumed\nV27 HERO PASS: elisia/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: elisia/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: elisia/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: kairen/a1/raid actual effect and resource consumed\nV27 HERO PASS: kairen/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: kairen/a2/raid actual effect and resource consumed\nV27 HERO PASS: kairen/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: kairen/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: kairen/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: orwin/a1/raid actual effect and resource consumed\nV27 HERO PASS: orwin/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: orwin/a2/raid actual effect and resource consumed\nV27 HERO PASS: orwin/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: orwin/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: orwin/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: seria/a1/raid actual effect and resource consumed\nV27 HERO PASS: seria/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: seria/a2/raid actual effect and resource consumed\nV27 HERO PASS: seria/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: seria/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: seria/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: astel/a1/raid actual effect and resource consumed\nV27 HERO PASS: astel/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: astel/a2/raid actual effect and resource consumed\nV27 HERO PASS: astel/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: astel/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: astel/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: darius/a1/raid actual effect and resource consumed\nV27 HERO PASS: darius/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: darius/a2/raid actual effect and resource consumed\nV27 HERO PASS: darius/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: darius/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: darius/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lunea/a1/raid actual effect and resource consumed\nV27 HERO PASS: lunea/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lunea/a2/raid actual effect and resource consumed\nV27 HERO PASS: lunea/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lunea/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: lunea/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: caelum/a1/raid actual effect and resource consumed\nV27 HERO PASS: caelum/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: caelum/a2/raid actual effect and resource consumed\nV27 HERO PASS: caelum/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: caelum/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: caelum/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: valeria/a1/raid actual effect and resource consumed\nV27 HERO PASS: valeria/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: valeria/a2/raid actual effect and resource consumed\nV27 HERO PASS: valeria/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: valeria/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: valeria/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: morgas/a1/raid actual effect and resource consumed\nV27 HERO PASS: morgas/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: morgas/a2/raid actual effect and resource consumed\nV27 HERO PASS: morgas/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: morgas/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: morgas/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ragna/a1/raid actual effect and resource consumed\nV27 HERO PASS: ragna/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ragna/a2/raid actual effect and resource consumed\nV27 HERO PASS: ragna/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ragna/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: ragna/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bron/a1/raid actual effect and resource consumed\nV27 HERO PASS: bron/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bron/a2/raid actual effect and resource consumed\nV27 HERO PASS: bron/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bron/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: bron/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: nyx/a1/raid actual effect and resource consumed\nV27 HERO PASS: nyx/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: nyx/a2/raid actual effect and resource consumed\nV27 HERO PASS: nyx/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: nyx/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: nyx/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: fenris/a1/raid actual effect and resource consumed\nV27 HERO PASS: fenris/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: fenris/a2/raid actual effect and resource consumed\nV27 HERO PASS: fenris/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: fenris/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: fenris/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: isolde/a1/raid actual effect and resource consumed\nV27 HERO PASS: isolde/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: isolde/a2/raid actual effect and resource consumed\nV27 HERO PASS: isolde/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: isolde/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: isolde/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: garm/a1/raid actual effect and resource consumed\nV27 HERO PASS: garm/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: garm/a2/raid actual effect and resource consumed\nV27 HERO PASS: garm/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: garm/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: garm/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: veyra/a1/raid actual effect and resource consumed\nV27 HERO PASS: veyra/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: veyra/a2/raid actual effect and resource consumed\nV27 HERO PASS: veyra/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: veyra/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: veyra/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ulric/a1/raid actual effect and resource consumed\nV27 HERO PASS: ulric/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ulric/a2/raid actual effect and resource consumed\nV27 HERO PASS: ulric/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ulric/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: ulric/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: adrien/a1/raid actual effect and resource consumed\nV27 HERO PASS: adrien/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: adrien/a2/raid actual effect and resource consumed\nV27 HERO PASS: adrien/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: adrien/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: adrien/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: tessa/a1/raid actual effect and resource consumed\nV27 HERO PASS: tessa/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: tessa/a2/raid actual effect and resource consumed\nV27 HERO PASS: tessa/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: tessa/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: tessa/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: naia/a1/raid actual effect and resource consumed\nV27 HERO PASS: naia/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: naia/a2/raid actual effect and resource consumed\nV27 HERO PASS: naia/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: naia/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: naia/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: sael/a1/raid actual effect and resource consumed\nV27 HERO PASS: sael/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: sael/a2/raid actual effect and resource consumed\nV27 HERO PASS: sael/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: sael/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: sael/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: odelia/a1/raid actual effect and resource consumed\nV27 HERO PASS: odelia/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: odelia/a2/raid actual effect and resource consumed\nV27 HERO PASS: odelia/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: odelia/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: odelia/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lucien/a1/raid actual effect and resource consumed\nV27 HERO PASS: lucien/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lucien/a2/raid actual effect and resource consumed\nV27 HERO PASS: lucien/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lucien/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: lucien/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: corvin/a1/raid actual effect and resource consumed\nV27 HERO PASS: corvin/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: corvin/a2/raid actual effect and resource consumed\nV27 HERO PASS: corvin/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: corvin/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: corvin/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: rokan/a1/raid actual effect and resource consumed\nV27 HERO PASS: rokan/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: rokan/a2/raid actual effect and resource consumed\nV27 HERO PASS: rokan/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: rokan/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: rokan/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bora/a1/raid actual effect and resource consumed\nV27 HERO PASS: bora/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bora/a2/raid actual effect and resource consumed\nV27 HERO PASS: bora/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bora/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: bora/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: selene/a1/raid actual effect and resource consumed\nV27 HERO PASS: selene/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: selene/a2/raid actual effect and resource consumed\nV27 HERO PASS: selene/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: selene/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: selene/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: leonhardt field conditional passive proc count\nV27 HERO PASS: leonhardt passive changes actual combat state\nV27 HERO PASS: leonhardt dead hero cannot proc\nV27 HERO PASS: mira field conditional passive proc count\nV27 HERO PASS: mira passive changes actual combat state\nV27 HERO PASS: mira dead hero cannot proc\nV27 HERO PASS: elisia field conditional passive proc count\nV27 HERO PASS: elisia passive changes actual combat state\nV27 HERO PASS: elisia dead hero cannot proc\nV27 HERO PASS: kairen field conditional passive proc count\nV27 HERO PASS: kairen passive changes actual combat state\nV27 HERO PASS: kairen dead hero cannot proc\nV27 HERO PASS: orwin field conditional passive proc count\nV27 HERO PASS: orwin passive changes actual combat state\nV27 HERO PASS: orwin dead hero cannot proc\nV27 HERO PASS: seria field conditional passive proc count\nV27 HERO PASS: seria passive changes actual combat state\nV27 HERO PASS: seria dead hero cannot proc\nV27 HERO PASS: astel field conditional passive proc count\nV27 HERO PASS: astel passive changes actual combat state\nV27 HERO PASS: astel dead hero cannot proc\nV27 HERO PASS: darius field conditional passive proc count\nV27 HERO PASS: darius passive changes actual combat state\nV27 HERO PASS: darius dead hero cannot proc\nV27 HERO PASS: lunea field conditional passive proc count\nV27 HERO PASS: lunea passive changes actual combat state\nV27 HERO PASS: lunea dead hero cannot proc\nV27 HERO PASS: caelum field conditional passive proc count\nV27 HERO PASS: caelum passive changes actual combat state\nV27 HERO PASS: caelum dead hero cannot proc\nV27 HERO PASS: valeria field conditional passive proc count\nV27 HERO PASS: valeria passive changes actual combat state\nV27 HERO PASS: valeria dead hero cannot proc\nV27 HERO PASS: morgas field conditional passive proc count\nV27 HERO PASS: morgas passive changes actual combat state\nV27 HERO PASS: morgas dead hero cannot proc\nV27 HERO PASS: ragna field conditional passive proc count\nV27 HERO PASS: ragna passive changes actual combat state\nV27 HERO PASS: ragna dead hero cannot proc\nV27 HERO PASS: bron field conditional passive proc count\nV27 HERO PASS: bron passive changes actual combat state\nV27 HERO PASS: bron dead hero cannot proc\nV27 HERO PASS: nyx field conditional passive proc count\nV27 HERO PASS: nyx passive changes actual combat state\nV27 HERO PASS: nyx dead hero cannot proc\nV27 HERO PASS: fenris field conditional passive proc count\nV27 HERO PASS: fenris passive changes actual combat state\nV27 HERO PASS: fenris dead hero cannot proc\nV27 HERO PASS: isolde field conditional passive proc count\nV27 HERO PASS: isolde passive changes actual combat state\nV27 HERO PASS: isolde dead hero cannot proc\nV27 HERO PASS: garm field conditional passive proc count\nV27 HERO PASS: garm passive changes actual combat state\nV27 HERO PASS: garm dead hero cannot proc\nV27 HERO PASS: veyra field conditional passive proc count\nV27 HERO PASS: veyra passive changes actual combat state\nV27 HERO PASS: veyra dead hero cannot proc\nV27 HERO PASS: ulric field conditional passive proc count\nV27 HERO PASS: ulric passive changes actual combat state\nV27 HERO PASS: ulric dead hero cannot proc\nV27 HERO PASS: adrien field conditional passive proc count\nV27 HERO PASS: adrien passive changes actual combat state\nV27 HERO PASS: adrien dead hero cannot proc\nV27 HERO PASS: tessa field conditional passive proc count\nV27 HERO PASS: tessa passive changes actual combat state\nV27 HERO PASS: tessa dead hero cannot proc\nV27 HERO PASS: naia field conditional passive proc count\nV27 HERO PASS: naia passive changes actual combat state\nV27 HERO PASS: naia dead hero cannot proc\nV27 HERO PASS: sael field conditional passive proc count\nV27 HERO PASS: sael passive changes actual combat state\nV27 HERO PASS: sael dead hero cannot proc\nV27 HERO PASS: odelia field conditional passive proc count\nV27 HERO PASS: odelia passive changes actual combat state\nV27 HERO PASS: odelia dead hero cannot proc\nV27 HERO PASS: lucien field conditional passive proc count\nV27 HERO PASS: lucien passive changes actual combat state\nV27 HERO PASS: lucien dead hero cannot proc\nV27 HERO PASS: corvin field conditional passive proc count\nV27 HERO PASS: corvin passive changes actual combat state\nV27 HERO PASS: corvin dead hero cannot proc\nV27 HERO PASS: rokan field conditional passive proc count\nV27 HERO PASS: rokan passive changes actual combat state\nV27 HERO PASS: rokan dead hero cannot proc\nV27 HERO PASS: bora field conditional passive proc count\nV27 HERO PASS: bora passive changes actual combat state\nV27 HERO PASS: bora dead hero cannot proc\nV27 HERO PASS: selene field conditional passive proc count\nV27 HERO PASS: selene passive changes actual combat state\nV27 HERO PASS: selene dead hero cannot proc\nV27 HERO PASS: leonhardt raid conditional passive proc count\nV27 HERO PASS: leonhardt passive changes actual combat state\nV27 HERO PASS: leonhardt dead hero cannot proc\nV27 HERO PASS: mira raid conditional passive proc count\nV27 HERO PASS: mira passive changes actual combat state\nV27 HERO PASS: mira dead hero cannot proc\nV27 HERO PASS: elisia raid conditional passive proc count\nV27 HERO PASS: elisia passive changes actual combat state\nV27 HERO PASS: elisia dead hero cannot proc\nV27 HERO PASS: kairen raid conditional passive proc count\nV27 HERO PASS: kairen passive changes actual combat state\nV27 HERO PASS: kairen dead hero cannot proc\nV27 HERO PASS: orwin raid conditional passive proc count\nV27 HERO PASS: orwin passive changes actual combat state\nV27 HERO PASS: orwin dead hero cannot proc\nV27 HERO PASS: seria raid conditional passive proc count\nV27 HERO PASS: seria passive changes actual combat state\nV27 HERO PASS: seria dead hero cannot proc\nV27 HERO PASS: astel raid conditional passive proc count\nV27 HERO PASS: astel passive changes actual combat state\nV27 HERO PASS: astel dead hero cannot proc\nV27 HERO PASS: darius raid conditional passive proc count\nV27 HERO PASS: darius passive changes actual combat state\nV27 HERO PASS: darius dead hero cannot proc\nV27 HERO PASS: lunea raid conditional passive proc count\nV27 HERO PASS: lunea passive changes actual combat state\nV27 HERO PASS: lunea dead hero cannot proc\nV27 HERO PASS: caelum raid conditional passive proc count\nV27 HERO PASS: caelum passive changes actual combat state\nV27 HERO PASS: caelum dead hero cannot proc\nV27 HERO PASS: valeria raid conditional passive proc count\nV27 HERO PASS: valeria passive changes actual combat state\nV27 HERO PASS: valeria dead hero cannot proc\nV27 HERO PASS: morgas raid conditional passive proc count\nV27 HERO PASS: morgas passive changes actual combat state\nV27 HERO PASS: morgas dead hero cannot proc\nV27 HERO PASS: ragna raid conditional passive proc count\nV27 HERO PASS: ragna passive changes actual combat state\nV27 HERO PASS: ragna dead hero cannot proc\nV27 HERO PASS: bron raid conditional passive proc count\nV27 HERO PASS: bron passive changes actual combat state\nV27 HERO PASS: bron dead hero cannot proc\nV27 HERO PASS: nyx raid conditional passive proc count\nV27 HERO PASS: nyx passive changes actual combat state\nV27 HERO PASS: nyx dead hero cannot proc\nV27 HERO PASS: fenris raid conditional passive proc count\nV27 HERO PASS: fenris passive changes actual combat state\nV27 HERO PASS: fenris dead hero cannot proc\nV27 HERO PASS: isolde raid conditional passive proc count\nV27 HERO PASS: isolde passive changes actual combat state\nV27 HERO PASS: isolde dead hero cannot proc\nV27 HERO PASS: garm raid conditional passive proc count\nV27 HERO PASS: garm passive changes actual combat state\nV27 HERO PASS: garm dead hero cannot proc\nV27 HERO PASS: veyra raid conditional passive proc count\nV27 HERO PASS: veyra passive changes actual combat state\nV27 HERO PASS: veyra dead hero cannot proc\nV27 HERO PASS: ulric raid conditional passive proc count\nV27 HERO PASS: ulric passive changes actual combat state\nV27 HERO PASS: ulric dead hero cannot proc\nV27 HERO PASS: adrien raid conditional passive proc count\nV27 HERO PASS: adrien passive changes actual combat state\nV27 HERO PASS: adrien dead hero cannot proc\nV27 HERO PASS: tessa raid conditional passive proc count\nV27 HERO PASS: tessa passive changes actual combat state\nV27 HERO PASS: tessa dead hero cannot proc\nV27 HERO PASS: naia raid conditional passive proc count\nV27 HERO PASS: naia passive changes actual combat state\nV27 HERO PASS: naia dead hero cannot proc\nV27 HERO PASS: sael raid conditional passive proc count\nV27 HERO PASS: sael passive changes actual combat state\nV27 HERO PASS: sael dead hero cannot proc\nV27 HERO PASS: odelia raid conditional passive proc count\nV27 HERO PASS: odelia passive changes actual combat state\nV27 HERO PASS: odelia dead hero cannot proc\nV27 HERO PASS: lucien raid conditional passive proc count\nV27 HERO PASS: lucien passive changes actual combat state\nV27 HERO PASS: lucien dead hero cannot proc\nV27 HERO PASS: corvin raid conditional passive proc count\nV27 HERO PASS: corvin passive changes actual combat state\nV27 HERO PASS: corvin dead hero cannot proc\nV27 HERO PASS: rokan raid conditional passive proc count\nV27 HERO PASS: rokan passive changes actual combat state\nV27 HERO PASS: rokan dead hero cannot proc\nV27 HERO PASS: bora raid conditional passive proc count\nV27 HERO PASS: bora passive changes actual combat state\nV27 HERO PASS: bora dead hero cannot proc\nV27 HERO PASS: selene raid conditional passive proc count\nV27 HERO PASS: selene passive changes actual combat state\nV27 HERO PASS: selene dead hero cannot proc\nV27 HERO PASS: shield capped at 20 percent max HP\nV27 HERO PASS: shield absorbs actual incoming damage\nV27 HERO PASS: shield expires\nV27 HERO PASS: blood cost cannot kill the caster\nV27 HERO PASS: out-of-range A2 spends no cooldown\nV27 HERO PASS: growth preserves second cooldown\nV27 HERO PASS: paused hunt cannot advance second cooldown\nV27 HERO PASS: boss control immunity preserves stun ultimate\nV27 HERO PASS: real field windup selects and settles A2 exactly once\nv29_roster_kit checks=885 failures=0 casts=180\n",
+      "measurement": {
+        "checks": 885,
+        "failures": [],
+        "skill_casts": [
+          {
+            "damage": 0,
+            "hero": "leonhardt",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "leonhardt",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "leonhardt",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 279,
+            "hero": "mira",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 232,
+            "hero": "mira",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 400,
+            "hero": "mira",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "elisia",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "elisia",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "elisia",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 130,
+            "hero": "kairen",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 150,
+            "hero": "kairen",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 435,
+            "hero": "kairen",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "orwin",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "orwin",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "orwin",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 174,
+            "hero": "seria",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 170,
+            "hero": "seria",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 300,
+            "hero": "seria",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "astel",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "astel",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "astel",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 231,
+            "hero": "darius",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 226,
+            "hero": "darius",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 346,
+            "hero": "darius",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "lunea",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 68,
+            "hero": "lunea",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 435,
+            "hero": "lunea",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 423,
+            "hero": "caelum",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 171,
+            "hero": "caelum",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 483,
+            "hero": "caelum",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 193,
+            "hero": "valeria",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 153,
+            "hero": "valeria",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 306,
+            "hero": "valeria",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "morgas",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 90,
+            "hero": "morgas",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 543,
+            "hero": "morgas",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 396,
+            "hero": "ragna",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 173,
+            "hero": "ragna",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 474,
+            "hero": "ragna",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 300,
+            "hero": "bron",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "bron",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "bron",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "nyx",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 135,
+            "hero": "nyx",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 450,
+            "hero": "nyx",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 168,
+            "hero": "fenris",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 160,
+            "hero": "fenris",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 304,
+            "hero": "fenris",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "isolde",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "isolde",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "isolde",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "garm",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "garm",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "garm",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 232,
+            "hero": "veyra",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 172,
+            "hero": "veyra",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 340,
+            "hero": "veyra",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 171,
+            "hero": "ulric",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 93,
+            "hero": "ulric",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 239,
+            "hero": "ulric",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 180,
+            "hero": "adrien",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 170,
+            "hero": "adrien",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 280,
+            "hero": "adrien",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 260,
+            "hero": "tessa",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 135,
+            "hero": "tessa",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 424,
+            "hero": "tessa",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 237,
+            "hero": "naia",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 208,
+            "hero": "naia",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 420,
+            "hero": "naia",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 210,
+            "hero": "sael",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 270,
+            "hero": "sael",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 435,
+            "hero": "sael",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 50,
+            "hero": "odelia",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 68,
+            "hero": "odelia",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 237,
+            "hero": "odelia",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 260,
+            "hero": "lucien",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 135,
+            "hero": "lucien",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 360,
+            "hero": "lucien",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 190,
+            "hero": "corvin",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 255,
+            "hero": "corvin",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 330,
+            "hero": "corvin",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 200,
+            "hero": "rokan",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 165,
+            "hero": "rokan",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 300,
+            "hero": "rokan",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 246,
+            "hero": "bora",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 150,
+            "hero": "bora",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 340,
+            "hero": "bora",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "selene",
+            "mode": "field",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "selene",
+            "mode": "field",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "selene",
+            "mode": "field",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "leonhardt",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "leonhardt",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "leonhardt",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 279,
+            "hero": "mira",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 116,
+            "hero": "mira",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 400,
+            "hero": "mira",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "elisia",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "elisia",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "elisia",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 65,
+            "hero": "kairen",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 60,
+            "hero": "kairen",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 220,
+            "hero": "kairen",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "orwin",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "orwin",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "orwin",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 175,
+            "hero": "seria",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 170,
+            "hero": "seria",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 300,
+            "hero": "seria",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "astel",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "astel",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "astel",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 231,
+            "hero": "darius",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 181,
+            "hero": "darius",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 346,
+            "hero": "darius",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "lunea",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 55,
+            "hero": "lunea",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 220,
+            "hero": "lunea",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 208,
+            "hero": "caelum",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 171,
+            "hero": "caelum",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 340,
+            "hero": "caelum",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 193,
+            "hero": "valeria",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 153,
+            "hero": "valeria",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 306,
+            "hero": "valeria",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "morgas",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 45,
+            "hero": "morgas",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 220,
+            "hero": "morgas",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 183,
+            "hero": "ragna",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 173,
+            "hero": "ragna",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 340,
+            "hero": "ragna",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 140,
+            "hero": "bron",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "bron",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "bron",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "nyx",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 45,
+            "hero": "nyx",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 220,
+            "hero": "nyx",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 170,
+            "hero": "fenris",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 160,
+            "hero": "fenris",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 340,
+            "hero": "fenris",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "isolde",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "isolde",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "isolde",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "garm",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "garm",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "garm",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 232,
+            "hero": "veyra",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 172,
+            "hero": "veyra",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 340,
+            "hero": "veyra",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 171,
+            "hero": "ulric",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 93,
+            "hero": "ulric",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 220,
+            "hero": "ulric",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 180,
+            "hero": "adrien",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 170,
+            "hero": "adrien",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 280,
+            "hero": "adrien",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 130,
+            "hero": "tessa",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 135,
+            "hero": "tessa",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 320,
+            "hero": "tessa",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 237,
+            "hero": "naia",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 208,
+            "hero": "naia",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 420,
+            "hero": "naia",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 105,
+            "hero": "sael",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 90,
+            "hero": "sael",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 320,
+            "hero": "sael",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 50,
+            "hero": "odelia",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 55,
+            "hero": "odelia",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 190,
+            "hero": "odelia",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 260,
+            "hero": "lucien",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 135,
+            "hero": "lucien",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 360,
+            "hero": "lucien",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 190,
+            "hero": "corvin",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 85,
+            "hero": "corvin",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 330,
+            "hero": "corvin",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 200,
+            "hero": "rokan",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 165,
+            "hero": "rokan",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 300,
+            "hero": "rokan",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 246,
+            "hero": "bora",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 150,
+            "hero": "bora",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 320,
+            "hero": "bora",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "selene",
+            "mode": "raid",
+            "slot": "a1",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "selene",
+            "mode": "raid",
+            "slot": "a2",
+            "spent": true
+          },
+          {
+            "damage": 0,
+            "hero": "selene",
+            "mode": "raid",
+            "slot": "ultimate",
+            "spent": true
+          }
+        ]
+      }
+    },
+    {
+      "test": "V29RosterUiSaveSmokeTest.gd",
+      "passed": true,
+      "seconds": 19.56,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv29_roster_ui_save checks=276 failures=0\n"
+    },
+    {
+      "test": "V30UiFlowSmokeTest.gd",
+      "passed": true,
+      "seconds": 19.76,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv30_ui_flow checks=960 failures=0 screens=18 report=/tmp/pixel-rpg-tests-9vplawd5/V30UiFlowSmokeTest/godot/app_userdata/Pixel War of Species/v30-ui-flow-report.json\n"
+    },
+    {
+      "test": "V31HeroArtSmokeTest.gd",
+      "passed": true,
+      "seconds": 5.27,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv31_hero_art checks=9264 failures=0 heroes=30 portraits=30 skill_icons=120\n",
+      "measurement": {
+        "checks": 9264,
+        "failures": [],
+        "heroes": [
+          {
+            "distinct_field_regions": 16,
+            "field_height": 39.9999985098839,
+            "id": "leonhardt",
+            "layout": "bright"
+          },
+          {
+            "distinct_field_regions": 16,
+            "field_height": 39.9999987632036,
+            "id": "mira",
+            "layout": "bright"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999986886978,
+            "id": "elisia",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999985545874,
+            "id": "kairen",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 16,
+            "field_height": 39.9999971687794,
+            "id": "orwin",
+            "layout": "bright"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999984204769,
+            "id": "seria",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999996423721,
+            "id": "astel",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 16,
+            "field_height": 39.9999955296516,
+            "id": "darius",
+            "layout": "bright"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999985694885,
+            "id": "lunea",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 16,
+            "field_height": 39.9999988079071,
+            "id": "caelum",
+            "layout": "bright"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999995231628,
+            "id": "valeria",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999971091747,
+            "id": "morgas",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999975711107,
+            "id": "ragna",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999971091747,
+            "id": "bron",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999986886978,
+            "id": "nyx",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 40.0000016689301,
+            "id": "fenris",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999972879887,
+            "id": "isolde",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999971687794,
+            "id": "garm",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999990612268,
+            "id": "veyra",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999990686774,
+            "id": "ulric",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999956190586,
+            "id": "adrien",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999984651804,
+            "id": "tessa",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999985694885,
+            "id": "naia",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 40.0000014901161,
+            "id": "sael",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.999998152256,
+            "id": "odelia",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.999999910593,
+            "id": "lucien",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999985098839,
+            "id": "corvin",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999971389771,
+            "id": "rokan",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999985098839,
+            "id": "bora",
+            "layout": "heroes_v31"
+          },
+          {
+            "distinct_field_regions": 4,
+            "field_height": 39.9999974370003,
+            "id": "selene",
+            "layout": "heroes_v31"
+          }
+        ],
+        "rendered_screenshot": false,
+        "unique_portraits": 30,
+        "unique_skill_icons": 120
+      }
+    },
+    {
+      "test": "V31HeroFxSmokeTest.gd",
+      "passed": true,
+      "seconds": 18.48,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV27 HERO PASS: leonhardt/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: leonhardt/a1\nV27 HERO PASS: leonhardt/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: leonhardt/a2\nV27 HERO PASS: leonhardt/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: leonhardt/ultimate\nV27 HERO PASS: mira/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: mira/a1\nV27 HERO PASS: mira/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: mira/a2\nV27 HERO PASS: mira/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: mira/ultimate\nV27 HERO PASS: elisia/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: elisia/a1\nV27 HERO PASS: elisia/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: elisia/a2\nV27 HERO PASS: elisia/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: elisia/ultimate\nV27 HERO PASS: kairen/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: kairen/a1\nV27 HERO PASS: kairen/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: kairen/a2\nV27 HERO PASS: kairen/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: kairen/ultimate\nV27 HERO PASS: orwin/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: orwin/a1\nV27 HERO PASS: orwin/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: orwin/a2\nV27 HERO PASS: orwin/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: orwin/ultimate\nV27 HERO PASS: seria/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: seria/a1\nV27 HERO PASS: seria/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: seria/a2\nV27 HERO PASS: seria/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: seria/ultimate\nV27 HERO PASS: astel/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: astel/a1\nV27 HERO PASS: astel/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: astel/a2\nV27 HERO PASS: astel/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: astel/ultimate\nV27 HERO PASS: darius/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: darius/a1\nV27 HERO PASS: darius/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: darius/a2\nV27 HERO PASS: darius/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: darius/ultimate\nV27 HERO PASS: lunea/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: lunea/a1\nV27 HERO PASS: lunea/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: lunea/a2\nV27 HERO PASS: lunea/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: lunea/ultimate\nV27 HERO PASS: caelum/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: caelum/a1\nV27 HERO PASS: caelum/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: caelum/a2\nV27 HERO PASS: caelum/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: caelum/ultimate\nV27 HERO PASS: valeria/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: valeria/a1\nV27 HERO PASS: valeria/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: valeria/a2\nV27 HERO PASS: valeria/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: valeria/ultimate\nV27 HERO PASS: morgas/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: morgas/a1\nV27 HERO PASS: morgas/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: morgas/a2\nV27 HERO PASS: morgas/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: morgas/ultimate\nV27 HERO PASS: ragna/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: ragna/a1\nV27 HERO PASS: ragna/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: ragna/a2\nV27 HERO PASS: ragna/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: ragna/ultimate\nV27 HERO PASS: bron/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: bron/a1\nV27 HERO PASS: bron/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: bron/a2\nV27 HERO PASS: bron/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: bron/ultimate\nV27 HERO PASS: nyx/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: nyx/a1\nV27 HERO PASS: nyx/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: nyx/a2\nV27 HERO PASS: nyx/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: nyx/ultimate\nV27 HERO PASS: fenris/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: fenris/a1\nV27 HERO PASS: fenris/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: fenris/a2\nV27 HERO PASS: fenris/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: fenris/ultimate\nV27 HERO PASS: isolde/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: isolde/a1\nV27 HERO PASS: isolde/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: isolde/a2\nV27 HERO PASS: isolde/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: isolde/ultimate\nV27 HERO PASS: garm/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: garm/a1\nV27 HERO PASS: garm/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: garm/a2\nV27 HERO PASS: garm/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: garm/ultimate\nV27 HERO PASS: veyra/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: veyra/a1\nV27 HERO PASS: veyra/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: veyra/a2\nV27 HERO PASS: veyra/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: veyra/ultimate\nV27 HERO PASS: ulric/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: ulric/a1\nV27 HERO PASS: ulric/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: ulric/a2\nV27 HERO PASS: ulric/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: ulric/ultimate\nV27 HERO PASS: adrien/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: adrien/a1\nV27 HERO PASS: adrien/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: adrien/a2\nV27 HERO PASS: adrien/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: adrien/ultimate\nV27 HERO PASS: tessa/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: tessa/a1\nV27 HERO PASS: tessa/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: tessa/a2\nV27 HERO PASS: tessa/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: tessa/ultimate\nV27 HERO PASS: naia/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: naia/a1\nV27 HERO PASS: naia/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: naia/a2\nV27 HERO PASS: naia/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: naia/ultimate\nV27 HERO PASS: sael/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: sael/a1\nV27 HERO PASS: sael/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: sael/a2\nV27 HERO PASS: sael/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: sael/ultimate\nV27 HERO PASS: odelia/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: odelia/a1\nV27 HERO PASS: odelia/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: odelia/a2\nV27 HERO PASS: odelia/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: odelia/ultimate\nV27 HERO PASS: lucien/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: lucien/a1\nV27 HERO PASS: lucien/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: lucien/a2\nV27 HERO PASS: lucien/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: lucien/ultimate\nV27 HERO PASS: corvin/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: corvin/a1\nV27 HERO PASS: corvin/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: corvin/a2\nV27 HERO PASS: corvin/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: corvin/ultimate\nV27 HERO PASS: rokan/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: rokan/a1\nV27 HERO PASS: rokan/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: rokan/a2\nV27 HERO PASS: rokan/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: rokan/ultimate\nV27 HERO PASS: bora/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: bora/a1\nV27 HERO PASS: bora/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: bora/a2\nV27 HERO PASS: bora/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: bora/ultimate\nV27 HERO PASS: selene/a1/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: selene/a1\nV27 HERO PASS: selene/a2/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: selene/a2\nV27 HERO PASS: selene/ultimate/field uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: selene/ultimate\nV27 HERO PASS: leonhardt/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: leonhardt/a1\nV27 HERO PASS: leonhardt/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: leonhardt/a2\nV27 HERO PASS: leonhardt/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: leonhardt/ultimate\nV27 HERO PASS: mira/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: mira/a1\nV27 HERO PASS: mira/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: mira/a2\nV27 HERO PASS: mira/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: mira/ultimate\nV27 HERO PASS: elisia/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: elisia/a1\nV27 HERO PASS: elisia/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: elisia/a2\nV27 HERO PASS: elisia/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: elisia/ultimate\nV27 HERO PASS: kairen/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: kairen/a1\nV27 HERO PASS: kairen/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: kairen/a2\nV27 HERO PASS: kairen/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: kairen/ultimate\nV27 HERO PASS: orwin/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: orwin/a1\nV27 HERO PASS: orwin/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: orwin/a2\nV27 HERO PASS: orwin/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: orwin/ultimate\nV27 HERO PASS: seria/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: seria/a1\nV27 HERO PASS: seria/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: seria/a2\nV27 HERO PASS: seria/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: seria/ultimate\nV27 HERO PASS: astel/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: astel/a1\nV27 HERO PASS: astel/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: astel/a2\nV27 HERO PASS: astel/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: astel/ultimate\nV27 HERO PASS: darius/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: darius/a1\nV27 HERO PASS: darius/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: darius/a2\nV27 HERO PASS: darius/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: darius/ultimate\nV27 HERO PASS: lunea/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: lunea/a1\nV27 HERO PASS: lunea/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: lunea/a2\nV27 HERO PASS: lunea/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: lunea/ultimate\nV27 HERO PASS: caelum/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: caelum/a1\nV27 HERO PASS: caelum/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: caelum/a2\nV27 HERO PASS: caelum/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: caelum/ultimate\nV27 HERO PASS: valeria/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: valeria/a1\nV27 HERO PASS: valeria/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: valeria/a2\nV27 HERO PASS: valeria/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: valeria/ultimate\nV27 HERO PASS: morgas/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: morgas/a1\nV27 HERO PASS: morgas/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: morgas/a2\nV27 HERO PASS: morgas/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: morgas/ultimate\nV27 HERO PASS: ragna/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: ragna/a1\nV27 HERO PASS: ragna/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: ragna/a2\nV27 HERO PASS: ragna/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: ragna/ultimate\nV27 HERO PASS: bron/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: bron/a1\nV27 HERO PASS: bron/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: bron/a2\nV27 HERO PASS: bron/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: bron/ultimate\nV27 HERO PASS: nyx/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: nyx/a1\nV27 HERO PASS: nyx/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: nyx/a2\nV27 HERO PASS: nyx/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: nyx/ultimate\nV27 HERO PASS: fenris/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: fenris/a1\nV27 HERO PASS: fenris/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: fenris/a2\nV27 HERO PASS: fenris/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: fenris/ultimate\nV27 HERO PASS: isolde/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: isolde/a1\nV27 HERO PASS: isolde/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: isolde/a2\nV27 HERO PASS: isolde/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: isolde/ultimate\nV27 HERO PASS: garm/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: garm/a1\nV27 HERO PASS: garm/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: garm/a2\nV27 HERO PASS: garm/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: garm/ultimate\nV27 HERO PASS: veyra/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: veyra/a1\nV27 HERO PASS: veyra/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: veyra/a2\nV27 HERO PASS: veyra/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: veyra/ultimate\nV27 HERO PASS: ulric/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: ulric/a1\nV27 HERO PASS: ulric/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: ulric/a2\nV27 HERO PASS: ulric/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: ulric/ultimate\nV27 HERO PASS: adrien/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: adrien/a1\nV27 HERO PASS: adrien/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: adrien/a2\nV27 HERO PASS: adrien/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: adrien/ultimate\nV27 HERO PASS: tessa/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: tessa/a1\nV27 HERO PASS: tessa/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: tessa/a2\nV27 HERO PASS: tessa/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: tessa/ultimate\nV27 HERO PASS: naia/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: naia/a1\nV27 HERO PASS: naia/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: naia/a2\nV27 HERO PASS: naia/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: naia/ultimate\nV27 HERO PASS: sael/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: sael/a1\nV27 HERO PASS: sael/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: sael/a2\nV27 HERO PASS: sael/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: sael/ultimate\nV27 HERO PASS: odelia/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: odelia/a1\nV27 HERO PASS: odelia/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: odelia/a2\nV27 HERO PASS: odelia/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: odelia/ultimate\nV27 HERO PASS: lucien/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: lucien/a1\nV27 HERO PASS: lucien/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: lucien/a2\nV27 HERO PASS: lucien/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: lucien/ultimate\nV27 HERO PASS: corvin/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: corvin/a1\nV27 HERO PASS: corvin/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: corvin/a2\nV27 HERO PASS: corvin/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: corvin/ultimate\nV27 HERO PASS: rokan/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: rokan/a1\nV27 HERO PASS: rokan/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: rokan/a2\nV27 HERO PASS: rokan/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: rokan/ultimate\nV27 HERO PASS: bora/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: bora/a1\nV27 HERO PASS: bora/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: bora/a2\nV27 HERO PASS: bora/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: bora/ultimate\nV27 HERO PASS: selene/a1/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: selene/a1\nV27 HERO PASS: selene/a2/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: selene/a2\nV27 HERO PASS: selene/ultimate/raid uses actual cast and unique icon\nV27 HERO PASS: canonical profile was not mutated\nV27 HERO PASS: effects toggle preserves all combat state: selene/ultimate\nV27 HERO PASS: leonhardt/field real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: leonhardt\nV27 HERO PASS: mira/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: mira\nV27 HERO PASS: elisia/field real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: elisia\nV27 HERO PASS: kairen/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: kairen\nV27 HERO PASS: orwin/field real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: orwin\nV27 HERO PASS: seria/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: seria\nV27 HERO PASS: astel/field real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: astel\nV27 HERO PASS: darius/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: darius\nV27 HERO PASS: lunea/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: lunea\nV27 HERO PASS: caelum/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: caelum\nV27 HERO PASS: valeria/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: valeria\nV27 HERO PASS: morgas/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: morgas\nV27 HERO PASS: ragna/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: ragna\nV27 HERO PASS: bron/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: bron\nV27 HERO PASS: nyx/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: nyx\nV27 HERO PASS: fenris/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: fenris\nV27 HERO PASS: isolde/field real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: isolde\nV27 HERO PASS: garm/field real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: garm\nV27 HERO PASS: veyra/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: veyra\nV27 HERO PASS: ulric/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: ulric\nV27 HERO PASS: adrien/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: adrien\nV27 HERO PASS: tessa/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: tessa\nV27 HERO PASS: naia/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: naia\nV27 HERO PASS: sael/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: sael\nV27 HERO PASS: odelia/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: odelia\nV27 HERO PASS: lucien/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: lucien\nV27 HERO PASS: corvin/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: corvin\nV27 HERO PASS: rokan/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: rokan\nV27 HERO PASS: bora/field real Main A1 entry emits the hero signature\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: bora\nV27 HERO PASS: selene/field real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: selene\nV27 HERO PASS: leonhardt/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: leonhardt\nV27 HERO PASS: mira/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: mira\nV27 HERO PASS: elisia/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: elisia\nV27 HERO PASS: kairen/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: kairen\nV27 HERO PASS: orwin/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: orwin\nV27 HERO PASS: seria/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: seria\nV27 HERO PASS: astel/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: astel\nV27 HERO PASS: darius/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: darius\nV27 HERO PASS: lunea/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: lunea\nV27 HERO PASS: caelum/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: caelum\nV27 HERO PASS: valeria/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: valeria\nV27 HERO PASS: morgas/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: morgas\nV27 HERO PASS: ragna/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: ragna\nV27 HERO PASS: bron/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: bron\nV27 HERO PASS: nyx/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: nyx\nV27 HERO PASS: fenris/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: fenris\nV27 HERO PASS: isolde/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: isolde\nV27 HERO PASS: garm/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: garm\nV27 HERO PASS: veyra/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: veyra\nV27 HERO PASS: ulric/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: ulric\nV27 HERO PASS: adrien/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: adrien\nV27 HERO PASS: tessa/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: tessa\nV27 HERO PASS: naia/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: naia\nV27 HERO PASS: sael/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: sael\nV27 HERO PASS: odelia/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: odelia\nV27 HERO PASS: lucien/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: lucien\nV27 HERO PASS: corvin/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: corvin\nV27 HERO PASS: rokan/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: rokan\nV27 HERO PASS: bora/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: raid A1 anchors only to the real boss\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: bora\nV27 HERO PASS: selene/raid real Main A1 entry emits the hero signature\nV27 HERO PASS: support A1 has only actual ally recipients\nV27 HERO PASS: Main A1 effects toggle preserves all combat state: selene\nV27 HERO PASS: leonhardt actual passive proc selects its unique icon\nV27 HERO PASS: mira actual passive proc selects its unique icon\nV27 HERO PASS: elisia actual passive proc selects its unique icon\nV27 HERO PASS: kairen actual passive proc selects its unique icon\nV27 HERO PASS: orwin actual passive proc selects its unique icon\nV27 HERO PASS: seria actual passive proc selects its unique icon\nV27 HERO PASS: astel actual passive proc selects its unique icon\nV27 HERO PASS: darius actual passive proc selects its unique icon\nV27 HERO PASS: lunea actual passive proc selects its unique icon\nV27 HERO PASS: caelum actual passive proc selects its unique icon\nV27 HERO PASS: valeria actual passive proc selects its unique icon\nV27 HERO PASS: morgas actual passive proc selects its unique icon\nV27 HERO PASS: ragna actual passive proc selects its unique icon\nV27 HERO PASS: bron actual passive proc selects its unique icon\nV27 HERO PASS: nyx actual passive proc selects its unique icon\nV27 HERO PASS: fenris actual passive proc selects its unique icon\nV27 HERO PASS: isolde actual passive proc selects its unique icon\nV27 HERO PASS: garm actual passive proc selects its unique icon\nV27 HERO PASS: veyra actual passive proc selects its unique icon\nV27 HERO PASS: ulric actual passive proc selects its unique icon\nV27 HERO PASS: adrien actual passive proc selects its unique icon\nV27 HERO PASS: tessa actual passive proc selects its unique icon\nV27 HERO PASS: naia actual passive proc selects its unique icon\nV27 HERO PASS: sael actual passive proc selects its unique icon\nV27 HERO PASS: odelia actual passive proc selects its unique icon\nV27 HERO PASS: lucien actual passive proc selects its unique icon\nV27 HERO PASS: corvin actual passive proc selects its unique icon\nV27 HERO PASS: rokan actual passive proc selects its unique icon\nV27 HERO PASS: bora actual passive proc selects its unique icon\nV27 HERO PASS: selene actual passive proc selects its unique icon\nV27 HERO PASS: retargeted volley preserves exact per-target visual hit counts\nV27 HERO PASS: shield visual uses actual non-caster recipient\nV27 HERO PASS: failed passive condition emits nothing\nV27 HERO PASS: confirmed passive emits one badge\nV27 HERO PASS: cooldown/tick never repeats passive badge\nV27 HERO PASS: paused hunt freezes signature\nV27 HERO PASS: suspended application freezes signature\nV27 HERO PASS: resume advances signature\nV27 HERO PASS: signatures are clipped to the actual field\nV27 HERO PASS: effects OFF clears existing signature\nV27 HERO PASS: effects OFF creates no new signature\nV27 HERO PASS: navigation cleans up existing signature\nV27 HERO PASS: signature expires after its finite lifetime\nv31_hero_fx checks=740 failures=0 kit_casts=180 main_a1_casts=60 passive_procs=30\n"
+    }
+  ],
+  "scope": {
+    "mode": "Godot 4.7.2 headless imported resources and runtime behavior",
+    "native_screenshot_review": false,
+    "source_alpha_report": "docs/v31-atlas-integrity.json",
+    "player_save_isolation": true,
+    "suite": "targeted art, skill FX, combat controls, canonical kits, UI flow and save recovery"
+  },
+  "observations": [
+    {
+      "test": "V28FieldFxSmokeTest.gd",
+      "severity": "pre_existing_shutdown_warning",
+      "detail": "The parallel suite printed a warning about two ObjectDB instances at process exit. The same two-instance warning is present in docs/v29-regression-results.json. A single isolated verbose rerun exited 0 without the warning; no new leak or runtime error was reproduced.",
+      "baseline": "docs/v29-regression-results.json",
+      "isolated_rerun_exit_code": 0,
+      "isolated_rerun_warning_reproduced": false
+    }
+  ]
+}

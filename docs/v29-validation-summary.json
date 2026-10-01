@@ -1,0 +1,386 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "unique_tests": 75,
+  "passed": 75,
+  "source_reports": [
+    "v29-regression-results.json",
+    "v29-boundary-regression-results.json"
+  ],
+  "tests": [
+    {
+      "test": "AutoCombatTacticsSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "AutoHuntRegressionTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "BMSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "BossEncounterSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "CombatControlsSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "CombatDecisionEngineSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "CombatSpriteSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "EquipmentSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "HeroIdentityBalanceSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "IdleHuntEstimatorSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "IdleSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "InventorySmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "LevelSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "LootSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "MapTerrainSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "RaidSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "RoamingHuntDirectorSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "SkillSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "SmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "SpriteSheetSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V10UiUxSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V11ProgressionSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V12WorldWarSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V13WarSafetySmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V14AsyncPvpSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V15FrontlineSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V16AuthoritySmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V16ClientSessionSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V17HuntProgressionSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V17ResyncServerTimeSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V18CombatAISmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V18SeasonSyncSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V19HeroAIIdentitySmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V19ServerStabilitySmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V20RealtimeRoamingHuntSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V22UiUpgradeSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V23CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V24MobileLandscapeSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V25CombatFxSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V26ActionSafetySmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V26CombatDecisionSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V26CombatSoakSmokeTest.gd",
+      "passed": true,
+      "report": "v29-boundary-regression-results.json"
+    },
+    {
+      "test": "V26RoamingSafetySmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V27BalanceMatrixSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V27BossLifecycleSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V27CombatClockSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V27FieldLifecycleSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V27GrowthEconomySmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V27HeroRolesSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V27LiveGrowthSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V27PersistenceIntegrationSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V27RaidIntegrationSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V27SaveRecoverySmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V27TerritoryLifecycleSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V28BrightSpriteSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V28BrightUiSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V28FieldFxSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V28KitingRegressionSmokeTest.gd",
+      "passed": true,
+      "report": "v29-boundary-regression-results.json"
+    },
+    {
+      "test": "V28MeadowNavigationSmokeTest.gd",
+      "passed": true,
+      "report": "v29-boundary-regression-results.json"
+    },
+    {
+      "test": "V28MovingHuntSmokeTest.gd",
+      "passed": true,
+      "report": "v29-boundary-regression-results.json"
+    },
+    {
+      "test": "V29BoundarySpawnSmokeTest.gd",
+      "passed": true,
+      "report": "v29-boundary-regression-results.json"
+    },
+    {
+      "test": "V29FactionBalanceSmokeTest.gd",
+      "passed": true,
+      "report": "v29-boundary-regression-results.json"
+    },
+    {
+      "test": "V29RosterKitSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V29RosterUiSaveSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V5FoundationSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V6CombatSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V7SystemsSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V8PolishSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "V9MetaLoopSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "WorldBattleResolverSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "WorldConflictStateSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "WorldMarchStateSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "WorldSeasonStateSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "WorldSupplyNetworkSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    },
+    {
+      "test": "WorldWarStateSmokeTest.gd",
+      "passed": true,
+      "report": "v29-regression-results.json"
+    }
+  ]
+}

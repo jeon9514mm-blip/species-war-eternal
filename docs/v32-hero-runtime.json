@@ -1,0 +1,189 @@
+{
+	"checks": 9202,
+	"failures": [],
+	"heroes": [
+		{
+			"distinct_field_regions": 16,
+			"field_height": 39.9999985098839,
+			"id": "leonhardt",
+			"layout": "bright"
+		},
+		{
+			"distinct_field_regions": 16,
+			"field_height": 39.9999987632036,
+			"id": "mira",
+			"layout": "bright"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999986886978,
+			"id": "elisia",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999987632036,
+			"id": "kairen",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 16,
+			"field_height": 39.9999971687794,
+			"id": "orwin",
+			"layout": "bright"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999984204769,
+			"id": "seria",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999996423721,
+			"id": "astel",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 16,
+			"field_height": 39.9999955296516,
+			"id": "darius",
+			"layout": "bright"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999985694885,
+			"id": "lunea",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 16,
+			"field_height": 39.9999988079071,
+			"id": "caelum",
+			"layout": "bright"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999995231628,
+			"id": "valeria",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999971091747,
+			"id": "morgas",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999975711107,
+			"id": "ragna",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999971091747,
+			"id": "bron",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999986886978,
+			"id": "nyx",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 40.0000016689301,
+			"id": "fenris",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999972879887,
+			"id": "isolde",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999971687794,
+			"id": "garm",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999990612268,
+			"id": "veyra",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999990686774,
+			"id": "ulric",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999956190586,
+			"id": "adrien",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999984651804,
+			"id": "tessa",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999985694885,
+			"id": "naia",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 40.0000014901161,
+			"id": "sael",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.999998152256,
+			"id": "odelia",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.999999910593,
+			"id": "lucien",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999985098839,
+			"id": "corvin",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999971389771,
+			"id": "rokan",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999985098839,
+			"id": "bora",
+			"layout": "heroes_v31"
+		},
+		{
+			"distinct_field_regions": 4,
+			"field_height": 39.9999974370003,
+			"id": "selene",
+			"layout": "heroes_v31"
+		}
+	],
+	"rendered_screenshot": false,
+	"unique_portraits": 30,
+	"unique_skill_icons": 120
+}

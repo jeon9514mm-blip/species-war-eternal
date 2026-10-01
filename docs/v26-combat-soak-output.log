@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+V26 SOAK REPORT: {"completed_actions_by_hero":{"astel":105,"caelum":98,"darius":102,"elisia":111,"kairen":133,"leonhardt":134,"lunea":85,"mira":124,"orwin":108,"seria":108},"distance_walked":82.6,"faction":"aurelia","gold_earned":1477,"health_valid":true,"heroes_with_completed_actions":10,"kill_count":35,"kills_at_60_120_180_seconds":[12,23,35],"longest_kill_gap_seconds":9.2,"party_size":10,"simulated_seconds":180,"wipe_recovery_seconds":4.6,"xp_earned":1040}
+V26 SOAK REPORT: {"completed_actions_by_hero":{"bron":118,"fenris":114,"garm":91,"isolde":98,"morgas":121,"nyx":112,"ragna":115,"ulric":90,"valeria":115,"veyra":84},"distance_walked":87.9,"faction":"noxfera","gold_earned":1554,"health_valid":true,"heroes_with_completed_actions":10,"kill_count":37,"kills_at_60_120_180_seconds":[13,24,37],"longest_kill_gap_seconds":9.2,"party_size":10,"simulated_seconds":180,"wipe_recovery_seconds":4.6,"xp_earned":1089}
+v26_combat_soak_smoke_test_ok factions=2 heroes_per_party=10 simulated_seconds=360 wipe_recovery=ok continuous_rewards=ok

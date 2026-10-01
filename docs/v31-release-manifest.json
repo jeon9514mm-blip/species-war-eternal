@@ -1,0 +1,2361 @@
+{
+  "release": "v31",
+  "kind": "complete_Godot_source_project",
+  "engine": "Godot 4.7.2",
+  "patch_already_applied": true,
+  "hero_count": 30,
+  "skill_count": 120,
+  "pdf_included": false,
+  "files": [
+    {
+      "path": ".gitignore",
+      "size": 21,
+      "sha256": "896c50a6ff522a9b9acfd787cba6e572a72d34e6448c8fa7dd3fc69f8d8d2ce3"
+    },
+    {
+      "path": "README.md",
+      "size": 22142,
+      "sha256": "da68b7008ee19415b4291a50961d57b350778afa3e8f5c3f504476e50de7d5a0"
+    },
+    {
+      "path": "START_HERE_KO.md",
+      "size": 1599,
+      "sha256": "6d32932ed399ed95e4dc3db608c9c5139f440c21c23961d8359d80720fb099c9"
+    },
+    {
+      "path": "assets/backgrounds/bright-v28/roaming-meadow-world.png",
+      "size": 3127744,
+      "sha256": "b7e585083952235df69e790717f350ea84d2ee5c44e0c2fe66aee5a271828906"
+    },
+    {
+      "path": "assets/backgrounds/bright-v28/roaming-meadow-world.png.import",
+      "size": 994,
+      "sha256": "5308c49e73a042ef492da1a06fd004ff3c8b155d7e104dbe52c977a73f508948"
+    },
+    {
+      "path": "assets/concepts/elisia-priest-concept.png",
+      "size": 3845795,
+      "sha256": "49724e4386ecf16f321999142c31708919112fbf7fbedbf5f7b451b07d77ab76"
+    },
+    {
+      "path": "assets/concepts/elisia-priest-concept.png.import",
+      "size": 983,
+      "sha256": "fc69017c048b2125333ef060ecbbe829fe5a92bb0f861db4af44cbff8f2b7fdb"
+    },
+    {
+      "path": "assets/concepts/leonhardt-knight-concept.png",
+      "size": 2895794,
+      "sha256": "bbcdb4bfde49fc45ecda991c68fd8487c77c055fb24c39c889e50276faedb3d0"
+    },
+    {
+      "path": "assets/concepts/leonhardt-knight-concept.png.import",
+      "size": 992,
+      "sha256": "9864067c0b853f373bf2834fc4b133eba84d284b08fcc3744145aeff605583fc"
+    },
+    {
+      "path": "assets/concepts/mira-archer-concept.png",
+      "size": 3435907,
+      "sha256": "c10956cfcfce2e64021f8eecf678ba8e751ad97de93cb452517434bff4aa8c7a"
+    },
+    {
+      "path": "assets/concepts/mira-archer-concept.png.import",
+      "size": 977,
+      "sha256": "e77f02e5262d72c488fb68ffab1a6b452ee079eb6b7dd297bb7663dcc3f8a36f"
+    },
+    {
+      "path": "assets/fonts/NanumGothic-OFL.txt",
+      "size": 5281,
+      "sha256": "1c09d5a13702fa8ee5cd5fa160f26ef72ec1168997673230050f9c0801da5017"
+    },
+    {
+      "path": "assets/fonts/NanumGothic-Regular.ttf",
+      "size": 4691820,
+      "sha256": "48a28e97b34fc8e5b157657633670cd1b7de126cfc414da65ce9c3d5bc8be733"
+    },
+    {
+      "path": "assets/fonts/NanumGothic-Regular.ttf.import",
+      "size": 795,
+      "sha256": "667698f3b5fc2a7e31702293ed7d87c8418babfddc7ae5f6a0ac5c8716450d2b"
+    },
+    {
+      "path": "assets/heroes/v31/README.md",
+      "size": 1293,
+      "sha256": "b5f5530358a566199175494349d915de509715ffaaec18910c598db6433d94cb"
+    },
+    {
+      "path": "assets/heroes/v31/a01-board.png",
+      "size": 2136002,
+      "sha256": "60012e25fcdd1c0d2db9af504fd4942cc78e465fd0d468b8dc10ba55a5ad6060"
+    },
+    {
+      "path": "assets/heroes/v31/a01-board.png.import",
+      "size": 949,
+      "sha256": "eab2977309651ba7e809d7640f32890c24af846f2124c42b5206f0789c168d21"
+    },
+    {
+      "path": "assets/heroes/v31/a06-board.png",
+      "size": 2195774,
+      "sha256": "0dc14400a15f2e1f9ce8cc9b06b06d9a993e1d190d185a6b71a6df30a4269cf0"
+    },
+    {
+      "path": "assets/heroes/v31/a06-board.png.import",
+      "size": 949,
+      "sha256": "d004d5364ff07f41178cb71050e821fde1cb7ab14bb64dc7be22b326d4ad91aa"
+    },
+    {
+      "path": "assets/heroes/v31/a11-board.png",
+      "size": 2308490,
+      "sha256": "1e471e44adc439cc769cde2e5056ca495bdf0a2e038c125bc5aa00fabea30338"
+    },
+    {
+      "path": "assets/heroes/v31/a11-board.png.import",
+      "size": 949,
+      "sha256": "185c954012dc853c18b532dcef140230e13e93481be5c9487cb0ada0d9357bf5"
+    },
+    {
+      "path": "assets/heroes/v31/hero-art-manifest.json",
+      "size": 178422,
+      "sha256": "a25ac21a7fdd73555c8148e99955d247d3a8b9d85cc38a33858507137d716d16"
+    },
+    {
+      "path": "assets/heroes/v31/hero-visual-data.gd",
+      "size": 160839,
+      "sha256": "3affe3ecfdfd0c62be0c6130ca6b45edd0335be56dead2eadbc22aa4a1eef096"
+    },
+    {
+      "path": "assets/heroes/v31/hero-visual-data.gd.uid",
+      "size": 20,
+      "sha256": "ebdbb445858ed6bb6b7292c046e7f69ba1e04c7fe3dfe927041bcf64ca865182"
+    },
+    {
+      "path": "assets/heroes/v31/n01-board.png",
+      "size": 2406297,
+      "sha256": "1dac2475e9b06645fe9bb57f995ccd8a71f103e0cba7937f904c9d71cdaf60fa"
+    },
+    {
+      "path": "assets/heroes/v31/n01-board.png.import",
+      "size": 948,
+      "sha256": "7cfa0a6efd107580e5d791614936169365198b2f4d3aaaca8bad06ac079dda78"
+    },
+    {
+      "path": "assets/heroes/v31/n06-board.png",
+      "size": 2403219,
+      "sha256": "bcc6a72bedc9da91af703fc52b4474e65c8c1e856f586a6acd7c86e5714f3cff"
+    },
+    {
+      "path": "assets/heroes/v31/n06-board.png.import",
+      "size": 949,
+      "sha256": "b42d77413d66e4ef11722afa20c20431be68ee30e02975520b21dee17c6dcb0d"
+    },
+    {
+      "path": "assets/heroes/v31/n11-board.png",
+      "size": 2414765,
+      "sha256": "561699dee7ea5b93d3d66badcb368c0bdb3e99ea50fa3de6809dda9d66802fe4"
+    },
+    {
+      "path": "assets/heroes/v31/n11-board.png.import",
+      "size": 949,
+      "sha256": "074bbd4611a5af4ae53e257f424ecd4aa69ec6537ff05a9c8dd0b0b62847b027"
+    },
+    {
+      "path": "assets/monsters/bright-v28/field-monsters-atlas.png",
+      "size": 2172492,
+      "sha256": "b87a88d86bf98eefabfb435b9312b0d33f35d186c16ae8fc67e4caab1c65db8a"
+    },
+    {
+      "path": "assets/monsters/bright-v28/field-monsters-atlas.png.import",
+      "size": 991,
+      "sha256": "5249bc1a872bd4db4106434008f8885752055026f4e994e08c9ba6e33886174c"
+    },
+    {
+      "path": "assets/monsters/forgotten-mine-bat.png",
+      "size": 2651933,
+      "sha256": "3ab27ae6ddb171ee9e1566d9d18b60e51ef70073a624fb65bc8e3803132dbf16"
+    },
+    {
+      "path": "assets/monsters/forgotten-mine-bat.png.import",
+      "size": 973,
+      "sha256": "d0ef687c0a3d3d939a2e1612bfe1d32d899de422f5ee3ec9526acb34dc1203a8"
+    },
+    {
+      "path": "assets/monsters/forgotten-mine-boss.png",
+      "size": 5062599,
+      "sha256": "df6ac8a985f7f1a0e29ee287b262cbc852fd09024e1c74d33a40d40308feb0d0"
+    },
+    {
+      "path": "assets/monsters/forgotten-mine-boss.png.import",
+      "size": 977,
+      "sha256": "23e0e0400c3d96de2edfaf24c574b4628e8065f02cb2e49b583d840bd487418d"
+    },
+    {
+      "path": "assets/monsters/forgotten-mine-mole.png",
+      "size": 3403989,
+      "sha256": "434f489b329c9538baef1f4a49242ef1f8849daff9c76c9e367fcbb5988de9a4"
+    },
+    {
+      "path": "assets/monsters/forgotten-mine-mole.png.import",
+      "size": 977,
+      "sha256": "cf55d0e8cdd5b7b43a13d220acbd10df353de824d9a992ec06e18cca7f3fa2b7"
+    },
+    {
+      "path": "assets/monsters/forgotten-mine-orc.png",
+      "size": 3766879,
+      "sha256": "a1f9aa693a08442069852a4f0b6455ede8ec0edd9cf5b682eb58dd5b9d46bfc2"
+    },
+    {
+      "path": "assets/monsters/forgotten-mine-orc.png.import",
+      "size": 974,
+      "sha256": "bb06211ce08eedad9b3c880c38bdcc4bd3271a92831bdcac6be619d35cc9588a"
+    },
+    {
+      "path": "assets/monsters/forgotten-mine-spider.png",
+      "size": 2959881,
+      "sha256": "e66b2dac209b2d0052dc234084bef0e0ee55b6e316b0d95d7dd88ec330673dc0"
+    },
+    {
+      "path": "assets/monsters/forgotten-mine-spider.png.import",
+      "size": 983,
+      "sha256": "cd89251bfd907c578c816d6c32d0f7c6b9623bca772682a4dd184c68b2f96389"
+    },
+    {
+      "path": "assets/monsters/gray-meadow-boar.png",
+      "size": 2666407,
+      "sha256": "33c69c6b9b46cb028c577b79703ed665917abb9c5ba9fe5e6c698dae99ccb7ef"
+    },
+    {
+      "path": "assets/monsters/gray-meadow-boar.png.import",
+      "size": 968,
+      "sha256": "65e865f652d20279267c26197624edec3f0e70764f5648317df5b4f640be5bf5"
+    },
+    {
+      "path": "assets/monsters/gray-meadow-boss.png",
+      "size": 5548724,
+      "sha256": "1128091b4fb281a6f4f7f1f25e0a05147cbdd96d09cd13f1245afd15863dd23a"
+    },
+    {
+      "path": "assets/monsters/gray-meadow-boss.png.import",
+      "size": 968,
+      "sha256": "44d5c0a815cc44266181d0c04e5ff3c3747cfb3417af8dda732e482b68ea19bf"
+    },
+    {
+      "path": "assets/monsters/gray-meadow-crow.png",
+      "size": 3855585,
+      "sha256": "a20dc05021bc5d8c8da09bb50438fa8eb71c9325f7c890f4bfb83a8e3ed555d6"
+    },
+    {
+      "path": "assets/monsters/gray-meadow-crow.png.import",
+      "size": 967,
+      "sha256": "b9e724b17ed21d073829d394b574ace7c84c65f6ede82acf7e22cfb03a3c1730"
+    },
+    {
+      "path": "assets/monsters/gray-meadow-goblin.png",
+      "size": 3308784,
+      "sha256": "172b23e65c53e4813c8a24314d1f2a796871b4262cc563249bda9ecc051b4f1c"
+    },
+    {
+      "path": "assets/monsters/gray-meadow-goblin.png.import",
+      "size": 974,
+      "sha256": "84dcb4eb07482d96479fd6ce7af8ac95e3d77befe7ab652527672ed8a76e7e26"
+    },
+    {
+      "path": "assets/monsters/gray-meadow-wolves.png",
+      "size": 3836859,
+      "sha256": "51c966476611112ccfcca7ac8b5541d62a1c9bf143f7ba3f28f4df4092528bdf"
+    },
+    {
+      "path": "assets/monsters/gray-meadow-wolves.png.import",
+      "size": 974,
+      "sha256": "25f0fb553af367585db7caf3f35d15ed2fe07d96983440d0a6fc060ab84c9564"
+    },
+    {
+      "path": "assets/monsters/moonrest-boss.png",
+      "size": 4289530,
+      "sha256": "5e0c6294748377970c7dfa283892ee50eb3cbd17c698e72db079590b579cefef"
+    },
+    {
+      "path": "assets/monsters/moonrest-boss.png.import",
+      "size": 958,
+      "sha256": "767a2b5b953a8ed695bddaddd4ccfb1241f42fa7e42ca1b56fd434577acc1007"
+    },
+    {
+      "path": "assets/monsters/moonrest-deer.png",
+      "size": 3548268,
+      "sha256": "28c3d7770e137fbb324bfd63379bdede46720660c3aaad26cb02b48cfed8b28a"
+    },
+    {
+      "path": "assets/monsters/moonrest-deer.png.import",
+      "size": 959,
+      "sha256": "a88d8155638763f9bb8aa4ae2b1443e2b728bc444a74e9a3ebf2d9c21770e109"
+    },
+    {
+      "path": "assets/monsters/moonrest-mushroom.png",
+      "size": 3533221,
+      "sha256": "e073c929f26b93c9e30ee7dab9b31f0e1da233ef87ad76b4a2e5106566c989ba"
+    },
+    {
+      "path": "assets/monsters/moonrest-mushroom.png.import",
+      "size": 971,
+      "sha256": "7e75f0f7e5e1acc3b36aa3d5e545e4ac08761b26dc117dd91d933e0b1cd8d9c4"
+    },
+    {
+      "path": "assets/monsters/moonrest-raven.png",
+      "size": 3047025,
+      "sha256": "18fd19b4b0af0579df8d35143ae3c3e495c6585cb14fec4a462e31ac9d43db3e"
+    },
+    {
+      "path": "assets/monsters/moonrest-raven.png.import",
+      "size": 962,
+      "sha256": "0cd6cf5a7b3487611f1a2728a8eb6842c087356be1668dcaeeac862c3e6bd9f4"
+    },
+    {
+      "path": "assets/monsters/moonrest-wolf.png",
+      "size": 3190421,
+      "sha256": "d9587fec9e7835b423cfc30a59c4c5cf24762dcff637797e414e70922f538c4b"
+    },
+    {
+      "path": "assets/monsters/moonrest-wolf.png.import",
+      "size": 959,
+      "sha256": "ed79bcbc75a1f60127b7e0711f525c1ec0b876c25e38dabe65a4339927117f9c"
+    },
+    {
+      "path": "assets/monsters/moonrest-wraith.png",
+      "size": 2750170,
+      "sha256": "d42a58ba80e9893a0f807e85f84387fad90fc875bdad4cf762c64ee1574fbf1a"
+    },
+    {
+      "path": "assets/monsters/moonrest-wraith.png.import",
+      "size": 965,
+      "sha256": "6f10184657d363866de1fbc0af2ec6b011508a4c07821d0b9bb0396e568ce489"
+    },
+    {
+      "path": "assets/sprites/bright-v28/caelum-sheet.png",
+      "size": 1420009,
+      "sha256": "f594d656e314c674cead9f441814dbfede0d1ad9683bace8daefbeab3f3f6103"
+    },
+    {
+      "path": "assets/sprites/bright-v28/caelum-sheet.png.import",
+      "size": 966,
+      "sha256": "1a87c36bd08819afbbf1d5445a4774ca8b529420dc86f0dc6710c7196a6d6e38"
+    },
+    {
+      "path": "assets/sprites/bright-v28/darius-sheet.png",
+      "size": 1241287,
+      "sha256": "1035432c01e45326328e2dcab49e45987072925d4520fc615b1b33ed9b2ad662"
+    },
+    {
+      "path": "assets/sprites/bright-v28/darius-sheet.png.import",
+      "size": 965,
+      "sha256": "e0f7b8b8a1ca301f715c8a1d46bac43b81feb05e51a60ddd56d77a60ee67aa99"
+    },
+    {
+      "path": "assets/sprites/bright-v28/leonhardt-sheet.png",
+      "size": 1411901,
+      "sha256": "e7c61fd4ca2292314b9bb858f38d1b9c55ebc8a3588d1a5ee8572745da5584a7"
+    },
+    {
+      "path": "assets/sprites/bright-v28/leonhardt-sheet.png.import",
+      "size": 975,
+      "sha256": "a8499007b1f93a48241c75c90223a0302c68ead7ffec4c5a5542c25949eac784"
+    },
+    {
+      "path": "assets/sprites/bright-v28/mira-sheet.png",
+      "size": 1532523,
+      "sha256": "861ba4c1d8c8fb4f224eecdbc33674494d35eafb40338a5c11be3b09dd8c4ae1"
+    },
+    {
+      "path": "assets/sprites/bright-v28/mira-sheet.png.import",
+      "size": 960,
+      "sha256": "3943e6f434533f16357f286cab9b37bb4a34d2f137edc4e411fea8e9b9a1f6dd"
+    },
+    {
+      "path": "assets/sprites/bright-v28/orwin-sheet.png",
+      "size": 1473951,
+      "sha256": "f7710c93e6e7ec69f9a3829341c9245719742ec8a61bee44ba12c095ee4e1a94"
+    },
+    {
+      "path": "assets/sprites/bright-v28/orwin-sheet.png.import",
+      "size": 963,
+      "sha256": "e8f039661dd14f581d52be1e3381d90acbf96e17b70829d2296343240b65b741"
+    },
+    {
+      "path": "assets/sprites/elisia-sheet.png",
+      "size": 5047019,
+      "sha256": "f1306fd3d3244f88ac4a7a4dde94929791162b332e58e69be71cad8d9248bc07"
+    },
+    {
+      "path": "assets/sprites/elisia-sheet.png.import",
+      "size": 955,
+      "sha256": "f22551593e66b97030bbebe92a9166e1698b3d1b96d9018f8ff0e8556bbc80e6"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/a01-sheet.png",
+      "size": 2775085,
+      "sha256": "b5be73e0e027980101a1476f5ca0f02390287f95c6442168212d48733b165a24"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/a01-sheet.png.import",
+      "size": 957,
+      "sha256": "eeeb964141bdb96e8b523020738c4a2a65f79732e18dff92bf058557b35b4880"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/a06-sheet.png",
+      "size": 2855140,
+      "sha256": "4fee733989307f028d25c0298259f6791e38701e34eb9893626b8347499a26d9"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/a06-sheet.png.import",
+      "size": 956,
+      "sha256": "5043fc26255cfbfdbe4784cee7f19943f974f1992c96d3e4b7acc1e075347a24"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/a11-sheet.png",
+      "size": 2840526,
+      "sha256": "f565b56497b7a7b261b3c98aab9de9a2830c18516cee096ecee4dd08152cb6ef"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/a11-sheet.png.import",
+      "size": 957,
+      "sha256": "647b0609edcc5445b1ed2d9f50537352ec368ffdf0c4ae29bf92cf60abd6be20"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/manifest.json",
+      "size": 54889,
+      "sha256": "aec961860422336ca638297a4d109cf64488cfe13e69f1f0b352e408010038b4"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/n01-sheet.png",
+      "size": 2298194,
+      "sha256": "3588b9bc46ff26927b95010d500f5deebcb783c160d3e59167ea059c3e994e62"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/n01-sheet.png.import",
+      "size": 957,
+      "sha256": "87e0bd506b315955627f7cda153938f6ecb76b4d4798898835565bf312b68a10"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/n06-sheet.png",
+      "size": 3114905,
+      "sha256": "6493783fb86b7de94fc39ceb7ebfbed95fbe9ba260e589394077715a72133611"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/n06-sheet.png.import",
+      "size": 957,
+      "sha256": "700c43b5e067b14608b0217b9554bcb102ad70350f958b63b978d7aaf3f6371a"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/n11-sheet.png",
+      "size": 2325529,
+      "sha256": "adc1f26e6b35adff046b004b03753b6e378ae0d74501a5d357ede55e11f121cd"
+    },
+    {
+      "path": "assets/sprites/heroes-v31/n11-sheet.png.import",
+      "size": 957,
+      "sha256": "8b89d9aa8e869c36b7358695a7c78036575a606d293c8be9da574863e3ee535c"
+    },
+    {
+      "path": "assets/sprites/leonhardt-sheet.png",
+      "size": 4330181,
+      "sha256": "14378e75aff141eb11f330ca780447cadc61dba06bb2b30da8fc8322c91a94b5"
+    },
+    {
+      "path": "assets/sprites/leonhardt-sheet.png.import",
+      "size": 964,
+      "sha256": "b09a1c4866284266ee75b5412ef000aca74d2574aae9c4bbcd6eda7d0d54bf4c"
+    },
+    {
+      "path": "assets/sprites/mira-sheet.png",
+      "size": 4565867,
+      "sha256": "4d354ddf6b658c1bd40fa3520f1ead83dfc859828d2899417facb76065cca711"
+    },
+    {
+      "path": "assets/sprites/mira-sheet.png.import",
+      "size": 949,
+      "sha256": "34916a6bf04e5a3ec42550e9b292efe6d1ac811fe79b6867b33f20d2cd606f0a"
+    },
+    {
+      "path": "assets/ui/v30/expedition-key-art.png",
+      "size": 2385789,
+      "sha256": "087da064d01f1840abd25fff50dc64cf1500c1c97047d23be424a1f083a79eac"
+    },
+    {
+      "path": "assets/ui/v30/expedition-key-art.png.import",
+      "size": 971,
+      "sha256": "cec249cf48df8af788e5fff9479616082d57c48f28c54fcc218284751d434925"
+    },
+    {
+      "path": "docs/AI_V4_UPGRADE_KO.md",
+      "size": 6434,
+      "sha256": "7706093f30728c37d827b3d16a4a390aaad0dba4438cc92c0b3bae081dae0e64"
+    },
+    {
+      "path": "docs/GODOT_4_7_MIGRATION_KO.md",
+      "size": 914,
+      "sha256": "10a954d250dbcfbb287d529d5f1dac4b5e9fc0de58b4df7659e75a9c45dc2c26"
+    },
+    {
+      "path": "docs/Pixel_RPG_v29_30_Heroes.md",
+      "size": 27063,
+      "sha256": "61ba2838f7dff95c1d3a402ad677b29706e8a3aa093269fd79c78fc83f7405be"
+    },
+    {
+      "path": "docs/Pixel_RPG_v29_Progress.md",
+      "size": 6384,
+      "sha256": "5d2cddf50a339b570ff6774958dbd77f34fd271bcb796de1a38b90ca8c5511a1"
+    },
+    {
+      "path": "docs/Pixel_RPG_v30_Design_Update.md",
+      "size": 4866,
+      "sha256": "894e5e920e0924106c2b77e4154ffb2c7d2cd7c3a453b9411731c339614d1400"
+    },
+    {
+      "path": "docs/V10_UI_UX_KO.md",
+      "size": 2048,
+      "sha256": "b2eb7941065defaa91927637aa23823e4661b8e54c642810b70c662562915e93"
+    },
+    {
+      "path": "docs/V11_PROGRESS_LIVEOPS_KO.md",
+      "size": 2274,
+      "sha256": "922820fa15af735ba092e2d8137b2a5733cb1266502c3c8163017e0dc6c074ae"
+    },
+    {
+      "path": "docs/V12_FACTION_WAR_KO.md",
+      "size": 1770,
+      "sha256": "0ddc63392c293289a3af469690bcb4685d4cb19cf94a84079fbd5bc2f18543ee"
+    },
+    {
+      "path": "docs/V13_MARCH_SAFETY_KO.md",
+      "size": 2449,
+      "sha256": "2d4ea1ce17d1cb8d000bde09ce25cfad32dedb3d7ba45b2a66cdc58d2e3addf7"
+    },
+    {
+      "path": "docs/V14_ASYNC_PVP_KO.md",
+      "size": 2426,
+      "sha256": "7198fb994db2bf233db9a625a0124da44474c9d747385d4c4e30aaecbc2bf494"
+    },
+    {
+      "path": "docs/V14_VALIDATION_KO.md",
+      "size": 1453,
+      "sha256": "105ac1ecfe1e46071cfa41e8f4e07e3f9bd71142fa852f4dfd0a21465b7f7f45"
+    },
+    {
+      "path": "docs/V15_FRONTLINE_SYSTEM_KO.md",
+      "size": 3999,
+      "sha256": "5ed0c89eddbae4d6dd202d1b5b414d3993ad3829f245ad3b5de3272f198022bb"
+    },
+    {
+      "path": "docs/V15_VALIDATION_KO.md",
+      "size": 1329,
+      "sha256": "b5601d3b2cfc3de3357497c6dee161644881ec646d0b6dd0476493bc442d9651"
+    },
+    {
+      "path": "docs/V16_SERVER_AUTHORITY_KO.md",
+      "size": 1901,
+      "sha256": "874c9f8cfd5fe24bebcfb9f63b599438310e3ecbd30c68d07d93a0fb02be8b8f"
+    },
+    {
+      "path": "docs/V16_VALIDATION_KO.md",
+      "size": 783,
+      "sha256": "d787682252c948e5fc956d6cb111569b9acf090ce44382043d13c2a0af7a3de6"
+    },
+    {
+      "path": "docs/V17_AUTO_IDLE_SYNC_KO.md",
+      "size": 4972,
+      "sha256": "24ec4adc722541122c51c8ece2043cb3ad9d4ec9ad7ac1cae8a2d6e332f41391"
+    },
+    {
+      "path": "docs/V17_VALIDATION_KO.md",
+      "size": 1415,
+      "sha256": "3e66a7cc38ecbcd899a5f94bf8cb81dd6c833acad33b91137e3131a6b5b325da"
+    },
+    {
+      "path": "docs/V18_AUTO_HUNT_SEASON_KO.md",
+      "size": 3867,
+      "sha256": "de5a3d1ae52a22da4488bfcf96d8250186857634e824d614773520de5d013434"
+    },
+    {
+      "path": "docs/V18_VALIDATION_KO.md",
+      "size": 1456,
+      "sha256": "1ab3a666238b553094bab984afe6e27ffc8b658ce13c426c964924d35a892891"
+    },
+    {
+      "path": "docs/V19_STABILITY_AI_BALANCE_UI_KO.md",
+      "size": 3274,
+      "sha256": "69f3ebd4eafbccf9d01823555b633d5090ed2f676c23d3844f64005c56592c96"
+    },
+    {
+      "path": "docs/V19_VALIDATION_KO.md",
+      "size": 929,
+      "sha256": "5b220c2e699d11adb6b84e459d50855bbcbacd0f1ec5f5b2bffca5cc22fe20bc"
+    },
+    {
+      "path": "docs/V20_4_RUNTIME_VALIDATION_KO.md",
+      "size": 1956,
+      "sha256": "4169f3a6bc833eabb7266b04928e347e235f2cf6fc02ff4b48685cc1db4226f8"
+    },
+    {
+      "path": "docs/V20_REALTIME_ROAMING_HUNT_KO.md",
+      "size": 3082,
+      "sha256": "55153addd6cb624593b4b7285563dca093d77467ab546057564fee21260e7c51"
+    },
+    {
+      "path": "docs/V20_VALIDATION_KO.md",
+      "size": 775,
+      "sha256": "575a93ef5b586bcd0cec44e1615926d3e8bf9928145ed5f4a64fbf2c2a54f985"
+    },
+    {
+      "path": "docs/V21_UI_UPGRADE_KO.md",
+      "size": 2210,
+      "sha256": "0d463edaaa08b0168f391512176100d0ab86669612d49ced5da928994ecafea1"
+    },
+    {
+      "path": "docs/V22_RUNTIME_VALIDATION_KO.md",
+      "size": 464,
+      "sha256": "e0bbec38a9c1662183a5abec919ad657cba5b5096bca48e380876a31ac0ae593"
+    },
+    {
+      "path": "docs/V22_UI_COMBAT_WORLD_KO.md",
+      "size": 1857,
+      "sha256": "9be1f0663630cffd0be69e77a4f11c736671fe7e23955f22e47b6116b087615b"
+    },
+    {
+      "path": "docs/V23_COMBAT_READABILITY_KO.md",
+      "size": 1236,
+      "sha256": "2dd587c40e0d3a12463a81a43248063817188af6352cdb09064bc3dfdc3897ff"
+    },
+    {
+      "path": "docs/V24_MOBILE_APK_UI_KO.md",
+      "size": 1867,
+      "sha256": "15b7d1d10c74019367bc1d3a05b50c91e32b99bb609ec4365c7b48c46bfee26c"
+    },
+    {
+      "path": "docs/V25_COMBAT_FX_KO.md",
+      "size": 2321,
+      "sha256": "c87d048cc3f47bda316c564163240b08beaa1e561f4eec19037786667f274a25"
+    },
+    {
+      "path": "docs/V26_COMBAT_AI_KO.md",
+      "size": 4192,
+      "sha256": "7b6c61df28885e59d4b7be673a03347c6a14a5ad7e2ecbfbddbc9b09b5d73508"
+    },
+    {
+      "path": "docs/V27_BALANCE_BASELINE_KO.md",
+      "size": 3213,
+      "sha256": "d9bb9e73587dc9a2033595ea6bb8e5bb773f7916ecb63295f04ef1c0d196c534"
+    },
+    {
+      "path": "docs/V27_BALANCE_KO.md",
+      "size": 8555,
+      "sha256": "948687afb9dad619375fd1980c3a7e4b46ef2b2fc26d179386a147098d530544"
+    },
+    {
+      "path": "docs/V27_BALANCE_RESULTS_KO.md",
+      "size": 6612,
+      "sha256": "35a4cc5bafbc18100ccb9f05b6b3b23c1e0f47f5908ad61836ad717cea9b04db"
+    },
+    {
+      "path": "docs/V27_BOSS_RAID_KO.md",
+      "size": 4458,
+      "sha256": "692ead21b019bce52ab36f58cc25fcb031209b8e94a0e938b4f692dad4138fae"
+    },
+    {
+      "path": "docs/V27_COMBAT_FIELD_KO.md",
+      "size": 2552,
+      "sha256": "8e25b504272d9edd8c0a73c06c42ce0c58153170a035204d0bcf94d99f48e2d3"
+    },
+    {
+      "path": "docs/V27_CORE_SYSTEMS_KO.md",
+      "size": 9957,
+      "sha256": "63c50ebe635d2e56c6d8723fa5e16e76bc508d8fca62569b740f983922d3dca8"
+    },
+    {
+      "path": "docs/V27_GROWTH_KO.md",
+      "size": 5957,
+      "sha256": "b45d7cb40081dfb817770b7d1573cd5ea409d29bf9fe2ab85a4d24f5134d34b4"
+    },
+    {
+      "path": "docs/V27_HERO_ROLES_KO.md",
+      "size": 6023,
+      "sha256": "bbad10a0b82b938a90f4c2e909fdf3916ddc0137a0e7ee18e482a02162d3e04f"
+    },
+    {
+      "path": "docs/V27_LIVE_GROWTH_KO.md",
+      "size": 2673,
+      "sha256": "3bcab8ccbb76e0064fb480e6b6cf2cf054fc7f3462af223b5d00bd2b17eeeaaa"
+    },
+    {
+      "path": "docs/V27_PERSISTENCE_INTEGRATION_KO.md",
+      "size": 3293,
+      "sha256": "239719e6fa046f32b1812b14ca5cfda4121e2f8350629c9f95fc758c54b0e729"
+    },
+    {
+      "path": "docs/V27_RAID_INTEGRATION_KO.md",
+      "size": 3094,
+      "sha256": "03a74d5988babdaafab1571b3efe0778bacdfdb134e21b6c2cfc9ad28b05b67c"
+    },
+    {
+      "path": "docs/V27_SAVE_STABILITY_KO.md",
+      "size": 5604,
+      "sha256": "4e85a1b286d7a35d0d11dea8f714799b3d6ca31d97b84b28df4aa9e481217807"
+    },
+    {
+      "path": "docs/V27_TERRITORY_KO.md",
+      "size": 4447,
+      "sha256": "7b233bfaf52cf529ef0925cbbfe6654f328e063b5c3730c9c4cce4aa02dfb4dc"
+    },
+    {
+      "path": "docs/V28_FIELD_ART_KO.md",
+      "size": 7134,
+      "sha256": "d9416d80fb209a7b44f86f41db79d9eb81022985d2c78e2a970ec08b23e75127"
+    },
+    {
+      "path": "docs/V31_HERO_ART_KO.md",
+      "size": 4853,
+      "sha256": "6476dd6884f6e97da284bb0f310119dfbcdb6890596f055e08020931b194b632"
+    },
+    {
+      "path": "docs/V5_FOUNDATION_UPGRADE_KO.md",
+      "size": 4411,
+      "sha256": "cccb551f1325b1740a4d1d655270c7943993327bc2182d59e7ce0275f93aaf9c"
+    },
+    {
+      "path": "docs/V6_COMBAT_UPGRADE_KO.md",
+      "size": 2504,
+      "sha256": "74d9cb3c464c1b26121ce0534c2c5a373a48f0b898a2d870af4f9b9e409e2186"
+    },
+    {
+      "path": "docs/V6_VALIDATION_KO.md",
+      "size": 1185,
+      "sha256": "6bed1dc9f885e6385a2580c8c96e0e474c5e21a42ca8f1b0939520a231a7c1dc"
+    },
+    {
+      "path": "docs/V7_COMBAT_SYSTEMS_KO.md",
+      "size": 2311,
+      "sha256": "8c65a3ffbb8777b95cf15fa425c47c4505903fe2aa3881a65712cda986f82cdf"
+    },
+    {
+      "path": "docs/V7_VALIDATION_KO.md",
+      "size": 2305,
+      "sha256": "6b95603f5e7215878079fbe3681b4b7ab56e06e03e4e6d8f113881c78a50b41f"
+    },
+    {
+      "path": "docs/V8_POLISH_UPGRADE_KO.md",
+      "size": 950,
+      "sha256": "9bfa45826ffcfe140b8a9708afa511cf79997d0c49d4c2bb97f41feaf11f84e7"
+    },
+    {
+      "path": "docs/V9_META_LOOP_KO.md",
+      "size": 1229,
+      "sha256": "b467dac2935cd668df16a017a6c183d3fa09b4f26f64912e0b2418c68a807b5a"
+    },
+    {
+      "path": "docs/VALIDATION_KO.md",
+      "size": 3453,
+      "sha256": "3193dbfd3cb008ae167a8de9e94c339d99b3ed61221f956f1094320adaff6141"
+    },
+    {
+      "path": "docs/WORLD_WAR_ARCHITECTURE_KO.md",
+      "size": 4182,
+      "sha256": "3b772452266db04b1a90d51a4536b7b1707a8327ab6d90f1004a87f21ca5fe33"
+    },
+    {
+      "path": "docs/hero-design-v31.json",
+      "size": 310134,
+      "sha256": "48631089b496772786a6a1f556a40733943861733e1d91b543d5c4359d8195ad"
+    },
+    {
+      "path": "docs/hero-roster-v29.json",
+      "size": 70864,
+      "sha256": "5a09711f4c0bac9bf4f6ca791e8f244a72f2dfccde6a597176fb6152897807f8"
+    },
+    {
+      "path": "docs/test-results.json",
+      "size": 4893,
+      "sha256": "8c37ef13a9f52aaf1b6bc457929dd674de510a9b9397509f129cf30d9483591a"
+    },
+    {
+      "path": "docs/ui-v30/DESIGN.md",
+      "size": 4209,
+      "sha256": "a33db0f1c11c404510688ab6d89b34cbe97ae3aa1ef9aa7d5afa05b4fc3909e1"
+    },
+    {
+      "path": "docs/ui-v30/control-geometry.json",
+      "size": 526790,
+      "sha256": "971bb8e115e66b60881af52ba3f5bf0f41d7eb6b3472ca7d9f0d96bf79a42fe1"
+    },
+    {
+      "path": "docs/ui-v30/flow-validation.json",
+      "size": 2286,
+      "sha256": "16ab0e2851d221d5b1f41af04265d5eaecdeeb6242e760309ca254993e900617"
+    },
+    {
+      "path": "docs/ui-v30/layout-analysis.json",
+      "size": 53906,
+      "sha256": "9f4a4c48006d35d4a8caae3de867ed4010895f706c7ea55b55867e90f8913c5f"
+    },
+    {
+      "path": "docs/v15-static-results.json",
+      "size": 478,
+      "sha256": "f2ccdd5a1beafb61de9c25a6facd91dd50cd89695fc495665a4d601743b94035"
+    },
+    {
+      "path": "docs/v18-static-results.json",
+      "size": 790,
+      "sha256": "5ac2cb1dc6abce0e99207a0f306c62e478109c110ad9288bbcc896c46d772f18"
+    },
+    {
+      "path": "docs/v20-static-results.json",
+      "size": 403,
+      "sha256": "7a07c41cec0b2c815090fe0f8908f43ef27ca5a28898ea2b6e8ab8e7e367de30"
+    },
+    {
+      "path": "docs/v20_4-runtime-results.json",
+      "size": 4108,
+      "sha256": "b96db2c8945176a39e4df0e5cf2c0436f235e82f5d52e3d8eae597e7ee035579"
+    },
+    {
+      "path": "docs/v22-runtime-results.json",
+      "size": 1832,
+      "sha256": "e04a567086a25f4eb3f2edd8f77068a5b6f49c837460ca2c55d4b93b42bc52b7"
+    },
+    {
+      "path": "docs/v23-runtime-results.json",
+      "size": 347,
+      "sha256": "1bf6acdbb3021e1ed431b4bde5adc58878aa2ddd838053c95316624cea2b4e41"
+    },
+    {
+      "path": "docs/v24-runtime-results.json",
+      "size": 555,
+      "sha256": "047f534699c60dbca005d602b43123816d4c26b2c5135d8ee9d9ec06e274ee44"
+    },
+    {
+      "path": "docs/v25-runtime-results.json",
+      "size": 461,
+      "sha256": "a08a0ef5cc97017cdaeeda6738a294ab944a5c0cdb2ce567c8f000a18279e5d1"
+    },
+    {
+      "path": "docs/v26-combat-regression-comparison.json",
+      "size": 1120,
+      "sha256": "6b83037054c96ff0985fe57a036d2f4af9102701c24cfcc43fe8a7f49c827a67"
+    },
+    {
+      "path": "docs/v26-combat-soak-output.log",
+      "size": 1115,
+      "sha256": "a176462b8668cecdca39094bb48f58319da1fb3ad4f1d303663b39cbf7a9fcab"
+    },
+    {
+      "path": "docs/v26-combat-soak-results.json",
+      "size": 1667,
+      "sha256": "2a8ec3242f68319ddb8892859dcacea6cd7473a0d4c4c409f561a02efcd7c28a"
+    },
+    {
+      "path": "docs/v26-runtime-results.json",
+      "size": 20918,
+      "sha256": "3d9cefa8ab0456bd1a3fb44c2c5b297265da2e23f2fa38d76fbade017833f3ba"
+    },
+    {
+      "path": "docs/v27-balance-baseline.json",
+      "size": 12010,
+      "sha256": "97afbd8e25473508bb9df60cea5f07170dcddb1de40d0ec4fbec757445033504"
+    },
+    {
+      "path": "docs/v27-balance-results.json",
+      "size": 13569,
+      "sha256": "814228a0e6ea85c597c542e0f8caa7f466b27243c0aec5838c57b2cdc661b6b1"
+    },
+    {
+      "path": "docs/v27-heroes-logs/AutoCombatTacticsSmokeTest.log",
+      "size": 159,
+      "sha256": "05dd5c3dd9f11caaec3205f69115b5efdc9a53f999c0f4ea43ac48f86a8cf0cd"
+    },
+    {
+      "path": "docs/v27-heroes-logs/HeroIdentityBalanceSmokeTest.log",
+      "size": 147,
+      "sha256": "b71e2749a6300164fa3090ba5e4b2cade8010d3619bf2a3dd0fe0362c8924ef3"
+    },
+    {
+      "path": "docs/v27-heroes-logs/SkillSmokeTest.log",
+      "size": 249,
+      "sha256": "93e443b2c1182c2d892b4bd2a8e9b3cf8840efdb6b12f8d2dee930b31ab2bc1b"
+    },
+    {
+      "path": "docs/v27-heroes-logs/V18CombatAISmokeTest.log",
+      "size": 164,
+      "sha256": "c02a725ebd9b69b8c173eee26b94c88bc71b46a34d813c29c4a347cf94d1a8a3"
+    },
+    {
+      "path": "docs/v27-heroes-logs/V19HeroAIIdentitySmokeTest.log",
+      "size": 168,
+      "sha256": "c114b5cb3edb9871c06c82389e665e71fb93852dd9ac1cc00f60edc48a7e4631"
+    },
+    {
+      "path": "docs/v27-heroes-logs/V26ActionSafetySmokeTest.log",
+      "size": 2079,
+      "sha256": "ffa431ef332e3792367db9a078f8ea0a34e496c81f59d67d6473958b32671cca"
+    },
+    {
+      "path": "docs/v27-heroes-logs/V26CombatDecisionSmokeTest.log",
+      "size": 1022,
+      "sha256": "3d4e0eb0371dd356b1f7039eb52a7f2d7418a92d9bbb35317eec3a79b3f88d3b"
+    },
+    {
+      "path": "docs/v27-heroes-logs/V27HeroRolesSmokeTest.log",
+      "size": 3460,
+      "sha256": "395faeafbcad9574f51248e6a443754b1ee0c6a078de24a76f3a76f2e64ee6d9"
+    },
+    {
+      "path": "docs/v27-heroes-logs/V6CombatSmokeTest.log",
+      "size": 284,
+      "sha256": "63fd54e7451553c388c68057712b809596e6a600ec7dba6ba9a68936efc4322f"
+    },
+    {
+      "path": "docs/v27-runtime-initial-results.json",
+      "size": 54811,
+      "sha256": "810b1261e1833aafdda94fb9a7479c110bb5e017cf1ecc6f81d282223779831b"
+    },
+    {
+      "path": "docs/v27-runtime-results.json",
+      "size": 19093,
+      "sha256": "ab9e4594c60f3a3fb40f006d906694400ba15ab4759a66319425f22ee3ba6869"
+    },
+    {
+      "path": "docs/v27-runtime-targeted-retest.json",
+      "size": 753,
+      "sha256": "8718992faca7479d20ea952237faea08b150cdedcf0500670783e8902f0b6055"
+    },
+    {
+      "path": "docs/v27-save-results.json",
+      "size": 1347,
+      "sha256": "23172844b0a5f4b57fcbc6d4427f2e8d44f68f1f1404584cbca39e81faa26d96"
+    },
+    {
+      "path": "docs/v28-balance-results.json",
+      "size": 13565,
+      "sha256": "c5a8ff41274772c8e13272e5cb790d199860c57a9006ddf8674cec32080525c9"
+    },
+    {
+      "path": "docs/v28-gameplay-capture.json",
+      "size": 93647,
+      "sha256": "a9dd6d6f784e56aa4e4884a03133f5d8da01317529fdb90f8e39ffba019f7402"
+    },
+    {
+      "path": "docs/v28-navigation-final-retest.json",
+      "size": 27137,
+      "sha256": "11448d7ce374e188df78ea0202865f92a9e22939ac90e4d56b86828d7a17a886"
+    },
+    {
+      "path": "docs/v28-reach-fixture-final.json",
+      "size": 422,
+      "sha256": "a92e1ce76ac8f99e3395debf2f7c2b82b5e21351aa4f863d95545abe438bfc9e"
+    },
+    {
+      "path": "docs/v28-runtime-initial-results.json",
+      "size": 58316,
+      "sha256": "9c2692b5e70a016a6bc8670fcb0e949ebff50a15a008ca3cf8b0cce0ea319b45"
+    },
+    {
+      "path": "docs/v28-runtime-results.json",
+      "size": 61608,
+      "sha256": "ba8a2b0ca2065eef3adedc4b1ac57b1ae4ee5ac2e61db0432af5b35f397e2353"
+    },
+    {
+      "path": "docs/v28-targeted-retest.json",
+      "size": 30787,
+      "sha256": "872d7a4cd118efcf898965190ed6b82cac98768c29af344a4e37c92a1dc8bed7"
+    },
+    {
+      "path": "docs/v29-boundary-regression-results.json",
+      "size": 7366,
+      "sha256": "40def809d86fdf8c605c884dd1e1b607663063cfe4363fd5b678e3a8d76885b0"
+    },
+    {
+      "path": "docs/v29-faction-balance-results.json",
+      "size": 4498,
+      "sha256": "79c38bfa964a8f617efd7892f2ac6364bc4302a17b0d6fbb1dfa5533ed750621"
+    },
+    {
+      "path": "docs/v29-initial-regression-results.json",
+      "size": 340356,
+      "sha256": "c52a5c88c12b9a8e888d0928663912dc46c9b416e4578e7229ef21ae616f5630"
+    },
+    {
+      "path": "docs/v29-kit-results.json",
+      "size": 18447,
+      "sha256": "3fc79a414a58e10a0aea8f5525c077d883b59ab925c5e96928f30aea050559c4"
+    },
+    {
+      "path": "docs/v29-regression-results.json",
+      "size": 111464,
+      "sha256": "05e1f6cf38524965c80d83c1eef4f96259d63c7dbc2d400351b7d4345646a2d9"
+    },
+    {
+      "path": "docs/v29-validation-summary.json",
+      "size": 9606,
+      "sha256": "33891a90b877403ab8c9dc8b7766f4b45cbe42ff838c325b77eacce27a3378bb"
+    },
+    {
+      "path": "docs/v30-final-targeted-results.json",
+      "size": 2563,
+      "sha256": "4239a19260e2caaed8ac2b1a3fb6169be41d46f4754406ccaf12f97a7007c4c0"
+    },
+    {
+      "path": "docs/v30-regression-results.json",
+      "size": 112769,
+      "sha256": "0b6aee7ffefd88fac9c9e33956185011cddf05652afc4d26589bcdf6109a28e9"
+    },
+    {
+      "path": "docs/v30-validation-summary.json",
+      "size": 117201,
+      "sha256": "c87d02c92351256abded7717cbb716a853e3a95acd7f6f5cbc854507628ccbf3"
+    },
+    {
+      "path": "docs/v31-art-validation.json",
+      "size": 134948,
+      "sha256": "695f755f447ae6b44c93c96c95a8943a74c76f1ff05474b7e2d8afd307acaa84"
+    },
+    {
+      "path": "docs/v31-atlas-integrity.json",
+      "size": 46226,
+      "sha256": "763770e73dd23fbdabfe003d899baff566cff4136752c70f0dd34824d2f15f17"
+    },
+    {
+      "path": "docs/v31-hero-ui-layout.json",
+      "size": 1430,
+      "sha256": "3215406d6a7ed5bc97a011a484f60a33fbefa1a3d1859ede453848489cd753f9"
+    },
+    {
+      "path": "docs/v31-validation-summary.json",
+      "size": 3084,
+      "sha256": "5f77fb0715e29a76ac0caa71511bb3f58c0567a7b351d1703b422b62c6026d70"
+    },
+    {
+      "path": "project.godot",
+      "size": 789,
+      "sha256": "9e9e6f78999dd72fa14f78bf1ea28fc39389ec3323468be63473d2e620acd0b7"
+    },
+    {
+      "path": "scenes/Main.tscn",
+      "size": 283,
+      "sha256": "ff4a45ddd600a8c97eb3d44d77818e8e31fe050464c9f49d66b6639fe17e1c20"
+    },
+    {
+      "path": "scripts/AutoCombatTactics.gd",
+      "size": 8284,
+      "sha256": "0f8df08a3b175c4d97f7c4e9266705aaebb2006d117767acc89fbf391c9da1bf"
+    },
+    {
+      "path": "scripts/AutoCombatTactics.gd.uid",
+      "size": 20,
+      "sha256": "50c1516e38914c30fd3140f4a03602e9674be17898e7a208081649ec1e118e8b"
+    },
+    {
+      "path": "scripts/AutoCombatTacticsSmokeTest.gd",
+      "size": 2173,
+      "sha256": "d1c9bd16a1898a7d48d53ca89bc2139f1368bf71e22e034c099bd8d9c0dfa5d1"
+    },
+    {
+      "path": "scripts/AutoCombatTacticsSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "5d31f54040bc56f58b53db09987cdef55731e52bb9026a60c8139af8a9f1a899"
+    },
+    {
+      "path": "scripts/AutoHuntController.gd",
+      "size": 6312,
+      "sha256": "a819aa2f69b0aaa12109d3083ef385a5b83ed3d7e9e88bfc3970f5cc9d4dd713"
+    },
+    {
+      "path": "scripts/AutoHuntController.gd.uid",
+      "size": 19,
+      "sha256": "395f1efd54526849fa0337a95c6a5d28e639a2264db37ef5e449a13a2d65e259"
+    },
+    {
+      "path": "scripts/AutoHuntRegressionTest.gd",
+      "size": 10255,
+      "sha256": "2571b073cbe13f778e5dcfaa045d861d5e656c364fc975b1c6a63d3d90ad9e88"
+    },
+    {
+      "path": "scripts/AutoHuntRegressionTest.gd.uid",
+      "size": 20,
+      "sha256": "00a4e8745bba67cc58393f10c7133f2d34b3aebbd9d6db3c5ada4ba38b9e1ab0"
+    },
+    {
+      "path": "scripts/BMSmokeTest.gd",
+      "size": 1292,
+      "sha256": "2c8cc1d6b3d10c490d23c0ab300a70d65ba02ca4e34bdced652614374af76358"
+    },
+    {
+      "path": "scripts/BMSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "52b1a079eefdfa6a2e6ebb9fbc91af306dac0c74a0e5dffc9f432b1b97402b69"
+    },
+    {
+      "path": "scripts/BossEncounterSmokeTest.gd",
+      "size": 1454,
+      "sha256": "3f069944043908a2ead9008dcb8a03ec4de2a2a71c5ba89c3f7256f42f35f76f"
+    },
+    {
+      "path": "scripts/BossEncounterSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "b7d0c5ca6202ca81c68e19a9382a9936e991bed4974758e783745f8dc7c56151"
+    },
+    {
+      "path": "scripts/BrightSpriteAtlasLayout.gd",
+      "size": 4204,
+      "sha256": "ab2f3d500211eb9925157041b7221ac2c4c3450ffb0eed9612f9ea50c4956271"
+    },
+    {
+      "path": "scripts/BrightSpriteAtlasLayout.gd.uid",
+      "size": 20,
+      "sha256": "7a88d5ea98e367bc55fad3e81c09d4da0f1a5335828510ca46d81d37eb53eb4c"
+    },
+    {
+      "path": "scripts/CombatControlsSmokeTest.gd",
+      "size": 3531,
+      "sha256": "225904499c3da332d9e78afec44e41efa18398f98852f2b7c886830a58021486"
+    },
+    {
+      "path": "scripts/CombatControlsSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "b09ce9619bbc6f9205851178034c82acf210e27c2de26d5d851f333ac12acb72"
+    },
+    {
+      "path": "scripts/CombatDecisionEngine.gd",
+      "size": 6020,
+      "sha256": "9effab890a0128e055a44ded092fde01d3b38ac61f4af9d4a490f51f691738a0"
+    },
+    {
+      "path": "scripts/CombatDecisionEngine.gd.uid",
+      "size": 20,
+      "sha256": "2e890e216f0c95f8644f17b0d17baa0f37b7412d43d7b85ce1ff8b75d575e4de"
+    },
+    {
+      "path": "scripts/CombatDecisionEngineSmokeTest.gd",
+      "size": 9042,
+      "sha256": "44a74d681e401ffcbb7e7ea11824d47c148ae68921600959f7ff8f79e6578782"
+    },
+    {
+      "path": "scripts/CombatDecisionEngineSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "223d2cde220b4ed7772f7467486a3ded4490bb1dcdab37ceb6bccb33e62c8ea9"
+    },
+    {
+      "path": "scripts/CombatFxDirector.gd",
+      "size": 10626,
+      "sha256": "7144e4b27312abad356ae4c326e7ce4200ed29954c5534dfa7efeeebdafe5b8a"
+    },
+    {
+      "path": "scripts/CombatFxDirector.gd.uid",
+      "size": 20,
+      "sha256": "a1bfb673d1a81f729e713e0173d8c4565a87f9ed79ce9f0dd14ce0859172beef"
+    },
+    {
+      "path": "scripts/CombatSpriteSmokeTest.gd",
+      "size": 2707,
+      "sha256": "4dd4c5b3300b455c0a3661a9b6c4372760b9a7afe3510afb153e610129ae39cf"
+    },
+    {
+      "path": "scripts/CombatSpriteSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "fe4cebc781960df9ba990b1e009fcd641eb96ecc0b8c4c730c4254285edea30d"
+    },
+    {
+      "path": "scripts/CombatStatusRules.gd",
+      "size": 792,
+      "sha256": "a9a3a31015bf0621c4399d483ed58fcee9de473050ef4c8acd5abe2e242a61f8"
+    },
+    {
+      "path": "scripts/CombatStatusRules.gd.uid",
+      "size": 20,
+      "sha256": "0dbaccdac6e4c0fd3d0887c23c047bf5e1872bb04b3f7f52f9469aae6ff0393d"
+    },
+    {
+      "path": "scripts/ContentScreens.gd",
+      "size": 21564,
+      "sha256": "9806d3516add00496a51ba4e44fe87645b61bd1feddb0af0511c7b0abe000db8"
+    },
+    {
+      "path": "scripts/ContentScreens.gd.uid",
+      "size": 19,
+      "sha256": "557d9aa880a4f8df1750f108d8b5999842bc6e4b87ef8e7cefacb314765f3195"
+    },
+    {
+      "path": "scripts/EquipmentSmokeTest.gd",
+      "size": 1312,
+      "sha256": "ebe4d6779a43224c9143c7e9b572ecb533adb9e1665b0aef5a38c7a93b24d11d"
+    },
+    {
+      "path": "scripts/EquipmentSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "77f2d8266041dd2715f1ce79648f823e7d734d2e7dac1def465906fa4a3cd6bd"
+    },
+    {
+      "path": "scripts/FieldEcology.gd",
+      "size": 2048,
+      "sha256": "e106ad3ad47f5d3082e1c0337442e809d34159c9502d9009f6a29549013395c1"
+    },
+    {
+      "path": "scripts/FieldEcology.gd.uid",
+      "size": 20,
+      "sha256": "2d5624515cedde8627be35181ce83678c88affc3046f4e795cba7a0a787cbe90"
+    },
+    {
+      "path": "scripts/GameUiIcon.gd",
+      "size": 6782,
+      "sha256": "6aa4e6f6fe75766bcbaf79f2af804bb3a0f96f4812dfccb5b2d77c6d84c517ef"
+    },
+    {
+      "path": "scripts/GameUiIcon.gd.uid",
+      "size": 20,
+      "sha256": "705ae980a84b9d52ca79f5a6a9254795f8f95da32b191c54a893a2dc904ac00c"
+    },
+    {
+      "path": "scripts/GameUiTheme.gd",
+      "size": 10403,
+      "sha256": "021e509cdcc69febbfb534b5539927053c3739d945adb4d2227a47d910ef55c0"
+    },
+    {
+      "path": "scripts/GameUiTheme.gd.uid",
+      "size": 20,
+      "sha256": "fb8a89cd583037804c5f7cdecb3cf27dab6c2ec521f59e13407e3f8ca4bc480e"
+    },
+    {
+      "path": "scripts/GrowthInventoryScreens.gd",
+      "size": 8412,
+      "sha256": "f03620cd43da085770b16c1644468dfa055fd22fddb2b25cef2a8694969c389b"
+    },
+    {
+      "path": "scripts/GrowthInventoryScreens.gd.uid",
+      "size": 20,
+      "sha256": "ead19aa103a0de90f64b79a3d9958d57489104ba4e1b84f988ba220b8e9789f5"
+    },
+    {
+      "path": "scripts/HeroAnimationAtlas.gd",
+      "size": 3273,
+      "sha256": "48b1c46cab5969efb72bf8c062013ee0e4ac571ece52c241877d466c8d7c4016"
+    },
+    {
+      "path": "scripts/HeroAnimationAtlas.gd.uid",
+      "size": 19,
+      "sha256": "bfdd532a67af728f263378ad4fa430c8db418da75787d8fe86b68715f2b4b3c0"
+    },
+    {
+      "path": "scripts/HeroAnimationAtlasLayout.gd",
+      "size": 7511,
+      "sha256": "c14121100f5e3ffb41ec140fd7e03cf5c13fe99863f00650b005e7c9b95cecbe"
+    },
+    {
+      "path": "scripts/HeroAnimationAtlasLayout.gd.uid",
+      "size": 20,
+      "sha256": "23af57662873b71b4509a2cc28c875f8fc93f0d4d20e2928644d6cbea0b441bf"
+    },
+    {
+      "path": "scripts/HeroCombatRules.gd",
+      "size": 9417,
+      "sha256": "16a42cd50b510c8de1b18893605484ac663c7c0df951f71f6d6f9c229c96ddb0"
+    },
+    {
+      "path": "scripts/HeroCombatRules.gd.uid",
+      "size": 19,
+      "sha256": "510d6e4bace398e07daff970b1f9fe042647adccf886931b4cd91ed348e88591"
+    },
+    {
+      "path": "scripts/HeroIdentityBalanceSmokeTest.gd",
+      "size": 1135,
+      "sha256": "af5aa82527e87bf52352fe76a4ef266edfe83fe9d0915dc0af3ce8b719b5bf9b"
+    },
+    {
+      "path": "scripts/HeroIdentityBalanceSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "828b94ee1e774ba39e1c4156eb553c113956e3a9aef1e50c324421f9a8bffe74"
+    },
+    {
+      "path": "scripts/HeroIdentityCatalog.gd",
+      "size": 11528,
+      "sha256": "51b170babc1a1b81bc709291fe5ed468c7a673bacd2774e1f10d300ce18b4073"
+    },
+    {
+      "path": "scripts/HeroIdentityCatalog.gd.uid",
+      "size": 19,
+      "sha256": "6a10ce58cd078012dd5b700f8a8601c4f2203fc3385778a795136339061007ef"
+    },
+    {
+      "path": "scripts/HeroKitRuntime.gd",
+      "size": 14946,
+      "sha256": "ea23575dc24fe457583071d6ffbd7d47346502d88fc55d0d92ab62701a8e6fd2"
+    },
+    {
+      "path": "scripts/HeroKitRuntime.gd.uid",
+      "size": 20,
+      "sha256": "2f59bc54a914c6c7ba8e355ac41c9bafc4f2c9d4a49a57f00d05c2b6216620b3"
+    },
+    {
+      "path": "scripts/HeroRosterCatalog.gd",
+      "size": 59811,
+      "sha256": "c09e9c2788398b9ed50ebfd5649befd4978adeae448db07626cac4538294afaf"
+    },
+    {
+      "path": "scripts/HeroRosterCatalog.gd.uid",
+      "size": 20,
+      "sha256": "0d581beb87f34931c8e95da031d4185cc89cc7f1022c20762112afbc6e4ec093"
+    },
+    {
+      "path": "scripts/HeroScreens.gd",
+      "size": 22056,
+      "sha256": "d91ba5bd3202bd55d841f8adfb652971b41808087b919526f7ce0f584a03fba4"
+    },
+    {
+      "path": "scripts/HeroScreens.gd.uid",
+      "size": 20,
+      "sha256": "24c5da04cf2a5d26ce5b4f0777a9f91487bfa8f5d082e3d4865b339b2c58e0f2"
+    },
+    {
+      "path": "scripts/HeroSkillEffect.gd",
+      "size": 13861,
+      "sha256": "27a270626e36c61f476bd5c17b488e2fc1248a25d7aa745e7412ac44d84ff025"
+    },
+    {
+      "path": "scripts/HeroSkillEffect.gd.uid",
+      "size": 19,
+      "sha256": "28585f09eaf202927c9a65984a44750dcbd1853abd6142a1e8e6bac58e740040"
+    },
+    {
+      "path": "scripts/HeroSpriteController.gd",
+      "size": 8294,
+      "sha256": "0a36d29702ca271118aca445a9339c8dd3f92fa4133a2f2b85c5af1801316aee"
+    },
+    {
+      "path": "scripts/HeroSpriteController.gd.uid",
+      "size": 19,
+      "sha256": "f40b28263fb29d5ebf0639a75f797d4d998232e4d95553d0c7a461d789157e2a"
+    },
+    {
+      "path": "scripts/HeroSpriteFactory.gd",
+      "size": 3669,
+      "sha256": "ae2d42024ef9e6a0c43e5b7f68de37b616e0caa9a85d1d25c96690fa8ccc343a"
+    },
+    {
+      "path": "scripts/HeroSpriteFactory.gd.uid",
+      "size": 19,
+      "sha256": "2a09f7e2a1b4a27a280cbbad35532f2b2e50368ba8d38eca7a1440fae029cefb"
+    },
+    {
+      "path": "scripts/HeroVisualCatalog.gd",
+      "size": 2669,
+      "sha256": "4e14975caed04f4f3434fb9e30546fbf8f4fb518db1b685422bf4a44ca4af5d1"
+    },
+    {
+      "path": "scripts/HeroVisualCatalog.gd.uid",
+      "size": 20,
+      "sha256": "322e2e48345586c13e63ca2598f6121f3f456be95e389d347da22add984c0282"
+    },
+    {
+      "path": "scripts/IdleHuntEstimator.gd",
+      "size": 3559,
+      "sha256": "858b77fce9dc2437afbe58d27ca24694b75a3c3e0fbedbb905969d4382036a63"
+    },
+    {
+      "path": "scripts/IdleHuntEstimator.gd.uid",
+      "size": 19,
+      "sha256": "36472ee0a86b14343d2c9bb7805e186348031a411f5c06a4baaf6cd4c26e6f50"
+    },
+    {
+      "path": "scripts/IdleHuntEstimatorSmokeTest.gd",
+      "size": 1362,
+      "sha256": "a8e0d1a1e673b30a8f03f5a8e75ca00c466e79eacbeb9c3200f0f05a0d27799a"
+    },
+    {
+      "path": "scripts/IdleHuntEstimatorSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "37a3d4b5baa4fb6dd49f8e176f2d9fcf1d25e5371a22e9137cfbd642e105a3c7"
+    },
+    {
+      "path": "scripts/IdleSmokeTest.gd",
+      "size": 1439,
+      "sha256": "6f417febc513ade67a04eb1bb3cd468ac3f5e51af051039c6b302c61921ffebf"
+    },
+    {
+      "path": "scripts/IdleSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "89d673b4e30a7f1b9ce9b4ef2fcc037452aeb1a8b4ef3a3a749ff0c91d664077"
+    },
+    {
+      "path": "scripts/InventorySmokeTest.gd",
+      "size": 1554,
+      "sha256": "384ff81bc29d0a21a10c4761edb25e5ed590a7c83642464469f94aa431048260"
+    },
+    {
+      "path": "scripts/InventorySmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "1922fbe013ef3bce98b01ce67e1e726e077be9682627e1fded84ce287763ede4"
+    },
+    {
+      "path": "scripts/LandingScreens.gd",
+      "size": 16314,
+      "sha256": "cb4ea7ca72ac9a43c0f49f029cb794b8c33f30b7f4444fd0df062bc74298d456"
+    },
+    {
+      "path": "scripts/LandingScreens.gd.uid",
+      "size": 20,
+      "sha256": "9ec9ad410cec95f1a3b000eace26ce18c4b7d75e8ccb405de06c7e20f36673e6"
+    },
+    {
+      "path": "scripts/LevelSmokeTest.gd",
+      "size": 1294,
+      "sha256": "1e7285fc1ea9ea018f6ca633e20defa2fbea09e3a23bc373f5fa9e793b544bfd"
+    },
+    {
+      "path": "scripts/LevelSmokeTest.gd.uid",
+      "size": 18,
+      "sha256": "fe836243f5a91f915fa84ce06166d4f07fa07f6dc1e884cb7cbcc896ad328fbf"
+    },
+    {
+      "path": "scripts/LootSmokeTest.gd",
+      "size": 1746,
+      "sha256": "c19fcbfb48bc28ebf525bcb7a59d593e3e181901efe5b6d84a27bdd5506fa92a"
+    },
+    {
+      "path": "scripts/LootSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "8ada6d8709854848a424ff0a101e29b0fbd1e1b940086fe3c6a971019cf4edf6"
+    },
+    {
+      "path": "scripts/Main.gd",
+      "size": 229584,
+      "sha256": "b5767a566bacfd28599a855d93a89089527e3d90b1d2b6e1fe092113d9d3924c"
+    },
+    {
+      "path": "scripts/Main.gd.uid",
+      "size": 18,
+      "sha256": "b4b1b9645e4340814aaf90bdb0cc4d411319c5c96b647dd44e365acfbba540ca"
+    },
+    {
+      "path": "scripts/MapTerrainRenderer.gd",
+      "size": 4280,
+      "sha256": "02f6a877b6b128ccff190f61ede57ddc5212379ff1e8877addb5dbf4d434a004"
+    },
+    {
+      "path": "scripts/MapTerrainRenderer.gd.uid",
+      "size": 19,
+      "sha256": "1762f5a0f354d3460fefb695369fd86b088ba2d4c3ce6a4665f7e1c209b8ab46"
+    },
+    {
+      "path": "scripts/MapTerrainSmokeTest.gd",
+      "size": 1985,
+      "sha256": "bf1d2ab8cf259a7b66a46552af98e8711c56c49aa5b8392c76947806af56c06d"
+    },
+    {
+      "path": "scripts/MapTerrainSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "c15dbab0a17d6b594ef5e334acbf1e872cca0a099561fb602360ff1e4696f152"
+    },
+    {
+      "path": "scripts/MeadowNavigation.gd",
+      "size": 9206,
+      "sha256": "b1ee086c91bbb896c81c62aea1b79c6174a2439a60b65e526e8eb07dbf7cf26e"
+    },
+    {
+      "path": "scripts/MeadowNavigation.gd.uid",
+      "size": 20,
+      "sha256": "a7ae577c55c7df8800a367a2c48848e09073c1915a9955293ea031383a18b6ae"
+    },
+    {
+      "path": "scripts/MonsterSpriteController.gd",
+      "size": 9041,
+      "sha256": "95e5842ce43c38288f57a9cfb8fa46aba93a7e63cd6c9f7ac55d8d6f62c34ee1"
+    },
+    {
+      "path": "scripts/MonsterSpriteController.gd.uid",
+      "size": 20,
+      "sha256": "e3fe1b22f0c50028aa845491ed8d39dfca37c88c674938514b0725e73980e79f"
+    },
+    {
+      "path": "scripts/MonsterSpriteFactory.gd",
+      "size": 2900,
+      "sha256": "8af7402025c2f73dc159c449cf5f7710cefce302176e1d407bef06becd57deae"
+    },
+    {
+      "path": "scripts/MonsterSpriteFactory.gd.uid",
+      "size": 20,
+      "sha256": "882b370535437ef601edad8a975edf640aee452599f3f740c6a506a0a0e198d4"
+    },
+    {
+      "path": "scripts/OnboardingScreens.gd",
+      "size": 8013,
+      "sha256": "fa8d2aedf543febc6beb3a9f9a30866fe4cf23b341f67a6c274eb35c6412c5c6"
+    },
+    {
+      "path": "scripts/OnboardingScreens.gd.uid",
+      "size": 20,
+      "sha256": "9f237aa65acb04c959808e69d096f78a20ca04bf35778a6e133d8df26b923cfa"
+    },
+    {
+      "path": "scripts/PartyMovementDirector.gd",
+      "size": 6076,
+      "sha256": "ab01bb687ba1bf8f909f4ff5f469e10f12b79576571975cd77aff1892660794f"
+    },
+    {
+      "path": "scripts/PartyMovementDirector.gd.uid",
+      "size": 19,
+      "sha256": "ebe012e1c4520d1f9ebfe522c8e8a0afef0b7dd3eee26b5e90e2ade2de96ede3"
+    },
+    {
+      "path": "scripts/RaidScreen.gd",
+      "size": 8870,
+      "sha256": "3d33967252976e5e5586bd79fad64e1c5cfb69c4b0b50c33434750bd9cc71554"
+    },
+    {
+      "path": "scripts/RaidScreen.gd.uid",
+      "size": 20,
+      "sha256": "e3cf369a503ceeeb87fe633c3e2f58ffcb3ffdbb1d3d85200c2ada577924d357"
+    },
+    {
+      "path": "scripts/RaidSmokeTest.gd",
+      "size": 1582,
+      "sha256": "ad359715f1e6638a7e67d587559885ced0970b7f0038d840bfbb3ade865a18b8"
+    },
+    {
+      "path": "scripts/RaidSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "69e1896ed247082a9bc427095db25a3f635652d2f5a5504d684e0f500fc8bfcf"
+    },
+    {
+      "path": "scripts/RewardDialogs.gd",
+      "size": 10328,
+      "sha256": "956e3bbee81f8503b6dc35a5a26b353ff0b8bfa5d9c2b32072164a03babbb42f"
+    },
+    {
+      "path": "scripts/RewardDialogs.gd.uid",
+      "size": 20,
+      "sha256": "5ee052416c4babb4d42ae54c9c7d99d93ec5304ce7b98c8ef0d6ca31d81ad3cb"
+    },
+    {
+      "path": "scripts/RoamingHuntDirector.gd",
+      "size": 14060,
+      "sha256": "6f371fd6deddc64108270a2fa216f10dfcceefdc466af7431b76f31e05a88017"
+    },
+    {
+      "path": "scripts/RoamingHuntDirector.gd.uid",
+      "size": 19,
+      "sha256": "621e0021867f714c46eb6106e8c7bab8933026d3f159958f6531756d02f217ba"
+    },
+    {
+      "path": "scripts/RoamingHuntDirectorSmokeTest.gd",
+      "size": 1728,
+      "sha256": "ea47be5a3ed5e23c4ffe521fa6aef59ee517657d3ba79c9cfb38199e87953068"
+    },
+    {
+      "path": "scripts/RoamingHuntDirectorSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "8aaefe27d8b4bc9b119441fd70dc3bd2231ade87f30ecabe9dedaa79573cc42a"
+    },
+    {
+      "path": "scripts/SaveStore.gd",
+      "size": 5697,
+      "sha256": "53b6cc17efe7d05e5bc44b9fd039b924b760c17c6364b13b0104d8b509b354dc"
+    },
+    {
+      "path": "scripts/SaveStore.gd.uid",
+      "size": 20,
+      "sha256": "f5fa48bcc7475552a52ee8a275a6fc5ab2439dedc0320d47f41285a9d615d326"
+    },
+    {
+      "path": "scripts/SaveValidation.gd",
+      "size": 8864,
+      "sha256": "71dc6e2e5ca03c96393cac1ad63a12dda90e911538c72ab10dc4cfa5e912c0a2"
+    },
+    {
+      "path": "scripts/SaveValidation.gd.uid",
+      "size": 20,
+      "sha256": "f53c8a6a6be2f2e44a9563b4c7307d5bc5e546efd1015cc88459b7a6b5ed4392"
+    },
+    {
+      "path": "scripts/SkillSmokeTest.gd",
+      "size": 1835,
+      "sha256": "2c5424476f8d729ef55b8c9ed95284263c5d4077f0354f231ed48e600f98de6d"
+    },
+    {
+      "path": "scripts/SkillSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "886d6360d5e91f10864fa5e29a4af766ec9714906a13487a191f121293450211"
+    },
+    {
+      "path": "scripts/SmokeTest.gd",
+      "size": 2055,
+      "sha256": "d3968941c36e907a9575664d9ba925bc080b2e6d748c283cde34def5b5d09187"
+    },
+    {
+      "path": "scripts/SmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "08d49bca0a47431c35aedb62ddd62bce827545f8287bc8b1a42319850f6cead3"
+    },
+    {
+      "path": "scripts/SpriteSheetSmokeTest.gd",
+      "size": 1369,
+      "sha256": "f9fc347e84676e937333830ab63ddde51a45d2eb850a9a8a7dda1534f3b48155"
+    },
+    {
+      "path": "scripts/SpriteSheetSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "675c51b18529ba5980933838f53d2a52710ac0fae601a3f55d3dd61745a94c89"
+    },
+    {
+      "path": "scripts/UiChrome.gd",
+      "size": 6710,
+      "sha256": "18f101511354dbbc29db29fa4d2acbcc646bbf0c22b9673f6a5fd2b6be4674ca"
+    },
+    {
+      "path": "scripts/UiChrome.gd.uid",
+      "size": 20,
+      "sha256": "cebd6427882f4f0882585c3bc5eb01b22c22d20222326a1c842411170574f3a6"
+    },
+    {
+      "path": "scripts/V10UiUxSmokeTest.gd",
+      "size": 3167,
+      "sha256": "a3d83903ba7504e47a351e5ae99f658d52cf232cec4869544ea61db52ac35cc1"
+    },
+    {
+      "path": "scripts/V10UiUxSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "344ea1008c97e80ad8ad8aa08e59bbd4adf21e3063ce7d21d71941421cb389d4"
+    },
+    {
+      "path": "scripts/V11ProgressionSmokeTest.gd",
+      "size": 3488,
+      "sha256": "d7b76bec9dcbc2f725e9fb8dfe77ffc5a2a9a71ce39d152dcc0b3c93d7def713"
+    },
+    {
+      "path": "scripts/V11ProgressionSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "fd8d389e98913c38d626d882b8d077256f9e45cd1eb508456ee4601d8ca2b43f"
+    },
+    {
+      "path": "scripts/V12WorldWarSmokeTest.gd",
+      "size": 1825,
+      "sha256": "33236461dcebb3ad9cd5ab682b6b9ceb8c8375f3d8134dd26541c6da55ded833"
+    },
+    {
+      "path": "scripts/V12WorldWarSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "fae16335449c3c081a67a16225af47ff0214944282102f8a152a32079f8198fc"
+    },
+    {
+      "path": "scripts/V13WarSafetySmokeTest.gd",
+      "size": 2334,
+      "sha256": "d9673176b905c4c85c3ab7fd0990c138e01ecbbf56f42f16f7872fb68e708c7d"
+    },
+    {
+      "path": "scripts/V13WarSafetySmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "41050944582358fbfabec719284a6bf63863c10834740c288ec94f82090db897"
+    },
+    {
+      "path": "scripts/V14AsyncPvpSmokeTest.gd",
+      "size": 3532,
+      "sha256": "addf78f99f5f53e487b05588c7c74cc2ef73961ac0ce7317281273a0534bd011"
+    },
+    {
+      "path": "scripts/V14AsyncPvpSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "6303d855b243b4bcb04439d27e1c7b8394c30e551fcd3ca49532a3d870f94e16"
+    },
+    {
+      "path": "scripts/V15FrontlineSmokeTest.gd",
+      "size": 1916,
+      "sha256": "ba76d1e37e4774a1d9fd16c3ecd6844f6f8a0437c8f54355ce9b39eaa03d874d"
+    },
+    {
+      "path": "scripts/V15FrontlineSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "50a7810a5466c2e441d0ab0d1e08c4340e8ad60ac0821430c1e75b58c8d48dea"
+    },
+    {
+      "path": "scripts/V16AuthoritySmokeTest.gd",
+      "size": 3033,
+      "sha256": "728409339368b977ac3a1cfad4ef02ca4dc42bddd218a61d5f5a3dab0901d064"
+    },
+    {
+      "path": "scripts/V16AuthoritySmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "65cbfd05afaf66b2ea395b33d4e56a6f4dfbc27061d54a6750233756916f4937"
+    },
+    {
+      "path": "scripts/V16ClientSessionSmokeTest.gd",
+      "size": 2206,
+      "sha256": "85b6d23d78ad4f673dfef873dbba5a1c9f116e9e029d7bb754c0d26761961843"
+    },
+    {
+      "path": "scripts/V16ClientSessionSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "3ffdedebf05bc7871e630b03af90cae139fddab98758a3f3a7e9b5985b915eeb"
+    },
+    {
+      "path": "scripts/V17HuntProgressionSmokeTest.gd",
+      "size": 1897,
+      "sha256": "e1d812c14da14f604a008c3158f18bcab8c98e7de0ebd9e1a2f7a77b7e1562ea"
+    },
+    {
+      "path": "scripts/V17HuntProgressionSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "2b2ea876356b351c147ad61b07971a78badcacf09c3fe86dd03c95804c3f6583"
+    },
+    {
+      "path": "scripts/V17ResyncServerTimeSmokeTest.gd",
+      "size": 2997,
+      "sha256": "3f72572c01c21d33042c91d0a16f5500637ef84aef83d8a382e9e62d25144366"
+    },
+    {
+      "path": "scripts/V17ResyncServerTimeSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "6004cf991d259723ff7b190397592cea635d4f66a96dc55c2f01e74dc42e0fb5"
+    },
+    {
+      "path": "scripts/V18CombatAISmokeTest.gd",
+      "size": 2402,
+      "sha256": "68c346df2932bf24f8714b47ec4f281eabdae5d092d8b5f6095c05cf4d699c32"
+    },
+    {
+      "path": "scripts/V18CombatAISmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "2fc3f22efce0d7bde9329419f9dfec60441f603c07b10accfef0920f4f8f5113"
+    },
+    {
+      "path": "scripts/V18SeasonSyncSmokeTest.gd",
+      "size": 3385,
+      "sha256": "dec1700acfe8bf4c50446dca68e71f8bb8b1fc75292c6032dddb387b9654f3ce"
+    },
+    {
+      "path": "scripts/V18SeasonSyncSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "eeed1867f44435e30d69be13c8704f77bd801af5f0bea42d89cce4ce0d614f38"
+    },
+    {
+      "path": "scripts/V19HeroAIIdentitySmokeTest.gd",
+      "size": 1640,
+      "sha256": "580855b232d67ad5bda5230a6e67047e053d4038cce815069c973ba64d32c6cc"
+    },
+    {
+      "path": "scripts/V19HeroAIIdentitySmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "1341f6d4ae4ffeec59dffc260803f62f39f49a5d953818a74c8e44576b9df59f"
+    },
+    {
+      "path": "scripts/V19ServerStabilitySmokeTest.gd",
+      "size": 2891,
+      "sha256": "f20b129c752a35e1d41aa6214a865ef810b98637b9117062ff898af7088a1807"
+    },
+    {
+      "path": "scripts/V19ServerStabilitySmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "a19156fafd67c1d23596e98eee865437a377b48ead252ecc84ac504c1a02ad03"
+    },
+    {
+      "path": "scripts/V20RealtimeRoamingHuntSmokeTest.gd",
+      "size": 1932,
+      "sha256": "773e068d81c3551c3f9746b39d58546f33ede2eeed3aad1cafa8dc5a4a7dbec3"
+    },
+    {
+      "path": "scripts/V20RealtimeRoamingHuntSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "b6f4d1fb7078098faf4877ed3d2aedae7904ce13b182448c46b72c1e704297f8"
+    },
+    {
+      "path": "scripts/V22UiUpgradeSmokeTest.gd",
+      "size": 3374,
+      "sha256": "098e0655513aac47d9b5063645cb55c0c25810c195f6f64dee78d28d35d212ab"
+    },
+    {
+      "path": "scripts/V22UiUpgradeSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "6319e7e643013a15638e327b167abbb9dbf309c16b9b1e7aef532e81ca666203"
+    },
+    {
+      "path": "scripts/V23CombatReadabilitySmokeTest.gd",
+      "size": 3150,
+      "sha256": "bb9778493972f55a8fe183cd59ecdfcf0c6c9b3daa4025dee59f97af74699665"
+    },
+    {
+      "path": "scripts/V23CombatReadabilitySmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "09af78ba3dd051f9ffff25385a8700914b4b2295570d1479e0ce1ad411464f41"
+    },
+    {
+      "path": "scripts/V24MobileLandscapeSmokeTest.gd",
+      "size": 2062,
+      "sha256": "46c30b7761c9a8d2acc87d98504aad26b731f6327bf59896bb6c4e28b6655c06"
+    },
+    {
+      "path": "scripts/V24MobileLandscapeSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "b5b68463ae86c7cda3bbb47bcb6765c01e8d85ca8a21740bcd7a3b56587a886f"
+    },
+    {
+      "path": "scripts/V25CombatFxSmokeTest.gd",
+      "size": 2158,
+      "sha256": "693dbc17107eb7c5f05e2722bce5da777af60e86171fdf8ad1ff36548fdb26ce"
+    },
+    {
+      "path": "scripts/V25CombatFxSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "8cb5e32c9fcbac16cf6cdd692c948e15e819217e3cca2c843c32e8c318c06d8c"
+    },
+    {
+      "path": "scripts/V26ActionSafetySmokeTest.gd",
+      "size": 7942,
+      "sha256": "47cff9ae642a0064f5e6a900d87e5eb3f3825aee86373ad9484fa2b0b1c1957d"
+    },
+    {
+      "path": "scripts/V26ActionSafetySmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "5627a8807678f26bb7bb41708f7685eac38c6f48dd6cb7fb89e3c136a2e279c4"
+    },
+    {
+      "path": "scripts/V26CombatDecisionSmokeTest.gd",
+      "size": 6524,
+      "sha256": "cc2e0fd8ead2d2b201015659eaf3f6f211d5044899e9fe12ae3e6d6d1b2ee859"
+    },
+    {
+      "path": "scripts/V26CombatDecisionSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "51a83f1ae296dd15df372d216c56a9dcac5c6d9f2094ded776b92ba88bab8da3"
+    },
+    {
+      "path": "scripts/V26CombatSoakSmokeTest.gd",
+      "size": 6400,
+      "sha256": "6138efafe8ab5536c5c6026fe11d82055412e32888210772c75d63a9f7426829"
+    },
+    {
+      "path": "scripts/V26CombatSoakSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "de9e588ae4491e74fddb513f6f13daa08843f7558e9bfc740c9585ccee5ce95d"
+    },
+    {
+      "path": "scripts/V26RoamingSafetySmokeTest.gd",
+      "size": 6573,
+      "sha256": "b6480196f543abefbb4701ae48cbe44b9aa444fb8f4d7d13725b48c304905cd5"
+    },
+    {
+      "path": "scripts/V26RoamingSafetySmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "5db7914fc2ebdcca8a5203a6064621e97dd374d0ad6282ef63495707d5ffb56c"
+    },
+    {
+      "path": "scripts/V27BalanceMatrixSmokeTest.gd",
+      "size": 10929,
+      "sha256": "d6a03922efd0d4a92fc462b5a4d02989d3054b9622632e3f62f31d2eac88905b"
+    },
+    {
+      "path": "scripts/V27BalanceMatrixSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "05f437b2cb3ab5f3fb33d63e2527e27a0040ded04bb7ae3a2720445622f7db85"
+    },
+    {
+      "path": "scripts/V27BossLifecycleSmokeTest.gd",
+      "size": 11971,
+      "sha256": "d4ad5bca21788d177cfc205c7563745d5bcf201e62658604bab1eff520833a6e"
+    },
+    {
+      "path": "scripts/V27BossLifecycleSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "be7da6b31aa3dafbb280ee8f51eff739606202b37da5c87199a780f69a612f3c"
+    },
+    {
+      "path": "scripts/V27CombatClockSmokeTest.gd",
+      "size": 1765,
+      "sha256": "f7cc097bbf82d68b95bcf4384debf9994fc3d29e4f70d42e5a8d6196505c7e50"
+    },
+    {
+      "path": "scripts/V27CombatClockSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "a8d663daf44e7da8b674037f15f6e0dbc2642f4d49d6f7a2c4ce6af907e11267"
+    },
+    {
+      "path": "scripts/V27FieldLifecycleSmokeTest.gd",
+      "size": 6822,
+      "sha256": "42b0bb115fac5f8a9f482f8aef3e1b96a7d6679f2452578b9d5a253fa4bfd571"
+    },
+    {
+      "path": "scripts/V27FieldLifecycleSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "58abf4aeed507721d6379e703baf3f794a9342564ffb0f50c0c92c7d5685e17f"
+    },
+    {
+      "path": "scripts/V27GrowthEconomySmokeTest.gd",
+      "size": 10290,
+      "sha256": "61430a7d983b64b263974a475fb0334f102b2eaa65f211ccf896c23711ff311b"
+    },
+    {
+      "path": "scripts/V27GrowthEconomySmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "7819d9fd6f9f398f9ab565e2adf38a7663c9fd07a05c93e9f243f057f354f711"
+    },
+    {
+      "path": "scripts/V27HeroRolesSmokeTest.gd",
+      "size": 11408,
+      "sha256": "4f8e5d156311e8d364e315124899338404c7dc6620b49b4565be1c9fcbf5a448"
+    },
+    {
+      "path": "scripts/V27HeroRolesSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "9b7740583972e938f76ae2975af4c6d5fcefeef0c84e92c09d60d829ab0e7faa"
+    },
+    {
+      "path": "scripts/V27LiveGrowthSmokeTest.gd",
+      "size": 8231,
+      "sha256": "306dbfacf22fc1749b5fed61736e670d5c143515de564dd104a836f38c8f4f7e"
+    },
+    {
+      "path": "scripts/V27LiveGrowthSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "2686b3e06f1fd688a49ff4fa3f31fa42875e2566e137b9c6298ff7591ae697b9"
+    },
+    {
+      "path": "scripts/V27PersistenceIntegrationSmokeTest.gd",
+      "size": 10889,
+      "sha256": "9ba76cbd1b66b1b2490f6b7c11fa440178c3e63eef0ef63dd1459e9373e276d4"
+    },
+    {
+      "path": "scripts/V27PersistenceIntegrationSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "28f5b78408d489d8874e2a0a0014789fbd138c8d169326d4a8868cc6aab769b4"
+    },
+    {
+      "path": "scripts/V27RaidIntegrationSmokeTest.gd",
+      "size": 5498,
+      "sha256": "093a87524005cd610caba10074aa11faa98552082c4865ec056a3434ca387603"
+    },
+    {
+      "path": "scripts/V27RaidIntegrationSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "fe18255a28cf3f182c43de005d3debdff902a09b0d49437191ed1ba782adb956"
+    },
+    {
+      "path": "scripts/V27SaveRecoverySmokeTest.gd",
+      "size": 15185,
+      "sha256": "eb4df776ed573a7dc0c8e14671661afcb9cc75155aa28f854e15e5250a4d9428"
+    },
+    {
+      "path": "scripts/V27SaveRecoverySmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "bf04d3d8b44a819a87778a2a8a15f54eda93556b61521d7fae56bf85ff6b88bd"
+    },
+    {
+      "path": "scripts/V27TerritoryLifecycleSmokeTest.gd",
+      "size": 14799,
+      "sha256": "0669f0d54324dc3b5414665f8872d146fb7d6c5f3ab146f10bafb77876538397"
+    },
+    {
+      "path": "scripts/V27TerritoryLifecycleSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "5e5deecba26ac8d03596473b399b2ee5d99866b044d715dc1a5134024f3d5a6c"
+    },
+    {
+      "path": "scripts/V28BrightSpriteSmokeTest.gd",
+      "size": 6350,
+      "sha256": "8e40bb7ca3687663edae419b3e16ef4cd8274cfbb270705af94290ade11f0e65"
+    },
+    {
+      "path": "scripts/V28BrightSpriteSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "2c3479184831a826ad3ac63025033703eefe72dfd1d44bf34b96d60b2c676a8e"
+    },
+    {
+      "path": "scripts/V28BrightUiSmokeTest.gd",
+      "size": 4721,
+      "sha256": "6c0b4334afae6ffedd06fe305694131f78af861ff9aca10baf4d33fd4657499d"
+    },
+    {
+      "path": "scripts/V28BrightUiSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "e40ab18fd11241f9dac1cd15c1201e6bfd958a86168dee883de9e1d8b90a5335"
+    },
+    {
+      "path": "scripts/V28FieldFxSmokeTest.gd",
+      "size": 2510,
+      "sha256": "7f291c7ddb3faed534316817b2abe0c0a286e3c5a9e74691866cb14f3eff3ab0"
+    },
+    {
+      "path": "scripts/V28FieldFxSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "b724f6ad214a28a9825d4ec55e865e6f2c068a51f0d63a81f018a0e9fa411694"
+    },
+    {
+      "path": "scripts/V28KitingRegressionSmokeTest.gd",
+      "size": 2641,
+      "sha256": "4ace0e7da6a19a51554c31683fe07814eadf132f2e0ef1802113bc21318340e0"
+    },
+    {
+      "path": "scripts/V28KitingRegressionSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "23a4c9accf63ea4ba6a7f19aa361b8a48e7661c17a345df8577d6c2087855227"
+    },
+    {
+      "path": "scripts/V28MeadowNavigationSmokeTest.gd",
+      "size": 3877,
+      "sha256": "a6575b995b055ef63461188665d54de9988764e20faba63a8eb6624755e8d167"
+    },
+    {
+      "path": "scripts/V28MeadowNavigationSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "c8470200366b3ba93eee4bca7b46b813402e1b760a9257c5f3bd988669eefa70"
+    },
+    {
+      "path": "scripts/V28MovingHuntSmokeTest.gd",
+      "size": 5405,
+      "sha256": "5ffe28b15caed88c84f73aca62f32b94f290d9ac9bbb33b4abea7dfc2375fdd3"
+    },
+    {
+      "path": "scripts/V28MovingHuntSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "24189df328cdd5c994bfc2bc45c5a2f6e0b7c35213ea1e98b19de17ee1825efd"
+    },
+    {
+      "path": "scripts/V29BoundarySpawnSmokeTest.gd",
+      "size": 1019,
+      "sha256": "4036d552b26c47256a2cc075621f92ccf07f35da4edf9118f2667423483b6484"
+    },
+    {
+      "path": "scripts/V29BoundarySpawnSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "4925f5810022b20e543daad2ac7aa4dc6b6cb926a8267cb3d13be58ee1bc8e0c"
+    },
+    {
+      "path": "scripts/V29FactionBalanceSmokeTest.gd",
+      "size": 4807,
+      "sha256": "70fea67bbd1a1e28eda9d9621257a7ca4144a97cda8488304ac93c546fecd408"
+    },
+    {
+      "path": "scripts/V29FactionBalanceSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "4035ac53e12f0e3a6e26119f2839f122c4b20414ab2064939db44a67da167adb"
+    },
+    {
+      "path": "scripts/V29RosterKitSmokeTest.gd",
+      "size": 9031,
+      "sha256": "ea884b1b606b9c3ca90681afcfedefcbdeea5c6c3b0a86f765560866fdfbe739"
+    },
+    {
+      "path": "scripts/V29RosterKitSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "250fc42dcc01136676029c86b5b1785a7e21fc20a6dd890b2d503acf3295d063"
+    },
+    {
+      "path": "scripts/V29RosterUiSaveSmokeTest.gd",
+      "size": 2659,
+      "sha256": "daed41f7f6e051a2ef731f8a0cedca17b4c989be4fdee826376ca0441d1ee8ac"
+    },
+    {
+      "path": "scripts/V29RosterUiSaveSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "6d57b8b5a8a89c2c3115a0fce3dcee2793ca67448696d20e544f72c59a939964"
+    },
+    {
+      "path": "scripts/V30UiFlowSmokeTest.gd",
+      "size": 14412,
+      "sha256": "043eb68096db405062004d9388407bd686bc08d3dada6d40ed5fcd02ba72f889"
+    },
+    {
+      "path": "scripts/V30UiFlowSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "912caaa734de512b501c94b25f8d5c1c43287f3aa6dd47b3a8b9b70f5946bd7e"
+    },
+    {
+      "path": "scripts/V31HeroArtSmokeTest.gd",
+      "size": 13624,
+      "sha256": "80d8811c5f17e83065d75f295106a1285de6f83a3316e26d8d48a590aa626c25"
+    },
+    {
+      "path": "scripts/V31HeroArtSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "052b3b2a15d3d10267efa2010437fda086f42613d101c6caa55842a3dc2d303c"
+    },
+    {
+      "path": "scripts/V31HeroFxSmokeTest.gd",
+      "size": 8037,
+      "sha256": "2e272ddccd4a9e9f6c991cacd250956d5ace95a8a25d1585fee88f1fa39df588"
+    },
+    {
+      "path": "scripts/V31HeroFxSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "f0b8298a6ed3cd3b6e14f1d0ffd320b5e972cc53dbedb03e37e3d307872408c1"
+    },
+    {
+      "path": "scripts/V5FoundationSmokeTest.gd",
+      "size": 2384,
+      "sha256": "f3c8220a2908d181e28bc7c5cc101de65d466e2b95608543749c25f622964ee2"
+    },
+    {
+      "path": "scripts/V5FoundationSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "92b080d64ef0894749f06b9a1e03a0e877a5714106fc23a75b4054a142037439"
+    },
+    {
+      "path": "scripts/V6CombatSmokeTest.gd",
+      "size": 3871,
+      "sha256": "a89cfa61218c87c2ce5ac4605ec2be6e1fb9815fd30bb888e13d8675c33bd512"
+    },
+    {
+      "path": "scripts/V6CombatSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "9810202d6bcc4c745573b099767ccc79b25b2eba64057abb30158e5d9b325670"
+    },
+    {
+      "path": "scripts/V7SystemsSmokeTest.gd",
+      "size": 4905,
+      "sha256": "7252d290c262a633ad67290605eb5cff634d36c917b987ecbcccc21cd6dd79fb"
+    },
+    {
+      "path": "scripts/V7SystemsSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "e811f8ebff387b28a42af813e8463612c300fb5615c48084b497af31685614d7"
+    },
+    {
+      "path": "scripts/V8PolishSmokeTest.gd",
+      "size": 1950,
+      "sha256": "fae898bab516799aa5b73dc957cb8b000ca37e41b49b5c7d9a418ae9ec36dfa7"
+    },
+    {
+      "path": "scripts/V8PolishSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "6d9c721acd67b7e3c2434533ac10da38f816dd08a7e75a208f65468c6e907fc2"
+    },
+    {
+      "path": "scripts/V9MetaLoopSmokeTest.gd",
+      "size": 2827,
+      "sha256": "ca7c0f610942f79ccb01fce5441f49955a10fcdfee0d81dbb8022e3511058ab2"
+    },
+    {
+      "path": "scripts/V9MetaLoopSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "7dda210243c2577a74d981090836b2af16302882ea374aef100f1d9a9e9013be"
+    },
+    {
+      "path": "scripts/WorldAuthorityService.gd",
+      "size": 27341,
+      "sha256": "fbaa4dfab01f6c656c3cc6e6ad8e8aeda8699502b6d54745765b46c855de508d"
+    },
+    {
+      "path": "scripts/WorldAuthorityService.gd.uid",
+      "size": 20,
+      "sha256": "53df9d6500790902c8da6690c88993f75719605e26c35f199619a23b4f5b4fdb"
+    },
+    {
+      "path": "scripts/WorldBattleResolver.gd",
+      "size": 9584,
+      "sha256": "0666f00a0169337fc5c2ead7fdc4b5dcd150c8fad46e38a74913b6897b573173"
+    },
+    {
+      "path": "scripts/WorldBattleResolver.gd.uid",
+      "size": 20,
+      "sha256": "d2a5097c16cbe8a585e98cc71a17bd4ae96d211e75d1a9aa69cad6faa2d86f09"
+    },
+    {
+      "path": "scripts/WorldBattleResolverSmokeTest.gd",
+      "size": 1772,
+      "sha256": "49b39956d17b2a30cc0ed9c148734daffa6bc56b4995509a0bb12b79ecf06189"
+    },
+    {
+      "path": "scripts/WorldBattleResolverSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "b7b4fc9b2f7276d678591309d0a05b4f888c3cb2281c673b0e0e7a3e7620bbfa"
+    },
+    {
+      "path": "scripts/WorldConflictState.gd",
+      "size": 18736,
+      "sha256": "e18f84d458e1a7251950c89467d785f898d34ca9f2673756462161b42de440e8"
+    },
+    {
+      "path": "scripts/WorldConflictState.gd.uid",
+      "size": 19,
+      "sha256": "d6b13f769ba882a653ec17be494d0acc90f9d554a3f7b60679bd08669bcc39d2"
+    },
+    {
+      "path": "scripts/WorldConflictStateSmokeTest.gd",
+      "size": 4144,
+      "sha256": "62cc14c732b659fc3579bda8f5afc77c0d0bd9dee02b33a9f2aa78c490961538"
+    },
+    {
+      "path": "scripts/WorldConflictStateSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "8857ac11a9402984d190dfefa9eaa59ecbea05f290eb1c90fb34d8b08499b8ba"
+    },
+    {
+      "path": "scripts/WorldMarchState.gd",
+      "size": 11143,
+      "sha256": "fb4c59ea5d05dcad12b71b2119c9c6f14772d5031856f2120dde218a5707c33b"
+    },
+    {
+      "path": "scripts/WorldMarchState.gd.uid",
+      "size": 19,
+      "sha256": "d52c53ea51ceca3b25712bdfcca54085bb63721838c5de035ef6188bdc418876"
+    },
+    {
+      "path": "scripts/WorldMarchStateSmokeTest.gd",
+      "size": 2198,
+      "sha256": "334deb5746e654b6cb08aea5eccd991f172d0e807466d0e616cc786b16ee13ae"
+    },
+    {
+      "path": "scripts/WorldMarchStateSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "1a285f4ae29e4da2fe261537fa70704179eddf914d9622014f0ba8fd2c43bb46"
+    },
+    {
+      "path": "scripts/WorldSeasonState.gd",
+      "size": 8808,
+      "sha256": "8489feb71a30eac9dd4f26938f0c1e116905e39994d7dd00f7e72b45706aa9a8"
+    },
+    {
+      "path": "scripts/WorldSeasonState.gd.uid",
+      "size": 20,
+      "sha256": "5324604581f0b6bcbf1007f17d2859cbbc1921dcac70218da805256d92cf8cd3"
+    },
+    {
+      "path": "scripts/WorldSeasonStateSmokeTest.gd",
+      "size": 2086,
+      "sha256": "979e6e4069d0de00fd0e45acb3d3ec982d7cd24024fe08708181d5ae368e181d"
+    },
+    {
+      "path": "scripts/WorldSeasonStateSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "9dfbc1647dd5fc218e6f59fd8eb82461e5855d3ae45fa8170df3b157278e6c5f"
+    },
+    {
+      "path": "scripts/WorldServerGateway.gd",
+      "size": 6839,
+      "sha256": "b9367848a9e1b094a74345a884c5ac6f032f9da25edaf690ba6e32da8842714d"
+    },
+    {
+      "path": "scripts/WorldServerGateway.gd.uid",
+      "size": 20,
+      "sha256": "5a8849d2fc149b3204f2215222809412cf058017da3bcdc56117ccfae193fe59"
+    },
+    {
+      "path": "scripts/WorldSupplyNetwork.gd",
+      "size": 2857,
+      "sha256": "24c276025d1518988266642f45bfb88dffb970875159df720c3b28e6dc1dde48"
+    },
+    {
+      "path": "scripts/WorldSupplyNetwork.gd.uid",
+      "size": 19,
+      "sha256": "832da9c3b9e0e109e3b4ea62536afd21d11c650221ab691d6e7624e2d71d2f4d"
+    },
+    {
+      "path": "scripts/WorldSupplyNetworkSmokeTest.gd",
+      "size": 2381,
+      "sha256": "4b9f6a337d0167c2f66a3649cca6e6b2745edf10032c3efa794443d60788e57e"
+    },
+    {
+      "path": "scripts/WorldSupplyNetworkSmokeTest.gd.uid",
+      "size": 20,
+      "sha256": "0c7ae8407826f8e66e2bd8952a538d606fd7e2808f2758052465279546f1c2c6"
+    },
+    {
+      "path": "scripts/WorldSyncGuard.gd",
+      "size": 1465,
+      "sha256": "2a5c5b454e84b071145b4c0d1916b2f4250e2fe673c358cbe2ecaec4a3534579"
+    },
+    {
+      "path": "scripts/WorldSyncGuard.gd.uid",
+      "size": 19,
+      "sha256": "6cf98c544cc3db64cce84e36ac8c9da6d477fdc447039c2b462f410d4196e763"
+    },
+    {
+      "path": "scripts/WorldWarClientSession.gd",
+      "size": 14160,
+      "sha256": "35c98428530d08cff1e981096fdf86ed9d51e7f72ce9798b7392fa4f842284ad"
+    },
+    {
+      "path": "scripts/WorldWarClientSession.gd.uid",
+      "size": 19,
+      "sha256": "5440281070b6181bb34b63e8b0c29c92b69999f60680b75fef073ff5d4aacb6b"
+    },
+    {
+      "path": "scripts/WorldWarMapView.gd",
+      "size": 5012,
+      "sha256": "b4211c4af906c8eae0cbc6ad9435e1c0979df4b449d5c5810951660aa6b5f0af"
+    },
+    {
+      "path": "scripts/WorldWarMapView.gd.uid",
+      "size": 20,
+      "sha256": "9ff71cc23c774c192c28a24f29b4d228578ad13d019041fb58fb7612369a072d"
+    },
+    {
+      "path": "scripts/WorldWarScreen.gd",
+      "size": 36394,
+      "sha256": "32106d55c3a4ceced8c868619fbe5b3d29d720e5931b9cadc706f6bf7911939d"
+    },
+    {
+      "path": "scripts/WorldWarScreen.gd.uid",
+      "size": 20,
+      "sha256": "57a154e61d66fb7aa3dea961d257e6233e01d5e03e6eddbee76a4cb2c01b435f"
+    },
+    {
+      "path": "scripts/WorldWarState.gd",
+      "size": 20247,
+      "sha256": "01dd25f837a12a0ab2d27e675b0fa1496ffd367aeeabc49e368be90b8809e3ba"
+    },
+    {
+      "path": "scripts/WorldWarState.gd.uid",
+      "size": 20,
+      "sha256": "52c9cab9da17ffe1c9cfe01abbdfd8aa3e33379eee1486352c02772e03c948ec"
+    },
+    {
+      "path": "scripts/WorldWarStateSmokeTest.gd",
+      "size": 1907,
+      "sha256": "2ebabf5221cdc7c5e27f772aaed2fba2a4efe6b766515029046cfdbdddfa2f10"
+    },
+    {
+      "path": "scripts/WorldWarStateSmokeTest.gd.uid",
+      "size": 19,
+      "sha256": "7147c40ae1d63a63b405804fe45d4b9cf5be2ab214e8c03e7263570831f28d99"
+    },
+    {
+      "path": "tools/balance_report.py",
+      "size": 2645,
+      "sha256": "1297e0c6f54dff26e82f2d744fd66cfaf329cb76b879b981b21f2c85e0e631ea"
+    },
+    {
+      "path": "tools/build_checkpoint.py",
+      "size": 18068,
+      "sha256": "10eab558cd8d37ac7c72c463ea8809211a7a954299ddfd2aeb87ace9e43ee85f"
+    },
+    {
+      "path": "tools/godot47_compat_scan.py",
+      "size": 863,
+      "sha256": "2981b49cab61704d3cac7ac6af66182609863191f65bc0ef2d97dd191413daf6"
+    },
+    {
+      "path": "tools/run_tests.py",
+      "size": 4747,
+      "sha256": "e788af8dc20d3c8c262471395a6bff2e41f5ed3f8e1e42d02ad3c17042cd8ed7"
+    },
+    {
+      "path": "tools/static_validate.py",
+      "size": 4609,
+      "sha256": "d9d3ee6112aa10a505e01d664bdcd0a5573f7f4a1db0fb0ed847fb2aa2b33708"
+    },
+    {
+      "path": "tools/ui/CaptureScreens.gd",
+      "size": 4692,
+      "sha256": "551555f18f328ea5fceba94813bdafa27ff8cbf184ba1f66641613607d3251fc"
+    },
+    {
+      "path": "tools/ui/CaptureScreens.gd.uid",
+      "size": 19,
+      "sha256": "8009e8565fd17e09336161be33a5eb82911a0685de89610d686913fd0d7dedb8"
+    },
+    {
+      "path": "tools/ui/ValidateHeroArtLayout.gd",
+      "size": 3700,
+      "sha256": "b967f66e13e3ac1aada91a85a67f2a0cd72144d63d4a62e09d42cf59e1228f97"
+    },
+    {
+      "path": "tools/ui/analyze_layout.py",
+      "size": 1469,
+      "sha256": "dedc876240c5955e9c7b0a4587ed1edfa1afe9ebe0450f09bc691f355fd0bdd4"
+    },
+    {
+      "path": "tools/validate_v31_atlases.py",
+      "size": 5784,
+      "sha256": "51f23eb3817c756b07e6f98d2123dd2694e6cc4814109efe57c743f1170b5a82"
+    }
+  ]
+}

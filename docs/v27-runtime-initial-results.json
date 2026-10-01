@@ -1,0 +1,951 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "passed": 64,
+  "total": 65,
+  "results": [
+    {
+      "test": "AutoCombatTacticsSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.98,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nauto_combat_tactics_smoke_test_ok heal=smart guard=smart elite=priority ultimate=held\n"
+    },
+    {
+      "test": "AutoHuntRegressionTest.gd",
+      "passed": false,
+      "seconds": 8.64,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: Lethal hit allowed retaliation or did not credit exactly one kill\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://scripts/AutoHuntRegressionTest.gd:13)\n       [1] _run (res://scripts/AutoHuntRegressionTest.gd:142)\nauto_hunt_regression checks=18 failures=1 realtime_roaming=ok\n"
+    },
+    {
+      "test": "BMSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.58,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nbm_smoke_test_ok gems=45 unclaimed_gold=250 ad_count=3\n"
+    },
+    {
+      "test": "BossEncounterSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.77,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nboss_encounter_smoke_test_ok boss=광맥의 거인 모르굴 position=(5.0, 0.0) raid_button_visible=true\n"
+    },
+    {
+      "test": "CombatControlsSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.19,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\ncombat_controls_ok visible_buttons=5 no_overlap=true pause_resume=true\n"
+    },
+    {
+      "test": "CombatDecisionEngineSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.06,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\ncombat_decision_engine_smoke_test_ok checks=368 spatial_rows=ok identity=ok hysteresis=ok taunt=ok seeded_cases=160\n"
+    },
+    {
+      "test": "CombatSpriteSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.89,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\ncombat_sprite_smoke_test_ok heroes=3 monsters=16 states=idle,attack,hit\n"
+    },
+    {
+      "test": "EquipmentSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.52,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nequipment_smoke_test_ok before_power=286 after_power=308 weapon=2 gold=0\n"
+    },
+    {
+      "test": "HeroIdentityBalanceSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.99,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhero_identity_balance_smoke_test_ok faction_gap=0.70% all_heroes=balanced\n"
+    },
+    {
+      "test": "IdleHuntEstimatorSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.93,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nidle_hunt_estimator_smoke_test_ok scaling=ok stage_cap=ok loot_cap=ok empty_party=ok\n"
+    },
+    {
+      "test": "IdleSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.42,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\noffline_reward_ok gold=315 xp=198\nidle_chest_ok stage=2 chest_gold=300 chest_xp=125\nidle_claim_ok wallet_gold=615 wallet_xp=323\n"
+    },
+    {
+      "test": "InventorySmokeTest.gd",
+      "passed": true,
+      "seconds": 5.61,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\ninventory_smoke_test_ok rarity=희귀 level=2 gold=905\n"
+    },
+    {
+      "test": "LevelSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.71,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nlevel_smoke_test_ok leveled=3 before_power=689 after_power=797 event=레벨업!  레온하르트 Lv.2 · 미라 Lv.2 · 엘리시아 Lv.2\n"
+    },
+    {
+      "test": "LootSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.5,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nloot_smoke_test_ok total=30 common=124 rare=26 legendary=13 inventory=30\n"
+    },
+    {
+      "test": "MapTerrainSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.14,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nmap_terrain_smoke_test_ok zones=gray_meadow,forgotten_mine,moonrest_forest\n"
+    },
+    {
+      "test": "RaidSmokeTest.gd",
+      "passed": true,
+      "seconds": 5.05,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nraid_smoke_test_ok boss=광맥의 거인 모르굴 clears=1 gold_reward=1000 drops=2\n"
+    },
+    {
+      "test": "RoamingHuntDirectorSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.22,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nroaming_hunt_director_smoke_test_ok patrol=ok wander=ok aggro=ok chase=ok engage=ok\n"
+    },
+    {
+      "test": "SkillSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.69,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nskill_smoke_test_ok damage=111 cooldown=2.50\nWARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).\n   at: cleanup (core/object/object.cpp:2536)\n"
+    },
+    {
+      "test": "SmokeTest.gd",
+      "passed": true,
+      "seconds": 17.71,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nopen_map_smoke_test_ok zone=gray_meadow kills=1 gold=42 xp=27\nreward_claim_ok wallet_gold=42 wallet_xp=27\nzone_progression_ok gray_gold=35 mine_gold=70 forest_difficulty=3\n"
+    },
+    {
+      "test": "SpriteSheetSmokeTest.gd",
+      "passed": true,
+      "seconds": 2.3,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nsprite_sheet_smoke_test_ok heroes=3 animations_per_hero=20\n"
+    },
+    {
+      "test": "V10UiUxSmokeTest.gd",
+      "passed": true,
+      "seconds": 12.03,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv10_ui_ux_smoke_test_ok nav=ok world=ok detail=ok codex=ok equip=ok summon_fx=ok badges=ok salvage=ok\n"
+    },
+    {
+      "test": "V11ProgressionSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.67,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv11_progression_smoke_test_ok patterns=ok ascension=ok sets=ok weekly=ok tracking=ok onboarding=ok\n"
+    },
+    {
+      "test": "V12WorldWarSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.57,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv12_world_war_smoke_test_ok screen=ok nav=ok capture=ok export=ok\n"
+    },
+    {
+      "test": "V13WarSafetySmokeTest.gd",
+      "passed": true,
+      "seconds": 4.9,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv13_war_safety_smoke_test_ok sanctuary=ok comeback=ok defense=ok ui=ok\n"
+    },
+    {
+      "test": "V14AsyncPvpSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.65,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv14_async_pvp_smoke_test_ok march=attack battle=ok capture=ok fatigue=ok report=ok snapshot=ok\n"
+    },
+    {
+      "test": "V15FrontlineSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.64,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv15_frontline_smoke_test_ok ui=ok supply=ok conflict_save=ok\n"
+    },
+    {
+      "test": "V16AuthoritySmokeTest.gd",
+      "passed": true,
+      "seconds": 1.38,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv16_authority_smoke_test_ok trusted=ok idempotency=ok revision=ok auth=ok save=ok\n"
+    },
+    {
+      "test": "V16ClientSessionSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.6,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv16_client_session_smoke_test_ok trusted_stats=ok command=ok arrival=ok revision=ok\n"
+    },
+    {
+      "test": "V17HuntProgressionSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.9,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv17_hunt_progression_smoke_test_ok retreat=ok stuck=ok party_caps=1-3-5-7-10 legacy=ok\n"
+    },
+    {
+      "test": "V17ResyncServerTimeSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.8,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv17_resync_server_time_smoke_test_ok reconnect=ok server_clock=ok stale_resync=ok\n"
+    },
+    {
+      "test": "V18CombatAISmokeTest.gd",
+      "passed": true,
+      "seconds": 3.66,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv18_combat_ai_smoke_test_ok elite_target=ok guard_hold=ok telegraph=ok support_ultimate=ok\n"
+    },
+    {
+      "test": "V18SeasonSyncSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.51,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv18_season_sync_smoke_test_ok digest=ok tamper=blocked season_sync=ok settlement_lock=ok\n"
+    },
+    {
+      "test": "V19HeroAIIdentitySmokeTest.gd",
+      "passed": true,
+      "seconds": 3.42,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv19_hero_ai_identity_smoke_test_ok ai_styles=ok stat_identity=ok ult_gain=ok world_snapshot=ok\n"
+    },
+    {
+      "test": "V19ServerStabilitySmokeTest.gd",
+      "passed": true,
+      "seconds": 1.47,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv19_server_stability_smoke_test_ok stale=blocked clock=smooth heartbeat=resync reconnect=fresh cache=bounded\n"
+    },
+    {
+      "test": "V20RealtimeRoamingHuntSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.52,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv20_realtime_roaming_hunt_smoke_test_ok field=live party=mobile monsters=mobile fixed_nodes=removed\n"
+    },
+    {
+      "test": "V22UiUpgradeSmokeTest.gd",
+      "passed": true,
+      "seconds": 16.02,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv22_ui_upgrade_smoke_test_ok lobby=dashboard heroes=filter_sort combat=chips world=dashboard war=command_dashboard\n"
+    },
+    {
+      "test": "V23CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "seconds": 6.72,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv23_combat_readability_smoke_test_ok tactical_cards=ok target_marker=ok danger_banner=ok\n"
+    },
+    {
+      "test": "V24MobileLandscapeSmokeTest.gd",
+      "passed": true,
+      "seconds": 6.66,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv24_mobile_landscape_smoke_test_ok orientation=landscape aspect=expand wide_field=1134 base_field=868 camera=follow safe=ok\n"
+    },
+    {
+      "test": "V25CombatFxSmokeTest.gd",
+      "passed": true,
+      "seconds": 6.91,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv25_combat_fx_smoke_test_ok projectile=ok aoe=ok boss_range=ok hit=ok dodge=ok camera=ok\n"
+    },
+    {
+      "test": "V26ActionSafetySmokeTest.gd",
+      "passed": true,
+      "seconds": 3.38,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV26 ACTION PASS: dangerous encounter permits an unprotected tank ultimate\nV26 ACTION PASS: second tank holds ultimate while the whole party is protected\nV26 ACTION PASS: windup revalidation preserves the second tank ultimate gauge\nV26 ACTION PASS: one full second of party protection still holds the ultimate\nV26 ACTION PASS: expiring party protection permits a useful refresh\nV26 ACTION PASS: invalid/dead/distant skill target -1 spends no cooldown and deals no damage\nV26 ACTION PASS: invalid/dead/distant ultimate target -1 preserves the full gauge\nV26 ACTION PASS: invalid/dead/distant skill target 99 spends no cooldown and deals no damage\nV26 ACTION PASS: invalid/dead/distant ultimate target 99 preserves the full gauge\nV26 ACTION PASS: invalid/dead/distant skill target 1 spends no cooldown and deals no damage\nV26 ACTION PASS: invalid/dead/distant ultimate target 1 preserves the full gauge\nV26 ACTION PASS: invalid/dead/distant skill target 2 spends no cooldown and deals no damage\nV26 ACTION PASS: invalid/dead/distant ultimate target 2 preserves the full gauge\nV26 ACTION PASS: basic windup retargets a living reachable enemy\nV26 ACTION PASS: basic retarget does not revive the old target or falsely finish the wave\nV26 ACTION PASS: skill windup retargets a living reachable enemy\nV26 ACTION PASS: skill retarget does not revive the old target or falsely finish the wave\nV26 ACTION PASS: retargeted skill consumes cooldown only after landing\nV26 ACTION PASS: ultimate windup retargets a living reachable enemy\nV26 ACTION PASS: ultimate retarget does not revive the old target or falsely finish the wave\nV26 ACTION PASS: retargeted ultimate lands and then consumes its gauge\nV26 ACTION PASS: pet final hit completes the encounter and enters looting\nV26 ACTION PASS: pet final hit grants the exact encounter gold and XP\nV26 ACTION PASS: repeated final-hit callbacks cannot duplicate encounter rewards\nv26_action_safety_smoke_test_ok checks=24 tank_guard=ok resources=ok retarget=ok pet_reward=ok\n"
+    },
+    {
+      "test": "V26CombatDecisionSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.48,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV26 PASS: out-of-range front hero does not starve ready ranged ally\nV26 PASS: out-of-range front hero does not skip enemy turn\nV26 PASS: started emergency heal survives enemy leaving attack range\nV26 PASS: successful emergency heal starts its cooldown\nV26 PASS: distant formation row does not block adjacent living enemy\nV26 PASS: melee damages adjacent enemy despite distant front row\nV26 PASS: melee does not damage distant enemy\nV26 PASS: chase fixture stays outside every hero attack range\nV26 PASS: natural chase starts and completes emergency healing\nV26 PASS: natural chase does not create out-of-range damage\nV26 PASS: area skill damages its local enemy group\nV26 PASS: area skill cannot hit enemy across the field\nV26 PASS: area ultimate damages its local enemy group\nV26 PASS: area ultimate cannot hit enemy across the field\nv26_combat_decision_smoke_test_ok checks=14 independent_turns=ok emergency_heal=ok spatial_target=ok local_aoe=ok\n"
+    },
+    {
+      "test": "V26CombatSoakSmokeTest.gd",
+      "passed": true,
+      "seconds": 165.38,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV26 SOAK REPORT: {\"completed_actions_by_hero\":{\"astel\":91,\"caelum\":86,\"darius\":89,\"elisia\":104,\"kairen\":117,\"leonhardt\":120,\"lunea\":80,\"mira\":112,\"orwin\":98,\"seria\":99},\"distance_walked\":73.5,\"faction\":\"aurelia\",\"gold_earned\":1302,\"health_valid\":true,\"heroes_with_completed_actions\":10,\"kill_count\":31,\"kills_at_60_120_180_seconds\":[10,19,31],\"longest_kill_gap_seconds\":10.3,\"party_size\":10,\"simulated_seconds\":180,\"wipe_recovery_seconds\":4.4,\"xp_earned\":922}\nV26 SOAK REPORT: {\"completed_actions_by_hero\":{\"bron\":112,\"fenris\":108,\"garm\":87,\"isolde\":91,\"morgas\":113,\"nyx\":105,\"ragna\":108,\"ulric\":87,\"valeria\":108,\"veyra\":80},\"distance_walked\":72.9,\"faction\":\"noxfera\",\"gold_earned\":1386,\"health_valid\":true,\"heroes_with_completed_actions\":10,\"kill_count\":33,\"kills_at_60_120_180_seconds\":[11,21,33],\"longest_kill_gap_seconds\":10.0,\"party_size\":10,\"simulated_seconds\":180,\"wipe_recovery_seconds\":4.4,\"xp_earned\":971}\nv26_combat_soak_smoke_test_ok checks=22 factions=2 heroes_per_party=10 simulated_seconds=360 wipe_recovery=ok continuous_rewards=ok\n"
+    },
+    {
+      "test": "V26RoamingSafetySmokeTest.gd",
+      "passed": true,
+      "seconds": 1.01,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv26_roaming_safety_smoke_test_ok target_lock=ok dead_target=ok recovery=ok melee_reach=ok spacing=ok engagement=ok\n"
+    },
+    {
+      "test": "V27BalanceMatrixSmokeTest.gd",
+      "passed": true,
+      "seconds": 119.7,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":15,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":290,\"initial_hp\":2840,\"initial_power\":2221,\"longest_clear_gap_seconds\":4.8,\"minimum_alive\":3,\"offline_encounters_estimate\":11,\"offline_gold_estimate\":315,\"offline_online_gold_ratio\":0.5,\"online_gold\":630,\"online_xp\":450,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"gray_meadow\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":15,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":1116,\"initial_hp\":12598,\"initial_power\":9181,\"longest_clear_gap_seconds\":4.5,\"minimum_alive\":10,\"offline_encounters_estimate\":14,\"offline_gold_estimate\":420,\"offline_online_gold_ratio\":0.667,\"online_gold\":630,\"online_xp\":450,\"party_size\":10,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"gray_meadow\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":10,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":290,\"initial_hp\":2840,\"initial_power\":2221,\"longest_clear_gap_seconds\":6.8,\"minimum_alive\":3,\"offline_encounters_estimate\":10,\"offline_gold_estimate\":560,\"offline_online_gold_ratio\":0.667,\"online_gold\":840,\"online_xp\":630,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"forgotten_mine\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":10,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":1116,\"initial_hp\":12598,\"initial_power\":9181,\"longest_clear_gap_seconds\":6.6,\"minimum_alive\":10,\"offline_encounters_estimate\":13,\"offline_gold_estimate\":770,\"offline_online_gold_ratio\":0.917,\"online_gold\":840,\"online_xp\":630,\"party_size\":10,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"forgotten_mine\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":7,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":290,\"initial_hp\":2840,\"initial_power\":2221,\"longest_clear_gap_seconds\":9.6,\"minimum_alive\":3,\"offline_encounters_estimate\":10,\"offline_gold_estimate\":960,\"offline_online_gold_ratio\":0.973,\"online_gold\":987,\"online_xp\":782,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"moonrest_forest\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":8,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":1116,\"initial_hp\":12598,\"initial_power\":9181,\"longest_clear_gap_seconds\":8.3,\"minimum_alive\":10,\"offline_encounters_estimate\":13,\"offline_gold_estimate\":1320,\"offline_online_gold_ratio\":1.149,\"online_gold\":1149,\"online_xp\":868,\"party_size\":10,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"moonrest_forest\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":17,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":340,\"initial_hp\":2577,\"initial_power\":2253,\"longest_clear_gap_seconds\":4.6,\"minimum_alive\":3,\"offline_encounters_estimate\":11,\"offline_gold_estimate\":315,\"offline_online_gold_ratio\":0.437,\"online_gold\":721,\"online_xp\":499,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"gray_meadow\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":15,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":1121,\"initial_hp\":12611,\"initial_power\":9235,\"longest_clear_gap_seconds\":4.2,\"minimum_alive\":10,\"offline_encounters_estimate\":14,\"offline_gold_estimate\":420,\"offline_online_gold_ratio\":0.667,\"online_gold\":630,\"online_xp\":450,\"party_size\":10,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"gray_meadow\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":11,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":340,\"initial_hp\":2577,\"initial_power\":2253,\"longest_clear_gap_seconds\":6.4,\"minimum_alive\":3,\"offline_encounters_estimate\":10,\"offline_gold_estimate\":560,\"offline_online_gold_ratio\":0.597,\"online_gold\":938,\"online_xp\":708,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"forgotten_mine\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":10,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":1121,\"initial_hp\":12611,\"initial_power\":9235,\"longest_clear_gap_seconds\":6.5,\"minimum_alive\":10,\"offline_encounters_estimate\":13,\"offline_gold_estimate\":770,\"offline_online_gold_ratio\":0.917,\"online_gold\":840,\"online_xp\":630,\"party_size\":10,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"forgotten_mine\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":8,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":340,\"initial_hp\":2577,\"initial_power\":2253,\"longest_clear_gap_seconds\":8.8,\"minimum_alive\":3,\"offline_encounters_estimate\":10,\"offline_gold_estimate\":960,\"offline_online_gold_ratio\":0.836,\"online_gold\":1149,\"online_xp\":868,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"moonrest_forest\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":8,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":1121,\"initial_hp\":12611,\"initial_power\":9235,\"longest_clear_gap_seconds\":8.0,\"minimum_alive\":10,\"offline_encounters_estimate\":13,\"offline_gold_estimate\":1320,\"offline_online_gold_ratio\":1.149,\"online_gold\":1149,\"online_xp\":868,\"party_size\":10,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"moonrest_forest\"}\nV27 BALANCE ROW: {\"boundary\":true,\"encounters_cleared\":9,\"equipment_level\":1,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":1,\"initial_attack_sum\":109,\"initial_hp\":1554,\"initial_power\":941,\"longest_clear_gap_seconds\":7.6,\"minimum_alive\":3,\"offline_encounters_estimate\":11,\"offline_gold_estimate\":315,\"offline_online_gold_ratio\":0.833,\"online_gold\":378,\"online_xp\":263,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"gray_meadow\"}\nV27 BALANCE ROW: {\"boundary\":true,\"encounters_cleared\":9,\"equipment_level\":1,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":1,\"initial_attack_sum\":109,\"initial_hp\":1554,\"initial_power\":941,\"longest_clear_gap_seconds\":7.5,\"minimum_alive\":3,\"offline_encounters_estimate\":11,\"offline_gold_estimate\":315,\"offline_online_gold_ratio\":0.833,\"online_gold\":378,\"online_xp\":263,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2713,\"zone\":\"gray_meadow\"}\nV27 BALANCE ROW: {\"boundary\":true,\"encounters_cleared\":9,\"equipment_level\":1,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":1,\"initial_attack_sum\":109,\"initial_hp\":1554,\"initial_power\":941,\"longest_clear_gap_seconds\":7.2,\"minimum_alive\":3,\"offline_encounters_estimate\":11,\"offline_gold_estimate\":315,\"offline_online_gold_ratio\":0.833,\"online_gold\":378,\"online_xp\":263,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2741,\"zone\":\"gray_meadow\"}\nv27_balance_matrix_smoke_test_ok checks=145 rows=15 heroes=20 faction_throughput_guard=2x measured_not_rating=true\n",
+      "measurement": {
+        "checks": 145,
+        "failures": [],
+        "heroes": [
+          {
+            "attack": 75,
+            "attack_interval_mult": 1.04,
+            "defense": 23,
+            "faction": "aurelia",
+            "hero_id": "leonhardt",
+            "level": 10,
+            "max_hp": 1474,
+            "role": "탱커"
+          },
+          {
+            "attack": 128,
+            "attack_interval_mult": 0.98,
+            "defense": 6,
+            "faction": "aurelia",
+            "hero_id": "mira",
+            "level": 10,
+            "max_hp": 1019,
+            "role": "딜러"
+          },
+          {
+            "attack": 87,
+            "attack_interval_mult": 1.04,
+            "defense": 10,
+            "faction": "aurelia",
+            "hero_id": "elisia",
+            "level": 10,
+            "max_hp": 1142,
+            "role": "서포터"
+          },
+          {
+            "attack": 107,
+            "attack_interval_mult": 1.02,
+            "defense": 8,
+            "faction": "aurelia",
+            "hero_id": "kairen",
+            "level": 10,
+            "max_hp": 1176,
+            "role": "컨트롤러"
+          },
+          {
+            "attack": 78,
+            "attack_interval_mult": 1.06,
+            "defense": 24,
+            "faction": "aurelia",
+            "hero_id": "orwin",
+            "level": 10,
+            "max_hp": 1621,
+            "role": "탱커"
+          },
+          {
+            "attack": 132,
+            "attack_interval_mult": 0.86,
+            "defense": 6,
+            "faction": "aurelia",
+            "hero_id": "seria",
+            "level": 10,
+            "max_hp": 1089,
+            "role": "딜러"
+          },
+          {
+            "attack": 91,
+            "attack_interval_mult": 1.06,
+            "defense": 11,
+            "faction": "aurelia",
+            "hero_id": "astel",
+            "level": 10,
+            "max_hp": 1258,
+            "role": "서포터"
+          },
+          {
+            "attack": 155,
+            "attack_interval_mult": 1.02,
+            "defense": 7,
+            "faction": "aurelia",
+            "hero_id": "darius",
+            "level": 10,
+            "max_hp": 1216,
+            "role": "딜러"
+          },
+          {
+            "attack": 115,
+            "attack_interval_mult": 1.02,
+            "defense": 9,
+            "faction": "aurelia",
+            "hero_id": "lunea",
+            "level": 10,
+            "max_hp": 1298,
+            "role": "컨트롤러"
+          },
+          {
+            "attack": 148,
+            "attack_interval_mult": 0.98,
+            "defense": 8,
+            "faction": "aurelia",
+            "hero_id": "caelum",
+            "level": 10,
+            "max_hp": 1305,
+            "role": "딜러"
+          },
+          {
+            "attack": 125,
+            "attack_interval_mult": 0.98,
+            "defense": 7,
+            "faction": "noxfera",
+            "hero_id": "valeria",
+            "level": 10,
+            "max_hp": 1073,
+            "role": "딜러"
+          },
+          {
+            "attack": 92,
+            "attack_interval_mult": 1.05,
+            "defense": 10,
+            "faction": "noxfera",
+            "hero_id": "morgas",
+            "level": 10,
+            "max_hp": 1119,
+            "role": "서포터"
+          },
+          {
+            "attack": 123,
+            "attack_interval_mult": 0.91,
+            "defense": 7,
+            "faction": "noxfera",
+            "hero_id": "ragna",
+            "level": 10,
+            "max_hp": 1106,
+            "role": "딜러"
+          },
+          {
+            "attack": 84,
+            "attack_interval_mult": 1.04,
+            "defense": 22,
+            "faction": "noxfera",
+            "hero_id": "bron",
+            "level": 10,
+            "max_hp": 1563,
+            "role": "탱커"
+          },
+          {
+            "attack": 106,
+            "attack_interval_mult": 1.01,
+            "defense": 8,
+            "faction": "noxfera",
+            "hero_id": "nyx",
+            "level": 10,
+            "max_hp": 1164,
+            "role": "컨트롤러"
+          },
+          {
+            "attack": 134,
+            "attack_interval_mult": 0.84,
+            "defense": 6,
+            "faction": "noxfera",
+            "hero_id": "fenris",
+            "level": 10,
+            "max_hp": 1077,
+            "role": "딜러"
+          },
+          {
+            "attack": 95,
+            "attack_interval_mult": 1.04,
+            "defense": 10,
+            "faction": "noxfera",
+            "hero_id": "isolde",
+            "level": 10,
+            "max_hp": 1233,
+            "role": "서포터"
+          },
+          {
+            "attack": 84,
+            "attack_interval_mult": 1.07,
+            "defense": 24,
+            "faction": "noxfera",
+            "hero_id": "garm",
+            "level": 10,
+            "max_hp": 1787,
+            "role": "탱커"
+          },
+          {
+            "attack": 155,
+            "attack_interval_mult": 0.96,
+            "defense": 6,
+            "faction": "noxfera",
+            "hero_id": "veyra",
+            "level": 10,
+            "max_hp": 1164,
+            "role": "딜러"
+          },
+          {
+            "attack": 123,
+            "attack_interval_mult": 0.95,
+            "defense": 9,
+            "faction": "noxfera",
+            "hero_id": "ulric",
+            "level": 10,
+            "max_hp": 1325,
+            "role": "컨트롤러"
+          }
+        ],
+        "rows": [
+          {
+            "boundary": false,
+            "encounters_cleared": 15,
+            "equipment_level": 3,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 290,
+            "initial_hp": 2840,
+            "initial_power": 2221,
+            "longest_clear_gap_seconds": 4.8,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 11,
+            "offline_gold_estimate": 315,
+            "offline_online_gold_ratio": 0.5,
+            "online_gold": 630,
+            "online_xp": 450,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "gray_meadow"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 15,
+            "equipment_level": 3,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 1116,
+            "initial_hp": 12598,
+            "initial_power": 9181,
+            "longest_clear_gap_seconds": 4.5,
+            "minimum_alive": 10,
+            "offline_encounters_estimate": 14,
+            "offline_gold_estimate": 420,
+            "offline_online_gold_ratio": 0.667,
+            "online_gold": 630,
+            "online_xp": 450,
+            "party_size": 10,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "gray_meadow"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 10,
+            "equipment_level": 3,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 290,
+            "initial_hp": 2840,
+            "initial_power": 2221,
+            "longest_clear_gap_seconds": 6.8,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 10,
+            "offline_gold_estimate": 560,
+            "offline_online_gold_ratio": 0.667,
+            "online_gold": 840,
+            "online_xp": 630,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "forgotten_mine"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 10,
+            "equipment_level": 3,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 1116,
+            "initial_hp": 12598,
+            "initial_power": 9181,
+            "longest_clear_gap_seconds": 6.6,
+            "minimum_alive": 10,
+            "offline_encounters_estimate": 13,
+            "offline_gold_estimate": 770,
+            "offline_online_gold_ratio": 0.917,
+            "online_gold": 840,
+            "online_xp": 630,
+            "party_size": 10,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "forgotten_mine"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 7,
+            "equipment_level": 3,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 290,
+            "initial_hp": 2840,
+            "initial_power": 2221,
+            "longest_clear_gap_seconds": 9.6,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 10,
+            "offline_gold_estimate": 960,
+            "offline_online_gold_ratio": 0.973,
+            "online_gold": 987,
+            "online_xp": 782,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "moonrest_forest"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 8,
+            "equipment_level": 3,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 1116,
+            "initial_hp": 12598,
+            "initial_power": 9181,
+            "longest_clear_gap_seconds": 8.3,
+            "minimum_alive": 10,
+            "offline_encounters_estimate": 13,
+            "offline_gold_estimate": 1320,
+            "offline_online_gold_ratio": 1.149,
+            "online_gold": 1149,
+            "online_xp": 868,
+            "party_size": 10,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "moonrest_forest"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 17,
+            "equipment_level": 3,
+            "faction": "noxfera",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 340,
+            "initial_hp": 2577,
+            "initial_power": 2253,
+            "longest_clear_gap_seconds": 4.6,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 11,
+            "offline_gold_estimate": 315,
+            "offline_online_gold_ratio": 0.437,
+            "online_gold": 721,
+            "online_xp": 499,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "gray_meadow"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 15,
+            "equipment_level": 3,
+            "faction": "noxfera",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 1121,
+            "initial_hp": 12611,
+            "initial_power": 9235,
+            "longest_clear_gap_seconds": 4.2,
+            "minimum_alive": 10,
+            "offline_encounters_estimate": 14,
+            "offline_gold_estimate": 420,
+            "offline_online_gold_ratio": 0.667,
+            "online_gold": 630,
+            "online_xp": 450,
+            "party_size": 10,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "gray_meadow"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 11,
+            "equipment_level": 3,
+            "faction": "noxfera",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 340,
+            "initial_hp": 2577,
+            "initial_power": 2253,
+            "longest_clear_gap_seconds": 6.4,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 10,
+            "offline_gold_estimate": 560,
+            "offline_online_gold_ratio": 0.597,
+            "online_gold": 938,
+            "online_xp": 708,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "forgotten_mine"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 10,
+            "equipment_level": 3,
+            "faction": "noxfera",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 1121,
+            "initial_hp": 12611,
+            "initial_power": 9235,
+            "longest_clear_gap_seconds": 6.5,
+            "minimum_alive": 10,
+            "offline_encounters_estimate": 13,
+            "offline_gold_estimate": 770,
+            "offline_online_gold_ratio": 0.917,
+            "online_gold": 840,
+            "online_xp": 630,
+            "party_size": 10,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "forgotten_mine"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 8,
+            "equipment_level": 3,
+            "faction": "noxfera",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 340,
+            "initial_hp": 2577,
+            "initial_power": 2253,
+            "longest_clear_gap_seconds": 8.8,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 10,
+            "offline_gold_estimate": 960,
+            "offline_online_gold_ratio": 0.836,
+            "online_gold": 1149,
+            "online_xp": 868,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "moonrest_forest"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 8,
+            "equipment_level": 3,
+            "faction": "noxfera",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 1121,
+            "initial_hp": 12611,
+            "initial_power": 9235,
+            "longest_clear_gap_seconds": 8.0,
+            "minimum_alive": 10,
+            "offline_encounters_estimate": 13,
+            "offline_gold_estimate": 1320,
+            "offline_online_gold_ratio": 1.149,
+            "online_gold": 1149,
+            "online_xp": 868,
+            "party_size": 10,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "moonrest_forest"
+          },
+          {
+            "boundary": true,
+            "encounters_cleared": 9,
+            "equipment_level": 1,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 1,
+            "initial_attack_sum": 109,
+            "initial_hp": 1554,
+            "initial_power": 941,
+            "longest_clear_gap_seconds": 7.6,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 11,
+            "offline_gold_estimate": 315,
+            "offline_online_gold_ratio": 0.833,
+            "online_gold": 378,
+            "online_xp": 263,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "gray_meadow"
+          },
+          {
+            "boundary": true,
+            "encounters_cleared": 9,
+            "equipment_level": 1,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 1,
+            "initial_attack_sum": 109,
+            "initial_hp": 1554,
+            "initial_power": 941,
+            "longest_clear_gap_seconds": 7.5,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 11,
+            "offline_gold_estimate": 315,
+            "offline_online_gold_ratio": 0.833,
+            "online_gold": 378,
+            "online_xp": 263,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2713,
+            "zone": "gray_meadow"
+          },
+          {
+            "boundary": true,
+            "encounters_cleared": 9,
+            "equipment_level": 1,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 1,
+            "initial_attack_sum": 109,
+            "initial_hp": 1554,
+            "initial_power": 941,
+            "longest_clear_gap_seconds": 7.2,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 11,
+            "offline_gold_estimate": 315,
+            "offline_online_gold_ratio": 0.833,
+            "online_gold": 378,
+            "online_xp": 263,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2741,
+            "zone": "gray_meadow"
+          }
+        ],
+        "schema": 1
+      }
+    },
+    {
+      "test": "V27BossLifecycleSmokeTest.gd",
+      "passed": true,
+      "seconds": 24.55,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_boss_lifecycle assertions=51 failures=0 speed=[[5897, 12, 1, 12.0, 998630], [5897, 12, 1, 12.0, 998630], [5897, 12, 1, 12.0, 998630], [5897, 12, 1, 12.0, 998630]] encounters=[{\"faction\":\"aurelia\",\"outcome\":\"victory\",\"patterns\":0,\"phase\":3,\"seconds\":5.9,\"zone\":\"gray_meadow\"},{\"faction\":\"aurelia\",\"outcome\":\"victory\",\"patterns\":1,\"phase\":3,\"seconds\":10.9,\"zone\":\"forgotten_mine\"},{\"faction\":\"aurelia\",\"outcome\":\"victory\",\"patterns\":3,\"phase\":3,\"seconds\":19.7,\"zone\":\"moonrest_forest\"},{\"faction\":\"noxfera\",\"outcome\":\"victory\",\"patterns\":0,\"phase\":3,\"seconds\":4.9,\"zone\":\"gray_meadow\"},{\"faction\":\"noxfera\",\"outcome\":\"victory\",\"patterns\":0,\"phase\":3,\"seconds\":9.1,\"zone\":\"forgotten_mine\"},{\"faction\":\"noxfera\",\"outcome\":\"victory\",\"patterns\":1,\"phase\":3,\"seconds\":15.8,\"zone\":\"moonrest_forest\"}]\n"
+    },
+    {
+      "test": "V27CombatClockSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.05,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_combat_clock checks=4 failures=0\n"
+    },
+    {
+      "test": "V27FieldLifecycleSmokeTest.gd",
+      "passed": true,
+      "seconds": 6.13,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_field_lifecycle checks=30 failures=0\n"
+    },
+    {
+      "test": "V27GrowthEconomySmokeTest.gd",
+      "passed": true,
+      "seconds": 6.17,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_growth_economy_smoke_test checks=40 passed=40 failures=[]\n"
+    },
+    {
+      "test": "V27HeroRolesSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.34,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV27 HERO PASS: leonhardt active skill produces its declared effect\nV27 HERO PASS: mira active skill produces its declared effect\nV27 HERO PASS: elisia active skill produces its declared effect\nV27 HERO PASS: kairen active skill produces its declared effect\nV27 HERO PASS: orwin active skill produces its declared effect\nV27 HERO PASS: seria active skill produces its declared effect\nV27 HERO PASS: astel active skill produces its declared effect\nV27 HERO PASS: darius active skill produces its declared effect\nV27 HERO PASS: lunea active skill produces its declared effect\nV27 HERO PASS: caelum active skill produces its declared effect\nV27 HERO PASS: valeria active skill produces its declared effect\nV27 HERO PASS: morgas active skill produces its declared effect\nV27 HERO PASS: ragna active skill produces its declared effect\nV27 HERO PASS: bron active skill produces its declared effect\nV27 HERO PASS: nyx active skill produces its declared effect\nV27 HERO PASS: fenris active skill produces its declared effect\nV27 HERO PASS: isolde active skill produces its declared effect\nV27 HERO PASS: garm active skill produces its declared effect\nV27 HERO PASS: veyra active skill produces its declared effect\nV27 HERO PASS: ulric active skill produces its declared effect\nV27 HERO PASS: both complete ten-hero rosters execute\nV27 HERO PASS: Darius execute activates at 35 percent HP\nV27 HERO PASS: Mira precision actually increases damage against elites\nV27 HERO PASS: Seria remaining shots retarget after a first-hit kill\nV27 HERO PASS: Ragna cleave respects its three-target limit\nV27 HERO PASS: Fenris flurry grants the advertised extra ultimate charge\nV27 HERO PASS: Valeria low-health sustain increases actual healing\nV27 HERO PASS: lifesteal uses one point of actual damage and cannot heal from overkill\nV27 HERO PASS: Orwin active protects the entire living party\nV27 HERO PASS: Orwin holds duplicate team protection\nV27 HERO PASS: Leonhardt specializes in self protection and taunt\nV27 HERO PASS: Garm guard restores his own health\nV27 HERO PASS: Isolde heals two injured allies and never revives a dead ally\nV27 HERO PASS: full-health direct healing preserves skill cooldown and ultimate\nV27 HERO PASS: Astel applies party healing to all three injured allies\nV27 HERO PASS: kairen affects reachable enemies and leaves disconnected enemies unchanged\nV27 HERO PASS: kairen holds an already active status\nV27 HERO PASS: lunea affects reachable enemies and leaves disconnected enemies unchanged\nV27 HERO PASS: lunea holds an already active status\nV27 HERO PASS: nyx affects reachable enemies and leaves disconnected enemies unchanged\nV27 HERO PASS: nyx holds an already active status\nV27 HERO PASS: invalid status indices, NaN and negative duration are rejected\nV27 HERO PASS: dead enemies cannot receive new status\nV27 HERO PASS: Morgas full-health ultimate applies offensive curse\nV27 HERO PASS: single-target curse finds a fresh target instead of refreshing an active curse\nV27 HERO PASS: raid adapter preserves execute mechanics\nV27 HERO PASS: dead raid boss cannot consume skills or ultimate\nV27 HERO PASS: growth refresh updates stats while preserving health ratio\nV27 HERO PASS: growth refresh preserves deaths, ultimate, protection, cooldown and committed windup\nv27_hero_roles_smoke_test_ok checks=49 roster=20 mechanics=ok status_range=ok resource_safety=ok raid=ok growth=ok\n"
+    },
+    {
+      "test": "V27LiveGrowthSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.61,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV27 LIVE PASS: XP level-up preserves the active battle and hero states\nV27 LIVE PASS: XP level-up preserves living HP ratios and never revives the fallen hero\nV27 LIVE PASS: XP level-up preserves ultimate gauge and active protection\nV27 LIVE PASS: XP level-up preserves cooldowns, committed actions, position and pet timer\nV27 LIVE PASS: XP updates live attack and max HP immediately\nV27 LIVE PASS: Equipped weapon enhancement preserves the active battle and hero states\nV27 LIVE PASS: Equipped weapon enhancement preserves living HP ratios and never revives the fallen hero\nV27 LIVE PASS: Equipped weapon enhancement preserves ultimate gauge and active protection\nV27 LIVE PASS: Equipped weapon enhancement preserves cooldowns, committed actions, position and pet timer\nV27 LIVE PASS: enhancement applies live attack and charges the exact price\nV27 LIVE PASS: Inventory equip action preserves the active battle and hero states\nV27 LIVE PASS: Inventory equip action preserves living HP ratios and never revives the fallen hero\nV27 LIVE PASS: Inventory equip action preserves ultimate gauge and active protection\nV27 LIVE PASS: Inventory equip action preserves cooldowns, committed actions, position and pet timer\nV27 LIVE PASS: equip applies live stats and preserves displaced equipment\nV27 LIVE PASS: Skill tree offense preserves the active battle and hero states\nV27 LIVE PASS: Skill tree offense preserves living HP ratios and never revives the fallen hero\nV27 LIVE PASS: Skill tree offense preserves ultimate gauge and active protection\nV27 LIVE PASS: Skill tree offense preserves cooldowns, committed actions, position and pet timer\nV27 LIVE PASS: skill tree offense updates its live attribute\nV27 LIVE PASS: Skill tree survival preserves the active battle and hero states\nV27 LIVE PASS: Skill tree survival preserves living HP ratios and never revives the fallen hero\nV27 LIVE PASS: Skill tree survival preserves ultimate gauge and active protection\nV27 LIVE PASS: Skill tree survival preserves cooldowns, committed actions, position and pet timer\nV27 LIVE PASS: skill tree survival updates its live attribute\nV27 LIVE PASS: Skill tree utility preserves the active battle and hero states\nV27 LIVE PASS: Skill tree utility preserves living HP ratios and never revives the fallen hero\nV27 LIVE PASS: Skill tree utility preserves ultimate gauge and active protection\nV27 LIVE PASS: Skill tree utility preserves cooldowns, committed actions, position and pet timer\nV27 LIVE PASS: skill tree utility updates its live attribute\nV27 LIVE PASS: real Lunea skill applies weakness only inside range\nV27 LIVE PASS: only the weakened enemy deals reduced incoming damage\nV27 LIVE PASS: vulnerability amplifies actual outgoing damage only on its target\nV27 LIVE PASS: expired statuses restore ordinary incoming and outgoing damage\nv27_live_growth_smoke_test checks=34 passed=34 failures=[]\n"
+    },
+    {
+      "test": "V27PersistenceIntegrationSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.61,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_persistence_integration_smoke_test_ok checks=18 growth=preserved equipment=preserved march=restored garrison=restored season=once offline=once\n"
+    },
+    {
+      "test": "V27RaidIntegrationSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.59,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_raid_integration checks=19 failures=0 encounters=[{\"boss_hp\":10280,\"elapsed\":13.4,\"faction\":\"aurelia\",\"heroes\":3,\"outcome\":\"defeat\",\"patterns\":3},{\"boss_hp\":10767,\"elapsed\":7.1,\"faction\":\"noxfera\",\"heroes\":3,\"outcome\":\"defeat\",\"patterns\":1}]\n"
+    },
+    {
+      "test": "V27SaveRecoverySmokeTest.gd",
+      "passed": true,
+      "seconds": 6.59,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_save_recovery_smoke_test_ok checks=80 atomic=ok backup=ok checksum=ok schema=ok migration=ok future=preserved pause=once isolation=ok\n"
+    },
+    {
+      "test": "V27TerritoryLifecycleSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.72,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_territory_lifecycle_smoke_test_ok checks=64 garrison=atomic command=once march=restore combat=wounds logistics=8h season=claim_rollover snapshot=guarded\n"
+    },
+    {
+      "test": "V5FoundationSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.34,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv5_foundation_smoke_test_ok heroes=10 synergy=3인 결속 +5% 전투력 · 6인 전술대 +7% 전투력/+5% HP · 10인 대원정대 +8% 전투력/+10% HP · 휴먼 방진 +8% HP · 엘프 별숲 +7% 전투력 · 균형 진형 +8% 전투력/+5% HP inventory=30 gold=80\n"
+    },
+    {
+      "test": "V6CombatSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.63,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv6_combat_smoke_test_ok heroes=10 enemies=5 aoe_targets=4 tank_target=leonhardt\n"
+    },
+    {
+      "test": "V7SystemsSmokeTest.gd",
+      "passed": true,
+      "seconds": 2.91,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv7_systems_smoke_test_ok heroes=10 presets=3 speed=x1/x2/x3 raid_heal=ok range=ok ai=ok pets=ok\n"
+    },
+    {
+      "test": "V8PolishSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.75,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8_polish_smoke_test_ok skill_tree=ok pet_growth=ok cutin=ok telegraph=ok result=ok\n"
+    },
+    {
+      "test": "V9MetaLoopSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.49,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv9_meta_loop_smoke_test_ok summon=ok breakthrough=ok quest=ok dungeon=ok tower=ok salvage=ok\n"
+    },
+    {
+      "test": "WorldBattleResolverSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.33,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nworld_battle_resolver_smoke_test_ok deterministic=ok roles=ok garrison=10\n"
+    },
+    {
+      "test": "WorldConflictStateSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.44,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nworld_conflict_state_smoke_test_ok cap=ok defenders=ok capture=ok rally_limit=ok attack_queue=ok\n"
+    },
+    {
+      "test": "WorldMarchStateSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.65,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nworld_march_state_smoke_test_ok route=ok rations=ok arrival=ok save=ok\n"
+    },
+    {
+      "test": "WorldSeasonStateSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.46,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nworld_season_state_smoke_test_ok score=ok settlement=ok rollover=ok\n"
+    },
+    {
+      "test": "WorldSupplyNetworkSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.29,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nworld_supply_network_smoke_test_ok connected=ok isolated=ok reconnect=ok retreat=ok\n"
+    },
+    {
+      "test": "WorldWarStateSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.18,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nworld_war_state_smoke_test_ok tiles=400 capture=ok save=ok landmarks=ok\n"
+    }
+  ]
+}

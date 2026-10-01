@@ -1,0 +1,169 @@
+{
+	"checks": 976,
+	"failures": [],
+	"rendered": false,
+	"screens": [
+		{
+			"layout_issues": [],
+			"screen": "lobby",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 15
+		},
+		{
+			"layout_issues": [],
+			"screen": "heroes",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 21
+		},
+		{
+			"layout_issues": [],
+			"screen": "hero_detail",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 10
+		},
+		{
+			"layout_issues": [],
+			"screen": "growth",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 15
+		},
+		{
+			"layout_issues": [],
+			"screen": "inventory",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 13
+		},
+		{
+			"layout_issues": [],
+			"screen": "combat",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 21
+		},
+		{
+			"layout_issues": [],
+			"screen": "raid",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 9
+		},
+		{
+			"layout_issues": [],
+			"screen": "activities",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 14
+		},
+		{
+			"layout_issues": [],
+			"screen": "summon",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 16
+		},
+		{
+			"layout_issues": [],
+			"screen": "world",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 16
+		},
+		{
+			"layout_issues": [],
+			"screen": "boss",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 12
+		},
+		{
+			"layout_issues": [],
+			"screen": "codex",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 17
+		},
+		{
+			"layout_issues": [],
+			"screen": "shop",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 12
+		},
+		{
+			"layout_issues": [],
+			"screen": "war",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 15
+		},
+		{
+			"layout_issues": [],
+			"screen": "main_menu",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 26
+		},
+		{
+			"layout_issues": [],
+			"screen": "guide_overlay",
+			"viewport": [
+				1280,
+				720
+			],
+			"visible_buttons": 16
+		},
+		{
+			"layout_issues": [],
+			"screen": "lobby_wide",
+			"viewport": [
+				1600,
+				720
+			],
+			"visible_buttons": 15
+		},
+		{
+			"layout_issues": [],
+			"screen": "heroes_wide",
+			"viewport": [
+				1600,
+				720
+			],
+			"visible_buttons": 21
+		}
+	]
+}

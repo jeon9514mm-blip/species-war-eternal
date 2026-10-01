@@ -1,0 +1,22 @@
+{
+  "baseline": "v82-1",
+  "candidate": "v83-1",
+  "snapshot_count": 128,
+  "matched": 128,
+  "differences": [],
+  "engine_runs": [
+    {
+      "name": "baseline",
+      "code": 0,
+      "log_errors": false
+    },
+    {
+      "name": "candidate",
+      "code": 0,
+      "log_errors": false
+    }
+  ],
+  "passed": true,
+  "fixture_sha256": "909bd4f2128d32e3155f5fdc9a68043f2452241e006558021d49039c7627d07e",
+  "normalization": "Random gear_<32hex> IDs only. Restored host RNG seeded identically; wall-clock values excluded from selected domain state."
+}

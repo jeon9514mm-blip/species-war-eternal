@@ -1,0 +1,92 @@
+{
+  "type": "source contracts and source-expression evaluation; NOT engine runtime",
+  "checks": 61,
+  "passed": [
+    "last rewarded floor has persistable next-floor sentinel",
+    "bounded floor validation",
+    "every fifth floor boss contract",
+    "two ordinary waves or three boss-floor waves",
+    "tower real-wave 90-second objective",
+    "three deterministic floor formations",
+    "bounded pack sizes four or three",
+    "all encounter names already in species catalog",
+    "invalid enemy index fails closed",
+    "invalid floor has no reward",
+    "reward arithmetic matches v79 on all 9999 supported floors",
+    "source HP/attack formulas positive in sampled normal and boss packs",
+    "power no longer gates tower entry or victory",
+    "entry validates main.challenge_session",
+    "entry validates main._save_blocked_for_newer_version",
+    "entry validates main.selected_faction",
+    "entry validates main.deployed_heroes",
+    "entry validates main.tower_floor",
+    "entry validates main.tower_best_floor",
+    "entry snapshot checks main.tower_floor",
+    "entry snapshot checks main.tower_best_floor",
+    "entry snapshot checks main.selected_faction",
+    "entry snapshot checks main.current_zone_id",
+    "entry snapshot checks main._deployed_hero_ids()",
+    "tower context has no daily reset dependency",
+    "stale button snapshot rejected",
+    "newer save rejected before party mutation",
+    "tower enters shared battle session/spawner",
+    "no immediate entry side effect wallet_gold +=",
+    "no immediate entry side effect wallet_gems +=",
+    "no immediate entry side effect tower_floor +=",
+    "no immediate entry side effect tower_best_floor =",
+    "shared spawner dispatches tower and preserves daily",
+    "existing real movement/attack engine remains in loop",
+    "mode context checked during combat",
+    "daily and tower scope remain distinct",
+    "tower settlement dispatched before daily quota/reward logic",
+    "only the current terminal session can settle",
+    "only combat victory can advance floor",
+    "settlement rechecks snapshot and serial",
+    "receipt consumed before floor or money mutation",
+    "session detached before save and UI navigation",
+    "no tower reward leakage daily_dungeon_runs +=",
+    "no tower reward leakage weekly_trial_runs +=",
+    "no tower reward leakage _grant_hero_xp(",
+    "no tower reward leakage _grant_pet_xp(",
+    "no tower reward leakage _roll_equipment_drop(",
+    "results distinguish paid victories from rejected outcomes",
+    "portrait entry never immediately closes any challenge battle",
+    "portrait button bound to original floor and preview uses settlement formula",
+    "portrait displays combat objective and advisory power",
+    "legacy entry also bound without refresh/cancellation",
+    "tower record and currencies remain in original shared save",
+    "v34 keeps existing tower fields while migrating weekly scores",
+    "leaving a screen cancels the runtime session",
+    "challenge wave cannot use field drop/reward path",
+    "actual battle test does not fake victory using complete_wave(",
+    "actual battle test does not fake victory using take_victory_receipt(",
+    "actual battle test does not fake victory using [\"hp\"] = 0",
+    "actual battle test does not fake victory using .state = SESSION.State.WON",
+    "integration test drives existing actual combat ticks"
+  ],
+  "reward_formula_floors_checked": 9999,
+  "stat_formula_samples": 73,
+  "reward_examples": {
+    "1": {
+      "gold": 340,
+      "gems": 2
+    },
+    "4": {
+      "gold": 610,
+      "gems": 2
+    },
+    "5": {
+      "gold": 700,
+      "gems": 3
+    },
+    "10": {
+      "gold": 1150,
+      "gems": 4
+    },
+    "9999": {
+      "gold": 900160,
+      "gems": 2001
+    }
+  },
+  "godot_tests_executed": 0
+}

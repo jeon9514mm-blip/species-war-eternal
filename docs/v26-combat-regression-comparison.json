@@ -1,0 +1,30 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "test": "scripts/V26CombatDecisionSmokeTest.gd",
+  "checks": 14,
+  "baseline": {
+    "source": "pixel-faction-rpg-prototype-v25-godot47-combat-fx-runtime-verified.zip",
+    "exit_code": 1,
+    "passed": 5,
+    "failed": 9
+  },
+  "updated": {
+    "exit_code": 0,
+    "passed": 14,
+    "failed": 0
+  },
+  "reproduced_defects": [
+    "An out-of-range front hero aborts later ranged-ally and enemy turns.",
+    "A committed emergency heal fails when enemies move out of attack range.",
+    "Natural chase never starts emergency healing before entering attack range.",
+    "A distant front-row enemy hides an adjacent rear-row enemy from melee targeting.",
+    "Area skill and ultimate damage disconnected enemies across the field."
+  ],
+  "fixture_migration": {
+    "test": "scripts/V6CombatSmokeTest.gd",
+    "change": "Move enemies beside the party before the direct area skill call; retain the multiple-target damage requirement.",
+    "exit_code": 0,
+    "observed_aoe_targets": 3
+  },
+  "save_isolation": "Every Godot invocation used a task-specific XDG_DATA_HOME."
+}

@@ -1,0 +1,31 @@
+{
+  "project_version": "v18",
+  "engine_baseline": "Godot 4.7 / recommended 4.7.2-stable",
+  "save_version": 18,
+  "authority_version": 4,
+  "gateway_version": 4,
+  "gdscript_files": 60,
+  "smoke_tests": 39,
+  "static_validation": {
+    "static_validate.py": {
+      "returncode": 0,
+      "stdout": "STATIC VALIDATION OK | gd=60 smoke=39 resources=ok links=ok"
+    },
+    "godot47_compat_scan.py": {
+      "returncode": 0,
+      "stdout": "GODOT 4.7 COMPAT SCAN OK"
+    }
+  },
+  "extra_source_sanity": "pass",
+  "native_godot_runtime_available": false,
+  "new_modules": [
+    "AutoCombatTactics.gd",
+    "WorldSeasonState.gd"
+  ],
+  "new_tests": [
+    "AutoCombatTacticsSmokeTest.gd",
+    "V18CombatAISmokeTest.gd",
+    "WorldSeasonStateSmokeTest.gd",
+    "V18SeasonSyncSmokeTest.gd"
+  ]
+}

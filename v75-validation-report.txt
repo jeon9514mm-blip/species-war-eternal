@@ -1,0 +1,33 @@
+Species War Eternal v75 validation
+=================================
+Scope: raid mechanics / presentation / performance reward
+
+Static validation:
+- GDScript files: 235
+- SmokeTest files: 131
+- Resource references: OK
+- README links: OK
+- Private Main.gd calls: OK
+
+Godot 4.7 compatibility scan: OK
+Godot executable in this environment: NOT AVAILABLE
+Runtime/headless test execution: NOT RUN
+
+Protected files verified unchanged vs v74:
+- scripts/SaveValidation.gd
+- scripts/HeroIdentityCatalog.gd
+- scripts/HeroRosterCatalog.gd
+- scripts/EquipmentRules.gd
+- scripts/GuardianCatalog.gd
+- project.godot
+
+v75 mechanic scope:
+- Gray Meadow phase 2/3 guard shield + vulnerability break window
+- Forgotten Mine phase 2/3 crystal core shared HP + rear pulse attacks
+- Moonrest Forest phase 2/3 timed DPS ritual + heal/rage penalty on failure
+- Telegraph interrupt/break gauge
+- Live portrait mechanic overlay
+- Performance raid crystal bonus only for actual mechanic successes
+- Base raid reward preserved when no mechanic success is recorded
+
+No ZIP/package generated per user preference.

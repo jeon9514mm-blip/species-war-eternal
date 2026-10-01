@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "errors": [],
+  "extracted_methods": 72,
+  "service_modules": 8,
+  "unchanged_main_functions": 327,
+  "protected_files": 645,
+  "scope": "static token and file checks; not runtime or performance proof"
+}

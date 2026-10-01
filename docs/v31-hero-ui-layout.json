@@ -1,0 +1,33 @@
+{
+  "version": 31,
+  "status": "passed",
+  "checks": 994,
+  "failures": 0,
+  "engine": "Godot 4.7.2 stable",
+  "mode": "headless scene-tree and layout validation",
+  "reproduce": "godot --headless --path . --script res://tools/ui/ValidateHeroArtLayout.gd",
+  "scope": {
+    "factions": 2,
+    "heroes_per_faction": 15,
+    "detail_pages": 30,
+    "portrait_mappings": 30,
+    "skill_icon_mappings": 120,
+    "checks": [
+      "Both faction rosters contain exactly 15 hero cards.",
+      "Every hero card contains one portrait within its bounds.",
+      "Each detail portrait uses the matching HeroVisualCatalog texture.",
+      "Each hero detail contains four skill icons mapped to a1, a2, passive and ultimate.",
+      "Skill icons and text do not overlap.",
+      "Skill icon and text controls remain inside their panels.",
+      "Skill cards do not overlap each other.",
+      "Every skill icon can be reached through vertical scrolling.",
+      "Detail scroll containers fit the viewport.",
+      "Roster grids and detail content fit horizontally."
+    ]
+  },
+  "limitations": [
+    "No pixel-render or screenshot appearance review was performed by this headless probe.",
+    "This report verifies actual Godot control geometry and resource references, not final art quality."
+  ],
+  "project_mutations": "The probe opens roster/detail screens only; tutorial completion is set in memory to prevent tutorial progress saves."
+}

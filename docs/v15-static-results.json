@@ -1,0 +1,19 @@
+{
+  "project_version": "v15",
+  "engine_baseline": "Godot 4.7 / recommended 4.7.2-stable",
+  "save_version": 15,
+  "static_validation": "pass",
+  "godot47_compat_scan": "pass",
+  "gdscript_files": 45,
+  "smoke_tests": 30,
+  "native_godot_runtime_in_container": false,
+  "new_modules": [
+    "WorldSupplyNetwork.gd",
+    "WorldConflictState.gd"
+  ],
+  "new_tests": [
+    "WorldSupplyNetworkSmokeTest.gd",
+    "WorldConflictStateSmokeTest.gd",
+    "V15FrontlineSmokeTest.gd"
+  ]
+}

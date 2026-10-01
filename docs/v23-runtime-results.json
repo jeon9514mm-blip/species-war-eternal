@@ -1,0 +1,17 @@
+{
+  "version": "v23",
+  "godot": "4.7.2-stable",
+  "actual_engine_tests": {
+    "passed": 47,
+    "total": 47
+  },
+  "main_scene_300_frames": "pass",
+  "static_validation": "pass",
+  "godot47_compat_scan": "pass",
+  "features": [
+    "hero tactical HP/ultimate cards",
+    "aggro target marker",
+    "elite warning",
+    "rage danger banner"
+  ]
+}

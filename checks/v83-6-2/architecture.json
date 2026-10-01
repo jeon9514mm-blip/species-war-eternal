@@ -1,0 +1,7 @@
+{
+  "ok": true,
+  "errors": [],
+  "service_modules": 9,
+  "scope": "current facade, state ownership, field extraction and canonical naming; runtime suite validates behavior",
+  "historical_check": "--historical-v82 checks original v82 fingerprints and is expected to differ after feature changes"
+}

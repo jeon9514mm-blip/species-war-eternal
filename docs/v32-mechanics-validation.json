@@ -1,0 +1,35 @@
+{
+  "all_unchanged": true,
+  "files": [
+    {
+      "file": "scripts/HeroRosterCatalog.gd",
+      "sha256": "c09e9c2788398b9ed50ebfd5649befd4978adeae448db07626cac4538294afaf",
+      "unchanged": true
+    },
+    {
+      "file": "scripts/HeroKitRuntime.gd",
+      "sha256": "ea23575dc24fe457583071d6ffbd7d47346502d88fc55d0d92ab62701a8e6fd2",
+      "unchanged": true
+    },
+    {
+      "file": "scripts/HeroCombatRules.gd",
+      "sha256": "16a42cd50b510c8de1b18893605484ac663c7c0df951f71f6d6f9c229c96ddb0",
+      "unchanged": true
+    },
+    {
+      "file": "scripts/MeadowNavigation.gd",
+      "sha256": "b1ee086c91bbb896c81c62aea1b79c6174a2439a60b65e526e8eb07dbf7cf26e",
+      "unchanged": true
+    },
+    {
+      "file": "scripts/RoamingHuntDirector.gd",
+      "sha256": "6f371fd6deddc64108270a2fa216f10dfcceefdc466af7431b76f31e05a88017",
+      "unchanged": true
+    },
+    {
+      "file": "scripts/PartyMovementDirector.gd",
+      "sha256": "ab01bb687ba1bf8f909f4ff5f469e10f12b79576571975cd77aff1892660794f",
+      "unchanged": true
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "checks": 9,
+  "script": "/mnt/data/v83_5_checks/V835CounterplayProbe.gd",
+  "script_sha256": "15ba4494c75292ce886182f30dc9dab01b2085c8fecbc9c0c75c88e0fbacaf82",
+  "log": "/mnt/data/v83_5_checks/counterplay-probe.log",
+  "observations": [
+    {
+      "elapsed": 31.7000000000007,
+      "explicit_stun_input": false,
+      "metrics": {
+        "casts_completed": 1,
+        "casts_started": 1
+      },
+      "mode": "let_cast_finish",
+      "paused": true,
+      "reason": "",
+      "ticks": 951
+    },
+    {
+      "elapsed": 29.733333333334,
+      "explicit_stun_input": true,
+      "metrics": {
+        "casts_started": 1,
+        "interrupts": 1
+      },
+      "mode": "supply_stun_input",
+      "paused": true,
+      "reason": "",
+      "ticks": 892
+    }
+  ],
+  "limitations": [
+    "Actual AI party reaches charge naturally; interrupt pass uses one explicit production stun API input, not a hero-animation end-to-end skill test.",
+    "Separate short test encounters stop after the measured event; they are not additional natural victory completions.",
+    "Initial probe expected a second cast after enemy already died; separated completion and interrupt attempts. Saved baseline synchronized before economic snapshot. Initial failure retained."
+  ]
+}

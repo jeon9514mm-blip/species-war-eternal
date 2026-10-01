@@ -1,0 +1,91 @@
+{
+  "engine": "4.5.1.stable.official.f62fdbde1",
+  "passed": 14,
+  "total": 14,
+  "results": [
+    {
+      "test": "BMSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.33,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\nbm_smoke_test_ok gems=45 unclaimed_gold=250 ad_count=3\n"
+    },
+    {
+      "test": "BossEncounterSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.9,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\nboss_encounter_smoke_test_ok boss=광맥의 거인 모르굴 position=(5.0, 0.0) raid_button_visible=true\n"
+    },
+    {
+      "test": "CombatControlsSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.09,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\ncombat_controls_ok visible_buttons=5 no_overlap=true pause_resume=true\n"
+    },
+    {
+      "test": "CombatSpriteSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.73,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\ncombat_sprite_smoke_test_ok heroes=3 monsters=16 states=idle,attack,hit\n"
+    },
+    {
+      "test": "EquipmentSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.34,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\nequipment_smoke_test_ok before_power=290 after_power=312 weapon=2 gold=0\n"
+    },
+    {
+      "test": "IdleSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.1,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\noffline_reward_ok gold=420 xp=264\nidle_chest_ok stage=2 chest_gold=300 chest_xp=125\nidle_claim_ok wallet_gold=762 wallet_xp=416\n"
+    },
+    {
+      "test": "InventorySmokeTest.gd",
+      "passed": true,
+      "seconds": 0.43,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\ninventory_smoke_test_ok rarity=희귀 level=2 gold=905\n"
+    },
+    {
+      "test": "LevelSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.35,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\nlevel_smoke_test_ok leveled=3 before_power=670 after_power=775 event=레벨업!  레온하르트 베일 Lv.2 · 미라 솔렌 Lv.2 · 엘리시아 루네 Lv.2\n"
+    },
+    {
+      "test": "LootSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.34,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\nloot_smoke_test_ok total=30 common=123 rare=24 legendary=14 inventory=30\n"
+    },
+    {
+      "test": "RaidSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.52,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\nraid_smoke_test_ok boss=광맥의 거인 모르굴 clears=1 gold_reward=1000 drops=2\nWARNING: ObjectDB instances leaked at exit (run with --verbose for details).\n     at: cleanup (core/object/object.cpp:2514)\n"
+    },
+    {
+      "test": "SkillSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.34,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\nskill_smoke_test_ok damage=473 party_hp=731 cooldown=2\nWARNING: ObjectDB instances leaked at exit (run with --verbose for details).\n     at: cleanup (core/object/object.cpp:2514)\n"
+    },
+    {
+      "test": "SmokeTest.gd",
+      "passed": true,
+      "seconds": 15.69,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\nopen_map_smoke_test_ok zone=gray_meadow kills=3 gold=126 xp=96\nreward_claim_ok wallet_gold=126 wallet_xp=96\nzone_progression_ok gray_gold=35 mine_gold=70 forest_difficulty=3\n"
+    },
+    {
+      "test": "SpriteSheetSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.34,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\nsprite_sheet_smoke_test_ok heroes=3 animations_per_hero=20\n"
+    },
+    {
+      "test": "AutoHuntRegressionTest.gd",
+      "passed": true,
+      "seconds": 74.01,
+      "output": "Godot Engine v4.5.1.stable.official.f62fdbde1 - https://godotengine.org\n\nsustained_hunt_ok faction=aurelia zone=gray_meadow simulated_seconds=180 kills=36 visits=[9, 9, 9, 9]\nsustained_hunt_ok faction=aurelia zone=forgotten_mine simulated_seconds=180 kills=38 visits=[10, 9, 10, 9]\nsustained_hunt_ok faction=aurelia zone=moonrest_forest simulated_seconds=180 kills=23 visits=[5, 6, 6, 6]\nsustained_hunt_ok faction=noxfera zone=gray_meadow simulated_seconds=180 kills=51 visits=[13, 13, 13, 12]\nsustained_hunt_ok faction=noxfera zone=forgotten_mine simulated_seconds=180 kills=52 visits=[13, 13, 13, 13]\nsustained_hunt_ok faction=noxfera zone=moonrest_forest simulated_seconds=180 kills=32 visits=[8, 8, 10, 8]\nauto_hunt_regression checks=50 failures=0 simulated_minutes=18\n"
+    }
+  ]
+}

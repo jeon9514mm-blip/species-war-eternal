@@ -1,0 +1,30 @@
+{
+  "project": "Species War: Eternal",
+  "development_step": "v83-6",
+  "parent_step": "v83-5",
+  "base_release": "v83-3",
+  "status": "focused_engine_verified_raid_contributions_and_local_frontline",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "android_tests": 0,
+  "all_historical_tests_executed": false,
+  "save_version": 36,
+  "deferred": [
+    "accounts",
+    "cloud_save",
+    "online_server",
+    "online_social"
+  ],
+  "next_priority": "v83-7_target_equipment_and_farming",
+  "artwork_changed": false,
+  "balance_data_changed": true,
+  "report_persistence": "raid_only_optional_local_12_history; challenge_last_1_and_summary_6_memory_unchanged",
+  "game_zip_created": false,
+  "new_gameplay_tests": 4,
+  "note": "Final full rerun passed after missing-metadata observer fix. 10 real raid completions, independent HP/healing trace. Local frontline time advanced in authority fixture, not online. UI software OpenGL, not Android. New recovery changes operational economy but no base hero/raid/reward maths changed.",
+  "script_checks_passed": 332,
+  "script_checks_total": 332,
+  "focused_engine_tests_passed": 67,
+  "focused_engine_tests_total": 67,
+  "new_gameplay_conditions": 268,
+  "expected_warning_count": 3
+}

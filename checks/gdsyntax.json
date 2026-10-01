@@ -1,0 +1,8 @@
+{
+  "checker": "gdtoolkit grammar / Lark (not Godot)",
+  "files": 260,
+  "syntax_ok": 260,
+  "errors": [],
+  "seconds": 10.24,
+  "godot_runtime_executed": false
+}

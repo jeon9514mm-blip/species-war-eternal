@@ -1,0 +1,138 @@
+{
+  "status": "passed",
+  "engine": "/mnt/data/godot_engine/Godot_v4.7.2-stable_linux.x86_64",
+  "expected_version": "4.7.2",
+  "test_scripts_requested": 13,
+  "test_scripts_executed": 13,
+  "test_scripts_passed": 13,
+  "tests": [
+    {
+      "script": "V80ChallengeSessionSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 0.356,
+      "log": "checks/v80-5-engine-logs/V80ChallengeSessionSmokeTest.gd.log"
+    },
+    {
+      "script": "V80DailyBattleSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 22.602,
+      "log": "checks/v80-5-engine-logs/V80DailyBattleSmokeTest.gd.log"
+    },
+    {
+      "script": "V80DailyModesSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 0.389,
+      "log": "checks/v80-5-engine-logs/V80DailyModesSmokeTest.gd.log"
+    },
+    {
+      "script": "V80DailySweepSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 0.396,
+      "log": "checks/v80-5-engine-logs/V80DailySweepSmokeTest.gd.log"
+    },
+    {
+      "script": "V80DailyModesBattleSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 49.531,
+      "log": "checks/v80-5-engine-logs/V80DailyModesBattleSmokeTest.gd.log"
+    },
+    {
+      "script": "V80TowerRulesSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 0.278,
+      "log": "checks/v80-5-engine-logs/V80TowerRulesSmokeTest.gd.log"
+    },
+    {
+      "script": "V80TowerSettlementSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 0.37,
+      "log": "checks/v80-5-engine-logs/V80TowerSettlementSmokeTest.gd.log"
+    },
+    {
+      "script": "V80TowerBattleSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 31.543,
+      "log": "checks/v80-5-engine-logs/V80TowerBattleSmokeTest.gd.log"
+    },
+    {
+      "script": "V80AbyssRulesSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 0.181,
+      "log": "checks/v80-5-engine-logs/V80AbyssRulesSmokeTest.gd.log"
+    },
+    {
+      "script": "V80AbyssSettlementSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 0.275,
+      "log": "checks/v80-5-engine-logs/V80AbyssSettlementSmokeTest.gd.log"
+    },
+    {
+      "script": "V80AbyssSaveSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 0.279,
+      "log": "checks/v80-5-engine-logs/V80AbyssSaveSmokeTest.gd.log"
+    },
+    {
+      "script": "V80AbyssBattleSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 48.647,
+      "log": "checks/v80-5-engine-logs/V80AbyssBattleSmokeTest.gd.log"
+    },
+    {
+      "script": "V80EngineRewardRegressionSmokeTest.gd",
+      "ok": true,
+      "reason": "passed",
+      "launched": true,
+      "returncode": 0,
+      "seconds": 5.754,
+      "log": "checks/v80-5-engine-logs/V80EngineRewardRegressionSmokeTest.gd.log"
+    }
+  ],
+  "android_tests_executed": 0,
+  "rendering_or_device_performance_certified": false,
+  "version": "4.7.2.stable.official.ed1daf0bf",
+  "isolation": "temporary full project copy, unique application name, default isolated user data, XDG overrides",
+  "import": {
+    "ok": true,
+    "reason": "passed",
+    "launched": true,
+    "returncode": 0,
+    "seconds": 63.23
+  }
+}

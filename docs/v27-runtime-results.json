@@ -1,0 +1,432 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "date": "2026-09-22",
+  "latest_unique_passed": 65,
+  "total_unique": 65,
+  "method": "Initial full run: 64/65. One assertion corrected to permit legitimate equipment growth while directly guarding against retaliation; targeted retest: 18/18. Production code unchanged after full run. These are latest unique results, not a second full run.",
+  "new_v27_checks": 534,
+  "results": [
+    {
+      "test": "AutoCombatTacticsSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "AutoHuntRegressionTest.gd",
+      "passed": true,
+      "source": "v27-runtime-targeted-retest.json"
+    },
+    {
+      "test": "BMSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "BossEncounterSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "CombatControlsSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "CombatDecisionEngineSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "CombatSpriteSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "EquipmentSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "HeroIdentityBalanceSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "IdleHuntEstimatorSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "IdleSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "InventorySmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "LevelSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "LootSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "MapTerrainSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "RaidSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "RoamingHuntDirectorSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "SkillSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "SmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "SpriteSheetSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V10UiUxSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V11ProgressionSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V12WorldWarSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V13WarSafetySmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V14AsyncPvpSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V15FrontlineSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V16AuthoritySmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V16ClientSessionSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V17HuntProgressionSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V17ResyncServerTimeSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V18CombatAISmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V18SeasonSyncSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V19HeroAIIdentitySmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V19ServerStabilitySmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V20RealtimeRoamingHuntSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V22UiUpgradeSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V23CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V24MobileLandscapeSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V25CombatFxSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V26ActionSafetySmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V26CombatDecisionSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V26CombatSoakSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V26RoamingSafetySmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V27BalanceMatrixSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V27BossLifecycleSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V27CombatClockSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V27FieldLifecycleSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V27GrowthEconomySmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V27HeroRolesSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V27LiveGrowthSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V27PersistenceIntegrationSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V27RaidIntegrationSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V27SaveRecoverySmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V27TerritoryLifecycleSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V5FoundationSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V6CombatSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V7SystemsSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V8PolishSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "V9MetaLoopSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "WorldBattleResolverSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "WorldConflictStateSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "WorldMarchStateSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "WorldSeasonStateSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "WorldSupplyNetworkSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    },
+    {
+      "test": "WorldWarStateSmokeTest.gd",
+      "passed": true,
+      "source": "v27-runtime-initial-results.json"
+    }
+  ],
+  "source_sha256": {
+    "scripts/AutoCombatTactics.gd": "0f8df08a3b175c4d97f7c4e9266705aaebb2006d117767acc89fbf391c9da1bf",
+    "scripts/AutoCombatTacticsSmokeTest.gd": "d1c9bd16a1898a7d48d53ca89bc2139f1368bf71e22e034c099bd8d9c0dfa5d1",
+    "scripts/AutoHuntController.gd": "a819aa2f69b0aaa12109d3083ef385a5b83ed3d7e9e88bfc3970f5cc9d4dd713",
+    "scripts/AutoHuntRegressionTest.gd": "387edc27f5ee2d151b8bf2aefea7dbf23b5d295bab9c9eeb68a900900a897e06",
+    "scripts/BMSmokeTest.gd": "2c8cc1d6b3d10c490d23c0ab300a70d65ba02ca4e34bdced652614374af76358",
+    "scripts/BossEncounterSmokeTest.gd": "3f069944043908a2ead9008dcb8a03ec4de2a2a71c5ba89c3f7256f42f35f76f",
+    "scripts/CombatControlsSmokeTest.gd": "84581630632ca0af3cf66692fd25d2d63ea8b10ee7611b36669648f858fcc71d",
+    "scripts/CombatDecisionEngine.gd": "9effab890a0128e055a44ded092fde01d3b38ac61f4af9d4a490f51f691738a0",
+    "scripts/CombatDecisionEngineSmokeTest.gd": "44a74d681e401ffcbb7e7ea11824d47c148ae68921600959f7ff8f79e6578782",
+    "scripts/CombatFxDirector.gd": "ce9ffd7e19276bc37cabe157a55dbf65ba209df856980e85416cb9b29ae71a97",
+    "scripts/CombatSpriteSmokeTest.gd": "4dd4c5b3300b455c0a3661a9b6c4372760b9a7afe3510afb153e610129ae39cf",
+    "scripts/CombatStatusRules.gd": "a9a3a31015bf0621c4399d483ed58fcee9de473050ef4c8acd5abe2e242a61f8",
+    "scripts/EquipmentSmokeTest.gd": "ebe4d6779a43224c9143c7e9b572ecb533adb9e1665b0aef5a38c7a93b24d11d",
+    "scripts/FieldEcology.gd": "e106ad3ad47f5d3082e1c0337442e809d34159c9502d9009f6a29549013395c1",
+    "scripts/HeroCombatRules.gd": "e3a9f23f1641cffafb27b105bdef16b02f4df7da5c9f193198265a025631b862",
+    "scripts/HeroIdentityBalanceSmokeTest.gd": "af5aa82527e87bf52352fe76a4ef266edfe83fe9d0915dc0af3ce8b719b5bf9b",
+    "scripts/HeroIdentityCatalog.gd": "bf2aa08d656816d0aa08004794199715d71bf75612d62603b4d107fa7eaa9068",
+    "scripts/HeroSpriteController.gd": "5fc297c15ce501d26a17f244c2999916fd2da9a4f39a30a38ae07125713ae179",
+    "scripts/HeroSpriteFactory.gd": "c37014973c69e94c0e8cc42061040423d1013350eb5129b4bea0cfe30d893450",
+    "scripts/IdleHuntEstimator.gd": "858b77fce9dc2437afbe58d27ca24694b75a3c3e0fbedbb905969d4382036a63",
+    "scripts/IdleHuntEstimatorSmokeTest.gd": "a8e0d1a1e673b30a8f03f5a8e75ca00c466e79eacbeb9c3200f0f05a0d27799a",
+    "scripts/IdleSmokeTest.gd": "6f417febc513ade67a04eb1bb3cd468ac3f5e51af051039c6b302c61921ffebf",
+    "scripts/InventorySmokeTest.gd": "384ff81bc29d0a21a10c4761edb25e5ed590a7c83642464469f94aa431048260",
+    "scripts/LevelSmokeTest.gd": "1e7285fc1ea9ea018f6ca633e20defa2fbea09e3a23bc373f5fa9e793b544bfd",
+    "scripts/LootSmokeTest.gd": "c19fcbfb48bc28ebf525bcb7a59d593e3e181901efe5b6d84a27bdd5506fa92a",
+    "scripts/Main.gd": "30302cca218e9188a40ee1e666a896bf28b911aad28a75757124dde2a9d37d3e",
+    "scripts/MapTerrainRenderer.gd": "ae9cfc19b90c43d8ae2ebf3fee3add5610a18e35bc553a5e6df074f6504def1e",
+    "scripts/MapTerrainSmokeTest.gd": "aa5ad2bb14772a0fe2c9cb519a42977f6515ff09ad505c774796534be0064de9",
+    "scripts/MonsterSpriteController.gd": "9de1271e1a9da048ac59f66d888d14c6fc4815e208cd95af50d21c0fe6a36b27",
+    "scripts/MonsterSpriteFactory.gd": "28169f2797274b62920264f1a76dfbcf8af7a43d2552de42b7883b427f7b70dd",
+    "scripts/RaidSmokeTest.gd": "ad359715f1e6638a7e67d587559885ced0970b7f0038d840bfbb3ade865a18b8",
+    "scripts/RoamingHuntDirector.gd": "086a3ad6a264d08b68cdcc49dee970973621f68532478296f5dcbb0ada9f4b1f",
+    "scripts/RoamingHuntDirectorSmokeTest.gd": "ea47be5a3ed5e23c4ffe521fa6aef59ee517657d3ba79c9cfb38199e87953068",
+    "scripts/SaveStore.gd": "6df2ab04b1e943bd9c87752e2367c3370bc8336e2930ce8acae9642af19dddf3",
+    "scripts/SaveValidation.gd": "0faf36139fdb894e0435094cd756d4f2b8599a724399dd9606b4693fd5906c1a",
+    "scripts/SkillSmokeTest.gd": "2c5424476f8d729ef55b8c9ed95284263c5d4077f0354f231ed48e600f98de6d",
+    "scripts/SmokeTest.gd": "d3968941c36e907a9575664d9ba925bc080b2e6d748c283cde34def5b5d09187",
+    "scripts/SpriteSheetSmokeTest.gd": "f9fc347e84676e937333830ab63ddde51a45d2eb850a9a8a7dda1534f3b48155",
+    "scripts/V10UiUxSmokeTest.gd": "a3d83903ba7504e47a351e5ae99f658d52cf232cec4869544ea61db52ac35cc1",
+    "scripts/V11ProgressionSmokeTest.gd": "d7b76bec9dcbc2f725e9fb8dfe77ffc5a2a9a71ce39d152dcc0b3c93d7def713",
+    "scripts/V12WorldWarSmokeTest.gd": "33236461dcebb3ad9cd5ab682b6b9ceb8c8375f3d8134dd26541c6da55ded833",
+    "scripts/V13WarSafetySmokeTest.gd": "d9673176b905c4c85c3ab7fd0990c138e01ecbbf56f42f16f7872fb68e708c7d",
+    "scripts/V14AsyncPvpSmokeTest.gd": "addf78f99f5f53e487b05588c7c74cc2ef73961ac0ce7317281273a0534bd011",
+    "scripts/V15FrontlineSmokeTest.gd": "ba76d1e37e4774a1d9fd16c3ecd6844f6f8a0437c8f54355ce9b39eaa03d874d",
+    "scripts/V16AuthoritySmokeTest.gd": "728409339368b977ac3a1cfad4ef02ca4dc42bddd218a61d5f5a3dab0901d064",
+    "scripts/V16ClientSessionSmokeTest.gd": "85b6d23d78ad4f673dfef873dbba5a1c9f116e9e029d7bb754c0d26761961843",
+    "scripts/V17HuntProgressionSmokeTest.gd": "e1d812c14da14f604a008c3158f18bcab8c98e7de0ebd9e1a2f7a77b7e1562ea",
+    "scripts/V17ResyncServerTimeSmokeTest.gd": "3f72572c01c21d33042c91d0a16f5500637ef84aef83d8a382e9e62d25144366",
+    "scripts/V18CombatAISmokeTest.gd": "68c346df2932bf24f8714b47ec4f281eabdae5d092d8b5f6095c05cf4d699c32",
+    "scripts/V18SeasonSyncSmokeTest.gd": "dec1700acfe8bf4c50446dca68e71f8bb8b1fc75292c6032dddb387b9654f3ce",
+    "scripts/V19HeroAIIdentitySmokeTest.gd": "580855b232d67ad5bda5230a6e67047e053d4038cce815069c973ba64d32c6cc",
+    "scripts/V19ServerStabilitySmokeTest.gd": "f20b129c752a35e1d41aa6214a865ef810b98637b9117062ff898af7088a1807",
+    "scripts/V20RealtimeRoamingHuntSmokeTest.gd": "773e068d81c3551c3f9746b39d58546f33ede2eeed3aad1cafa8dc5a4a7dbec3",
+    "scripts/V22UiUpgradeSmokeTest.gd": "b8a3660623b8f27cb925a30064128da1776a22e4b8d7a1f1521321cac5b82bba",
+    "scripts/V23CombatReadabilitySmokeTest.gd": "fb41a42f5d4fc5217a6cf383a1042fdd22f0a51f2d2cf7ec7c31c49d3ca6cfba",
+    "scripts/V24MobileLandscapeSmokeTest.gd": "46c30b7761c9a8d2acc87d98504aad26b731f6327bf59896bb6c4e28b6655c06",
+    "scripts/V25CombatFxSmokeTest.gd": "693dbc17107eb7c5f05e2722bce5da777af60e86171fdf8ad1ff36548fdb26ce",
+    "scripts/V26ActionSafetySmokeTest.gd": "47cff9ae642a0064f5e6a900d87e5eb3f3825aee86373ad9484fa2b0b1c1957d",
+    "scripts/V26CombatDecisionSmokeTest.gd": "cc2e0fd8ead2d2b201015659eaf3f6f211d5044899e9fe12ae3e6d6d1b2ee859",
+    "scripts/V26CombatSoakSmokeTest.gd": "cf67c577afd18e966fe7e02fe3a9d87ae861cc15f4392457be18da7263c6e37a",
+    "scripts/V26RoamingSafetySmokeTest.gd": "b6480196f543abefbb4701ae48cbe44b9aa444fb8f4d7d13725b48c304905cd5",
+    "scripts/V27BalanceMatrixSmokeTest.gd": "d6a03922efd0d4a92fc462b5a4d02989d3054b9622632e3f62f31d2eac88905b",
+    "scripts/V27BossLifecycleSmokeTest.gd": "90ac8f076f8622f7f772a1db07f176fec1e902732935853d83b737eb3b5e2a13",
+    "scripts/V27CombatClockSmokeTest.gd": "f7cc097bbf82d68b95bcf4384debf9994fc3d29e4f70d42e5a8d6196505c7e50",
+    "scripts/V27FieldLifecycleSmokeTest.gd": "0ddf9b7a165711220d60cfbd32140fc8392c1f3b68fe4e1cab55f275102842df",
+    "scripts/V27GrowthEconomySmokeTest.gd": "61430a7d983b64b263974a475fb0334f102b2eaa65f211ccf896c23711ff311b",
+    "scripts/V27HeroRolesSmokeTest.gd": "4fe33671ba5244bdfd4ffb19284141fbf5ca18d4687e249690f924d169df0f84",
+    "scripts/V27LiveGrowthSmokeTest.gd": "306dbfacf22fc1749b5fed61736e670d5c143515de564dd104a836f38c8f4f7e",
+    "scripts/V27PersistenceIntegrationSmokeTest.gd": "9ba76cbd1b66b1b2490f6b7c11fa440178c3e63eef0ef63dd1459e9373e276d4",
+    "scripts/V27RaidIntegrationSmokeTest.gd": "093a87524005cd610caba10074aa11faa98552082c4865ec056a3434ca387603",
+    "scripts/V27SaveRecoverySmokeTest.gd": "0253e49c8a30a5286421ec9921ac2f82f19376ea65e241dcbff1fc16e058bdc3",
+    "scripts/V27TerritoryLifecycleSmokeTest.gd": "0669f0d54324dc3b5414665f8872d146fb7d6c5f3ab146f10bafb77876538397",
+    "scripts/V5FoundationSmokeTest.gd": "fba6bde7b637baf98e705e8f9c2c4d991eacb9ec9fd3f6aceb7bd8346e9a9dbc",
+    "scripts/V6CombatSmokeTest.gd": "7c35394415ca6f6222f0c992d6e004c58820919f62888864ea61787b2fe9b1d7",
+    "scripts/V7SystemsSmokeTest.gd": "7252d290c262a633ad67290605eb5cff634d36c917b987ecbcccc21cd6dd79fb",
+    "scripts/V8PolishSmokeTest.gd": "fae898bab516799aa5b73dc957cb8b000ca37e41b49b5c7d9a418ae9ec36dfa7",
+    "scripts/V9MetaLoopSmokeTest.gd": "ca7c0f610942f79ccb01fce5441f49955a10fcdfee0d81dbb8022e3511058ab2",
+    "scripts/WorldAuthorityService.gd": "fbaa4dfab01f6c656c3cc6e6ad8e8aeda8699502b6d54745765b46c855de508d",
+    "scripts/WorldBattleResolver.gd": "0666f00a0169337fc5c2ead7fdc4b5dcd150c8fad46e38a74913b6897b573173",
+    "scripts/WorldBattleResolverSmokeTest.gd": "49b39956d17b2a30cc0ed9c148734daffa6bc56b4995509a0bb12b79ecf06189",
+    "scripts/WorldConflictState.gd": "e18f84d458e1a7251950c89467d785f898d34ca9f2673756462161b42de440e8",
+    "scripts/WorldConflictStateSmokeTest.gd": "62cc14c732b659fc3579bda8f5afc77c0d0bd9dee02b33a9f2aa78c490961538",
+    "scripts/WorldMarchState.gd": "fb4c59ea5d05dcad12b71b2119c9c6f14772d5031856f2120dde218a5707c33b",
+    "scripts/WorldMarchStateSmokeTest.gd": "334deb5746e654b6cb08aea5eccd991f172d0e807466d0e616cc786b16ee13ae",
+    "scripts/WorldSeasonState.gd": "8489feb71a30eac9dd4f26938f0c1e116905e39994d7dd00f7e72b45706aa9a8",
+    "scripts/WorldSeasonStateSmokeTest.gd": "979e6e4069d0de00fd0e45acb3d3ec982d7cd24024fe08708181d5ae368e181d",
+    "scripts/WorldServerGateway.gd": "b9367848a9e1b094a74345a884c5ac6f032f9da25edaf690ba6e32da8842714d",
+    "scripts/WorldSupplyNetwork.gd": "24c276025d1518988266642f45bfb88dffb970875159df720c3b28e6dc1dde48",
+    "scripts/WorldSupplyNetworkSmokeTest.gd": "4b9f6a337d0167c2f66a3649cca6e6b2745edf10032c3efa794443d60788e57e",
+    "scripts/WorldSyncGuard.gd": "2a5c5b454e84b071145b4c0d1916b2f4250e2fe673c358cbe2ecaec4a3534579",
+    "scripts/WorldWarClientSession.gd": "35c98428530d08cff1e981096fdf86ed9d51e7f72ce9798b7392fa4f842284ad",
+    "scripts/WorldWarMapView.gd": "b4211c4af906c8eae0cbc6ad9435e1c0979df4b449d5c5810951660aa6b5f0af",
+    "scripts/WorldWarScreen.gd": "c78bc5ca50d54d118671253bc6868299b9ed29eef35305588a5ce6a6f39950b5",
+    "scripts/WorldWarState.gd": "01dd25f837a12a0ab2d27e675b0fa1496ffd367aeeabc49e368be90b8809e3ba",
+    "scripts/WorldWarStateSmokeTest.gd": "2ebabf5221cdc7c5e27f772aaed2fba2a4efe6b766515029046cfdbdddfa2f10"
+  }
+}

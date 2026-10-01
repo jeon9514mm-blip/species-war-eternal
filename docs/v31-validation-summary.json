@@ -1,0 +1,103 @@
+{
+  "version": "v31",
+  "date": "2026-09-23",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "hero_count": 30,
+  "skill_count": 120,
+  "factions": {
+    "aurelia": {
+      "heroes": 15,
+      "damage": 8,
+      "defense_support": 4,
+      "debuff": 3
+    },
+    "noxfera": {
+      "heroes": 15,
+      "damage": 8,
+      "defense_support": 4,
+      "debuff": 3
+    }
+  },
+  "targeted_regression": {
+    "passed": 11,
+    "total": 11,
+    "report": "v31-art-validation.json",
+    "checks_by_test": {
+      "V27SaveRecoverySmokeTest.gd": 80,
+      "V28BrightSpriteSmokeTest.gd": 1172,
+      "V29RosterKitSmokeTest.gd": 885,
+      "V29RosterUiSaveSmokeTest.gd": 276,
+      "V30UiFlowSmokeTest.gd": 960,
+      "V31HeroArtSmokeTest.gd": 9264,
+      "V31HeroFxSmokeTest.gd": 740
+    }
+  },
+  "art_integrity": {
+    "passed": true,
+    "sheets": 6,
+    "poses": 120,
+    "report": "v31-atlas-integrity.json"
+  },
+  "ui_layout": {
+    "checks": 994,
+    "failures": 0,
+    "report": "v31-hero-ui-layout.json",
+    "rendered_screenshot": false
+  },
+  "static_resource_validation": "passed",
+  "godot_47_compatibility": "passed",
+  "mechanics_and_save_source": {
+    "scripts/HeroRosterCatalog.gd": {
+      "unchanged": true,
+      "sha256": "c09e9c2788398b9ed50ebfd5649befd4978adeae448db07626cac4538294afaf"
+    },
+    "scripts/HeroCombatRules.gd": {
+      "unchanged": true,
+      "sha256": "16a42cd50b510c8de1b18893605484ac663c7c0df951f71f6d6f9c229c96ddb0"
+    },
+    "scripts/SaveStore.gd": {
+      "unchanged": true,
+      "sha256": "53b6cc17efe7d05e5bc44b9fd039b924b760c17c6364b13b0104d8b509b354dc"
+    },
+    "scripts/SaveValidation.gd": {
+      "unchanged": true,
+      "sha256": "71dc6e2e5ca03c96393cac1ad63a12dda90e911538c72ab10dc4cfa5e912c0a2"
+    }
+  },
+  "animation_scope": {
+    "existing_four_direction_heroes": 5,
+    "new_four_pose_mirrored_heroes": 25,
+    "new_distinct_up_down_art": false
+  },
+  "skill_effect_scope": "30 hero motifs with 120 cast/proc icons and short slot-specific visual variations; not 120 fully hand-animated effect sheets",
+  "native_screenshot_review": false,
+  "pixel_art_source_images_visually_reviewed": true,
+  "package_kind": "complete_Godot_source_project",
+  "apk_or_desktop_executable_included": false,
+  "pdf_included": false,
+  "observations": [
+    {
+      "test": "V28FieldFxSmokeTest.gd",
+      "severity": "pre_existing_shutdown_warning",
+      "detail": "The parallel suite printed a warning about two ObjectDB instances at process exit. The same two-instance warning is present in docs/v29-regression-results.json. A single isolated verbose rerun exited 0 without the warning; no new leak or runtime error was reproduced.",
+      "baseline": "docs/v29-regression-results.json",
+      "isolated_rerun_exit_code": 0,
+      "isolated_rerun_warning_reproduced": false
+    }
+  ],
+  "clean_project_import": {
+    "checks": [
+      {
+        "step": "import",
+        "passed": true,
+        "returncode": 0
+      },
+      {
+        "step": "hero_art",
+        "passed": true,
+        "returncode": 0
+      }
+    ],
+    "passed": true
+  }
+}

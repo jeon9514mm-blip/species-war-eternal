@@ -1,0 +1,31 @@
+Species War: Eternal v77 validation report
+Date: 2026-09-30
+Base: species-war-eternal-v76
+
+Implemented
+- Low-frequency field event rotation after stage 1: elite patrol, treasure hunt, ambush, lucky find
+- Elite affixes: ironhide, frenzied, keen/tracking
+- Timed treasure capture bonus with gold-tinted monster/HUD countdown
+- Guaranteed rare-or-better hunt equipment for treasure capture and lucky-find events
+- Encounter combo reward loop: +2.5% per uninterrupted clear, capped at +25%
+- Combo breaks on recovery and has a 22-25 second difficulty-adjusted continuation window
+- Event/combination HUD messaging without adding save-schema fields
+
+Preserved
+- Stage 1 hunt difficulty and reward path
+- v71 habitat packs, pack assist aggro, separation, target distribution
+- v72 combat presentation and reward FX
+- v73 role combat AI
+- v74-v76 raid logic/mechanics/visuals
+- Hero roster, equipment rules, guardian data, project.godot
+- Existing save schema
+
+Validation
+STATIC VALIDATION OK | gd=238 smoke=133 resources=ok links=ok
+GODOT 4.7 COMPAT SCAN OK
+V77 SOURCE ASSERT | stage1 baseline=ok event threshold=ok combo cap=ok treasure timer=ok guaranteed rare=ok recovery reset=ok critical v76 files unchanged=ok
+
+Runtime limitation
+- Godot executable is not installed in this environment.
+- V77HuntVarietySmokeTest.gd is included but could not be executed here.
+- Real Android FPS, thermal behavior, touch response, and rendered appearance still require Godot/device verification.

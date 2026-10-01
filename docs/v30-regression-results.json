@@ -1,0 +1,1017 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "passed": 75,
+  "total": 76,
+  "results": [
+    {
+      "test": "AutoCombatTacticsSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.87,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nauto_combat_tactics_smoke_test_ok heal=smart guard=smart elite=priority ultimate=held\n"
+    },
+    {
+      "test": "AutoHuntRegressionTest.gd",
+      "passed": true,
+      "seconds": 4.62,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nauto_hunt_lethal hp=1295->1298 max_hp=1554->1557 no_retaliation=true enemy_hp=0 kill_delta=1 reward=마력의 반지 획득! [희귀] → 레온하르트 자동 장착 · 기존 장비 인벤토리에 보관\nauto_hunt_regression checks=18 failures=0 realtime_roaming=ok\n"
+    },
+    {
+      "test": "BMSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.65,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nbm_smoke_test_ok gems=45 unclaimed_gold=250 ad_count=3\n"
+    },
+    {
+      "test": "BossEncounterSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.73,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nboss_encounter_smoke_test_ok boss=광맥의 거인 모르굴 position=(19.09462, 8.2911) raid_button_visible=true\n"
+    },
+    {
+      "test": "CombatControlsSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.79,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\ncombat_controls_ok visible_buttons=4 scrollable_buttons=3 no_overlap=true pause_resume=true\n"
+    },
+    {
+      "test": "CombatDecisionEngineSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.74,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\ncombat_decision_engine_smoke_test_ok checks=368 spatial_rows=ok identity=ok hysteresis=ok taunt=ok seeded_cases=160\n"
+    },
+    {
+      "test": "CombatSpriteSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.28,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\ncombat_sprite_smoke_test_ok heroes=3 monsters=16 states=idle,attack,hit\n"
+    },
+    {
+      "test": "EquipmentSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.43,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nequipment_smoke_test_ok before_power=286 after_power=308 weapon=2 gold=0\n"
+    },
+    {
+      "test": "HeroIdentityBalanceSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.66,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhero_identity_balance_smoke_test_ok faction_gap=0.70% all_heroes=balanced\n"
+    },
+    {
+      "test": "IdleHuntEstimatorSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.58,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nidle_hunt_estimator_smoke_test_ok scaling=ok stage_cap=ok loot_cap=ok empty_party=ok\n"
+    },
+    {
+      "test": "IdleSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.5,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\noffline_reward_ok gold=315 xp=198\nidle_chest_ok stage=2 chest_gold=300 chest_xp=125\nidle_claim_ok wallet_gold=615 wallet_xp=323\n"
+    },
+    {
+      "test": "InventorySmokeTest.gd",
+      "passed": true,
+      "seconds": 4.27,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\ninventory_smoke_test_ok rarity=희귀 level=2 gold=905\n"
+    },
+    {
+      "test": "LevelSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.56,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nlevel_smoke_test_ok leveled=3 before_power=689 after_power=797 event=레벨업!  레온하르트 Lv.2 · 미라 Lv.2 · 엘리시아 Lv.2\n"
+    },
+    {
+      "test": "LootSmokeTest.gd",
+      "passed": true,
+      "seconds": 5.16,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nloot_smoke_test_ok total=30 common=124 rare=26 legendary=13 inventory=30\n"
+    },
+    {
+      "test": "MapTerrainSmokeTest.gd",
+      "passed": true,
+      "seconds": 5.61,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nmap_terrain_smoke_test_ok zones=3 field_clip=true camera_positions=2 world_projection=aligned\n"
+    },
+    {
+      "test": "RaidSmokeTest.gd",
+      "passed": true,
+      "seconds": 5.17,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nraid_smoke_test_ok boss=광맥의 거인 모르굴 clears=1 gold_reward=1000 drops=1\n"
+    },
+    {
+      "test": "RoamingHuntDirectorSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.71,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nroaming_hunt_director_smoke_test_ok patrol=ok wander=ok aggro=ok chase=ok engage=ok\n"
+    },
+    {
+      "test": "SkillSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.78,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nskill_smoke_test_ok damage=111 cooldown=2.50\nWARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).\n   at: cleanup (core/object/object.cpp:2536)\n"
+    },
+    {
+      "test": "SmokeTest.gd",
+      "passed": true,
+      "seconds": 7.42,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nopen_map_smoke_test_ok zone=gray_meadow kills=1 gold=42 xp=27\nreward_claim_ok wallet_gold=42 wallet_xp=27\nzone_progression_ok gray_gold=35 mine_gold=70 forest_difficulty=3\n"
+    },
+    {
+      "test": "SpriteSheetSmokeTest.gd",
+      "passed": true,
+      "seconds": 2.13,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nsprite_sheet_smoke_test_ok heroes=3 animations_per_hero=20\n"
+    },
+    {
+      "test": "V10UiUxSmokeTest.gd",
+      "passed": true,
+      "seconds": 6.59,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv10_ui_ux_smoke_test_ok nav=ok world=ok detail=ok codex=ok equip=ok summon_fx=ok badges=ok salvage=ok\n"
+    },
+    {
+      "test": "V11ProgressionSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.96,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv11_progression_smoke_test_ok patterns=ok ascension=ok sets=ok weekly=ok tracking=ok onboarding=ok\n"
+    },
+    {
+      "test": "V12WorldWarSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.95,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv12_world_war_smoke_test_ok screen=ok nav=ok capture=ok export=ok\n"
+    },
+    {
+      "test": "V13WarSafetySmokeTest.gd",
+      "passed": true,
+      "seconds": 3.89,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv13_war_safety_smoke_test_ok sanctuary=ok comeback=ok defense=ok ui=ok\n"
+    },
+    {
+      "test": "V14AsyncPvpSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.98,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv14_async_pvp_smoke_test_ok march=attack battle=ok capture=ok fatigue=ok report=ok snapshot=ok\n"
+    },
+    {
+      "test": "V15FrontlineSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.16,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv15_frontline_smoke_test_ok ui=ok supply=ok conflict_save=ok\n"
+    },
+    {
+      "test": "V16AuthoritySmokeTest.gd",
+      "passed": true,
+      "seconds": 1.11,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv16_authority_smoke_test_ok trusted=ok idempotency=ok revision=ok auth=ok save=ok\n"
+    },
+    {
+      "test": "V16ClientSessionSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.21,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv16_client_session_smoke_test_ok trusted_stats=ok command=ok arrival=ok revision=ok\n"
+    },
+    {
+      "test": "V17HuntProgressionSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.61,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv17_hunt_progression_smoke_test_ok retreat=ok stuck=ok party_caps=1-3-5-7-10 legacy=ok\n"
+    },
+    {
+      "test": "V17ResyncServerTimeSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.21,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv17_resync_server_time_smoke_test_ok reconnect=ok server_clock=ok stale_resync=ok\n"
+    },
+    {
+      "test": "V18CombatAISmokeTest.gd",
+      "passed": true,
+      "seconds": 3.64,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv18_combat_ai_smoke_test_ok elite_target=ok guard_hold=ok telegraph=ok support_ultimate=ok\n"
+    },
+    {
+      "test": "V18SeasonSyncSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.06,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv18_season_sync_smoke_test_ok digest=ok tamper=blocked season_sync=ok settlement_lock=ok\n"
+    },
+    {
+      "test": "V19HeroAIIdentitySmokeTest.gd",
+      "passed": true,
+      "seconds": 3.62,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv19_hero_ai_identity_smoke_test_ok ai_styles=ok stat_identity=ok ult_gain=ok world_snapshot=ok\n"
+    },
+    {
+      "test": "V19ServerStabilitySmokeTest.gd",
+      "passed": true,
+      "seconds": 1.23,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv19_server_stability_smoke_test_ok stale=blocked clock=smooth heartbeat=resync reconnect=fresh cache=bounded\n"
+    },
+    {
+      "test": "V20RealtimeRoamingHuntSmokeTest.gd",
+      "passed": true,
+      "seconds": 5.34,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv20_realtime_roaming_hunt_smoke_test_ok field=live party=mobile monsters=mobile fixed_nodes=removed\n"
+    },
+    {
+      "test": "V22UiUpgradeSmokeTest.gd",
+      "passed": true,
+      "seconds": 6.89,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv22_ui_upgrade_smoke_test_ok lobby=dashboard heroes=filter_sort combat=chips world=dashboard war=command_dashboard\n"
+    },
+    {
+      "test": "V23CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "seconds": 4.16,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv23_combat_readability_smoke_test_ok tactical_cards=ok target_marker=ok danger_banner=ok\n"
+    },
+    {
+      "test": "V24MobileLandscapeSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.35,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv24_mobile_landscape_smoke_test_ok orientation=landscape aspect=expand wide_field=1536 base_field=1216 camera=follow safe=ok\n"
+    },
+    {
+      "test": "V25CombatFxSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.43,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv25_combat_fx_smoke_test_ok projectile=ok aoe=ok boss_range=ok hit=ok dodge=ok camera=ok\n"
+    },
+    {
+      "test": "V26ActionSafetySmokeTest.gd",
+      "passed": true,
+      "seconds": 3.99,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV26 ACTION PASS: dangerous encounter permits an unprotected tank ultimate\nV26 ACTION PASS: second tank holds ultimate while the whole party is protected\nV26 ACTION PASS: windup revalidation preserves the second tank ultimate gauge\nV26 ACTION PASS: one full second of party protection still holds the ultimate\nV26 ACTION PASS: expiring party protection permits a useful refresh\nV26 ACTION PASS: invalid/dead/distant skill target -1 spends no cooldown and deals no damage\nV26 ACTION PASS: invalid/dead/distant ultimate target -1 preserves the full gauge\nV26 ACTION PASS: invalid/dead/distant skill target 99 spends no cooldown and deals no damage\nV26 ACTION PASS: invalid/dead/distant ultimate target 99 preserves the full gauge\nV26 ACTION PASS: invalid/dead/distant skill target 1 spends no cooldown and deals no damage\nV26 ACTION PASS: invalid/dead/distant ultimate target 1 preserves the full gauge\nV26 ACTION PASS: invalid/dead/distant skill target 2 spends no cooldown and deals no damage\nV26 ACTION PASS: invalid/dead/distant ultimate target 2 preserves the full gauge\nV26 ACTION PASS: basic windup retargets a living reachable enemy\nV26 ACTION PASS: basic retarget does not revive the old target or falsely finish the wave\nV26 ACTION PASS: skill windup retargets a living reachable enemy\nV26 ACTION PASS: skill retarget does not revive the old target or falsely finish the wave\nV26 ACTION PASS: retargeted skill consumes cooldown only after landing\nV26 ACTION PASS: ultimate windup retargets a living reachable enemy\nV26 ACTION PASS: ultimate retarget does not revive the old target or falsely finish the wave\nV26 ACTION PASS: retargeted ultimate lands and then consumes its gauge\nV26 ACTION PASS: pet final hit completes the encounter and enters looting\nV26 ACTION PASS: pet final hit grants the exact encounter gold and XP\nV26 ACTION PASS: repeated final-hit callbacks cannot duplicate encounter rewards\nv26_action_safety_smoke_test_ok checks=24 tank_guard=ok resources=ok retarget=ok pet_reward=ok\n"
+    },
+    {
+      "test": "V26CombatDecisionSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.86,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV26 PASS: out-of-range front hero does not starve ready ranged ally\nV26 PASS: out-of-range front hero does not skip enemy turn\nV26 PASS: started emergency heal survives enemy leaving attack range\nV26 PASS: successful emergency heal starts its cooldown\nV26 PASS: distant formation row does not block adjacent living enemy\nV26 PASS: melee damages adjacent enemy despite distant front row\nV26 PASS: melee does not damage distant enemy\nV26 PASS: chase fixture stays outside every hero attack range\nV26 PASS: natural chase starts and completes emergency healing\nV26 PASS: natural chase does not create out-of-range damage\nV26 PASS: area skill damages its local enemy group\nV26 PASS: area skill cannot hit enemy across the field\nV26 PASS: area ultimate damages its local enemy group\nV26 PASS: area ultimate cannot hit enemy across the field\nv26_combat_decision_smoke_test_ok checks=14 independent_turns=ok emergency_heal=ok spatial_target=ok local_aoe=ok\n"
+    },
+    {
+      "test": "V26CombatSoakSmokeTest.gd",
+      "passed": true,
+      "seconds": 45.98,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV26 SOAK REPORT: {\"completed_actions_by_hero\":{\"astel\":86,\"caelum\":79,\"darius\":81,\"elisia\":88,\"kairen\":94,\"leonhardt\":99,\"lunea\":71,\"mira\":96,\"orwin\":90,\"seria\":90},\"distance_walked\":107.7,\"faction\":\"aurelia\",\"gold_earned\":1099,\"health_valid\":true,\"heroes_with_completed_actions\":10,\"kill_count\":26,\"kills_at_60_120_180_seconds\":[8,16,26],\"longest_kill_gap_seconds\":13.7,\"party_size\":10,\"simulated_seconds\":180,\"wipe_recovery_seconds\":4.4,\"xp_earned\":767}\nV26 SOAK REPORT: {\"completed_actions_by_hero\":{\"bron\":97,\"fenris\":98,\"garm\":76,\"isolde\":82,\"morgas\":91,\"nyx\":94,\"ragna\":95,\"ulric\":79,\"valeria\":94,\"veyra\":73},\"distance_walked\":96.4,\"faction\":\"noxfera\",\"gold_earned\":1099,\"health_valid\":true,\"heroes_with_completed_actions\":10,\"kill_count\":26,\"kills_at_60_120_180_seconds\":[9,17,26],\"longest_kill_gap_seconds\":11.2,\"party_size\":10,\"simulated_seconds\":180,\"wipe_recovery_seconds\":4.4,\"xp_earned\":767}\nv26_combat_soak_smoke_test_ok checks=22 factions=2 heroes_per_party=10 simulated_seconds=360 wipe_recovery=ok continuous_rewards=ok\n"
+    },
+    {
+      "test": "V26RoamingSafetySmokeTest.gd",
+      "passed": true,
+      "seconds": 0.84,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv26_roaming_safety_smoke_test_ok target_lock=ok dead_target=ok recovery=ok melee_reach=ok spacing=ok engagement=ok\n"
+    },
+    {
+      "test": "V27BalanceMatrixSmokeTest.gd",
+      "passed": true,
+      "seconds": 98.95,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":12,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":290,\"initial_hp\":2840,\"initial_power\":2221,\"longest_clear_gap_seconds\":6.1,\"minimum_alive\":3,\"offline_encounters_estimate\":11,\"offline_gold_estimate\":315,\"offline_online_gold_ratio\":0.625,\"online_gold\":504,\"online_xp\":354,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"gray_meadow\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":12,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":1116,\"initial_hp\":12598,\"initial_power\":9181,\"longest_clear_gap_seconds\":6.0,\"minimum_alive\":10,\"offline_encounters_estimate\":14,\"offline_gold_estimate\":420,\"offline_online_gold_ratio\":0.833,\"online_gold\":504,\"online_xp\":354,\"party_size\":10,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"gray_meadow\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":8,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":290,\"initial_hp\":2840,\"initial_power\":2221,\"longest_clear_gap_seconds\":8.0,\"minimum_alive\":3,\"offline_encounters_estimate\":10,\"offline_gold_estimate\":560,\"offline_online_gold_ratio\":0.816,\"online_gold\":686,\"online_xp\":504,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"forgotten_mine\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":9,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":1116,\"initial_hp\":12598,\"initial_power\":9181,\"longest_clear_gap_seconds\":7.3,\"minimum_alive\":10,\"offline_encounters_estimate\":13,\"offline_gold_estimate\":770,\"offline_online_gold_ratio\":1.019,\"online_gold\":756,\"online_xp\":562,\"party_size\":10,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"forgotten_mine\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":6,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":290,\"initial_hp\":2840,\"initial_power\":2221,\"longest_clear_gap_seconds\":11.1,\"minimum_alive\":3,\"offline_encounters_estimate\":10,\"offline_gold_estimate\":960,\"offline_online_gold_ratio\":1.135,\"online_gold\":846,\"online_xp\":651,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"moonrest_forest\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":7,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":1116,\"initial_hp\":12598,\"initial_power\":9181,\"longest_clear_gap_seconds\":9.6,\"minimum_alive\":10,\"offline_encounters_estimate\":13,\"offline_gold_estimate\":1320,\"offline_online_gold_ratio\":1.337,\"online_gold\":987,\"online_xp\":782,\"party_size\":10,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"moonrest_forest\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":12,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":340,\"initial_hp\":2562,\"initial_power\":2253,\"longest_clear_gap_seconds\":7.1,\"minimum_alive\":3,\"offline_encounters_estimate\":11,\"offline_gold_estimate\":315,\"offline_online_gold_ratio\":0.625,\"online_gold\":504,\"online_xp\":354,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"gray_meadow\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":11,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":1121,\"initial_hp\":12592,\"initial_power\":9235,\"longest_clear_gap_seconds\":6.8,\"minimum_alive\":10,\"offline_encounters_estimate\":14,\"offline_gold_estimate\":420,\"offline_online_gold_ratio\":0.896,\"online_gold\":469,\"online_xp\":332,\"party_size\":10,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"gray_meadow\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":9,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":340,\"initial_hp\":2562,\"initial_power\":2253,\"longest_clear_gap_seconds\":7.8,\"minimum_alive\":3,\"offline_encounters_estimate\":10,\"offline_gold_estimate\":560,\"offline_online_gold_ratio\":0.741,\"online_gold\":756,\"online_xp\":562,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"forgotten_mine\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":9,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":1121,\"initial_hp\":12592,\"initial_power\":9235,\"longest_clear_gap_seconds\":7.7,\"minimum_alive\":10,\"offline_encounters_estimate\":13,\"offline_gold_estimate\":770,\"offline_online_gold_ratio\":1.019,\"online_gold\":756,\"online_xp\":562,\"party_size\":10,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"forgotten_mine\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":8,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":340,\"initial_hp\":2562,\"initial_power\":2253,\"longest_clear_gap_seconds\":9.2,\"minimum_alive\":3,\"offline_encounters_estimate\":10,\"offline_gold_estimate\":960,\"offline_online_gold_ratio\":0.836,\"online_gold\":1149,\"online_xp\":868,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"moonrest_forest\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":7,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":1121,\"initial_hp\":12592,\"initial_power\":9235,\"longest_clear_gap_seconds\":9.9,\"minimum_alive\":10,\"offline_encounters_estimate\":13,\"offline_gold_estimate\":1320,\"offline_online_gold_ratio\":1.337,\"online_gold\":987,\"online_xp\":782,\"party_size\":10,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"moonrest_forest\"}\nV27 BALANCE ROW: {\"boundary\":true,\"encounters_cleared\":7,\"equipment_level\":1,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":1,\"initial_attack_sum\":109,\"initial_hp\":1554,\"initial_power\":941,\"longest_clear_gap_seconds\":8.9,\"minimum_alive\":3,\"offline_encounters_estimate\":11,\"offline_gold_estimate\":315,\"offline_online_gold_ratio\":1.071,\"online_gold\":294,\"online_xp\":214,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"gray_meadow\"}\nV27 BALANCE ROW: {\"boundary\":true,\"encounters_cleared\":7,\"equipment_level\":1,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":1,\"initial_attack_sum\":109,\"initial_hp\":1554,\"initial_power\":941,\"longest_clear_gap_seconds\":9.8,\"minimum_alive\":3,\"offline_encounters_estimate\":11,\"offline_gold_estimate\":315,\"offline_online_gold_ratio\":1.071,\"online_gold\":294,\"online_xp\":214,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2713,\"zone\":\"gray_meadow\"}\nV27 BALANCE ROW: {\"boundary\":true,\"encounters_cleared\":8,\"equipment_level\":1,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":1,\"initial_attack_sum\":109,\"initial_hp\":1554,\"initial_power\":941,\"longest_clear_gap_seconds\":8.5,\"minimum_alive\":3,\"offline_encounters_estimate\":11,\"offline_gold_estimate\":315,\"offline_online_gold_ratio\":0.918,\"online_gold\":343,\"online_xp\":236,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2741,\"zone\":\"gray_meadow\"}\nv27_balance_matrix_smoke_test_ok checks=145 rows=15 heroes=20 faction_throughput_guard=2x measured_not_rating=true\n",
+      "measurement": {
+        "checks": 145,
+        "failures": [],
+        "heroes": [
+          {
+            "attack": 75,
+            "attack_interval_mult": 1.04,
+            "defense": 23,
+            "faction": "aurelia",
+            "hero_id": "leonhardt",
+            "level": 10,
+            "max_hp": 1474,
+            "role": "탱커"
+          },
+          {
+            "attack": 128,
+            "attack_interval_mult": 0.98,
+            "defense": 6,
+            "faction": "aurelia",
+            "hero_id": "mira",
+            "level": 10,
+            "max_hp": 1019,
+            "role": "딜러"
+          },
+          {
+            "attack": 87,
+            "attack_interval_mult": 1.04,
+            "defense": 10,
+            "faction": "aurelia",
+            "hero_id": "elisia",
+            "level": 10,
+            "max_hp": 1142,
+            "role": "서포터"
+          },
+          {
+            "attack": 107,
+            "attack_interval_mult": 1.02,
+            "defense": 8,
+            "faction": "aurelia",
+            "hero_id": "kairen",
+            "level": 10,
+            "max_hp": 1176,
+            "role": "컨트롤러"
+          },
+          {
+            "attack": 78,
+            "attack_interval_mult": 1.06,
+            "defense": 24,
+            "faction": "aurelia",
+            "hero_id": "orwin",
+            "level": 10,
+            "max_hp": 1621,
+            "role": "탱커"
+          },
+          {
+            "attack": 132,
+            "attack_interval_mult": 0.86,
+            "defense": 6,
+            "faction": "aurelia",
+            "hero_id": "seria",
+            "level": 10,
+            "max_hp": 1089,
+            "role": "딜러"
+          },
+          {
+            "attack": 91,
+            "attack_interval_mult": 1.06,
+            "defense": 11,
+            "faction": "aurelia",
+            "hero_id": "astel",
+            "level": 10,
+            "max_hp": 1258,
+            "role": "서포터"
+          },
+          {
+            "attack": 155,
+            "attack_interval_mult": 1.02,
+            "defense": 7,
+            "faction": "aurelia",
+            "hero_id": "darius",
+            "level": 10,
+            "max_hp": 1216,
+            "role": "딜러"
+          },
+          {
+            "attack": 115,
+            "attack_interval_mult": 1.02,
+            "defense": 9,
+            "faction": "aurelia",
+            "hero_id": "lunea",
+            "level": 10,
+            "max_hp": 1298,
+            "role": "컨트롤러"
+          },
+          {
+            "attack": 148,
+            "attack_interval_mult": 0.98,
+            "defense": 8,
+            "faction": "aurelia",
+            "hero_id": "caelum",
+            "level": 10,
+            "max_hp": 1305,
+            "role": "딜러"
+          },
+          {
+            "attack": 125,
+            "attack_interval_mult": 0.98,
+            "defense": 7,
+            "faction": "noxfera",
+            "hero_id": "valeria",
+            "level": 10,
+            "max_hp": 1073,
+            "role": "딜러"
+          },
+          {
+            "attack": 92,
+            "attack_interval_mult": 1.05,
+            "defense": 9,
+            "faction": "noxfera",
+            "hero_id": "morgas",
+            "level": 10,
+            "max_hp": 1100,
+            "role": "컨트롤러"
+          },
+          {
+            "attack": 123,
+            "attack_interval_mult": 0.91,
+            "defense": 7,
+            "faction": "noxfera",
+            "hero_id": "ragna",
+            "level": 10,
+            "max_hp": 1106,
+            "role": "딜러"
+          },
+          {
+            "attack": 84,
+            "attack_interval_mult": 1.04,
+            "defense": 22,
+            "faction": "noxfera",
+            "hero_id": "bron",
+            "level": 10,
+            "max_hp": 1563,
+            "role": "탱커"
+          },
+          {
+            "attack": 106,
+            "attack_interval_mult": 1.01,
+            "defense": 8,
+            "faction": "noxfera",
+            "hero_id": "nyx",
+            "level": 10,
+            "max_hp": 1164,
+            "role": "컨트롤러"
+          },
+          {
+            "attack": 134,
+            "attack_interval_mult": 0.84,
+            "defense": 6,
+            "faction": "noxfera",
+            "hero_id": "fenris",
+            "level": 10,
+            "max_hp": 1077,
+            "role": "딜러"
+          },
+          {
+            "attack": 95,
+            "attack_interval_mult": 1.04,
+            "defense": 10,
+            "faction": "noxfera",
+            "hero_id": "isolde",
+            "level": 10,
+            "max_hp": 1233,
+            "role": "서포터"
+          },
+          {
+            "attack": 84,
+            "attack_interval_mult": 1.07,
+            "defense": 24,
+            "faction": "noxfera",
+            "hero_id": "garm",
+            "level": 10,
+            "max_hp": 1787,
+            "role": "탱커"
+          },
+          {
+            "attack": 155,
+            "attack_interval_mult": 0.96,
+            "defense": 6,
+            "faction": "noxfera",
+            "hero_id": "veyra",
+            "level": 10,
+            "max_hp": 1164,
+            "role": "딜러"
+          },
+          {
+            "attack": 123,
+            "attack_interval_mult": 0.95,
+            "defense": 9,
+            "faction": "noxfera",
+            "hero_id": "ulric",
+            "level": 10,
+            "max_hp": 1325,
+            "role": "컨트롤러"
+          }
+        ],
+        "rows": [
+          {
+            "boundary": false,
+            "encounters_cleared": 12,
+            "equipment_level": 3,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 290,
+            "initial_hp": 2840,
+            "initial_power": 2221,
+            "longest_clear_gap_seconds": 6.1,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 11,
+            "offline_gold_estimate": 315,
+            "offline_online_gold_ratio": 0.625,
+            "online_gold": 504,
+            "online_xp": 354,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "gray_meadow"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 12,
+            "equipment_level": 3,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 1116,
+            "initial_hp": 12598,
+            "initial_power": 9181,
+            "longest_clear_gap_seconds": 6.0,
+            "minimum_alive": 10,
+            "offline_encounters_estimate": 14,
+            "offline_gold_estimate": 420,
+            "offline_online_gold_ratio": 0.833,
+            "online_gold": 504,
+            "online_xp": 354,
+            "party_size": 10,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "gray_meadow"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 8,
+            "equipment_level": 3,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 290,
+            "initial_hp": 2840,
+            "initial_power": 2221,
+            "longest_clear_gap_seconds": 8.0,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 10,
+            "offline_gold_estimate": 560,
+            "offline_online_gold_ratio": 0.816,
+            "online_gold": 686,
+            "online_xp": 504,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "forgotten_mine"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 9,
+            "equipment_level": 3,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 1116,
+            "initial_hp": 12598,
+            "initial_power": 9181,
+            "longest_clear_gap_seconds": 7.3,
+            "minimum_alive": 10,
+            "offline_encounters_estimate": 13,
+            "offline_gold_estimate": 770,
+            "offline_online_gold_ratio": 1.019,
+            "online_gold": 756,
+            "online_xp": 562,
+            "party_size": 10,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "forgotten_mine"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 6,
+            "equipment_level": 3,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 290,
+            "initial_hp": 2840,
+            "initial_power": 2221,
+            "longest_clear_gap_seconds": 11.1,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 10,
+            "offline_gold_estimate": 960,
+            "offline_online_gold_ratio": 1.135,
+            "online_gold": 846,
+            "online_xp": 651,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "moonrest_forest"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 7,
+            "equipment_level": 3,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 1116,
+            "initial_hp": 12598,
+            "initial_power": 9181,
+            "longest_clear_gap_seconds": 9.6,
+            "minimum_alive": 10,
+            "offline_encounters_estimate": 13,
+            "offline_gold_estimate": 1320,
+            "offline_online_gold_ratio": 1.337,
+            "online_gold": 987,
+            "online_xp": 782,
+            "party_size": 10,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "moonrest_forest"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 12,
+            "equipment_level": 3,
+            "faction": "noxfera",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 340,
+            "initial_hp": 2562,
+            "initial_power": 2253,
+            "longest_clear_gap_seconds": 7.1,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 11,
+            "offline_gold_estimate": 315,
+            "offline_online_gold_ratio": 0.625,
+            "online_gold": 504,
+            "online_xp": 354,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "gray_meadow"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 11,
+            "equipment_level": 3,
+            "faction": "noxfera",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 1121,
+            "initial_hp": 12592,
+            "initial_power": 9235,
+            "longest_clear_gap_seconds": 6.8,
+            "minimum_alive": 10,
+            "offline_encounters_estimate": 14,
+            "offline_gold_estimate": 420,
+            "offline_online_gold_ratio": 0.896,
+            "online_gold": 469,
+            "online_xp": 332,
+            "party_size": 10,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "gray_meadow"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 9,
+            "equipment_level": 3,
+            "faction": "noxfera",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 340,
+            "initial_hp": 2562,
+            "initial_power": 2253,
+            "longest_clear_gap_seconds": 7.8,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 10,
+            "offline_gold_estimate": 560,
+            "offline_online_gold_ratio": 0.741,
+            "online_gold": 756,
+            "online_xp": 562,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "forgotten_mine"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 9,
+            "equipment_level": 3,
+            "faction": "noxfera",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 1121,
+            "initial_hp": 12592,
+            "initial_power": 9235,
+            "longest_clear_gap_seconds": 7.7,
+            "minimum_alive": 10,
+            "offline_encounters_estimate": 13,
+            "offline_gold_estimate": 770,
+            "offline_online_gold_ratio": 1.019,
+            "online_gold": 756,
+            "online_xp": 562,
+            "party_size": 10,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "forgotten_mine"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 8,
+            "equipment_level": 3,
+            "faction": "noxfera",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 340,
+            "initial_hp": 2562,
+            "initial_power": 2253,
+            "longest_clear_gap_seconds": 9.2,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 10,
+            "offline_gold_estimate": 960,
+            "offline_online_gold_ratio": 0.836,
+            "online_gold": 1149,
+            "online_xp": 868,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "moonrest_forest"
+          },
+          {
+            "boundary": false,
+            "encounters_cleared": 7,
+            "equipment_level": 3,
+            "faction": "noxfera",
+            "health_valid": true,
+            "hero_level": 10,
+            "initial_attack_sum": 1121,
+            "initial_hp": 12592,
+            "initial_power": 9235,
+            "longest_clear_gap_seconds": 9.9,
+            "minimum_alive": 10,
+            "offline_encounters_estimate": 13,
+            "offline_gold_estimate": 1320,
+            "offline_online_gold_ratio": 1.337,
+            "online_gold": 987,
+            "online_xp": 782,
+            "party_size": 10,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "moonrest_forest"
+          },
+          {
+            "boundary": true,
+            "encounters_cleared": 7,
+            "equipment_level": 1,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 1,
+            "initial_attack_sum": 109,
+            "initial_hp": 1554,
+            "initial_power": 941,
+            "longest_clear_gap_seconds": 8.9,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 11,
+            "offline_gold_estimate": 315,
+            "offline_online_gold_ratio": 1.071,
+            "online_gold": 294,
+            "online_xp": 214,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2701,
+            "zone": "gray_meadow"
+          },
+          {
+            "boundary": true,
+            "encounters_cleared": 7,
+            "equipment_level": 1,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 1,
+            "initial_attack_sum": 109,
+            "initial_hp": 1554,
+            "initial_power": 941,
+            "longest_clear_gap_seconds": 9.8,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 11,
+            "offline_gold_estimate": 315,
+            "offline_online_gold_ratio": 1.071,
+            "online_gold": 294,
+            "online_xp": 214,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2713,
+            "zone": "gray_meadow"
+          },
+          {
+            "boundary": true,
+            "encounters_cleared": 8,
+            "equipment_level": 1,
+            "faction": "aurelia",
+            "health_valid": true,
+            "hero_level": 1,
+            "initial_attack_sum": 109,
+            "initial_hp": 1554,
+            "initial_power": 941,
+            "longest_clear_gap_seconds": 8.5,
+            "minimum_alive": 3,
+            "offline_encounters_estimate": 11,
+            "offline_gold_estimate": 315,
+            "offline_online_gold_ratio": 0.918,
+            "online_gold": 343,
+            "online_xp": 236,
+            "party_size": 3,
+            "recoveries": 0,
+            "seconds": 60,
+            "seed": 2741,
+            "zone": "gray_meadow"
+          }
+        ],
+        "schema": 1
+      }
+    },
+    {
+      "test": "V27BossLifecycleSmokeTest.gd",
+      "passed": true,
+      "seconds": 15.44,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_boss_lifecycle assertions=51 failures=0 speed=[[7005, 12, 1, 12.0, 999550], [7005, 12, 1, 12.0, 999550], [7005, 12, 1, 12.0, 999550], [7005, 12, 1, 12.0, 999550]] encounters=[{\"faction\":\"aurelia\",\"outcome\":\"victory\",\"patterns\":0,\"phase\":3,\"seconds\":5.1,\"zone\":\"gray_meadow\"},{\"faction\":\"aurelia\",\"outcome\":\"victory\",\"patterns\":0,\"phase\":3,\"seconds\":10.1,\"zone\":\"forgotten_mine\"},{\"faction\":\"aurelia\",\"outcome\":\"victory\",\"patterns\":3,\"phase\":3,\"seconds\":18.1,\"zone\":\"moonrest_forest\"},{\"faction\":\"noxfera\",\"outcome\":\"victory\",\"patterns\":0,\"phase\":3,\"seconds\":4.9,\"zone\":\"gray_meadow\"},{\"faction\":\"noxfera\",\"outcome\":\"victory\",\"patterns\":0,\"phase\":3,\"seconds\":9.1,\"zone\":\"forgotten_mine\"},{\"faction\":\"noxfera\",\"outcome\":\"victory\",\"patterns\":1,\"phase\":3,\"seconds\":15.4,\"zone\":\"moonrest_forest\"}]\n"
+    },
+    {
+      "test": "V27CombatClockSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.24,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_combat_clock checks=4 failures=0\n"
+    },
+    {
+      "test": "V27FieldLifecycleSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.56,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_field_lifecycle checks=30 failures=0\n"
+    },
+    {
+      "test": "V27GrowthEconomySmokeTest.gd",
+      "passed": true,
+      "seconds": 4.36,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_growth_economy_smoke_test checks=40 passed=40 failures=[]\n"
+    },
+    {
+      "test": "V27HeroRolesSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.11,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV27 HERO PASS: leonhardt active skill produces its declared effect\nV27 HERO PASS: mira active skill produces its declared effect\nV27 HERO PASS: elisia active skill produces its declared effect\nV27 HERO PASS: kairen active skill produces its declared effect\nV27 HERO PASS: orwin active skill produces its declared effect\nV27 HERO PASS: seria active skill produces its declared effect\nV27 HERO PASS: astel active skill produces its declared effect\nV27 HERO PASS: darius active skill produces its declared effect\nV27 HERO PASS: lunea active skill produces its declared effect\nV27 HERO PASS: caelum active skill produces its declared effect\nV27 HERO PASS: adrien active skill produces its declared effect\nV27 HERO PASS: tessa active skill produces its declared effect\nV27 HERO PASS: naia active skill produces its declared effect\nV27 HERO PASS: sael active skill produces its declared effect\nV27 HERO PASS: odelia active skill produces its declared effect\nV27 HERO PASS: valeria active skill produces its declared effect\nV27 HERO PASS: morgas active skill produces its declared effect\nV27 HERO PASS: ragna active skill produces its declared effect\nV27 HERO PASS: bron active skill produces its declared effect\nV27 HERO PASS: nyx active skill produces its declared effect\nV27 HERO PASS: fenris active skill produces its declared effect\nV27 HERO PASS: isolde active skill produces its declared effect\nV27 HERO PASS: garm active skill produces its declared effect\nV27 HERO PASS: veyra active skill produces its declared effect\nV27 HERO PASS: ulric active skill produces its declared effect\nV27 HERO PASS: lucien active skill produces its declared effect\nV27 HERO PASS: corvin active skill produces its declared effect\nV27 HERO PASS: rokan active skill produces its declared effect\nV27 HERO PASS: bora active skill produces its declared effect\nV27 HERO PASS: selene active skill produces its declared effect\nV27 HERO PASS: both complete fifteen-hero rosters execute\nV27 HERO PASS: Darius execute activates at 35 percent HP\nV27 HERO PASS: Mira precision actually increases damage against elites\nV27 HERO PASS: Seria remaining shots retarget after a first-hit kill\nV27 HERO PASS: Ragna cleave respects its three-target limit\nV27 HERO PASS: Fenris flurry grants the advertised extra ultimate charge\nV27 HERO PASS: Valeria low-health sustain increases actual healing\nV27 HERO PASS: lifesteal uses one point of actual damage and cannot heal from overkill\nV27 HERO PASS: Orwin active protects the entire living party\nV27 HERO PASS: Orwin holds duplicate team protection\nV27 HERO PASS: Leonhardt specializes in self protection and taunt\nV27 HERO PASS: Garm guard restores his own health\nV27 HERO PASS: Isolde heals two injured allies and never revives a dead ally\nV27 HERO PASS: full-health direct healing preserves skill cooldown and ultimate\nV27 HERO PASS: Astel applies party healing to all three injured allies\nV27 HERO PASS: kairen affects reachable enemies and leaves disconnected enemies unchanged\nV27 HERO PASS: kairen holds an already active status\nV27 HERO PASS: lunea affects reachable enemies and leaves disconnected enemies unchanged\nV27 HERO PASS: lunea holds an already active status\nV27 HERO PASS: nyx affects reachable enemies and leaves disconnected enemies unchanged\nV27 HERO PASS: nyx holds an already active status\nV27 HERO PASS: invalid status indices, NaN and negative duration are rejected\nV27 HERO PASS: dead enemies cannot receive new status\nV27 HERO PASS: Morgas full-health ultimate applies offensive curse\nV27 HERO PASS: single-target curse finds a fresh target instead of refreshing an active curse\nV27 HERO PASS: raid adapter preserves execute mechanics\nV27 HERO PASS: dead raid boss cannot consume skills or ultimate\nV27 HERO PASS: growth refresh updates stats while preserving health ratio\nV27 HERO PASS: growth refresh preserves deaths, ultimate, protection, cooldown and committed windup\nv27_hero_roles_smoke_test_ok checks=59 roster=30 mechanics=ok status_range=ok resource_safety=ok raid=ok growth=ok\n"
+    },
+    {
+      "test": "V27LiveGrowthSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.64,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV27 LIVE PASS: XP level-up preserves the active battle and hero states\nV27 LIVE PASS: XP level-up preserves living HP ratios and never revives the fallen hero\nV27 LIVE PASS: XP level-up preserves ultimate gauge and active protection\nV27 LIVE PASS: XP level-up preserves cooldowns, committed actions, position and pet timer\nV27 LIVE PASS: XP updates live attack and max HP immediately\nV27 LIVE PASS: Equipped weapon enhancement preserves the active battle and hero states\nV27 LIVE PASS: Equipped weapon enhancement preserves living HP ratios and never revives the fallen hero\nV27 LIVE PASS: Equipped weapon enhancement preserves ultimate gauge and active protection\nV27 LIVE PASS: Equipped weapon enhancement preserves cooldowns, committed actions, position and pet timer\nV27 LIVE PASS: enhancement applies live attack and charges the exact price\nV27 LIVE PASS: Inventory equip action preserves the active battle and hero states\nV27 LIVE PASS: Inventory equip action preserves living HP ratios and never revives the fallen hero\nV27 LIVE PASS: Inventory equip action preserves ultimate gauge and active protection\nV27 LIVE PASS: Inventory equip action preserves cooldowns, committed actions, position and pet timer\nV27 LIVE PASS: equip applies live stats and preserves displaced equipment\nV27 LIVE PASS: Skill tree offense preserves the active battle and hero states\nV27 LIVE PASS: Skill tree offense preserves living HP ratios and never revives the fallen hero\nV27 LIVE PASS: Skill tree offense preserves ultimate gauge and active protection\nV27 LIVE PASS: Skill tree offense preserves cooldowns, committed actions, position and pet timer\nV27 LIVE PASS: skill tree offense updates its live attribute\nV27 LIVE PASS: Skill tree survival preserves the active battle and hero states\nV27 LIVE PASS: Skill tree survival preserves living HP ratios and never revives the fallen hero\nV27 LIVE PASS: Skill tree survival preserves ultimate gauge and active protection\nV27 LIVE PASS: Skill tree survival preserves cooldowns, committed actions, position and pet timer\nV27 LIVE PASS: skill tree survival updates its live attribute\nV27 LIVE PASS: Skill tree utility preserves the active battle and hero states\nV27 LIVE PASS: Skill tree utility preserves living HP ratios and never revives the fallen hero\nV27 LIVE PASS: Skill tree utility preserves ultimate gauge and active protection\nV27 LIVE PASS: Skill tree utility preserves cooldowns, committed actions, position and pet timer\nV27 LIVE PASS: skill tree utility updates its live attribute\nV27 LIVE PASS: real Lunea skill applies weakness only inside range\nV27 LIVE PASS: only the weakened enemy deals reduced incoming damage\nV27 LIVE PASS: vulnerability amplifies actual outgoing damage only on its target\nV27 LIVE PASS: expired statuses restore ordinary incoming and outgoing damage\nv27_live_growth_smoke_test checks=34 passed=34 failures=[]\n"
+    },
+    {
+      "test": "V27PersistenceIntegrationSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.82,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_persistence_integration_smoke_test_ok checks=18 growth=preserved equipment=preserved march=restored garrison=restored season=once offline=once\n"
+    },
+    {
+      "test": "V27RaidIntegrationSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.35,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_raid_integration checks=19 failures=0 encounters=[{\"boss_hp\":10205,\"elapsed\":15.2,\"faction\":\"aurelia\",\"heroes\":3,\"outcome\":\"defeat\",\"patterns\":3},{\"boss_hp\":10637,\"elapsed\":7.1,\"faction\":\"noxfera\",\"heroes\":3,\"outcome\":\"defeat\",\"patterns\":1}]\n"
+    },
+    {
+      "test": "V27SaveRecoverySmokeTest.gd",
+      "passed": true,
+      "seconds": 4.84,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_save_recovery_smoke_test_ok checks=80 atomic=ok backup=ok checksum=ok schema=ok migration=ok future=preserved pause=once isolation=ok\n"
+    },
+    {
+      "test": "V27TerritoryLifecycleSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.23,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv27_territory_lifecycle_smoke_test_ok checks=64 garrison=atomic command=once march=restore combat=wounds logistics=8h season=claim_rollover snapshot=guarded\n"
+    },
+    {
+      "test": "V28BrightSpriteSmokeTest.gd",
+      "passed": true,
+      "seconds": 2.84,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv28_bright_sprite_smoke_test_ok checks=1172 frames=104 failures=0\n"
+    },
+    {
+      "test": "V28BrightUiSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.33,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv28_bright_ui_ok checks=66\n"
+    },
+    {
+      "test": "V28FieldFxSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.26,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv28_field_fx_smoke_test_ok compact_skill=ok targeted_fx=ok ultimate=ok bounded_damage=ok\n"
+    },
+    {
+      "test": "V28KitingRegressionSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.33,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":6,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":290,\"initial_hp\":2840,\"initial_power\":2221,\"longest_clear_gap_seconds\":11.1,\"minimum_alive\":3,\"offline_encounters_estimate\":10,\"offline_gold_estimate\":960,\"offline_online_gold_ratio\":1.135,\"online_gold\":846,\"online_xp\":651,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"moonrest_forest\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":8,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":340,\"initial_hp\":2562,\"initial_power\":2253,\"longest_clear_gap_seconds\":9.2,\"minimum_alive\":3,\"offline_encounters_estimate\":10,\"offline_gold_estimate\":960,\"offline_online_gold_ratio\":0.836,\"online_gold\":1149,\"online_xp\":868,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"moonrest_forest\"}\nv28_kiting_regression_smoke_test_ok checks=15\n"
+    },
+    {
+      "test": "V28MeadowNavigationSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.98,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV28MeadowNavigationSmokeTest: 70 assertions, 0 failures, { \"astar_queries\": 6, \"move_calls\": 635, \"routes\": 0 }\n"
+    },
+    {
+      "test": "V28MovingHuntSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.85,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV28 moving hunt: checks=23 clears=7 max_step=0.19500 nav={\"astar_queries\":98,\"move_calls\":5396,\"routes\":4}\nv28_moving_hunt_smoke_test_ok\n"
+    },
+    {
+      "test": "V29BoundarySpawnSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.71,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv29_boundary_spawn_smoke_test_ok spawn=(30.35, 0.35) melee_distance=0.70622551441193\n"
+    },
+    {
+      "test": "V29FactionBalanceSmokeTest.gd",
+      "passed": true,
+      "seconds": 85.0,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV29 BALANCE ROW {\"a2_casts\":67,\"alive\":10,\"damage\":191538,\"faction\":\"aurelia\",\"hp_ratio\":0.894320740555417,\"mode\":\"raid\",\"packs\":0,\"rotation\":0,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":69,\"alive\":10,\"damage\":203064,\"faction\":\"noxfera\",\"hp_ratio\":0.899568792619334,\"mode\":\"raid\",\"packs\":0,\"rotation\":0,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":62,\"alive\":10,\"damage\":188612,\"faction\":\"aurelia\",\"hp_ratio\":0.949818143482157,\"mode\":\"raid\",\"packs\":0,\"rotation\":1,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":62,\"alive\":10,\"damage\":190247,\"faction\":\"noxfera\",\"hp_ratio\":0.94443263918402,\"mode\":\"raid\",\"packs\":0,\"rotation\":1,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":62,\"alive\":10,\"damage\":185833,\"faction\":\"aurelia\",\"hp_ratio\":0.975680598631418,\"mode\":\"raid\",\"packs\":0,\"rotation\":2,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":59,\"alive\":10,\"damage\":190362,\"faction\":\"noxfera\",\"hp_ratio\":0.953706943958406,\"mode\":\"raid\",\"packs\":0,\"rotation\":2,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":68,\"alive\":10,\"damage\":172576,\"faction\":\"aurelia\",\"hp_ratio\":0.862874502409386,\"mode\":\"raid\",\"packs\":0,\"rotation\":3,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":63,\"alive\":10,\"damage\":194860,\"faction\":\"noxfera\",\"hp_ratio\":0.958807876530069,\"mode\":\"raid\",\"packs\":0,\"rotation\":3,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":14,\"alive\":10,\"damage\":0,\"faction\":\"aurelia\",\"hp_ratio\":0.998498874155617,\"mode\":\"field\",\"packs\":11,\"rotation\":0,\"seconds\":60,\"zone\":\"gray_meadow\"}\nV29 BALANCE ROW {\"a2_casts\":17,\"alive\":10,\"damage\":0,\"faction\":\"noxfera\",\"hp_ratio\":0.99704171680706,\"mode\":\"field\",\"packs\":12,\"rotation\":0,\"seconds\":60,\"zone\":\"gray_meadow\"}\nV29 BALANCE ROW {\"a2_casts\":27,\"alive\":10,\"damage\":0,\"faction\":\"aurelia\",\"hp_ratio\":0.990248273680881,\"mode\":\"field\",\"packs\":8,\"rotation\":1,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":23,\"alive\":10,\"damage\":0,\"faction\":\"noxfera\",\"hp_ratio\":0.988684657883553,\"mode\":\"field\",\"packs\":8,\"rotation\":1,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":20,\"alive\":10,\"damage\":0,\"faction\":\"aurelia\",\"hp_ratio\":0.999655393098016,\"mode\":\"field\",\"packs\":12,\"rotation\":2,\"seconds\":60,\"zone\":\"gray_meadow\"}\nV29 BALANCE ROW {\"a2_casts\":14,\"alive\":10,\"damage\":0,\"faction\":\"noxfera\",\"hp_ratio\":1.0,\"mode\":\"field\",\"packs\":11,\"rotation\":2,\"seconds\":60,\"zone\":\"gray_meadow\"}\nV29 BALANCE ROW {\"a2_casts\":32,\"alive\":10,\"damage\":0,\"faction\":\"aurelia\",\"hp_ratio\":0.985019903624555,\"mode\":\"field\",\"packs\":8,\"rotation\":3,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":17,\"alive\":10,\"damage\":0,\"faction\":\"noxfera\",\"hp_ratio\":0.986748270356573,\"mode\":\"field\",\"packs\":8,\"rotation\":3,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nv29_faction_balance checks=73 failures=0 comparison={\"field\":{\"metric\":\"packs\",\"relative_gap\":0.0,\"totals\":{\"aurelia\":39.0,\"noxfera\":39.0}},\"raid\":{\"metric\":\"damage\",\"relative_gap\":0.0526981883761829,\"totals\":{\"aurelia\":738559.0,\"noxfera\":778533.0}}}\n"
+    },
+    {
+      "test": "V29RosterKitSmokeTest.gd",
+      "passed": true,
+      "seconds": 9.4,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV27 HERO PASS: thirty canonical hero IDs\nV27 HERO PASS: leonhardt_a1 name/id unique\nV27 HERO PASS: leonhardt_a2 name/id unique\nV27 HERO PASS: leonhardt_passive name/id unique\nV27 HERO PASS: leonhardt_ultimate name/id unique\nV27 HERO PASS: leonhardt has exactly two actives, one passive, one ultimate\nV27 HERO PASS: mira_a1 name/id unique\nV27 HERO PASS: mira_a2 name/id unique\nV27 HERO PASS: mira_passive name/id unique\nV27 HERO PASS: mira_ultimate name/id unique\nV27 HERO PASS: mira has exactly two actives, one passive, one ultimate\nV27 HERO PASS: elisia_a1 name/id unique\nV27 HERO PASS: elisia_a2 name/id unique\nV27 HERO PASS: elisia_passive name/id unique\nV27 HERO PASS: elisia_ultimate name/id unique\nV27 HERO PASS: elisia has exactly two actives, one passive, one ultimate\nV27 HERO PASS: kairen_a1 name/id unique\nV27 HERO PASS: kairen_a2 name/id unique\nV27 HERO PASS: kairen_passive name/id unique\nV27 HERO PASS: kairen_ultimate name/id unique\nV27 HERO PASS: kairen has exactly two actives, one passive, one ultimate\nV27 HERO PASS: orwin_a1 name/id unique\nV27 HERO PASS: orwin_a2 name/id unique\nV27 HERO PASS: orwin_passive name/id unique\nV27 HERO PASS: orwin_ultimate name/id unique\nV27 HERO PASS: orwin has exactly two actives, one passive, one ultimate\nV27 HERO PASS: seria_a1 name/id unique\nV27 HERO PASS: seria_a2 name/id unique\nV27 HERO PASS: seria_passive name/id unique\nV27 HERO PASS: seria_ultimate name/id unique\nV27 HERO PASS: seria has exactly two actives, one passive, one ultimate\nV27 HERO PASS: astel_a1 name/id unique\nV27 HERO PASS: astel_a2 name/id unique\nV27 HERO PASS: astel_passive name/id unique\nV27 HERO PASS: astel_ultimate name/id unique\nV27 HERO PASS: astel has exactly two actives, one passive, one ultimate\nV27 HERO PASS: darius_a1 name/id unique\nV27 HERO PASS: darius_a2 name/id unique\nV27 HERO PASS: darius_passive name/id unique\nV27 HERO PASS: darius_ultimate name/id unique\nV27 HERO PASS: darius has exactly two actives, one passive, one ultimate\nV27 HERO PASS: lunea_a1 name/id unique\nV27 HERO PASS: lunea_a2 name/id unique\nV27 HERO PASS: lunea_passive name/id unique\nV27 HERO PASS: lunea_ultimate name/id unique\nV27 HERO PASS: lunea has exactly two actives, one passive, one ultimate\nV27 HERO PASS: caelum_a1 name/id unique\nV27 HERO PASS: caelum_a2 name/id unique\nV27 HERO PASS: caelum_passive name/id unique\nV27 HERO PASS: caelum_ultimate name/id unique\nV27 HERO PASS: caelum has exactly two actives, one passive, one ultimate\nV27 HERO PASS: adrien_a1 name/id unique\nV27 HERO PASS: adrien_a2 name/id unique\nV27 HERO PASS: adrien_passive name/id unique\nV27 HERO PASS: adrien_ultimate name/id unique\nV27 HERO PASS: adrien has exactly two actives, one passive, one ultimate\nV27 HERO PASS: tessa_a1 name/id unique\nV27 HERO PASS: tessa_a2 name/id unique\nV27 HERO PASS: tessa_passive name/id unique\nV27 HERO PASS: tessa_ultimate name/id unique\nV27 HERO PASS: tessa has exactly two actives, one passive, one ultimate\nV27 HERO PASS: naia_a1 name/id unique\nV27 HERO PASS: naia_a2 name/id unique\nV27 HERO PASS: naia_passive name/id unique\nV27 HERO PASS: naia_ultimate name/id unique\nV27 HERO PASS: naia has exactly two actives, one passive, one ultimate\nV27 HERO PASS: sael_a1 name/id unique\nV27 HERO PASS: sael_a2 name/id unique\nV27 HERO PASS: sael_passive name/id unique\nV27 HERO PASS: sael_ultimate name/id unique\nV27 HERO PASS: sael has exactly two actives, one passive, one ultimate\nV27 HERO PASS: odelia_a1 name/id unique\nV27 HERO PASS: odelia_a2 name/id unique\nV27 HERO PASS: odelia_passive name/id unique\nV27 HERO PASS: odelia_ultimate name/id unique\nV27 HERO PASS: odelia has exactly two actives, one passive, one ultimate\nV27 HERO PASS: aurelia exact 8/4/3 quota\nV27 HERO PASS: valeria_a1 name/id unique\nV27 HERO PASS: valeria_a2 name/id unique\nV27 HERO PASS: valeria_passive name/id unique\nV27 HERO PASS: valeria_ultimate name/id unique\nV27 HERO PASS: valeria has exactly two actives, one passive, one ultimate\nV27 HERO PASS: morgas_a1 name/id unique\nV27 HERO PASS: morgas_a2 name/id unique\nV27 HERO PASS: morgas_passive name/id unique\nV27 HERO PASS: morgas_ultimate name/id unique\nV27 HERO PASS: morgas has exactly two actives, one passive, one ultimate\nV27 HERO PASS: ragna_a1 name/id unique\nV27 HERO PASS: ragna_a2 name/id unique\nV27 HERO PASS: ragna_passive name/id unique\nV27 HERO PASS: ragna_ultimate name/id unique\nV27 HERO PASS: ragna has exactly two actives, one passive, one ultimate\nV27 HERO PASS: bron_a1 name/id unique\nV27 HERO PASS: bron_a2 name/id unique\nV27 HERO PASS: bron_passive name/id unique\nV27 HERO PASS: bron_ultimate name/id unique\nV27 HERO PASS: bron has exactly two actives, one passive, one ultimate\nV27 HERO PASS: nyx_a1 name/id unique\nV27 HERO PASS: nyx_a2 name/id unique\nV27 HERO PASS: nyx_passive name/id unique\nV27 HERO PASS: nyx_ultimate name/id unique\nV27 HERO PASS: nyx has exactly two actives, one passive, one ultimate\nV27 HERO PASS: fenris_a1 name/id unique\nV27 HERO PASS: fenris_a2 name/id unique\nV27 HERO PASS: fenris_passive name/id unique\nV27 HERO PASS: fenris_ultimate name/id unique\nV27 HERO PASS: fenris has exactly two actives, one passive, one ultimate\nV27 HERO PASS: isolde_a1 name/id unique\nV27 HERO PASS: isolde_a2 name/id unique\nV27 HERO PASS: isolde_passive name/id unique\nV27 HERO PASS: isolde_ultimate name/id unique\nV27 HERO PASS: isolde has exactly two actives, one passive, one ultimate\nV27 HERO PASS: garm_a1 name/id unique\nV27 HERO PASS: garm_a2 name/id unique\nV27 HERO PASS: garm_passive name/id unique\nV27 HERO PASS: garm_ultimate name/id unique\nV27 HERO PASS: garm has exactly two actives, one passive, one ultimate\nV27 HERO PASS: veyra_a1 name/id unique\nV27 HERO PASS: veyra_a2 name/id unique\nV27 HERO PASS: veyra_passive name/id unique\nV27 HERO PASS: veyra_ultimate name/id unique\nV27 HERO PASS: veyra has exactly two actives, one passive, one ultimate\nV27 HERO PASS: ulric_a1 name/id unique\nV27 HERO PASS: ulric_a2 name/id unique\nV27 HERO PASS: ulric_passive name/id unique\nV27 HERO PASS: ulric_ultimate name/id unique\nV27 HERO PASS: ulric has exactly two actives, one passive, one ultimate\nV27 HERO PASS: lucien_a1 name/id unique\nV27 HERO PASS: lucien_a2 name/id unique\nV27 HERO PASS: lucien_passive name/id unique\nV27 HERO PASS: lucien_ultimate name/id unique\nV27 HERO PASS: lucien has exactly two actives, one passive, one ultimate\nV27 HERO PASS: corvin_a1 name/id unique\nV27 HERO PASS: corvin_a2 name/id unique\nV27 HERO PASS: corvin_passive name/id unique\nV27 HERO PASS: corvin_ultimate name/id unique\nV27 HERO PASS: corvin has exactly two actives, one passive, one ultimate\nV27 HERO PASS: rokan_a1 name/id unique\nV27 HERO PASS: rokan_a2 name/id unique\nV27 HERO PASS: rokan_passive name/id unique\nV27 HERO PASS: rokan_ultimate name/id unique\nV27 HERO PASS: rokan has exactly two actives, one passive, one ultimate\nV27 HERO PASS: bora_a1 name/id unique\nV27 HERO PASS: bora_a2 name/id unique\nV27 HERO PASS: bora_passive name/id unique\nV27 HERO PASS: bora_ultimate name/id unique\nV27 HERO PASS: bora has exactly two actives, one passive, one ultimate\nV27 HERO PASS: selene_a1 name/id unique\nV27 HERO PASS: selene_a2 name/id unique\nV27 HERO PASS: selene_passive name/id unique\nV27 HERO PASS: selene_ultimate name/id unique\nV27 HERO PASS: selene has exactly two actives, one passive, one ultimate\nV27 HERO PASS: noxfera exact 8/4/3 quota\nV27 HERO PASS: one hundred twenty distinct skill IDs\nV27 HERO PASS: old progress preserved and new hero progress accepted\nV27 HERO PASS: new shards/party persist, unknown IDs rejected\nV27 HERO PASS: leonhardt/a1/field actual effect and resource consumed\nV27 HERO PASS: leonhardt/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: leonhardt/a2/field actual effect and resource consumed\nV27 HERO PASS: leonhardt/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: leonhardt/ultimate/field actual effect and resource consumed\nV27 HERO PASS: leonhardt/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: mira/a1/field actual effect and resource consumed\nV27 HERO PASS: mira/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: mira/a2/field actual effect and resource consumed\nV27 HERO PASS: mira/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: mira/ultimate/field actual effect and resource consumed\nV27 HERO PASS: mira/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: elisia/a1/field actual effect and resource consumed\nV27 HERO PASS: elisia/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: elisia/a2/field actual effect and resource consumed\nV27 HERO PASS: elisia/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: elisia/ultimate/field actual effect and resource consumed\nV27 HERO PASS: elisia/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: kairen/a1/field actual effect and resource consumed\nV27 HERO PASS: kairen/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: kairen/a2/field actual effect and resource consumed\nV27 HERO PASS: kairen/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: kairen/ultimate/field actual effect and resource consumed\nV27 HERO PASS: kairen/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: orwin/a1/field actual effect and resource consumed\nV27 HERO PASS: orwin/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: orwin/a2/field actual effect and resource consumed\nV27 HERO PASS: orwin/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: orwin/ultimate/field actual effect and resource consumed\nV27 HERO PASS: orwin/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: seria/a1/field actual effect and resource consumed\nV27 HERO PASS: seria/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: seria/a2/field actual effect and resource consumed\nV27 HERO PASS: seria/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: seria/ultimate/field actual effect and resource consumed\nV27 HERO PASS: seria/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: astel/a1/field actual effect and resource consumed\nV27 HERO PASS: astel/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: astel/a2/field actual effect and resource consumed\nV27 HERO PASS: astel/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: astel/ultimate/field actual effect and resource consumed\nV27 HERO PASS: astel/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: darius/a1/field actual effect and resource consumed\nV27 HERO PASS: darius/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: darius/a2/field actual effect and resource consumed\nV27 HERO PASS: darius/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: darius/ultimate/field actual effect and resource consumed\nV27 HERO PASS: darius/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lunea/a1/field actual effect and resource consumed\nV27 HERO PASS: lunea/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lunea/a2/field actual effect and resource consumed\nV27 HERO PASS: lunea/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lunea/ultimate/field actual effect and resource consumed\nV27 HERO PASS: lunea/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: caelum/a1/field actual effect and resource consumed\nV27 HERO PASS: caelum/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: caelum/a2/field actual effect and resource consumed\nV27 HERO PASS: caelum/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: caelum/ultimate/field actual effect and resource consumed\nV27 HERO PASS: caelum/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: valeria/a1/field actual effect and resource consumed\nV27 HERO PASS: valeria/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: valeria/a2/field actual effect and resource consumed\nV27 HERO PASS: valeria/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: valeria/ultimate/field actual effect and resource consumed\nV27 HERO PASS: valeria/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: morgas/a1/field actual effect and resource consumed\nV27 HERO PASS: morgas/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: morgas/a2/field actual effect and resource consumed\nV27 HERO PASS: morgas/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: morgas/ultimate/field actual effect and resource consumed\nV27 HERO PASS: morgas/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ragna/a1/field actual effect and resource consumed\nV27 HERO PASS: ragna/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ragna/a2/field actual effect and resource consumed\nV27 HERO PASS: ragna/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ragna/ultimate/field actual effect and resource consumed\nV27 HERO PASS: ragna/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bron/a1/field actual effect and resource consumed\nV27 HERO PASS: bron/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bron/a2/field actual effect and resource consumed\nV27 HERO PASS: bron/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bron/ultimate/field actual effect and resource consumed\nV27 HERO PASS: bron/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: nyx/a1/field actual effect and resource consumed\nV27 HERO PASS: nyx/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: nyx/a2/field actual effect and resource consumed\nV27 HERO PASS: nyx/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: nyx/ultimate/field actual effect and resource consumed\nV27 HERO PASS: nyx/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: fenris/a1/field actual effect and resource consumed\nV27 HERO PASS: fenris/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: fenris/a2/field actual effect and resource consumed\nV27 HERO PASS: fenris/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: fenris/ultimate/field actual effect and resource consumed\nV27 HERO PASS: fenris/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: isolde/a1/field actual effect and resource consumed\nV27 HERO PASS: isolde/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: isolde/a2/field actual effect and resource consumed\nV27 HERO PASS: isolde/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: isolde/ultimate/field actual effect and resource consumed\nV27 HERO PASS: isolde/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: garm/a1/field actual effect and resource consumed\nV27 HERO PASS: garm/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: garm/a2/field actual effect and resource consumed\nV27 HERO PASS: garm/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: garm/ultimate/field actual effect and resource consumed\nV27 HERO PASS: garm/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: veyra/a1/field actual effect and resource consumed\nV27 HERO PASS: veyra/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: veyra/a2/field actual effect and resource consumed\nV27 HERO PASS: veyra/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: veyra/ultimate/field actual effect and resource consumed\nV27 HERO PASS: veyra/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ulric/a1/field actual effect and resource consumed\nV27 HERO PASS: ulric/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ulric/a2/field actual effect and resource consumed\nV27 HERO PASS: ulric/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ulric/ultimate/field actual effect and resource consumed\nV27 HERO PASS: ulric/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: adrien/a1/field actual effect and resource consumed\nV27 HERO PASS: adrien/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: adrien/a2/field actual effect and resource consumed\nV27 HERO PASS: adrien/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: adrien/ultimate/field actual effect and resource consumed\nV27 HERO PASS: adrien/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: tessa/a1/field actual effect and resource consumed\nV27 HERO PASS: tessa/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: tessa/a2/field actual effect and resource consumed\nV27 HERO PASS: tessa/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: tessa/ultimate/field actual effect and resource consumed\nV27 HERO PASS: tessa/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: naia/a1/field actual effect and resource consumed\nV27 HERO PASS: naia/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: naia/a2/field actual effect and resource consumed\nV27 HERO PASS: naia/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: naia/ultimate/field actual effect and resource consumed\nV27 HERO PASS: naia/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: sael/a1/field actual effect and resource consumed\nV27 HERO PASS: sael/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: sael/a2/field actual effect and resource consumed\nV27 HERO PASS: sael/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: sael/ultimate/field actual effect and resource consumed\nV27 HERO PASS: sael/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: odelia/a1/field actual effect and resource consumed\nV27 HERO PASS: odelia/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: odelia/a2/field actual effect and resource consumed\nV27 HERO PASS: odelia/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: odelia/ultimate/field actual effect and resource consumed\nV27 HERO PASS: odelia/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lucien/a1/field actual effect and resource consumed\nV27 HERO PASS: lucien/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lucien/a2/field actual effect and resource consumed\nV27 HERO PASS: lucien/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lucien/ultimate/field actual effect and resource consumed\nV27 HERO PASS: lucien/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: corvin/a1/field actual effect and resource consumed\nV27 HERO PASS: corvin/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: corvin/a2/field actual effect and resource consumed\nV27 HERO PASS: corvin/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: corvin/ultimate/field actual effect and resource consumed\nV27 HERO PASS: corvin/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: rokan/a1/field actual effect and resource consumed\nV27 HERO PASS: rokan/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: rokan/a2/field actual effect and resource consumed\nV27 HERO PASS: rokan/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: rokan/ultimate/field actual effect and resource consumed\nV27 HERO PASS: rokan/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bora/a1/field actual effect and resource consumed\nV27 HERO PASS: bora/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bora/a2/field actual effect and resource consumed\nV27 HERO PASS: bora/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bora/ultimate/field actual effect and resource consumed\nV27 HERO PASS: bora/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: selene/a1/field actual effect and resource consumed\nV27 HERO PASS: selene/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: selene/a2/field actual effect and resource consumed\nV27 HERO PASS: selene/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: selene/ultimate/field actual effect and resource consumed\nV27 HERO PASS: selene/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: leonhardt/a1/raid actual effect and resource consumed\nV27 HERO PASS: leonhardt/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: leonhardt/a2/raid actual effect and resource consumed\nV27 HERO PASS: leonhardt/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: leonhardt/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: leonhardt/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: mira/a1/raid actual effect and resource consumed\nV27 HERO PASS: mira/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: mira/a2/raid actual effect and resource consumed\nV27 HERO PASS: mira/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: mira/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: mira/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: elisia/a1/raid actual effect and resource consumed\nV27 HERO PASS: elisia/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: elisia/a2/raid actual effect and resource consumed\nV27 HERO PASS: elisia/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: elisia/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: elisia/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: kairen/a1/raid actual effect and resource consumed\nV27 HERO PASS: kairen/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: kairen/a2/raid actual effect and resource consumed\nV27 HERO PASS: kairen/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: kairen/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: kairen/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: orwin/a1/raid actual effect and resource consumed\nV27 HERO PASS: orwin/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: orwin/a2/raid actual effect and resource consumed\nV27 HERO PASS: orwin/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: orwin/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: orwin/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: seria/a1/raid actual effect and resource consumed\nV27 HERO PASS: seria/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: seria/a2/raid actual effect and resource consumed\nV27 HERO PASS: seria/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: seria/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: seria/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: astel/a1/raid actual effect and resource consumed\nV27 HERO PASS: astel/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: astel/a2/raid actual effect and resource consumed\nV27 HERO PASS: astel/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: astel/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: astel/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: darius/a1/raid actual effect and resource consumed\nV27 HERO PASS: darius/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: darius/a2/raid actual effect and resource consumed\nV27 HERO PASS: darius/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: darius/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: darius/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lunea/a1/raid actual effect and resource consumed\nV27 HERO PASS: lunea/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lunea/a2/raid actual effect and resource consumed\nV27 HERO PASS: lunea/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lunea/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: lunea/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: caelum/a1/raid actual effect and resource consumed\nV27 HERO PASS: caelum/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: caelum/a2/raid actual effect and resource consumed\nV27 HERO PASS: caelum/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: caelum/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: caelum/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: valeria/a1/raid actual effect and resource consumed\nV27 HERO PASS: valeria/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: valeria/a2/raid actual effect and resource consumed\nV27 HERO PASS: valeria/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: valeria/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: valeria/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: morgas/a1/raid actual effect and resource consumed\nV27 HERO PASS: morgas/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: morgas/a2/raid actual effect and resource consumed\nV27 HERO PASS: morgas/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: morgas/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: morgas/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ragna/a1/raid actual effect and resource consumed\nV27 HERO PASS: ragna/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ragna/a2/raid actual effect and resource consumed\nV27 HERO PASS: ragna/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ragna/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: ragna/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bron/a1/raid actual effect and resource consumed\nV27 HERO PASS: bron/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bron/a2/raid actual effect and resource consumed\nV27 HERO PASS: bron/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bron/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: bron/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: nyx/a1/raid actual effect and resource consumed\nV27 HERO PASS: nyx/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: nyx/a2/raid actual effect and resource consumed\nV27 HERO PASS: nyx/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: nyx/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: nyx/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: fenris/a1/raid actual effect and resource consumed\nV27 HERO PASS: fenris/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: fenris/a2/raid actual effect and resource consumed\nV27 HERO PASS: fenris/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: fenris/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: fenris/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: isolde/a1/raid actual effect and resource consumed\nV27 HERO PASS: isolde/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: isolde/a2/raid actual effect and resource consumed\nV27 HERO PASS: isolde/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: isolde/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: isolde/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: garm/a1/raid actual effect and resource consumed\nV27 HERO PASS: garm/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: garm/a2/raid actual effect and resource consumed\nV27 HERO PASS: garm/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: garm/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: garm/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: veyra/a1/raid actual effect and resource consumed\nV27 HERO PASS: veyra/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: veyra/a2/raid actual effect and resource consumed\nV27 HERO PASS: veyra/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: veyra/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: veyra/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ulric/a1/raid actual effect and resource consumed\nV27 HERO PASS: ulric/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ulric/a2/raid actual effect and resource consumed\nV27 HERO PASS: ulric/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: ulric/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: ulric/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: adrien/a1/raid actual effect and resource consumed\nV27 HERO PASS: adrien/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: adrien/a2/raid actual effect and resource consumed\nV27 HERO PASS: adrien/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: adrien/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: adrien/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: tessa/a1/raid actual effect and resource consumed\nV27 HERO PASS: tessa/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: tessa/a2/raid actual effect and resource consumed\nV27 HERO PASS: tessa/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: tessa/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: tessa/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: naia/a1/raid actual effect and resource consumed\nV27 HERO PASS: naia/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: naia/a2/raid actual effect and resource consumed\nV27 HERO PASS: naia/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: naia/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: naia/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: sael/a1/raid actual effect and resource consumed\nV27 HERO PASS: sael/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: sael/a2/raid actual effect and resource consumed\nV27 HERO PASS: sael/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: sael/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: sael/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: odelia/a1/raid actual effect and resource consumed\nV27 HERO PASS: odelia/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: odelia/a2/raid actual effect and resource consumed\nV27 HERO PASS: odelia/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: odelia/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: odelia/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lucien/a1/raid actual effect and resource consumed\nV27 HERO PASS: lucien/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lucien/a2/raid actual effect and resource consumed\nV27 HERO PASS: lucien/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: lucien/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: lucien/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: corvin/a1/raid actual effect and resource consumed\nV27 HERO PASS: corvin/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: corvin/a2/raid actual effect and resource consumed\nV27 HERO PASS: corvin/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: corvin/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: corvin/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: rokan/a1/raid actual effect and resource consumed\nV27 HERO PASS: rokan/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: rokan/a2/raid actual effect and resource consumed\nV27 HERO PASS: rokan/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: rokan/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: rokan/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bora/a1/raid actual effect and resource consumed\nV27 HERO PASS: bora/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bora/a2/raid actual effect and resource consumed\nV27 HERO PASS: bora/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: bora/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: bora/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: selene/a1/raid actual effect and resource consumed\nV27 HERO PASS: selene/a1 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: selene/a2/raid actual effect and resource consumed\nV27 HERO PASS: selene/a2 immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: selene/ultimate/raid actual effect and resource consumed\nV27 HERO PASS: selene/ultimate immediate recast refused\nV27 HERO PASS: refused recast preserves resources\nV27 HERO PASS: leonhardt field conditional passive proc count\nV27 HERO PASS: leonhardt passive changes actual combat state\nV27 HERO PASS: leonhardt dead hero cannot proc\nV27 HERO PASS: mira field conditional passive proc count\nV27 HERO PASS: mira passive changes actual combat state\nV27 HERO PASS: mira dead hero cannot proc\nV27 HERO PASS: elisia field conditional passive proc count\nV27 HERO PASS: elisia passive changes actual combat state\nV27 HERO PASS: elisia dead hero cannot proc\nV27 HERO PASS: kairen field conditional passive proc count\nV27 HERO PASS: kairen passive changes actual combat state\nV27 HERO PASS: kairen dead hero cannot proc\nV27 HERO PASS: orwin field conditional passive proc count\nV27 HERO PASS: orwin passive changes actual combat state\nV27 HERO PASS: orwin dead hero cannot proc\nV27 HERO PASS: seria field conditional passive proc count\nV27 HERO PASS: seria passive changes actual combat state\nV27 HERO PASS: seria dead hero cannot proc\nV27 HERO PASS: astel field conditional passive proc count\nV27 HERO PASS: astel passive changes actual combat state\nV27 HERO PASS: astel dead hero cannot proc\nV27 HERO PASS: darius field conditional passive proc count\nV27 HERO PASS: darius passive changes actual combat state\nV27 HERO PASS: darius dead hero cannot proc\nV27 HERO PASS: lunea field conditional passive proc count\nV27 HERO PASS: lunea passive changes actual combat state\nV27 HERO PASS: lunea dead hero cannot proc\nV27 HERO PASS: caelum field conditional passive proc count\nV27 HERO PASS: caelum passive changes actual combat state\nV27 HERO PASS: caelum dead hero cannot proc\nV27 HERO PASS: valeria field conditional passive proc count\nV27 HERO PASS: valeria passive changes actual combat state\nV27 HERO PASS: valeria dead hero cannot proc\nV27 HERO PASS: morgas field conditional passive proc count\nV27 HERO PASS: morgas passive changes actual combat state\nV27 HERO PASS: morgas dead hero cannot proc\nV27 HERO PASS: ragna field conditional passive proc count\nV27 HERO PASS: ragna passive changes actual combat state\nV27 HERO PASS: ragna dead hero cannot proc\nV27 HERO PASS: bron field conditional passive proc count\nV27 HERO PASS: bron passive changes actual combat state\nV27 HERO PASS: bron dead hero cannot proc\nV27 HERO PASS: nyx field conditional passive proc count\nV27 HERO PASS: nyx passive changes actual combat state\nV27 HERO PASS: nyx dead hero cannot proc\nV27 HERO PASS: fenris field conditional passive proc count\nV27 HERO PASS: fenris passive changes actual combat state\nV27 HERO PASS: fenris dead hero cannot proc\nV27 HERO PASS: isolde field conditional passive proc count\nV27 HERO PASS: isolde passive changes actual combat state\nV27 HERO PASS: isolde dead hero cannot proc\nV27 HERO PASS: garm field conditional passive proc count\nV27 HERO PASS: garm passive changes actual combat state\nV27 HERO PASS: garm dead hero cannot proc\nV27 HERO PASS: veyra field conditional passive proc count\nV27 HERO PASS: veyra passive changes actual combat state\nV27 HERO PASS: veyra dead hero cannot proc\nV27 HERO PASS: ulric field conditional passive proc count\nV27 HERO PASS: ulric passive changes actual combat state\nV27 HERO PASS: ulric dead hero cannot proc\nV27 HERO PASS: adrien field conditional passive proc count\nV27 HERO PASS: adrien passive changes actual combat state\nV27 HERO PASS: adrien dead hero cannot proc\nV27 HERO PASS: tessa field conditional passive proc count\nV27 HERO PASS: tessa passive changes actual combat state\nV27 HERO PASS: tessa dead hero cannot proc\nV27 HERO PASS: naia field conditional passive proc count\nV27 HERO PASS: naia passive changes actual combat state\nV27 HERO PASS: naia dead hero cannot proc\nV27 HERO PASS: sael field conditional passive proc count\nV27 HERO PASS: sael passive changes actual combat state\nV27 HERO PASS: sael dead hero cannot proc\nV27 HERO PASS: odelia field conditional passive proc count\nV27 HERO PASS: odelia passive changes actual combat state\nV27 HERO PASS: odelia dead hero cannot proc\nV27 HERO PASS: lucien field conditional passive proc count\nV27 HERO PASS: lucien passive changes actual combat state\nV27 HERO PASS: lucien dead hero cannot proc\nV27 HERO PASS: corvin field conditional passive proc count\nV27 HERO PASS: corvin passive changes actual combat state\nV27 HERO PASS: corvin dead hero cannot proc\nV27 HERO PASS: rokan field conditional passive proc count\nV27 HERO PASS: rokan passive changes actual combat state\nV27 HERO PASS: rokan dead hero cannot proc\nV27 HERO PASS: bora field conditional passive proc count\nV27 HERO PASS: bora passive changes actual combat state\nV27 HERO PASS: bora dead hero cannot proc\nV27 HERO PASS: selene field conditional passive proc count\nV27 HERO PASS: selene passive changes actual combat state\nV27 HERO PASS: selene dead hero cannot proc\nV27 HERO PASS: leonhardt raid conditional passive proc count\nV27 HERO PASS: leonhardt passive changes actual combat state\nV27 HERO PASS: leonhardt dead hero cannot proc\nV27 HERO PASS: mira raid conditional passive proc count\nV27 HERO PASS: mira passive changes actual combat state\nV27 HERO PASS: mira dead hero cannot proc\nV27 HERO PASS: elisia raid conditional passive proc count\nV27 HERO PASS: elisia passive changes actual combat state\nV27 HERO PASS: elisia dead hero cannot proc\nV27 HERO PASS: kairen raid conditional passive proc count\nV27 HERO PASS: kairen passive changes actual combat state\nV27 HERO PASS: kairen dead hero cannot proc\nV27 HERO PASS: orwin raid conditional passive proc count\nV27 HERO PASS: orwin passive changes actual combat state\nV27 HERO PASS: orwin dead hero cannot proc\nV27 HERO PASS: seria raid conditional passive proc count\nV27 HERO PASS: seria passive changes actual combat state\nV27 HERO PASS: seria dead hero cannot proc\nV27 HERO PASS: astel raid conditional passive proc count\nV27 HERO PASS: astel passive changes actual combat state\nV27 HERO PASS: astel dead hero cannot proc\nV27 HERO PASS: darius raid conditional passive proc count\nV27 HERO PASS: darius passive changes actual combat state\nV27 HERO PASS: darius dead hero cannot proc\nV27 HERO PASS: lunea raid conditional passive proc count\nV27 HERO PASS: lunea passive changes actual combat state\nV27 HERO PASS: lunea dead hero cannot proc\nV27 HERO PASS: caelum raid conditional passive proc count\nV27 HERO PASS: caelum passive changes actual combat state\nV27 HERO PASS: caelum dead hero cannot proc\nV27 HERO PASS: valeria raid conditional passive proc count\nV27 HERO PASS: valeria passive changes actual combat state\nV27 HERO PASS: valeria dead hero cannot proc\nV27 HERO PASS: morgas raid conditional passive proc count\nV27 HERO PASS: morgas passive changes actual combat state\nV27 HERO PASS: morgas dead hero cannot proc\nV27 HERO PASS: ragna raid conditional passive proc count\nV27 HERO PASS: ragna passive changes actual combat state\nV27 HERO PASS: ragna dead hero cannot proc\nV27 HERO PASS: bron raid conditional passive proc count\nV27 HERO PASS: bron passive changes actual combat state\nV27 HERO PASS: bron dead hero cannot proc\nV27 HERO PASS: nyx raid conditional passive proc count\nV27 HERO PASS: nyx passive changes actual combat state\nV27 HERO PASS: nyx dead hero cannot proc\nV27 HERO PASS: fenris raid conditional passive proc count\nV27 HERO PASS: fenris passive changes actual combat state\nV27 HERO PASS: fenris dead hero cannot proc\nV27 HERO PASS: isolde raid conditional passive proc count\nV27 HERO PASS: isolde passive changes actual combat state\nV27 HERO PASS: isolde dead hero cannot proc\nV27 HERO PASS: garm raid conditional passive proc count\nV27 HERO PASS: garm passive changes actual combat state\nV27 HERO PASS: garm dead hero cannot proc\nV27 HERO PASS: veyra raid conditional passive proc count\nV27 HERO PASS: veyra passive changes actual combat state\nV27 HERO PASS: veyra dead hero cannot proc\nV27 HERO PASS: ulric raid conditional passive proc count\nV27 HERO PASS: ulric passive changes actual combat state\nV27 HERO PASS: ulric dead hero cannot proc\nV27 HERO PASS: adrien raid conditional passive proc count\nV27 HERO PASS: adrien passive changes actual combat state\nV27 HERO PASS: adrien dead hero cannot proc\nV27 HERO PASS: tessa raid conditional passive proc count\nV27 HERO PASS: tessa passive changes actual combat state\nV27 HERO PASS: tessa dead hero cannot proc\nV27 HERO PASS: naia raid conditional passive proc count\nV27 HERO PASS: naia passive changes actual combat state\nV27 HERO PASS: naia dead hero cannot proc\nV27 HERO PASS: sael raid conditional passive proc count\nV27 HERO PASS: sael passive changes actual combat state\nV27 HERO PASS: sael dead hero cannot proc\nV27 HERO PASS: odelia raid conditional passive proc count\nV27 HERO PASS: odelia passive changes actual combat state\nV27 HERO PASS: odelia dead hero cannot proc\nV27 HERO PASS: lucien raid conditional passive proc count\nV27 HERO PASS: lucien passive changes actual combat state\nV27 HERO PASS: lucien dead hero cannot proc\nV27 HERO PASS: corvin raid conditional passive proc count\nV27 HERO PASS: corvin passive changes actual combat state\nV27 HERO PASS: corvin dead hero cannot proc\nV27 HERO PASS: rokan raid conditional passive proc count\nV27 HERO PASS: rokan passive changes actual combat state\nV27 HERO PASS: rokan dead hero cannot proc\nV27 HERO PASS: bora raid conditional passive proc count\nV27 HERO PASS: bora passive changes actual combat state\nV27 HERO PASS: bora dead hero cannot proc\nV27 HERO PASS: selene raid conditional passive proc count\nV27 HERO PASS: selene passive changes actual combat state\nV27 HERO PASS: selene dead hero cannot proc\nV27 HERO PASS: shield capped at 20 percent max HP\nV27 HERO PASS: shield absorbs actual incoming damage\nV27 HERO PASS: shield expires\nV27 HERO PASS: blood cost cannot kill the caster\nV27 HERO PASS: out-of-range A2 spends no cooldown\nV27 HERO PASS: growth preserves second cooldown\nV27 HERO PASS: paused hunt cannot advance second cooldown\nV27 HERO PASS: boss control immunity preserves stun ultimate\nV27 HERO PASS: real field windup selects and settles A2 exactly once\nv29_roster_kit checks=885 failures=0 casts=180\n"
+    },
+    {
+      "test": "V29RosterUiSaveSmokeTest.gd",
+      "passed": true,
+      "seconds": 18.98,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv29_roster_ui_save checks=276 failures=0\n"
+    },
+    {
+      "test": "V30UiFlowSmokeTest.gd",
+      "passed": false,
+      "seconds": 22.23,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: new player can explicitly request onboarding guidance\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://scripts/V30UiFlowSmokeTest.gd:17)\n       [1] _run (res://scripts/V30UiFlowSmokeTest.gd:218)\n       [2] settle (res://scripts/V30UiFlowSmokeTest.gd:20)\nERROR: guidance opens only after the help action\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://scripts/V30UiFlowSmokeTest.gd:17)\n       [1] _run (res://scripts/V30UiFlowSmokeTest.gd:221)\n       [2] settle (res://scripts/V30UiFlowSmokeTest.gd:20)\nv30_ui_flow checks=961 failures=2 screens=18 report=/tmp/pixel-rpg-tests-1ph220i5/V30UiFlowSmokeTest/godot/app_userdata/Pixel War of Species/v30-ui-flow-report.json\n"
+    },
+    {
+      "test": "V5FoundationSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.85,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv5_foundation_smoke_test_ok heroes=15 synergy=3인 결속 +5% 전투력 · 6인 전술대 +7% 전투력/+5% HP · 10인 대원정대 +8% 전투력/+10% HP · 휴먼 방진 +8% HP · 엘프 별숲 +7% 전투력 · 균형 진형 +8% 전투력/+5% HP inventory=30 gold=80\n"
+    },
+    {
+      "test": "V6CombatSmokeTest.gd",
+      "passed": true,
+      "seconds": 5.04,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv6_combat_smoke_test_ok heroes=10 enemies=5 aoe_targets=4 tank_target=leonhardt\nWARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).\n   at: cleanup (core/object/object.cpp:2536)\n"
+    },
+    {
+      "test": "V7SystemsSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.49,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv7_systems_smoke_test_ok heroes=10 presets=3 speed=x1/x2/x3 raid_heal=ok range=ok ai=ok pets=ok\nWARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).\n   at: cleanup (core/object/object.cpp:2536)\n"
+    },
+    {
+      "test": "V8PolishSmokeTest.gd",
+      "passed": true,
+      "seconds": 4.5,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8_polish_smoke_test_ok skill_tree=ok pet_growth=ok cutin=ok telegraph=ok result=ok\n"
+    },
+    {
+      "test": "V9MetaLoopSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.79,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv9_meta_loop_smoke_test_ok summon=ok breakthrough=ok quest=ok dungeon=ok tower=ok salvage=ok\n"
+    },
+    {
+      "test": "WorldBattleResolverSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.89,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nworld_battle_resolver_smoke_test_ok deterministic=ok roles=ok garrison=10\n"
+    },
+    {
+      "test": "WorldConflictStateSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.91,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nworld_conflict_state_smoke_test_ok cap=ok defenders=ok capture=ok rally_limit=ok attack_queue=ok\n"
+    },
+    {
+      "test": "WorldMarchStateSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.89,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nworld_march_state_smoke_test_ok route=ok rations=ok arrival=ok save=ok\n"
+    },
+    {
+      "test": "WorldSeasonStateSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.0,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nworld_season_state_smoke_test_ok score=ok settlement=ok rollover=ok\n"
+    },
+    {
+      "test": "WorldSupplyNetworkSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.91,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nworld_supply_network_smoke_test_ok connected=ok isolated=ok reconnect=ok retreat=ok\n"
+    },
+    {
+      "test": "WorldWarStateSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.81,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nworld_war_state_smoke_test_ok tiles=400 capture=ok save=ok landmarks=ok\n"
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+	"a2_casts_by_hero": {
+		"adrien": 36,
+		"astel": 39,
+		"bora": 7,
+		"bron": 34,
+		"caelum": 43,
+		"corvin": 25,
+		"darius": 24,
+		"elisia": 16,
+		"fenris": 24,
+		"garm": 37,
+		"isolde": 13,
+		"kairen": 21,
+		"leonhardt": 39,
+		"lucien": 35,
+		"lunea": 20,
+		"mira": 9,
+		"morgas": 16,
+		"naia": 15,
+		"nyx": 18,
+		"odelia": 11,
+		"orwin": 6,
+		"ragna": 22,
+		"rokan": 21,
+		"sael": 7,
+		"selene": 12,
+		"seria": 26,
+		"tessa": 25,
+		"ulric": 15,
+		"valeria": 9,
+		"veyra": 44
+	},
+	"checks": 73,
+	"comparison": {
+		"field": {
+			"metric": "packs",
+			"relative_gap": 0.117647058823529,
+			"totals": {
+				"aurelia": 48.0,
+				"noxfera": 54.0
+			}
+		},
+		"raid": {
+			"metric": "damage",
+			"relative_gap": 0.0446722783204573,
+			"totals": {
+				"aurelia": 741888.0,
+				"noxfera": 775787.0
+			}
+		}
+	},
+	"conditions": "four 5-damage/3-defense-support/2-debuff squads per faction; Lv20, equipment+3, SSR, no pets; 60s per row; two field zones and raid training boss",
+	"failures": [],
+	"samples": [
+		{
+			"a2_casts": 58,
+			"alive": 10,
+			"damage": 191984,
+			"faction": "aurelia",
+			"hp_ratio": 0.895421566174631,
+			"mode": "raid",
+			"packs": 0,
+			"rotation": 0,
+			"seconds": 60,
+			"zone": "moonrest_forest"
+		},
+		{
+			"a2_casts": 69,
+			"alive": 10,
+			"damage": 199553,
+			"faction": "noxfera",
+			"hp_ratio": 0.899869634977938,
+			"mode": "raid",
+			"packs": 0,
+			"rotation": 0,
+			"seconds": 60,
+			"zone": "moonrest_forest"
+		},
+		{
+			"a2_casts": 59,
+			"alive": 10,
+			"damage": 186434,
+			"faction": "aurelia",
+			"hp_ratio": 0.955142058932054,
+			"mode": "raid",
+			"packs": 0,
+			"rotation": 1,
+			"seconds": 60,
+			"zone": "moonrest_forest"
+		},
+		{
+			"a2_casts": 60,
+			"alive": 10,
+			"damage": 193208,
+			"faction": "noxfera",
+			"hp_ratio": 0.937260943476413,
+			"mode": "raid",
+			"packs": 0,
+			"rotation": 1,
+			"seconds": 60,
+			"zone": "moonrest_forest"
+		},
+		{
+			"a2_casts": 60,
+			"alive": 10,
+			"damage": 187353,
+			"faction": "aurelia",
+			"hp_ratio": 0.976517501107665,
+			"mode": "raid",
+			"packs": 0,
+			"rotation": 2,
+			"seconds": 60,
+			"zone": "moonrest_forest"
+		},
+		{
+			"a2_casts": 57,
+			"alive": 10,
+			"damage": 188958,
+			"faction": "noxfera",
+			"hp_ratio": 0.933160025996101,
+			"mode": "raid",
+			"packs": 0,
+			"rotation": 2,
+			"seconds": 60,
+			"zone": "moonrest_forest"
+		},
+		{
+			"a2_casts": 67,
+			"alive": 10,
+			"damage": 176117,
+			"faction": "aurelia",
+			"hp_ratio": 0.981824848103918,
+			"mode": "raid",
+			"packs": 0,
+			"rotation": 3,
+			"seconds": 60,
+			"zone": "moonrest_forest"
+		},
+		{
+			"a2_casts": 60,
+			"alive": 10,
+			"damage": 194068,
+			"faction": "noxfera",
+			"hp_ratio": 0.948163916977115,
+			"mode": "raid",
+			"packs": 0,
+			"rotation": 3,
+			"seconds": 60,
+			"zone": "moonrest_forest"
+		},
+		{
+			"a2_casts": 17,
+			"alive": 10,
+			"damage": 0,
+			"faction": "aurelia",
+			"hp_ratio": 0.999299474605954,
+			"mode": "field",
+			"packs": 15,
+			"rotation": 0,
+			"seconds": 60,
+			"zone": "gray_meadow"
+		},
+		{
+			"a2_casts": 17,
+			"alive": 10,
+			"damage": 0,
+			"faction": "noxfera",
+			"hp_ratio": 0.993531889290012,
+			"mode": "field",
+			"packs": 18,
+			"rotation": 0,
+			"seconds": 60,
+			"zone": "gray_meadow"
+		},
+		{
+			"a2_casts": 25,
+			"alive": 10,
+			"damage": 0,
+			"faction": "aurelia",
+			"hp_ratio": 0.989141320963576,
+			"mode": "field",
+			"packs": 9,
+			"rotation": 1,
+			"seconds": 60,
+			"zone": "moonrest_forest"
+		},
+		{
+			"a2_casts": 24,
+			"alive": 10,
+			"damage": 0,
+			"faction": "noxfera",
+			"hp_ratio": 0.996600084997875,
+			"mode": "field",
+			"packs": 9,
+			"rotation": 1,
+			"seconds": 60,
+			"zone": "moonrest_forest"
+		},
+		{
+			"a2_casts": 22,
+			"alive": 10,
+			"damage": 0,
+			"faction": "aurelia",
+			"hp_ratio": 0.999950770442574,
+			"mode": "field",
+			"packs": 15,
+			"rotation": 2,
+			"seconds": 60,
+			"zone": "gray_meadow"
+		},
+		{
+			"a2_casts": 19,
+			"alive": 10,
+			"damage": 0,
+			"faction": "noxfera",
+			"hp_ratio": 1.0,
+			"mode": "field",
+			"packs": 18,
+			"rotation": 2,
+			"seconds": 60,
+			"zone": "gray_meadow"
+		},
+		{
+			"a2_casts": 29,
+			"alive": 10,
+			"damage": 0,
+			"faction": "aurelia",
+			"hp_ratio": 0.982924785250367,
+			"mode": "field",
+			"packs": 9,
+			"rotation": 3,
+			"seconds": 60,
+			"zone": "moonrest_forest"
+		},
+		{
+			"a2_casts": 26,
+			"alive": 10,
+			"damage": 0,
+			"faction": "noxfera",
+			"hp_ratio": 0.992974986695051,
+			"mode": "field",
+			"packs": 9,
+			"rotation": 3,
+			"seconds": 60,
+			"zone": "moonrest_forest"
+		}
+	]
+}

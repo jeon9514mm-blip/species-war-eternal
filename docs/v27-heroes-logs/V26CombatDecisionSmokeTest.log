@@ -1,0 +1,17 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+V26 PASS: out-of-range front hero does not starve ready ranged ally
+V26 PASS: out-of-range front hero does not skip enemy turn
+V26 PASS: started emergency heal survives enemy leaving attack range
+V26 PASS: successful emergency heal starts its cooldown
+V26 PASS: distant formation row does not block adjacent living enemy
+V26 PASS: melee damages adjacent enemy despite distant front row
+V26 PASS: melee does not damage distant enemy
+V26 PASS: chase fixture stays outside every hero attack range
+V26 PASS: natural chase starts and completes emergency healing
+V26 PASS: natural chase does not create out-of-range damage
+V26 PASS: area skill damages its local enemy group
+V26 PASS: area skill cannot hit enemy across the field
+V26 PASS: area ultimate damages its local enemy group
+V26 PASS: area ultimate cannot hit enemy across the field
+v26_combat_decision_smoke_test_ok checks=14 independent_turns=ok emergency_heal=ok spatial_target=ok local_aoe=ok

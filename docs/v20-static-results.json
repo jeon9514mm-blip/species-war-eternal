@@ -1,0 +1,17 @@
+{
+  "version": "v20",
+  "engine": "Godot 4.7 / recommended 4.7.2-stable",
+  "save_version": 20,
+  "gdscript_files": 68,
+  "smoke_tests": 44,
+  "static_validation": "pass",
+  "godot47_compat_scan": "pass",
+  "native_godot_runtime_available": false,
+  "new_modules": [
+    "RoamingHuntDirector.gd"
+  ],
+  "new_tests": [
+    "RoamingHuntDirectorSmokeTest.gd",
+    "V20RealtimeRoamingHuntSmokeTest.gd"
+  ]
+}

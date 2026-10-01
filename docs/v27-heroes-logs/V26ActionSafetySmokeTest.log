@@ -1,0 +1,27 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+V26 ACTION PASS: dangerous encounter permits an unprotected tank ultimate
+V26 ACTION PASS: second tank holds ultimate while the whole party is protected
+V26 ACTION PASS: windup revalidation preserves the second tank ultimate gauge
+V26 ACTION PASS: one full second of party protection still holds the ultimate
+V26 ACTION PASS: expiring party protection permits a useful refresh
+V26 ACTION PASS: invalid/dead/distant skill target -1 spends no cooldown and deals no damage
+V26 ACTION PASS: invalid/dead/distant ultimate target -1 preserves the full gauge
+V26 ACTION PASS: invalid/dead/distant skill target 99 spends no cooldown and deals no damage
+V26 ACTION PASS: invalid/dead/distant ultimate target 99 preserves the full gauge
+V26 ACTION PASS: invalid/dead/distant skill target 1 spends no cooldown and deals no damage
+V26 ACTION PASS: invalid/dead/distant ultimate target 1 preserves the full gauge
+V26 ACTION PASS: invalid/dead/distant skill target 2 spends no cooldown and deals no damage
+V26 ACTION PASS: invalid/dead/distant ultimate target 2 preserves the full gauge
+V26 ACTION PASS: basic windup retargets a living reachable enemy
+V26 ACTION PASS: basic retarget does not revive the old target or falsely finish the wave
+V26 ACTION PASS: skill windup retargets a living reachable enemy
+V26 ACTION PASS: skill retarget does not revive the old target or falsely finish the wave
+V26 ACTION PASS: retargeted skill consumes cooldown only after landing
+V26 ACTION PASS: ultimate windup retargets a living reachable enemy
+V26 ACTION PASS: ultimate retarget does not revive the old target or falsely finish the wave
+V26 ACTION PASS: retargeted ultimate lands and then consumes its gauge
+V26 ACTION PASS: pet final hit completes the encounter and enters looting
+V26 ACTION PASS: pet final hit grants the exact encounter gold and XP
+V26 ACTION PASS: repeated final-hit callbacks cannot duplicate encounter rewards
+v26_action_safety_smoke_test_ok checks=24 tank_guard=ok resources=ok retarget=ok pet_reward=ok

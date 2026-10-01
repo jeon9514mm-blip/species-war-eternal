@@ -1,0 +1,1295 @@
+{
+  "leonhardt": {
+    "source": "레온하르트_베일_치비_기사_스프라이트_시트.png",
+    "sha256": "a15d6033676e66f9376f34541e7b6609e59c1bf7689bca633edcf74b9a224b47",
+    "frame": [
+      288,
+      288
+    ],
+    "pivot": [
+      144,
+      264
+    ],
+    "body_height": 128.0,
+    "actions": [
+      {
+        "action": "idle",
+        "source_key_poses": 3,
+        "annotations": [
+          {
+            "rect": [
+              8,
+              84,
+              114,
+              258
+            ],
+            "pivot": [
+              68,
+              246
+            ],
+            "body_height": 143
+          },
+          {
+            "rect": [
+              115,
+              88,
+              219,
+              258
+            ],
+            "pivot": [
+              168,
+              246
+            ],
+            "body_height": 143
+          },
+          {
+            "rect": [
+              219,
+              88,
+              315,
+              258
+            ],
+            "pivot": [
+              269,
+              246
+            ],
+            "body_height": 143
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            2,
+            1
+          ],
+          true,
+          4.0
+        ]
+      },
+      {
+        "action": "walk",
+        "source_key_poses": 3,
+        "annotations": [
+          {
+            "rect": [
+              325,
+              89,
+              429,
+              257
+            ],
+            "pivot": [
+              377,
+              246
+            ],
+            "body_height": 143
+          },
+          {
+            "rect": [
+              430,
+              87,
+              529,
+              257
+            ],
+            "pivot": [
+              481,
+              246
+            ],
+            "body_height": 143
+          },
+          {
+            "rect": [
+              530,
+              87,
+              635,
+              257
+            ],
+            "pivot": [
+              577,
+              246
+            ],
+            "body_height": 143
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            2,
+            1
+          ],
+          true,
+          8.0
+        ]
+      },
+      {
+        "action": "run",
+        "source_key_poses": 3,
+        "annotations": [
+          {
+            "rect": [
+              642,
+              90,
+              747,
+              257
+            ],
+            "pivot": [
+              693,
+              246
+            ],
+            "body_height": 143
+          },
+          {
+            "rect": [
+              748,
+              88,
+              854,
+              257
+            ],
+            "pivot": [
+              796,
+              246
+            ],
+            "body_height": 143
+          },
+          {
+            "rect": [
+              855,
+              88,
+              956,
+              257
+            ],
+            "pivot": [
+              902,
+              246
+            ],
+            "body_height": 143
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            2,
+            1
+          ],
+          true,
+          10.0
+        ]
+      },
+      {
+        "action": "attack_1",
+        "source_key_poses": 3,
+        "annotations": [
+          {
+            "rect": [
+              965,
+              90,
+              1073,
+              258
+            ],
+            "pivot": [
+              1017,
+              246
+            ],
+            "body_height": 143
+          },
+          {
+            "rect": [
+              1074,
+              101,
+              1179,
+              258
+            ],
+            "pivot": [
+              1131,
+              246
+            ],
+            "body_height": 136
+          },
+          {
+            "rect": [
+              1180,
+              105,
+              1277,
+              258
+            ],
+            "pivot": [
+              1226,
+              246
+            ],
+            "body_height": 138
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            2,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "attack_2",
+        "source_key_poses": 3,
+        "annotations": [
+          {
+            "rect": [
+              1284,
+              93,
+              1390,
+              258
+            ],
+            "pivot": [
+              1331,
+              246
+            ],
+            "body_height": 142
+          },
+          {
+            "rect": [
+              1391,
+              95,
+              1491,
+              258
+            ],
+            "pivot": [
+              1430,
+              246
+            ],
+            "body_height": 142
+          },
+          {
+            "rect": [
+              1492,
+              87,
+              1597,
+              258
+            ],
+            "pivot": [
+              1540,
+              246
+            ],
+            "body_height": 142
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            2,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "skill",
+        "source_key_poses": 3,
+        "annotations": [
+          {
+            "rect": [
+              7,
+              419,
+              109,
+              591
+            ],
+            "pivot": [
+              65,
+              580
+            ],
+            "body_height": 142
+          },
+          {
+            "rect": [
+              110,
+              358,
+              212,
+              591
+            ],
+            "pivot": [
+              163,
+              580
+            ],
+            "body_height": 142
+          },
+          {
+            "rect": [
+              213,
+              343,
+              314,
+              591
+            ],
+            "pivot": [
+              265,
+              580
+            ],
+            "body_height": 142
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            2,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "ultimate",
+        "source_key_poses": 2,
+        "annotations": [
+          {
+            "rect": [
+              326,
+              413,
+              429,
+              591
+            ],
+            "pivot": [
+              377,
+              580
+            ],
+            "body_height": 142
+          },
+          {
+            "rect": [
+              430,
+              323,
+              635,
+              594
+            ],
+            "pivot": [
+              512,
+              580
+            ],
+            "body_height": 142
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "hit",
+        "source_key_poses": 3,
+        "annotations": [
+          {
+            "rect": [
+              646,
+              415,
+              748,
+              589
+            ],
+            "pivot": [
+              698,
+              580
+            ],
+            "body_height": 142
+          },
+          {
+            "rect": [
+              749,
+              416,
+              852,
+              589
+            ],
+            "pivot": [
+              801,
+              580
+            ],
+            "body_height": 139
+          },
+          {
+            "rect": [
+              853,
+              419,
+              956,
+              589
+            ],
+            "pivot": [
+              900,
+              580
+            ],
+            "body_height": 139
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            2,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "knockback",
+        "source_key_poses": 2,
+        "annotations": [
+          {
+            "rect": [
+              970,
+              402,
+              1097,
+              582
+            ],
+            "pivot": [
+              1030,
+              571
+            ],
+            "body_height": 137
+          },
+          {
+            "rect": [
+              1098,
+              416,
+              1276,
+              581
+            ],
+            "pivot": [
+              1182,
+              571
+            ],
+            "body_height": 139
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "dodge",
+        "source_key_poses": 2,
+        "annotations": [
+          {
+            "rect": [
+              1285,
+              425,
+              1440,
+              582
+            ],
+            "pivot": [
+              1366,
+              570
+            ],
+            "body_height": 132
+          },
+          {
+            "rect": [
+              1441,
+              429,
+              1596,
+              582
+            ],
+            "pivot": [
+              1506,
+              570
+            ],
+            "body_height": 128
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "guard",
+        "source_key_poses": 3,
+        "annotations": [
+          {
+            "rect": [
+              5,
+              712,
+              107,
+              882
+            ],
+            "pivot": [
+              64,
+              870
+            ],
+            "body_height": 136
+          },
+          {
+            "rect": [
+              108,
+              695,
+              212,
+              882
+            ],
+            "pivot": [
+              163,
+              870
+            ],
+            "body_height": 136
+          },
+          {
+            "rect": [
+              213,
+              709,
+              317,
+              882
+            ],
+            "pivot": [
+              265,
+              870
+            ],
+            "body_height": 136
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            2,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "buff",
+        "source_key_poses": 3,
+        "annotations": [
+          {
+            "rect": [
+              324,
+              663,
+              425,
+              889
+            ],
+            "pivot": [
+              379,
+              870
+            ],
+            "body_height": 136
+          },
+          {
+            "rect": [
+              426,
+              646,
+              533,
+              889
+            ],
+            "pivot": [
+              482,
+              870
+            ],
+            "body_height": 136
+          },
+          {
+            "rect": [
+              534,
+              663,
+              636,
+              889
+            ],
+            "pivot": [
+              581,
+              870
+            ],
+            "body_height": 136
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            2,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "debuff",
+        "source_key_poses": 3,
+        "annotations": [
+          {
+            "rect": [
+              644,
+              707,
+              748,
+              884
+            ],
+            "pivot": [
+              696,
+              872
+            ],
+            "body_height": 142
+          },
+          {
+            "rect": [
+              749,
+              716,
+              852,
+              884
+            ],
+            "pivot": [
+              802,
+              872
+            ],
+            "body_height": 142
+          },
+          {
+            "rect": [
+              853,
+              731,
+              956,
+              884
+            ],
+            "pivot": [
+              900,
+              872
+            ],
+            "body_height": 142
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            2
+          ],
+          true,
+          4.0
+        ]
+      },
+      {
+        "action": "victory",
+        "source_key_poses": 3,
+        "annotations": [
+          {
+            "rect": [
+              965,
+              668,
+              1077,
+              888
+            ],
+            "pivot": [
+              1024,
+              870
+            ],
+            "body_height": 142
+          },
+          {
+            "rect": [
+              1078,
+              679,
+              1183,
+              888
+            ],
+            "pivot": [
+              1120,
+              870
+            ],
+            "body_height": 142
+          },
+          {
+            "rect": [
+              1184,
+              680,
+              1277,
+              888
+            ],
+            "pivot": [
+              1218,
+              870
+            ],
+            "body_height": 142
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            2,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "death",
+        "source_key_poses": 2,
+        "annotations": [
+          {
+            "rect": [
+              1284,
+              747,
+              1385,
+              884
+            ],
+            "pivot": [
+              1336,
+              872
+            ],
+            "body_height": 142
+          },
+          {
+            "rect": [
+              1386,
+              748,
+              1596,
+              892
+            ],
+            "pivot": [
+              1480,
+              872
+            ],
+            "body_height": 142
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1
+          ],
+          false,
+          4.0
+        ]
+      }
+    ],
+    "direction": "3/4 source poses + horizontal flip; NOT 4-direction drawings",
+    "animation_limit": "1-3 illustrated source keys per action; single pose actions use visual tween at runtime, not additional hand-drawn frames"
+  },
+  "valeria": {
+    "source": "발레리아_나이트베일_뱀파이어_스프라이트_시트.png",
+    "sha256": "03849ca4da9c829a398a8f320a476183fc2cbb8823e918c286b3ccd05e3f05f6",
+    "frame": [
+      288,
+      288
+    ],
+    "pivot": [
+      144,
+      264
+    ],
+    "body_height": 128.0,
+    "actions": [
+      {
+        "action": "idle",
+        "source_key_poses": 1,
+        "annotations": [
+          {
+            "rect": [
+              6,
+              37,
+              232,
+              259
+            ],
+            "pivot": [
+              126,
+              242
+            ],
+            "body_height": 190
+          }
+        ],
+        "playback": [
+          [
+            0
+          ],
+          true,
+          4.0
+        ]
+      },
+      {
+        "action": "walk",
+        "source_key_poses": 2,
+        "annotations": [
+          {
+            "rect": [
+              242,
+              48,
+              391,
+              259
+            ],
+            "pivot": [
+              320,
+              240
+            ],
+            "body_height": 170
+          },
+          {
+            "rect": [
+              392,
+              46,
+              535,
+              259
+            ],
+            "pivot": [
+              454,
+              240
+            ],
+            "body_height": 170
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1
+          ],
+          true,
+          8.0
+        ]
+      },
+      {
+        "action": "run",
+        "source_key_poses": 3,
+        "annotations": [
+          {
+            "rect": [
+              542,
+              50,
+              690,
+              260
+            ],
+            "pivot": [
+              622,
+              240
+            ],
+            "body_height": 161
+          },
+          {
+            "rect": [
+              691,
+              48,
+              817,
+              260
+            ],
+            "pivot": [
+              753,
+              240
+            ],
+            "body_height": 161
+          },
+          {
+            "rect": [
+              818,
+              48,
+              934,
+              260
+            ],
+            "pivot": [
+              868,
+              240
+            ],
+            "body_height": 164
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            2,
+            1
+          ],
+          true,
+          10.0
+        ]
+      },
+      {
+        "action": "attack_1",
+        "source_key_poses": 2,
+        "annotations": [
+          {
+            "rect": [
+              943,
+              48,
+              1092,
+              260
+            ],
+            "pivot": [
+              1014,
+              240
+            ],
+            "body_height": 170
+          },
+          {
+            "rect": [
+              1093,
+              30,
+              1258,
+              261
+            ],
+            "pivot": [
+              1151,
+              240
+            ],
+            "body_height": 170
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "attack_2",
+        "source_key_poses": 2,
+        "annotations": [
+          {
+            "rect": [
+              1266,
+              48,
+              1423,
+              260
+            ],
+            "pivot": [
+              1337,
+              240
+            ],
+            "body_height": 170
+          },
+          {
+            "rect": [
+              1424,
+              48,
+              1598,
+              260
+            ],
+            "pivot": [
+              1491,
+              240
+            ],
+            "body_height": 170
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "skill",
+        "source_key_poses": 2,
+        "annotations": [
+          {
+            "rect": [
+              2,
+              342,
+              157,
+              568
+            ],
+            "pivot": [
+              85,
+              552
+            ],
+            "body_height": 169
+          },
+          {
+            "rect": [
+              159,
+              343,
+              307,
+              568
+            ],
+            "pivot": [
+              234,
+              552
+            ],
+            "body_height": 169
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "ultimate",
+        "source_key_poses": 2,
+        "annotations": [
+          {
+            "rect": [
+              313,
+              324,
+              532,
+              578
+            ],
+            "pivot": [
+              441,
+              554
+            ],
+            "body_height": 182
+          },
+          {
+            "rect": [
+              533,
+              324,
+              722,
+              578
+            ],
+            "pivot": [
+              630,
+              554
+            ],
+            "body_height": 156
+          }
+        ],
+        "playback": [
+          [
+            0,
+            1,
+            0
+          ],
+          false,
+          6.0
+        ]
+      },
+      {
+        "action": "hit",
+        "source_key_poses": 1,
+        "annotations": [
+          {
+            "rect": [
+              731,
+              349,
+              947,
+              575
+            ],
+            "pivot": [
+              843,
+              554
+            ],
+            "body_height": 172
+          }
+        ],
+        "playback": [
+          [
+            0
+          ],
+          false,
+          2.8
+        ]
+      },
+      {
+        "action": "knockback",
+        "source_key_poses": 1,
+        "annotations": [
+          {
+            "rect": [
+              960,
+              348,
+              1242,
+              574
+            ],
+            "pivot": [
+              1116,
+              554
+            ],
+            "body_height": 179
+          }
+        ],
+        "playback": [
+          [
+            0
+          ],
+          false,
+          2.8
+        ]
+      },
+      {
+        "action": "dodge",
+        "source_key_poses": 1,
+        "annotations": [
+          {
+            "rect": [
+              1256,
+              375,
+              1597,
+              571
+            ],
+            "pivot": [
+              1420,
+              552
+            ],
+            "body_height": 156
+          }
+        ],
+        "playback": [
+          [
+            0
+          ],
+          false,
+          2.8
+        ]
+      },
+      {
+        "action": "guard",
+        "source_key_poses": 1,
+        "annotations": [
+          {
+            "rect": [
+              10,
+              637,
+              292,
+              886
+            ],
+            "pivot": [
+              141,
+              869
+            ],
+            "body_height": 190
+          }
+        ],
+        "playback": [
+          [
+            0
+          ],
+          false,
+          2.8
+        ]
+      },
+      {
+        "action": "buff",
+        "source_key_poses": 1,
+        "annotations": [
+          {
+            "rect": [
+              302,
+              636,
+              630,
+              893
+            ],
+            "pivot": [
+              481,
+              876
+            ],
+            "body_height": 190
+          }
+        ],
+        "playback": [
+          [
+            0
+          ],
+          false,
+          2.8
+        ]
+      },
+      {
+        "action": "debuff",
+        "source_key_poses": 1,
+        "annotations": [
+          {
+            "rect": [
+              636,
+              643,
+              934,
+              893
+            ],
+            "pivot": [
+              803,
+              877
+            ],
+            "body_height": 190
+          }
+        ],
+        "playback": [
+          [
+            0
+          ],
+          true,
+          4.0
+        ]
+      },
+      {
+        "action": "victory",
+        "source_key_poses": 1,
+        "annotations": [
+          {
+            "rect": [
+              942,
+              638,
+              1257,
+              893
+            ],
+            "pivot": [
+              1107,
+              875
+            ],
+            "body_height": 191
+          }
+        ],
+        "playback": [
+          [
+            0
+          ],
+          false,
+          2.8
+        ]
+      },
+      {
+        "action": "death",
+        "source_key_poses": 1,
+        "annotations": [
+          {
+            "rect": [
+              1269,
+              719,
+              1595,
+              879
+            ],
+            "pivot": [
+              1438,
+              850
+            ],
+            "body_height": 191
+          }
+        ],
+        "playback": [
+          [
+            0
+          ],
+          false,
+          4.0
+        ]
+      }
+    ],
+    "direction": "3/4 source poses + horizontal flip; NOT 4-direction drawings",
+    "animation_limit": "1-3 illustrated source keys per action; single pose actions use visual tween at runtime, not additional hand-drawn frames"
+  }
+}

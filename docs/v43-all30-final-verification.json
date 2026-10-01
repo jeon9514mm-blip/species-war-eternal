@@ -1,0 +1,332 @@
+{
+  "revision": "v43 distinct 15-action visual pass",
+  "project_path": "/mnt/data/v41-all30-work/pixel-faction-rpg-v34-portrait-design-only",
+  "hero_count": 30,
+  "heroes": [
+    {
+      "id": "leonhardt",
+      "name": "레온하르트 베일",
+      "faction": "aurelia",
+      "race": "휴먼",
+      "class": "성벽기사",
+      "role_group": "탱커"
+    },
+    {
+      "id": "mira",
+      "name": "미라 솔렌",
+      "faction": "aurelia",
+      "race": "휴먼",
+      "class": "왕립 사수",
+      "role_group": "딜러"
+    },
+    {
+      "id": "elisia",
+      "name": "엘리시아 루네",
+      "faction": "aurelia",
+      "race": "엘프",
+      "class": "숲의 사제",
+      "role_group": "서포터"
+    },
+    {
+      "id": "kairen",
+      "name": "카이렌 모스윈드",
+      "faction": "aurelia",
+      "race": "엘프",
+      "class": "별의 마도사",
+      "role_group": "컨트롤러"
+    },
+    {
+      "id": "orwin",
+      "name": "오르윈 할브레히트",
+      "faction": "aurelia",
+      "race": "휴먼",
+      "class": "황금창 수호대",
+      "role_group": "탱커"
+    },
+    {
+      "id": "seria",
+      "name": "세리아 윈드릴",
+      "faction": "aurelia",
+      "race": "엘프",
+      "class": "질풍 추적자",
+      "role_group": "딜러"
+    },
+    {
+      "id": "astel",
+      "name": "아스텔 비렐",
+      "faction": "aurelia",
+      "race": "엘프",
+      "class": "새벽의 성가대",
+      "role_group": "서포터"
+    },
+    {
+      "id": "darius",
+      "name": "다리우스 크론",
+      "faction": "aurelia",
+      "race": "휴먼",
+      "class": "왕국 집행관",
+      "role_group": "딜러"
+    },
+    {
+      "id": "lunea",
+      "name": "루네아 미스트리프",
+      "faction": "aurelia",
+      "race": "엘프",
+      "class": "안개 현자",
+      "role_group": "컨트롤러"
+    },
+    {
+      "id": "caelum",
+      "name": "카엘룸 아르도르",
+      "faction": "aurelia",
+      "race": "휴먼",
+      "class": "태양검 기사",
+      "role_group": "딜러"
+    },
+    {
+      "id": "valeria",
+      "name": "발레리아 나이트블러드",
+      "faction": "noxfera",
+      "race": "뱀파이어",
+      "class": "혈검 귀족",
+      "role_group": "딜러"
+    },
+    {
+      "id": "morgas",
+      "name": "모르가스 벨루인",
+      "faction": "noxfera",
+      "race": "뱀파이어",
+      "class": "혈술 연금술사",
+      "role_group": "컨트롤러"
+    },
+    {
+      "id": "ragna",
+      "name": "라그나 울프하트",
+      "faction": "noxfera",
+      "race": "늑대인간",
+      "class": "달의 사냥꾼",
+      "role_group": "딜러"
+    },
+    {
+      "id": "bron",
+      "name": "브론 카르그림",
+      "faction": "noxfera",
+      "race": "늑대인간",
+      "class": "철골 파괴자",
+      "role_group": "탱커"
+    },
+    {
+      "id": "nyx",
+      "name": "닉스 베스퍼",
+      "faction": "noxfera",
+      "race": "뱀파이어",
+      "class": "밤의 예언자",
+      "role_group": "컨트롤러"
+    },
+    {
+      "id": "fenris",
+      "name": "펜리스 그레이메인",
+      "faction": "noxfera",
+      "race": "늑대인간",
+      "class": "회색 송곳니",
+      "role_group": "딜러"
+    },
+    {
+      "id": "isolde",
+      "name": "이졸데 블러드로즈",
+      "faction": "noxfera",
+      "race": "뱀파이어",
+      "class": "피의 성녀",
+      "role_group": "서포터"
+    },
+    {
+      "id": "garm",
+      "name": "가름 아이언팽",
+      "faction": "noxfera",
+      "race": "늑대인간",
+      "class": "철갑 송곳니",
+      "role_group": "탱커"
+    },
+    {
+      "id": "veyra",
+      "name": "베이라 녹턴",
+      "faction": "noxfera",
+      "race": "뱀파이어",
+      "class": "그림자 검무사",
+      "role_group": "딜러"
+    },
+    {
+      "id": "ulric",
+      "name": "울리크 문클로",
+      "faction": "noxfera",
+      "race": "늑대인간",
+      "class": "월식 추적자",
+      "role_group": "컨트롤러"
+    },
+    {
+      "id": "adrien",
+      "name": "아드리엔 로웰",
+      "faction": "aurelia",
+      "race": "휴먼",
+      "class": "은빛 결투가",
+      "role_group": "딜러"
+    },
+    {
+      "id": "tessa",
+      "name": "테사 코그웰",
+      "faction": "aurelia",
+      "race": "휴먼",
+      "class": "룬포 기술자",
+      "role_group": "딜러"
+    },
+    {
+      "id": "naia",
+      "name": "나이아 스타위버",
+      "faction": "aurelia",
+      "race": "엘프",
+      "class": "별자리 관측자",
+      "role_group": "딜러"
+    },
+    {
+      "id": "sael",
+      "name": "사엘 리프댄서",
+      "faction": "aurelia",
+      "race": "엘프",
+      "class": "잎새 쌍검사",
+      "role_group": "딜러"
+    },
+    {
+      "id": "odelia",
+      "name": "오델리아 실브룩",
+      "faction": "aurelia",
+      "race": "휴먼",
+      "class": "문장 봉인관",
+      "role_group": "컨트롤러"
+    },
+    {
+      "id": "lucien",
+      "name": "루시엔 레드메르",
+      "faction": "noxfera",
+      "race": "뱀파이어",
+      "class": "혈약 창술사",
+      "role_group": "딜러"
+    },
+    {
+      "id": "corvin",
+      "name": "코르빈 애쉬웰",
+      "faction": "noxfera",
+      "race": "뱀파이어",
+      "class": "황혼 지휘봉",
+      "role_group": "딜러"
+    },
+    {
+      "id": "rokan",
+      "name": "로칸 스톤하울",
+      "faction": "noxfera",
+      "race": "늑대인간",
+      "class": "무리 투창수",
+      "role_group": "딜러"
+    },
+    {
+      "id": "bora",
+      "name": "보라 스노우팽",
+      "faction": "noxfera",
+      "race": "늑대인간",
+      "class": "설원 권투가",
+      "role_group": "딜러"
+    },
+    {
+      "id": "selene",
+      "name": "셀레네 베르밀",
+      "faction": "noxfera",
+      "race": "뱀파이어",
+      "class": "홍실 재봉사",
+      "role_group": "서포터"
+    }
+  ],
+  "identity_audit": {
+    "canonical_v32_roster_sha256": "c09e9c2788398b9ed50ebfd5649befd4978adeae448db07626cac4538294afaf",
+    "roster_matches_clean_v34": true,
+    "hero_kit_runtime_matches_clean": true,
+    "main_matches_clean": true,
+    "combat_decision_matches_clean": true,
+    "changed_existing_files": [
+      "scripts/HeroSpriteFactory.gd",
+      "scripts/HeroVisualCatalog.gd"
+    ],
+    "expected_visual_routing_only": true,
+    "extra_hero_ids": [],
+    "missing_hero_ids": []
+  },
+  "visual_routes": {
+    "dedicated_keypose_sheets": [
+      "leonhardt",
+      "valeria"
+    ],
+    "aurelia_rigged_existing_ids": [
+      "mira",
+      "elisia",
+      "kairen",
+      "orwin",
+      "seria",
+      "astel",
+      "darius",
+      "lunea",
+      "caelum",
+      "adrien",
+      "tessa",
+      "naia",
+      "sael",
+      "odelia"
+    ],
+    "noxfera_rigged_existing_ids": [
+      "morgas",
+      "ragna",
+      "bron",
+      "nyx",
+      "fenris",
+      "isolde",
+      "garm",
+      "veyra",
+      "ulric",
+      "lucien",
+      "corvin",
+      "rokan",
+      "bora",
+      "selene"
+    ],
+    "actions": [
+      "idle",
+      "walk",
+      "run",
+      "attack_1",
+      "attack_2",
+      "skill",
+      "ultimate",
+      "hit",
+      "knockback",
+      "dodge",
+      "guard",
+      "buff",
+      "debuff",
+      "victory",
+      "death"
+    ]
+  },
+  "validation": {
+    "godot_4_7_2_all_hero_motion_smoke": "PASS 30 heroes x 15 actions",
+    "main_scene_300_frames": "PASS",
+    "static_validate": "PASS",
+    "godot47_compat_scan": "PASS",
+    "V29RosterKitSmokeTest": "PASS checks=885 failures=0",
+    "AutoHuntRegressionTest": "PASS checks=18 failures=0",
+    "V27GrowthEconomySmokeTest": "PASS 40/40",
+    "V27SaveRecoverySmokeTest": "PASS checks=80",
+    "V31HeroFxSmokeTest": "PASS checks=740 failures=0",
+    "V28KitingRegressionSmokeTest": "PASS checks=15",
+    "V27CombatClockSmokeTest": "PASS checks=4",
+    "V28MovingHuntSmokeTest": "NOT COUNTED: existing test mutates typed Array[Vector2] element and errors at test line 69 before the art-specific assertions"
+  },
+  "limitations": "28 heroes use identity-preserving weighted-mesh animation from approved SD illustrations plus distinct action FX; Leonhardt/Valeria use dedicated drawn key-pose sheets. This is not 15 hand-painted full-direction sprite sheets per hero.",
+  "zip_created": false
+}

@@ -1,0 +1,42 @@
+{
+  "passed": 6,
+  "total": 6,
+  "results": [
+    {
+      "test": "V29BoundarySpawnSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.86,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv29_boundary_spawn_smoke_test_ok spawn=(30.35, 0.35) melee_distance=0.70622551441193\n"
+    },
+    {
+      "test": "V28MeadowNavigationSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.97,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV28MeadowNavigationSmokeTest: 70 assertions, 0 failures, { \"astar_queries\": 6, \"move_calls\": 635, \"routes\": 0 }\n"
+    },
+    {
+      "test": "V28MovingHuntSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.17,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV28 moving hunt: checks=23 clears=7 max_step=0.19500 nav={\"astar_queries\":98,\"move_calls\":5395,\"routes\":4}\nv28_moving_hunt_smoke_test_ok\n"
+    },
+    {
+      "test": "V28KitingRegressionSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.93,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":6,\"equipment_level\":3,\"faction\":\"aurelia\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":290,\"initial_hp\":2840,\"initial_power\":2221,\"longest_clear_gap_seconds\":11.1,\"minimum_alive\":3,\"offline_encounters_estimate\":10,\"offline_gold_estimate\":960,\"offline_online_gold_ratio\":1.135,\"online_gold\":846,\"online_xp\":651,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"moonrest_forest\"}\nV27 BALANCE ROW: {\"boundary\":false,\"encounters_cleared\":8,\"equipment_level\":3,\"faction\":\"noxfera\",\"health_valid\":true,\"hero_level\":10,\"initial_attack_sum\":340,\"initial_hp\":2562,\"initial_power\":2253,\"longest_clear_gap_seconds\":9.2,\"minimum_alive\":3,\"offline_encounters_estimate\":10,\"offline_gold_estimate\":960,\"offline_online_gold_ratio\":0.836,\"online_gold\":1149,\"online_xp\":868,\"party_size\":3,\"recoveries\":0,\"seconds\":60,\"seed\":2701,\"zone\":\"moonrest_forest\"}\nv28_kiting_regression_smoke_test_ok checks=15\n"
+    },
+    {
+      "test": "V26CombatSoakSmokeTest.gd",
+      "passed": true,
+      "seconds": 43.5,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV26 SOAK REPORT: {\"completed_actions_by_hero\":{\"astel\":86,\"caelum\":79,\"darius\":81,\"elisia\":88,\"kairen\":94,\"leonhardt\":99,\"lunea\":71,\"mira\":96,\"orwin\":90,\"seria\":90},\"distance_walked\":107.7,\"faction\":\"aurelia\",\"gold_earned\":1099,\"health_valid\":true,\"heroes_with_completed_actions\":10,\"kill_count\":26,\"kills_at_60_120_180_seconds\":[8,16,26],\"longest_kill_gap_seconds\":13.7,\"party_size\":10,\"simulated_seconds\":180,\"wipe_recovery_seconds\":4.4,\"xp_earned\":767}\nV26 SOAK REPORT: {\"completed_actions_by_hero\":{\"bron\":97,\"fenris\":98,\"garm\":76,\"isolde\":82,\"morgas\":91,\"nyx\":94,\"ragna\":95,\"ulric\":79,\"valeria\":94,\"veyra\":73},\"distance_walked\":96.4,\"faction\":\"noxfera\",\"gold_earned\":1099,\"health_valid\":true,\"heroes_with_completed_actions\":10,\"kill_count\":26,\"kills_at_60_120_180_seconds\":[9,17,26],\"longest_kill_gap_seconds\":11.2,\"party_size\":10,\"simulated_seconds\":180,\"wipe_recovery_seconds\":4.4,\"xp_earned\":767}\nv26_combat_soak_smoke_test_ok checks=22 factions=2 heroes_per_party=10 simulated_seconds=360 wipe_recovery=ok continuous_rewards=ok\n"
+    },
+    {
+      "test": "V29FactionBalanceSmokeTest.gd",
+      "passed": true,
+      "seconds": 70.07,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV29 BALANCE ROW {\"a2_casts\":67,\"alive\":10,\"damage\":191538,\"faction\":\"aurelia\",\"hp_ratio\":0.894320740555417,\"mode\":\"raid\",\"packs\":0,\"rotation\":0,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":69,\"alive\":10,\"damage\":203064,\"faction\":\"noxfera\",\"hp_ratio\":0.899568792619334,\"mode\":\"raid\",\"packs\":0,\"rotation\":0,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":62,\"alive\":10,\"damage\":188612,\"faction\":\"aurelia\",\"hp_ratio\":0.949818143482157,\"mode\":\"raid\",\"packs\":0,\"rotation\":1,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":62,\"alive\":10,\"damage\":190247,\"faction\":\"noxfera\",\"hp_ratio\":0.94443263918402,\"mode\":\"raid\",\"packs\":0,\"rotation\":1,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":62,\"alive\":10,\"damage\":185833,\"faction\":\"aurelia\",\"hp_ratio\":0.975680598631418,\"mode\":\"raid\",\"packs\":0,\"rotation\":2,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":59,\"alive\":10,\"damage\":190362,\"faction\":\"noxfera\",\"hp_ratio\":0.953706943958406,\"mode\":\"raid\",\"packs\":0,\"rotation\":2,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":68,\"alive\":10,\"damage\":172576,\"faction\":\"aurelia\",\"hp_ratio\":0.862874502409386,\"mode\":\"raid\",\"packs\":0,\"rotation\":3,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":63,\"alive\":10,\"damage\":194860,\"faction\":\"noxfera\",\"hp_ratio\":0.958807876530069,\"mode\":\"raid\",\"packs\":0,\"rotation\":3,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":14,\"alive\":10,\"damage\":0,\"faction\":\"aurelia\",\"hp_ratio\":0.998498874155617,\"mode\":\"field\",\"packs\":11,\"rotation\":0,\"seconds\":60,\"zone\":\"gray_meadow\"}\nV29 BALANCE ROW {\"a2_casts\":17,\"alive\":10,\"damage\":0,\"faction\":\"noxfera\",\"hp_ratio\":0.99704171680706,\"mode\":\"field\",\"packs\":12,\"rotation\":0,\"seconds\":60,\"zone\":\"gray_meadow\"}\nV29 BALANCE ROW {\"a2_casts\":27,\"alive\":10,\"damage\":0,\"faction\":\"aurelia\",\"hp_ratio\":0.990248273680881,\"mode\":\"field\",\"packs\":8,\"rotation\":1,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":23,\"alive\":10,\"damage\":0,\"faction\":\"noxfera\",\"hp_ratio\":0.988684657883553,\"mode\":\"field\",\"packs\":8,\"rotation\":1,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":20,\"alive\":10,\"damage\":0,\"faction\":\"aurelia\",\"hp_ratio\":0.999655393098016,\"mode\":\"field\",\"packs\":12,\"rotation\":2,\"seconds\":60,\"zone\":\"gray_meadow\"}\nV29 BALANCE ROW {\"a2_casts\":14,\"alive\":10,\"damage\":0,\"faction\":\"noxfera\",\"hp_ratio\":1.0,\"mode\":\"field\",\"packs\":11,\"rotation\":2,\"seconds\":60,\"zone\":\"gray_meadow\"}\nV29 BALANCE ROW {\"a2_casts\":32,\"alive\":10,\"damage\":0,\"faction\":\"aurelia\",\"hp_ratio\":0.985019903624555,\"mode\":\"field\",\"packs\":8,\"rotation\":3,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nV29 BALANCE ROW {\"a2_casts\":17,\"alive\":10,\"damage\":0,\"faction\":\"noxfera\",\"hp_ratio\":0.986748270356573,\"mode\":\"field\",\"packs\":8,\"rotation\":3,\"seconds\":60,\"zone\":\"moonrest_forest\"}\nv29_faction_balance checks=73 failures=0 comparison={\"field\":{\"metric\":\"packs\",\"relative_gap\":0.0,\"totals\":{\"aurelia\":39.0,\"noxfera\":39.0}},\"raid\":{\"metric\":\"damage\",\"relative_gap\":0.0526981883761829,\"totals\":{\"aurelia\":738559.0,\"noxfera\":778533.0}}}\n"
+    }
+  ]
+}

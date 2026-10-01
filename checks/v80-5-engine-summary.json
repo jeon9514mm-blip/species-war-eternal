@@ -1,0 +1,40 @@
+{
+  "project": "Species War: Eternal",
+  "development_step": "v80-5",
+  "purpose": "Engine verification and bug fixes; no new feature milestone",
+  "verified_at_seoul": "2026-10-01T01:34:22+09:00",
+  "input_engine_version": "4.7.2.stable.official.ed1daf0bf",
+  "input_engine_zip_sha256": "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4",
+  "parent_cumulative_patch_sha256": "49ab7693a36cd7da8b2e983230a06a1c017b09fc77f4387e83a4f118f7673872",
+  "initial_import": "failed: unresolved Main.gd; original logs retained",
+  "final_import_passed": true,
+  "engine_script_checks": {
+    "passed": 261,
+    "total": 261
+  },
+  "engine_runtime_scripts": {
+    "passed": 16,
+    "total": 16,
+    "v80_focused_including_new_regression": 13,
+    "legacy_regressions": 3
+  },
+  "real_ai_scenario_scope": [
+    "daily gold rush level-20 three-hero fixture",
+    "daily three modes level-60 three-hero fixture",
+    "tower floors 1, 5, 6 level-60 three-hero fixture",
+    "weekly abyss 90 simulated seconds level-60 three-hero fixture"
+  ],
+  "limitations": [
+    "Focused suite only: not all 148 registered historical smoke tests executed.",
+    "Headless run, not GPU or Android rendering/performance certification.",
+    "Levelled three-hero battle fixtures do not certify newcomer difficulty, both factions, every hero or every floor.",
+    "No Android export, device FPS, heat, battery, touch or audio-playback test.",
+    "No new v81-v85 implementation."
+  ],
+  "assets_unchanged": {
+    "count": 602,
+    "sha256_identical": true
+  },
+  "save_version": 34,
+  "save_schema_changed_this_step": false
+}

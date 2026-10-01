@@ -1,0 +1,71 @@
+{
+  "version": 32,
+  "hero_id": "kairen",
+  "design_id": "A04",
+  "path": "res://assets/sprites/pixel-v32/kairen-sheet.png",
+  "source_generated": "/workspace/scratch/b4d947fe7908/generated_images/exec-76e199e4-7138-4c9b-92db-a28ae9d5bfd8.png",
+  "source_reference": "res://assets/heroes/v31/a01-board.png",
+  "generated_with": "built_in_image_gen",
+  "mode": "RGBA",
+  "size": [
+    2135,
+    736
+  ],
+  "sha256": "baef8ff4b15c1bc7840a83e2b1505d1a9d6acbce202f829dac22c9bea6bbba22",
+  "source_png_unmodified": true,
+  "alpha_threshold_for_bounds": 10,
+  "transparent_fraction": 0.6797302973220649,
+  "regions": [
+    [
+      91,
+      152,
+      362,
+      465
+    ],
+    [
+      585,
+      151,
+      395,
+      466
+    ],
+    [
+      1079,
+      150,
+      400,
+      467
+    ],
+    [
+      1549,
+      157,
+      544,
+      464
+    ]
+  ],
+  "pivots": [
+    [
+      241.5,
+      613
+    ],
+    [
+      780.5,
+      613
+    ],
+    [
+      1270.5,
+      613
+    ],
+    [
+      1752.0,
+      617
+    ]
+  ],
+  "visual_height": 457,
+  "poses": [
+    "idle",
+    "walk_stride_a",
+    "walk_stride_b",
+    "cast"
+  ],
+  "directions": "three-quarter right, horizontal flip for left; vertical movement reuses pose",
+  "scope": "Only Kairen receives new battlefield poses. Other 29 heroes retain their v31 animation frames."
+}

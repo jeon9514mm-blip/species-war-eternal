@@ -1,0 +1,28 @@
+{
+  "project": "Species War: Eternal",
+  "development_step": "v83-6.2",
+  "parent_step": "v83-6.1",
+  "status": "engine_regression_verified",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "save_version": 37,
+  "script_checks_passed": 348,
+  "script_checks_total": 348,
+  "focused_engine_tests_passed": 75,
+  "focused_engine_tests_total": 75,
+  "runtime_check_count": 15185,
+  "all_historical_tests_executed": false,
+  "architecture_unit_tests": 12,
+  "software_opengl_layout_checks": 10,
+  "android_tests": 0,
+  "artwork_changed": false,
+  "balance_data_changed": true,
+  "game_zip_created": true,
+  "deferred": [
+    "online",
+    "accounts",
+    "cloud_save",
+    "Android device validation",
+    "v83-7 target equipment and farming"
+  ],
+  "validation": "checks/v83-6-2/validation-summary.json"
+}

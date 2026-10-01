@@ -1,0 +1,52 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+V27 HERO PASS: leonhardt active skill produces its declared effect
+V27 HERO PASS: mira active skill produces its declared effect
+V27 HERO PASS: elisia active skill produces its declared effect
+V27 HERO PASS: kairen active skill produces its declared effect
+V27 HERO PASS: orwin active skill produces its declared effect
+V27 HERO PASS: seria active skill produces its declared effect
+V27 HERO PASS: astel active skill produces its declared effect
+V27 HERO PASS: darius active skill produces its declared effect
+V27 HERO PASS: lunea active skill produces its declared effect
+V27 HERO PASS: caelum active skill produces its declared effect
+V27 HERO PASS: valeria active skill produces its declared effect
+V27 HERO PASS: morgas active skill produces its declared effect
+V27 HERO PASS: ragna active skill produces its declared effect
+V27 HERO PASS: bron active skill produces its declared effect
+V27 HERO PASS: nyx active skill produces its declared effect
+V27 HERO PASS: fenris active skill produces its declared effect
+V27 HERO PASS: isolde active skill produces its declared effect
+V27 HERO PASS: garm active skill produces its declared effect
+V27 HERO PASS: veyra active skill produces its declared effect
+V27 HERO PASS: ulric active skill produces its declared effect
+V27 HERO PASS: both complete ten-hero rosters execute
+V27 HERO PASS: Darius execute activates at 35 percent HP
+V27 HERO PASS: Mira precision actually increases damage against elites
+V27 HERO PASS: Seria remaining shots retarget after a first-hit kill
+V27 HERO PASS: Ragna cleave respects its three-target limit
+V27 HERO PASS: Fenris flurry grants the advertised extra ultimate charge
+V27 HERO PASS: Valeria low-health sustain increases actual healing
+V27 HERO PASS: lifesteal uses one point of actual damage and cannot heal from overkill
+V27 HERO PASS: Orwin active protects the entire living party
+V27 HERO PASS: Orwin holds duplicate team protection
+V27 HERO PASS: Leonhardt specializes in self protection and taunt
+V27 HERO PASS: Garm guard restores his own health
+V27 HERO PASS: Isolde heals two injured allies and never revives a dead ally
+V27 HERO PASS: full-health direct healing preserves skill cooldown and ultimate
+V27 HERO PASS: Astel applies party healing to all three injured allies
+V27 HERO PASS: kairen affects reachable enemies and leaves disconnected enemies unchanged
+V27 HERO PASS: kairen holds an already active status
+V27 HERO PASS: lunea affects reachable enemies and leaves disconnected enemies unchanged
+V27 HERO PASS: lunea holds an already active status
+V27 HERO PASS: nyx affects reachable enemies and leaves disconnected enemies unchanged
+V27 HERO PASS: nyx holds an already active status
+V27 HERO PASS: invalid status indices, NaN and negative duration are rejected
+V27 HERO PASS: dead enemies cannot receive new status
+V27 HERO PASS: Morgas full-health ultimate applies offensive curse
+V27 HERO PASS: single-target curse finds a fresh target instead of refreshing an active curse
+V27 HERO PASS: raid adapter preserves execute mechanics
+V27 HERO PASS: dead raid boss cannot consume skills or ultimate
+V27 HERO PASS: growth refresh updates stats while preserving health ratio
+V27 HERO PASS: growth refresh preserves deaths, ultimate, protection, cooldown and committed windup
+v27_hero_roles_smoke_test_ok checks=49 roster=20 mechanics=ok status_range=ok resource_safety=ok raid=ok growth=ok

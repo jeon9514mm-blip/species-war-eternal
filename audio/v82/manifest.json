@@ -1,0 +1,270 @@
+{
+  "origin": "Original procedural compositions and synthesized SFX; no third-party samples. Draft audio, not a recorded sound pack.",
+  "generator": "tools/generate_v82_audio.py",
+  "tracks": {
+    "meadow": {
+      "file": "audio/v82/meadow.ogg",
+      "loop": true,
+      "seconds": 36.923,
+      "sample_rate": 22050,
+      "channels": 2,
+      "peak": 0.36933,
+      "rms": 0.07222,
+      "bytes": 148753,
+      "sha256": "ac69bd1b9a13369b798cc0296395296044ab18dad5d6ea9ed5902a72530c586d"
+    },
+    "mine": {
+      "file": "audio/v82/mine.ogg",
+      "loop": true,
+      "seconds": 41.739,
+      "sample_rate": 22050,
+      "channels": 2,
+      "peak": 0.31664,
+      "rms": 0.07306,
+      "bytes": 158131,
+      "sha256": "f578257dcecf2db83267d54230bd3d866d40aaa6f08aef764102d1723db9f7b4"
+    },
+    "forest": {
+      "file": "audio/v82/forest.ogg",
+      "loop": true,
+      "seconds": 48.0,
+      "sample_rate": 22050,
+      "channels": 2,
+      "peak": 0.38306,
+      "rms": 0.07272,
+      "bytes": 184179,
+      "sha256": "95769cdbb0d0e50f62fba2e0c62971ceb58e22fe594f6b39527464274cbfd12b"
+    },
+    "boss": {
+      "file": "audio/v82/boss.ogg",
+      "loop": true,
+      "seconds": 29.091,
+      "sample_rate": 22050,
+      "channels": 2,
+      "peak": 0.37023,
+      "rms": 0.07104,
+      "bytes": 125981,
+      "sha256": "b34a80f1618b3f1c02d58b142776b607c119650b179937fc654a474121c78b82"
+    },
+    "ambient_meadow": {
+      "file": "audio/v82/ambient_meadow.ogg",
+      "loop": true,
+      "seconds": 12.0,
+      "sample_rate": 22050,
+      "channels": 2,
+      "peak": 0.03367,
+      "rms": 0.00555,
+      "bytes": 69573,
+      "sha256": "d7f67a5e741a2afe387743606e058e2c7dbb67eeb206a7674866930215f4a83a"
+    },
+    "ambient_mine": {
+      "file": "audio/v82/ambient_mine.ogg",
+      "loop": true,
+      "seconds": 12.0,
+      "sample_rate": 22050,
+      "channels": 2,
+      "peak": 0.03531,
+      "rms": 0.00406,
+      "bytes": 61859,
+      "sha256": "6a05d9d91629cf29124d4dfd71c15c6eaae45cf7d72087ab88db7b2dd126772f"
+    },
+    "ambient_forest": {
+      "file": "audio/v82/ambient_forest.ogg",
+      "loop": true,
+      "seconds": 12.0,
+      "sample_rate": 22050,
+      "channels": 2,
+      "peak": 0.04618,
+      "rms": 0.0075,
+      "bytes": 77240,
+      "sha256": "2312c5edf9b3cf1a569aa2baa047d64b2f567313c9be85ade8e996bac85bd205"
+    },
+    "ui_click": {
+      "file": "audio/v82/ui_click.wav",
+      "loop": false,
+      "seconds": 0.075,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.08038,
+      "rms": 0.03331,
+      "bytes": 3350,
+      "sha256": "120934766369d3e37575bad34f1543333cdaa2b9d048d65de7bc68635ad2b288"
+    },
+    "equip": {
+      "file": "audio/v82/equip.wav",
+      "loop": false,
+      "seconds": 0.32,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.21951,
+      "rms": 0.05486,
+      "bytes": 14156,
+      "sha256": "7786b493a7f943f008711928ed924e1e107a108e6d1c19b148768bcbc2751b5c"
+    },
+    "upgrade": {
+      "file": "audio/v82/upgrade.wav",
+      "loop": false,
+      "seconds": 0.65,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.36893,
+      "rms": 0.07495,
+      "bytes": 28708,
+      "sha256": "e76dd82cb5a1c758dc189d9b5b7da01e14fe9c8ab9aaa9b9aa5a397a36c1d114"
+    },
+    "reward": {
+      "file": "audio/v82/reward.wav",
+      "loop": false,
+      "seconds": 0.7,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.35443,
+      "rms": 0.06835,
+      "bytes": 30912,
+      "sha256": "01f9ce5c9bcd49a4f6ca3e79817aeb55d53f0105ad2c3ab509cc11c798d65eeb"
+    },
+    "summon": {
+      "file": "audio/v82/summon.wav",
+      "loop": false,
+      "seconds": 1.1,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.42273,
+      "rms": 0.08371,
+      "bytes": 48554,
+      "sha256": "e2c0ea3da4a81ecd4f6ac09275c58f632f29247b9cb6a23f39a7a4e6c8696b70"
+    },
+    "victory": {
+      "file": "audio/v82/victory.wav",
+      "loop": false,
+      "seconds": 1.4,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.49026,
+      "rms": 0.08763,
+      "bytes": 61782,
+      "sha256": "11d71ce0ffcea6167ce6d2f12b625ae76de26450b522a7c9bcee08525fd5f332"
+    },
+    "defeat": {
+      "file": "audio/v82/defeat.wav",
+      "loop": false,
+      "seconds": 0.75,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.323,
+      "rms": 0.05974,
+      "bytes": 33118,
+      "sha256": "de38ab431b10be6429decdd74d2b2812188218e8b4e4c599b1d1793961fd777e"
+    },
+    "sword": {
+      "file": "audio/v82/sword.wav",
+      "loop": false,
+      "seconds": 0.22,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.30161,
+      "rms": 0.03725,
+      "bytes": 9746,
+      "sha256": "1df763c5dbc228eaf0e0e830b33a0e93be7e92057029e3310e370f7ec789d7ac"
+    },
+    "bow": {
+      "file": "audio/v82/bow.wav",
+      "loop": false,
+      "seconds": 0.18,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.15973,
+      "rms": 0.02373,
+      "bytes": 7982,
+      "sha256": "145d9171452aa225f509c9f24ff3ef525b4d4bb19381873989213c646e495c56"
+    },
+    "magic": {
+      "file": "audio/v82/magic.wav",
+      "loop": false,
+      "seconds": 0.34,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.23044,
+      "rms": 0.04532,
+      "bytes": 15038,
+      "sha256": "f9ed957078469213d8c46986e43454395c5d4b0db58184921e1d045d11a862b4"
+    },
+    "guard": {
+      "file": "audio/v82/guard.wav",
+      "loop": false,
+      "seconds": 0.4,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.24612,
+      "rms": 0.05725,
+      "bytes": 17684,
+      "sha256": "f3e519c882da5d333fc42594619465df19cef4e8ffb5058b03a33bd4bbd5b9e0"
+    },
+    "heal": {
+      "file": "audio/v82/heal.wav",
+      "loop": false,
+      "seconds": 0.6,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.30948,
+      "rms": 0.05973,
+      "bytes": 26504,
+      "sha256": "01c6bd6d0ab7e7ef3f5b8d95bc98442aa16b1fd299f1177b0d7a41464f9fd077"
+    },
+    "control": {
+      "file": "audio/v82/control.wav",
+      "loop": false,
+      "seconds": 0.4,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.26782,
+      "rms": 0.05797,
+      "bytes": 17684,
+      "sha256": "2807af0299090fdb48f9065b7a87f8825bbe54193186e6d73ab235b4a3021f55"
+    },
+    "ultimate": {
+      "file": "audio/v82/ultimate.wav",
+      "loop": false,
+      "seconds": 0.85,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.4093,
+      "rms": 0.08137,
+      "bytes": 37528,
+      "sha256": "3c20a3ae66bd0378536b5bbe4db7e2b5b2760ef13b63173006c6c52d3c98590b"
+    },
+    "critical": {
+      "file": "audio/v82/critical.wav",
+      "loop": false,
+      "seconds": 0.18,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.2998,
+      "rms": 0.06604,
+      "bytes": 7982,
+      "sha256": "eb3d93ab9ea86cdd25645d118aa66569671d781af7465fa83d9d18b3a51cf840"
+    },
+    "boss_warning": {
+      "file": "audio/v82/boss_warning.wav",
+      "loop": false,
+      "seconds": 0.55,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.26874,
+      "rms": 0.06003,
+      "bytes": 24298,
+      "sha256": "4b56af350e07a3dc9304a1a9273de6e043bf098a274a89aeff47a7e7f3f79699"
+    },
+    "shield_break": {
+      "file": "audio/v82/shield_break.wav",
+      "loop": false,
+      "seconds": 0.45,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.47092,
+      "rms": 0.07094,
+      "bytes": 19888,
+      "sha256": "5e6983832e566f764ca506504c6b6f6b082019030c3c3875205dd9707a846d9b"
+    }
+  }
+}

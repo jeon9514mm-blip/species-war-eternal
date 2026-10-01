@@ -1,0 +1,29 @@
+; Engine configuration file.
+; Species War: Eternal
+
+config_version=5
+
+[application]
+config/name="종의전쟁: 이터널"
+run/main_scene="res://scenes/PortraitMain.tscn"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+
+[display]
+
+[display/window]
+size/viewport_width=720
+size/viewport_height=1280
+size/window_width_override=450
+size/window_height_override=800
+size/resizable=true
+stretch/mode="canvas_items"
+stretch/aspect="expand"
+handheld/orientation=1
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.863, 0.902, 0.875, 1)
+
+[input]
+ui_accept={"deadzone": 0.5, "events": [Object(InputEventKey,"physical_keycode":32), Object(InputEventKey,"physical_keycode":4194309)]}

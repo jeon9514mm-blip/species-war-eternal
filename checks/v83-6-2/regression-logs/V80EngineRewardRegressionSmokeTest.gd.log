@@ -1,0 +1,18 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: V80 engine reward regression: treasure gold paid at encounter settlement exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/V80EngineRewardRegressionSmokeTest.gd:15)
+       [1] _run (res://scripts/V80EngineRewardRegressionSmokeTest.gd:90)
+ERROR: V80 engine reward regression: treasure experience paid at encounter settlement exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/V80EngineRewardRegressionSmokeTest.gd:15)
+       [1] _run (res://scripts/V80EngineRewardRegressionSmokeTest.gd:91)
+ERROR: V80 engine reward regression: guaranteed treasure drop uses settlement path
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/V80EngineRewardRegressionSmokeTest.gd:15)
+       [1] _run (res://scripts/V80EngineRewardRegressionSmokeTest.gd:92)
+v80_engine_reward_regression checks=12 failures=["treasure gold paid at encounter settlement exactly once","treasure experience paid at encounter settlement exactly once","guaranteed treasure drop uses settlement path"]

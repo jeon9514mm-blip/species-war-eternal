@@ -1,0 +1,25 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+starter faction=aurelia game_seconds=90.30 clears=1
+WARNING: 사냥 상태를 저장하지 못했습니다: injected_corps_save_failure
+     at: push_warning (core/variant/variant_utility.cpp:1034)
+     GDScript backtrace (most recent call first):
+         [0] save_idle_state (res://scripts/GameSaveCoordinator.gd:114)
+         [1] _save_idle_state (res://scripts/Main.gd:1308)
+         [2] _save_idle_state (res://scripts/portrait/PortraitMain.gd:30)
+         [3] settle_corps (res://scripts/HuntFieldService.gd:299)
+         [4] finish_hunt_target (res://scripts/HuntFieldService.gd:194)
+         [5] _finish_hunt_target (res://scripts/Main.gd:4764)
+         [6] _run (res://scripts/V8362FieldSafetySmokeTest.gd:26)
+starter faction=noxfera game_seconds=30.00 clears=1
+WARNING: 사냥 상태를 저장하지 못했습니다: injected_corps_save_failure
+     at: push_warning (core/variant/variant_utility.cpp:1034)
+     GDScript backtrace (most recent call first):
+         [0] save_idle_state (res://scripts/GameSaveCoordinator.gd:114)
+         [1] _save_idle_state (res://scripts/Main.gd:1308)
+         [2] _save_idle_state (res://scripts/portrait/PortraitMain.gd:30)
+         [3] settle_corps (res://scripts/HuntFieldService.gd:299)
+         [4] finish_hunt_target (res://scripts/HuntFieldService.gd:194)
+         [5] _finish_hunt_target (res://scripts/Main.gd:4764)
+         [6] _run (res://scripts/V8362FieldSafetySmokeTest.gd:26)
+v8362_field_safety checks=115 failures=[]

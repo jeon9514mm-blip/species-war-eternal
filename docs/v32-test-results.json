@@ -1,0 +1,57 @@
+{
+  "headless": true,
+  "rendered_screenshot": false,
+  "tests": [
+    {
+      "test": "V32GraphicsSmokeTest",
+      "exit_code": 0,
+      "seconds": null,
+      "output_tail": "v32_graphics checks=3029 failures=0\n",
+      "rerun_after_test_type_fix": true
+    },
+    {
+      "test": "V31HeroArtSmokeTest",
+      "exit_code": 0,
+      "seconds": 4.97,
+      "output_tail": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv31_hero_art checks=9202 failures=0 heroes=30 portraits=30 skill_icons=120\n"
+    },
+    {
+      "test": "V31HeroFxSmokeTest",
+      "exit_code": 0,
+      "seconds": 16.03,
+      "output_tail": "lects its unique icon\nV27 HERO PASS: fenris actual passive proc selects its unique icon\nV27 HERO PASS: isolde actual passive proc selects its unique icon\nV27 HERO PASS: garm actual passive proc selects its unique icon\nV27 HERO PASS: veyra actual passive proc selects its unique icon\nV27 HERO PASS: ulric actual passive proc selects its unique icon\nV27 HERO PASS: adrien actual passive proc selects its unique icon\nV27 HERO PASS: tessa actual passive proc selects its unique icon\nV27 HERO PASS: naia actual passive proc selects its unique icon\nV27 HERO PASS: sael actual passive proc selects its unique icon\nV27 HERO PASS: odelia actual passive proc selects its unique icon\nV27 HERO PASS: lucien actual passive proc selects its unique icon\nV27 HERO PASS: corvin actual passive proc selects its unique icon\nV27 HERO PASS: rokan actual passive proc selects its unique icon\nV27 HERO PASS: bora actual passive proc selects its unique icon\nV27 HERO PASS: selene actual passive proc selects its unique icon\nV27 HERO PASS: retargeted volley preserves exact per-target visual hit counts\nV27 HERO PASS: shield visual uses actual non-caster recipient\nV27 HERO PASS: failed passive condition emits nothing\nV27 HERO PASS: confirmed passive emits one badge\nV27 HERO PASS: cooldown/tick never repeats passive badge\nV27 HERO PASS: paused hunt freezes signature\nV27 HERO PASS: suspended application freezes signature\nV27 HERO PASS: resume advances signature\nV27 HERO PASS: signatures are clipped to the actual field\nV27 HERO PASS: effects OFF clears existing signature\nV27 HERO PASS: effects OFF creates no new signature\nV27 HERO PASS: navigation cleans up existing signature\nV27 HERO PASS: signature expires after its finite lifetime\nv31_hero_fx checks=740 failures=0 kit_casts=180 main_a1_casts=60 passive_procs=30\n"
+    },
+    {
+      "test": "V30UiFlowSmokeTest",
+      "exit_code": 0,
+      "seconds": 17.92,
+      "output_tail": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv30_ui_flow checks=960 failures=0 screens=18 report=/workspace/scratch/b4d947fe7908/qa-v32/V30UiFlowSmokeTest/godot/app_userdata/Pixel War of Species/v30-ui-flow-report.json\n"
+    },
+    {
+      "test": "V28BrightSpriteSmokeTest",
+      "exit_code": 0,
+      "seconds": 2.83,
+      "output_tail": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv28_bright_sprite_smoke_test_ok checks=1172 frames=104 failures=0\n"
+    },
+    {
+      "test": "CombatControlsSmokeTest",
+      "exit_code": 0,
+      "seconds": 5.08,
+      "output_tail": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\ncombat_controls_ok visible_buttons=4 scrollable_buttons=3 no_overlap=true pause_resume=true\n"
+    },
+    {
+      "test": "V28MeadowNavigationSmokeTest",
+      "exit_code": 0,
+      "seconds": 0.94,
+      "output_tail": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV28MeadowNavigationSmokeTest: 70 assertions, 0 failures, { \"astar_queries\": 6, \"move_calls\": 635, \"routes\": 0 }\n"
+    },
+    {
+      "test": "V28FieldFxSmokeTest",
+      "exit_code": 0,
+      "seconds": 4.93,
+      "output_tail": "v28_field_fx_smoke_test_ok compact_skill=ok targeted_fx=ok ultimate=ok bounded_damage=ok\n",
+      "audio_shutdown_warning_resolved": true
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,20 @@
+{
+  "version": 32,
+  "scope": "hero art static integration",
+  "heroes": 30,
+  "unique_skill_regions": 120,
+  "canonical_designs_unchanged": true,
+  "boards": 6,
+  "new_battlefield_heroes": [
+    "kairen"
+  ],
+  "other_hero_animation_sources_retained": 29,
+  "png_postprocessing": false,
+  "checks": [
+    "Exact 30 identity records equal v31",
+    "Exact 120 a1/a2/passive/ultimate mappings",
+    "120 distinct in-bounds atlas rectangles",
+    "Six generated PNGs remain unchanged",
+    "Kairen uses four separately measured alpha bounds and foot pivots"
+  ]
+}

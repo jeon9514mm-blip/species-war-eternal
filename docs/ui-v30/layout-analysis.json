@@ -1,0 +1,2279 @@
+{
+  "source": "/workspace/scratch/b4d947fe7908/work-v30/capture/headless-v30-release/capture_report.json",
+  "rendered": false,
+  "screens": [
+    {
+      "view": "title",
+      "controls": 9,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "모험 시작",
+          "rect": [
+            64.0,
+            500.0,
+            410.0,
+            62.0
+          ],
+          "path": "/root/Main/@Control@23/StartAdventure"
+        }
+      ]
+    },
+    {
+      "view": "login",
+      "controls": 12,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "돌아가기",
+          "rect": [
+            48.0,
+            30.0,
+            124.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@44/@Button@48"
+        },
+        {
+          "text": "이 기기에서 시작하기",
+          "rect": [
+            748.0,
+            338.0,
+            450.0,
+            60.0
+          ],
+          "path": "/root/Main/@Control@44/LoginPanel/DeviceContinueButton"
+        }
+      ]
+    },
+    {
+      "view": "faction",
+      "controls": 23,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "돌아가기",
+          "rect": [
+            48.0,
+            28.0,
+            124.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@68/@Button@72"
+        },
+        {
+          "text": "이 진영 선택",
+          "rect": [
+            79.0,
+            479.0,
+            524.0,
+            43.0
+          ],
+          "path": "/root/Main/@Control@68/FactionCard_aurelia/@MarginContainer@76/@Control@77/SelectFaction_aurelia"
+        },
+        {
+          "text": "이 진영 선택",
+          "rect": [
+            677.0,
+            479.0,
+            524.0,
+            43.0
+          ],
+          "path": "/root/Main/@Control@68/FactionCard_noxfera/@MarginContainer@90/@Control@91/SelectFaction_noxfera"
+        },
+        {
+          "text": "진영을 선택하세요",
+          "rect": [
+            350.0,
+            608.0,
+            580.0,
+            58.0
+          ],
+          "path": "/root/Main/@Control@68/@Button@105"
+        }
+      ]
+    },
+    {
+      "view": "lobby",
+      "controls": 53,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "메뉴",
+          "rect": [
+            1142.0,
+            30.0,
+            94.0,
+            45.0
+          ],
+          "path": "/root/Main/@Control@107/@Button@117"
+        },
+        {
+          "text": "사냥 이어하기",
+          "rect": [
+            64.0,
+            335.0,
+            334.0,
+            54.0
+          ],
+          "path": "/root/Main/@Control@107/CurrentExpedition/@Panel@126/LobbyHuntButton"
+        },
+        {
+          "text": "보상 받기",
+          "rect": [
+            898.0,
+            356.0,
+            320.0,
+            40.0
+          ],
+          "path": "/root/Main/@Control@107/StatusDashboard/LobbyClaimRewards"
+        },
+        {
+          "text": "편성하기",
+          "rect": [
+            722.0,
+            439.0,
+            108.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@107/LobbyPartyCard/@Button@146"
+        },
+        {
+          "text": "영웅 성장",
+          "rect": [
+            894.0,
+            486.0,
+            159.0,
+            43.0
+          ],
+          "path": "/root/Main/@Control@107/@Panel@177/@Button@179"
+        },
+        {
+          "text": "장비 가방",
+          "rect": [
+            1063.0,
+            486.0,
+            159.0,
+            43.0
+          ],
+          "path": "/root/Main/@Control@107/@Panel@177/@Button@180"
+        },
+        {
+          "text": "영웅 소환",
+          "rect": [
+            894.0,
+            535.0,
+            159.0,
+            43.0
+          ],
+          "path": "/root/Main/@Control@107/@Panel@177/@Button@181"
+        },
+        {
+          "text": "세계 지도",
+          "rect": [
+            1063.0,
+            535.0,
+            159.0,
+            43.0
+          ],
+          "path": "/root/Main/@Control@107/@Panel@177/@Button@182"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@107/BottomNav/@HBoxContainer@183/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@107/BottomNav/@HBoxContainer@183/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@107/BottomNav/@HBoxContainer@183/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@107/BottomNav/@HBoxContainer@183/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@107/BottomNav/@HBoxContainer@183/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@107/BottomNav/@HBoxContainer@183/Nav_war"
+        },
+        {
+          "text": "?",
+          "rect": [
+            757.0,
+            31.0,
+            44.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@107/OnboardingHint"
+        }
+      ]
+    },
+    {
+      "view": "heroes",
+      "controls": 138,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "원정 캠프",
+          "rect": [
+            55.0,
+            24.0,
+            134.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/ScreenHeader/@Button@200"
+        },
+        {
+          "text": "메뉴",
+          "rect": [
+            1145.0,
+            24.0,
+            80.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/ScreenHeader/@Button@204"
+        },
+        {
+          "text": "역할 · 전체",
+          "rect": [
+            55.0,
+            250.0,
+            142.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/@HBoxContainer@218/@Button@219"
+        },
+        {
+          "text": "정렬 · 등급",
+          "rect": [
+            205.0,
+            250.0,
+            136.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/@HBoxContainer@218/@Button@220"
+        },
+        {
+          "text": "영웅 도감",
+          "rect": [
+            598.0,
+            250.0,
+            112.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/@HBoxContainer@218/@Button@222"
+        },
+        {
+          "text": "성장 연구",
+          "rect": [
+            718.0,
+            250.0,
+            112.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/@HBoxContainer@218/@Button@223"
+        },
+        {
+          "text": "상세 보기",
+          "rect": [
+            68.0,
+            433.0,
+            110.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/HeroRosterScroll/@GridContainer@226/@PanelContainer@236/@Control@227/@Button@234"
+        },
+        {
+          "text": "편성 슬롯 확장 필요",
+          "rect": [
+            188.0,
+            433.0,
+            228.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/HeroRosterScroll/@GridContainer@226/@PanelContainer@236/@Control@227/@Button@235"
+        },
+        {
+          "text": "상세 보기",
+          "rect": [
+            459.0,
+            434.0,
+            110.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/HeroRosterScroll/@GridContainer@226/@PanelContainer@246/@Control@237/@Button@244"
+        },
+        {
+          "text": "배치 해제",
+          "rect": [
+            579.0,
+            434.0,
+            228.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/HeroRosterScroll/@GridContainer@226/@PanelContainer@246/@Control@237/@Button@245"
+        },
+        {
+          "text": "편성 1",
+          "rect": [
+            870.0,
+            512.0,
+            110.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/PartyFormationPanel/@Button@392"
+        },
+        {
+          "text": "편성 2",
+          "rect": [
+            984.0,
+            512.0,
+            110.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/PartyFormationPanel/@Button@393"
+        },
+        {
+          "text": "편성 3",
+          "rect": [
+            1098.0,
+            512.0,
+            110.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/PartyFormationPanel/@Button@394"
+        },
+        {
+          "text": "이 원정대로 출발",
+          "rect": [
+            870.0,
+            574.0,
+            340.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/PartyFormationPanel/@Button@395"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@196/BottomNav/@HBoxContainer@396/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@196/BottomNav/@HBoxContainer@396/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@196/BottomNav/@HBoxContainer@396/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@196/BottomNav/@HBoxContainer@396/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@196/BottomNav/@HBoxContainer@396/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@196/BottomNav/@HBoxContainer@396/Nav_war"
+        },
+        {
+          "text": "?",
+          "rect": [
+            1181.0,
+            93.0,
+            44.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@196/OnboardingHint"
+        }
+      ]
+    },
+    {
+      "view": "hero_detail",
+      "controls": 53,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "영웅 목록",
+          "rect": [
+            55.0,
+            24.0,
+            134.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@409/ScreenHeader/@Button@413"
+        },
+        {
+          "text": "메뉴",
+          "rect": [
+            1145.0,
+            24.0,
+            80.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@409/ScreenHeader/@Button@417"
+        },
+        {
+          "text": "배치 해제",
+          "rect": [
+            75.0,
+            571.0,
+            324.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@409/HeroIdentityPanel/@Button@428"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@409/BottomNav/@HBoxContainer@471/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@409/BottomNav/@HBoxContainer@471/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@409/BottomNav/@HBoxContainer@471/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@409/BottomNav/@HBoxContainer@471/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@409/BottomNav/@HBoxContainer@471/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@409/BottomNav/@HBoxContainer@471/Nav_war"
+        },
+        {
+          "text": "?",
+          "rect": [
+            1181.0,
+            93.0,
+            44.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@409/OnboardingHint"
+        }
+      ]
+    },
+    {
+      "view": "growth",
+      "controls": 102,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "원정대로",
+          "rect": [
+            55.0,
+            24.0,
+            134.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@484/ScreenHeader/@Button@488"
+        },
+        {
+          "text": "메뉴",
+          "rect": [
+            1145.0,
+            24.0,
+            80.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@484/ScreenHeader/@Button@492"
+        },
+        {
+          "text": "공격 0 · 공격력 +0%",
+          "rect": [
+            412.0,
+            325.0,
+            247.0,
+            63.0
+          ],
+          "path": "/root/Main/@Control@484/@ScrollContainer@508/@VBoxContainer@509/@Panel@510/@Button@513"
+        },
+        {
+          "text": "생존 0 · HP +0% / 방어 +0",
+          "rect": [
+            670.0,
+            325.0,
+            247.0,
+            63.0
+          ],
+          "path": "/root/Main/@Control@484/@ScrollContainer@508/@VBoxContainer@509/@Panel@510/@Button@514"
+        },
+        {
+          "text": "기능 0 · 쿨다운 -0% / 궁극기 충전 +0%",
+          "rect": [
+            928.0,
+            325.0,
+            271.0,
+            63.0
+          ],
+          "path": "/root/Main/@Control@484/@ScrollContainer@508/@VBoxContainer@509/@Panel@510/@Button@515"
+        },
+        {
+          "text": "공격 0 · 공격력 +0%",
+          "rect": [
+            412.0,
+            484.0,
+            247.0,
+            63.0
+          ],
+          "path": "/root/Main/@Control@484/@ScrollContainer@508/@VBoxContainer@509/@Panel@516/@Button@519"
+        },
+        {
+          "text": "생존 0 · HP +0% / 방어 +0",
+          "rect": [
+            670.0,
+            484.0,
+            247.0,
+            63.0
+          ],
+          "path": "/root/Main/@Control@484/@ScrollContainer@508/@VBoxContainer@509/@Panel@516/@Button@520"
+        },
+        {
+          "text": "기능 0 · 쿨다운 -0% / 궁극기 충전 +0%",
+          "rect": [
+            928.0,
+            484.0,
+            271.0,
+            63.0
+          ],
+          "path": "/root/Main/@Control@484/@ScrollContainer@508/@VBoxContainer@509/@Panel@516/@Button@521"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@484/BottomNav/@HBoxContainer@600/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@484/BottomNav/@HBoxContainer@600/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@484/BottomNav/@HBoxContainer@600/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@484/BottomNav/@HBoxContainer@600/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@484/BottomNav/@HBoxContainer@600/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@484/BottomNav/@HBoxContainer@600/Nav_war"
+        },
+        {
+          "text": "?",
+          "rect": [
+            1181.0,
+            93.0,
+            44.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@484/OnboardingHint"
+        }
+      ]
+    },
+    {
+      "view": "inventory",
+      "controls": 26,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "원정대로",
+          "rect": [
+            55.0,
+            24.0,
+            134.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@613/ScreenHeader/@Button@617"
+        },
+        {
+          "text": "메뉴",
+          "rect": [
+            1145.0,
+            24.0,
+            80.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@613/ScreenHeader/@Button@621"
+        },
+        {
+          "text": "추천 장착",
+          "rect": [
+            55.0,
+            188.0,
+            154.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@613/@Button@624"
+        },
+        {
+          "text": "장착 장비 일괄 강화",
+          "rect": [
+            221.0,
+            188.0,
+            216.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@613/@Button@625"
+        },
+        {
+          "text": "사냥터 둘러보기",
+          "rect": [
+            512.0,
+            513.0,
+            256.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@613/@Panel@638/@Button@642"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@613/BottomNav/@HBoxContainer@643/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@613/BottomNav/@HBoxContainer@643/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@613/BottomNav/@HBoxContainer@643/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@613/BottomNav/@HBoxContainer@643/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@613/BottomNav/@HBoxContainer@643/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@613/BottomNav/@HBoxContainer@643/Nav_war"
+        },
+        {
+          "text": "?",
+          "rect": [
+            1181.0,
+            93.0,
+            44.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@613/OnboardingHint"
+        }
+      ]
+    },
+    {
+      "view": "combat",
+      "controls": 48,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "원정대",
+          "rect": [
+            28.0,
+            18.0,
+            112.0,
+            48.0
+          ],
+          "path": "/root/Main/@Control@656/CombatTopBar/@Button@660"
+        },
+        {
+          "text": "",
+          "rect": [
+            140.0,
+            552.0,
+            90.0,
+            70.0
+          ],
+          "path": "/root/Main/@Control@656/@HBoxContainer@680/PartyPortrait0"
+        },
+        {
+          "text": "",
+          "rect": [
+            237.0,
+            552.0,
+            90.0,
+            70.0
+          ],
+          "path": "/root/Main/@Control@656/@HBoxContainer@680/PartyPortrait1"
+        },
+        {
+          "text": "",
+          "rect": [
+            334.0,
+            552.0,
+            90.0,
+            70.0
+          ],
+          "path": "/root/Main/@Control@656/@HBoxContainer@680/PartyPortrait2"
+        },
+        {
+          "text": "카이",
+          "rect": [
+            431.0,
+            552.0,
+            90.0,
+            70.0
+          ],
+          "path": "/root/Main/@Control@656/@HBoxContainer@680/PartyPortrait3"
+        },
+        {
+          "text": "",
+          "rect": [
+            528.0,
+            552.0,
+            90.0,
+            70.0
+          ],
+          "path": "/root/Main/@Control@656/@HBoxContainer@680/PartyPortrait4"
+        },
+        {
+          "text": "세리",
+          "rect": [
+            625.0,
+            552.0,
+            90.0,
+            70.0
+          ],
+          "path": "/root/Main/@Control@656/@HBoxContainer@680/PartyPortrait5"
+        },
+        {
+          "text": "아스",
+          "rect": [
+            722.0,
+            552.0,
+            90.0,
+            70.0
+          ],
+          "path": "/root/Main/@Control@656/@HBoxContainer@680/PartyPortrait6"
+        },
+        {
+          "text": "",
+          "rect": [
+            819.0,
+            552.0,
+            90.0,
+            70.0
+          ],
+          "path": "/root/Main/@Control@656/@HBoxContainer@680/PartyPortrait7"
+        },
+        {
+          "text": "루네",
+          "rect": [
+            916.0,
+            552.0,
+            90.0,
+            70.0
+          ],
+          "path": "/root/Main/@Control@656/@HBoxContainer@680/PartyPortrait8"
+        },
+        {
+          "text": "",
+          "rect": [
+            1013.0,
+            552.0,
+            91.0,
+            70.0
+          ],
+          "path": "/root/Main/@Control@656/@HBoxContainer@680/PartyPortrait9"
+        },
+        {
+          "text": "보상 받기",
+          "rect": [
+            1116.0,
+            557.0,
+            124.0,
+            62.0
+          ],
+          "path": "/root/Main/@Control@656/@Button@691"
+        },
+        {
+          "text": "사냥터",
+          "rect": [
+            898.0,
+            88.0,
+            108.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@656/HuntControls/@Button@719"
+        },
+        {
+          "text": "자동사냥 켬",
+          "rect": [
+            1014.0,
+            88.0,
+            146.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@656/HuntControls/@Button@720"
+        },
+        {
+          "text": "×1",
+          "rect": [
+            1168.0,
+            88.0,
+            72.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@656/HuntControls/@Button@721"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@656/BottomNav/@HBoxContainer@722/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@656/BottomNav/@HBoxContainer@722/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@656/BottomNav/@HBoxContainer@722/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@656/BottomNav/@HBoxContainer@722/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@656/BottomNav/@HBoxContainer@722/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@656/BottomNav/@HBoxContainer@722/Nav_war"
+        }
+      ]
+    },
+    {
+      "view": "raid",
+      "controls": 41,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "사냥터",
+          "rect": [
+            32.0,
+            24.0,
+            112.0,
+            42.0
+          ],
+          "path": "/root/Main/@Control@829/RaidBackButton"
+        },
+        {
+          "text": "속도 ×1",
+          "rect": [
+            1132.0,
+            24.0,
+            116.0,
+            42.0
+          ],
+          "path": "/root/Main/@Control@829/RaidSpeedButton"
+        },
+        {
+          "text": "레이드 시작",
+          "rect": [
+            58.0,
+            453.0,
+            672.0,
+            48.0
+          ],
+          "path": "/root/Main/@Control@829/RaidStartButton"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@829/BottomNav/@HBoxContainer@886/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@829/BottomNav/@HBoxContainer@886/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@829/BottomNav/@HBoxContainer@886/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@829/BottomNav/@HBoxContainer@886/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@829/BottomNav/@HBoxContainer@886/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@829/BottomNav/@HBoxContainer@886/Nav_war"
+        }
+      ]
+    },
+    {
+      "view": "activities",
+      "controls": 48,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "로비",
+          "rect": [
+            55.0,
+            24.0,
+            134.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@899/ScreenHeader/@Button@903"
+        },
+        {
+          "text": "메뉴",
+          "rect": [
+            1145.0,
+            24.0,
+            80.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@899/ScreenHeader/@Button@907"
+        },
+        {
+          "text": "오늘의 원정 시작",
+          "rect": [
+            77.0,
+            376.0,
+            332.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@899/@ScrollContainer@912/@Control@913/@Panel@914/@Button@922"
+        },
+        {
+          "text": "다음 층으로",
+          "rect": [
+            465.0,
+            376.0,
+            332.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@899/@ScrollContainer@912/@Control@913/@Panel@923/@Button@931"
+        },
+        {
+          "text": "스킬트리 · 동료",
+          "rect": [
+            853.0,
+            332.0,
+            330.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@899/@ScrollContainer@912/@Control@913/@Panel@932/@Button@936"
+        },
+        {
+          "text": "장비 관리",
+          "rect": [
+            853.0,
+            378.0,
+            330.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@899/@ScrollContainer@912/@Control@913/@Panel@932/@Button@937"
+        },
+        {
+          "text": "심연에 도전",
+          "rect": [
+            960.0,
+            472.0,
+            221.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@899/@ScrollContainer@912/@Control@913/@Panel@938/@Button@942"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@899/BottomNav/@HBoxContainer@957/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@899/BottomNav/@HBoxContainer@957/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@899/BottomNav/@HBoxContainer@957/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@899/BottomNav/@HBoxContainer@957/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@899/BottomNav/@HBoxContainer@957/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@899/BottomNav/@HBoxContainer@957/Nav_war"
+        },
+        {
+          "text": "?",
+          "rect": [
+            1181.0,
+            93.0,
+            44.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@899/OnboardingHint"
+        }
+      ]
+    },
+    {
+      "view": "summon",
+      "controls": 72,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "로비",
+          "rect": [
+            55.0,
+            24.0,
+            134.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@970/ScreenHeader/@Button@974"
+        },
+        {
+          "text": "메뉴",
+          "rect": [
+            1145.0,
+            24.0,
+            80.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@970/ScreenHeader/@Button@978"
+        },
+        {
+          "text": "소환하기  ·  100 젬",
+          "rect": [
+            95.0,
+            553.0,
+            360.0,
+            46.0
+          ],
+          "path": "/root/Main/@Control@970/@Panel@981/@Button@989"
+        },
+        {
+          "text": "영웅 도감",
+          "rect": [
+            1083.0,
+            191.0,
+            142.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@970/@Button@992"
+        },
+        {
+          "text": "돌파 · 20조각",
+          "rect": [
+            995.0,
+            281.0,
+            188.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@970/@ScrollContainer@995/@Control@996/@Panel@997/@Button@1002"
+        },
+        {
+          "text": "돌파 · 20조각",
+          "rect": [
+            995.0,
+            365.0,
+            188.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@970/@ScrollContainer@995/@Control@996/@Panel@1003/@Button@1008"
+        },
+        {
+          "text": "돌파 · 20조각",
+          "rect": [
+            995.0,
+            449.0,
+            188.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@970/@ScrollContainer@995/@Control@996/@Panel@1009/@Button@1014"
+        },
+        {
+          "text": "돌파 · 20조각",
+          "rect": [
+            995.0,
+            533.0,
+            188.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@970/@ScrollContainer@995/@Control@996/@Panel@1015/@Button@1020"
+        },
+        {
+          "text": "돌파 · 20조각",
+          "rect": [
+            995.0,
+            617.0,
+            188.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@970/@ScrollContainer@995/@Control@996/@Panel@1021/@Button@1026"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@970/BottomNav/@HBoxContainer@1087/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@970/BottomNav/@HBoxContainer@1087/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@970/BottomNav/@HBoxContainer@1087/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@970/BottomNav/@HBoxContainer@1087/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@970/BottomNav/@HBoxContainer@1087/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@970/BottomNav/@HBoxContainer@1087/Nav_war"
+        },
+        {
+          "text": "?",
+          "rect": [
+            1181.0,
+            93.0,
+            44.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@970/OnboardingHint"
+        }
+      ]
+    },
+    {
+      "view": "world",
+      "controls": 47,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "로비",
+          "rect": [
+            55.0,
+            24.0,
+            134.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1100/ScreenHeader/@Button@1104"
+        },
+        {
+          "text": "메뉴",
+          "rect": [
+            1145.0,
+            24.0,
+            80.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1100/ScreenHeader/@Button@1108"
+        },
+        {
+          "text": "지역 보스",
+          "rect": [
+            1040.0,
+            185.0,
+            185.0,
+            78.0
+          ],
+          "path": "/root/Main/@Control@1100/@Button@1126"
+        },
+        {
+          "text": "사냥 시작",
+          "rect": [
+            78.0,
+            535.0,
+            211.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1100/@Panel@1127/@Button@1135"
+        },
+        {
+          "text": "보스",
+          "rect": [
+            300.0,
+            535.0,
+            114.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1100/@Panel@1127/@Button@1136"
+        },
+        {
+          "text": "사냥 시작",
+          "rect": [
+            472.0,
+            535.0,
+            211.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1100/@Panel@1137/@Button@1146"
+        },
+        {
+          "text": "보스",
+          "rect": [
+            694.0,
+            535.0,
+            114.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1100/@Panel@1137/@Button@1147"
+        },
+        {
+          "text": "사냥 시작",
+          "rect": [
+            866.0,
+            535.0,
+            211.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1100/@Panel@1148/@Button@1157"
+        },
+        {
+          "text": "보스",
+          "rect": [
+            1088.0,
+            535.0,
+            114.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1100/@Panel@1148/@Button@1158"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1100/BottomNav/@HBoxContainer@1159/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1100/BottomNav/@HBoxContainer@1159/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1100/BottomNav/@HBoxContainer@1159/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1100/BottomNav/@HBoxContainer@1159/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1100/BottomNav/@HBoxContainer@1159/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1100/BottomNav/@HBoxContainer@1159/Nav_war"
+        },
+        {
+          "text": "?",
+          "rect": [
+            1181.0,
+            93.0,
+            44.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1100/OnboardingHint"
+        }
+      ]
+    },
+    {
+      "view": "boss",
+      "controls": 40,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "월드맵",
+          "rect": [
+            55.0,
+            24.0,
+            134.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1172/ScreenHeader/@Button@1176"
+        },
+        {
+          "text": "메뉴",
+          "rect": [
+            1145.0,
+            24.0,
+            80.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1172/ScreenHeader/@Button@1180"
+        },
+        {
+          "text": "도전하기",
+          "rect": [
+            1009.0,
+            231.0,
+            192.0,
+            46.0
+          ],
+          "path": "/root/Main/@Control@1172/@Panel@1183/@Button@1191"
+        },
+        {
+          "text": "도전하기",
+          "rect": [
+            1009.0,
+            380.0,
+            192.0,
+            46.0
+          ],
+          "path": "/root/Main/@Control@1172/@Panel@1192/@Button@1200"
+        },
+        {
+          "text": "도전하기",
+          "rect": [
+            1009.0,
+            529.0,
+            192.0,
+            46.0
+          ],
+          "path": "/root/Main/@Control@1172/@Panel@1201/@Button@1209"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1172/BottomNav/@HBoxContainer@1210/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1172/BottomNav/@HBoxContainer@1210/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1172/BottomNav/@HBoxContainer@1210/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1172/BottomNav/@HBoxContainer@1210/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1172/BottomNav/@HBoxContainer@1210/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1172/BottomNav/@HBoxContainer@1210/Nav_war"
+        },
+        {
+          "text": "?",
+          "rect": [
+            1181.0,
+            93.0,
+            44.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1172/OnboardingHint"
+        }
+      ]
+    },
+    {
+      "view": "codex",
+      "controls": 79,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "소환",
+          "rect": [
+            55.0,
+            24.0,
+            134.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1223/ScreenHeader/@Button@1227"
+        },
+        {
+          "text": "메뉴",
+          "rect": [
+            1145.0,
+            24.0,
+            80.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1223/ScreenHeader/@Button@1231"
+        },
+        {
+          "text": "영웅 이야기",
+          "rect": [
+            71.0,
+            328.0,
+            245.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1223/@ScrollContainer@1236/@Control@1237/@Panel@1238/@Button@1244"
+        },
+        {
+          "text": "영웅 이야기",
+          "rect": [
+            360.0,
+            328.0,
+            245.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1223/@ScrollContainer@1236/@Control@1237/@Panel@1245/@Button@1251"
+        },
+        {
+          "text": "영웅 이야기",
+          "rect": [
+            649.0,
+            328.0,
+            245.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1223/@ScrollContainer@1236/@Control@1237/@Panel@1252/@Button@1258"
+        },
+        {
+          "text": "영웅 이야기",
+          "rect": [
+            938.0,
+            328.0,
+            245.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1223/@ScrollContainer@1236/@Control@1237/@Panel@1259/@Button@1265"
+        },
+        {
+          "text": "영웅 이야기",
+          "rect": [
+            71.0,
+            535.0,
+            245.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1223/@ScrollContainer@1236/@Control@1237/@Panel@1266/@Button@1272"
+        },
+        {
+          "text": "영웅 이야기",
+          "rect": [
+            360.0,
+            535.0,
+            245.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1223/@ScrollContainer@1236/@Control@1237/@Panel@1273/@Button@1279"
+        },
+        {
+          "text": "영웅 이야기",
+          "rect": [
+            649.0,
+            535.0,
+            245.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1223/@ScrollContainer@1236/@Control@1237/@Panel@1280/@Button@1286"
+        },
+        {
+          "text": "영웅 이야기",
+          "rect": [
+            938.0,
+            535.0,
+            245.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1223/@ScrollContainer@1236/@Control@1237/@Panel@1287/@Button@1293"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1223/BottomNav/@HBoxContainer@1343/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1223/BottomNav/@HBoxContainer@1343/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1223/BottomNav/@HBoxContainer@1343/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1223/BottomNav/@HBoxContainer@1343/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1223/BottomNav/@HBoxContainer@1343/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1223/BottomNav/@HBoxContainer@1343/Nav_war"
+        },
+        {
+          "text": "?",
+          "rect": [
+            1181.0,
+            93.0,
+            44.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1223/OnboardingHint"
+        }
+      ]
+    },
+    {
+      "view": "shop",
+      "controls": 37,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "로비",
+          "rect": [
+            55.0,
+            24.0,
+            134.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1356/ScreenHeader/@Button@1360"
+        },
+        {
+          "text": "메뉴",
+          "rect": [
+            1145.0,
+            24.0,
+            80.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1356/ScreenHeader/@Button@1364"
+        },
+        {
+          "text": "오늘의 선물 받기",
+          "rect": [
+            82.0,
+            490.0,
+            324.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1356/@Panel@1367/DailyClaim"
+        },
+        {
+          "text": "지원 보상 받기",
+          "rect": [
+            476.0,
+            490.0,
+            324.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1356/@Panel@1376/SupportClaim"
+        },
+        {
+          "text": "상점 오픈 예정",
+          "rect": [
+            870.0,
+            490.0,
+            328.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1356/@Panel@1385/@Button@1392"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1356/BottomNav/@HBoxContainer@1396/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1356/BottomNav/@HBoxContainer@1396/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1356/BottomNav/@HBoxContainer@1396/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1356/BottomNav/@HBoxContainer@1396/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1356/BottomNav/@HBoxContainer@1396/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1356/BottomNav/@HBoxContainer@1396/Nav_war"
+        },
+        {
+          "text": "?",
+          "rect": [
+            1181.0,
+            93.0,
+            44.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1356/OnboardingHint"
+        }
+      ]
+    },
+    {
+      "view": "war",
+      "controls": 41,
+      "outside_viewport": [],
+      "touch_targets_under_40": [],
+      "text_overflow": [],
+      "buttons": [
+        {
+          "text": "‹  로비",
+          "rect": [
+            52.0,
+            24.0,
+            110.0,
+            46.0
+          ],
+          "path": "/root/Main/@Control@1409/@Control@1413/WarHeader/@Button@1414"
+        },
+        {
+          "text": "시즌 정보",
+          "rect": [
+            960.0,
+            24.0,
+            112.0,
+            46.0
+          ],
+          "path": "/root/Main/@Control@1409/@Control@1413/WarHeader/@Button@1417"
+        },
+        {
+          "text": "전선 새로고침",
+          "rect": [
+            1088.0,
+            24.0,
+            140.0,
+            46.0
+          ],
+          "path": "/root/Main/@Control@1409/@Control@1413/WarHeader/@Button@1418"
+        },
+        {
+          "text": "현재 주둔 위치",
+          "rect": [
+            814.0,
+            456.0,
+            396.0,
+            46.0
+          ],
+          "path": "/root/Main/@Control@1409/@Control@1413/WarCommandPanel/@VBoxContainer@1440/WarPrimaryAction"
+        },
+        {
+          "text": "현재 타일 수비 등록",
+          "rect": [
+            814.0,
+            512.0,
+            194.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1409/@Control@1413/WarCommandPanel/@VBoxContainer@1440/@HBoxContainer@1448/@Button@1449"
+        },
+        {
+          "text": "집결 공격",
+          "rect": [
+            1016.0,
+            512.0,
+            194.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1409/@Control@1413/WarCommandPanel/@VBoxContainer@1440/@HBoxContainer@1448/@Button@1450"
+        },
+        {
+          "text": "수도 귀환",
+          "rect": [
+            814.0,
+            566.0,
+            126.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1409/@Control@1413/WarCommandPanel/@VBoxContainer@1440/@HBoxContainer@1451/@Button@1452"
+        },
+        {
+          "text": "행군 취소",
+          "rect": [
+            948.0,
+            566.0,
+            127.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1409/@Control@1413/WarCommandPanel/@VBoxContainer@1440/@HBoxContainer@1451/@Button@1453"
+        },
+        {
+          "text": "전투 기록",
+          "rect": [
+            1083.0,
+            566.0,
+            127.0,
+            44.0
+          ],
+          "path": "/root/Main/@Control@1409/@Control@1413/WarCommandPanel/@VBoxContainer@1440/@HBoxContainer@1451/@Button@1454"
+        },
+        {
+          "text": "",
+          "rect": [
+            36.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1409/BottomNav/@HBoxContainer@1455/Nav_home"
+        },
+        {
+          "text": "",
+          "rect": [
+            238.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1409/BottomNav/@HBoxContainer@1455/Nav_world"
+        },
+        {
+          "text": "",
+          "rect": [
+            440.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1409/BottomNav/@HBoxContainer@1455/Nav_heroes"
+        },
+        {
+          "text": "",
+          "rect": [
+            642.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1409/BottomNav/@HBoxContainer@1455/Nav_inventory"
+        },
+        {
+          "text": "",
+          "rect": [
+            845.0,
+            650.0,
+            196.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1409/BottomNav/@HBoxContainer@1455/Nav_growth"
+        },
+        {
+          "text": "",
+          "rect": [
+            1047.0,
+            650.0,
+            197.0,
+            50.0
+          ],
+          "path": "/root/Main/@Control@1409/BottomNav/@HBoxContainer@1455/Nav_war"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1266 @@
+{
+	"checks": 885,
+	"failures": [],
+	"skill_casts": [
+		{
+			"damage": 0,
+			"hero": "leonhardt",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "leonhardt",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "leonhardt",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 279,
+			"hero": "mira",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 232,
+			"hero": "mira",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 400,
+			"hero": "mira",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "elisia",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "elisia",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "elisia",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 130,
+			"hero": "kairen",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 150,
+			"hero": "kairen",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 435,
+			"hero": "kairen",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "orwin",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "orwin",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "orwin",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 174,
+			"hero": "seria",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 170,
+			"hero": "seria",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 300,
+			"hero": "seria",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "astel",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "astel",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "astel",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 231,
+			"hero": "darius",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 226,
+			"hero": "darius",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 346,
+			"hero": "darius",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "lunea",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 68,
+			"hero": "lunea",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 435,
+			"hero": "lunea",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 423,
+			"hero": "caelum",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 171,
+			"hero": "caelum",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 483,
+			"hero": "caelum",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 193,
+			"hero": "valeria",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 153,
+			"hero": "valeria",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 306,
+			"hero": "valeria",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "morgas",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 90,
+			"hero": "morgas",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 543,
+			"hero": "morgas",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 396,
+			"hero": "ragna",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 173,
+			"hero": "ragna",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 474,
+			"hero": "ragna",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 300,
+			"hero": "bron",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "bron",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "bron",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "nyx",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 135,
+			"hero": "nyx",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 450,
+			"hero": "nyx",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 168,
+			"hero": "fenris",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 160,
+			"hero": "fenris",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 304,
+			"hero": "fenris",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "isolde",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "isolde",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "isolde",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "garm",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "garm",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "garm",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 232,
+			"hero": "veyra",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 172,
+			"hero": "veyra",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 340,
+			"hero": "veyra",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 171,
+			"hero": "ulric",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 93,
+			"hero": "ulric",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 239,
+			"hero": "ulric",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 180,
+			"hero": "adrien",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 170,
+			"hero": "adrien",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 280,
+			"hero": "adrien",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 260,
+			"hero": "tessa",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 135,
+			"hero": "tessa",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 424,
+			"hero": "tessa",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 237,
+			"hero": "naia",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 208,
+			"hero": "naia",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 420,
+			"hero": "naia",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 210,
+			"hero": "sael",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 270,
+			"hero": "sael",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 435,
+			"hero": "sael",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 50,
+			"hero": "odelia",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 68,
+			"hero": "odelia",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 237,
+			"hero": "odelia",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 260,
+			"hero": "lucien",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 135,
+			"hero": "lucien",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 360,
+			"hero": "lucien",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 190,
+			"hero": "corvin",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 255,
+			"hero": "corvin",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 330,
+			"hero": "corvin",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 200,
+			"hero": "rokan",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 165,
+			"hero": "rokan",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 300,
+			"hero": "rokan",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 246,
+			"hero": "bora",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 150,
+			"hero": "bora",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 340,
+			"hero": "bora",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "selene",
+			"mode": "field",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "selene",
+			"mode": "field",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "selene",
+			"mode": "field",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "leonhardt",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "leonhardt",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "leonhardt",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 279,
+			"hero": "mira",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 116,
+			"hero": "mira",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 400,
+			"hero": "mira",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "elisia",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "elisia",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "elisia",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 65,
+			"hero": "kairen",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 60,
+			"hero": "kairen",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 220,
+			"hero": "kairen",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "orwin",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "orwin",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "orwin",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 175,
+			"hero": "seria",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 170,
+			"hero": "seria",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 300,
+			"hero": "seria",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "astel",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "astel",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "astel",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 231,
+			"hero": "darius",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 181,
+			"hero": "darius",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 346,
+			"hero": "darius",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "lunea",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 55,
+			"hero": "lunea",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 220,
+			"hero": "lunea",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 208,
+			"hero": "caelum",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 171,
+			"hero": "caelum",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 340,
+			"hero": "caelum",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 193,
+			"hero": "valeria",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 153,
+			"hero": "valeria",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 306,
+			"hero": "valeria",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "morgas",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 45,
+			"hero": "morgas",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 220,
+			"hero": "morgas",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 183,
+			"hero": "ragna",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 173,
+			"hero": "ragna",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 340,
+			"hero": "ragna",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 140,
+			"hero": "bron",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "bron",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "bron",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "nyx",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 45,
+			"hero": "nyx",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 220,
+			"hero": "nyx",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 170,
+			"hero": "fenris",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 160,
+			"hero": "fenris",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 340,
+			"hero": "fenris",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "isolde",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "isolde",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "isolde",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "garm",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "garm",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "garm",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 232,
+			"hero": "veyra",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 172,
+			"hero": "veyra",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 340,
+			"hero": "veyra",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 171,
+			"hero": "ulric",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 93,
+			"hero": "ulric",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 220,
+			"hero": "ulric",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 180,
+			"hero": "adrien",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 170,
+			"hero": "adrien",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 280,
+			"hero": "adrien",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 130,
+			"hero": "tessa",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 135,
+			"hero": "tessa",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 320,
+			"hero": "tessa",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 237,
+			"hero": "naia",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 208,
+			"hero": "naia",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 420,
+			"hero": "naia",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 105,
+			"hero": "sael",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 90,
+			"hero": "sael",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 320,
+			"hero": "sael",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 50,
+			"hero": "odelia",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 55,
+			"hero": "odelia",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 190,
+			"hero": "odelia",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 260,
+			"hero": "lucien",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 135,
+			"hero": "lucien",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 360,
+			"hero": "lucien",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 190,
+			"hero": "corvin",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 85,
+			"hero": "corvin",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 330,
+			"hero": "corvin",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 200,
+			"hero": "rokan",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 165,
+			"hero": "rokan",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 300,
+			"hero": "rokan",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 246,
+			"hero": "bora",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 150,
+			"hero": "bora",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 320,
+			"hero": "bora",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "selene",
+			"mode": "raid",
+			"slot": "a1",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "selene",
+			"mode": "raid",
+			"slot": "a2",
+			"spent": true
+		},
+		{
+			"damage": 0,
+			"hero": "selene",
+			"mode": "raid",
+			"slot": "ultimate",
+			"spent": true
+		}
+	]
+}

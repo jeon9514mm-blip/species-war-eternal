@@ -1,0 +1,472 @@
+{
+  "revision": "Portrait UI rework on immutable v32 gameplay source",
+  "orientation": "portrait",
+  "original_archive": "pixel-faction-rpg-v32-full-project.zip",
+  "working_project": "/mnt/data/portrait-design-work/pixel-faction-rpg-v32",
+  "engine_actual_version": "4.7.2-stable (official)",
+  "presentation_only": true,
+  "original_file_comparison": {
+    "total": 546,
+    "identical": 545,
+    "changed": [
+      "project.godot"
+    ],
+    "missing": [],
+    "Main.gd": "byte-identical",
+    "original_heroes_portraits_skills_and_gameplay": "byte-identical",
+    "original_test_files": "byte-identical"
+  },
+  "config_change": "New portrait startup scene, portrait orientation, 720x1280 base canvas, expand; original scene retained",
+  "portrait_validation": {
+    "checks": 80,
+    "details": [
+      {
+        "check": "project locks portrait orientation",
+        "passed": true
+      },
+      {
+        "check": "app starts portrait scene, original scene retained for regression",
+        "passed": true
+      },
+      {
+        "check": "v32 party preserved",
+        "passed": true
+      },
+      {
+        "check": "combat field truly portrait, not a letterboxed landscape canvas",
+        "passed": true
+      },
+      {
+        "check": "ten visible hero/locked slots",
+        "passed": true
+      },
+      {
+        "check": "HP/ultimate widgets for leonhardt",
+        "passed": true
+      },
+      {
+        "check": "original v32 portrait routed for leonhardt",
+        "passed": true
+      },
+      {
+        "check": "HP/ultimate widgets for mira",
+        "passed": true
+      },
+      {
+        "check": "original v32 portrait routed for mira",
+        "passed": true
+      },
+      {
+        "check": "HP/ultimate widgets for elisia",
+        "passed": true
+      },
+      {
+        "check": "original v32 portrait routed for elisia",
+        "passed": true
+      },
+      {
+        "check": "display uses real hero HP",
+        "passed": true
+      },
+      {
+        "check": "display uses real hero ultimate",
+        "passed": true
+      },
+      {
+        "check": "AUTO button invokes existing pause command",
+        "passed": true
+      },
+      {
+        "check": "AUTO resumes without changing AI mode",
+        "passed": true
+      },
+      {
+        "check": "resize preserves HP/XP/rewards/position (720, 1280)",
+        "passed": true
+      },
+      {
+        "check": "resize does not respawn encounters (720, 1280)",
+        "passed": true
+      },
+      {
+        "check": "navigation inside screen (720, 1280)",
+        "passed": true
+      },
+      {
+        "check": "party slots do not overlap bottom navigation (720, 1280)",
+        "passed": true
+      },
+      {
+        "check": "portrait field maintained (720, 1280)",
+        "passed": true
+      },
+      {
+        "check": "resize preserves HP/XP/rewards/position (720, 1440)",
+        "passed": true
+      },
+      {
+        "check": "resize does not respawn encounters (720, 1440)",
+        "passed": true
+      },
+      {
+        "check": "navigation inside screen (720, 1440)",
+        "passed": true
+      },
+      {
+        "check": "party slots do not overlap bottom navigation (720, 1440)",
+        "passed": true
+      },
+      {
+        "check": "portrait field maintained (720, 1440)",
+        "passed": true
+      },
+      {
+        "check": "resize preserves HP/XP/rewards/position (720, 1560)",
+        "passed": true
+      },
+      {
+        "check": "resize does not respawn encounters (720, 1560)",
+        "passed": true
+      },
+      {
+        "check": "navigation inside screen (720, 1560)",
+        "passed": true
+      },
+      {
+        "check": "party slots do not overlap bottom navigation (720, 1560)",
+        "passed": true
+      },
+      {
+        "check": "portrait field maintained (720, 1560)",
+        "passed": true
+      },
+      {
+        "check": "same seeded live combat outcome as untouched v32: aurelia",
+        "passed": true
+      },
+      {
+        "check": "automatic pursuit continues aurelia",
+        "passed": true
+      },
+      {
+        "check": "same seeded live combat outcome as untouched v32: noxfera",
+        "passed": true
+      },
+      {
+        "check": "automatic pursuit continues noxfera",
+        "passed": true
+      },
+      {
+        "check": "portrait menu opens lobby",
+        "passed": true
+      },
+      {
+        "check": "portrait menu opens hero_select",
+        "passed": true
+      },
+      {
+        "check": "portrait menu opens inventory",
+        "passed": true
+      },
+      {
+        "check": "portrait menu opens meta_hub",
+        "passed": true
+      },
+      {
+        "check": "portrait menu opens summon",
+        "passed": true
+      },
+      {
+        "check": "portrait menu opens world_map",
+        "passed": true
+      },
+      {
+        "check": "returns from menus to live portrait HUD",
+        "passed": true
+      },
+      {
+        "check": "all ten v32 heroes have portrait HUD health bars",
+        "passed": true
+      },
+      {
+        "check": "compact HP bar height leonhardt",
+        "passed": true
+      },
+      {
+        "check": "compact HP bar height mira",
+        "passed": true
+      },
+      {
+        "check": "compact HP bar height elisia",
+        "passed": true
+      },
+      {
+        "check": "compact HP bar height kairen",
+        "passed": true
+      },
+      {
+        "check": "compact HP bar height orwin",
+        "passed": true
+      },
+      {
+        "check": "compact HP bar height seria",
+        "passed": true
+      },
+      {
+        "check": "compact HP bar height astel",
+        "passed": true
+      },
+      {
+        "check": "compact HP bar height darius",
+        "passed": true
+      },
+      {
+        "check": "compact HP bar height lunea",
+        "passed": true
+      },
+      {
+        "check": "compact HP bar height caelum",
+        "passed": true
+      },
+      {
+        "check": "portrait-native raid arena installed",
+        "passed": true
+      },
+      {
+        "check": "original raid command starts from portrait view",
+        "passed": true
+      },
+      {
+        "check": "original raid simulation advances",
+        "passed": true
+      },
+      {
+        "check": "original raid applies damage",
+        "passed": true
+      },
+      {
+        "check": "original war screen retained",
+        "passed": true
+      },
+      {
+        "check": "portrait war map fits width",
+        "passed": true
+      },
+      {
+        "check": "war commands below map",
+        "passed": true
+      },
+      {
+        "check": "war commands above bottom menu",
+        "passed": true
+      },
+      {
+        "check": "original authoritative war session unchanged",
+        "passed": true
+      },
+      {
+        "check": "direct original detail rebuilds stay portrait",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera gray_meadow (-100.0, -100.0)",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera gray_meadow (0.0, 0.0)",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera gray_meadow (16.0, 10.0)",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera gray_meadow (32.0, 20.0)",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera gray_meadow (100.0, 100.0)",
+        "passed": true
+      },
+      {
+        "check": "same actor/terrain coordinates in portrait gray_meadow",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera forgotten_mine (-100.0, -100.0)",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera forgotten_mine (0.0, 0.0)",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera forgotten_mine (16.0, 10.0)",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera forgotten_mine (32.0, 20.0)",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera forgotten_mine (100.0, 100.0)",
+        "passed": true
+      },
+      {
+        "check": "same actor/terrain coordinates in portrait forgotten_mine",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera moonrest_forest (-100.0, -100.0)",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera moonrest_forest (0.0, 0.0)",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera moonrest_forest (16.0, 10.0)",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera moonrest_forest (32.0, 20.0)",
+        "passed": true
+      },
+      {
+        "check": "portrait scenery covers edge camera moonrest_forest (100.0, 100.0)",
+        "passed": true
+      },
+      {
+        "check": "same actor/terrain coordinates in portrait moonrest_forest",
+        "passed": true
+      }
+    ],
+    "engine": "4.7.2-stable (official)",
+    "failures": [],
+    "passed": 80,
+    "scope": "desktop headless gameplay and presentation state; not Android APK"
+  },
+  "legacy_regression": {
+    "passed": 77,
+    "total": 79,
+    "failure_count": 2,
+    "failures": [
+      {
+        "test": "V24MobileLandscapeSmokeTest.gd",
+        "passed": false,
+        "seconds": 1.97,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: V24: handheld orientation must be landscape\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] _fail (res://scripts/V24MobileLandscapeSmokeTest.gd:4)\n       [1] _run (res://scripts/V24MobileLandscapeSmokeTest.gd:17)\n"
+      },
+      {
+        "test": "V32GraphicsSmokeTest.gd",
+        "passed": false,
+        "seconds": 8.02,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: gray_meadow actual Main camera never exposes missing world pixels\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] _check (res://scripts/V32GraphicsSmokeTest.gd:24)\n       [1] _test_live_screens (res://scripts/V32GraphicsSmokeTest.gd:328)\nERROR: gray_meadow actual Main camera never exposes missing world pixels\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] _check (res://scripts/V32GraphicsSmokeTest.gd:24)\n       [1] _test_live_screens (res://scripts/V32GraphicsSmokeTest.gd:328)\nERROR: gray_meadow actual Main camera never exposes missing world pixels\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] _check (res://scripts/V32GraphicsSmokeTest.gd:24)\n       [1] _test_live_screens (res://scripts/V32GraphicsSmokeTest.gd:328)\nERROR: gray_meadow actual Main camera never exposes missing world pixels\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] _check (res://scripts/V32GraphicsSmokeTest.gd:24)\n       [1] _test_live_screens (res://scripts/V32GraphicsSmokeTest.gd:328)\nERROR: gray_meadow actual Main camera never exposes missing world pixels\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] _check (res://scripts/V32GraphicsSmokeTest.gd:24)\n       [1] _test_live_screens (res://scripts/V32GraphicsSmokeTest.gd:328)\nv32_graphics checks=3029 failures=5\n"
+      }
+    ],
+    "explanation": "These results are not reported as all-pass. V24 asserts landscape orientation and V32Graphics runs the original landscape Main camera under the new portrait viewport. Both original tests are unchanged. The new portrait suite separately checks portrait orientation, bounds in all three regions, navigation alignment and identical seeded combat results."
+  },
+  "rendering": {
+    "backend": "OpenGL compatibility, Xvfb + Mesa llvmpipe",
+    "actual_sizes": [
+      [
+        720,
+        1280
+      ],
+      [
+        720,
+        1560
+      ]
+    ],
+    "capture_fixture": "Lv12, 3 v32 heroes, gold6560, gems100; test-only values",
+    "screenshots": [
+      {
+        "path": "/mnt/data/portrait-preview/combat-portrait-16x9.png",
+        "width_height": [
+          720,
+          1280
+        ],
+        "kind": "actual Godot viewport capture",
+        "sha256": "defc80824a336640a1591a14584bf7fc91b9b5537600e628511c2d4fc8927cb5"
+      },
+      {
+        "path": "/mnt/data/portrait-preview/combat-portrait-20x9.png",
+        "width_height": [
+          720,
+          1560
+        ],
+        "kind": "actual Godot viewport capture",
+        "sha256": "a48b1ee27847907539003215f1222f4cee5dd8cbd959a02131b4a3d60093f013"
+      },
+      {
+        "path": "/mnt/data/portrait-preview/growth-portrait.png",
+        "width_height": [
+          720,
+          1560
+        ],
+        "kind": "actual Godot viewport capture",
+        "sha256": "f1efdd3823555f25baa9a5142c458f879642433dc2929b3886092159f6cf34d0"
+      },
+      {
+        "path": "/mnt/data/portrait-preview/heroes-portrait.png",
+        "width_height": [
+          720,
+          1560
+        ],
+        "kind": "actual Godot viewport capture",
+        "sha256": "e9403e8e3d372041928541aaf8d39c6353a4f00859d9fb9e32b6e0eaf13e167f"
+      },
+      {
+        "path": "/mnt/data/portrait-preview/inventory-portrait.png",
+        "width_height": [
+          720,
+          1560
+        ],
+        "kind": "actual Godot viewport capture",
+        "sha256": "eee8de3c0a72c4a329c407aae9d999061adfb58559b42e3cb74ca765da279455"
+      },
+      {
+        "path": "/mnt/data/portrait-preview/lobby-portrait.png",
+        "width_height": [
+          720,
+          1560
+        ],
+        "kind": "actual Godot viewport capture",
+        "sha256": "25b39757dfa79ab9beb25a804e008f3040c29707ed7a7db759efb23036216aad"
+      },
+      {
+        "path": "/mnt/data/portrait-preview/raid-portrait.png",
+        "width_height": [
+          720,
+          1560
+        ],
+        "kind": "actual Godot viewport capture",
+        "sha256": "57043f9c9de1df0fab8cc50ec4e21a72ad50254a4ec044b39678b6d6e57d7312"
+      },
+      {
+        "path": "/mnt/data/portrait-preview/war-portrait.png",
+        "width_height": [
+          720,
+          1560
+        ],
+        "kind": "actual Godot viewport capture",
+        "sha256": "e6832b5e652408399d09ca791e3a37c9e28becfe6202d6036c9159b91ba57487"
+      }
+    ]
+  },
+  "preserved_behaviors": [
+    "v32 hero and skill data/art",
+    "automatic search and target pursuit",
+    "seeded combat outcomes for both factions",
+    "growth, equipment, economy and saves",
+    "territorial commands, server session, AI"
+  ],
+  "limitations": [
+    "No APK has been built or tested on a physical Android device in this revision.",
+    "Casual meadow and header art is a first-pass original illustration guided by the reference, not an exact recreation of its detailed painted assets.",
+    "Portrait menu wrapping reuses original controls; some dense secondary panels still use scaled content inside a vertical scroll."
+  ],
+  "zip_created": false,
+  "static_validation": "STATIC VALIDATION OK | gd=148 smoke=78 resources=ok links=ok",
+  "compatibility_scan": "GODOT 4.7 COMPAT SCAN OK"
+}

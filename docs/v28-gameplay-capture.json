@@ -1,0 +1,3986 @@
+{
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "final": {
+    "camera": [
+      19.0599803924561,
+      3.90000033378601
+    ],
+    "combat_ticks": 1206,
+    "frame": 603,
+    "heroes": [
+      {
+        "animation": "walk_up",
+        "animation_frame": 1,
+        "attack_target": -1,
+        "distance_walked": 19.728047100245,
+        "hp": 723,
+        "id": "leonhardt",
+        "max_hp": 741,
+        "screen": [
+          671.787109375,
+          223.335021972656
+        ],
+        "target": 1,
+        "ultimate": 100.0,
+        "velocity": [
+          1.23092639446259,
+          -1.51235091686249
+        ],
+        "visible": true,
+        "world": [
+          19.5782489776611,
+          2.40220165252686
+        ]
+      },
+      {
+        "animation": "attack_right",
+        "animation_frame": 1,
+        "attack_target": -1,
+        "distance_walked": 20.8307918227511,
+        "hp": 430,
+        "id": "mira",
+        "max_hp": 430,
+        "screen": [
+          658.559753417969,
+          241.18994140625
+        ],
+        "target": 1,
+        "ultimate": 96.0,
+        "velocity": [
+          0.0,
+          0.0
+        ],
+        "visible": true,
+        "world": [
+          19.362585067749,
+          2.69331455230713
+        ]
+      },
+      {
+        "animation": "walk_right",
+        "animation_frame": 1,
+        "attack_target": -1,
+        "distance_walked": 22.1836367573123,
+        "hp": 810,
+        "id": "orwin",
+        "max_hp": 815,
+        "screen": [
+          707.498718261719,
+          234.761123657227
+        ],
+        "target": 1,
+        "ultimate": 70.4357142857143,
+        "velocity": [
+          0.335655182600021,
+          -0.044145580381155
+        ],
+        "visible": true,
+        "world": [
+          20.1605033874512,
+          2.58849668502808
+        ]
+      },
+      {
+        "animation": "attack_up",
+        "animation_frame": 0,
+        "attack_target": -1,
+        "distance_walked": 19.9992562495172,
+        "hp": 501,
+        "id": "darius",
+        "max_hp": 513,
+        "screen": [
+          694.810791015625,
+          258.816223144531
+        ],
+        "target": 1,
+        "ultimate": 21.56,
+        "velocity": [
+          0.309905976057053,
+          0.0271081905812025
+        ],
+        "visible": true,
+        "world": [
+          19.953634262085,
+          2.98069930076599
+        ]
+      },
+      {
+        "animation": "attack_up",
+        "animation_frame": 2,
+        "attack_target": -1,
+        "distance_walked": 19.3990791590186,
+        "hp": 551,
+        "id": "caelum",
+        "max_hp": 551,
+        "screen": [
+          670.800476074219,
+          251.156372070312
+        ],
+        "target": 1,
+        "ultimate": 89.0,
+        "velocity": [
+          0.0,
+          0.0
+        ],
+        "visible": true,
+        "world": [
+          19.562162399292,
+          2.85581064224243
+        ]
+      }
+    ],
+    "monsters": [
+      {
+        "hp": 318,
+        "index": 0,
+        "name": "바람 까마귀",
+        "returning": false,
+        "world": [
+          21.063591003418,
+          0.465509206056595
+        ]
+      },
+      {
+        "hp": 59,
+        "index": 1,
+        "name": "초원 고블린",
+        "returning": false,
+        "world": [
+          20.0565242767334,
+          2.0013256072998
+        ]
+      },
+      {
+        "hp": 318,
+        "index": 2,
+        "name": "들개 무리",
+        "returning": false,
+        "world": [
+          20.1628913879395,
+          1.67896831035614
+        ]
+      }
+    ],
+    "navigation": {
+      "astar_queries": 80,
+      "move_calls": 12068,
+      "routes": 0
+    },
+    "packs_cleared": 2,
+    "party_anchor": [
+      19.6420345306396,
+      2.34626293182373
+    ],
+    "stage": 8
+  },
+  "screenshots": [
+    "/workspace/scratch/b4d947fe7908/output/v28-release/Pixel_RPG_v28_Wide_Hunt_0030.png",
+    "/workspace/scratch/b4d947fe7908/output/v28-release/Pixel_RPG_v28_Wide_Hunt_0120.png",
+    "/workspace/scratch/b4d947fe7908/output/v28-release/Pixel_RPG_v28_Wide_Hunt_0300.png",
+    "/workspace/scratch/b4d947fe7908/output/v28-release/Pixel_RPG_v28_Wide_Hunt_0600.png",
+    "/workspace/scratch/b4d947fe7908/output/v28-release/Pixel_RPG_v28_Wide_Hunt_0603.png"
+  ],
+  "setup": {
+    "battle_speed": 1.0,
+    "hero_ids": [
+      "leonhardt",
+      "mira",
+      "orwin",
+      "darius",
+      "caelum"
+    ],
+    "loot_seed": 28001,
+    "stage_start": 8,
+    "zone": "gray_meadow"
+  },
+  "simulation_frames": 603,
+  "snapshots": [
+    {
+      "camera": [
+        16.0,
+        10.0
+      ],
+      "combat_ticks": 0,
+      "frame": 0,
+      "heroes": [
+        {
+          "animation": "idle_down",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 0.0,
+          "hp": 741,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            663.306640625,
+            284.533355712891
+          ],
+          "target": -1,
+          "ultimate": 0.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            16.3799991607666,
+            9.5
+          ]
+        },
+        {
+          "animation": "idle_down",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 0.0,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            663.306640625,
+            315.200012207031
+          ],
+          "target": -1,
+          "ultimate": 0.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            16.3799991607666,
+            10.0
+          ]
+        },
+        {
+          "animation": "idle_down",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 0.0,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            663.306640625,
+            345.866668701172
+          ],
+          "target": -1,
+          "ultimate": 0.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            16.3799991607666,
+            10.5
+          ]
+        },
+        {
+          "animation": "idle_down",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 0.0,
+          "hp": 513,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            630.186645507812,
+            284.533355712891
+          ],
+          "target": -1,
+          "ultimate": 0.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            15.8400001525879,
+            9.5
+          ]
+        },
+        {
+          "animation": "idle_down",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 0.0,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            630.186645507812,
+            315.200012207031
+          ],
+          "target": -1,
+          "ultimate": 0.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            15.8400001525879,
+            10.0
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 318,
+          "index": 0,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            18.0960063934326,
+            5.61359024047852
+          ]
+        },
+        {
+          "hp": 431,
+          "index": 1,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            17.6064682006836,
+            5.82973957061768
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            17.7002716064453,
+            4.99558782577515
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 0,
+        "move_calls": 0,
+        "routes": 0
+      },
+      "packs_cleared": 0,
+      "party_anchor": [
+        16.0,
+        10.0
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        16.0551795959473,
+        9.04803466796875
+      ],
+      "combat_ticks": 60,
+      "frame": 30,
+      "heroes": [
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 1.74779698625207,
+          "hp": 741,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            693.741882324219,
+            241.215408325195
+          ],
+          "target": 1,
+          "ultimate": 0.0,
+          "velocity": [
+            0.704727113246918,
+            -1.81820857524872
+          ],
+          "visible": true,
+          "world": [
+            16.9314060211182,
+            7.84176397323608
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 1.74421449750662,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            693.424133300781,
+            272.003479003906
+          ],
+          "target": 1,
+          "ultimate": 0.0,
+          "velocity": [
+            0.651512086391449,
+            -1.83792102336884
+          ],
+          "visible": true,
+          "world": [
+            16.9262256622314,
+            8.34374332427979
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 1.71682992763817,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            691.794311523438,
+            303.922454833984
+          ],
+          "target": 1,
+          "ultimate": 0.0,
+          "velocity": [
+            0.409355133771896,
+            -1.68411242961884
+          ],
+          "visible": true,
+          "world": [
+            16.8996524810791,
+            8.86416149139404
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 1.74547876231372,
+          "hp": 513,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            660.890075683594,
+            241.529190063477
+          ],
+          "target": 1,
+          "ultimate": 0.0,
+          "velocity": [
+            0.823974549770355,
+            -1.7673681974411
+          ],
+          "visible": true,
+          "world": [
+            16.3957786560059,
+            7.84687995910645
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 1.6798690315336,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            659.354553222656,
+            275.884002685547
+          ],
+          "target": 1,
+          "ultimate": 0.0,
+          "velocity": [
+            0.681037843227386,
+            -1.55965793132782
+          ],
+          "visible": true,
+          "world": [
+            16.3707427978516,
+            8.40701293945312
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 318,
+          "index": 0,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            18.6028652191162,
+            5.86644792556763
+          ]
+        },
+        {
+          "hp": 431,
+          "index": 1,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            17.5105171203613,
+            6.08481168746948
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            17.4258155822754,
+            5.38935899734497
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 0,
+        "move_calls": 840,
+        "routes": 0
+      },
+      "packs_cleared": 0,
+      "party_anchor": [
+        16.5448150634766,
+        8.3691291809082
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        16.4774761199951,
+        7.76352977752686
+      ],
+      "combat_ticks": 120,
+      "frame": 60,
+      "heroes": [
+        {
+          "animation": "idle_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 2.6320719353389,
+          "hp": 741,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            688.930908203125,
+            271.309509277344
+          ],
+          "target": 1,
+          "ultimate": 10.56,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            17.2752628326416,
+            7.04792356491089
+          ]
+        },
+        {
+          "animation": "walk_down",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 3.05472648330033,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            699.230529785156,
+            300.062927246094
+          ],
+          "target": 0,
+          "ultimate": 15.0,
+          "velocity": [
+            0.393791168928146,
+            1.36939990520477
+          ],
+          "visible": true,
+          "world": [
+            17.4431915283203,
+            7.5167293548584
+          ]
+        },
+        {
+          "animation": "attack_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 3.2378033939749,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            687.440185546875,
+            292.174041748047
+          ],
+          "target": 1,
+          "ultimate": 0.0,
+          "velocity": [
+            0.0836563035845757,
+            -1.64792048931122
+          ],
+          "visible": true,
+          "world": [
+            17.2509574890137,
+            7.38810634613037
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 2.78657298209146,
+          "hp": 513,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            647.3779296875,
+            269.772186279297
+          ],
+          "target": 1,
+          "ultimate": 10.78,
+          "velocity": [
+            -0.23059843480587,
+            -0.350046128034592
+          ],
+          "visible": true,
+          "world": [
+            16.5977687835693,
+            7.02285861968994
+          ]
+        },
+        {
+          "animation": "walk_left",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 2.90886320360005,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            663.040588378906,
+            286.171264648438
+          ],
+          "target": 1,
+          "ultimate": 15.0,
+          "velocity": [
+            -0.125770568847656,
+            -0.0732421800494194
+          ],
+          "visible": true,
+          "world": [
+            16.8531379699707,
+            7.29023504257202
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 318,
+          "index": 0,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            17.8086013793945,
+            6.603759765625
+          ]
+        },
+        {
+          "hp": 45,
+          "index": 1,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            17.4139709472656,
+            6.47753953933716
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            17.3708820343018,
+            5.65349054336548
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 0,
+        "move_calls": 1546,
+        "routes": 0
+      },
+      "packs_cleared": 0,
+      "party_anchor": [
+        17.0316543579102,
+        7.29229974746704
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        16.6373386383057,
+        7.47333383560181
+      ],
+      "combat_ticks": 180,
+      "frame": 90,
+      "heroes": [
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 2.89427470916416,
+          "hp": 722,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            674.395874023438,
+            275.079406738281
+          ],
+          "target": 0,
+          "ultimate": 44.6811428571429,
+          "velocity": [
+            -0.0777053758502007,
+            -0.23858068883419
+          ],
+          "visible": true,
+          "world": [
+            17.1981410980225,
+            6.8191933631897
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 3.30090113426559,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            701.493835449219,
+            323.920593261719
+          ],
+          "target": 0,
+          "ultimate": 26.0,
+          "velocity": [
+            0.100479118525982,
+            0.014276503585279
+          ],
+          "visible": true,
+          "world": [
+            17.6399555206299,
+            7.61551713943481
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 3.86711464100517,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            696.99755859375,
+            298.414123535156
+          ],
+          "target": 0,
+          "ultimate": 10.45,
+          "velocity": [
+            0.136070251464844,
+            0.0466346703469753
+          ],
+          "visible": true,
+          "world": [
+            17.5666465759277,
+            7.19965076446533
+          ]
+        },
+        {
+          "animation": "walk_left",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 3.47147937514819,
+          "hp": 513,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            648.654968261719,
+            251.443496704102
+          ],
+          "target": 2,
+          "ultimate": 25.48,
+          "velocity": [
+            -0.124969474971294,
+            -0.0935268327593803
+          ],
+          "visible": true,
+          "world": [
+            16.7784519195557,
+            6.43382549285889
+          ]
+        },
+        {
+          "animation": "idle_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 3.07943052356131,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            660.454650878906,
+            299.787048339844
+          ],
+          "target": 0,
+          "ultimate": 26.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            16.9708385467529,
+            7.22203540802002
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 84,
+          "index": 0,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            17.7667865753174,
+            6.63836622238159
+          ]
+        },
+        {
+          "hp": 0,
+          "index": 1,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            17.4139709472656,
+            6.47753953933716
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            17.3708820343018,
+            5.65349054336548
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 0,
+        "move_calls": 2109,
+        "routes": 0
+      },
+      "packs_cleared": 0,
+      "party_anchor": [
+        17.0943374633789,
+        7.2365403175354
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        16.6919116973877,
+        7.10252952575684
+      ],
+      "combat_ticks": 240,
+      "frame": 120,
+      "heroes": [
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 3.66173171543051,
+          "hp": 708,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            677.997009277344,
+            251.75749206543
+          ],
+          "target": 2,
+          "ultimate": 70.9851428571429,
+          "velocity": [
+            -0.0165939331054688,
+            -0.501565933227539
+          ],
+          "visible": true,
+          "world": [
+            17.3114280700684,
+            6.06814050674438
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 4.03837341198232,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            695.368408203125,
+            304.607421875
+          ],
+          "target": 2,
+          "ultimate": 37.0,
+          "velocity": [
+            -0.0938415452837944,
+            -1.69667232036591
+          ],
+          "visible": true,
+          "world": [
+            17.5946578979492,
+            6.9298243522644
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 4.69431521289516,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            692.76708984375,
+            271.768615722656
+          ],
+          "target": 2,
+          "ultimate": 20.9,
+          "velocity": [
+            -0.100822441279888,
+            -1.88452708721161
+          ],
+          "visible": true,
+          "world": [
+            17.5522441864014,
+            6.39440870285034
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 3.70988082210533,
+          "hp": 513,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            644.357299804688,
+            261.615600585938
+          ],
+          "target": 2,
+          "ultimate": 36.26,
+          "velocity": [
+            0.156326279044151,
+            -0.394964188337326
+          ],
+          "visible": true,
+          "world": [
+            16.7629547119141,
+            6.22887086868286
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 3.51214726967737,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            661.573608398438,
+            296.519378662109
+          ],
+          "target": 2,
+          "ultimate": 26.0,
+          "velocity": [
+            0.330734223127365,
+            -1.83566081523895
+          ],
+          "visible": true,
+          "world": [
+            17.0436553955078,
+            6.79795408248901
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 0,
+          "index": 0,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            17.7667865753174,
+            6.63836622238159
+          ]
+        },
+        {
+          "hp": 0,
+          "index": 1,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            17.4139709472656,
+            6.47753953933716
+          ]
+        },
+        {
+          "hp": 261,
+          "index": 2,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            17.3971633911133,
+            5.47947406768799
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 0,
+        "move_calls": 2691,
+        "routes": 0
+      },
+      "packs_cleared": 0,
+      "party_anchor": [
+        17.2169303894043,
+        6.53043699264526
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        16.7520065307617,
+        6.34374904632568
+      ],
+      "combat_ticks": 300,
+      "frame": 150,
+      "heroes": [
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 4.20440236118156,
+          "hp": 701,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            670.335021972656,
+            265.906707763672
+          ],
+          "target": 2,
+          "ultimate": 89.4171428571429,
+          "velocity": [
+            0.0862884446978569,
+            -0.509147644042969
+          ],
+          "visible": true,
+          "world": [
+            17.2465991973877,
+            5.5400538444519
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 4.96143906505313,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            693.045104980469,
+            294.840942382812
+          ],
+          "target": 2,
+          "ultimate": 48.0,
+          "velocity": [
+            0.101051323115826,
+            -0.406093567609787
+          ],
+          "visible": true,
+          "world": [
+            17.6168727874756,
+            6.01180744171143
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 5.5548584695207,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            701.110961914062,
+            269.163299560547
+          ],
+          "target": 2,
+          "ultimate": 31.35,
+          "velocity": [
+            0.284843444824219,
+            -0.425691574811935
+          ],
+          "visible": true,
+          "world": [
+            17.7483806610107,
+            5.59315061569214
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 4.19312858278863,
+          "hp": 513,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            649.392517089844,
+            280.071746826172
+          ],
+          "target": 2,
+          "ultimate": 47.04,
+          "velocity": [
+            0.147399887442589,
+            -0.493097275495529
+          ],
+          "visible": true,
+          "world": [
+            16.9051456451416,
+            5.77100563049316
+          ]
+        },
+        {
+          "animation": "attack_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 4.01241156226024,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            665.110168457031,
+            313.254608154297
+          ],
+          "target": 2,
+          "ultimate": 26.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            17.1614112854004,
+            6.31203031539917
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 0,
+          "index": 0,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            17.7667865753174,
+            6.63836622238159
+          ]
+        },
+        {
+          "hp": 0,
+          "index": 1,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            17.4139709472656,
+            6.47753953933716
+          ]
+        },
+        {
+          "hp": 99,
+          "index": 2,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            17.5523891448975,
+            5.02883338928223
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 0,
+        "move_calls": 3245,
+        "routes": 0
+      },
+      "packs_cleared": 0,
+      "party_anchor": [
+        17.3353977203369,
+        5.90228319168091
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        16.859432220459,
+        6.01252794265747
+      ],
+      "combat_ticks": 360,
+      "frame": 180,
+      "heroes": [
+        {
+          "animation": "idle_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 4.4688373740064,
+          "hp": 734,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            669.572265625,
+            271.278442382812
+          ],
+          "target": 2,
+          "ultimate": 99.9771428571429,
+          "velocity": [
+            0.134468078613281,
+            -0.487661331892014
+          ],
+          "visible": true,
+          "world": [
+            17.341588973999,
+            5.29641532897949
+          ]
+        },
+        {
+          "animation": "idle_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 5.14674521971028,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            689.404479980469,
+            304.22119140625
+          ],
+          "target": 2,
+          "ultimate": 48.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            17.6649398803711,
+            5.83352518081665
+          ]
+        },
+        {
+          "animation": "idle_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 5.78925817843992,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            702.385620117188,
+            277.444885253906
+          ],
+          "target": 2,
+          "ultimate": 31.35,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            17.8765888214111,
+            5.39695501327515
+          ]
+        },
+        {
+          "animation": "idle_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 4.38686260092072,
+          "hp": 513,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            647.098693847656,
+            289.314910888672
+          ],
+          "target": 2,
+          "ultimate": 47.04,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            16.9751720428467,
+            5.59048843383789
+          ]
+        },
+        {
+          "animation": "idle_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 4.24193969881162,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            662.640502929688,
+            320.108734130859
+          ],
+          "target": 2,
+          "ultimate": 26.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            17.2285709381104,
+            6.0925612449646
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 0,
+          "index": 0,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            17.7667865753174,
+            6.63836622238159
+          ]
+        },
+        {
+          "hp": 0,
+          "index": 1,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            17.4139709472656,
+            6.47753953933716
+          ]
+        },
+        {
+          "hp": 0,
+          "index": 2,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            17.6958446502686,
+            4.8169002532959
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 0,
+        "move_calls": 3529,
+        "routes": 0
+      },
+      "packs_cleared": 1,
+      "party_anchor": [
+        17.404634475708,
+        5.66848516464233
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        16.8768215179443,
+        5.92022275924683
+      ],
+      "combat_ticks": 420,
+      "frame": 210,
+      "heroes": [
+        {
+          "animation": "walk_left",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 4.9233714613365,
+          "hp": 734,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            675.264831542969,
+            257.119659423828
+          ],
+          "target": -1,
+          "ultimate": 99.9771428571429,
+          "velocity": [
+            -1.62128436565399,
+            -1.03257179260254
+          ],
+          "visible": true,
+          "world": [
+            17.4517917633057,
+            4.97326040267944
+          ]
+        },
+        {
+          "animation": "walk_left",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 5.5664515531389,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            677.32421875,
+            289.898864746094
+          ],
+          "target": -1,
+          "ultimate": 48.0,
+          "velocity": [
+            -1.5081022977829,
+            -1.23621928691864
+          ],
+          "visible": true,
+          "world": [
+            17.4853687286377,
+            5.50770425796509
+          ]
+        },
+        {
+          "animation": "walk_down",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 6.18644167121965,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            694.632385253906,
+            305.70654296875
+          ],
+          "target": -1,
+          "ultimate": 31.35,
+          "velocity": [
+            -1.30542743206024,
+            1.31343829631805
+          ],
+          "visible": true,
+          "world": [
+            17.7675666809082,
+            5.76543807983398
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 4.83555744099431,
+          "hp": 513,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            645.294799804688,
+            268.369812011719
+          ],
+          "target": -1,
+          "ultimate": 47.04,
+          "velocity": [
+            -0.880966126918793,
+            -1.73964488506317
+          ],
+          "visible": true,
+          "world": [
+            16.9631500244141,
+            5.15668678283691
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 4.65350714465603,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            650.829772949219,
+            303.517486572266
+          ],
+          "target": -1,
+          "ultimate": 26.0,
+          "velocity": [
+            -1.2499235868454,
+            -1.37795436382294
+          ],
+          "visible": true,
+          "world": [
+            17.053394317627,
+            5.72974681854248
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 388,
+          "index": 0,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            16.7605476379395,
+            1.85200548171997
+          ]
+        },
+        {
+          "hp": 353,
+          "index": 1,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            16.5054416656494,
+            2.37910389900208
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            16.6703319549561,
+            1.61188983917236
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 1,
+        "move_calls": 3725,
+        "routes": 1
+      },
+      "packs_cleared": 1,
+      "party_anchor": [
+        17.0548534393311,
+        5.47170495986938
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        16.6135578155518,
+        5.27212429046631
+      ],
+      "combat_ticks": 480,
+      "frame": 240,
+      "heroes": [
+        {
+          "animation": "walk_left",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 6.71352540806402,
+          "hp": 734,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            591.726135253906,
+            271.230407714844
+          ],
+          "target": 1,
+          "ultimate": 99.9771428571429,
+          "velocity": [
+            -1.9314192533493,
+            -0.268478393554688
+          ],
+          "visible": true,
+          "world": [
+            15.8264837265015,
+            4.55522871017456
+          ]
+        },
+        {
+          "animation": "walk_left",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 7.24298195529263,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            601.847045898438,
+            284.388641357422
+          ],
+          "target": 1,
+          "ultimate": 48.0,
+          "velocity": [
+            -1.3488005399704,
+            -0.716972291469574
+          ],
+          "visible": true,
+          "world": [
+            15.9914989471436,
+            4.76976490020752
+          ]
+        },
+        {
+          "animation": "walk_left",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 8.02598530624527,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            608.758361816406,
+            311.825714111328
+          ],
+          "target": 0,
+          "ultimate": 31.35,
+          "velocity": [
+            -1.51130664348602,
+            -0.862426698207855
+          ],
+          "visible": true,
+          "world": [
+            16.1041831970215,
+            5.21710872650146
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 6.69235921907239,
+          "hp": 513,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            565.694458007812,
+            265.71337890625
+          ],
+          "target": 1,
+          "ultimate": 47.04,
+          "velocity": [
+            -0.345668762922287,
+            -0.510692596435547
+          ],
+          "visible": true,
+          "world": [
+            15.4020547866821,
+            4.46527671813965
+          ]
+        },
+        {
+          "animation": "walk_left",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 6.56627842923626,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            566.069091796875,
+            285.640533447266
+          ],
+          "target": 0,
+          "ultimate": 26.0,
+          "velocity": [
+            -1.60600650310516,
+            -0.896530091762543
+          ],
+          "visible": true,
+          "world": [
+            15.4081630706787,
+            4.79017639160156
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 388,
+          "index": 0,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            16.7377014160156,
+            2.23149704933167
+          ]
+        },
+        {
+          "hp": 353,
+          "index": 1,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            16.363977432251,
+            2.36486649513245
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            16.6959705352783,
+            1.7652645111084
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 11,
+        "move_calls": 4551,
+        "routes": 6
+      },
+      "packs_cleared": 1,
+      "party_anchor": [
+        15.5557918548584,
+        4.62836122512817
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        15.4502143859863,
+        4.35825634002686
+      ],
+      "combat_ticks": 540,
+      "frame": 270,
+      "heroes": [
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 8.39583048888016,
+          "hp": 734,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            591.462585449219,
+            268.336639404297
+          ],
+          "target": 1,
+          "ultimate": 99.9771428571429,
+          "velocity": [
+            0.189342483878136,
+            -1.5610169172287
+          ],
+          "visible": true,
+          "world": [
+            14.6588430404663,
+            3.59417939186096
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 8.88319216610398,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            595.265991210938,
+            287.043579101562
+          ],
+          "target": 1,
+          "ultimate": 48.0,
+          "velocity": [
+            -0.647449433803558,
+            -1.61978232860565
+          ],
+          "visible": true,
+          "world": [
+            14.7208557128906,
+            3.89918422698975
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 9.61335731495637,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            605.896728515625,
+            307.428527832031
+          ],
+          "target": 1,
+          "ultimate": 31.35,
+          "velocity": [
+            -0.681266725063324,
+            -1.36865603923798
+          ],
+          "visible": true,
+          "world": [
+            14.8941831588745,
+            4.23154735565186
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 8.28485894831829,
+          "hp": 513,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            595.326110839844,
+            246.158294677734
+          ],
+          "target": 1,
+          "ultimate": 61.74,
+          "velocity": [
+            0.562362670898438,
+            -1.8671463727951
+          ],
+          "visible": true,
+          "world": [
+            14.7218360900879,
+            3.23257613182068
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 8.41216100146994,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            584.563659667969,
+            250.167297363281
+          ],
+          "target": 1,
+          "ultimate": 26.0,
+          "velocity": [
+            -0.128116607666016,
+            -1.94578158855438
+          ],
+          "visible": true,
+          "world": [
+            14.5463609695435,
+            3.29794025421143
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 388,
+          "index": 0,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            16.813346862793,
+            1.8159191608429
+          ]
+        },
+        {
+          "hp": 222,
+          "index": 1,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            15.7639636993408,
+            2.59877729415894
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            16.9115238189697,
+            1.28326797485352
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 32,
+        "move_calls": 5319,
+        "routes": 4
+      },
+      "packs_cleared": 1,
+      "party_anchor": [
+        14.7291765213013,
+        3.33214807510376
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        15.3318386077881,
+        3.90000033378601
+      ],
+      "combat_ticks": 600,
+      "frame": 300,
+      "heroes": [
+        {
+          "animation": "attack_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 9.49948207952548,
+          "hp": 734,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            631.255187988281,
+            242.080108642578
+          ],
+          "target": 1,
+          "ultimate": 99.9771428571429,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            15.1892604827881,
+            2.70782780647278
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 10.0374604429817,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            613.389770507812,
+            258.869873046875
+          ],
+          "target": 1,
+          "ultimate": 48.0,
+          "velocity": [
+            0.82494729757309,
+            -0.34060475230217
+          ],
+          "visible": true,
+          "world": [
+            14.8979759216309,
+            2.98157405853271
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 10.9819915873231,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            617.303955078125,
+            261.045562744141
+          ],
+          "target": 1,
+          "ultimate": 31.35,
+          "velocity": [
+            1.28969180583954,
+            -1.46258342266083
+          ],
+          "visible": true,
+          "world": [
+            14.9617948532104,
+            3.01704740524292
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 9.03972438338678,
+          "hp": 513,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            633.886108398438,
+            250.790344238281
+          ],
+          "target": 1,
+          "ultimate": 80.696,
+          "velocity": [
+            0.432128876447678,
+            -0.209069237112999
+          ],
+          "visible": true,
+          "world": [
+            15.2321557998657,
+            2.84984254837036
+          ]
+        },
+        {
+          "animation": "attack_right",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 8.96407174458727,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            609.108337402344,
+            250.015075683594
+          ],
+          "target": 1,
+          "ultimate": 26.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            14.8281698226929,
+            2.83720254898071
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 388,
+          "index": 0,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            16.7754993438721,
+            1.6907320022583
+          ]
+        },
+        {
+          "hp": 52,
+          "index": 1,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            16.1143226623535,
+            2.42301607131958
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            17.0588817596436,
+            0.901570916175842
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 36,
+        "move_calls": 5943,
+        "routes": 1
+      },
+      "packs_cleared": 1,
+      "party_anchor": [
+        15.3049335479736,
+        2.81657671928406
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        15.3318386077881,
+        3.90000033378601
+      ],
+      "combat_ticks": 660,
+      "frame": 330,
+      "heroes": [
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 10.1876445888774,
+          "hp": 734,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            658.462890625,
+            211.920227050781
+          ],
+          "target": 0,
+          "ultimate": 100.0,
+          "velocity": [
+            -0.205020889639854,
+            -0.606980264186859
+          ],
+          "visible": true,
+          "world": [
+            15.6328639984131,
+            2.2160906791687
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 10.7768049699953,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            642.375305175781,
+            247.199401855469
+          ],
+          "target": 1,
+          "ultimate": 59.0,
+          "velocity": [
+            1.02636337280273,
+            -0.260238647460938
+          ],
+          "visible": true,
+          "world": [
+            15.370566368103,
+            2.79129457473755
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 11.9086364527466,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            667.466918945312,
+            236.145721435547
+          ],
+          "target": 1,
+          "ultimate": 41.8,
+          "velocity": [
+            1.81852328777313,
+            -0.703868806362152
+          ],
+          "visible": true,
+          "world": [
+            15.7796688079834,
+            2.61107158660889
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 9.62285847763997,
+          "hp": 501,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            660.091186523438,
+            241.629165649414
+          ],
+          "target": 1,
+          "ultimate": 99.652,
+          "velocity": [
+            0.418739289045334,
+            -0.234689697623253
+          ],
+          "visible": true,
+          "world": [
+            15.6594123840332,
+            2.70047569274902
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 9.64413918880746,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            634.984985351562,
+            218.471282958984
+          ],
+          "target": 0,
+          "ultimate": 41.0,
+          "velocity": [
+            0.177612289786339,
+            -0.63301557302475
+          ],
+          "visible": true,
+          "world": [
+            15.250072479248,
+            2.32290148735046
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 149,
+          "index": 0,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            16.1965484619141,
+            2.03647184371948
+          ]
+        },
+        {
+          "hp": 52,
+          "index": 1,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            16.5142803192139,
+            2.22130942344666
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            16.4475021362305,
+            1.49288904666901
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 41,
+        "move_calls": 6453,
+        "routes": 0
+      },
+      "packs_cleared": 1,
+      "party_anchor": [
+        15.7075176239014,
+        2.62022519111633
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        15.3318386077881,
+        3.90000033378601
+      ],
+      "combat_ticks": 720,
+      "frame": 360,
+      "heroes": [
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 10.5851841691183,
+          "hp": 729,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            662.756103515625,
+            191.375442504883
+          ],
+          "target": 2,
+          "ultimate": 100.0,
+          "velocity": [
+            -0.0378227196633816,
+            -0.153865799307823
+          ],
+          "visible": true,
+          "world": [
+            15.7028617858887,
+            1.88112139701843
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 12.04434523487,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            662.645324707031,
+            226.786529541016
+          ],
+          "target": 2,
+          "ultimate": 70.0,
+          "velocity": [
+            1.1850928068161,
+            -1.54855716228485
+          ],
+          "visible": true,
+          "world": [
+            15.7010555267334,
+            2.45847630500793
+          ]
+        },
+        {
+          "animation": "attack_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 12.3593118872959,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            691.121459960938,
+            230.144302368164
+          ],
+          "target": 1,
+          "ultimate": 41.8,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            16.165340423584,
+            2.51322245597839
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 10.2640933527146,
+          "hp": 501,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            653.264953613281,
+            238.001770019531
+          ],
+          "target": 2,
+          "ultimate": 0.0,
+          "velocity": [
+            0.727558076381683,
+            -1.01893901824951
+          ],
+          "visible": true,
+          "world": [
+            15.5481147766113,
+            2.64133334159851
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 9.95919802528806,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            641.811157226562,
+            203.614318847656
+          ],
+          "target": 2,
+          "ultimate": 52.0,
+          "velocity": [
+            -0.16376493871212,
+            -0.274758338928223
+          ],
+          "visible": true,
+          "world": [
+            15.3613681793213,
+            2.08066821098328
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 0,
+          "index": 0,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            16.1965484619141,
+            2.03647184371948
+          ]
+        },
+        {
+          "hp": 0,
+          "index": 1,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            16.6385974884033,
+            2.14875268936157
+          ]
+        },
+        {
+          "hp": 270,
+          "index": 2,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            16.248498916626,
+            1.64884555339813
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 41,
+        "move_calls": 7035,
+        "routes": 0
+      },
+      "packs_cleared": 1,
+      "party_anchor": [
+        15.8758325576782,
+        2.4680643081665
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        15.3318386077881,
+        3.90000033378601
+      ],
+      "combat_ticks": 780,
+      "frame": 390,
+      "heroes": [
+        {
+          "animation": "idle_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 10.7358379679499,
+          "hp": 723,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            660.19384765625,
+            182.52033996582
+          ],
+          "target": 2,
+          "ultimate": 100.0,
+          "velocity": [
+            -0.0306701641529799,
+            -0.183141216635704
+          ],
+          "visible": true,
+          "world": [
+            15.6610860824585,
+            1.73674476146698
+          ]
+        },
+        {
+          "animation": "idle_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 12.3236487786053,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            677.69287109375,
+            234.578063964844
+          ],
+          "target": 2,
+          "ultimate": 85.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            15.9463968276978,
+            2.58551216125488
+          ]
+        },
+        {
+          "animation": "idle_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 12.7741425975692,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            703.941467285156,
+            213.023239135742
+          ],
+          "target": 2,
+          "ultimate": 52.25,
+          "velocity": [
+            0.156784042716026,
+            -0.0308704357594252
+          ],
+          "visible": true,
+          "world": [
+            16.3743629455566,
+            2.23407459259033
+          ]
+        },
+        {
+          "animation": "idle_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 10.5951880085049,
+          "hp": 501,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            655.129150390625,
+            221.261627197266
+          ],
+          "target": 2,
+          "ultimate": 10.78,
+          "velocity": [
+            -0.0326728820800781,
+            -0.0786209031939507
+          ],
+          "visible": true,
+          "world": [
+            15.5785093307495,
+            2.36839604377747
+          ]
+        },
+        {
+          "animation": "idle_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 10.1320870094933,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            638.018249511719,
+            193.732727050781
+          ],
+          "target": 2,
+          "ultimate": 63.0,
+          "velocity": [
+            -0.0358772240579128,
+            -0.130026340484619
+          ],
+          "visible": true,
+          "world": [
+            15.2995271682739,
+            1.91955542564392
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 0,
+          "index": 0,
+          "name": "가시 멧돼지",
+          "returning": false,
+          "world": [
+            16.1965484619141,
+            2.03647184371948
+          ]
+        },
+        {
+          "hp": 0,
+          "index": 1,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            16.6385974884033,
+            2.14875268936157
+          ]
+        },
+        {
+          "hp": 0,
+          "index": 2,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            16.248498916626,
+            1.64884555339813
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 41,
+        "move_calls": 7517,
+        "routes": 0
+      },
+      "packs_cleared": 2,
+      "party_anchor": [
+        15.8758325576782,
+        2.4680643081665
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        15.3318386077881,
+        3.90000033378601
+      ],
+      "combat_ticks": 840,
+      "frame": 420,
+      "heroes": [
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 10.7358379679499,
+          "hp": 723,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            660.19384765625,
+            182.52033996582
+          ],
+          "target": 2,
+          "ultimate": 100.0,
+          "velocity": [
+            -0.0306701641529799,
+            -0.183141216635704
+          ],
+          "visible": true,
+          "world": [
+            15.6610860824585,
+            1.73674476146698
+          ]
+        },
+        {
+          "animation": "idle_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 12.3236487786053,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            677.69287109375,
+            234.578063964844
+          ],
+          "target": 2,
+          "ultimate": 85.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            15.9463968276978,
+            2.58551216125488
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 12.7741425975692,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            703.941467285156,
+            213.023239135742
+          ],
+          "target": 2,
+          "ultimate": 52.25,
+          "velocity": [
+            0.156784042716026,
+            -0.0308704357594252
+          ],
+          "visible": true,
+          "world": [
+            16.3743629455566,
+            2.23407459259033
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 10.5951880085049,
+          "hp": 501,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            655.129150390625,
+            221.261627197266
+          ],
+          "target": 2,
+          "ultimate": 10.78,
+          "velocity": [
+            -0.0326728820800781,
+            -0.0786209031939507
+          ],
+          "visible": true,
+          "world": [
+            15.5785093307495,
+            2.36839604377747
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 10.1320870094933,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            638.018249511719,
+            193.732727050781
+          ],
+          "target": 2,
+          "ultimate": 63.0,
+          "velocity": [
+            -0.0358772240579128,
+            -0.130026340484619
+          ],
+          "visible": true,
+          "world": [
+            15.2995271682739,
+            1.91955542564392
+          ]
+        }
+      ],
+      "monsters": [],
+      "navigation": {
+        "astar_queries": 41,
+        "move_calls": 7517,
+        "routes": 0
+      },
+      "packs_cleared": 2,
+      "party_anchor": [
+        15.8758325576782,
+        2.4680643081665
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        15.3318386077881,
+        3.90000033378601
+      ],
+      "combat_ticks": 900,
+      "frame": 450,
+      "heroes": [
+        {
+          "animation": "walk_down",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 12.1231329179136,
+          "hp": 723,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            629.927062988281,
+            232.79084777832
+          ],
+          "target": -1,
+          "ultimate": 100.0,
+          "velocity": [
+            -1.00770950317383,
+            1.6694210767746
+          ],
+          "visible": true,
+          "world": [
+            15.1676063537598,
+            2.55637264251709
+          ]
+        },
+        {
+          "animation": "walk_left",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 13.5218899863539,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            638.148803710938,
+            225.047500610352
+          ],
+          "target": -1,
+          "ultimate": 85.0,
+          "velocity": [
+            -1.2107275724411,
+            0.100865356624126
+          ],
+          "visible": true,
+          "world": [
+            15.3016557693481,
+            2.43012237548828
+          ]
+        },
+        {
+          "animation": "walk_down",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 14.0886454812717,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            639.30859375,
+            245.24365234375
+          ],
+          "target": -1,
+          "ultimate": 52.25,
+          "velocity": [
+            -1.28208148479462,
+            1.46924960613251
+          ],
+          "visible": true,
+          "world": [
+            15.3205652236938,
+            2.75940752029419
+          ]
+        },
+        {
+          "animation": "walk_down",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 12.0610746851889,
+          "hp": 501,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            594.879455566406,
+            245.708251953125
+          ],
+          "target": -1,
+          "ultimate": 10.78,
+          "velocity": [
+            -0.887832581996918,
+            1.47415626049042
+          ],
+          "visible": true,
+          "world": [
+            14.5961771011353,
+            2.76698231697083
+          ]
+        },
+        {
+          "animation": "walk_down",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 11.6848389585502,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            598.528869628906,
+            273.164245605469
+          ],
+          "target": -1,
+          "ultimate": 63.0,
+          "velocity": [
+            -1.15768420696259,
+            1.56914222240448
+          ],
+          "visible": true,
+          "world": [
+            14.6556787490845,
+            3.21463441848755
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 318,
+          "index": 0,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            21.1304664611816,
+            0.441635191440582
+          ]
+        },
+        {
+          "hp": 353,
+          "index": 1,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            20.625207901001,
+            0.475390702486038
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            20.5593948364258,
+            0.349999994039536
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 43,
+        "move_calls": 8202,
+        "routes": 2
+      },
+      "packs_cleared": 2,
+      "party_anchor": [
+        14.7585620880127,
+        3.27135562896729
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        15.2727699279785,
+        3.90000033378601
+      ],
+      "combat_ticks": 960,
+      "frame": 480,
+      "heroes": [
+        {
+          "animation": "walk_down",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 13.270835195086,
+          "hp": 723,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            600.577880859375,
+            278.951324462891
+          ],
+          "target": -1,
+          "ultimate": 100.0,
+          "velocity": [
+            0.125713348388672,
+            1.61860930919647
+          ],
+          "visible": true,
+          "world": [
+            14.6300182342529,
+            3.30898904800415
+          ]
+        },
+        {
+          "animation": "walk_down",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 15.1670338147087,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            603.537170410156,
+            305.488006591797
+          ],
+          "target": -1,
+          "ultimate": 85.0,
+          "velocity": [
+            0.182018265128136,
+            1.87542903423309
+          ],
+          "visible": true,
+          "world": [
+            14.6782674789429,
+            3.7416524887085
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 15.9714669610839,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            623.631530761719,
+            336.420684814453
+          ],
+          "target": -1,
+          "ultimate": 52.25,
+          "velocity": [
+            1.50215137004852,
+            1.24340045452118
+          ],
+          "visible": true,
+          "world": [
+            15.0058927536011,
+            4.24598979949951
+          ]
+        },
+        {
+          "animation": "walk_down",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 13.8420095051406,
+          "hp": 501,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            597.783935546875,
+            332.455352783203
+          ],
+          "target": -1,
+          "ultimate": 10.78,
+          "velocity": [
+            0.914039552211761,
+            1.66451442241669
+          ],
+          "visible": true,
+          "world": [
+            14.5844640731812,
+            4.18133735656738
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 13.4830119968392,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            647.010314941406,
+            352.498809814453
+          ],
+          "target": -1,
+          "ultimate": 63.0,
+          "velocity": [
+            1.6952131986618,
+            0.340118378400803
+          ],
+          "visible": true,
+          "world": [
+            15.3870687484741,
+            4.50813293457031
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 318,
+          "index": 0,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            20.9901371002197,
+            0.792444348335266
+          ]
+        },
+        {
+          "hp": 353,
+          "index": 1,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            20.2051963806152,
+            0.795297682285309
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            20.3647861480713,
+            0.449667662382126
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 50,
+        "move_calls": 9004,
+        "routes": 3
+      },
+      "packs_cleared": 2,
+      "party_anchor": [
+        15.5432939529419,
+        4.50536489486694
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        15.4415111541748,
+        4.24837827682495
+      ],
+      "combat_ticks": 1020,
+      "frame": 510,
+      "heroes": [
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 14.9626851830399,
+          "hp": 723,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            647.477844238281,
+            331.236907958984
+          ],
+          "target": -1,
+          "ultimate": 100.0,
+          "velocity": [
+            1.70848834514618,
+            0.346298187971115
+          ],
+          "visible": true,
+          "world": [
+            15.5634326934814,
+            4.50984954833984
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 17.0124960810645,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            683.563781738281,
+            334.566650390625
+          ],
+          "target": -1,
+          "ultimate": 85.0,
+          "velocity": [
+            1.91699969768524,
+            0.356941193342209
+          ],
+          "visible": true,
+          "world": [
+            16.1517906188965,
+            4.56413888931274
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 17.7841496325564,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            715.122924804688,
+            353.411041259766
+          ],
+          "target": -1,
+          "ultimate": 52.25,
+          "velocity": [
+            1.82178485393524,
+            0.10568618029356
+          ],
+          "visible": true,
+          "world": [
+            16.6663417816162,
+            4.87138414382935
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 15.5820420463569,
+          "hp": 501,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            683.54638671875,
+            345.718231201172
+          ],
+          "target": -1,
+          "ultimate": 10.78,
+          "velocity": [
+            1.55353534221649,
+            -0.360889405012131
+          ],
+          "visible": true,
+          "world": [
+            16.1515064239502,
+            4.74595785140991
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 15.1433263021754,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            725.069030761719,
+            341.550537109375
+          ],
+          "target": -1,
+          "ultimate": 63.0,
+          "velocity": [
+            1.37752521038055,
+            -1.38015735149384
+          ],
+          "visible": true,
+          "world": [
+            16.8285064697266,
+            4.67800617218018
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 318,
+          "index": 0,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            20.6311111450195,
+            0.535166382789612
+          ]
+        },
+        {
+          "hp": 353,
+          "index": 1,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            19.9273357391357,
+            1.06575620174408
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            19.8175296783447,
+            0.595516741275787
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 57,
+        "move_calls": 9812,
+        "routes": 4
+      },
+      "packs_cleared": 2,
+      "party_anchor": [
+        17.1757354736328,
+        4.17789030075073
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        16.9056396484375,
+        4.26558494567871
+      ],
+      "combat_ticks": 1080,
+      "frame": 540,
+      "heroes": [
+        {
+          "animation": "walk_right",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 16.6475155487424,
+          "hp": 723,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            656.05908203125,
+            312.317504882812
+          ],
+          "target": -1,
+          "ultimate": 100.0,
+          "velocity": [
+            1.56417834758759,
+            -0.685300767421722
+          ],
+          "visible": true,
+          "world": [
+            17.1674728393555,
+            4.21858739852905
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 18.9624883205397,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            704.360412597656,
+            289.789459228516
+          ],
+          "target": -1,
+          "ultimate": 85.0,
+          "velocity": [
+            1.79214465618134,
+            -0.768556535243988
+          ],
+          "visible": true,
+          "world": [
+            17.9549942016602,
+            3.85128235816956
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 19.7303903892171,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            736.016296386719,
+            312.082458496094
+          ],
+          "target": -1,
+          "ultimate": 52.25,
+          "velocity": [
+            1.71466815471649,
+            -0.928659379482269
+          ],
+          "visible": true,
+          "world": [
+            18.4711227416992,
+            4.21475505828857
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 17.2457511150278,
+          "hp": 501,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            683.190856933594,
+            297.833038330078
+          ],
+          "target": -1,
+          "ultimate": 10.78,
+          "velocity": [
+            1.52069079875946,
+            -0.949287354946136
+          ],
+          "visible": true,
+          "world": [
+            17.6098384857178,
+            3.9824275970459
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 17.0933214958059,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            727.446655273438,
+            267.197357177734
+          ],
+          "target": -1,
+          "ultimate": 63.0,
+          "velocity": [
+            1.63284289836884,
+            -1.06597423553467
+          ],
+          "visible": true,
+          "world": [
+            18.3313999176025,
+            3.48293304443359
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 318,
+          "index": 0,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            20.195463180542,
+            0.371472805738449
+          ]
+        },
+        {
+          "hp": 353,
+          "index": 1,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            20.4552516937256,
+            1.05603671073914
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            19.8522434234619,
+            0.579326808452606
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 62,
+        "move_calls": 10632,
+        "routes": 2
+      },
+      "packs_cleared": 2,
+      "party_anchor": [
+        18.6863327026367,
+        3.36196565628052
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        18.3609161376953,
+        3.90000033378601
+      ],
+      "combat_ticks": 1140,
+      "frame": 570,
+      "heroes": [
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 18.3699130177265,
+          "hp": 723,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            658.7216796875,
+            283.367614746094
+          ],
+          "target": 1,
+          "ultimate": 100.0,
+          "velocity": [
+            1.33277881145477,
+            -1.07926368713379
+          ],
+          "visible": true,
+          "world": [
+            18.6661605834961,
+            3.38099360466003
+          ]
+        },
+        {
+          "animation": "attack_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 20.6796206271974,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            696.7705078125,
+            248.438858032227
+          ],
+          "target": 1,
+          "ultimate": 85.0,
+          "velocity": [
+            1.03534698486328,
+            -1.5743921995163
+          ],
+          "visible": true,
+          "world": [
+            19.2865219116211,
+            2.81150317192078
+          ]
+        },
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 21.6184649902862,
+          "hp": 815,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            723.159729003906,
+            248.829818725586
+          ],
+          "target": 1,
+          "ultimate": 52.25,
+          "velocity": [
+            1.24065387248993,
+            -1.48288238048553
+          ],
+          "visible": true,
+          "world": [
+            19.7167816162109,
+            2.81787753105164
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 18.9746898435988,
+          "hp": 501,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            683.561950683594,
+            264.672058105469
+          ],
+          "target": 1,
+          "ultimate": 10.78,
+          "velocity": [
+            1.39949786663055,
+            -1.04797840118408
+          ],
+          "visible": true,
+          "world": [
+            19.0711650848389,
+            3.07617473602295
+          ]
+        },
+        {
+          "animation": "attack_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 18.7814525087597,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            710.999633789062,
+            227.393035888672
+          ],
+          "target": 1,
+          "ultimate": 63.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            19.518518447876,
+            2.46836495399475
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 318,
+          "index": 0,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            20.6584320068359,
+            0.402520835399628
+          ]
+        },
+        {
+          "hp": 353,
+          "index": 1,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            20.1285991668701,
+            1.81220519542694
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            20.3401832580566,
+            0.501519858837128
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 79,
+        "move_calls": 11438,
+        "routes": 2
+      },
+      "packs_cleared": 2,
+      "party_anchor": [
+        19.6420345306396,
+        2.34626293182373
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        19.0184993743896,
+        3.90000033378601
+      ],
+      "combat_ticks": 1200,
+      "frame": 600,
+      "heroes": [
+        {
+          "animation": "walk_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 19.5330476997187,
+          "hp": 723,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            667.302429199219,
+            233.001708984375
+          ],
+          "target": 1,
+          "ultimate": 100.0,
+          "velocity": [
+            1.03591918945312,
+            -1.65208327770233
+          ],
+          "visible": true,
+          "world": [
+            19.4636478424072,
+            2.55981063842773
+          ]
+        },
+        {
+          "animation": "idle_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 20.8307918227511,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            661.103942871094,
+            241.18994140625
+          ],
+          "target": 1,
+          "ultimate": 96.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            19.362585067749,
+            2.69331455230713
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 22.1507417734247,
+          "hp": 810,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            708.038940429688,
+            234.994384765625
+          ],
+          "target": 1,
+          "ultimate": 70.4357142857143,
+          "velocity": [
+            0.304985016584396,
+            -0.0304985027760267
+          ],
+          "visible": true,
+          "world": [
+            20.1278305053711,
+            2.59229969978333
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 19.9613282014616,
+          "hp": 501,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            695.043212890625,
+            258.558807373047
+          ],
+          "target": 1,
+          "ultimate": 21.56,
+          "velocity": [
+            0.482482880353928,
+            0.0672197341918945
+          ],
+          "visible": true,
+          "world": [
+            19.915943145752,
+            2.97650241851807
+          ]
+        },
+        {
+          "animation": "attack_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 19.3990791590186,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            673.344665527344,
+            251.156372070312
+          ],
+          "target": 1,
+          "ultimate": 78.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            19.562162399292,
+            2.85581064224243
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 318,
+          "index": 0,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            21.119556427002,
+            0.392489910125732
+          ]
+        },
+        {
+          "hp": 114,
+          "index": 1,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            20.0565242767334,
+            2.0013256072998
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            20.1653957366943,
+            1.57044231891632
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 80,
+        "move_calls": 12019,
+        "routes": 0
+      },
+      "packs_cleared": 2,
+      "party_anchor": [
+        19.6420345306396,
+        2.34626293182373
+      ],
+      "stage": 8
+    },
+    {
+      "camera": [
+        19.0599803924561,
+        3.90000033378601
+      ],
+      "combat_ticks": 1206,
+      "frame": 603,
+      "heroes": [
+        {
+          "animation": "walk_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 19.728047100245,
+          "hp": 723,
+          "id": "leonhardt",
+          "max_hp": 741,
+          "screen": [
+            671.787109375,
+            223.335021972656
+          ],
+          "target": 1,
+          "ultimate": 100.0,
+          "velocity": [
+            1.23092639446259,
+            -1.51235091686249
+          ],
+          "visible": true,
+          "world": [
+            19.5782489776611,
+            2.40220165252686
+          ]
+        },
+        {
+          "animation": "attack_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 20.8307918227511,
+          "hp": 430,
+          "id": "mira",
+          "max_hp": 430,
+          "screen": [
+            658.559753417969,
+            241.18994140625
+          ],
+          "target": 1,
+          "ultimate": 96.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            19.362585067749,
+            2.69331455230713
+          ]
+        },
+        {
+          "animation": "walk_right",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 22.1836367573123,
+          "hp": 810,
+          "id": "orwin",
+          "max_hp": 815,
+          "screen": [
+            707.498718261719,
+            234.761123657227
+          ],
+          "target": 1,
+          "ultimate": 70.4357142857143,
+          "velocity": [
+            0.335655182600021,
+            -0.044145580381155
+          ],
+          "visible": true,
+          "world": [
+            20.1605033874512,
+            2.58849668502808
+          ]
+        },
+        {
+          "animation": "attack_up",
+          "animation_frame": 0,
+          "attack_target": -1,
+          "distance_walked": 19.9992562495172,
+          "hp": 501,
+          "id": "darius",
+          "max_hp": 513,
+          "screen": [
+            694.810791015625,
+            258.816223144531
+          ],
+          "target": 1,
+          "ultimate": 21.56,
+          "velocity": [
+            0.309905976057053,
+            0.0271081905812025
+          ],
+          "visible": true,
+          "world": [
+            19.953634262085,
+            2.98069930076599
+          ]
+        },
+        {
+          "animation": "attack_up",
+          "animation_frame": 1,
+          "attack_target": -1,
+          "distance_walked": 19.3990791590186,
+          "hp": 551,
+          "id": "caelum",
+          "max_hp": 551,
+          "screen": [
+            670.800476074219,
+            251.156372070312
+          ],
+          "target": 1,
+          "ultimate": 89.0,
+          "velocity": [
+            0.0,
+            0.0
+          ],
+          "visible": true,
+          "world": [
+            19.562162399292,
+            2.85581064224243
+          ]
+        }
+      ],
+      "monsters": [
+        {
+          "hp": 318,
+          "index": 0,
+          "name": "바람 까마귀",
+          "returning": false,
+          "world": [
+            21.063591003418,
+            0.465509206056595
+          ]
+        },
+        {
+          "hp": 59,
+          "index": 1,
+          "name": "초원 고블린",
+          "returning": false,
+          "world": [
+            20.0565242767334,
+            2.0013256072998
+          ]
+        },
+        {
+          "hp": 318,
+          "index": 2,
+          "name": "들개 무리",
+          "returning": false,
+          "world": [
+            20.1628913879395,
+            1.67896831035614
+          ]
+        }
+      ],
+      "navigation": {
+        "astar_queries": 80,
+        "move_calls": 12068,
+        "routes": 0
+      },
+      "packs_cleared": 2,
+      "party_anchor": [
+        19.6420345306396,
+        2.34626293182373
+      ],
+      "stage": 8
+    }
+  ],
+  "source": "Actual Godot rendered gameplay, normal _physics_process; no artificial stepping",
+  "runtime_source_commit": "c835ed9"
+}

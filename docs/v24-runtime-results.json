@@ -1,0 +1,23 @@
+{
+  "version": "v24",
+  "godot": "4.7.2-stable",
+  "orientation": "landscape",
+  "stretch_mode": "canvas_items",
+  "stretch_aspect": "expand",
+  "actual_engine_tests": {
+    "passed": 48,
+    "total": 48
+  },
+  "main_scene_1280x720_300_frames": "pass",
+  "main_scene_1600x720_300_frames": "pass",
+  "static_validation": "pass",
+  "godot47_compat_scan": "pass",
+  "mobile_features": [
+    "fullscreen request",
+    "safe area margins",
+    "responsive combat field",
+    "camera-follow projection",
+    "adaptive actor scale",
+    "compact touch HUD"
+  ]
+}

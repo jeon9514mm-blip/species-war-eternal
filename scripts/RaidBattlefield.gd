@@ -1,0 +1,84 @@
+extends RefCounted
+## Shared world coordinates for raid movement, visible warnings and damage.
+## v74 adds cone/cross/double-lane footprints so each regional boss can rotate
+## patterns without visual and simulation geometry drifting apart.
+const FLOOR := Rect2(214.0, 280.0, 610.0, 206.0)
+const ENTRY := Vector2(635.0, 397.0)
+
+static func hero_entry(slot: int) -> Vector2:
+	return Vector2(360.0 + float(slot % 5) * 27.0, 354.0 + float(slot / 5) * 77.0)
+
+static func clamp_to_floor(point: Vector2) -> Vector2:
+	return Vector2(clampf(point.x, FLOOR.position.x + 12.0, FLOOR.end.x - 12.0), clampf(point.y, FLOOR.position.y + 10.0, FLOOR.end.y - 10.0))
+
+static func footprint(kind: String, origin: Vector2, marks: Array[Vector2], profile: Dictionary = {}) -> Dictionary:
+	var center := marks[0] if not marks.is_empty() else origin - Vector2(150.0, 0.0)
+	match kind:
+		"front_blast", "rear_blast":
+			var width := float(profile.get('width',142.0))
+			return {"shape":"lane", "rect":Rect2(center.x - width * 0.5, FLOOR.position.y, width, FLOOR.size.y)}
+		"double_lane":
+			var width := float(profile.get('width',76.0))
+			var gap := float(profile.get('gap',108.0))
+			return {"shape":"rects", "rects":[Rect2(center.x-gap-width*.5,FLOOR.position.y,width,FLOOR.size.y),Rect2(center.x+gap-width*.5,FLOOR.position.y,width,FLOOR.size.y)]}
+		"cross":
+			var width := float(profile.get('width',80.0))
+			return {"shape":"rects", "rects":[Rect2(center.x-width*.5,FLOOR.position.y,width,FLOOR.size.y),Rect2(FLOOR.position.x,center.y-width*.5,FLOOR.size.x,width)]}
+		"cone":
+			var direction := (center-origin).normalized()
+			if direction.length_squared() < 0.01: direction=Vector2.LEFT
+			return {"shape":"cone", "origin":origin, "direction":direction, "radius":float(profile.get('radius',290.0)), "half_angle":float(profile.get('half_angle',0.58))}
+		"moon_mark":
+			return {"shape":"marks", "centers":marks.duplicate(), "radius":float(profile.get('radius',54.0))}
+		"earthquake":
+			return {"shape":"ring", "center":origin, "inner":float(profile.get('inner',102.0)), "outer":float(profile.get('outer',230.0))}
+		"curse":
+			return {"shape":"circle", "center":origin, "radius":float(profile.get('radius',310.0))}
+		_:
+			return {"shape":"circle", "center":origin, "radius":float(profile.get('radius',260.0))}
+
+static func contains(shape: Dictionary, point: Vector2) -> bool:
+	match str(shape.get("shape", "")):
+		"lane": return (shape["rect"] as Rect2).has_point(point)
+		"rects":
+			for rect_value in shape.get('rects',[]):
+				if (rect_value as Rect2).has_point(point): return true
+		"marks":
+			for center: Vector2 in shape["centers"]:
+				if point.distance_to(center) <= float(shape["radius"]): return true
+		"ring":
+			var distance := point.distance_to(shape["center"])
+			return distance >= float(shape["inner"]) and distance <= float(shape["outer"])
+		"circle": return point.distance_to(shape["center"]) <= float(shape["radius"])
+		"cone":
+			var offset: Vector2=point-(shape['origin'] as Vector2)
+			if offset.length() > float(shape['radius']): return false
+			if offset.length_squared() < 1.0: return true
+			return absf((shape['direction'] as Vector2).angle_to(offset.normalized())) <= float(shape['half_angle'])
+	return false
+
+static func escape_position(shape: Dictionary, point: Vector2) -> Vector2:
+	if not contains(shape, point): return point
+	var best := point
+	var shortest := INF
+	for distance in [66.0, 116.0, 174.0, 236.0, 300.0]:
+		for index in 16:
+			var option := clamp_to_floor(point + Vector2.RIGHT.rotated(TAU * float(index) / 16.0) * distance)
+			if not contains(shape, option) and point.distance_squared_to(option) < shortest:
+				shortest = point.distance_squared_to(option)
+				best = option
+	# Large late-raid circles can leave only edge/corner safe space. Add explicit
+	# arena anchors so the helper never misses a valid escape just because a
+	# radial sample did not land on the narrow safe pocket.
+	var anchors := [
+		Vector2(FLOOR.position.x+12.0,FLOOR.position.y+10.0),
+		Vector2(FLOOR.end.x-12.0,FLOOR.position.y+10.0),
+		Vector2(FLOOR.position.x+12.0,FLOOR.end.y-10.0),
+		Vector2(FLOOR.end.x-12.0,FLOOR.end.y-10.0),
+		Vector2(FLOOR.position.x+12.0,FLOOR.get_center().y),
+		Vector2(FLOOR.end.x-12.0,FLOOR.get_center().y),
+	]
+	for option: Vector2 in anchors:
+		if not contains(shape,option) and point.distance_squared_to(option)<shortest:
+			shortest=point.distance_squared_to(option);best=option
+	return best

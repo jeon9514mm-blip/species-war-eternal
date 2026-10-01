@@ -1,0 +1,196 @@
+{
+  "version": "v20.4",
+  "engine": "Godot 4.7.2.stable.official.ed1daf0bf",
+  "engine_binary_tested": "Godot_v4.7.2-stable_linux.x86_64",
+  "project_parse_import": "pass",
+  "main_scene_headless_300_frames": "pass",
+  "runtime_tests_passed": 45,
+  "runtime_tests_total": 45,
+  "runtime_tests": [
+    {
+      "test": "AutoCombatTacticsSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "BMSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "BossEncounterSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "CombatControlsSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "CombatSpriteSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "EquipmentSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "HeroIdentityBalanceSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "IdleHuntEstimatorSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "IdleSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "InventorySmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "LevelSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "LootSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "MapTerrainSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "RaidSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "RoamingHuntDirectorSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "SkillSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "SmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "SpriteSheetSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V10UiUxSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V11ProgressionSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V12WorldWarSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V13WarSafetySmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V14AsyncPvpSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V15FrontlineSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V16AuthoritySmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V16ClientSessionSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V17HuntProgressionSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V17ResyncServerTimeSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V18CombatAISmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V18SeasonSyncSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V19HeroAIIdentitySmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V19ServerStabilitySmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V20RealtimeRoamingHuntSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V5FoundationSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V6CombatSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V7SystemsSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V8PolishSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "V9MetaLoopSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "WorldBattleResolverSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "WorldConflictStateSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "WorldMarchStateSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "WorldSeasonStateSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "WorldSupplyNetworkSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "WorldWarStateSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "test": "AutoHuntRegressionTest.gd",
+      "passed": true
+    }
+  ],
+  "notes": [
+    "All tests were executed with the real Godot 4.7.2 headless runtime across validation batches.",
+    "AutoHuntRegressionTest was streamlined to remove duplicate long UI simulations while retaining roaming, pause/resume, recovery, deterministic kill/reward, healer, and guard regression checks.",
+    "No save schema change from v20; save_version remains 20."
+  ]
+}

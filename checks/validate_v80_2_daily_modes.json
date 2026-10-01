@@ -1,0 +1,97 @@
+{
+  "check_type": "source-contracts and source-constant arithmetic, NOT runtime",
+  "checks": 44,
+  "passed": [
+    "gold_rush objective contract",
+    "survival objective contract",
+    "boss_hunt objective contract",
+    "out-of-quota rewards rejected",
+    "run 1 original arithmetic",
+    "run 2 original arithmetic",
+    "run 3 original arithmetic",
+    "daily reward totals unchanged",
+    "survival cannot win by clearing one wave",
+    "survival requires live party and actual encounter",
+    "deadline clamp remains",
+    "combat reports actual living count at deadline",
+    "protected save rejected before mutation",
+    "context checks main._today_key()",
+    "context checks main.daily_dungeon_day",
+    "context checks main.daily_dungeon_runs",
+    "context checks main.selected_faction",
+    "context checks main.current_zone_id",
+    "context checks main._deployed_hero_ids()",
+    "daily context still checked before shared combat step",
+    "context checked again before payout",
+    "stale request rejected before sweep payout",
+    "clear gate before payout",
+    "sweeping cannot generate direct clears",
+    "direct win consumes receipt",
+    "only direct victory handler records clear",
+    "shared quota debit",
+    "same cap for combat and sweeps",
+    "save does not treat truthy strings as clears",
+    "bounded clear allowlist",
+    "faction mode tier isolation",
+    "clear saved in same snapshot as wallet/quota",
+    "clear restored from sanitized payload",
+    "old schema defaults locked",
+    "v34 preserves daily clears and prevents old build overwrite",
+    "portrait actions reachable",
+    "portrait action carries original quota snapshot",
+    "legacy actions reachable",
+    "portrait preview uses same reward schedule",
+    "HUD displays correct objective instead of fixed 3-wave text",
+    "start_daily no mid-battle reward",
+    "spawn_wave no mid-battle reward",
+    "wave_cleared no mid-battle reward",
+    "advance no mid-battle reward"
+  ],
+  "plans": {
+    "gold_rush": {
+      "mode": "daily",
+      "variant": "gold_rush",
+      "title": "골드 러시",
+      "objective": "waves",
+      "limit_seconds": 60.0,
+      "required_waves": 3,
+      "description": "60초 안에 3개 무리를 격파하세요."
+    },
+    "survival": {
+      "mode": "daily",
+      "variant": "survival",
+      "title": "생존전",
+      "objective": "survive",
+      "limit_seconds": 60.0,
+      "required_waves": 0,
+      "description": "반복 등장하는 적을 상대하며 60초 동안 생존하세요."
+    },
+    "boss_hunt": {
+      "mode": "daily",
+      "variant": "boss_hunt",
+      "title": "보스 토벌",
+      "objective": "waves",
+      "limit_seconds": 60.0,
+      "required_waves": 1,
+      "description": "60초 안에 강화된 정예 우두머리 1마리를 처치하세요."
+    }
+  },
+  "rewards": [
+    {
+      "gold": 950,
+      "xp": 350,
+      "pet_xp": 60
+    },
+    {
+      "gold": 1200,
+      "xp": 450,
+      "pet_xp": 60
+    },
+    {
+      "gold": 1450,
+      "xp": 550,
+      "pet_xp": 60
+    }
+  ],
+  "godot_tests_executed": 0
+}

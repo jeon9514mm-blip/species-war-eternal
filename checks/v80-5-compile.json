@@ -1,0 +1,1834 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "total": 261,
+  "passed": 261,
+  "results": [
+    {
+      "script": "assets/heroes/pixel-v32/hero-visual-data.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.328
+    },
+    {
+      "script": "assets/sprites/pixel-v32/animation-layout.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.321
+    },
+    {
+      "script": "scripts/AutoCombatTactics.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.312
+    },
+    {
+      "script": "scripts/AutoCombatTacticsSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.345
+    },
+    {
+      "script": "scripts/AutoHuntController.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.628
+    },
+    {
+      "script": "scripts/AutoHuntRegressionTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.087
+    },
+    {
+      "script": "scripts/BMSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 4.628
+    },
+    {
+      "script": "scripts/BossEncounterSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.99
+    },
+    {
+      "script": "scripts/BrightSpriteAtlasLayout.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.583
+    },
+    {
+      "script": "scripts/ChallengeBattleDirector.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.613
+    },
+    {
+      "script": "scripts/ChallengeBattleSession.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.504
+    },
+    {
+      "script": "scripts/CombatControlsSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.723
+    },
+    {
+      "script": "scripts/CombatDecisionEngine.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.538
+    },
+    {
+      "script": "scripts/CombatDecisionEngineSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.54
+    },
+    {
+      "script": "scripts/CombatFxDirector.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.819
+    },
+    {
+      "script": "scripts/CombatSpriteSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.682
+    },
+    {
+      "script": "scripts/CombatStatusRules.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.365
+    },
+    {
+      "script": "scripts/ContentScreens.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.46
+    },
+    {
+      "script": "scripts/DailyDungeonBattleRules.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.208
+    },
+    {
+      "script": "scripts/DailyDungeonProgress.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.378
+    },
+    {
+      "script": "scripts/EquipmentArtCatalog.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.394
+    },
+    {
+      "script": "scripts/EquipmentMarketService.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.6
+    },
+    {
+      "script": "scripts/EquipmentRules.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.395
+    },
+    {
+      "script": "scripts/EquipmentScreens.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 1.608
+    },
+    {
+      "script": "scripts/EquipmentSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.058
+    },
+    {
+      "script": "scripts/EquipmentWorkshop.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.493
+    },
+    {
+      "script": "scripts/FieldArtCatalog.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.376
+    },
+    {
+      "script": "scripts/FieldEcology.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.397
+    },
+    {
+      "script": "scripts/FieldHuntVariety.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.378
+    },
+    {
+      "script": "scripts/FieldTerrainCatalog.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.313
+    },
+    {
+      "script": "scripts/GameUiIcon.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.33
+    },
+    {
+      "script": "scripts/GameUiTheme.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.352
+    },
+    {
+      "script": "scripts/GrowthInventoryScreens.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 1.632
+    },
+    {
+      "script": "scripts/GuardianCatalog.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.375
+    },
+    {
+      "script": "scripts/HeroAnimationAtlas.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.411
+    },
+    {
+      "script": "scripts/HeroAnimationAtlasLayout.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.477
+    },
+    {
+      "script": "scripts/HeroCombatRules.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.366
+    },
+    {
+      "script": "scripts/HeroIdentityBalanceSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.4
+    },
+    {
+      "script": "scripts/HeroIdentityCatalog.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.486
+    },
+    {
+      "script": "scripts/HeroKitRuntime.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.439
+    },
+    {
+      "script": "scripts/HeroRosterCatalog.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.473
+    },
+    {
+      "script": "scripts/HeroScreens.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.797
+    },
+    {
+      "script": "scripts/HeroSkillEffect.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 1.142
+    },
+    {
+      "script": "scripts/HeroSpriteController.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.591
+    },
+    {
+      "script": "scripts/HeroSpriteFactory.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.7
+    },
+    {
+      "script": "scripts/HeroVisualCatalog.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.7
+    },
+    {
+      "script": "scripts/IdleHuntEstimator.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.52
+    },
+    {
+      "script": "scripts/IdleHuntEstimatorSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.424
+    },
+    {
+      "script": "scripts/IdleSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.042
+    },
+    {
+      "script": "scripts/InventorySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.784
+    },
+    {
+      "script": "scripts/LandingScreens.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.693
+    },
+    {
+      "script": "scripts/LevelSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 6.034
+    },
+    {
+      "script": "scripts/LootSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 6.636
+    },
+    {
+      "script": "scripts/Main.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.657
+    },
+    {
+      "script": "scripts/MapTerrainRenderer.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.765
+    },
+    {
+      "script": "scripts/MapTerrainSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.368
+    },
+    {
+      "script": "scripts/MeadowNavigation.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.538
+    },
+    {
+      "script": "scripts/MonsterPixelAtlasLayout.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.406
+    },
+    {
+      "script": "scripts/MonsterSpriteController.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.961
+    },
+    {
+      "script": "scripts/MonsterSpriteFactory.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.972
+    },
+    {
+      "script": "scripts/OnboardingScreens.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.79
+    },
+    {
+      "script": "scripts/PartyMovementDirector.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.603
+    },
+    {
+      "script": "scripts/PixelArtPipeline.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.357
+    },
+    {
+      "script": "scripts/PixelFxAtlas.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.404
+    },
+    {
+      "script": "scripts/PortraitRegressionSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.583
+    },
+    {
+      "script": "scripts/RaidBattlefield.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.546
+    },
+    {
+      "script": "scripts/RaidBossDesign.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.385
+    },
+    {
+      "script": "scripts/RaidScreen.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 1.065
+    },
+    {
+      "script": "scripts/RaidSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.419
+    },
+    {
+      "script": "scripts/RewardDialogs.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 1.438
+    },
+    {
+      "script": "scripts/RoamingHuntDirector.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.511
+    },
+    {
+      "script": "scripts/RoamingHuntDirectorSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.517
+    },
+    {
+      "script": "scripts/SaveStore.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.404
+    },
+    {
+      "script": "scripts/SaveValidation.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.702
+    },
+    {
+      "script": "scripts/SkillSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.639
+    },
+    {
+      "script": "scripts/SmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.617
+    },
+    {
+      "script": "scripts/SpriteSheetSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.458
+    },
+    {
+      "script": "scripts/TowerBattleRules.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.652
+    },
+    {
+      "script": "scripts/TowerProgressionService.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.635
+    },
+    {
+      "script": "scripts/UiChrome.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.518
+    },
+    {
+      "script": "scripts/V10UiUxSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.869
+    },
+    {
+      "script": "scripts/V11ProgressionSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 7.04
+    },
+    {
+      "script": "scripts/V12WorldWarSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.913
+    },
+    {
+      "script": "scripts/V13WarSafetySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 6.554
+    },
+    {
+      "script": "scripts/V14AsyncPvpSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 6.008
+    },
+    {
+      "script": "scripts/V15FrontlineSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.533
+    },
+    {
+      "script": "scripts/V16AuthoritySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.728
+    },
+    {
+      "script": "scripts/V16ClientSessionSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.766
+    },
+    {
+      "script": "scripts/V17HuntProgressionSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.334
+    },
+    {
+      "script": "scripts/V17ResyncServerTimeSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.923
+    },
+    {
+      "script": "scripts/V18CombatAISmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.327
+    },
+    {
+      "script": "scripts/V18SeasonSyncSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.837
+    },
+    {
+      "script": "scripts/V19HeroAIIdentitySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.723
+    },
+    {
+      "script": "scripts/V19ServerStabilitySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.769
+    },
+    {
+      "script": "scripts/V20RealtimeRoamingHuntSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 6.164
+    },
+    {
+      "script": "scripts/V22UiUpgradeSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 6.4
+    },
+    {
+      "script": "scripts/V23CombatReadabilitySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 6.45
+    },
+    {
+      "script": "scripts/V24MobileLandscapeSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 6.267
+    },
+    {
+      "script": "scripts/V25CombatFxSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.987
+    },
+    {
+      "script": "scripts/V26ActionSafetySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 6.0
+    },
+    {
+      "script": "scripts/V26CombatDecisionSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 6.365
+    },
+    {
+      "script": "scripts/V26CombatSoakSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 6.046
+    },
+    {
+      "script": "scripts/V26RoamingSafetySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.476
+    },
+    {
+      "script": "scripts/V27BalanceMatrixSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 6.133
+    },
+    {
+      "script": "scripts/V27BossLifecycleSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.949
+    },
+    {
+      "script": "scripts/V27CombatClockSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 5.109
+    },
+    {
+      "script": "scripts/V27FieldLifecycleSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 4.7
+    },
+    {
+      "script": "scripts/V27GrowthEconomySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.87
+    },
+    {
+      "script": "scripts/V27HeroRolesSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.007
+    },
+    {
+      "script": "scripts/V27LiveGrowthSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.809
+    },
+    {
+      "script": "scripts/V27PersistenceIntegrationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.902
+    },
+    {
+      "script": "scripts/V27RaidIntegrationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.34
+    },
+    {
+      "script": "scripts/V27SaveRecoverySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.796
+    },
+    {
+      "script": "scripts/V27TerritoryLifecycleSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.398
+    },
+    {
+      "script": "scripts/V28BrightSpriteSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.724
+    },
+    {
+      "script": "scripts/V28BrightUiSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.958
+    },
+    {
+      "script": "scripts/V28FieldFxSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.873
+    },
+    {
+      "script": "scripts/V28KitingRegressionSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.996
+    },
+    {
+      "script": "scripts/V28MeadowNavigationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.31
+    },
+    {
+      "script": "scripts/V28MovingHuntSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.783
+    },
+    {
+      "script": "scripts/V29BoundarySpawnSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.311
+    },
+    {
+      "script": "scripts/V29FactionBalanceSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.107
+    },
+    {
+      "script": "scripts/V29RosterKitSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.921
+    },
+    {
+      "script": "scripts/V29RosterUiSaveSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.897
+    },
+    {
+      "script": "scripts/V30UiFlowSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.884
+    },
+    {
+      "script": "scripts/V31HeroArtSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.396
+    },
+    {
+      "script": "scripts/V31HeroFxSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.786
+    },
+    {
+      "script": "scripts/V32GraphicsSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.781
+    },
+    {
+      "script": "scripts/V43AllHeroMotionSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.39
+    },
+    {
+      "script": "scripts/V46CurrentAssetsSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.378
+    },
+    {
+      "script": "scripts/V46FactionIsolationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.812
+    },
+    {
+      "script": "scripts/V46StabilitySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.933
+    },
+    {
+      "script": "scripts/V47NavigationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.41
+    },
+    {
+      "script": "scripts/V47PortraitSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.905
+    },
+    {
+      "script": "scripts/V48WarStabilitySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.493
+    },
+    {
+      "script": "scripts/V48WarUiSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.887
+    },
+    {
+      "script": "scripts/V49PortraitLayoutSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.9
+    },
+    {
+      "script": "scripts/V50CampaignSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.404
+    },
+    {
+      "script": "scripts/V50CampaignUiSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.901
+    },
+    {
+      "script": "scripts/V51CombatSafetySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.694
+    },
+    {
+      "script": "scripts/V51FxLifecycleSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.597
+    },
+    {
+      "script": "scripts/V51PersistenceLifecycleSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.904
+    },
+    {
+      "script": "scripts/V51SessionIntegritySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.902
+    },
+    {
+      "script": "scripts/V51UiInteractionSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.9
+    },
+    {
+      "script": "scripts/V51WarAuthoritySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.391
+    },
+    {
+      "script": "scripts/V52HuntIntegrationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.914
+    },
+    {
+      "script": "scripts/V52HuntUiSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.003
+    },
+    {
+      "script": "scripts/V52PopulationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.806
+    },
+    {
+      "script": "scripts/V52RoleCombatSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.701
+    },
+    {
+      "script": "scripts/V52RoleMovementSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.405
+    },
+    {
+      "script": "scripts/V53HuntEcologySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.303
+    },
+    {
+      "script": "scripts/V53HuntFeedbackSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.702
+    },
+    {
+      "script": "scripts/V53HuntNavigationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.386
+    },
+    {
+      "script": "scripts/V53HuntSupportSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.492
+    },
+    {
+      "script": "scripts/V54EquipmentCrystalUiSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.596
+    },
+    {
+      "script": "scripts/V54EquipmentIntegrationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.475
+    },
+    {
+      "script": "scripts/V54EquipmentMarketSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.289
+    },
+    {
+      "script": "scripts/V54EquipmentPersistenceSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.387
+    },
+    {
+      "script": "scripts/V54EquipmentRulesSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.277
+    },
+    {
+      "script": "scripts/V54EquipmentUiSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.923
+    },
+    {
+      "script": "scripts/V55EquipmentDetailUiSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.81
+    },
+    {
+      "script": "scripts/V56DungeonRosterUiSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.907
+    },
+    {
+      "script": "scripts/V57QualityPassSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.837
+    },
+    {
+      "script": "scripts/V58ArtScrollSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.697
+    },
+    {
+      "script": "scripts/V59ThreeRaidVisualSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.681
+    },
+    {
+      "script": "scripts/V5FoundationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.588
+    },
+    {
+      "script": "scripts/V60MeadowPresentationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.691
+    },
+    {
+      "script": "scripts/V61FieldRolesMotionSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.607
+    },
+    {
+      "script": "scripts/V62RigFxRewardSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.597
+    },
+    {
+      "script": "scripts/V63AutoFxOfflineSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.62
+    },
+    {
+      "script": "scripts/V64RealtimeRaidSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.504
+    },
+    {
+      "script": "scripts/V65GuardianSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.021
+    },
+    {
+      "script": "scripts/V66UiFilterSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.005
+    },
+    {
+      "script": "scripts/V67FieldTerrainIntegrationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.298
+    },
+    {
+      "script": "scripts/V67FieldTerrainNavigationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.277
+    },
+    {
+      "script": "scripts/V67FieldVisibilitySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.31
+    },
+    {
+      "script": "scripts/V6CombatSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.5
+    },
+    {
+      "script": "scripts/V71HuntFlowSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.389
+    },
+    {
+      "script": "scripts/V72CombatPresentationSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.723
+    },
+    {
+      "script": "scripts/V73RoleBehaviorSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.305
+    },
+    {
+      "script": "scripts/V74BossRaidBehaviorSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.01
+    },
+    {
+      "script": "scripts/V75RaidMechanicSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.821
+    },
+    {
+      "script": "scripts/V76RaidVisualSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.899
+    },
+    {
+      "script": "scripts/V77HuntVarietySmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.289
+    },
+    {
+      "script": "scripts/V78ConvenienceUiSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.529
+    },
+    {
+      "script": "scripts/V79ConvenienceFlowSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.675
+    },
+    {
+      "script": "scripts/V7SystemsSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.497
+    },
+    {
+      "script": "scripts/V80AbyssBattleSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.625
+    },
+    {
+      "script": "scripts/V80AbyssRulesSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.331
+    },
+    {
+      "script": "scripts/V80AbyssSaveSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.408
+    },
+    {
+      "script": "scripts/V80AbyssSettlementSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.347
+    },
+    {
+      "script": "scripts/V80ChallengeSessionSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.281
+    },
+    {
+      "script": "scripts/V80DailyBattleSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.87
+    },
+    {
+      "script": "scripts/V80DailyModesBattleSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.938
+    },
+    {
+      "script": "scripts/V80DailyModesSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.397
+    },
+    {
+      "script": "scripts/V80DailySweepSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.495
+    },
+    {
+      "script": "scripts/V80EngineRewardRegressionSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 3.165
+    },
+    {
+      "script": "scripts/V80TowerBattleSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.805
+    },
+    {
+      "script": "scripts/V80TowerRulesSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.384
+    },
+    {
+      "script": "scripts/V80TowerSettlementSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.393
+    },
+    {
+      "script": "scripts/V8PolishSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.315
+    },
+    {
+      "script": "scripts/V9MetaLoopSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.384
+    },
+    {
+      "script": "scripts/WeeklyAbyssBattleRules.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.203
+    },
+    {
+      "script": "scripts/WeeklyAbyssProgressionService.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.293
+    },
+    {
+      "script": "scripts/WorldAuthorityService.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.292
+    },
+    {
+      "script": "scripts/WorldBattleResolver.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.295
+    },
+    {
+      "script": "scripts/WorldBattleResolverSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.293
+    },
+    {
+      "script": "scripts/WorldCampaignRules.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.294
+    },
+    {
+      "script": "scripts/WorldConflictState.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.298
+    },
+    {
+      "script": "scripts/WorldConflictStateSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.259
+    },
+    {
+      "script": "scripts/WorldMarchState.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.303
+    },
+    {
+      "script": "scripts/WorldMarchStateSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.267
+    },
+    {
+      "script": "scripts/WorldSeasonState.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.308
+    },
+    {
+      "script": "scripts/WorldSeasonStateSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.297
+    },
+    {
+      "script": "scripts/WorldServerGateway.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.405
+    },
+    {
+      "script": "scripts/WorldSupplyNetwork.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.298
+    },
+    {
+      "script": "scripts/WorldSupplyNetworkSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.29
+    },
+    {
+      "script": "scripts/WorldSyncGuard.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.164
+    },
+    {
+      "script": "scripts/WorldWarClientSession.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.399
+    },
+    {
+      "script": "scripts/WorldWarMapView.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.272
+    },
+    {
+      "script": "scripts/WorldWarMinimap.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.298
+    },
+    {
+      "script": "scripts/WorldWarScreen.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.478
+    },
+    {
+      "script": "scripts/WorldWarState.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.276
+    },
+    {
+      "script": "scripts/WorldWarStateSmokeTest.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.271
+    },
+    {
+      "script": "scripts/actions_v37/TwoHeroActionSprite.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.281
+    },
+    {
+      "script": "scripts/aurelia_v41/AureliaActionSprite.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.269
+    },
+    {
+      "script": "scripts/aurelia_v41/AureliaMotionCatalog.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.178
+    },
+    {
+      "script": "scripts/noxfera_v42/NoxferaActionSprite.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.279
+    },
+    {
+      "script": "scripts/noxfera_v42/NoxferaMotionCatalog.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.173
+    },
+    {
+      "script": "scripts/portrait/CasualMonsterAtlas.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.471
+    },
+    {
+      "script": "scripts/portrait/PortraitDamageNumber.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.279
+    },
+    {
+      "script": "scripts/portrait/PortraitGroundShadow.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.179
+    },
+    {
+      "script": "scripts/portrait/PortraitGuardianSigil.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.178
+    },
+    {
+      "script": "scripts/portrait/PortraitHeroMotionRig.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.185
+    },
+    {
+      "script": "scripts/portrait/PortraitHeroSkeletalRig.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.272
+    },
+    {
+      "script": "scripts/portrait/PortraitHud.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.275
+    },
+    {
+      "script": "scripts/portrait/PortraitIcon.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.18
+    },
+    {
+      "script": "scripts/portrait/PortraitKillBurst.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.196
+    },
+    {
+      "script": "scripts/portrait/PortraitMain.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.687
+    },
+    {
+      "script": "scripts/portrait/PortraitMeadowProps.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.3
+    },
+    {
+      "script": "scripts/portrait/PortraitMenus.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.998
+    },
+    {
+      "script": "scripts/portrait/PortraitMinimap.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.3
+    },
+    {
+      "script": "scripts/portrait/PortraitPages.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 1.409
+    },
+    {
+      "script": "scripts/portrait/PortraitRaid.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 1.143
+    },
+    {
+      "script": "scripts/portrait/PortraitRewardFeed.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.302
+    },
+    {
+      "script": "scripts/portrait/PortraitScenery.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.396
+    },
+    {
+      "script": "scripts/portrait/PortraitSkillBurst.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.208
+    },
+    {
+      "script": "scripts/portrait/PortraitSkin.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.301
+    },
+    {
+      "script": "scripts/portrait/PortraitSky.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.304
+    },
+    {
+      "script": "scripts/portrait/PortraitTerrainPreview.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.482
+    },
+    {
+      "script": "scripts/portrait/RaidArenaTelegraph.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.195
+    },
+    {
+      "script": "scripts/portrait/RaidBossMotion.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.213
+    },
+    {
+      "script": "scripts/portrait/RaidMechanicVisual.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.296
+    },
+    {
+      "script": "scripts/portrait/RaidRallyMarker.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.299
+    },
+    {
+      "script": "scripts/sd/SDHeroSpriteController.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.292
+    },
+    {
+      "script": "scripts/sd/SDHeroVisuals.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 0.181
+    },
+    {
+      "script": "tools/ui/CapturePortrait.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.705
+    },
+    {
+      "script": "tools/ui/CaptureScreens.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.685
+    },
+    {
+      "script": "tools/ui/PortraitLayoutAudit.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.614
+    },
+    {
+      "script": "tools/ui/PortraitRegression.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.697
+    },
+    {
+      "script": "tools/ui/ValidateHeroArtLayout.gd",
+      "code": 0,
+      "passed": true,
+      "log": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n",
+      "seconds": 2.137
+    }
+  ]
+}

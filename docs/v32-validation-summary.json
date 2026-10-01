@@ -1,0 +1,125 @@
+{
+  "version": 32,
+  "status": "passed",
+  "engine": "Godot 4.7.2 stable Linux x86_64",
+  "headless": true,
+  "rendered_screenshot": false,
+  "test_count": 9,
+  "failed_tests": [],
+  "tests": [
+    {
+      "script": "scripts/V32GraphicsSmokeTest.gd",
+      "exit_code": 0,
+      "status": "passed",
+      "checks": 3029
+    },
+    {
+      "script": "scripts/V31HeroArtSmokeTest.gd",
+      "exit_code": 0,
+      "status": "passed",
+      "checks": 9202
+    },
+    {
+      "script": "scripts/V31HeroFxSmokeTest.gd",
+      "exit_code": 0,
+      "status": "passed",
+      "checks": 740
+    },
+    {
+      "script": "scripts/V30UiFlowSmokeTest.gd",
+      "exit_code": 0,
+      "status": "passed",
+      "checks": 960
+    },
+    {
+      "script": "scripts/V28BrightSpriteSmokeTest.gd",
+      "exit_code": 0,
+      "status": "passed",
+      "checks": 1172
+    },
+    {
+      "script": "scripts/CombatControlsSmokeTest.gd",
+      "exit_code": 0,
+      "status": "passed"
+    },
+    {
+      "script": "scripts/V28MeadowNavigationSmokeTest.gd",
+      "exit_code": 0,
+      "status": "passed",
+      "checks": 70
+    },
+    {
+      "script": "scripts/V28FieldFxSmokeTest.gd",
+      "exit_code": 0,
+      "status": "passed"
+    },
+    {
+      "script": "scripts/InventorySmokeTest.gd",
+      "status": "passed",
+      "reported_by": "v32_ui_fx via root",
+      "direct_log_available_to_qa": false,
+      "reported_result": "gold 905; no errors"
+    }
+  ],
+  "coverage": {
+    "heroes": 30,
+    "skill_icons": 120,
+    "new_hero_field_sheets": 1,
+    "new_hero_field_sheet_id": "kairen",
+    "new_hero_field_poses": 4,
+    "preserved_other_hero_animations": 29,
+    "monster_identities": 16,
+    "monster_source_poses": 64,
+    "worlds": 3,
+    "camp": 1,
+    "equipment_icon_cells": 12,
+    "live_existing_item_icon_mappings": 11,
+    "supplemental_vfx_sequences": 4,
+    "supplemental_vfx_frames": 16,
+    "actual_kit_casts": 180,
+    "actual_main_a1_casts": 60,
+    "actual_passive_procs": 30,
+    "ui_screen_layout_cases": 18
+  },
+  "runtime_routes_verified": [
+    "title/login village",
+    "all three selected-zone lobbies",
+    "all three field renderer routes",
+    "all three field camera clamp/source projections",
+    "all three raid boss portrait updates",
+    "all sixteen legacy monster helpers",
+    "thirty actor palette materials",
+    "inventory item cards",
+    "field and raid skill casts"
+  ],
+  "mechanics_sha256_unchanged": true,
+  "mechanics_files_checked": [
+    "scripts/HeroRosterCatalog.gd",
+    "scripts/HeroKitRuntime.gd",
+    "scripts/HeroCombatRules.gd",
+    "scripts/MeadowNavigation.gd",
+    "scripts/RoamingHuntDirector.gd",
+    "scripts/PartyMovementDirector.gd"
+  ],
+  "resolved_findings": [
+    "Lobby art used a missing zone id key and always fell back to meadow; changed to current_zone_id and verified all three live lobbies.",
+    "Monster source soft fringe alpha is explicitly discarded below .5 by a monster-only material; all64 declared opaque poses preserved, borders and adjacent-pose safety evaluated after that documented cutoff. Hero source alpha remains unchanged.",
+    "New monster visual timers now freeze when speed_scale is zero; death pause and resume verified for all16 monsters.",
+    "Field FX smoke test now yields one process frame after owner teardown so AudioServer releases generated playback; final run has no ObjectDB warning."
+  ],
+  "limits": [
+    "Headless checks verify asset mapping, source geometry, UI layout and lifecycle; they do not verify GPU-rendered shader output, native screenshots, actual mobile FPS or a complete visual playthrough.",
+    "Thirty new UI portraits and120icons are integrated; Kairen alone has newly authored four-pose battlefield artwork in this update. The other29 keep their existing animation artwork with the shared pixel palette material.",
+    "The12-cell equipment source includes one fire-staff art sample that is not a new loot item."
+  ],
+  "reports": [
+    "docs/v32-graphics-runtime.json",
+    "docs/v32-hero-runtime.json",
+    "docs/v32-test-results.json",
+    "docs/v32-mechanics-validation.json",
+    "docs/v32-hero-art-validation.json",
+    "assets/monsters/pixel-v32/manifest.json"
+  ],
+  "qa_owner_direct_test_count": 8,
+  "other_owner_test_count": 1
+}

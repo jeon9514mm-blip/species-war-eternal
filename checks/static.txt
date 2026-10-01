@@ -1,0 +1,1 @@
+STATIC VALIDATION OK | gd=260 smoke=147 resources=ok links=ok

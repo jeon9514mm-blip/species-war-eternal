@@ -1,0 +1,23 @@
+{
+  "version": "v25",
+  "engine": "Godot 4.7.2-stable",
+  "actual_engine_tests": {
+    "passed": 49,
+    "total": 49
+  },
+  "resolution_fx_tests": [
+    "1280x720 PASS",
+    "1600x720 PASS"
+  ],
+  "main_scene_300_frames": "PASS",
+  "static_validation": "PASS",
+  "godot47_compat_scan": "PASS",
+  "features": [
+    "moving projectiles",
+    "AoE indicators",
+    "boss range telegraph",
+    "hit flash",
+    "dodge feedback",
+    "camera shake/zoom impact"
+  ]
+}

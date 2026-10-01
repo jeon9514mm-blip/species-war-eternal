@@ -1,0 +1,2030 @@
+{
+  "passed": true,
+  "inspection": "read_only_source_alpha_and_region_geometry",
+  "rendered_screenshot": false,
+  "failures": [],
+  "sheets": [
+    {
+      "sheet": "a01",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_threshold": 10,
+      "source_sha256": "b5be73e0e027980101a1476f5ca0f02390287f95c6442168212d48733b165a24",
+      "regions": 20,
+      "source_origin_verified": true,
+      "visible_pixels": 712162,
+      "omitted_visible_pixels": 0,
+      "overlapping_visible_pixels": 0,
+      "coverage_percent": 100.0,
+      "frames": [
+        {
+          "hero": "leonhardt",
+          "pose": 0,
+          "visible_pixels": 29532,
+          "region": [
+            15,
+            48,
+            204,
+            253
+          ],
+          "pivot": [
+            105.5,
+            297
+          ],
+          "sha256": "19333cbd929252c705c4f70a5a5dbe25f90c8063068855859964a8ae6df8dba6"
+        },
+        {
+          "hero": "leonhardt",
+          "pose": 1,
+          "visible_pixels": 29068,
+          "region": [
+            281,
+            48,
+            200,
+            252
+          ],
+          "pivot": [
+            361.0,
+            296
+          ],
+          "sha256": "247520d363786eb684f34ce29dfe320cb585cdf918d381739e9cab4082092f8c"
+        },
+        {
+          "hero": "leonhardt",
+          "pose": 2,
+          "visible_pixels": 28234,
+          "region": [
+            526,
+            48,
+            195,
+            253
+          ],
+          "pivot": [
+            624.5,
+            297
+          ],
+          "sha256": "795fee06a7a97953b9fa98830631416abc8447cd92913c3eca17b4c68e45d5e9"
+        },
+        {
+          "hero": "leonhardt",
+          "pose": 3,
+          "visible_pixels": 33583,
+          "region": [
+            747,
+            48,
+            272,
+            251
+          ],
+          "pivot": [
+            865.0,
+            295
+          ],
+          "sha256": "4f26c84c8c860e6927b8c9a3dcf6e0ed63c0bf17e5cd54a3b639ed6f7fcb893e"
+        },
+        {
+          "hero": "mira",
+          "pose": 0,
+          "visible_pixels": 36643,
+          "region": [
+            16,
+            324,
+            206,
+            285
+          ],
+          "pivot": [
+            119.5,
+            605
+          ],
+          "sha256": "40f7a3ae1f6c834a361a273befc4538bd661b95d6644a7af5c11e525a6fd99b7"
+        },
+        {
+          "hero": "mira",
+          "pose": 1,
+          "visible_pixels": 36383,
+          "region": [
+            277,
+            322,
+            211,
+            288
+          ],
+          "pivot": [
+            391.0,
+            606
+          ],
+          "sha256": "e4fd2e80424dd6775acd4da7e12daeb4f44df2ecda366fc8f15d1264ede3cda8"
+        },
+        {
+          "hero": "mira",
+          "pose": 2,
+          "visible_pixels": 34207,
+          "region": [
+            520,
+            325,
+            204,
+            285
+          ],
+          "pivot": [
+            629.0,
+            606
+          ],
+          "sha256": "85e3b3031f691336531c32a104ce4720c9336742707a14230ecb62ab96151a06"
+        },
+        {
+          "hero": "mira",
+          "pose": 3,
+          "visible_pixels": 39054,
+          "region": [
+            764,
+            328,
+            256,
+            281
+          ],
+          "pivot": [
+            893.0,
+            605
+          ],
+          "sha256": "628f7afb79f4f12033b22c34bfe464ebe749e67f35189ca0b7a4fdf2c3886fe2"
+        },
+        {
+          "hero": "elisia",
+          "pose": 0,
+          "visible_pixels": 39237,
+          "region": [
+            13,
+            626,
+            226,
+            284
+          ],
+          "pivot": [
+            122.0,
+            906
+          ],
+          "sha256": "8bea286c67fc76733564453d250e8a0b568918dd50f167034620cf720569119b"
+        },
+        {
+          "hero": "elisia",
+          "pose": 1,
+          "visible_pixels": 38607,
+          "region": [
+            264,
+            630,
+            238,
+            281
+          ],
+          "pivot": [
+            381.5,
+            907
+          ],
+          "sha256": "0564e069502a2a871769065b3bc41e21abac58d977a97e8a03a1ce6166587595"
+        },
+        {
+          "hero": "elisia",
+          "pose": 2,
+          "visible_pixels": 37751,
+          "region": [
+            513,
+            629,
+            221,
+            282
+          ],
+          "pivot": [
+            604.0,
+            907
+          ],
+          "sha256": "9471efe09f92fbcc3a217241e7aa77546d0391543e4c74ccd9d40870b9668b01"
+        },
+        {
+          "hero": "elisia",
+          "pose": 3,
+          "visible_pixels": 42491,
+          "region": [
+            746,
+            638,
+            270,
+            273
+          ],
+          "pivot": [
+            849.5,
+            907
+          ],
+          "sha256": "09092cdb02b62ff9868ac9f78c8144019d3f94dec547f840425f8066fcad13c8"
+        },
+        {
+          "hero": "kairen",
+          "pose": 0,
+          "visible_pixels": 32394,
+          "region": [
+            21,
+            930,
+            210,
+            265
+          ],
+          "pivot": [
+            107.5,
+            1191
+          ],
+          "sha256": "b31f2c20082b586e0c5d62af497489ef5bede5c018504fd2fb503462c8c37863"
+        },
+        {
+          "hero": "kairen",
+          "pose": 1,
+          "visible_pixels": 32945,
+          "region": [
+            265,
+            931,
+            227,
+            265
+          ],
+          "pivot": [
+            373.5,
+            1192
+          ],
+          "sha256": "c59885b2e3815cf8420a0235928a9e8a6dc557c8fd8f3f94f70bcb6d7eaed5fc"
+        },
+        {
+          "hero": "kairen",
+          "pose": 2,
+          "visible_pixels": 32164,
+          "region": [
+            508,
+            932,
+            226,
+            264
+          ],
+          "pivot": [
+            610.0,
+            1192
+          ],
+          "sha256": "46b78ec8af8fdfe9ff902401f240515ef383bb41e69d93a4da87959c0c9143e6"
+        },
+        {
+          "hero": "kairen",
+          "pose": 3,
+          "visible_pixels": 38102,
+          "region": [
+            753,
+            931,
+            253,
+            264
+          ],
+          "pivot": [
+            851.5,
+            1191
+          ],
+          "sha256": "7e1e03493d34526ee499f032415c86b3dbd8c6ac0b64e7aa6158d6d3685ba5eb"
+        },
+        {
+          "hero": "orwin",
+          "pose": 0,
+          "visible_pixels": 37729,
+          "region": [
+            14,
+            1204,
+            216,
+            292
+          ],
+          "pivot": [
+            132.0,
+            1492
+          ],
+          "sha256": "c49d8a3ac5bd5be52c5a298a42575233254da3415b8cbfc88cf636e646464e1f"
+        },
+        {
+          "hero": "orwin",
+          "pose": 1,
+          "visible_pixels": 37081,
+          "region": [
+            266,
+            1204,
+            212,
+            293
+          ],
+          "pivot": [
+            363.0,
+            1493
+          ],
+          "sha256": "9bce92d2eac09393bf31c2c3e028f12331e83e6a05d170e4fc1ad771d13e5194"
+        },
+        {
+          "hero": "orwin",
+          "pose": 2,
+          "visible_pixels": 38006,
+          "region": [
+            508,
+            1205,
+            211,
+            293
+          ],
+          "pivot": [
+            617.5,
+            1494
+          ],
+          "sha256": "ecdbef3c9cad1b2c29fb344219eb4e4f7349c51d34b81eb7cf0849f9dd9f3ac6"
+        },
+        {
+          "hero": "orwin",
+          "pose": 3,
+          "visible_pixels": 38951,
+          "region": [
+            727,
+            1238,
+            297,
+            257
+          ],
+          "pivot": [
+            851.0,
+            1491
+          ],
+          "sha256": "ac4e7ee82a6253198f2dc98558f5bb74e5e78e7d4e62292d1460d4ae540f1a96"
+        }
+      ]
+    },
+    {
+      "sheet": "a06",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_threshold": 10,
+      "source_sha256": "4fee733989307f028d25c0298259f6791e38701e34eb9893626b8347499a26d9",
+      "regions": 20,
+      "source_origin_verified": true,
+      "visible_pixels": 714477,
+      "omitted_visible_pixels": 0,
+      "overlapping_visible_pixels": 0,
+      "coverage_percent": 100.0,
+      "frames": [
+        {
+          "hero": "seria",
+          "pose": 0,
+          "visible_pixels": 33212,
+          "region": [
+            15,
+            32,
+            215,
+            275
+          ],
+          "pivot": [
+            127.5,
+            303
+          ],
+          "sha256": "13f375cd43c1e40d72f01f1d7b2082172e0496cd94fae7b3f8eee4d99e9a8c04"
+        },
+        {
+          "hero": "seria",
+          "pose": 1,
+          "visible_pixels": 32812,
+          "region": [
+            263,
+            32,
+            220,
+            275
+          ],
+          "pivot": [
+            372.0,
+            303
+          ],
+          "sha256": "c5a7f936c3181a5258ee46a6daafc2ef0f1ee1ebef1515b0ef56d77eca5afe63"
+        },
+        {
+          "hero": "seria",
+          "pose": 2,
+          "visible_pixels": 31910,
+          "region": [
+            520,
+            32,
+            213,
+            275
+          ],
+          "pivot": [
+            626.0,
+            303
+          ],
+          "sha256": "69a61df995ccbba806a3c25785c68f06adfcda26467742382a6e91cb7dce9954"
+        },
+        {
+          "hero": "seria",
+          "pose": 3,
+          "visible_pixels": 35690,
+          "region": [
+            763,
+            31,
+            254,
+            276
+          ],
+          "pivot": [
+            884.5,
+            303
+          ],
+          "sha256": "c29ef6fe80aa93f567d29404cb465a28df0d9c75f9e99cd75661eaf5400f66f8"
+        },
+        {
+          "hero": "astel",
+          "pose": 0,
+          "visible_pixels": 36169,
+          "region": [
+            15,
+            326,
+            198,
+            297
+          ],
+          "pivot": [
+            114.0,
+            619
+          ],
+          "sha256": "31c11b755fdf09d14a390b6a1be4660b0307efc1d955af22bb87b89eb6f00337"
+        },
+        {
+          "hero": "astel",
+          "pose": 1,
+          "visible_pixels": 36940,
+          "region": [
+            245,
+            331,
+            225,
+            293
+          ],
+          "pivot": [
+            360.0,
+            620
+          ],
+          "sha256": "c968cfdca75fd0cb1c48114130cff4ed20a0369d1432393841b2b9427725030b"
+        },
+        {
+          "hero": "astel",
+          "pose": 2,
+          "visible_pixels": 37085,
+          "region": [
+            510,
+            329,
+            224,
+            294
+          ],
+          "pivot": [
+            617.5,
+            619
+          ],
+          "sha256": "d58c1d34cf7faab045ebd735344808932c5866f9a3259f34c0da050593b81235"
+        },
+        {
+          "hero": "astel",
+          "pose": 3,
+          "visible_pixels": 39916,
+          "region": [
+            771,
+            332,
+            227,
+            287
+          ],
+          "pivot": [
+            885.0,
+            619
+          ],
+          "sha256": "07dbc2150267e4e3ba7d82181fb0e1a1f1b3a2a0b02f2ef752bc642fb31f009a"
+        },
+        {
+          "hero": "darius",
+          "pose": 0,
+          "visible_pixels": 34516,
+          "region": [
+            4,
+            627,
+            229,
+            279
+          ],
+          "pivot": [
+            136.5,
+            902
+          ],
+          "sha256": "56347a1df76227ee4269c97482ff750eb5c562a531cc59cc63e5943385ed0d4b"
+        },
+        {
+          "hero": "darius",
+          "pose": 1,
+          "visible_pixels": 34339,
+          "region": [
+            237,
+            629,
+            261,
+            273
+          ],
+          "pivot": [
+            387.5,
+            898
+          ],
+          "sha256": "f24921190916caaf3b29dddeb02ebdb4110de891b276bdc0c89b965fc3afe6e6"
+        },
+        {
+          "hero": "darius",
+          "pose": 2,
+          "visible_pixels": 35219,
+          "region": [
+            498,
+            628,
+            251,
+            274
+          ],
+          "pivot": [
+            638.5,
+            898
+          ],
+          "sha256": "8f20a2597ec84b1e1332e194c3ee11e7c0ddbbb46719dc1c8ab8a53a69936559"
+        },
+        {
+          "hero": "darius",
+          "pose": 3,
+          "visible_pixels": 37261,
+          "region": [
+            757,
+            619,
+            261,
+            287
+          ],
+          "pivot": [
+            884.5,
+            902
+          ],
+          "sha256": "c3e29da1c7b750e7b57c273c61356a9a9297c67397a039cab5e263a8c56f06ba"
+        },
+        {
+          "hero": "lunea",
+          "pose": 0,
+          "visible_pixels": 36152,
+          "region": [
+            23,
+            920,
+            208,
+            276
+          ],
+          "pivot": [
+            109.5,
+            1192
+          ],
+          "sha256": "c47ebd28d29a1d2c8d12681b587c8333a978f571d280dc35ff2c7e6ce0f16dca"
+        },
+        {
+          "hero": "lunea",
+          "pose": 1,
+          "visible_pixels": 34845,
+          "region": [
+            270,
+            919,
+            223,
+            278
+          ],
+          "pivot": [
+            367.5,
+            1193
+          ],
+          "sha256": "0a8a6a447bed2d8a27ef4541acee6d6485e7c66a2f2b1f556ba5b08df11f1e2b"
+        },
+        {
+          "hero": "lunea",
+          "pose": 2,
+          "visible_pixels": 34564,
+          "region": [
+            526,
+            919,
+            214,
+            276
+          ],
+          "pivot": [
+            621.0,
+            1191
+          ],
+          "sha256": "e638157311c26174f268818190fb97f075ea326b2c1835c3e0ef5be35360d6e1"
+        },
+        {
+          "hero": "lunea",
+          "pose": 3,
+          "visible_pixels": 38572,
+          "region": [
+            781,
+            912,
+            233,
+            287
+          ],
+          "pivot": [
+            871.5,
+            1195
+          ],
+          "sha256": "d26af8e8d89203297c50f2707807220e5657736407ac18b1c6ff7dbdcf11aa03"
+        },
+        {
+          "hero": "caelum",
+          "pose": 0,
+          "visible_pixels": 36775,
+          "region": [
+            2,
+            1198,
+            224,
+            294
+          ],
+          "pivot": [
+            103.5,
+            1488
+          ],
+          "sha256": "2e6afa41dea2eee731b4e9b06158924b147b3db07af3716996bb9138def31579"
+        },
+        {
+          "hero": "caelum",
+          "pose": 1,
+          "visible_pixels": 34929,
+          "region": [
+            233,
+            1200,
+            225,
+            290
+          ],
+          "pivot": [
+            377.5,
+            1486
+          ],
+          "sha256": "bf7adb392b00a0dbffd6d9f26b6f19b712919baa21a797f4c59b18fc169d3511"
+        },
+        {
+          "hero": "caelum",
+          "pose": 2,
+          "visible_pixels": 35652,
+          "region": [
+            486,
+            1199,
+            234,
+            295
+          ],
+          "pivot": [
+            639.0,
+            1490
+          ],
+          "sha256": "bbda2b04a1849f6fa3c3d9c48eb861a59307a4d5b30a83fc006523d9aa14c247"
+        },
+        {
+          "hero": "caelum",
+          "pose": 3,
+          "visible_pixels": 37919,
+          "region": [
+            724,
+            1207,
+            300,
+            279
+          ],
+          "pivot": [
+            874.5,
+            1482
+          ],
+          "sha256": "80751d9d4fdf2050591d3e4fb6054ec363d5c7d9506a9c587528d079a6b037c8"
+        }
+      ]
+    },
+    {
+      "sheet": "a11",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_threshold": 10,
+      "source_sha256": "f565b56497b7a7b261b3c98aab9de9a2830c18516cee096ecee4dd08152cb6ef",
+      "regions": 20,
+      "source_origin_verified": true,
+      "visible_pixels": 680179,
+      "omitted_visible_pixels": 0,
+      "overlapping_visible_pixels": 0,
+      "coverage_percent": 100.0,
+      "frames": [
+        {
+          "hero": "adrien",
+          "pose": 0,
+          "visible_pixels": 28222,
+          "region": [
+            10,
+            60,
+            215,
+            250
+          ],
+          "pivot": [
+            124.0,
+            306
+          ],
+          "sha256": "7dceb9016661d3e3905e9d849a0458abd592c18be6bde1cd2f7e70649a56474e"
+        },
+        {
+          "hero": "adrien",
+          "pose": 1,
+          "visible_pixels": 24489,
+          "region": [
+            267,
+            60,
+            221,
+            250
+          ],
+          "pivot": [
+            371.0,
+            306
+          ],
+          "sha256": "8e0d1b3cb63f14b988f92661edfdf6eaf361dbff76d0e505200f1188a20ec958"
+        },
+        {
+          "hero": "adrien",
+          "pose": 2,
+          "visible_pixels": 23597,
+          "region": [
+            527,
+            60,
+            197,
+            249
+          ],
+          "pivot": [
+            623.0,
+            305
+          ],
+          "sha256": "8cf9831bf5e9ce6eb3c4defaad8e01fb6cffa81445c8ade6343a96afe000b526"
+        },
+        {
+          "hero": "adrien",
+          "pose": 3,
+          "visible_pixels": 27219,
+          "region": [
+            749,
+            62,
+            275,
+            248
+          ],
+          "pivot": [
+            862.0,
+            306
+          ],
+          "sha256": "1a4ab0f2c25ac85fe30baa3d3c908b31aa7fe64ec783da95658ab43b0c90d674"
+        },
+        {
+          "hero": "tessa",
+          "pose": 0,
+          "visible_pixels": 37277,
+          "region": [
+            36,
+            340,
+            213,
+            279
+          ],
+          "pivot": [
+            120.5,
+            615
+          ],
+          "sha256": "73129ad716ce7a62adc83c05d61985988a710f99bd4cfb2baeb4a5230cafd449"
+        },
+        {
+          "hero": "tessa",
+          "pose": 1,
+          "visible_pixels": 35845,
+          "region": [
+            296,
+            336,
+            205,
+            284
+          ],
+          "pivot": [
+            377.5,
+            616
+          ],
+          "sha256": "3c18a6a929002e51413fe573fda8ba46ec0724f7aaaba8c9d6503fb140da56de"
+        },
+        {
+          "hero": "tessa",
+          "pose": 2,
+          "visible_pixels": 34961,
+          "region": [
+            537,
+            341,
+            212,
+            278
+          ],
+          "pivot": [
+            621.5,
+            615
+          ],
+          "sha256": "be4df81dec5a5ce87bd3eb277b75dc94aec6a69003c8860c54b6d4a648e7503d"
+        },
+        {
+          "hero": "tessa",
+          "pose": 3,
+          "visible_pixels": 37777,
+          "region": [
+            767,
+            344,
+            252,
+            275
+          ],
+          "pivot": [
+            868.5,
+            615
+          ],
+          "sha256": "3e05e09916b9020c69e4756380997e15d0f9c23392976a7d8aadb9a0e31230e4"
+        },
+        {
+          "hero": "naia",
+          "pose": 0,
+          "visible_pixels": 37446,
+          "region": [
+            4,
+            643,
+            254,
+            276
+          ],
+          "pivot": [
+            121.5,
+            915
+          ],
+          "sha256": "7cb27625b637ce5c1503fbde993bea09b6089b13dc928b641640975bd2205bd3"
+        },
+        {
+          "hero": "naia",
+          "pose": 1,
+          "visible_pixels": 35376,
+          "region": [
+            271,
+            642,
+            230,
+            279
+          ],
+          "pivot": [
+            360.0,
+            917
+          ],
+          "sha256": "4756024963013f9f798fd6cf3b04e0dd00717f1e4ad458199b0ea4774789f0c1"
+        },
+        {
+          "hero": "naia",
+          "pose": 2,
+          "visible_pixels": 35260,
+          "region": [
+            511,
+            640,
+            232,
+            280
+          ],
+          "pivot": [
+            623.5,
+            916
+          ],
+          "sha256": "c2f507f98af9f84c7d5633ebe5b143c43c273d883e2342087be6b4611597dacf"
+        },
+        {
+          "hero": "naia",
+          "pose": 3,
+          "visible_pixels": 39952,
+          "region": [
+            743,
+            648,
+            281,
+            273
+          ],
+          "pivot": [
+            859.0,
+            917
+          ],
+          "sha256": "4a9c4f71024becc921ca85b72f811607fe66c5aac91fddc36c74d35fcb47d9fe"
+        },
+        {
+          "hero": "sael",
+          "pose": 0,
+          "visible_pixels": 31659,
+          "region": [
+            20,
+            940,
+            224,
+            268
+          ],
+          "pivot": [
+            125.5,
+            1204
+          ],
+          "sha256": "a2fd2fab0c28ed5ebbe325e4c1150804742146ed717529ebf429fc256839ca21"
+        },
+        {
+          "hero": "sael",
+          "pose": 1,
+          "visible_pixels": 31111,
+          "region": [
+            269,
+            939,
+            232,
+            266
+          ],
+          "pivot": [
+            378.5,
+            1201
+          ],
+          "sha256": "953df0d934ae013d497beeb27c454dbbd377385aaaa45677de6e65b1be344f11"
+        },
+        {
+          "hero": "sael",
+          "pose": 2,
+          "visible_pixels": 30731,
+          "region": [
+            516,
+            939,
+            222,
+            266
+          ],
+          "pivot": [
+            617.5,
+            1201
+          ],
+          "sha256": "5aea3dd2a20aeb809356509dc7f04923cd9a7708b981325ccaa6cb04e202bbb0"
+        },
+        {
+          "hero": "sael",
+          "pose": 3,
+          "visible_pixels": 33058,
+          "region": [
+            750,
+            951,
+            272,
+            256
+          ],
+          "pivot": [
+            882.5,
+            1203
+          ],
+          "sha256": "602b80d7da2b4cdf5b8a306051216873af07024db5a890305fa3630a7d1ed73d"
+        },
+        {
+          "hero": "odelia",
+          "pose": 0,
+          "visible_pixels": 39040,
+          "region": [
+            17,
+            1225,
+            216,
+            282
+          ],
+          "pivot": [
+            123.5,
+            1503
+          ],
+          "sha256": "092b5ea52f1abd025bf2687acf4455068cc58d15548e90d6a6bb64658c41c63d"
+        },
+        {
+          "hero": "odelia",
+          "pose": 1,
+          "visible_pixels": 36780,
+          "region": [
+            265,
+            1222,
+            219,
+            285
+          ],
+          "pivot": [
+            376.5,
+            1503
+          ],
+          "sha256": "4733b1ac490f9882cc1a733eb5fa8bab5db31b298980b08473c5c72265325732"
+        },
+        {
+          "hero": "odelia",
+          "pose": 2,
+          "visible_pixels": 36696,
+          "region": [
+            516,
+            1222,
+            216,
+            284
+          ],
+          "pivot": [
+            629.5,
+            1502
+          ],
+          "sha256": "746c98fd16817e2f6ed596e4bd78bbe1519cf953c58cc08d0752602eeebb3aae"
+        },
+        {
+          "hero": "odelia",
+          "pose": 3,
+          "visible_pixels": 43683,
+          "region": [
+            752,
+            1226,
+            259,
+            282
+          ],
+          "pivot": [
+            885.5,
+            1504
+          ],
+          "sha256": "ddee4090665479512f5cd3820390160c007b46ba333d8608a704104b0224b202"
+        }
+      ]
+    },
+    {
+      "sheet": "n01",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_threshold": 10,
+      "source_sha256": "3588b9bc46ff26927b95010d500f5deebcb783c160d3e59167ea059c3e994e62",
+      "regions": 20,
+      "source_origin_verified": true,
+      "visible_pixels": 433557,
+      "omitted_visible_pixels": 0,
+      "overlapping_visible_pixels": 0,
+      "coverage_percent": 100.0,
+      "frames": [
+        {
+          "hero": "valeria",
+          "pose": 0,
+          "visible_pixels": 19607,
+          "region": [
+            47,
+            85,
+            180,
+            189
+          ],
+          "pivot": [
+            146.0,
+            270
+          ],
+          "sha256": "1afe6185ae421e4917d7b337d5621a1a41643374d5288b2cd78d5eca1c282fc4"
+        },
+        {
+          "hero": "valeria",
+          "pose": 1,
+          "visible_pixels": 19578,
+          "region": [
+            298,
+            82,
+            178,
+            194
+          ],
+          "pivot": [
+            413.5,
+            272
+          ],
+          "sha256": "7a3006f6c38015818aa32bcbe0af445ca6f8041d35b0f7172e79b4b6aa6a005c"
+        },
+        {
+          "hero": "valeria",
+          "pose": 2,
+          "visible_pixels": 18966,
+          "region": [
+            553,
+            84,
+            175,
+            190
+          ],
+          "pivot": [
+            659.5,
+            270
+          ],
+          "sha256": "157a27cde057141f9ba077f2ee6596b47387880aff7258b7039f7c376b552301"
+        },
+        {
+          "hero": "valeria",
+          "pose": 3,
+          "visible_pixels": 19857,
+          "region": [
+            794,
+            95,
+            216,
+            180
+          ],
+          "pivot": [
+            888.0,
+            271
+          ],
+          "sha256": "dde6e5461c8cf7ecf7f67d1bdd8fe256fb30031e69df5bd3dd7e29790d0fe942"
+        },
+        {
+          "hero": "morgas",
+          "pose": 0,
+          "visible_pixels": 18597,
+          "region": [
+            56,
+            347,
+            147,
+            210
+          ],
+          "pivot": [
+            119.5,
+            553
+          ],
+          "sha256": "1472204156f029ac6c5fe8149d0184c0bc07657aa93319da3d32fa57f245a9d9"
+        },
+        {
+          "hero": "morgas",
+          "pose": 1,
+          "visible_pixels": 19298,
+          "region": [
+            307,
+            346,
+            160,
+            211
+          ],
+          "pivot": [
+            379.0,
+            553
+          ],
+          "sha256": "a089733c63acf6ec6b8b47fd7b7979a46cad343853bd3a7b972fda01ab380daf"
+        },
+        {
+          "hero": "morgas",
+          "pose": 2,
+          "visible_pixels": 17515,
+          "region": [
+            566,
+            346,
+            133,
+            212
+          ],
+          "pivot": [
+            637.0,
+            554
+          ],
+          "sha256": "364b884eecb1f21615280c6c2a96b16e0a00d8cca599c1103bf3d060a82ae646"
+        },
+        {
+          "hero": "morgas",
+          "pose": 3,
+          "visible_pixels": 20060,
+          "region": [
+            815,
+            346,
+            168,
+            213
+          ],
+          "pivot": [
+            889.0,
+            555
+          ],
+          "sha256": "51ffb4f96e4991934258666677fb679edced32915c2eb80d0f9c59fb3b6ab5c2"
+        },
+        {
+          "hero": "ragna",
+          "pose": 0,
+          "visible_pixels": 21568,
+          "region": [
+            37,
+            629,
+            179,
+            209
+          ],
+          "pivot": [
+            118.5,
+            834
+          ],
+          "sha256": "1fd7a1edf390d4d970514d606f8d346dfe770204364874983593fb398a341bc2"
+        },
+        {
+          "hero": "ragna",
+          "pose": 1,
+          "visible_pixels": 21405,
+          "region": [
+            297,
+            629,
+            186,
+            210
+          ],
+          "pivot": [
+            385.0,
+            835
+          ],
+          "sha256": "1eb43682b9469579a482052847e1180d100d744fccad1b910d3d5508b46c232a"
+        },
+        {
+          "hero": "ragna",
+          "pose": 2,
+          "visible_pixels": 20725,
+          "region": [
+            551,
+            628,
+            183,
+            211
+          ],
+          "pivot": [
+            632.5,
+            835
+          ],
+          "sha256": "ba63cb2a0aaf019c4ab0f38d3d1915157f5b061cf02cba8cba02c09fcf792215"
+        },
+        {
+          "hero": "ragna",
+          "pose": 3,
+          "visible_pixels": 22537,
+          "region": [
+            792,
+            634,
+            220,
+            207
+          ],
+          "pivot": [
+            876.5,
+            837
+          ],
+          "sha256": "d1e00a2387da05e42e3962f9abc13564d7fe816f0b58fcfcd2421c1048471b79"
+        },
+        {
+          "hero": "bron",
+          "pose": 0,
+          "visible_pixels": 24336,
+          "region": [
+            38,
+            917,
+            190,
+            210
+          ],
+          "pivot": [
+            116.0,
+            1123
+          ],
+          "sha256": "33ad90ca1ff1ca5d4570d1927a1d728ad8f576e4ccde168a6134d8723109547a"
+        },
+        {
+          "hero": "bron",
+          "pose": 1,
+          "visible_pixels": 24546,
+          "region": [
+            295,
+            917,
+            201,
+            212
+          ],
+          "pivot": [
+            381.5,
+            1125
+          ],
+          "sha256": "23533fb51f8cfa276be60eeb33e9884705a32be7e035bffde8531882d45807f5"
+        },
+        {
+          "hero": "bron",
+          "pose": 2,
+          "visible_pixels": 22998,
+          "region": [
+            553,
+            918,
+            178,
+            213
+          ],
+          "pivot": [
+            632.0,
+            1127
+          ],
+          "sha256": "87e3235f195826a5222b08cd674c3764be5c1c54f5201f6803b6fcf256913d27"
+        },
+        {
+          "hero": "bron",
+          "pose": 3,
+          "visible_pixels": 26955,
+          "region": [
+            790,
+            910,
+            219,
+            220
+          ],
+          "pivot": [
+            889.5,
+            1126
+          ],
+          "sha256": "2b5245e776c38db353369f603a32d0bfad5a9e8871de87b9fa382763b7282211"
+        },
+        {
+          "hero": "nyx",
+          "pose": 0,
+          "visible_pixels": 23442,
+          "region": [
+            44,
+            1211,
+            164,
+            215
+          ],
+          "pivot": [
+            124.5,
+            1422
+          ],
+          "sha256": "394d9a28f4553256009d1bc5e549a4fb94800ad62765ffa6e021aa4507b3d551"
+        },
+        {
+          "hero": "nyx",
+          "pose": 1,
+          "visible_pixels": 23777,
+          "region": [
+            289,
+            1211,
+            181,
+            218
+          ],
+          "pivot": [
+            378.5,
+            1425
+          ],
+          "sha256": "617827cc7d57465388067eca795f7ce6d1648542133cbe5db5dcc8522387b619"
+        },
+        {
+          "hero": "nyx",
+          "pose": 2,
+          "visible_pixels": 23001,
+          "region": [
+            548,
+            1213,
+            171,
+            216
+          ],
+          "pivot": [
+            628.0,
+            1425
+          ],
+          "sha256": "621710235dfadf2254c73c34bb1f75673488ea22ae9eb919487a3a93879d5943"
+        },
+        {
+          "hero": "nyx",
+          "pose": 3,
+          "visible_pixels": 24789,
+          "region": [
+            798,
+            1211,
+            200,
+            218
+          ],
+          "pivot": [
+            893.0,
+            1425
+          ],
+          "sha256": "a07d6506f3cd8b8f3003e569c95c8e36284f270e9158270f9acc2379d58350d4"
+        }
+      ]
+    },
+    {
+      "sheet": "n06",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_threshold": 10,
+      "source_sha256": "6493783fb86b7de94fc39ceb7ebfbed95fbe9ba260e589394077715a72133611",
+      "regions": 20,
+      "source_origin_verified": true,
+      "visible_pixels": 839362,
+      "omitted_visible_pixels": 0,
+      "overlapping_visible_pixels": 0,
+      "coverage_percent": 100.0,
+      "frames": [
+        {
+          "hero": "fenris",
+          "pose": 0,
+          "visible_pixels": 38480,
+          "region": [
+            15,
+            12,
+            229,
+            280
+          ],
+          "pivot": [
+            123.5,
+            288
+          ],
+          "sha256": "25f93e7806e2443a1998f34379f0a029c4ad9630deed43a7010b95b4c1528205"
+        },
+        {
+          "hero": "fenris",
+          "pose": 1,
+          "visible_pixels": 37274,
+          "region": [
+            262,
+            12,
+            237,
+            279
+          ],
+          "pivot": [
+            392.0,
+            287
+          ],
+          "sha256": "13fca53f6fa26e4b3de87e6a80b8561105301770765b6641f7532a5f5f74101e"
+        },
+        {
+          "hero": "fenris",
+          "pose": 2,
+          "visible_pixels": 35808,
+          "region": [
+            525,
+            17,
+            218,
+            274
+          ],
+          "pivot": [
+            637.0,
+            287
+          ],
+          "sha256": "3274bc549b785ec440ef71ff590614883b8803ffcf22841bc2ec322c94e834c6"
+        },
+        {
+          "hero": "fenris",
+          "pose": 3,
+          "visible_pixels": 35598,
+          "region": [
+            765,
+            33,
+            259,
+            259
+          ],
+          "pivot": [
+            883.5,
+            288
+          ],
+          "sha256": "81205c69a631c979c100eda820729f03756f2a85d3b758612db4826e9f1a4456"
+        },
+        {
+          "hero": "isolde",
+          "pose": 0,
+          "visible_pixels": 43202,
+          "region": [
+            15,
+            308,
+            222,
+            286
+          ],
+          "pivot": [
+            104.5,
+            590
+          ],
+          "sha256": "250006712dfe5401804753aed1c21e1ca219359563f722d9c258b75a2385508b"
+        },
+        {
+          "hero": "isolde",
+          "pose": 1,
+          "visible_pixels": 45955,
+          "region": [
+            242,
+            303,
+            256,
+            292
+          ],
+          "pivot": [
+            358.5,
+            591
+          ],
+          "sha256": "7ccc1011cbf7cf4e4113d3fd3a11e948c8494a8bda49087edd0dd9337c8d8ffb"
+        },
+        {
+          "hero": "isolde",
+          "pose": 2,
+          "visible_pixels": 43958,
+          "region": [
+            504,
+            303,
+            239,
+            290
+          ],
+          "pivot": [
+            631.0,
+            589
+          ],
+          "sha256": "dc37243bdd3053f2cefb8ff75648c1f089f70525c41d9047e71bed9c93d82464"
+        },
+        {
+          "hero": "isolde",
+          "pose": 3,
+          "visible_pixels": 44279,
+          "region": [
+            743,
+            302,
+            263,
+            293
+          ],
+          "pivot": [
+            861.0,
+            591
+          ],
+          "sha256": "10a8dee8faa04ff85f5e00e86a015ea9fea06e9bdd0bf259620b7382b0a6bc90"
+        },
+        {
+          "hero": "garm",
+          "pose": 0,
+          "visible_pixels": 47517,
+          "region": [
+            4,
+            599,
+            238,
+            285
+          ],
+          "pivot": [
+            124.0,
+            880
+          ],
+          "sha256": "5882a0afa12d39359213d38b8ba1930dd99a073e39597aec1b568e980f99e3ce"
+        },
+        {
+          "hero": "garm",
+          "pose": 1,
+          "visible_pixels": 47898,
+          "region": [
+            255,
+            596,
+            252,
+            292
+          ],
+          "pivot": [
+            376.0,
+            884
+          ],
+          "sha256": "09a507cb5f6f70f5a6d1d9f8001c0275641c85760910d0f86b60b173653df908"
+        },
+        {
+          "hero": "garm",
+          "pose": 2,
+          "visible_pixels": 47023,
+          "region": [
+            507,
+            599,
+            250,
+            285
+          ],
+          "pivot": [
+            628.5,
+            880
+          ],
+          "sha256": "14055894048e2b4c5396eec4f127e13e2ac555dec0ba2be00128a90dd93db2e7"
+        },
+        {
+          "hero": "garm",
+          "pose": 3,
+          "visible_pixels": 46797,
+          "region": [
+            762,
+            605,
+            262,
+            279
+          ],
+          "pivot": [
+            877.5,
+            880
+          ],
+          "sha256": "85d30cf1af2c51b1c593e724a1aab143dad2e2774e6fd72250a461578728c35c"
+        },
+        {
+          "hero": "veyra",
+          "pose": 0,
+          "visible_pixels": 36398,
+          "region": [
+            10,
+            890,
+            219,
+            276
+          ],
+          "pivot": [
+            117.5,
+            1163
+          ],
+          "sha256": "6271534513c4b4f49fac90a5dd673df65dd9276735caab223c1624a01bdb207d"
+        },
+        {
+          "hero": "veyra",
+          "pose": 1,
+          "visible_pixels": 35638,
+          "region": [
+            261,
+            890,
+            219,
+            276
+          ],
+          "pivot": [
+            384.5,
+            1164
+          ],
+          "sha256": "16b349b422c41ada197f1140f5807c86bf8d4cbc666820f890a005200b2571d4"
+        },
+        {
+          "hero": "veyra",
+          "pose": 2,
+          "visible_pixels": 35830,
+          "region": [
+            520,
+            890,
+            231,
+            277
+          ],
+          "pivot": [
+            639.0,
+            1165
+          ],
+          "sha256": "58720142ef5cbdcc0dd97c0efd799b2450637b4e6fbd52b71bb4f219596c44b0"
+        },
+        {
+          "hero": "veyra",
+          "pose": 3,
+          "visible_pixels": 37816,
+          "region": [
+            772,
+            896,
+            238,
+            272
+          ],
+          "pivot": [
+            895.5,
+            1164
+          ],
+          "sha256": "dd1c109fd68ec539cdffea8bb0fb9c653fe41a4a61b0719067b0e2c0c913a6cb"
+        },
+        {
+          "hero": "ulric",
+          "pose": 0,
+          "visible_pixels": 45156,
+          "region": [
+            11,
+            1166,
+            233,
+            343
+          ],
+          "pivot": [
+            114.0,
+            1505
+          ],
+          "sha256": "0d637ba46860ef39da7ae8fa7516c1e2359e9382ca6e7e8cbd51852b9ee1c32f"
+        },
+        {
+          "hero": "ulric",
+          "pose": 1,
+          "visible_pixels": 43483,
+          "region": [
+            276,
+            1166,
+            223,
+            343
+          ],
+          "pivot": [
+            384.5,
+            1505
+          ],
+          "sha256": "aa27ac03478713a65f51bbecf75e1dc98b9f8a177f81757881b508317df05de5"
+        },
+        {
+          "hero": "ulric",
+          "pose": 2,
+          "visible_pixels": 45903,
+          "region": [
+            525,
+            1167,
+            238,
+            342
+          ],
+          "pivot": [
+            627.0,
+            1505
+          ],
+          "sha256": "94ff39d620f442124d294e377a15b0f219b346b32eb5eeb1dfe016b0f3497309"
+        },
+        {
+          "hero": "ulric",
+          "pose": 3,
+          "visible_pixels": 45349,
+          "region": [
+            763,
+            1178,
+            261,
+            328
+          ],
+          "pivot": [
+            879.5,
+            1502
+          ],
+          "sha256": "5bab4e2c5b837323b3434cef7e47cc479fbf3ac81cc831502d0ab15e3aabb3fe"
+        }
+      ]
+    },
+    {
+      "sheet": "n11",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_threshold": 10,
+      "source_sha256": "adc1f26e6b35adff046b004b03753b6e378ae0d74501a5d357ede55e11f121cd",
+      "regions": 20,
+      "source_origin_verified": true,
+      "visible_pixels": 433295,
+      "omitted_visible_pixels": 0,
+      "overlapping_visible_pixels": 0,
+      "coverage_percent": 100.0,
+      "frames": [
+        {
+          "hero": "lucien",
+          "pose": 0,
+          "visible_pixels": 19604,
+          "region": [
+            71,
+            89,
+            159,
+            226
+          ],
+          "pivot": [
+            147.0,
+            311
+          ],
+          "sha256": "5a002f34ca51b778a84623106618dbdbf34cfbf92ac239758eafd6f007bff27d"
+        },
+        {
+          "hero": "lucien",
+          "pose": 1,
+          "visible_pixels": 18499,
+          "region": [
+            290,
+            84,
+            149,
+            231
+          ],
+          "pivot": [
+            363.5,
+            311
+          ],
+          "sha256": "41bfa582a8892a4e6a95ae9a431d739e39e98fdc1e113af6945932fcee002af2"
+        },
+        {
+          "hero": "lucien",
+          "pose": 2,
+          "visible_pixels": 19728,
+          "region": [
+            521,
+            85,
+            165,
+            231
+          ],
+          "pivot": [
+            605.5,
+            312
+          ],
+          "sha256": "29b086014c6926a6e2b1564a45dc81a74a479debcef1e7c17311ebd38223229c"
+        },
+        {
+          "hero": "lucien",
+          "pose": 3,
+          "visible_pixels": 20049,
+          "region": [
+            754,
+            134,
+            248,
+            181
+          ],
+          "pivot": [
+            850.0,
+            311
+          ],
+          "sha256": "6aef150287fb019a4e2f25538bcf28d8127db2a720dc5e674d75be0adcfdcb16"
+        },
+        {
+          "hero": "corvin",
+          "pose": 0,
+          "visible_pixels": 19099,
+          "region": [
+            60,
+            373,
+            158,
+            213
+          ],
+          "pivot": [
+            134.0,
+            582
+          ],
+          "sha256": "bc140df4d633ba52dae52172e8bde473fe758457aee29c83ba7359579fd525b8"
+        },
+        {
+          "hero": "corvin",
+          "pose": 1,
+          "visible_pixels": 18213,
+          "region": [
+            297,
+            374,
+            157,
+            215
+          ],
+          "pivot": [
+            376.5,
+            585
+          ],
+          "sha256": "afdef1335ca95366de0ad7c40bce1d7bcf186da03d225bc8a761fb03542f50a8"
+        },
+        {
+          "hero": "corvin",
+          "pose": 2,
+          "visible_pixels": 18196,
+          "region": [
+            545,
+            373,
+            150,
+            216
+          ],
+          "pivot": [
+            618.5,
+            585
+          ],
+          "sha256": "3688ca2d924b8f32f7475891762eef5f74a56e504221dab157ce008f072b0d97"
+        },
+        {
+          "hero": "corvin",
+          "pose": 3,
+          "visible_pixels": 19809,
+          "region": [
+            765,
+            380,
+            229,
+            210
+          ],
+          "pivot": [
+            848.5,
+            586
+          ],
+          "sha256": "ea14d067ca84b0bd94e2951e897d2f1c8ff7c3b704fbf90dc701d67cd6e95acc"
+        },
+        {
+          "hero": "rokan",
+          "pose": 0,
+          "visible_pixels": 25322,
+          "region": [
+            53,
+            658,
+            180,
+            222
+          ],
+          "pivot": [
+            132.0,
+            876
+          ],
+          "sha256": "14c39af6437b069a95b021d18f432b6e45b1b38ebe8faff971b977dd862dfdd4"
+        },
+        {
+          "hero": "rokan",
+          "pose": 1,
+          "visible_pixels": 22927,
+          "region": [
+            271,
+            661,
+            201,
+            221
+          ],
+          "pivot": [
+            370.0,
+            878
+          ],
+          "sha256": "1a270cc8e90b7b956d799ab35dddac71864af1e4261578b5a913598f57160192"
+        },
+        {
+          "hero": "rokan",
+          "pose": 2,
+          "visible_pixels": 22509,
+          "region": [
+            540,
+            662,
+            175,
+            220
+          ],
+          "pivot": [
+            603.5,
+            878
+          ],
+          "sha256": "3948a7fecf55b5ba832756aae05ae29ab4119449a750b1cfb46396e334cfdd48"
+        },
+        {
+          "hero": "rokan",
+          "pose": 3,
+          "visible_pixels": 23799,
+          "region": [
+            760,
+            677,
+            237,
+            202
+          ],
+          "pivot": [
+            850.0,
+            875
+          ],
+          "sha256": "90921b4172280a59b232963248a12c0c799f2df90034a7b9e7c6bf4a44323abd"
+        },
+        {
+          "hero": "bora",
+          "pose": 0,
+          "visible_pixels": 20513,
+          "region": [
+            64,
+            941,
+            156,
+            213
+          ],
+          "pivot": [
+            145.0,
+            1150
+          ],
+          "sha256": "50f2e0b4fe3621dda2bd078e6795a6919784879dbd564abb5c8aeca9a02d13d2"
+        },
+        {
+          "hero": "bora",
+          "pose": 1,
+          "visible_pixels": 18831,
+          "region": [
+            286,
+            947,
+            166,
+            208
+          ],
+          "pivot": [
+            381.0,
+            1151
+          ],
+          "sha256": "e5fb94603c38f8e9aef0e69120d74ae22c0c7cff76dfefba0ab1cb0e93bbf0ff"
+        },
+        {
+          "hero": "bora",
+          "pose": 2,
+          "visible_pixels": 20778,
+          "region": [
+            533,
+            947,
+            159,
+            208
+          ],
+          "pivot": [
+            617.0,
+            1151
+          ],
+          "sha256": "a4469b3efdc865d5c9196e6bade5c672ad4d1b49df921a59214d2d8ba2858c70"
+        },
+        {
+          "hero": "bora",
+          "pose": 3,
+          "visible_pixels": 24651,
+          "region": [
+            750,
+            951,
+            239,
+            201
+          ],
+          "pivot": [
+            858.0,
+            1148
+          ],
+          "sha256": "7a9208e3ffa22a831a8777e1cb3e8e7f44660a586cc5fe1497ef872b25a36ffb"
+        },
+        {
+          "hero": "selene",
+          "pose": 0,
+          "visible_pixels": 24569,
+          "region": [
+            54,
+            1215,
+            175,
+            220
+          ],
+          "pivot": [
+            139.0,
+            1431
+          ],
+          "sha256": "d3409fb4e5c8ff422bd879a1ac776dd15b2364c20b7085db87a8f00230f650b4"
+        },
+        {
+          "hero": "selene",
+          "pose": 1,
+          "visible_pixels": 24610,
+          "region": [
+            280,
+            1214,
+            179,
+            220
+          ],
+          "pivot": [
+            385.5,
+            1430
+          ],
+          "sha256": "1f0afef58d5a66f7c54f9a6882f77933aab158f0419f3758a09d64e11e8fa8d3"
+        },
+        {
+          "hero": "selene",
+          "pose": 2,
+          "visible_pixels": 24098,
+          "region": [
+            522,
+            1215,
+            178,
+            219
+          ],
+          "pivot": [
+            601.0,
+            1430
+          ],
+          "sha256": "1644c96be1bcc6ba282ba2c7f5205f9f391a81d8afb3e2f20a1f958bd59366fe"
+        },
+        {
+          "hero": "selene",
+          "pose": 3,
+          "visible_pixels": 27491,
+          "region": [
+            753,
+            1220,
+            237,
+            215
+          ],
+          "pivot": [
+            858.5,
+            1431
+          ],
+          "sha256": "2abf4d3b7fbc406c66fbea1712dce9c633d9d2b23dbf4741960b3ca0ba72e602"
+        }
+      ]
+    }
+  ]
+}

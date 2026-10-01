@@ -1,0 +1,8 @@
+{
+  "test": "AutoHuntRegressionTest.gd",
+  "passed": true,
+  "exit_code": 0,
+  "checks": 18,
+  "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nauto_hunt_lethal hp=1295->1298 max_hp=1554->1557 no_retaliation=true enemy_hp=0 kill_delta=1 reward=마력의 반지 획득! [희귀] → 레온하르트 자동 장착 · 기존 장비 인벤토리에 보관\nauto_hunt_regression checks=18 failures=0 realtime_roaming=ok\n",
+  "diagnosis": "RNG42 rare accessory auto-equipped to Leonhardt on lethal reward; max HP rose 1554 to 1557, HP rose 1295 to 1298; levels unchanged, no returning/leash issue. Retaliation assertion now verifies each hero HP/ratio and incoming hit count, enemy attack clock, and exactly one kill."
+}

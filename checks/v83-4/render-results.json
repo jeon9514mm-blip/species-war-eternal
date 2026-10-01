@@ -1,0 +1,13 @@
+{
+  "renderer": "Linux Xvfb / software OpenGL llvmpipe",
+  "checks_passed": 19,
+  "checks_total": 19,
+  "audio_driver": "Dummy",
+  "audio_listening_tested": false,
+  "android_tests": 0,
+  "script": "RenderV834.gd",
+  "log": "render-final.log",
+  "warnings": [
+    "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+  ]
+}
