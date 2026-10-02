@@ -1,2 +1,21 @@
+# Godot-generated local cache (keep *.import and *.uid source metadata)
 .godot/
+
+# Python and OS caches
 __pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+
+# Local credentials and machine-specific settings
+.env
+.env.*
+!.env.example
+export_credentials.cfg
+*.keystore
+*.jks
+
+# Local exports and editor metadata
+/builds/
+/exports/
+/.idea/

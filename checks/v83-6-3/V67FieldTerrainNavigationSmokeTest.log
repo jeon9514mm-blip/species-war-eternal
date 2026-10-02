@@ -1,0 +1,47 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: Meadow retains all seventeen legacy obstacles
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:16)
+       [1] _run (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:71)
+ERROR: gray_meadow leaves its painted battle clearing unobstructed at (16.0, 12.0)
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:16)
+       [1] _zone (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:52)
+       [2] _run (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:73)
+ERROR: gray_meadow leaves its painted battle clearing unobstructed at (10.5, 13.5)
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:16)
+       [1] _zone (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:52)
+       [2] _run (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:73)
+ERROR: gray_meadow leaves its painted battle clearing unobstructed at (23.0, 11.0)
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:16)
+       [1] _zone (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:52)
+       [2] _run (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:73)
+ERROR: moonrest_forest leaves its painted battle clearing unobstructed at (23.0, 11.0)
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:16)
+       [1] _zone (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:52)
+       [2] _run (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:73)
+ERROR: Zone-switch fixture populates all navigation caches
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:16)
+       [1] _run (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:79)
+ERROR: Mine uses its own underground water collision
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:16)
+       [1] _run (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:83)
+ERROR: Returning to meadow restores the original tree
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:16)
+       [1] _run (res://scripts/V67FieldTerrainNavigationSmokeTest.gd:85)
+V67FieldTerrainNavigationSmokeTest: 618 checks, 8 failures, 235 complete route cases

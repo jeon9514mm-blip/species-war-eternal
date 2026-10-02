@@ -5,7 +5,7 @@ const P_PAGES := preload('res://scripts/portrait/PortraitPages.gd')
 const NAV = preload("res://scripts/NavigationCatalog.gd")
 const P_HUD := preload('res://scripts/portrait/PortraitHud.gd')
 const P_MENUS := preload('res://scripts/portrait/PortraitMenus.gd')
-const P_TERRAIN := preload('res://scripts/portrait/PortraitScenery.gd')
+const P_TERRAIN := preload('res://scripts/maps3d/Battlefield3DView.gd')
 const P_SKY := preload('res://scripts/portrait/PortraitSky.gd')
 const P_SKIN := preload('res://scripts/portrait/PortraitSkin.gd')
 const P_PROPS := preload('res://scripts/portrait/PortraitMeadowProps.gd')
@@ -117,7 +117,9 @@ func _combat_layout_for_width(_layout_w: float, _safe: Vector4) -> Dictionary:
 	var w:=viewport_size.x;var h:=viewport_size.y
 	if w > h:
 		return {'left':0.0,'usable':w,'field':Rect2(12,136,w-360,h-276),'side':Rect2(w-354,132,330,h-246)}
-	return {'left':0.0,'usable':w,'field':Rect2(0,200,w,h-285),'side':Rect2(18,290,w-36,h-615)}
+	var rows:=2 if maxi(_party_slot_cap(),deployed_heroes.size())>5 else 1
+	var bottom:=h-280.0-float(rows)*90.0
+	return {'left':0.0,'usable':w,'field':Rect2(0,310,w,maxf(240,bottom-310)),'side':Rect2(18,290,w-36,h-615)}
 func _combat_map_scale() -> Vector2:
 	# v69: show the complete 32x20 hunt lawn instead of a zoomed tile-sized crop.
 	if get_viewport_rect().size.x > get_viewport_rect().size.y:
@@ -151,6 +153,7 @@ func _build_combat_screen() -> void:
 	_install_portrait_hud()
 func _create_map_hero_sprites() -> void:
 	super._create_map_hero_sprites()
+	field_navigation.configure_zone(current_zone_id,true)
 	for index in hero_map_sprites.size():
 		var sprite: HeroSpriteController=hero_map_sprites[index]
 		_attach_hunt_shadow(sprite,18.0)
@@ -264,15 +267,11 @@ func _install_portrait_hud() -> void:
 	var terrain:=P_TERRAIN.new();terrain.name='RoamingTerrainPortrait'
 	terrain.position=combat_field_rect.position;terrain.size=combat_field_rect.size
 	terrain.configure(current_zone_id,_current_zone()['color'])
+	terrain.game=self
 	content_root.add_child(terrain);content_root.move_child(terrain,0)
 	combat_labels['terrain']=terrain
 	if is_instance_valid(original):original.hide()
-	var sky:=P_SKY.new();sky.name='PortraitSky'
-	sky.zone_id=current_zone_id
-	sky.position=Vector2.ZERO;sky.size=Vector2(get_viewport_rect().size.x,270)
-	content_root.add_child(sky);sky.z_index=-8
-	# v70: no legacy raised terrain props are layered over the finished map art.
-	# Runtime heroes, monsters, HP bars and effects remain separate animated nodes.
+	# Geometry, illumination and atmospheric depth are rendered in the 3D viewport.
 	var details: Control=combat_labels.get('details_panel')
 	if is_instance_valid(details):
 		details.position=combat_side_rect.position;details.size=combat_side_rect.size
@@ -564,3 +563,14 @@ func _new_hunt_hud() -> Control:
 	if get_viewport_rect().size.x > get_viewport_rect().size.y:
 		return preload("res://scripts/portrait/LandscapeHuntHud.gd").new()
 	return P_HUD.new()
+
+func _map_world_position(cell: Vector2,offset:=Vector2.ZERO) -> Vector2:
+	var terrain=combat_labels.get('terrain')
+	if active_screen=='combat' and is_instance_valid(terrain) and terrain.has_method('project_world'):
+		return combat_field_rect.position+terrain.project_world(cell)+offset
+	return super._map_world_position(cell,offset)
+func _sprite_head_offset(sprite: Node2D) -> Vector2:
+	var terrain=combat_labels.get('terrain')
+	if active_screen=='combat' and is_instance_valid(terrain) and terrain.has_method('project_world'):
+		return terrain.project_world(Vector2(16,10),2.25)-terrain.project_world(Vector2(16,10))
+	return super._sprite_head_offset(sprite)

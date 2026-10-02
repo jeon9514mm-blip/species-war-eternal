@@ -1,7 +1,7 @@
 extends Control
 ## A readable field chart: every blocking shape and road uses the same world
 ## data as the battlefield. Static geometry is cached; actor dots update at 7 Hz.
-const TERRAIN := preload('res://scripts/FieldTerrainCatalog.gd')
+const TERRAIN := preload('res://scripts/maps3d/Map3DLayout.gd')
 var game: Node
 var _elapsed: float = 0.0
 var _cached_zone: String = ''

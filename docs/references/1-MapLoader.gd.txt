@@ -1,0 +1,19 @@
+
+# MapLoader.gd - Put in res://scripts/maps/
+extends Node
+
+var maps = {
+    0: preload("res://scenes/maps/Map_ElvenRuins.tscn"),
+    1: preload("res://scenes/maps/Map_CanyonMine.tscn"),
+    2: preload("res://scenes/maps/Map_ForestMeadow.tscn")
+}
+
+func load_map(map_id: int, parent: Node) -> Node3D:
+    # Clear previous
+    for c in parent.get_children():
+        c.queue_free()
+    var map_instance = maps[map_id].instantiate()
+    parent.add_child(map_instance)
+    # Bake nav if needed
+    # map_instance.get_node("NavigationRegion3D").bake_navigation_mesh()
+    return map_instance

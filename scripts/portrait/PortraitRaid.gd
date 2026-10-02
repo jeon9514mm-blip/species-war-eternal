@@ -33,6 +33,7 @@ var hero_cards: Dictionary={}
 var hero_slots: Dictionary={}
 var selected_hero_id := ''
 var arena: Control
+var battlefield_3d: Control
 var stage: Control
 var telegraph: Control
 var cue: Label
@@ -99,13 +100,10 @@ func install(main: Node) -> void:
 	stage.size_flags_stretch_ratio=3.0;stage.clip_contents=true;stage.mouse_filter=Control.MOUSE_FILTER_STOP
 	stage.gui_input.connect(_on_stage_input)
 	body.add_child(stage)
-	var backdrop:=TextureRect.new();backdrop.name='PortraitRaidStageArt'
-	backdrop.texture=load(BACKGROUNDS.get(zone_id,BACKGROUNDS['gray_meadow']))
-	backdrop.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;backdrop.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	backdrop.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	stage.add_child(backdrop);backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var shade:=ColorRect.new();shade.color=Color('#081d2899');shade.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	stage.add_child(shade);shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	battlefield_3d=preload('res://scripts/maps3d/Battlefield3DView.gd').new()
+	battlefield_3d.name='RaidTerrain3D';battlefield_3d.game=game;battlefield_3d.raid_view=self;battlefield_3d.raid_mode=true
+	battlefield_3d.configure(zone_id,design['accent'])
+	stage.add_child(battlefield_3d);battlefield_3d.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mechanic_tint=ColorRect.new();mechanic_tint.name='PortraitRaidMechanicTint';mechanic_tint.color=Color.TRANSPARENT
 	mechanic_tint.mouse_filter=Control.MOUSE_FILTER_IGNORE;stage.add_child(mechanic_tint)
 	mechanic_tint.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -271,16 +269,16 @@ func install(main: Node) -> void:
 	HUD.navigation(game,game.content_root,'combat',h-90,90)
 	game.content_root.set_meta('portrait_ready',true)
 	if w > h: _wide_layout(body, summary.get_parent(), status_panel, actions, row, party_heading, w, h)
-	_layout_arena.call_deferred()
+	_settle_stage_layout.call_deferred(body,w,h)
 	refresh()
 
 func _layout_arena() -> void:
 	if not is_instance_valid(stage) or not is_instance_valid(arena):return
 	# Keep the original combat coordinates; all sprite and FX transforms share
 	# this one arena so their hits remain aligned at every viewport height.
-	var factor: float=clampf((stage.size.y-78.0)/180.0,.24,1.0)
-	arena.scale=Vector2.ONE*factor
-	arena.position=Vector2(stage.size.x*.5-535.0*factor,stage.size.y-16.0-492.0*factor)
+	battlefield_3d._resize_world()
+	arena.scale=Vector2.ONE*battlefield_3d.raid_factor
+	arena.position=battlefield_3d.raid_origin()
 
 func _on_stage_input(event: InputEvent) -> void:
 	if not game.raid_running:return
@@ -535,3 +533,13 @@ func _wide_layout(body: Control, summary: Control, status: Control, actions: Con
 			if child is TextureRect: child.size = Vector2(cell-6,46)
 			elif child is Label: child.position.y = 48; child.size = Vector2(cell-8,24); child.add_theme_font_size_override("font_size",14)
 			elif child is ProgressBar: child.position.y = 75; child.size.x = cell-12
+
+func _settle_stage_layout(body: Control,w: float,h: float) -> void:
+	# Container minimum sizes shrink after the information cards are reparented.
+	# Apply the requested height after those queued sorts, then frame the camera.
+	await get_tree().process_frame
+	await get_tree().process_frame
+	if not is_instance_valid(body):return
+	body.size=Vector2(w*.63-28,h-436) if w>h else Vector2(w-40,h-618)
+	await get_tree().process_frame
+	_layout_arena()

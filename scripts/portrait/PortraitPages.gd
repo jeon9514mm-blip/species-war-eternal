@@ -938,7 +938,7 @@ static func world(main: Node, bosses: bool = false) -> void:
 	var regions := grid(page,3)
 	for index in ZONES.size():
 		var zone_id: String=ZONES[index]
-		var caption: String=['초원','광산','숲'][index]
+		var caption: String=['빙하','협곡','성역'][index]
 		var select := _content_tab(regions,caption,func():
 			main.set_meta('content_region_id',zone_id)
 			world(main,bosses),selected==zone_id)

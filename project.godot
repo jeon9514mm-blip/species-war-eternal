@@ -6,7 +6,7 @@ config_version=5
 [application]
 config/name="종의전쟁: 이터널"
 run/main_scene="res://scenes/PortraitMain.tscn"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.6", "Forward Plus")
 
 [display]
 
@@ -21,9 +21,12 @@ stretch/aspect="expand"
 handheld/orientation=1
 
 [rendering]
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.863, 0.902, 0.875, 1)
+textures/default_filters/anisotropic_filtering_level=3
+lights_and_shadows/directional_shadow/size=4096
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=2
+renderer/rendering_method="forward_plus"
+renderer/rendering_method.mobile="mobile"
+environment/defaults/default_clear_color=Color(0.027, 0.054, 0.09, 1)
 
 [input]
 ui_accept={"deadzone": 0.5, "events": [Object(InputEventKey,"physical_keycode":32), Object(InputEventKey,"physical_keycode":4194309)]}

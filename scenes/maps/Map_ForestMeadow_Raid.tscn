@@ -1,0 +1,32 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/maps3d/EvergreenRaid.tscn" id="1_wrxp5"]
+[ext_resource type="Script" path="res://scripts/maps3d/CavernRuntime.gd" id="2_td4l5"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ishky"]
+vertices = PackedVector3Array(0.35, 0, 0.35, 31.65, 0, 0.35, 31.65, 0, 19.65, 0.35, 0, 19.65)
+polygons = [PackedInt32Array(0, 3, 2, 1)]
+agent_height = 2.0
+agent_radius = 0.25
+
+[node name="ForestMeadow_Map" type="Node3D" unique_id=537485417]
+
+[node name="Arena" type="Node3D" parent="." unique_id=1013609113 instance=ExtResource("1_wrxp5")]
+script = ExtResource("2_td4l5")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1094864966]
+navigation_mesh = SubResource("NavigationMesh_ishky")
+
+[node name="SpawnPoints" type="Node3D" parent="." unique_id=1374078115]
+
+[node name="PlayerSpawn" type="Marker3D" parent="SpawnPoints" unique_id=1494135405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 10)
+
+[node name="EnemySpawn_E" type="Marker3D" parent="SpawnPoints" unique_id=1955664954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2, 0, 10)
+
+[node name="EnemySpawn_N" type="Marker3D" parent="SpawnPoints" unique_id=1093914142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0.6)
+
+[node name="EnemySpawn_S" type="Marker3D" parent="SpawnPoints" unique_id=1637848194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 19.4)

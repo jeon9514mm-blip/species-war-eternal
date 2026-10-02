@@ -14,6 +14,7 @@ const TERRAIN := preload("res://scripts/FieldTerrainCatalog.gd")
 const OBSTACLES := TERRAIN.MEADOW_OBSTACLES
 
 var enabled := true
+var uses_3d_layout := false
 var zone_id: String = "gray_meadow"
 var _active_obstacles: Array = OBSTACLES
 var _grid: AStarGrid2D
@@ -25,13 +26,14 @@ var _move_count := 0
 var _distance_cache: Dictionary = {}
 var _distance_queries := 0
 
-func configure_zone(next_zone_id: String) -> void:
+func configure_zone(next_zone_id: String,next_3d_layout: bool=false) -> void:
 	var next_enabled: bool = TERRAIN.supports_zone(next_zone_id)
-	if zone_id == next_zone_id and enabled == next_enabled:
+	if zone_id == next_zone_id and enabled == next_enabled and uses_3d_layout == next_3d_layout:
 		return
 	zone_id = next_zone_id
 	enabled = next_enabled
-	_active_obstacles = TERRAIN.obstacles(zone_id)
+	uses_3d_layout=next_3d_layout
+	_active_obstacles = preload("res://scripts/maps3d/Map3DLayout.gd").obstacles(zone_id) if uses_3d_layout else TERRAIN.obstacles(zone_id)
 	# Grid solids, nearest exits and failed pockets all depend on the region.
 	# Actor keys persist between regions, so old routes must never survive here.
 	_grid = null

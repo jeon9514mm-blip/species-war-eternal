@@ -2,12 +2,12 @@ extends RefCounted
 ## Canonical zone names and gameplay data; stable IDs remain save keys.
 const MINE_NAME := "붉은 황혼 협곡"
 const FOREST_NAME := "고대 마력 성역"
-const MEADOW_NAME := "에버그린 초원숲"
+const MEADOW_NAME := "빙하 심연 전장"
 static func all() -> Dictionary:
 	return {
 		"gray_meadow": {
 			"name": MEADOW_NAME,
-			"description": "푸른 물길과 숲길이 이어지는 초반 자동사냥 지역입니다.",
+			"description": "빙하 아래 갈라진 심연 위, 고대 마법진을 지키는 자동사냥 전장입니다.",
 				"monsters": ["초원 고블린", "들개 무리", "가시 멧돼지", "바람 까마귀"],
 				"boss": "초원왕 그룬",
 				"boss_title": "초원의 포식자",
@@ -20,7 +20,7 @@ static func all() -> Dictionary:
 			"power": 180,
 			"gold": 35,
 			"xp": 22,
-			"color": Color("#6fbf83"),
+			"color": Color("#68badb"),
 			"positions": [Vector2(2, 0), Vector2(4, 1), Vector2(0, 3), Vector2(6, 4)]
 		},
 		"forgotten_mine": {

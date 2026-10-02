@@ -1,0 +1,32 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/maps3d/CrimsonRaid.tscn" id="1_bea63"]
+[ext_resource type="Script" path="res://scripts/maps3d/CavernRuntime.gd" id="2_0rlwu"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_mq6gq"]
+vertices = PackedVector3Array(0.35, 0, 0.35, 31.65, 0, 0.35, 31.65, 0, 19.65, 0.35, 0, 19.65)
+polygons = [PackedInt32Array(0, 3, 2, 1)]
+agent_height = 2.0
+agent_radius = 0.25
+
+[node name="CanyonMine_Map" type="Node3D" unique_id=1372997559]
+
+[node name="Arena" type="Node3D" parent="." unique_id=607187185 instance=ExtResource("1_bea63")]
+script = ExtResource("2_0rlwu")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1033945228]
+navigation_mesh = SubResource("NavigationMesh_mq6gq")
+
+[node name="SpawnPoints" type="Node3D" parent="." unique_id=707803241]
+
+[node name="PlayerSpawn" type="Marker3D" parent="SpawnPoints" unique_id=127531274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 10)
+
+[node name="EnemySpawn_E" type="Marker3D" parent="SpawnPoints" unique_id=1514494902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2, 0, 10)
+
+[node name="EnemySpawn_N" type="Marker3D" parent="SpawnPoints" unique_id=722227343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0.6)
+
+[node name="EnemySpawn_S" type="Marker3D" parent="SpawnPoints" unique_id=627927989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 19.4)

@@ -1,0 +1,73 @@
+{
+  "version": "83-6.3",
+  "engine": "Godot 4.6.3",
+  "date": "2026-10-01",
+  "selected_tests": [
+    {
+      "log": "invasion-regression.log",
+      "checks": 175,
+      "failures": 0
+    },
+    {
+      "log": "V8362FormationDisplaySmokeTest.log",
+      "checks": 48,
+      "failures": 0
+    },
+    {
+      "log": "V8362FieldSafetySmokeTest.log",
+      "checks": 115,
+      "failures": 0
+    },
+    {
+      "log": "V836RaidBattleSmokeTest.log",
+      "checks": 123,
+      "failures": 0
+    },
+    {
+      "log": "map-loader-test.log",
+      "checks": 35,
+      "failures": 0
+    },
+    {
+      "log": "ice-final-integration.log",
+      "checks": 35,
+      "failures": 0
+    },
+    {
+      "log": "ice-final-visual.log",
+      "checks": 3,
+      "failures": 0
+    },
+    {
+      "log": "gallery-final-visual.log",
+      "checks": 4,
+      "failures": 0
+    }
+  ],
+  "total_selected_checks": 538,
+  "static_validation": {
+    "gd_files": 362,
+    "discovered_smoke_test_files": 192,
+    "note": "Selected tests above were executed; discovery count is not execution count.",
+    "resources": "ok",
+    "links": "ok"
+  },
+  "visual_renderer": "Forward+ via software Vulkan llvmpipe",
+  "engine_capture_4k": {
+    "file": "SWE_IceCavern_4K.png",
+    "resolution": [
+      3840,
+      2160
+    ]
+  },
+  "legacy_diagnostic": {
+    "test": "V67FieldTerrainNavigationSmokeTest",
+    "failures": 8,
+    "baseline_v83_6_2_failures": 8,
+    "note": "Same obsolete terrain assertions fail on unchanged baseline; logged separately."
+  },
+  "limitations": [
+    "Mobile hardware frame rate, memory and thermal behavior not measured.",
+    "Units use existing 2D frame animation displayed as Sprite3D; skeletal rigs are not converted to 3D meshes."
+  ]
+}
