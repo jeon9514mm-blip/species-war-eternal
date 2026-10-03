@@ -356,7 +356,31 @@ func _ready() -> void:
 	# timestamp or replace its party, region or equipment.
 	if not deployed_heroes.is_empty():
 		_calculate_offline_reward()
-	_build_title_screen()
+	_enter_game()
+
+func _enter_game() -> void:
+	# Returning expeditions open on the live field; new players keep onboarding.
+	if _save_blocked_for_newer_version:
+		_build_login_screen()
+	elif selected_faction in ["aurelia", "noxfera"]:
+		_open_home()
+	else:
+		_build_title_screen()
+
+func _open_home() -> void:
+	if _save_blocked_for_newer_version:
+		_build_login_screen()
+		return
+	if selected_faction not in ["aurelia", "noxfera"]:
+		_build_faction_screen()
+		return
+	content_party_context.clear()
+	if deployed_heroes.is_empty():
+		_build_hero_select_screen()
+		return
+	# Repeated Home taps retain the encounter, HP, timers and manual pause.
+	if active_screen == "combat" and challenge_session == null: return
+	_build_combat_screen()
 
 func _configure_mobile_display() -> void:
 	if OS.has_feature("mobile"):
@@ -844,10 +868,7 @@ func _lobby_deploy() -> void:
 		_build_hero_select_screen()
 
 func _lobby_start_hunt() -> void:
-	if deployed_heroes.is_empty():
-		_lobby_deploy()
-	else:
-		_build_combat_screen()
+	_open_home()
 
 func _build_faction_screen() -> void:
 	OnboardingScreens.faction(self)

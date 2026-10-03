@@ -45,7 +45,7 @@ func modal_controls() -> void:
 			await tap('EquipmentOverlayClose')
 			check(node('EquipmentOverlay')==null and main.active_screen=='inventory','close keeps inventory open '+opening)
 			await tap('PortraitNav_home')
-			check(main.active_screen=='lobby','background navigation resumes only after modal closes')
+			check(main.active_screen=='combat','background navigation resumes at hunting home only after modal closes')
 	# Production inventory resize reconstructs its presenter and navigation.
 	main._build_inventory_screen();await settle();await tap('GearSettingsToggle')
 	root.size=Vector2i(1440,810);await settle()
@@ -56,7 +56,7 @@ func modal_controls() -> void:
 		var escape:=InputEventKey.new();escape.keycode=KEY_ESCAPE;escape.pressed=true;root.push_input(escape,true);await settle()
 		check(node('EquipmentOverlay')==null,'escape dismisses resized management overlay')
 		await tap('PortraitNav_home')
-		check(main.active_screen=='lobby','navigation resumes after escape closes modal')
+		check(main.active_screen=='combat','navigation resumes at hunting home after escape closes modal')
 func save_recovery() -> void:
 	var working_store=main.save_store
 	main.hero_ascension.clear();main.hero_breakthrough.clear();main.hero_shards.clear()

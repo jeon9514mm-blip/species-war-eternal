@@ -168,5 +168,5 @@ func production_touch(faction: String) -> void:
 	await phone_tap(main, "EquipmentOverlayClose")
 	check(main.content_root.find_child("EquipmentOverlay", true, false) == null, faction + " phone closes settings")
 	await phone_tap(main, "PortraitNav_home")
-	check(main.active_screen == "lobby", faction + " phone navigation resumes after modal closes")
+	check(main.active_screen == "combat", faction + " phone navigation resumes at hunting home after modal closes")
 	await dispose(main)

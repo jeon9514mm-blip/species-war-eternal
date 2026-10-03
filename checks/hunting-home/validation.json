@@ -1,0 +1,20 @@
+{
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "mode": "headless",
+  "startup_path": "production Main._ready after loading saved expeditions of both factions",
+  "phone_input_path": "Input.parse_input_event with ScreenTouch and engine mouse emulation",
+  "parsed_scripts": 10,
+  "suites": {
+    "HuntingHomeSmokeTest": 53,
+    "TouchScrollSmokeTest": 51,
+    "HeroMenuUxSmokeTest": 1065,
+    "EquipmentModalSaveRecoverySmokeTest": 163,
+    "UnifiedInterfaceSmokeTest": 119,
+    "GameplayReliabilitySmokeTest": 133,
+    "CombatControlsSmokeTest": "passed; no numerical check counter"
+  },
+  "counted_checks": 1584,
+  "failures": 0,
+  "android_device_tested": false,
+  "apk_built": false
+}

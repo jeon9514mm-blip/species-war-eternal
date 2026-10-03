@@ -129,7 +129,7 @@ static func begin(main: Node, screen: String, title: String, detail: String, tab
 	return box
 
 static func lobby(main: Node) -> void:
-	var page := begin(main,'lobby','원정대 캠프',main._faction_name(),'home')
+	var page := begin(main,'lobby','원정대 캠프',main._faction_name(),'more')
 	var zone: Dictionary=main._current_zone()
 	var lead := card(page,str(zone['name']),S.BLUE)
 	text(lead,'지금 떠날 곳  ·  STAGE %02d'%main.idle_stage,16,S.BLUE_SOFT)
@@ -929,7 +929,7 @@ static func onboarding(main: Node, screen: String, names: Array[String] = []) ->
 	var box := card(page,'함께할 동료를 만날 시간이에요' if screen=='intro' else (('원정대 준비 완료' if not main.deployed_heroes.is_empty() else '출전 영웅을 골라주세요') if screen=='party_ready' else '다시 만나 반가워요'))
 	if screen=='login':
 		text(box,'이 기기에 남겨 둔 영웅과 모험의 기록으로 시작할 수 있어요.',20)
-		action(box,'이 기기에서 계속하기',Callable(main,'_build_lobby_screen'),true).disabled=main._save_blocked_for_newer_version
+		action(box,'이 기기에서 계속하기',Callable(main,'_open_home'),true).disabled=main._save_blocked_for_newer_version
 		var notice: String=LandingScreens._save_notice(main)
 		text(box,notice if not notice.is_empty() else '다른 기기에서 이어하기는 아직 지원하지 않아요.',18,S.MUTED)
 	elif screen=='intro':

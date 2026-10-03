@@ -55,7 +55,7 @@ static func login(main) -> void:
 	_text(main, panel, "이 기기에 남겨 둔 영웅과 모험의 기록으로\n바로 시작할 수 있어요.", Rect2(34, 145, 450, 59), 17, MUTED, true)
 	var has_progress: bool = not str(main.selected_faction).is_empty()
 	var local_label := "이 기기에서 계속하기" if has_progress else "이 기기에서 시작하기"
-	var local: Button = _action(main, panel, local_label, Rect2(34, 234, 450, 60), Callable(main, "_build_lobby_screen"), true)
+	var local: Button = _action(main, panel, local_label, Rect2(34, 234, 450, 60), Callable(main, "_open_home"), true)
 	local.name = "DeviceContinueButton"
 	local.disabled = main._save_blocked_for_newer_version
 	var state := "저장된 원정대가 있어요" if has_progress else "새로운 원정대를 만들어 보세요"

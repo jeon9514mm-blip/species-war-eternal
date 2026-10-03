@@ -32,14 +32,14 @@ static func header(main: Node, text: String, detail: String = '', return_action:
 	row.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
 	row.offset_left=14;row.offset_right=-14;row.offset_top=12;row.offset_bottom=72
 	row.add_theme_constant_override('separation',10)
-	var back_action:=Callable(main,'_build_lobby_screen')
+	var back_action:=Callable(main,'_open_home')
 	var party_context: Variant=main.get('content_party_context')
 	var return_to_party: bool=str(main.active_screen)=='hero_detail' and party_context is Dictionary and not party_context.is_empty()
 	if return_to_party:back_action=Callable(main,'_build_hero_select_screen')
 	if return_action.is_valid():back_action=return_action
 	var back:=SKIN.button('‹',back_action,SKIN.SURFACE)
 	back.name='PortraitMenuBack'
-	back.tooltip_text='이전 화면으로 돌아가기' if return_action.is_valid() else ('출전 파티 편성으로 돌아가기' if return_to_party else '원정대 캠프로 돌아가기')
+	back.tooltip_text='이전 화면으로 돌아가기' if return_action.is_valid() else ('출전 파티 편성으로 돌아가기' if return_to_party else '사냥 화면으로 돌아가기')
 	back.custom_minimum_size=Vector2(54,54)
 	back.add_theme_font_size_override('font_size',34)
 	row.add_child(back)
@@ -100,7 +100,7 @@ static func landing(main: Node) -> void:
 	var note:=SKIN.label('최대 10인 자동사냥 · 성장 · 종의전쟁',17,SKIN.MUTED)
 	note.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	SKIN.place(brand,note,Rect2(20,163,brand.size.x-40,38))
-	var start:=SKIN.button('모험 시작',Callable(main,'_build_lobby_screen'),SKIN.GOLD)
+	var start:=SKIN.button('모험 시작',Callable(main,'_open_home'),SKIN.GOLD)
 	start.name='PortraitStartButton'
 	start.disabled=main._save_blocked_for_newer_version
 	start.add_theme_font_size_override('font_size',27)
@@ -195,7 +195,7 @@ static func roster(main: Node) -> void:
 	if return_context is Dictionary and not return_context.is_empty():
 		var back: Button=main.content_root.find_child('PortraitMenuBack',true,false)
 		if back!=null:
-			back.pressed.disconnect(Callable(main,'_build_lobby_screen'))
+			back.pressed.disconnect(Callable(main,'_open_home'))
 			back.pressed.connect(Callable(main,'_back_from_content_party'))
 			back.tooltip_text='편성 변경을 유지하고 이전 화면으로 돌아가기'
 	var party:=SKIN.panel(main.content_root,Rect2(14,132,left_width,294),Color('#172541ef'),Color(accent,.72),2,16)

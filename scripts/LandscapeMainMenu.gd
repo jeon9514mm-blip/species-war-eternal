@@ -14,7 +14,8 @@ var return_focus: Control
 
 static func open(main: Node) -> void:
 	var previous: Node=main.content_root.get_node_or_null('PortraitActionSheet')
-	if previous!=null:main.content_root.remove_child(previous);previous.queue_free()
+	if previous!=null:
+		previous.hide();previous.name='ClosingActionSheet';previous.queue_free()
 	var menu: Control=load('res://scripts/LandscapeMainMenu.gd').new()
 	menu.name='PortraitActionSheet';main.content_root.add_child(menu)
 	menu.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);menu.install(main)
@@ -139,7 +140,9 @@ func _dispatch(method: String) -> void:
 
 func close(restore_focus: bool=true) -> void:
 	hide()
-	if get_parent()!=null:get_parent().remove_child(self)
+	# Touch emits a mouse release before its real touch release. Keep the old
+	# input target in the tree until both have finished, without blocking hits.
+	name='ClosingActionSheet'
 	if restore_focus and is_instance_valid(return_focus) and return_focus.is_visible_in_tree():return_focus.grab_focus()
 	queue_free()
 

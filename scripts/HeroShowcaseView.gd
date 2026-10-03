@@ -102,7 +102,7 @@ func _draw() -> void:
 func _header(area: Vector2) -> void:
 	var back:=_button('‹',func():
 		if not game.content_party_context.is_empty():game._build_hero_select_screen()
-		else:game._build_lobby_screen())
+		else:game._open_home())
 	back.name='HeroShowcaseBack';back.tooltip_text='이전 화면';back.add_theme_font_size_override('font_size',34)
 	_place(self,back,Rect2(24,22,104,48))
 	_label_at(self,'영웅',Rect2(161,17,250,40),30,INK)

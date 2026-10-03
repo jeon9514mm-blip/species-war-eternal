@@ -2,7 +2,7 @@ extends RefCounted
 ## One navigation definition for portrait and compatibility views.
 ## All presenters share the palette; menu groups and routes are canonical.
 const DOCK: Array = [
-	{"id":"home", "label":"홈", "portrait_icon":"home", "legacy_icon":"home", "method":"_build_lobby_screen"},
+	{"id":"home", "label":"홈", "portrait_icon":"home", "legacy_icon":"home", "method":"_open_home"},
 	{"id":"heroes", "label":"영웅", "portrait_icon":"heroes", "legacy_icon":"hero", "method":"_open_hero_menu"},
 	{"id":"battle", "label":"전투", "portrait_icon":"battle", "legacy_icon":"compass", "method":"_lobby_start_hunt"},
 	{"id":"bag", "label":"가방", "portrait_icon":"bag", "legacy_icon":"bag", "method":"_build_inventory_screen"},
@@ -28,8 +28,8 @@ static func menu_entries() -> Array:
 
 static func active_tab(screen: String) -> String:
 	match screen:
-		"home", "lobby", "party_ready": return "home"
+		"home", "combat", "party_ready": return "home"
 		"heroes", "hero_select", "hero_detail": return "heroes"
-		"battle", "combat", "raid", "world", "world_map", "boss_select": return "battle"
+		"battle", "raid", "world", "world_map", "boss_select": return "battle"
 		"bag", "inventory", "equipment_detail", "equipment_workshop", "equipment_stash", "equipment_market", "option_crystal": return "bag"
 		_: return "more"
