@@ -1,0 +1,11 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ART_PILOT_DIRECTION {"clears":1,"entrance":"east","initial_hp":4907,"maximum_alive":21,"maximum_groups":2,"removed_hp":4907,"seconds":22.4}
+ART_PILOT_DIRECTION {"clears":1,"entrance":"west","initial_hp":4907,"maximum_alive":21,"maximum_groups":2,"removed_hp":4907,"seconds":20.0}
+ART_PILOT_DIRECTION {"clears":1,"entrance":"north","initial_hp":4907,"maximum_alive":21,"maximum_groups":2,"removed_hp":4907,"seconds":11.8}
+ART_PILOT_DIRECTION {"clears":1,"entrance":"south","initial_hp":4907,"maximum_alive":21,"maximum_groups":2,"removed_hp":4907,"seconds":15.4}
+ART_PILOT_DIRECTION {"clears":1,"entrance":"northeast","initial_hp":4907,"maximum_alive":20,"maximum_groups":2,"removed_hp":4907,"seconds":16.8}
+ART_PILOT_DIRECTION {"clears":1,"entrance":"southwest","initial_hp":4907,"maximum_alive":21,"maximum_groups":2,"removed_hp":4907,"seconds":17.2}
+ART_PILOT_DIRECTION {"clears":1,"entrance":"northwest","initial_hp":4907,"maximum_alive":21,"maximum_groups":2,"removed_hp":4907,"seconds":19.8}
+ART_PILOT_DIRECTION {"clears":1,"entrance":"southeast","initial_hp":4907,"maximum_alive":20,"maximum_groups":2,"removed_hp":4907,"seconds":18.1}
+art_direction_pilot checks=272 failures=[]

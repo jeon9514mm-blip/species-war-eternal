@@ -1,0 +1,30 @@
+{
+  "hero_id": "leonhardt",
+  "role": "art_direction_concept_only",
+  "image": "leonhardt-concept.png",
+  "size": [
+    1164,
+    1351
+  ],
+  "format": "RGBA PNG",
+  "source": "AI-generated concept using the existing project Leonhardt pose as the visual reference; revised for approximately four-head-tall SD proportions",
+  "identity_reference": "res://assets/heroes/sd-v36/sheets/leonhardt-pose.png",
+  "user_selected_direction": "Leonhardt sword-and-shield knight, bright meadow, slightly elongated approximately four-head-tall SD",
+  "new_character_approval": "awaiting_visual_feedback",
+  "body_parts_separated": false,
+  "new_animation_tracks_authored": 0,
+  "used_by_production_combat": false,
+  "used_by": "res://scenes/art/HeroConceptStudy.tscn",
+  "next_step": "Review proportions, face, silhouette and palette; then draw complete overlapping body parts and occluded surfaces before new animation work",
+  "meadow_surface": {
+    "image": "meadow-ground.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "source": "AI-generated original hand-painted ground texture from a text prompt. Mapped once over a 64 by 44 visual apron centered at (16,10); existing 32 by 20 hunt coordinates are unchanged.",
+    "used_by_production_combat": false,
+    "used_by": "res://scripts/art/PainterlyMeadow.gd",
+    "status": "pilot_surface_review"
+  }
+}

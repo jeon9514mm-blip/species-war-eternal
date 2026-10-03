@@ -1,0 +1,79 @@
+{
+  "checks": 272,
+  "directions": [
+    {
+      "clears": 1,
+      "entrance": "east",
+      "initial_hp": 4907,
+      "maximum_alive": 21,
+      "maximum_groups": 2,
+      "removed_hp": 4907,
+      "seconds": 22.4
+    },
+    {
+      "clears": 1,
+      "entrance": "west",
+      "initial_hp": 4907,
+      "maximum_alive": 21,
+      "maximum_groups": 2,
+      "removed_hp": 4907,
+      "seconds": 20.0
+    },
+    {
+      "clears": 1,
+      "entrance": "north",
+      "initial_hp": 4907,
+      "maximum_alive": 21,
+      "maximum_groups": 2,
+      "removed_hp": 4907,
+      "seconds": 11.8
+    },
+    {
+      "clears": 1,
+      "entrance": "south",
+      "initial_hp": 4907,
+      "maximum_alive": 21,
+      "maximum_groups": 2,
+      "removed_hp": 4907,
+      "seconds": 15.4
+    },
+    {
+      "clears": 1,
+      "entrance": "northeast",
+      "initial_hp": 4907,
+      "maximum_alive": 20,
+      "maximum_groups": 2,
+      "removed_hp": 4907,
+      "seconds": 16.8
+    },
+    {
+      "clears": 1,
+      "entrance": "southwest",
+      "initial_hp": 4907,
+      "maximum_alive": 21,
+      "maximum_groups": 2,
+      "removed_hp": 4907,
+      "seconds": 17.2
+    },
+    {
+      "clears": 1,
+      "entrance": "northwest",
+      "initial_hp": 4907,
+      "maximum_alive": 21,
+      "maximum_groups": 2,
+      "removed_hp": 4907,
+      "seconds": 19.8
+    },
+    {
+      "clears": 1,
+      "entrance": "southeast",
+      "initial_hp": 4907,
+      "maximum_alive": 20,
+      "maximum_groups": 2,
+      "removed_hp": 4907,
+      "seconds": 18.1
+    }
+  ],
+  "failures": [],
+  "scope": "Actual independent pilot scene; isolated progression, preferences and raid archive; live production hunt engine"
+}
