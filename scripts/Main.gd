@@ -1296,9 +1296,9 @@ func _open_content_party(kind: String, zone_id: String = "") -> void:
 func _validate_content_party_route(screen_instance: int) -> void:
 	if not is_instance_valid(content_root) or content_root.get_instance_id() != screen_instance:
 		return
-	# Preserve the route while inspecting a hero or their gear, but do not let
+	# Preserve the route while inspecting a hero, their gear or research, but do not let
 	# an abandoned dungeon setup redirect a later, unrelated party confirmation.
-	if active_screen not in ["hero_select", "hero_detail", "equipment_detail"] or str(content_party_context.get("faction_id", selected_faction)) != selected_faction:
+	if active_screen not in ["hero_select", "hero_detail", "equipment_detail", "research_allocation"] or str(content_party_context.get("faction_id", selected_faction)) != selected_faction:
 		content_party_context.clear()
 
 func _build_party_ready_screen(names: Array[String]) -> void:

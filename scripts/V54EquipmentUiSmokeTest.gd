@@ -173,7 +173,9 @@ func run() -> void:
 	var hero_id: String=str(main.deployed_heroes[0]['id'])
 	main._build_hero_detail_screen(hero_id);await settle();layout('equipped detail')
 	var worn: Dictionary=main._gear_item('',hero_id,'weapon')
-	await press('GearTile_'+str(worn['id']))
+	await press('HeroTab_equipment')
+	await press('HeroGear_weapon')
+	check(str(main.gear_workshop_context.get('item_id',''))==str(worn['id']),'hero equipment opens the actual worn item ID')
 	await press('DetailTab_options')
 	check(main.active_screen=='equipment_detail','worn equipment opens workshop with hero/slot context')
 	for dimensions: Vector2i in [Vector2i(1280,720),Vector2i(1440,810),Vector2i(1560,720)]:

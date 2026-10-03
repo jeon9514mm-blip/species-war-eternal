@@ -34,10 +34,15 @@ func run() -> void:
 
 	main._build_hero_detail_screen(hero_id);await settle()
 	check(node('HeroStatGrid')!=null,'hero detail exposes scannable stat grid')
-	check(node('HeroQuickActions')!=null,'hero detail groups frequent cross-screen actions')
-	check(node('HeroQuickGrowth')!=null and node('HeroQuickBag')!=null and node('HeroQuickBreakthrough')!=null,'hero detail exposes growth bag and breakthrough shortcuts')
-	check(node('HeroSkillGrid')!=null and (node('HeroSkillGrid') as GridContainer).columns==2,'hero skills use compact two-column cards')
-	check(node('EquippedGearGrid')!=null,'hero detail keeps equipment tiles')
+	for tab in ['growth','skills','equipment','ascension']:
+		check(node('HeroTab_'+tab)!=null,'hero showcase keeps direct task selection '+tab)
+	node('HeroTab_skills').pressed.emit();await settle()
+	for slot in ['a1','a2','passive','ultimate']:
+		check(node('HeroSkill_'+slot)!=null,'focused hero skill tab retains '+slot)
+	node('HeroTab_equipment').pressed.emit();await settle()
+	for slot in ['weapon','armor','accessory']:
+		check(node('HeroGear_'+slot)!=null,'focused hero equipment tab retains '+slot)
+	check(node('HeroEquipmentBag')!=null,'hero equipment exposes compare-and-replace bag shortcut')
 
 	main.set_meta('growth_hero_id',hero_id);main._build_growth_screen();await settle()
 	check(node('GrowthHeroPicker')!=null and node('GrowthHeroPrevious')!=null and node('GrowthHeroNext')!=null,'growth supports previous/direct/next hero selection')
@@ -59,6 +64,8 @@ func run() -> void:
 	check(node('EquipmentQuickTasks')!=null and node('EquipmentQuickEnhance')!=null and node('EquipmentQuickOptions')!=null,'equipment info exposes common task shortcuts')
 	check(node('EquipmentEquipPanel')!=null and node('EquipmentEquip')!=null,'bag equipment keeps compare-and-equip panel')
 
+	if main.presentation_runtime!=null:main.presentation_runtime.audio.shutdown()
+	await create_timer(0.3).timeout
 	main.free();await settle()
 	# v82: audio playback teardown is asynchronous even with the Dummy driver.
 	await create_timer(0.3).timeout

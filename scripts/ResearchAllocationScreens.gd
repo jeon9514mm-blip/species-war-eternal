@@ -7,6 +7,8 @@ const SERVICE = preload("res://scripts/ResearchAllocationService.gd")
 static func build(main: Node, hero_id: String) -> void:
 	var error: String = SERVICE.entry_error(main, hero_id)
 	if not error.is_empty(): main._show_toast(error); return
+	var return_to_hero: bool = main.active_screen == "hero_detail"
+	var return_action: Callable = Callable(main, "_build_hero_detail_screen").bind(hero_id) if return_to_hero else Callable(main, "_build_growth_screen")
 	var page := P.begin(main, "research_allocation", "연구 포인트 재배분", "초안 수정 → 효과 미리보기 → 확정 · 비용 0", "growth")
 	main.set_meta("growth_hero_id", hero_id)
 	var view_id: int = main.content_root.get_instance_id()
@@ -34,7 +36,7 @@ static func build(main: Node, hero_id: String) -> void:
 		state["confirmed_preview"] = false
 		var result: Dictionary = SERVICE.apply(main, hero_id, draft, str(state["token"]))
 		main._show_toast(str(result["reason"]))
-		if bool(result.get("applied", false)): main._build_growth_screen(), true)
+		if bool(result.get("applied", false)): return_action.call(), true)
 	confirm.name = "ResearchConfirm"; confirm.disabled = true
 	preview_box.get_parent().visible = false
 	var refresh := func():
@@ -47,7 +49,7 @@ static func build(main: Node, hero_id: String) -> void:
 		var key: String = branch
 		controls[key].value_changed.connect(func(value: float): draft[key] = int(value); refresh.call())
 	var actions := P.grid(page, 2)
-	P.action(actions, "취소 · 원래 배분 유지", Callable(main, "_build_growth_screen")).name = "ResearchCancel"
+	P.action(actions, "취소 · 원래 배분 유지", return_action).name = "ResearchCancel"
 	P.action(actions, "변경 효과 미리보기", func():
 		if not is_instance_valid(main.content_root) or view_id != main.content_root.get_instance_id(): return
 		if str(state["token"]) != SERVICE.fingerprint(main, hero_id):

@@ -21,7 +21,11 @@ func build(main: Node) -> void:
 	SKIN.panel(self,Rect2(12,12,side-24,112),SKIN.DARK,SKIN.EDGE_SOFT,1,14)
 	profile_name = _label_at("원정대",Rect2(side+12,18,180,28))
 	profile_level = _label_at("",Rect2(side+12,46,148,26),16)
-	power_label = _label_at("",Rect2(side+170,46,135,26),18)
+	power_label = _label_at("",Rect2(side+170,46,80,26),18)
+	var menu:=_button_at("",Callable(game,"_show_main_menu"),Rect2(w-68,18,44,44),"LandscapeMenuButton")
+	menu.tooltip_text="전체 메뉴"
+	var menu_icon:=preload("res://scripts/GameUiIcon.gd").new();menu_icon.icon_name="hamburger";menu_icon.ink=SKIN.INK
+	SKIN.place(menu,menu_icon,Rect2(10,10,24,24))
 	profile_xp = SKIN.gauge(self,Rect2(side+12,78,294,6),SKIN.GOLD)
 	stage_label = _label_at("",Rect2(24,18,side-310,34),22)
 	gold_label = _label_at("",Rect2(side-250,20,112,30)); gem_label = _label_at("",Rect2(side-126,20,102,30))

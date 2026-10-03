@@ -1,7 +1,7 @@
 {
   "project": "Species War: Eternal",
   "development_step": "v83-6.5",
-  "workstream": "landscape_equipment_200",
+  "workstream": "landscape_hero_menu",
   "status": "validated_main",
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "save_version": 37,
@@ -17,15 +17,45 @@
   "comparison_panels": 2,
   "legacy_orientation_settings_migrated": true,
   "orientation_selector_removed": true,
-  "script_checks_passed": 393,
-  "script_checks_total": 393,
-  "focused_engine_tests_passed": 17,
-  "focused_engine_tests_total": 17,
-  "inventory_capacity_checks_passed": 729,
-  "inventory_capacity_suites_passed": 5,
-  "landscape_settings_suites_passed": 3,
-  "final_equipment_ui_validation_complete": true,
-  "actual_ui_captures": 10,
+  "hero_view": {
+    "left": "vertical roster and four tabs",
+    "center": "existing original hero art with skeletal idle",
+    "right": "identity, live stats and existing progression actions",
+    "tabs": [
+      "growth",
+      "skills",
+      "equipment",
+      "ascension"
+    ],
+    "hero_level_source": "combat experience",
+    "progression_actions": [
+      "research",
+      "research allocation",
+      "ascension",
+      "breakthrough",
+      "equipment workshop",
+      "equipment comparison and equip",
+      "party deployment"
+    ],
+    "bottom_hero_entry": "HeroShowcaseView",
+    "party_formation_separate": true
+  },
+  "main_menu": {
+    "entry": "top-right hamburger",
+    "presentation": "dark right-side drawer",
+    "featured_cards": 6,
+    "feature_icons": 12,
+    "uses_existing_navigation_callbacks": true
+  },
+  "hunt_map_redesign_in_scope": false,
+  "hunt_hud_redesign_in_scope": false,
+  "hunt_ui_changes": "menu entry and its space only",
+  "script_checks_passed": 398,
+  "script_checks_total": 398,
+  "focused_engine_tests_passed": 15,
+  "focused_engine_tests_total": 15,
+  "final_hero_menu_ui_validation_complete": true,
+  "actual_ui_captures": 15,
   "all_historical_tests_executed": false,
   "android_tests": 0,
   "artwork_source_files_changed": false,
@@ -34,47 +64,15 @@
   "game_zip_created": false,
   "working_branch": "main",
   "production_applied": true,
-  "documentation": "docs/LANDSCAPE_EQUIPMENT_KO.md",
-  "validation": "checks/landscape-equipment/regression.json",
+  "documentation": "docs/HERO_MENU_UX_KO.md",
+  "validation": "checks/hero-menu/regression.json",
   "completed_tests": [
     {
-      "script": "scripts/EquipmentUpgradeSmokeTest.gd",
+      "script": "scripts/HeroMenuUxSmokeTest.gd",
       "passed": true
     },
     {
-      "script": "scripts/V55EquipmentDetailUiSmokeTest.gd",
-      "passed": true
-    },
-    {
-      "script": "scripts/V54EquipmentUiSmokeTest.gd",
-      "passed": true
-    },
-    {
-      "script": "scripts/V54EquipmentCrystalUiSmokeTest.gd",
-      "passed": true
-    },
-    {
-      "script": "scripts/V54EquipmentPersistenceSmokeTest.gd",
-      "passed": true
-    },
-    {
-      "script": "scripts/V54EquipmentMarketSmokeTest.gd",
-      "passed": true
-    },
-    {
-      "script": "scripts/V54EquipmentIntegrationSmokeTest.gd",
-      "passed": true
-    },
-    {
-      "script": "scripts/V54EquipmentRulesSmokeTest.gd",
-      "passed": true
-    },
-    {
-      "script": "scripts/EquipmentSmokeTest.gd",
-      "passed": true
-    },
-    {
-      "script": "scripts/InventorySmokeTest.gd",
+      "script": "scripts/LandscapeRosterUiSmokeTest.gd",
       "passed": true
     },
     {
@@ -86,11 +84,35 @@
       "passed": true
     },
     {
-      "script": "scripts/InventoryCapacitySmokeTest.gd",
+      "script": "scripts/V54EquipmentUiSmokeTest.gd",
       "passed": true
     },
     {
-      "script": "scripts/V27SaveRecoverySmokeTest.gd",
+      "script": "scripts/V55EquipmentDetailUiSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V57QualityPassSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V834GrowthUiSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V79ConvenienceFlowSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V834ResearchSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V27GrowthEconomySmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V27LiveGrowthSmokeTest.gd",
       "passed": true
     },
     {
@@ -98,14 +120,97 @@
       "passed": true
     },
     {
-      "script": "scripts/V82PresentationUiSmokeTest.gd",
+      "script": "scripts/EquipmentUpgradeSmokeTest.gd",
       "passed": true
     },
     {
-      "script": "scripts/V24MobileLandscapeSmokeTest.gd",
+      "script": "scripts/HeroSkeletalRigSmokeTest.gd",
       "passed": true
     }
   ],
+  "previous_landscape_equipment_validation": {
+    "published_main_commit": "f4ec23b14d347b50d1501b7ec765428d29c7ae2d",
+    "validation": "checks/landscape-equipment/regression.json",
+    "documentation": "docs/LANDSCAPE_EQUIPMENT_KO.md",
+    "script_checks_passed": 393,
+    "script_checks_total": 393,
+    "focused_engine_tests_passed": 17,
+    "focused_engine_tests_total": 17,
+    "actual_ui_captures": 10,
+    "inventory_capacity_checks_passed": 729,
+    "inventory_capacity_suites_passed": 5,
+    "landscape_settings_suites_passed": 3,
+    "completed_tests": [
+      {
+        "script": "scripts/EquipmentUpgradeSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V55EquipmentDetailUiSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V54EquipmentUiSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V54EquipmentCrystalUiSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V54EquipmentPersistenceSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V54EquipmentMarketSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V54EquipmentIntegrationSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V54EquipmentRulesSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/EquipmentSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/InventorySmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V83NavigationSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/UnifiedInterfaceSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/InventoryCapacitySmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V27SaveRecoverySmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V8362FormationDisplaySmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V82PresentationUiSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V24MobileLandscapeSmokeTest.gd",
+        "passed": true
+      }
+    ]
+  },
   "previous_combat_quality_validation": {
     "validation": "checks/combat-quality/regression.json",
     "script_checks_passed": 388,
@@ -122,14 +227,8 @@
     "separated body artwork and hidden-part painting",
     "online, accounts and cloud save"
   ],
-  "editor_reimport_verified": false,
-  "previous_published_main_commit": "83476a92c1018066d34bf3743e58f9006a33497f",
-  "previous_published_scope": [
-    "maps",
-    "raid arenas",
-    "hero skeletal rigs",
-    "unified UI",
-    "multidirectional combat",
-    "combat readability and motion polish"
-  ]
+  "editor_reimport_verified": true,
+  "runtime_assertions_passed": 18975,
+  "landscape_faction_and_party_layout_verified": true,
+  "previous_published_main_commit": "f4ec23b14d347b50d1501b7ec765428d29c7ae2d"
 }

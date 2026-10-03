@@ -123,8 +123,9 @@ static func faction(main: Node) -> void:
 	hint.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	SKIN.place(main.content_root,hint,Rect2(20,143,w-40,38))
 	main.selection_hint=hint
-	_faction_card(main,Rect2(18,190,w-36,314),'aurelia','아우렐리아 연합','휴먼 · 엘프','수호 · 회복 · 정교한 협공',Color('#4c9cff'),'shield')
-	_faction_card(main,Rect2(18,516,w-36,314),'noxfera','녹스페라 연맹','뱀파이어 · 늑대인간','흡혈 · 기습 · 근접 압박',Color('#d55f91'),'moon')
+	var card_width: float=(w-54.0)/2.0
+	_faction_card(main,Rect2(18,190,card_width,314),'aurelia','아우렐리아 연합','휴먼 · 엘프','수호 · 회복 · 정교한 협공',Color('#4c9cff'),'shield')
+	_faction_card(main,Rect2(36+card_width,190,card_width,314),'noxfera','녹스페라 연맹','뱀파이어 · 늑대인간','흡혈 · 기습 · 근접 압박',Color('#d55f91'),'moon')
 	main.confirm_button=SKIN.button('진영을 선택하세요',Callable(main,'_confirm_faction'),Color('#2b72c4'))
 	main.confirm_button.disabled=true
 	SKIN.place(main.content_root,main.confirm_button,Rect2(46,h-190,w-92,58))
@@ -161,7 +162,7 @@ static func _faction_card(main: Node, rect: Rect2, id: String, title: String, sp
 		SKIN.place(p,n,Rect2(4,88,card_w-8,28))
 	var select:=SKIN.button('이 진영 선택',func(): _choose_faction(main,id),accent.darkened(.28))
 	select.name='SelectFaction_'+id
-	SKIN.place(canvas,select,Rect2(rect.size.x-168,252,148,46))
+	SKIN.place(canvas,select,Rect2(rect.size.x-168,252,148,48))
 	var separation:=SKIN.label('상대 진영 영웅은 편성·성장·소환 목록에 섞이지 않습니다.',13,SKIN.MUTED)
 	SKIN.place(canvas,separation,Rect2(20,253,rect.size.x-205,42))
 
@@ -183,6 +184,12 @@ static func roster(main: Node) -> void:
 	var h: float=main.get_viewport_rect().size.y
 	var accent:=_faction_accent(main)
 	var cap: int=main._party_slot_cap()
+	# Landscape formation: party/presets/actions stay visible on the left.
+	# Filtering and the independently scrolling roster occupy the right pane.
+	var left_width:=clampf(w*0.48,590.0,720.0)
+	var right_x:=28.0+left_width
+	var right_width:=w-right_x-14.0
+	var content_bottom:=h-102.0
 	header(main,'영웅 편성','%s · 출전 파티를 만들고 프리셋으로 빠르게 전환하세요.'%main._faction_name())
 	var return_context: Variant=main.get('content_party_context')
 	if return_context is Dictionary and not return_context.is_empty():
@@ -191,7 +198,7 @@ static func roster(main: Node) -> void:
 			back.pressed.disconnect(Callable(main,'_build_lobby_screen'))
 			back.pressed.connect(Callable(main,'_back_from_content_party'))
 			back.tooltip_text='편성 변경을 유지하고 이전 화면으로 돌아가기'
-	var party:=SKIN.panel(main.content_root,Rect2(14,142,w-28,294),Color('#172541ef'),Color(accent,.72),2,16)
+	var party:=SKIN.panel(main.content_root,Rect2(14,132,left_width,294),Color('#172541ef'),Color(accent,.72),2,16)
 	party.name='RosterPartyPanel'
 	var party_title:=SKIN.label('출전 파티',21,SKIN.INK)
 	SKIN.place(party,party_title,Rect2(14,9,116,34))
@@ -212,10 +219,10 @@ static func roster(main: Node) -> void:
 	for slot_index in range(10):
 		party_grid.add_child(_party_slot(main,slot_index,accent,slot_width))
 	main._load_active_faction_presets()
-	var preset_bar:=SKIN.panel(main.content_root,Rect2(14,448,w-28,48),Color('#14243aef'),Color(accent,.48),1,12)
+	var preset_bar:=SKIN.panel(main.content_root,Rect2(14,438,left_width,60),Color('#14243aef'),Color(accent,.48),1,12)
 	preset_bar.name='RosterPresetBar'
 	var preset_title:=SKIN.label('프리셋',15,SKIN.MUTED)
-	SKIN.place(preset_bar,preset_title,Rect2(12,4,68,40))
+	SKIN.place(preset_bar,preset_title,Rect2(12,6,68,48))
 	var preset_x:=84.0
 	for preset_index in range(3):
 		var saved: Array=main.party_presets[preset_index] if preset_index<main.party_presets.size() and typeof(main.party_presets[preset_index])==TYPE_ARRAY else []
@@ -228,7 +235,7 @@ static func roster(main: Node) -> void:
 		preset.name='RosterPreset%d'%(preset_index+1)
 		preset.tooltip_text='P%d 편성 적용'%[preset_index+1]
 		preset.add_theme_font_size_override('font_size',14)
-		SKIN.place(preset_bar,preset,Rect2(preset_x,4,104,40))
+		SKIN.place(preset_bar,preset,Rect2(preset_x,6,104,48))
 		preset_x+=110.0
 	var save_preset:=SKIN.button('현재 편성 저장',func():
 		main._save_party_preset(main.active_preset_index if main.active_preset_index>=0 else 0)
@@ -237,9 +244,9 @@ static func roster(main: Node) -> void:
 	save_preset.name='RosterPresetSave'
 	save_preset.tooltip_text='현재 편성을 선택된 프리셋에 저장합니다. 선택된 프리셋이 없으면 P1에 저장합니다.'
 	save_preset.add_theme_font_size_override('font_size',14)
-	SKIN.place(preset_bar,save_preset,Rect2(preset_bar.size.x-174,4,162,40))
+	SKIN.place(preset_bar,save_preset,Rect2(preset_bar.size.x-174,6,162,48))
 	var roles: Array[String]=['전체','딜러','탱커','서포터','컨트롤러']
-	var filter_width: float=(w-32.0-4.0*6.0)/5.0
+	var filter_width: float=(right_width-4.0*6.0)/5.0
 	for i in roles.size():
 		var role: String=roles[i]
 		var role_btn:=SKIN.button(role,func():
@@ -248,24 +255,24 @@ static func roster(main: Node) -> void:
 		,Color(accent,.46) if main.hero_roster_filter==role else Color('#1d3048'))
 		role_btn.name='RosterFilter' if i==0 else 'RosterFilter_'+role
 		role_btn.add_theme_font_size_override('font_size',15)
-		SKIN.place(main.content_root,role_btn,Rect2(16+i*(filter_width+6),506,filter_width,48))
+		SKIN.place(main.content_root,role_btn,Rect2(right_x+i*(filter_width+6),132,filter_width,48))
 	var filtered: Array=main._filtered_sorted_roster(heroes)
 	var roster_title:=SKIN.label('%s 영웅 · %d명'%[main.hero_roster_filter,filtered.size()],18,SKIN.INK)
 	roster_title.name='RosterListTitle'
-	SKIN.place(main.content_root,roster_title,Rect2(18,560,w-244,44))
+	SKIN.place(main.content_root,roster_title,Rect2(right_x,192,right_width-208,48))
 	var sort_btn:=SKIN.button('정렬 · '+str(main.hero_roster_sort),Callable(main,'_cycle_hero_sort'),Color('#253653'))
 	sort_btn.name='RosterSort';sort_btn.add_theme_font_size_override('font_size',17)
-	SKIN.place(main.content_root,sort_btn,Rect2(w-210,560,194,48))
+	SKIN.place(main.content_root,sort_btn,Rect2(w-208,192,194,48))
 	var scroll:=ScrollContainer.new();scroll.name='HeroRosterScroll';SKIN.make_scroll_responsive(scroll)
-	SKIN.place(main.content_root,scroll,Rect2(14,614,w-28,maxf(120,h-830)))
-	var grid:=GridContainer.new();grid.name='RosterHeroGrid';grid.columns=4;grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	SKIN.place(main.content_root,scroll,Rect2(right_x,250,right_width,content_bottom-250))
+	var grid:=GridContainer.new();grid.name='RosterHeroGrid';grid.columns=4 if right_width>=780.0 else 3;grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	grid.add_theme_constant_override('h_separation',8);grid.add_theme_constant_override('v_separation',8)
 	scroll.add_child(grid)
 	# Reserve the scrollbar width so the last column stays inside the list.
-	var card_width:=floorf((w-80.0)/4.0)
+	var card_width:=floorf((right_width-16.0-8.0*(grid.columns-1))/float(grid.columns))
 	for hero: Dictionary in filtered:
 		grid.add_child(_roster_card(main,hero,accent,card_width))
-	var action_dock:=SKIN.panel(main.content_root,Rect2(10,h-220,w-20,118),Color('#102238f4'),Color(accent,.42),1,14)
+	var action_dock:=SKIN.panel(main.content_root,Rect2(14,510,left_width,content_bottom-510),Color('#102238f4'),Color(accent,.42),1,14)
 	action_dock.name='RosterActionDock'
 	var swapping: int=int(main.get_meta('roster_swap_slot',-1))
 	var hint_text: String='자리 교체 중 · 다른 출전 영웅을 누르세요.' if swapping>=0 else ('조합 · '+main._party_composition_hint())
@@ -275,19 +282,19 @@ static func roster(main: Node) -> void:
 	main.hero_hint.max_lines_visible=2
 	main.hero_hint.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 	main.hero_hint.tooltip_text=hint_text
-	SKIN.place(main.content_root,main.hero_hint,Rect2(18,h-210,w-36,48))
-	var action_width: float=(w-32.0-16.0)/3.0
+	SKIN.place(main.content_root,main.hero_hint,Rect2(22,514,left_width-16,49))
+	var action_width: float=(left_width-32.0)/3.0
 	var auto:=SKIN.button('자동 편성',func(): _auto_party(main),Color('#2f7bd1'))
 	auto.name='RosterAutoParty';auto.tooltip_text='현재 역할 필터와 정렬 순서로 해금된 영웅을 편성합니다.'
 	auto.add_theme_font_size_override('font_size',18)
-	SKIN.place(main.content_root,auto,Rect2(16,h-156,action_width,52))
+	SKIN.place(main.content_root,auto,Rect2(22,content_bottom-50,action_width,48))
 	var clear:=SKIN.button('일괄 해제',func():
 		main.deployed_heroes.clear()
 		main._save_idle_state()
 		_refresh_roster(main)
 	,Color('#3b465c'))
 	clear.name='RosterClear';clear.add_theme_font_size_override('font_size',18)
-	SKIN.place(main.content_root,clear,Rect2(24+action_width,h-156,action_width,52))
+	SKIN.place(main.content_root,clear,Rect2(30+action_width,content_bottom-50,action_width,48))
 	var confirm_text:='편성 완료' if return_context is Dictionary and not return_context.is_empty() else '편성 저장'
 	var confirm:=SKIN.button(confirm_text,func():
 		if not main.deployed_heroes.is_empty():
@@ -299,7 +306,7 @@ static func roster(main: Node) -> void:
 	confirm.tooltip_text='최소 한 명을 편성하면 저장할 수 있습니다.' if confirm.disabled else '현재 출전 파티를 저장합니다.'
 	confirm.add_theme_color_override('font_color',Color('#231b0f'))
 	confirm.add_theme_font_size_override('font_size',19)
-	SKIN.place(main.content_root,confirm,Rect2(32+action_width*2,h-156,action_width,52))
+	SKIN.place(main.content_root,confirm,Rect2(38+action_width*2,content_bottom-50,action_width,48))
 	HUD.navigation(main,main.content_root,'heroes',h-90,90)
 
 static func _party_slot(main: Node, slot_index: int, accent: Color, width: float=120.0) -> Control:
@@ -357,7 +364,7 @@ static func _party_slot(main: Node, slot_index: int, accent: Color, width: float
 		main.hero_slot_labels.append(hero_name)
 	elif unlocked:
 		var plus:=SKIN.button('+',Callable(main,'_open_hero_menu'),Color('#243653'))
-		plus.add_theme_font_size_override('font_size',30);plus.tooltip_text='아래 영웅 목록에서 출전 영웅을 선택하세요.'
+		plus.add_theme_font_size_override('font_size',30);plus.tooltip_text='오른쪽 영웅 목록에서 출전 영웅을 선택하세요.'
 		SKIN.place(c,plus,Rect2(7,8,inner_width-14,48))
 		var empty:=SKIN.label('빈 슬롯',14,SKIN.MUTED);empty.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 		SKIN.place(c,empty,Rect2(3,64,inner_width-6,30));main.hero_slot_labels.append(empty)
@@ -377,9 +384,9 @@ static func _roster_card(main: Node, hero: Dictionary, accent: Color, width: flo
 	var grade:=str(main._hero_grade(hero_id))
 	var grade_color:Color=main._hero_grade_color(hero_id)
 	var result:=PanelContainer.new();result.name='RosterCard_'+hero_id
-	result.custom_minimum_size=Vector2(width,206);result.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	result.custom_minimum_size=Vector2(width,216);result.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	result.add_theme_stylebox_override('panel',SKIN.elevated(Color('#182a43f4'),SKIN.GOLD if selected else Color(grade_color,.62),14))
-	var c:=Control.new();c.custom_minimum_size=Vector2(width-6,200);result.add_child(c)
+	var c:=Control.new();c.custom_minimum_size=Vector2(width-6,210);result.add_child(c)
 	var inner_width:=width-6.0
 	var detail:=SKIN.button('',Callable(main,'_build_hero_detail_screen').bind(hero_id),Color.TRANSPARENT)
 	detail.mouse_filter=Control.MOUSE_FILTER_PASS
@@ -410,7 +417,7 @@ static func _roster_card(main: Node, hero: Dictionary, accent: Color, width: flo
 	button.mouse_filter=Control.MOUSE_FILTER_PASS
 	button.name='RosterDeploy_'+hero_id;button.add_theme_font_size_override('font_size',14)
 	button.disabled=locked or full
-	SKIN.place(c,button,Rect2(7,160,inner_width-14,38))
+	SKIN.place(c,button,Rect2(7,160,inner_width-14,48))
 	main.hero_select_buttons[hero_id]=button
 	return result
 

@@ -32,6 +32,8 @@ func _draw() -> void:
 		return
 	draw_set_transform((size - Vector2.ONE * 24.0 * scale_factor) * 0.5, 0.0, Vector2.ONE * scale_factor)
 	match icon_name:
+		"hamburger":
+			for y in [5,12,19]:_line([Vector2(3,y),Vector2(21,y)],2)
 		"home", "hub":
 			_line([Vector2(3, 10.5), Vector2(12, 3), Vector2(21, 10.5)])
 			_line([Vector2(5, 9), Vector2(5, 20), Vector2(10, 20), Vector2(10, 14), Vector2(14, 14), Vector2(14, 20), Vector2(19, 20), Vector2(19, 9)])

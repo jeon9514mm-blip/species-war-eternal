@@ -148,6 +148,9 @@ func _run() -> void:
 	main.set_physics_process(false)
 	_test_growth_actions(main)
 	_test_local_status_effects(main)
+	main.set_process(false)
+	main.presentation_runtime.audio.shutdown()
+	await create_timer(0.3).timeout
 	main.free()
 	await process_frame
 	print("v27_live_growth_smoke_test checks=%d passed=%d failures=%s" % [checks, checks - failures.size(), JSON.stringify(failures)])

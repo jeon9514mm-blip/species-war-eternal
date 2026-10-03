@@ -314,6 +314,7 @@ func _portrait_resize() -> void:
 	_apply_portrait_resize.call_deferred()
 func _apply_portrait_resize() -> void:
 	_resize_pending=false
+	var menu_was_open: bool=is_instance_valid(content_root) and content_root.get_node_or_null('PortraitActionSheet')!=null
 	preload("res://scripts/DisplayOrientation.gd").apply(self, false)
 	if active_screen=='combat':
 		# No screen reconstruction: do not reset the encounter, RNG, HP or movement.
@@ -339,6 +340,9 @@ func _apply_portrait_resize() -> void:
 	elif active_screen=='title':_build_title_screen()
 	elif active_screen=='faction':_build_faction_screen()
 	elif active_screen=='hero_select':_build_hero_select_screen()
+	elif active_screen=='hero_detail':
+		var hero_id:=str(get_meta('hero_showcase_id',''))
+		if _hero_belongs_to_selected_faction(hero_id):_build_hero_detail_screen(hero_id)
 	elif active_screen=='inventory':
 		# Preserve a draft search and caret when rotation changes the page layout.
 		var search: LineEdit=content_root.find_child('GearSearch',true,false)
@@ -365,6 +369,9 @@ func _apply_portrait_resize() -> void:
 		var nav: Control=content_root.get_node_or_null('PortraitNavigation')
 		if nav!=null: nav.free()
 		P_HUD.navigation(self,content_root,str(content_root.get_meta('portrait_tab','')),get_viewport_rect().size.y-90,90)
+	if menu_was_open and content_root.get_node_or_null('PortraitActionSheet')==null:_show_main_menu()
+	var menu: Node=content_root.get_node_or_null('PortraitActionSheet')
+	if menu!=null:content_root.move_child(menu,-1)
 func _build_title_screen() -> void:
 	P_MENUS.landing(self)
 func _build_login_screen() -> void:
@@ -377,10 +384,19 @@ func _build_intro_screen() -> void:
 	P_PAGES.onboarding(self,'intro')
 func _build_hero_select_screen() -> void:
 	P_MENUS.roster(self)
+func _open_hero_menu() -> void:
+	if selected_faction.is_empty():_build_faction_screen();return
+	var hero_id:=str(get_meta('hero_showcase_id',''))
+	if not _hero_belongs_to_selected_faction(hero_id):
+		var roster: Array=deployed_heroes if not deployed_heroes.is_empty() else _hero_roster_for_faction()
+		for hero: Dictionary in roster:
+			if _hero_belongs_to_selected_faction(str(hero.id)):hero_id=str(hero.id);break
+	if _hero_belongs_to_selected_faction(hero_id):_build_hero_detail_screen(hero_id)
+	else:_build_faction_screen()
 func _build_hero_detail_screen(hero_id: String) -> void:
 	if not _hero_belongs_to_selected_faction(hero_id):
 		_show_toast('선택한 진영의 영웅만 확인할 수 있습니다.');_build_hero_select_screen();return
-	P_PAGES.detail(self,hero_id)
+	load('res://scripts/HeroShowcaseView.gd').build(self,hero_id)
 func _build_party_ready_screen(names: Array[String]) -> void:
 	P_PAGES.onboarding(self,'party_ready',names)
 func _build_growth_screen() -> void:
@@ -425,63 +441,7 @@ func _build_raid_screen() -> void:
 func _build_faction_war_screen() -> void:
 	super._build_faction_war_screen();P_MENUS.war(self)
 func _show_main_menu() -> void:
-	# Keep one input-blocking menu even when the open action is repeated.
-	var existing:=content_root.get_node_or_null('PortraitActionSheet')
-	if existing!=null:
-		content_root.remove_child(existing)
-		existing.queue_free()
-	var root:=Control.new();root.name='PortraitActionSheet';root.z_index=125
-	root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	content_root.add_child(root)
-	var shade:=ColorRect.new();shade.color=Color(0,0,0,.58);shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	root.add_child(shade)
-	var panel:=PanelContainer.new()
-	panel.name='PortraitMenuSheet'
-	var style:=P_SKIN.elevated(P_SKIN.DARK_2,P_SKIN.GOLD,20)
-	style.content_margin_left=22;style.content_margin_right=22
-	style.content_margin_top=20;style.content_margin_bottom=20
-	panel.add_theme_stylebox_override('panel',style)
-	root.add_child(panel)
-	panel.anchor_right=1;panel.anchor_top=.5;panel.anchor_bottom=.5
-	panel.offset_left=28;panel.offset_right=-28
-	panel.offset_top=-290;panel.offset_bottom=290
-	var menu_scroll:=ScrollContainer.new();menu_scroll.name='PortraitMenuScroll'
-	menu_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
-	panel.add_child(menu_scroll)
-	var box:=P_PAGES.stack(menu_scroll,12)
-	var heading:=HBoxContainer.new();box.add_child(heading)
-	var heading_label:=P_PAGES.text(heading,'모험 메뉴',30,P_SKIN.GOLD)
-	heading_label.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	var close:=P_SKIN.button('닫기',root.queue_free)
-	close.custom_minimum_size=Vector2(92,52);heading.add_child(close)
-	var entries: Array = NAV.menu_entries()
-	for group: String in ['전투와 탐험','영웅과 성장','보상과 계정']:
-		P_PAGES.text(box,group,18,P_SKIN.MUTED)
-		var menu_grid:=P_PAGES.grid(box,2)
-		for entry: Dictionary in entries:
-			if str(entry.group)!=group:continue
-			P_PAGES.action(menu_grid,str(entry.label),Callable(self,str(entry.method))).name='PortraitMenu_'+str(entry.id)
-	var quick_settings:=P_PAGES.disclosure(box,'빠른 설정')
-	var switches:=P_PAGES.grid(quick_settings,2)
-	var effects:=CheckButton.new();effects.name='PortraitEffectSetting'
-	effects.text='전투 연출';effects.button_pressed=combat_effects_enabled
-	effects.custom_minimum_size=Vector2(0,52);effects.add_theme_font_size_override('font_size',18)
-	effects.toggled.connect(func(enabled: bool):
-		combat_effects_enabled=enabled
-		combat_fx.enabled=enabled
-		_save_ui_preferences())
-	switches.add_child(effects)
-	var sounds:=CheckButton.new();sounds.name='PortraitSoundSetting'
-	sounds.text='효과음';sounds.button_pressed=sound_effects_enabled
-	sounds.custom_minimum_size=Vector2(0,52);sounds.add_theme_font_size_override('font_size',18)
-	sounds.toggled.connect(func(enabled: bool):
-		sound_effects_enabled=enabled
-		if not enabled and is_instance_valid(skill_audio_bus):skill_audio_bus.stop()
-		_save_ui_preferences())
-	switches.add_child(sounds)
-	P_PAGES.action(box,'화면 · 소리 · 진동 · 성능 설정',Callable(self,'_open_presentation_settings')).name='PresentationSettingsEntry'
-	P_PAGES.action(box,'원정 가이드',Callable(self,'_show_portrait_guide')).name='PortraitOpenGuide'
-	if not tutorial_completed:P_PAGES.text(box,_tutorial_text(),16,P_SKIN.MUTED)
+	preload('res://scripts/LandscapeMainMenu.gd').open(self)
 
 func _show_portrait_guide() -> void:
 	var sheet:=content_root.get_node_or_null('PortraitActionSheet')
