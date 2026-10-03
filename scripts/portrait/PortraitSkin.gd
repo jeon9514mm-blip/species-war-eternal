@@ -100,8 +100,8 @@ static func gauge(parent: Node, rect: Rect2, color: Color) -> ProgressBar:
 	return n
 
 static func make_scroll_responsive(scroll: ScrollContainer) -> void:
-	# Let ScrollContainer own drag velocity and momentum. Buttons inside lists
-	# pass pointer events to it; a second delayed adjustment caused double drags.
+	# TouchScrollController owns drag gestures across all list descendants;
+	# native wheel and scrollbar input remain available.
 	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_RESERVE
 	scroll.follow_focus=false

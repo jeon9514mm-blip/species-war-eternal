@@ -82,7 +82,7 @@ func run() -> void:
 			check(not is_instance_valid(war._active_modal),'real close button receives input above dimmer')
 			var nav: Control=main.content_root.find_child('PortraitNav_heroes',true,false)
 			click(nav.get_global_rect().get_center());await settle()
-			check(main.active_screen=='hero_select','navigation resumes after closing modal')
+			check(main.active_screen=='hero_detail','navigation resumes at the current hero showcase after closing modal')
 	fixture('aurelia');main._build_faction_war_screen();await settle();find_war()
 	var view:=war.map_view
 	view.tile_selected.connect(func(_cell): selections+=1)

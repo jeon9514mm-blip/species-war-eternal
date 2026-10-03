@@ -1,0 +1,17 @@
+{
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "mode": "headless",
+  "input_path": "Input.parse_input_event with real ScreenTouch/ScreenDrag and engine mouse emulation",
+  "parsed_scripts": 6,
+  "suites": {
+    "TouchScrollSmokeTest": 51,
+    "HeroMenuUxSmokeTest": 1065,
+    "EquipmentModalSaveRecoverySmokeTest": 163,
+    "V51UiInteractionSmokeTest": 99,
+    "CombatControlsSmokeTest": "passed; no numerical check counter"
+  },
+  "counted_checks": 1378,
+  "failures": 0,
+  "android_device_tested": false,
+  "apk_built": false
+}

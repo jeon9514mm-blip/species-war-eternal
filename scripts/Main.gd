@@ -341,6 +341,9 @@ var combat_field_rect := Rect2(Vector2(55, 198), Vector2(760, 350))
 var combat_side_rect := Rect2(Vector2(850, 198), Vector2(375, 310))
 
 func _ready() -> void:
+	var touch_scroll := preload("res://scripts/TouchScrollController.gd").new()
+	touch_scroll.name = "TouchScrollController"
+	add_child(touch_scroll)
 	theme = UI.make_theme()
 	_load_ui_preferences()
 	presentation_runtime = PresentationRuntime.new()
@@ -465,8 +468,8 @@ func _clear_screen() -> void:
 	raid_boss_sprite = null
 	open_map_boss_sprite = null
 	for child in get_children():
-		# v82 audio/settings service belongs to the game root, not a screen.
-		if child == presentation_runtime or child.name == "SaveSafetyLayer": continue
+		# Audio/settings, input and save recovery belong to the game root.
+		if child == presentation_runtime or child.name in ["SaveSafetyLayer", "TouchScrollController"]: continue
 		child.queue_free()
 	content_root = Control.new()
 	content_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

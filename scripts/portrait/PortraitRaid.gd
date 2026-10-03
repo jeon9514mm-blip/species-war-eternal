@@ -350,7 +350,7 @@ func _on_hero_slot_input(event: InputEvent, hero_id: String) -> void:
 	if event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT:
 		if event.pressed:_slot_pointer=-1;_slot_drag_distance=0
 		elif _slot_pointer==-1:
-			if _slot_drag_distance<8:selected_hero_id=hero_id;refresh()
+			if _slot_drag_distance<8 and not event.canceled:selected_hero_id=hero_id;refresh()
 			_slot_pointer=-2
 	elif event is InputEventScreenTouch:
 		if event.pressed and _slot_pointer==-2:_slot_pointer=event.index;_slot_drag_distance=0
