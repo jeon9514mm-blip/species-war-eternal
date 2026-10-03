@@ -7,6 +7,7 @@ const S = preload('res://scripts/portrait/PortraitSkin.gd')
 const M = preload('res://scripts/portrait/PortraitMenus.gd')
 const GEAR = preload('res://scripts/EquipmentRules.gd')
 const ART = preload('res://scripts/EquipmentArtCatalog.gd')
+const COMPARE=preload('res://scripts/EquipmentComparison.gd')
 
 static func _result(main: Node, result: Dictionary) -> void:
 	var message := str(result.get('reason',''))
@@ -29,20 +30,31 @@ static func detail(main: Node, item_id: String, hero_id: String = '', slot: Stri
 	var is_crystal := str(item.get('item_type','equipment'))=='option_crystal'
 	if tab not in (['info','implant'] if is_crystal else ['info','enhance','options','implant']):tab='info'
 	main.gear_workshop_context['tab']=tab
-	var page := P.begin(main,'equipment_detail','옵션 결정' if is_crystal else '장비 상세','선택한 장비의 상태를 유지한 채 필요한 작업만 바꿔 보세요.','bag')
-	var header: Node=main.content_root.get_node('PortraitMenuHeader')
-	var back: Button=header.get_child(0).get_child(0)
+	var page := P.begin(main,'equipment_detail','옵션 결정' if is_crystal else '장비 공방','','bag')
+	var header: Control=main.content_root.get_node('PortraitMenuHeader')
+	header.offset_bottom=76
+	var header_row: Control=header.get_child(0)
+	header_row.offset_top=10;header_row.offset_bottom=64
+	header.get_child(1).hide()
+	var currency: Label=header_row.get_child(header_row.get_child_count()-1).get_child(0)
+	currency.text='정수 %d'%main.raid_crystals;currency.name='EquipmentWorkshopBalance'
+	var back: Button=header_row.get_child(0)
 	for connection: Dictionary in back.pressed.get_connections():back.pressed.disconnect(connection['callable'])
 	back.pressed.connect(Callable(main,'_back_from_equipment_detail'))
 	back.name='EquipmentDetailBack';back.tooltip_text='이전 목록으로 돌아가기'
 	if item.is_empty():
 		P.text(P.card(page,'장비를 찾을 수 없습니다.'),'장착하거나 이동한 장비입니다. 목록에서 다시 선택해 주세요.',18,S.MUTED)
 		return
-	# Selected item + task tabs remain fixed while only the operation body scrolls.
-	var fixed := P.stack(main.content_root,7)
-	fixed.name='EquipmentDetailHeader'
-	fixed.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
-	fixed.offset_left=18;fixed.offset_right=-18;fixed.offset_top=143
+	# The selected item stays on the left while each task uses the wide right pane.
+	# Anchors keep both panes responsive without rebuilding transaction controls.
+	var selected := PanelContainer.new();selected.name='EquipmentDetailHeader'
+	var selected_style:=S.elevated(S.DARK_2,S.EDGE_SOFT,14);selected_style.set_content_margin_all(12)
+	selected.add_theme_stylebox_override('panel',selected_style)
+	main.content_root.add_child(selected)
+	selected.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	selected.anchor_right=0.32
+	selected.offset_left=18;selected.offset_right=-8;selected.offset_top=92;selected.offset_bottom=-108
+	var fixed := P.stack(selected,12)
 	var identity := HBoxContainer.new()
 	identity.name='EquipmentDetailIdentity';identity.custom_minimum_size=Vector2(0,82)
 	identity.add_theme_constant_override('separation',14);fixed.add_child(identity)
@@ -60,7 +72,19 @@ static func detail(main: Node, item_id: String, hero_id: String = '', slot: Stri
 	elif bool(item.get('locked',false)):state_text='가방 보관 · 잠금'
 	elif bool(item.get('bound',false)):state_text='가방 보관 · 귀속'
 	P.text(label_box,state_text,14,S.MUTED).name='EquipmentDetailState'
-	var tabs := P.grid(fixed,2 if is_crystal else 4)
+	var summary_scroll:=ScrollContainer.new();summary_scroll.name='EquipmentDetailSummaryScroll'
+	S.make_scroll_responsive(summary_scroll);summary_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	fixed.add_child(summary_scroll)
+	var summary:=P.stack(summary_scroll,10);summary.name='EquipmentInfoCard'
+	_fit_scroll_content(summary_scroll,summary)
+	P.text(summary,'보관된 옵션' if is_crystal else '장비 속성',21,S.INK)
+	P.gear_summary(main,summary,item)
+	if not hero_id.is_empty():P.text(summary,main._hero_short_name(hero_id)+'에게 장착 중',18,S.BLUE_SOFT)
+	var task_header:=P.stack(main.content_root,7);task_header.name='EquipmentDetailTaskHeader'
+	task_header.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	task_header.anchor_left=0.32
+	task_header.offset_left=8;task_header.offset_right=-18;task_header.offset_top=92
+	var tabs := P.grid(task_header,2 if is_crystal else 4)
 	tabs.name='EquipmentDetailTabs';tabs.add_theme_constant_override('h_separation',8)
 	for entry: Array in [['info','정보'],['enhance','강화'],['options','옵션'],['implant','이식']]:
 		if is_crystal and str(entry[0]) not in ['info','implant']:continue
@@ -72,11 +96,13 @@ static func detail(main: Node, item_id: String, hero_id: String = '', slot: Stri
 		'options':'옵션을 추가·교체·추출하고 후보를 비교합니다.',
 		'implant':'옵션 결정을 다른 장비에 이식합니다.'
 	}
-	P.text(fixed,str(hints.get(tab,'')),14,S.MUTED).name='EquipmentDetailTabHint'
+	P.text(task_header,str(hints.get(tab,'')),16,S.MUTED).name='EquipmentDetailTabHint'
 	var scroll: ScrollContainer=page.get_parent()
-	scroll.offset_top=347
+	scroll.anchor_left=0.32
+	scroll.offset_left=8;scroll.offset_top=184;scroll.offset_right=-18;scroll.offset_bottom=-108
+	_fit_scroll_content(scroll,page)
 	match tab:
-		'info':_detail_info(main,page,item,hero_id,slot)
+		'info':_detail_info(main,page,item,hero_id,slot,summary)
 		'enhance':_detail_enhance(main,page,item,hero_id,slot)
 		'options':_detail_options(main,page,item,hero_id,slot)
 		'implant':
@@ -87,13 +113,15 @@ static func detail(main: Node, item_id: String, hero_id: String = '', slot: Stri
 					if str(owned.get('item_type','equipment'))=='option_crystal':crystals.append(owned)
 				_crystal_apply_panel(main,page,item,crystals,hero_id,slot)
 
-static func _detail_info(main: Node, page: Node, item: Dictionary, hero_id: String, slot: String) -> void:
+static func _fit_scroll_content(scroll: ScrollContainer, body: Control) -> void:
+	body.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+	var fit:=func():body.custom_minimum_size.x=maxf(100,scroll.size.x-18)
+	scroll.resized.connect(fit);fit.call_deferred()
+
+static func _detail_info(main: Node, page: Node, item: Dictionary, hero_id: String, slot: String, info: Node) -> void:
 	var item_id := str(item.get('id',''))
 	var is_crystal := str(item.get('item_type','equipment'))=='option_crystal'
-	var info := P.card(page,'보관된 옵션' if is_crystal else '현재 장비 상태',S.BLUE)
-	info.get_parent().name='EquipmentInfoCard'
-	P.gear_summary(main,info,item)
-	if not hero_id.is_empty():P.text(info,main._hero_short_name(hero_id)+'에게 장착 중 · 이 화면에서 강화/옵션 작업을 바로 바꿀 수 있습니다.',16,S.BLUE_SOFT)
+	if not is_crystal and hero_id.is_empty():_equip_comparison(main,page,item)
 	var utility := P.grid(info,2)
 	utility.name='EquipmentInfoUtilities'
 	P.action(utility,'잠금 해제' if bool(item.get('locked',false)) else '잠금',Callable(EquipmentScreens,'_work').bind(main,item_id,'toggle_lock',{},hero_id,slot)).name='EquipmentToggleLock'
@@ -109,41 +137,71 @@ static func _detail_info(main: Node, page: Node, item: Dictionary, hero_id: Stri
 	P.action(task_grid,'옵션',Callable(main,'_build_equipment_detail').bind(item_id,hero_id,slot,'options')).name='EquipmentQuickOptions'
 	P.action(task_grid,'이식',Callable(main,'_build_equipment_detail').bind(item_id,hero_id,slot,'implant')).name='EquipmentQuickImplant'
 	if not hero_id.is_empty():
-		P.text(task_shortcuts,'장착 중인 장비입니다. 교체는 가방에서 진행하고, 이곳에서는 강화·옵션·이식을 관리합니다.',15,S.MUTED)
+		P.action(page,'같은 부위 장비 비교',func():
+			main.set_meta('gear_equip_hero_id',hero_id)
+			var filters: Dictionary=main.get_meta('gear_bag_filters',{}).duplicate()
+			filters['slot']=slot;filters['type']='equipment'
+			main.set_meta('gear_bag_filters',filters)
+			main.set_meta('gear_bag_page',0);main.set_meta('gear_bag_reset_scroll',true)
+			main._build_inventory_screen(),true).name='EquipmentFindReplacement'
 		return
-	var equip := P.card(page,'장착할 영웅',S.GOLD)
-	equip.get_parent().name='EquipmentEquipPanel'
-	var heroes: Array=main._hero_roster_for_faction()
-	var eligible: Array=[]
-	for hero: Dictionary in heroes:
-		if main._gear_role_matches(item,str(hero.get('id',''))):eligible.append(hero)
-	if heroes.is_empty():P.text(equip,'진영을 선택하면 장착할 영웅이 표시됩니다.',18,S.MUTED)
-	elif eligible.is_empty():P.text(equip,'이 장비의 역할에 맞는 영웅이 없습니다.',18,S.MUTED)
-	else:
-		var selection := _selection(equip,'EquipmentHeroSelection')
-		var selected_hero := str(main.get_meta('gear_equip_hero_id',''))
-		for hero: Dictionary in eligible:
-			selection.add_item(str(hero.get('name','영웅')));selection.set_item_metadata(selection.item_count-1,str(hero.get('id','')))
-			if str(hero.get('id',''))==selected_hero:selection.select(selection.item_count-1)
-		var comparison := P.text(equip,'',17,S.BLUE_SOFT);comparison.name='EquipComparison'
-		var refresh := func():
-			var candidate_id := str(selection.get_item_metadata(selection.selected))
-			main.set_meta('gear_equip_hero_id',candidate_id)
-			var current: Dictionary=main._gear_item('',candidate_id,str(item.get('slot','weapon')))
-			var before: int=main._item_power(current)
-			var after: int=main._item_power(item)
-			var delta: int=after-before
-			comparison.text='%s · 전투력 %d → %d  (%s%d)'%[main._hero_short_name(candidate_id),before,after,'+' if delta>=0 else '',delta]
-		selection.item_selected.connect(func(_index: int):refresh.call());refresh.call()
-		var wear := P.action(equip,'선택 영웅에게 장착',func():
-			var result: Dictionary=main._gear_equip_item(item_id,str(selection.get_item_metadata(selection.selected)))
-			if bool(result.get('ok',false)):_refresh_detail(main,item_id,str(result.get('hero_id','')),str(result.get('slot',item.get('slot','weapon'))),'info')
-			else:_refresh_detail(main,item_id,'','','info')
-			_result(main,result),true)
-		wear.name='EquipmentEquip';wear.disabled=not (item.get('proposal',{}) as Dictionary).is_empty()
-		if wear.disabled:P.text(equip,'옵션 탭에서 저장된 조율 후보를 먼저 선택해 주세요.',16,S.MUTED)
 	var salvage := P.action(page,'분해 · %dG 받기'%main._inventory_salvage_value(item),Callable(EquipmentScreens,'_confirm_decompose').bind(main,item_id))
 	salvage.name='EquipmentDecompose';salvage.disabled=bool(item.get('locked',false)) or not (item.get('proposal',{}) as Dictionary).is_empty()
+
+static func _equip_comparison(main: Node, page: Node, item: Dictionary) -> void:
+	var equip := P.card(page,'장착 전 비교',S.GOLD)
+	equip.get_parent().name='EquipmentEquipPanel'
+	var eligible: Array=[]
+	for hero: Dictionary in main._hero_roster_for_faction():
+		if main._gear_role_matches(item,str(hero.get('id',''))):eligible.append(hero)
+	if eligible.is_empty():
+		P.text(equip,'장착 가능한 영웅이 없습니다. 진영과 전용 역할을 확인해 주세요.',18,S.MUTED)
+		return
+	var selection:=_selection(equip,'EquipmentHeroSelection')
+	selection.custom_minimum_size.y=64;selection.add_theme_font_size_override('font_size',20)
+	var selected_hero:=COMPARE.selected_hero(main)
+	for hero: Dictionary in eligible:
+		selection.add_item(str(hero.get('name','영웅')));selection.set_item_metadata(selection.item_count-1,str(hero.id))
+		if str(hero.id)==selected_hero:selection.select(selection.item_count-1)
+	var comparison_body:=P.stack(equip,10);comparison_body.name='EquipmentComparisonBody'
+	var footer:=P.stack(main.content_root,0);footer.name='EquipmentEquipFooter'
+	footer.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+	footer.anchor_left=0.32
+	footer.offset_left=8;footer.offset_right=-18;footer.offset_top=-184;footer.offset_bottom=-108
+	var wear:=P.action(footer,'장착',func():
+		var candidate_id:=str(selection.get_item_metadata(selection.selected))
+		var result: Dictionary=main._gear_equip_item(str(item.id),candidate_id)
+		if bool(result.get('ok',false)):_refresh_detail(main,str(item.id),str(result.get('hero_id','')),str(result.get('slot',item.get('slot','weapon'))),'info')
+		else:_refresh_detail(main,str(item.id),'','','info')
+		_result(main,result),true)
+	wear.name='EquipmentEquip';wear.custom_minimum_size.y=76;wear.add_theme_font_size_override('font_size',22)
+	wear.disabled=not (item.get('proposal',{}) as Dictionary).is_empty()
+	var scroll: ScrollContainer=page.get_parent();scroll.offset_bottom=-200
+	var refresh:=func():
+		for child in comparison_body.get_children():comparison_body.remove_child(child);child.queue_free()
+		var candidate_id:=str(selection.get_item_metadata(selection.selected));main.set_meta('gear_equip_hero_id',candidate_id)
+		var snapshot:=COMPARE.preview(main,item,candidate_id)
+		var cards:=P.grid(comparison_body,2)
+		for entry: Array in [['현재 장비',snapshot.old],['교체 장비',item]]:
+			var current: Dictionary=entry[1]
+			var box:=P.card(cards,str(entry[0]))
+			box.get_parent().name='EquipmentCompareCurrent' if str(entry[0])=='현재 장비' else 'EquipmentCompareCandidate'
+			P.picture(box,ART.texture_for(current),Vector2(0,54))
+			var title:=P.text(box,P.item_title(current),18,S.INK)
+			title.max_lines_visible=2;title.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS;title.tooltip_text=title.text
+			P.text(box,'장비력 %d'%main._item_power(current),20,S.GOLD)
+		var delta: int=snapshot.delta
+		P.text(comparison_body,'장비력 %d → %d  (%s%d)'%[int(snapshot.before),int(snapshot.after),'+' if delta>=0 else '',delta],22,S.SUCCESS if delta>0 else S.MUTED).name='EquipComparison'
+		if bool(snapshot.set_loss):P.text(comparison_body,'세트 효과 감소 · 장비력이 높아도 능력치가 줄 수 있어요.',18,Color('#f29484')).name='EquipmentSetLossWarning'
+		if str(snapshot.before_set)!=str(snapshot.after_set):
+			P.text(comparison_body,'현재: '+str(snapshot.before_set)+'\n교체 후: '+str(snapshot.after_set),16,S.MUTED).name='EquipmentSetComparison'
+		for change: Dictionary in snapshot.changes:
+			P.text(comparison_body,COMPARE.change_text(change),18,S.SUCCESS if int(change.after)>int(change.before) else Color('#f29484'))
+		if (snapshot.changes as Array).is_empty():P.text(comparison_body,'세트·추가 옵션 능력치 변화 없음',16,S.MUTED)
+		P.text(comparison_body,'장착 시 귀속 · 현재 장비는 가방에 보관됩니다.',16,S.MUTED)
+		wear.text=main._hero_short_name(candidate_id)+'에게 장착';wear.tooltip_text=wear.text
+		if wear.disabled:P.text(comparison_body,'옵션 탭에서 조율 후보를 먼저 선택해 주세요.',18,S.GOLD)
+	selection.item_selected.connect(func(_index: int):refresh.call());refresh.call()
 
 static func _selection(parent: Node, node_name: String) -> OptionButton:
 	var control := OptionButton.new()

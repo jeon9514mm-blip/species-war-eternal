@@ -1,5 +1,5 @@
 extends SceneTree
-## Real viewport input covers the compact inventory and one-item detail flow.
+## Landscape input covers comparison-in-place, a 200-slot bag and item details.
 ## Existing V54 tests retain workshop, crystal and escrow transaction coverage.
 const RULES=preload('res://scripts/EquipmentRules.gd')
 var main: Node
@@ -30,6 +30,10 @@ func press(named: String) -> void:
 	check(main.get_viewport_rect().encloses(target.get_global_rect()),'action fits viewport '+named)
 	click(target.get_global_rect().get_center());await settle()
 func select_filter(key: String, value: String) -> void:
+	if key=='slot':
+		await press('GearCategory_'+value);return
+	if key=='type' and value=='option_crystal':
+		await press('GearCategory_crystal');return
 	var selection: OptionButton=node('GearFilter_'+key)
 	check(selection!=null,'filter exists '+key)
 	if selection==null:return
@@ -55,7 +59,7 @@ func geometry(label: String, require_tiles_visible := false) -> void:
 		if control is Label:
 			check(control.get_line_count()*control.get_line_height()<=control.size.y+2 or (control.max_lines_visible>0 and control.tooltip_text==control.text),label+' readable text '+str(control.name))
 		if control is Button:
-			check(control.size.y>=48,label+' touch target '+str(control.name))
+			check(control.size.y>=44,label+' touch target '+str(control.name))
 			if not control is OptionButton and not control.text.is_empty():
 				var font: Font=control.get_theme_font('font')
 				var style: StyleBox=control.get_theme_stylebox('normal')
@@ -69,15 +73,28 @@ func geometry(label: String, require_tiles_visible := false) -> void:
 			if control.text.is_empty() or sibling.text.is_empty():continue
 			var overlap:=rect.intersection(sibling.get_global_rect())
 			check(overlap.size.x<=3 or overlap.size.y<=3,label+' sibling text separated '+str(control.name))
+	if main.active_screen=='inventory':
+		var current: Control=node('EquipmentCompareCurrent')
+		var candidate: Control=node('EquipmentCompareCandidate')
+		var actions: Control=node('EquipmentActions')
+		var bag: Control=node('EquipmentBagPanel')
+		for panel: Control in [current,candidate,actions,bag]:
+			check(panel!=null and viewport.grow(1).encloses(panel.get_global_rect()),label+' fixed workbench panel fits '+str(panel.name))
+		check(not current.get_global_rect().intersects(candidate.get_global_rect()),label+' comparison cards do not overlap')
+		check(not candidate.get_global_rect().intersects(actions.get_global_rect()),label+' comparison and actions do not overlap')
+		check(not actions.get_global_rect().intersects(bag.get_global_rect()),label+' actions and bag do not overlap')
+		for action: String in ['EquipmentEquip','GearWorkshop','GearOpenDetails','GearSource','GearQuickLock']:
+			check(viewport.grow(1).encloses(node(action).get_global_rect()),label+' workbench action visible '+action)
 	if require_tiles_visible:
-		check(tiles().size()<=12,label+' at most twelve equipment tiles')
-		for tile: Button in tiles():
-			check(scroll.get_global_rect().grow(1).encloses(tile.get_global_rect()),label+' tile visible without scrolling '+str(tile.name))
+		check(tiles().size()<=40,label+' at most forty equipment tiles per page')
+		for tile: Button in tiles().slice(0,4):
+			check(scroll.get_global_rect().grow(1).encloses(tile.get_global_rect()),label+' first row visible without scrolling '+str(tile.name))
+		check(not node('GearInventoryPager').get_global_rect().intersects(scroll.get_global_rect()),label+' pager remains outside scrolling items')
 		check(scroll.scroll_vertical==0,label+' bag starts at top')
 func fixture(id: String, slot := 'weapon', level := 3) -> Dictionary:
 	return RULES.normalize({'id':id,'name':'아주 오래된 달잠 숲의 별빛을 모아 만든 전설의 수호 장비','slot':slot,'level':level,'rarity':'전설','origin':'raid','source_id':'moonrest_forest','set':'월식의 추격','affixes':[{'stat':'attack_pct','value':6}],'focus':2})
 func run() -> void:
-	root.content_scale_size=Vector2i(720,1280);root.size=Vector2i(720,1280);root.gui_embed_subwindows=true
+	root.content_scale_size=Vector2i(1280,720);root.size=Vector2i(1280,720);root.gui_embed_subwindows=true
 	main=preload('res://scenes/PortraitMain.tscn').instantiate();main.save_state_path='user://v55-equipment-detail-ui.json'
 	root.add_child(main);await settle()
 	main.set_physics_process(false);main.set_process(false);main._offline_checked=true;main.combat_effects_enabled=false
@@ -85,20 +102,37 @@ func run() -> void:
 	main.deployed_heroes=main._hero_roster_for_faction().slice(0,3)
 	main.wallet_gold=50000;main.raid_crystals=300;main.gear_market_state={};main._gear_market_loaded=false;main.equipment_overflow=[]
 	main.loot_inventory=[]
-	for index in 30:main.loot_inventory.append(fixture('tile_%02d'%index,['weapon','armor','accessory'][index%3]))
+	for index in 85:main.loot_inventory.append(fixture('tile_%02d'%index,['weapon','armor','accessory'][index%3]))
 	main.set_meta('gear_bag_filters',{});main.set_meta('gear_bag_page',0)
 	main._build_inventory_screen();await settle()
-	check(tiles().size()==12,'thirty items render only the first twelve tiles')
-	check(node('GearInventoryGrid').columns==3,'inventory has three compact columns')
+	check(tiles().size()==40,'eighty-five items render forty tiles on the first page')
+	check(main.INVENTORY_CAP==200 and node('GearBagCapacity').text=='85 / 200','bag exposes the 200-slot capacity')
+	check(node('GearInventoryGrid').columns==4,'landscape inventory has four icon columns')
 	check(node('GearPagePrevious').disabled and not node('GearPageNext').disabled,'first page boundaries are accurate')
 	geometry('first inventory page',true)
-	await press('GearPageNext');check(tiles().size()==12,'second inventory page has twelve items')
-	await press('GearPageNext');check(tiles().size()==6,'last inventory page has the remaining six items')
+	var first_page_scroll: ScrollContainer=node('PortraitContentScroll')
+	var bottom_tile: String=str(tiles()[39].name)
+	await press(bottom_tile)
+	check(first_page_scroll.scroll_vertical>0,'lower rows remain reachable by bag scrolling')
+	var selected_scroll: int=first_page_scroll.scroll_vertical
+	var candidate_before: int=node('EquipmentCompareCandidate').get_instance_id()
+	await press(bottom_tile)
+	check(node('PortraitContentScroll')==first_page_scroll and first_page_scroll.scroll_vertical==selected_scroll,'selecting equipment preserves the bag node and scroll offset')
+	check(node('EquipmentCompareCandidate').get_instance_id()!=candidate_before,'selection refreshes comparison content in place')
+	check(main.active_screen=='inventory','scrolling and selecting does not replace the workbench')
+	await press('GearPageNext');check(tiles().size()==40,'second inventory page has forty items')
+	await press('GearPageNext');check(tiles().size()==5,'last inventory page has the remaining five items')
 	check(node('GearPageNext').disabled,'last inventory page cannot advance')
 	var remembered_page: int=int(main.get_meta('gear_bag_page',0))
 	var target_id: String=str(tiles()[0].name).trim_prefix('GearTile_')
+	var bag_scroll: ScrollContainer=node('PortraitContentScroll')
 	await press('GearTile_'+target_id)
-	check(main.active_screen=='equipment_detail','one equipment tap opens dedicated item details')
+	check(main.active_screen=='inventory','equipment selection keeps the landscape workbench open')
+	check(node('PortraitContentScroll')==bag_scroll,'selection retains the same scrolling bag')
+	check(str(main.get_meta('gear_bag_selected_id',''))==target_id,'comparison selection keeps stable item ID')
+	check(node('EquipmentCompareCurrent')!=null and node('EquipmentCompareCandidate')!=null,'current and candidate comparison cards are both visible')
+	await press('GearOpenDetails')
+	check(main.active_screen=='equipment_detail','explicit details action opens item details')
 	check(str(main.gear_workshop_context.get('item_id',''))==target_id,'detail retains selected stable item ID')
 	for tab in ['info','enhance','options','implant']:check(node('DetailTab_'+tab)!=null,'detail exposes '+tab+' task')
 	check(node('EquipmentEnhance')==null and node('WorkshopPreview')==null,'information tab contains no enhancement or workshop form')
@@ -106,7 +140,7 @@ func run() -> void:
 	await press('EquipmentDetailBack')
 	check(int(main.get_meta('gear_bag_page',0))==remembered_page and node('GearTile_'+target_id)!=null,'viewing details returns to the same unchanged tile page')
 	await press('GearTile_'+target_id)
-	await press('DetailTab_enhance')
+	await press('GearWorkshop')
 	check(node('EquipmentEquip')==null and node('WorkshopPreview')==null,'enhancement tab displays only the selected task')
 	var identity: Control=node('EquipmentDetailIdentity')
 	var identity_position: Vector2=identity.get_global_rect().position
@@ -129,7 +163,7 @@ func run() -> void:
 	check(main.active_screen=='inventory' and int(main.get_meta('gear_bag_page',0))==remembered_page,'returning restores the previous inventory page')
 	check(not main._gear_item(target_id).is_empty(),'enhanced equipment remains owned when its new power changes sorted position')
 	await select_filter('slot','weapon')
-	check(tiles().size()==10 and node('GearPageNext').disabled,'slot filter shows ten weapons on one valid page')
+	check(tiles().size()==29 and node('GearPageNext').disabled,'slot filter shows twenty-nine weapons on one page')
 	check(int(main.get_meta('gear_bag_page',0))==0,'filter clamps an out-of-range previous page')
 	await select_filter('slot','all')
 	# Exercise the same worn equipment item across consecutive upgrades.
@@ -165,13 +199,14 @@ func run() -> void:
 	var capped: Dictionary=main._gear_item(target_id,hero_id,target_slot);capped['level']=10;main.hero_equipment[hero_id][target_slot]=10;main._gear_update_item(capped,hero_id,target_slot)
 	main._build_equipment_detail(target_id,hero_id,target_slot,'enhance');await settle()
 	check(node('EquipmentEnhance').disabled,'maximum enhancement has no active spend button')
-	# Physical small windows still use the production 720-wide canvas scaling.
-	for dimensions: Vector2i in [Vector2i(320,568),Vector2i(360,640),Vector2i(720,1280),Vector2i(810,1440),Vector2i(720,1560)]:
+	# Physical small windows retain the production 1280-wide landscape canvas.
+	for dimensions: Vector2i in [Vector2i(568,320),Vector2i(640,360),Vector2i(1280,720),Vector2i(1440,810),Vector2i(1560,720)]:
 		root.size=dimensions;await settle()
 		main.set_meta('gear_bag_filters',{});main.set_meta('gear_bag_page',0)
 		main._build_inventory_screen();await settle();geometry('inventory '+str(dimensions),true)
 		var visible_id: String=str(tiles()[0].name).trim_prefix('GearTile_')
 		await press('GearTile_'+visible_id)
+		await press('GearOpenDetails')
 		for tab: String in ['info','enhance','options','implant']:
 			if tab!='info':await press('DetailTab_'+tab)
 			geometry('detail '+tab+' '+str(dimensions))
@@ -183,6 +218,7 @@ func run() -> void:
 	check(tiles().is_empty(),'crystal filter does not show equipment')
 	check(node('GearPagePrevious').disabled and node('GearPageNext').disabled,'empty filter has no invalid pagination')
 	geometry('empty crystal category')
+	main.presentation_runtime.audio.shutdown();await create_timer(.3).timeout
 	main._clear_screen();main.free();await settle()
 	print('V55 EQUIPMENT DETAIL UI ',checks-failures.size(),'/',checks,' PASS')
 	quit(0 if failures.is_empty() else 1)

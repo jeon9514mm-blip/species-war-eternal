@@ -130,7 +130,7 @@ func _capacity_and_sync() -> void:
 	full_bag.pop_back()
 	_check(market.sync_local_account("buyer", 3000, full_bag)["ok"], "local inventory can free a space")
 	_check(_submit(market, "buyer", "claim", {"item_id": "delivery"})["ok"], "delivery remains claimable after space is freed")
-	_check(market.account_snapshot("buyer")["inventory"].size() == 30, "claim respects thirty slot inventory")
+	_check(market.account_snapshot("buyer")["inventory"].size() == MARKET.INVENTORY_CAP, "claim respects shared inventory capacity")
 	_check(not market.sync_local_account("seller", 5000, [_gear("delivery")])["ok"], "trusted sync still rejects another owner's equipment ID")
 	_check(not market.bootstrap_account("duplicate", 0, [_gear("delivery")])["ok"], "bootstrap cannot create duplicate global gear IDs")
 	_assert_unique(market, "capacity flow retains one owner")

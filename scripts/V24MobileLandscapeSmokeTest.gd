@@ -13,8 +13,8 @@ func _run() -> void:
 	if str(ProjectSettings.get_setting("display/window/stretch/aspect")) != "expand":
 		_fail("V24: stretch aspect must be expand")
 		return
-	if int(ProjectSettings.get_setting("display/window/handheld/orientation")) != 1:
-		_fail("V24: app orientation must remain portrait (legacy layout is tested below)")
+	if int(ProjectSettings.get_setting("display/window/handheld/orientation")) != DisplayServer.SCREEN_LANDSCAPE:
+		_fail("V24: app orientation must remain landscape")
 		return
 	var main = preload("res://scenes/Main.tscn").instantiate()
 	root.add_child(main)
@@ -48,6 +48,8 @@ func _run() -> void:
 	if main.content_root.get_node_or_null("CombatTacticalStrip") == null:
 		_fail("V24: mobile tactical HUD missing", main)
 		return
-	print("v24_mobile_landscape_smoke_test_ok orientation=portrait legacy_landscape_layout=ok aspect=expand wide_field=%.0f base_field=%.0f camera=follow safe=ok" % [wide_field.size.x, base_field.size.x])
-	main.free()
+	print("v24_mobile_landscape_smoke_test_ok orientation=landscape legacy_landscape_layout=ok aspect=expand wide_field=%.0f base_field=%.0f camera=follow safe=ok" % [wide_field.size.x, base_field.size.x])
+	main.queue_free()
+	for frame in 3: await process_frame
+	await create_timer(0.12).timeout
 	quit(0)

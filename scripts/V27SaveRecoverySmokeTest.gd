@@ -136,9 +136,9 @@ func _test_validation() -> void:
 	_check(not clean["tutorial_completed"], "wrong-type tutorial flags cannot crash boolean comparison")
 	_check(raw["hero_progress"]["leonhardt"]["level"] == 1e100, "validation leaves the source payload unchanged")
 	var many: Array = []
-	for index in 50:
+	for index in SaveValidation.INVENTORY_CAP + 20:
 		many.append({"id": "item_%d" % index, "slot": "weapon"})
-	_check(SaveValidation.sanitize({"loot_inventory": many}, ["gray_meadow"])["loot_inventory"].size() == 30, "inventory cannot exceed the playable capacity")
+	_check(SaveValidation.sanitize({"loot_inventory": many}, ["gray_meadow"])["loot_inventory"].size() == SaveValidation.INVENTORY_CAP, "inventory cannot exceed the playable capacity")
 	for invalid in [null, true, "NaN", [], {}, INF, NAN]:
 		_check(SaveValidation.number(invalid, 7, 0, 10) == 7, "numeric validator rejects " + str(invalid))
 

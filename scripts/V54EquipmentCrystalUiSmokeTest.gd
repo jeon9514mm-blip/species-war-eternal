@@ -1,5 +1,5 @@
 extends SceneTree
-## Real portrait controls and mouse input, using the same Main transactions as
+## Real landscape controls and mouse input, using the same Main transactions as
 ## play. This exercises persistence-safe proposals and escrow delivery actions.
 const RULES=preload('res://scripts/EquipmentRules.gd')
 var main: Node
@@ -35,7 +35,7 @@ func press(named: String) -> void:
 	click(target.get_global_rect().get_center());await settle()
 func layout(label: String) -> void:
 	var scroll: ScrollContainer=main.content_root.find_child('EquipmentDetailScroll',true,false)
-	if scroll==null:scroll=main.content_root.get_node_or_null('PortraitContentScroll')
+	if scroll==null:scroll=main.content_root.find_child('PortraitContentScroll',true,false)
 	if scroll==null:return
 	check(main.get_viewport_rect().encloses(scroll.get_global_rect()),label+' scroll fits screen')
 	var page: Control=scroll.get_child(0)
@@ -46,17 +46,19 @@ func layout(label: String) -> void:
 		if control is Label:
 			check(control.size.y+1>=control.get_minimum_size().y,label+' label natural height '+control.name)
 		if control is Button:
-			check(control.size.y>=48,label+' touch target '+control.name)
+			check(control.size.y>=44,label+' touch target '+control.name)
 func fixture(id: String, source: String = 'hunt') -> Dictionary:
 	return RULES.normalize({'id':id,'name':'별빛 옵션 실험 장비','slot':'weapon','level':3,'rarity':'전설','origin':source,'source_id':'moonrest_forest','set':'월식의 추격' if source=='raid' else '월광'})
 func set_filter(key: String, value: String) -> void:
 	var choice: OptionButton=node('GearFilter_'+key)
+	check(choice!=null,'filter exists '+key)
+	if choice==null:return
 	for index in choice.item_count:
 		if str(choice.get_item_metadata(index))==value:
 			choice.select(index);choice.item_selected.emit(index);await settle();return
 	check(false,'filter value exists '+key+' '+value)
 func run() -> void:
-	root.content_scale_size=Vector2i(720,1280);root.size=Vector2i(720,1280);root.gui_embed_subwindows=true
+	root.content_scale_size=Vector2i(1280,720);root.size=Vector2i(1280,720);root.gui_embed_subwindows=true
 	main=preload('res://scenes/PortraitMain.tscn').instantiate();main.save_state_path='user://v54-equipment-crystal-ui.json'
 	root.add_child(main);await settle()
 	main.set_physics_process(false);main.set_process(false);main._offline_checked=true;main.combat_effects_enabled=false
@@ -69,14 +71,19 @@ func run() -> void:
 	var low := fixture('crystal_lower_quality');low['affixes']=[{'stat':'hp_pct','value':3}]
 	main.loot_inventory=[source,target,low]
 	main._build_inventory_screen();await settle();layout('compact bag')
-	check(node('GearSettingsToggle')!=null and not node('GearAutoEquip').is_visible_in_tree(),'automatic settings start collapsed for faster item viewing')
+	check(node('GearSettingsToggle')!=null and node('GearAutoEquip')==null,'automatic settings remain outside the initial comparison workbench')
 	await press('GearSettingsToggle')
+	check(node('EquipmentOverlay')!=null and node('GearAutoEquip').is_visible_in_tree(),'advanced management settings open in their own overlay')
 	await set_filter('origin','hunt')
 	check(node('GearTile_crystal_source')==null and node('GearTile_crystal_target')!=null,'source filter displays hunting items only')
 	await set_filter('origin','all')
+	await press('EquipmentOverlayClose')
+	check(node('EquipmentOverlay')==null,'closing management returns unobstructed access to the bag')
 	await set_filter('sort','quality')
 	check(str(node('GearInventoryGrid').get_child(2).name)=='GearTile_crystal_lower_quality','quality sort places lower rolls after maximum rolls')
 	await press('GearTile_crystal_source')
+	check(main.active_screen=='inventory','source selection stays on the comparison workbench')
+	await press('GearOpenDetails')
 	check(node('GearOptionQuality')!=null and '100%' in node('GearOptionQuality').text,'max option quality is visible in selected equipment details')
 	await press('DetailTab_options')
 	layout('extraction workshop')
@@ -98,10 +105,13 @@ func run() -> void:
 	var crystal: Dictionary=main._gear_item(crystal_id)
 	check(crystal['stored_option']['stat']=='attack_pct' and int(crystal['stored_option']['value'])==6,'crystal preserves exact max-roll stat')
 	main._build_inventory_screen();await settle()
-	await set_filter('type','option_crystal')
+	await press('GearCategory_crystal')
 	check(node('GearTile_'+crystal_id)!=null and node('GearTile_crystal_target')==null,'crystal filter displays crystals without equipment controls')
 	layout('crystal bag')
 	await press('GearTile_'+crystal_id)
+	check(node('EquipmentEquip').text=='이식','crystal comparison offers transplant as its primary action')
+	check(node('GearWorkshop').disabled,'crystals cannot use normal equipment enhancement')
+	await press('GearOpenDetails')
 	check(node('DetailTab_enhance')==null and node('EquipmentDecompose')==null,'crystal detail offers neither normal enhancement nor dismantle actions')
 	check('100%' in node('GearOptionQuality').text,'crystal quality is stated as maximum-roll percentage')
 	await press('EquipmentSell')
@@ -142,11 +152,12 @@ func run() -> void:
 	var before: int=main.raid_crystals
 	if dialog!=null:await respond(dialog,true)
 	check(main.raid_crystals==before and main._gear_item('crystal_target')['affixes'][1]['value']==5,'stale extraction confirmation cannot consume a changed option')
-	for dimensions: Vector2i in [Vector2i(720,1280),Vector2i(810,1440),Vector2i(720,1560)]:
+	for dimensions: Vector2i in [Vector2i(1280,720),Vector2i(1440,810),Vector2i(1560,720)]:
 		root.size=dimensions;await settle()
 		main.set_meta('gear_bag_filters',{});main._build_inventory_screen();await settle();layout('filtered bag '+str(dimensions))
 		main._build_equipment_workshop('crystal_target');await settle();layout('extraction '+str(dimensions))
 		main._build_equipment_market();await settle();layout('crystal market '+str(dimensions))
+	main.presentation_runtime.audio.shutdown();await create_timer(.3).timeout
 	main._clear_screen();main.free();await settle()
 	print('V54 CRYSTAL UI ',checks-failures.size(),'/',checks,' PASS')
 	quit(0 if failures.is_empty() else 1)

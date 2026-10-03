@@ -31,20 +31,31 @@ func _run() -> void:
 		var saved: Dictionary=main.save_store.read_save(main.save_state_path)
 		check(saved.get("ok",false) and saved.data.formation_id=="assault" and int(saved.data.save_version)==37,"schema37 persists formation")
 		var before: Dictionary={"heroes":main.hero_battle_state.duplicate(true),"enemies":main.enemy_wave.duplicate(true),"clock":main.invasion.clock,"positions":main.roaming_hunt.enemy_positions.duplicate(),"gold":main.unclaimed_gold}
-		for choice: String in ["landscape","portrait","landscape"]:
+		for choice: String in ["landscape","portrait","auto"]:
 			main.presentation_options.orientation=choice;D.apply(main,false)
 			root.size=Vector2i(1280,720) if choice=="landscape" else Vector2i(720,1280)
 			await settle(); main._apply_portrait_resize();await settle()
-			check(main.hero_battle_state==before.heroes and main.enemy_wave==before.enemies and main.invasion.clock==before.clock and main.roaming_hunt.enemy_positions==before.positions and main.unclaimed_gold==before.gold,"orientation preserves battle state "+choice)
+			check(main.presentation_options.orientation=="landscape" and root.content_scale_size==Vector2i(1280,720) and main.get_viewport_rect().size.x>main.get_viewport_rect().size.y,"legacy choice stays landscape "+choice)
+			check(main.hero_battle_state==before.heroes and main.enemy_wave==before.enemies and main.invasion.clock==before.clock and main.roaming_hunt.enemy_positions==before.positions and main.unclaimed_gold==before.gold,"resizing preserves battle state "+choice)
 			check(is_instance_valid(main.portrait_hud),"HUD rebuilt")
 			var button=main.portrait_hud.find_child("HuntFormation",true,false)
 			check(button!=null and Rect2(Vector2.ZERO,main.get_viewport_rect().size).encloses(button.get_global_rect()),"formation command on screen "+choice)
 		main.presentation_options.orientation="auto";root.size=Vector2i(720,1280);D.apply(main,false);await settle()
-		check(root.content_scale_size==Vector2i(720,1280),"auto follows portrait")
+		check(root.content_scale_size==Vector2i(1280,720) and root.content_scale_aspect==Window.CONTENT_SCALE_ASPECT_KEEP,"portrait physical window preserves landscape content")
 		root.size=Vector2i(1280,720);D.apply(main,false);await settle()
-		check(root.content_scale_size==Vector2i(1280,720),"auto follows landscape")
+		check(root.content_scale_size==Vector2i(1280,720) and root.content_scale_aspect==Window.CONTENT_SCALE_ASPECT_EXPAND,"landscape physical window expands combat space")
 		var pref: String="user://orientation-test.cfg"
-		check(PresentationSettings.save_preferences(true,false,main.presentation_options,pref)==OK and PresentationSettings.load_preferences(pref).options.orientation=="auto","local orientation persists")
+		for old_choice: String in ["portrait","auto"]:
+			var legacy:=ConfigFile.new()
+			legacy.set_value("presentation_v82","orientation",old_choice)
+			legacy.set_value("presentation_v82","music_volume",0.23)
+			legacy.set_value("presentation_v82","performance","battery")
+			check(legacy.save(pref)==OK,"legacy preferences fixture writes")
+			var normalized: Dictionary=PresentationSettings.load_preferences(pref).options
+			check(normalized.orientation=="landscape" and is_equal_approx(normalized.music_volume,0.23) and normalized.performance=="battery","legacy preference migrates without changing sound/performance "+old_choice)
+			check(PresentationSettings.save_preferences(true,false,normalized,pref)==OK,"landscape local preferences save")
+			var written:=ConfigFile.new();written.load(pref)
+			check(written.get_value("presentation_v82","orientation")=="landscape","saved file replaces legacy orientation "+old_choice)
 		main.idle_stage=100;main._build_lobby_screen();await settle();B.select(main,"bulwark")
 		check(PRESET.save(main,0).get("ok",false),"preset stores formation")
 		B.select(main,"assault")

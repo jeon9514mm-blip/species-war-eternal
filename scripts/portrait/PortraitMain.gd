@@ -314,8 +314,7 @@ func _portrait_resize() -> void:
 	_apply_portrait_resize.call_deferred()
 func _apply_portrait_resize() -> void:
 	_resize_pending=false
-	if str(presentation_options.get("orientation", "portrait")) == "auto":
-		preload("res://scripts/DisplayOrientation.gd").apply(self, false)
+	preload("res://scripts/DisplayOrientation.gd").apply(self, false)
 	if active_screen=='combat':
 		# No screen reconstruction: do not reset the encounter, RNG, HP or movement.
 		var layout:=_combat_layout_for_width(0,_safe_margins())
@@ -340,6 +339,17 @@ func _apply_portrait_resize() -> void:
 	elif active_screen=='title':_build_title_screen()
 	elif active_screen=='faction':_build_faction_screen()
 	elif active_screen=='hero_select':_build_hero_select_screen()
+	elif active_screen=='inventory':
+		# Preserve a draft search and caret when rotation changes the page layout.
+		var search: LineEdit=content_root.find_child('GearSearch',true,false)
+		var draft: String=search.text if search!=null else ''
+		var focused: bool=search.has_focus() if search!=null else false
+		var caret: int=search.caret_column if search!=null else 0
+		_build_inventory_screen()
+		search=content_root.find_child('GearSearch',true,false)
+		if search!=null:
+			search.text=draft
+			if focused:search.grab_focus();search.caret_column=caret
 	elif active_screen=='raid':
 		# Rebuild presentation only. The new view reparents the live boss and FX
 		# before freeing the old view, preserving encounter timers and HP.

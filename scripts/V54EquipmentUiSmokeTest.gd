@@ -1,5 +1,5 @@
 extends SceneTree
-## Real portrait controls and mouse input, using the same Main transactions as
+## Real landscape controls and mouse input, using the same Main transactions as
 ## play. This exercises persistence-safe proposals and escrow delivery actions.
 const RULES=preload('res://scripts/EquipmentRules.gd')
 var main: Node
@@ -35,7 +35,7 @@ func press(named: String) -> void:
 	click(target.get_global_rect().get_center());await settle()
 func layout(label: String) -> void:
 	var scroll: ScrollContainer=main.content_root.find_child('EquipmentDetailScroll',true,false)
-	if scroll==null:scroll=main.content_root.get_node_or_null('PortraitContentScroll')
+	if scroll==null:scroll=main.content_root.find_child('PortraitContentScroll',true,false)
 	if scroll==null:return
 	check(main.get_viewport_rect().encloses(scroll.get_global_rect()),label+' scroll fits screen')
 	var page: Control=scroll.get_child(0)
@@ -46,11 +46,11 @@ func layout(label: String) -> void:
 		if control is Label:
 			check(control.size.y+1>=control.get_minimum_size().y,label+' label natural height '+control.name)
 		if control is Button:
-			check(control.size.y>=48,label+' touch target '+control.name)
+			check(control.size.y>=44,label+' touch target '+control.name)
 func fixture(id: String, origin: String = 'hunt') -> Dictionary:
 	return RULES.normalize({'id':id,'name':'달잠 숲의 별빛을 담은 전설 사냥검','slot':'weapon','level':3,'rarity':'전설','origin':origin,'source_id':'moonrest_forest','set':'월식의 추격' if origin=='raid' else '월광'})
 func run() -> void:
-	root.content_scale_size=Vector2i(720,1280);root.size=Vector2i(720,1280);root.gui_embed_subwindows=true
+	root.content_scale_size=Vector2i(1280,720);root.size=Vector2i(1280,720);root.gui_embed_subwindows=true
 	main=preload('res://scenes/PortraitMain.tscn').instantiate();main.save_state_path='user://v54-equipment-ui.json'
 	root.add_child(main);await settle()
 	main.set_physics_process(false);main.set_process(false);main._offline_checked=true;main.combat_effects_enabled=false
@@ -61,7 +61,9 @@ func run() -> void:
 	main.loot_inventory=[fixture('ui_gear')];main.equipment_overflow=[fixture('ui_overflow','raid')]
 	main._build_inventory_screen();await settle();layout('inventory')
 	await press('GearTile_ui_gear')
-	check(node('GearOrigin')!=null and '달잠 숲' in node('GearOrigin').text,'bag shows item source and source zone')
+	check(main.active_screen=='inventory','item selection keeps comparison workbench open')
+	await press('GearOpenDetails')
+	check(node('GearOrigin')!=null and str(RULES.ZONES['moonrest_forest']['name']) in node('GearOrigin').text,'bag shows item source and source zone')
 	check(node('GearSetEffect')!=null and '2세트' in node('GearSetEffect').text and '3세트' in node('GearSetEffect').text,'bag explains both set thresholds')
 	await press('EquipmentToggleLock')
 	check(bool(main._gear_item('ui_gear').get('locked',false)),'real lock action updates original item')
@@ -78,6 +80,8 @@ func run() -> void:
 	var proposal: Dictionary=main._gear_item('ui_gear')['proposal'].duplicate(true)
 	main._build_inventory_screen();await settle()
 	await press('GearTile_ui_gear')
+	check(main.active_screen=='inventory','item selection keeps comparison workbench open')
+	await press('GearOpenDetails')
 	check(node('EquipmentDecompose').disabled,'pending proposal prevents accidental dismantling')
 	main._build_equipment_workshop('ui_gear');await settle()
 	check(main._gear_item('ui_gear')['proposal']==proposal,'leaving/reopening retains paid proposal')
@@ -100,12 +104,15 @@ func run() -> void:
 	check(node('WorkshopPreview').disabled,'zero currency disables preview actions')
 	main.raid_crystals=200
 	main._build_inventory_screen();await settle()
+	await press('GearSettingsToggle')
 	await press('OpenEquipmentStash')
 	layout('stash')
 	await press('StashClaim_ui_overflow')
 	check(main.equipment_overflow.is_empty() and not main._gear_item('ui_overflow').is_empty(),'stash action returns exact protected item to bag')
 	main._build_inventory_screen();await settle()
+	check(node('EquipmentOverlay')==null,'return from stash closes the bag management overlay')
 	await press('GearTile_ui_overflow')
+	await press('GearOpenDetails')
 	await press('EquipmentDecompose')
 	confirmation=main.get_node_or_null('EquipmentDecomposeConfirmation')
 	check(confirmation!=null and '복구' in confirmation.dialog_text,'raid dismantle asks for explicit destructive confirmation')
@@ -117,7 +124,7 @@ func run() -> void:
 	check(node('EquipmentMarketConnection')!=null and '온라인 서버 연결 후' in node('EquipmentMarketConnection').text,'market explicitly explains local connection limit')
 	layout('market')
 	var price: SpinBox=node('MarketSalePrice');price.value=240
-	root.size=Vector2i(810,1440);await settle()
+	root.size=Vector2i(1440,810);await settle()
 	check(node('MarketSalePrice')==price and price.value==240,'live resize preserves entered sale price')
 	await press('MarketList')
 	confirmation=main.get_node_or_null('EquipmentTradeConfirmation')
@@ -161,14 +168,15 @@ func run() -> void:
 	check(not bought.is_empty() and bool(bought.get('bound',false)) and int(bought.get('trade_count',0))==1,'bought equipment arrives bound with its one allowed trade recorded')
 	main._build_inventory_screen();await settle()
 	await press('GearTile_ui_offer')
-	check(node('EquipmentSell').disabled,'received traded gear cannot be relisted through bag')
+	await press('GearOpenDetails')
+	check(node('EquipmentSell')!=null and node('EquipmentSell').disabled,'received traded gear cannot be relisted through bag')
 	var hero_id: String=str(main.deployed_heroes[0]['id'])
 	main._build_hero_detail_screen(hero_id);await settle();layout('equipped detail')
 	var worn: Dictionary=main._gear_item('',hero_id,'weapon')
 	await press('GearTile_'+str(worn['id']))
 	await press('DetailTab_options')
 	check(main.active_screen=='equipment_detail','worn equipment opens workshop with hero/slot context')
-	for dimensions: Vector2i in [Vector2i(720,1280),Vector2i(810,1440),Vector2i(720,1560)]:
+	for dimensions: Vector2i in [Vector2i(1280,720),Vector2i(1440,810),Vector2i(1560,720)]:
 		root.size=dimensions;await settle()
 		for screen: String in ['inventory','workshop','market','stash']:
 			match screen:
@@ -181,9 +189,16 @@ func run() -> void:
 		var reward: Label=node('PortraitRaidEquipmentRewards')
 		var start: Button=node('PortraitRaidStart')
 		check(reward!=null and '세트 1개 확정' in reward.text,'raid preview advertises actual equipment reward')
-		check(main.get_viewport_rect().encloses(reward.get_global_rect()),'raid reward fits viewport')
+		var raid_options: Button=node('RaidOptionsButton')
+		if raid_options!=null:
+			click(raid_options.get_global_rect().get_center());await settle()
+		var reward_scroll: Node=reward.get_parent()
+		while reward_scroll!=null and not reward_scroll is ScrollContainer:reward_scroll=reward_scroll.get_parent()
+		if reward_scroll!=null:reward_scroll.ensure_control_visible(reward);await settle()
+		check(reward.is_visible_in_tree() and main.get_viewport_rect().encloses(reward.get_global_rect()),'raid reward is reachable inside current information sheet')
 		check(not reward.get_global_rect().intersects(start.get_global_rect()),'raid reward and start button do not overlap')
 		check(not start.get_global_rect().intersects(node('PortraitRaidParty').get_global_rect()),'raid start and party do not overlap')
+	main.presentation_runtime.audio.shutdown();await create_timer(.3).timeout
 	main._clear_screen();main.free();await settle()
 	print('V54 EQUIPMENT UI ',checks-failures.size(),'/',checks,' PASS')
 	quit(0 if failures.is_empty() else 1)

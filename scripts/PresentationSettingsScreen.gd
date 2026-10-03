@@ -33,8 +33,7 @@ static func open(game: Node) -> void:
 	layout.add_child(scroll)
 	var body: VBoxContainer = P.stack(scroll, 14)
 	P.text(body, "소리와 진동은 전투 능력치에 영향을 주지 않습니다.", 17, S.MUTED)
-	_choice(game, body, "orientation", "화면 방향", [["portrait", "세로 모드"], ["landscape", "가로 모드"], ["auto", "기기 회전 따라가기"]])
-	P.text(body, "전투 중에도 방향을 바꿀 수 있습니다. 체력·전투 진행·보상은 유지됩니다.", 16, S.MUTED)
+	P.text(body, "화면 · 가로 모드", 19, S.GOLD).name = "PresentationLandscapeNotice"
 	var music := CheckButton.new(); music.name = "PresentationMusicEnabled"; music.text = "배경음 사용"
 	music.custom_minimum_size.y = 52; music.button_pressed = game.presentation_options["music_enabled"]
 	body.add_child(music); music.toggled.connect(func(on: bool): game._set_presentation_option("music_enabled", on))

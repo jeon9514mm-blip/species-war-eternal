@@ -12,6 +12,17 @@ func check(ok:bool,label:String) -> void:
 func settle() -> void:
 	for frame in 8:await process_frame
 func node(key:String) -> Node: return main.content_root.find_child(key,true,false)
+func press(key: String) -> void:
+	var button: Button=node(key)
+	check(button!=null,'navigation control exists '+key)
+	if button==null:return
+	check(button.is_visible_in_tree() and not button.disabled,'navigation control is usable '+key)
+	check(main.get_viewport_rect().encloses(button.get_global_rect()),'navigation control fits landscape viewport '+key)
+	var point:=button.get_global_rect().get_center()
+	var motion:=InputEventMouseMotion.new();motion.position=point;root.push_input(motion,true)
+	for down in [true,false]:
+		var event:=InputEventMouseButton.new();event.button_index=MOUSE_BUTTON_LEFT;event.pressed=down;event.position=point;root.push_input(event,true)
+	await settle()
 func run() -> void:
 	var dock:Array=NAV.dock_entries();dock[0]["method"]="broken";dock.clear()
 	check(NAV.dock_entries().size()==5 and NAV.dock_entries()[0]["method"]=="_build_lobby_screen","catalog reads cannot corrupt canonical dock")
@@ -19,7 +30,7 @@ func run() -> void:
 	check(NAV.menu_entries()[0]["label"]=="원정 캠프","menu data independent")
 	var cases:Dictionary={"lobby":"home","home":"home","heroes":"heroes","hero_detail":"heroes","combat":"battle","raid":"battle","world":"battle","inventory":"bag","bag":"bag","equipment_detail":"bag","growth":"more","war":"more","content":"more","unknown":"more"}
 	for key in cases:check(NAV.active_tab(key)==cases[key],"active tab "+key)
-	root.content_scale_size=Vector2i(720,1280);root.size=Vector2i(720,1280)
+	root.content_scale_size=Vector2i(1280,720);root.size=Vector2i(1280,720)
 	main=preload("res://scenes/PortraitMain.tscn").instantiate();main.save_state_path="user://v83-nav.json"
 	root.add_child(main);await settle();main.set_physics_process(false);main.set_process(false);main._offline_checked=true
 	main.selected_faction="aurelia";main.idle_stage=25;main._restore_deployed_heroes(["leonhardt","seraphina","aelion"])
@@ -83,7 +94,15 @@ func run() -> void:
 	main.queue_free();await settle()
 	main=portrait_host
 	main._build_inventory_screen();await settle()
-	check(node("GearQuickFilters")!=null,"bag UI still alive after compatibility menu")
+	check(node("EquipmentWorkbench")!=null and node("EquipmentComparisons")!=null and node("GearInventoryGrid")!=null,"landscape bag workbench stays alive after compatibility menu")
+	await press("GearCategory_weapon")
+	check(main.active_screen=="inventory" and main.get_meta("gear_bag_filters",{}).get("slot")=="weapon","bag category input remains functional after compatibility menu")
+	await press("PortraitNav_home")
+	check(main.active_screen=="lobby","real home dock input exits restored bag")
+	await press("PortraitNav_bag")
+	check(main.active_screen=="inventory" and node("EquipmentWorkbench")!=null,"real bag dock input returns to landscape workbench")
+	await press("GearCategory_all")
+	check(main.get_meta("gear_bag_filters",{}).get("slot")=="all","restored workbench accepts another category input")
 	if main.presentation_runtime!=null:main.presentation_runtime.audio.shutdown()
 	await create_timer(0.5).timeout
 	main.queue_free();await settle();await create_timer(0.3).timeout

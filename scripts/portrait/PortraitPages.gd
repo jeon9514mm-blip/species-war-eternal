@@ -315,14 +315,16 @@ static func gear_summary(main: Node, parent: Node, item: Dictionary, compact: bo
 static func _gear_filter(main: Node, parent: Node, key: String, entries: Array, filters: Dictionary) -> void:
 	var selection := OptionButton.new()
 	selection.mouse_filter=Control.MOUSE_FILTER_PASS
-	selection.name='GearFilter_'+key;selection.custom_minimum_size=Vector2(0,48);selection.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	selection.name='GearFilter_'+key;selection.custom_minimum_size=Vector2(0,64);selection.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	selection.clip_text=true;selection.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 	for entry: Array in entries:
 		selection.add_item(str(entry[1]));selection.set_item_metadata(selection.item_count-1,str(entry[0]))
 		if str(filters.get(key,''))==str(entry[0]):selection.select(selection.item_count-1)
 	selection.item_selected.connect(func(index: int):
 		var updated: Dictionary=main.get_meta('gear_bag_filters',{}).duplicate()
-		updated[key]=str(selection.get_item_metadata(index));main.set_meta('gear_bag_filters',updated);main.set_meta('gear_bag_page',0);main._build_inventory_screen())
+		updated[key]=str(selection.get_item_metadata(index))
+		if key=='type' and updated[key]=='option_crystal':updated['slot']='all'
+		main.set_meta('gear_bag_filters',updated);main.set_meta('gear_bag_page',0);main.set_meta('gear_bag_reset_scroll',true);main._build_inventory_screen())
 	parent.add_child(selection);M.retint(selection)
 
 static func _inventory_rows(main: Node, filters: Dictionary) -> Array:
@@ -334,11 +336,21 @@ static func _inventory_rows(main: Node, filters: Dictionary) -> Array:
 		if str(filters.get('slot','all'))!='all' and (str(item.get('item_type','equipment'))=='option_crystal' or str(item.get('slot',''))!=str(filters['slot'])):continue
 		if str(filters.get('origin','all'))!='all' and str(item.get('origin','legacy'))!=str(filters['origin']):continue
 		if str(filters.get('rarity','all'))!='all' and str(item.get('rarity','일반'))!=str(filters['rarity']):continue
+		var query:=str(filters.get('query','')).strip_edges().to_lower()
+		var searchable:=('%s %s %s'%[item.get('name',''),item.get('set',''),GEAR.affix_text(item)]).to_lower()
+		if not query.is_empty() and not query in searchable:continue
+		var state:=str(filters.get('state','all'))
+		if state=='locked' and not bool(item.get('locked',false)):continue
+		if state in ['usable','improved']:
+			var preview: Dictionary=preload('res://scripts/EquipmentComparison.gd').preview(main,item,preload('res://scripts/EquipmentComparison.gd').selected_hero(main))
+			if preview.is_empty() or not bool(preview.compatible) or not (item.get('proposal',{}) as Dictionary).is_empty():continue
+			if state=='improved' and int(preview.delta)<=0:continue
 		rows.append({'index':index,'item':item})
 	var mode := str(filters.get('sort','rarity'))
 	rows.sort_custom(func(a: Dictionary,b: Dictionary)->bool:
 		if mode=='recent':return int(a['index'])>int(b['index'])
 		var first: Dictionary=a['item'];var second: Dictionary=b['item']
+		if mode=='power' and int(first.get('power',0))!=int(second.get('power',0)):return int(first.get('power',0))>int(second.get('power',0))
 		if mode=='quality' and option_quality(first)!=option_quality(second):return option_quality(first)>option_quality(second)
 		var grades: Dictionary={'일반':0,'희귀':1,'전설':2}
 		var first_grade: int=grades.get(str(first.get('rarity','일반')),0)
@@ -467,64 +479,7 @@ static func _inventory_summary(main: Node, parent: Node) -> void:
 		_metric_tile(stats,str(entry[0]),str(entry[1]),metric_accent)
 
 static func inventory(main: Node) -> void:
-	var page := begin(main,'inventory','장비 가방','레이드 정수 %d · 필요한 장비를 빠르게 찾고 정리하세요.'%main.raid_crystals,'bag')
-	page.add_theme_constant_override('separation',10)
-	_inventory_summary(main,page)
-	var toolbar := grid(page,3)
-	action(toolbar,'추천 장착',Callable(main,'_recommend_equip_all'),true).name='GearRecommendEquip'
-	action(toolbar,'보관함 · %d'%main.equipment_overflow.size(),Callable(main,'_build_equipment_stash')).name='OpenEquipmentStash'
-	action(toolbar,'관리 닫기' if bool(main.get_meta('gear_settings_open',false)) else '관리 · 설정',func():
-		main.set_meta('gear_settings_open',not bool(main.get_meta('gear_settings_open',false)));main._build_inventory_screen()).name='GearSettingsToggle'
-	var filters: Dictionary=main.get_meta('gear_bag_filters',{})
-	_inventory_settings(main,page,filters)
-	var filter_box := card(page,'빠른 필터')
-	var controls := grid(filter_box,2)
-	controls.name='GearQuickFilters'
-	_gear_filter(main,controls,'type',[['all','전체 종류'],['equipment','장비'],['option_crystal','옵션 결정']],filters)
-	_gear_filter(main,controls,'slot',[['all','전체 부위'],['weapon','무기'],['armor','갑옷'],['accessory','장신구']],filters)
-	_gear_filter(main,controls,'rarity',[['all','전체 등급'],['전설','전설'],['희귀','희귀'],['일반','일반']],filters)
-	_gear_filter(main,controls,'sort',[['rarity','등급 높은 순'],['quality','옵션 품질순'],['recent','최근 획득순']],filters)
-	var active_filter_count := 0
-	for key in ['type','slot','origin','rarity']:
-		if str(filters.get(key,'all'))!='all':active_filter_count+=1
-	if active_filter_count>0:
-		var reset := action(filter_box,'필터 %d개 적용 중 · 모두 해제'%active_filter_count,func():
-			main.set_meta('gear_bag_filters',{});main.set_meta('gear_bag_page',0);main._build_inventory_screen())
-		reset.name='GearResetFilters'
-	var rows := _inventory_rows(main,filters)
-	var page_size := 12
-	var page_count := maxi(1,ceili(float(rows.size())/page_size))
-	var page_index := clampi(int(main.get_meta('gear_bag_page',0)),0,page_count-1)
-	main.set_meta('gear_bag_page',page_index)
-	var origin_filter := str(filters.get('origin','all'))
-	var origin_names: Dictionary={'hunt':'사냥터','raid':'레이드','legacy':'기존 장비'}
-	var status := '보유 %d개 · %d칸씩 보기'%[rows.size(),page_size]
-	if origin_filter!='all':status+=' · '+str(origin_names.get(origin_filter,'선택 출처'))
-	text(page,'내 장비  ·  '+status,20,S.GOLD).name='GearInventoryCount'
-	if rows.is_empty():
-		var empty := card(page,'새로운 장비가 기다리고 있어요' if main.loot_inventory.is_empty() else '조건에 맞는 장비가 없어요')
-		text(empty,'사냥터에서는 지역 장비, 레이드에서는 전용 세트 장비를 얻을 수 있습니다.' if main.loot_inventory.is_empty() else '종류·부위·출처 필터를 바꾸면 다른 장비를 볼 수 있습니다.',18,S.MUTED)
-		if main.loot_inventory.is_empty():action(empty,'사냥터 둘러보기',Callable(main,'_open_world_menu'),true)
-		else:action(empty,'필터 초기화',func():main.set_meta('gear_bag_filters',{});main.set_meta('gear_bag_page',0);main._build_inventory_screen()).name='GearResetFiltersEmpty'
-	var tiles := grid(page,3)
-	tiles.name='GearInventoryGrid'
-	tiles.add_theme_constant_override('h_separation',10)
-	tiles.add_theme_constant_override('v_separation',10)
-	for offset in mini(page_size,rows.size()-page_index*page_size):
-		var entry: Dictionary=rows[page_index*page_size+offset]
-		var index := int(entry['index'])
-		var item: Dictionary=entry['item']
-		main.loot_inventory[index]=item
-		_gear_tile(main,tiles,item)
-	var pager := HBoxContainer.new()
-	pager.name='GearInventoryPager';pager.add_theme_constant_override('separation',10)
-	page.add_child(pager)
-	var previous := action(pager,'‹ 이전',func():main.set_meta('gear_bag_page',page_index-1);main._build_inventory_screen())
-	previous.name='GearPagePrevious';previous.disabled=page_index==0
-	var indicator := text(pager,'%d / %d 페이지'%[page_index+1,page_count],18,S.INK)
-	indicator.name='GearPageLabel';indicator.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	var next := action(pager,'다음 ›',func():main.set_meta('gear_bag_page',page_index+1);main._build_inventory_screen())
-	next.name='GearPageNext';next.disabled=page_index>=page_count-1
+	load('res://scripts/EquipmentInventoryView.gd').build(main)
 
 static func detail(main: Node, hero_id: String, scroll_position: int = 0) -> void:
 	var hero: Dictionary=R.hero(hero_id)

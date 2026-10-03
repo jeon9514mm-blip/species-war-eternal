@@ -3,7 +3,7 @@ extends RefCounted
 ## Device-local presentation options. Never part of progression/save migration.
 const PATH := "user://ui-preferences.cfg"
 const DEFAULTS := {"music_enabled": true, "music_volume": 0.35, "effects_volume": 0.65,
-	"ui_volume": 0.55, "ambient_volume": 0.25, "haptics": "off", "performance": "balanced", "orientation": "portrait"}
+	"ui_volume": 0.55, "ambient_volume": 0.25, "haptics": "off", "performance": "balanced", "orientation": "landscape"}
 const PROFILES := {
 	"balanced": {"fps": 60, "hud_interval": 0.10, "power_interval": 0.50, "fx_limit": 96, "float_limit": 16},
 	"battery": {"fps": 30, "hud_interval": 0.20, "power_interval": 1.0, "fx_limit": 48, "float_limit": 10}}
@@ -17,7 +17,8 @@ static func sanitize(raw: Dictionary) -> Dictionary:
 			out[key] = clampf(float(value), 0.0, 1.0)
 	if str(raw.get("haptics", "")) in ["off", "light", "normal"]: out["haptics"] = str(raw["haptics"])
 	if PROFILES.has(str(raw.get("performance", ""))): out["performance"] = str(raw["performance"])
-	if str(raw.get("orientation", "")) in ["portrait", "landscape", "auto"]: out["orientation"] = str(raw["orientation"])
+	# Retain the key for old preference files, but this release supports landscape only.
+	out["orientation"] = "landscape"
 	return out
 
 static func load_preferences(path: String = PATH) -> Dictionary:

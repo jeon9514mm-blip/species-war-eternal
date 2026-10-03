@@ -1,6 +1,6 @@
 # 전투 가독성·모바일 조작·방향 AI·영웅 동작 개선
 
-Godot 4.7.2 / 검토 브랜치 `work/combat-readability-ai-motion`. 이전 8방향 사냥·UI, 3D 맵·레이드 미술, 30명 골격 작업을 포함한다. main에는 병합하지 않았다.
+Godot 4.7.2 / 검토 브랜치 `work/combat-readability-ai-motion`. 이전 8방향 사냥·UI, 3D 맵·레이드 미술, 30명 골격 작업을 포함한다. 이 작업은 2026-10-03 원격 main `83476a92c1018066d34bf3743e58f9006a33497f`에 반영했다. 이후 가로 전용·장비 화면 기준은 [현재 개발 기록](LANDSCAPE_EQUIPMENT_KO.md)을 따른다.
 
 ## 레이드와 모바일 조작
 

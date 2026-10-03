@@ -1,33 +1,135 @@
 {
   "project": "Species War: Eternal",
   "development_step": "v83-6.5",
-  "workstream": "combat_readability_ai_motion",
-  "status": "quality_review_ready",
+  "workstream": "landscape_equipment_200",
+  "status": "validated_main",
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "save_version": 37,
-  "script_checks_passed": 388,
-  "script_checks_total": 388,
-  "focused_engine_tests_passed": 18,
-  "focused_engine_tests_total": 18,
+  "orientation": "landscape_only",
+  "logical_viewport": [
+    1280,
+    720
+  ],
+  "inventory_capacity": 200,
+  "inventory_grid_columns": 4,
+  "inventory_page_size": 40,
+  "inventory_pages_at_capacity": 5,
+  "comparison_panels": 2,
+  "legacy_orientation_settings_migrated": true,
+  "orientation_selector_removed": true,
+  "script_checks_passed": 393,
+  "script_checks_total": 393,
+  "focused_engine_tests_passed": 17,
+  "focused_engine_tests_total": 17,
+  "inventory_capacity_checks_passed": 729,
+  "inventory_capacity_suites_passed": 5,
+  "landscape_settings_suites_passed": 3,
+  "final_equipment_ui_validation_complete": true,
+  "actual_ui_captures": 10,
   "all_historical_tests_executed": false,
-  "architecture_unit_tests": 12,
-  "actual_ui_captures": 26,
-  "directional_starter_fixtures": 16,
-  "hero_motion_tracks": 16,
-  "hero_motion_profiles": 30,
   "android_tests": 0,
   "artwork_source_files_changed": false,
   "balance_data_changed": false,
-  "combat_movement_rules_changed": true,
+  "combat_movement_rules_changed": false,
   "game_zip_created": false,
-  "preview_branch": "work/combat-readability-ai-motion",
-  "production_applied": false,
-  "validation": "checks/combat-quality/regression.json",
+  "working_branch": "main",
+  "production_applied": true,
+  "documentation": "docs/LANDSCAPE_EQUIPMENT_KO.md",
+  "validation": "checks/landscape-equipment/regression.json",
+  "completed_tests": [
+    {
+      "script": "scripts/EquipmentUpgradeSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V55EquipmentDetailUiSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V54EquipmentUiSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V54EquipmentCrystalUiSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V54EquipmentPersistenceSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V54EquipmentMarketSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V54EquipmentIntegrationSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V54EquipmentRulesSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/EquipmentSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/InventorySmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V83NavigationSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/UnifiedInterfaceSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/InventoryCapacitySmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V27SaveRecoverySmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V8362FormationDisplaySmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V82PresentationUiSmokeTest.gd",
+      "passed": true
+    },
+    {
+      "script": "scripts/V24MobileLandscapeSmokeTest.gd",
+      "passed": true
+    }
+  ],
+  "previous_combat_quality_validation": {
+    "validation": "checks/combat-quality/regression.json",
+    "script_checks_passed": 388,
+    "focused_engine_tests_passed": 18,
+    "actual_ui_captures": 26,
+    "directional_starter_fixtures": 16,
+    "hero_motion_tracks": 16,
+    "hero_motion_profiles": 30
+  },
+  "pending_current_work": [],
   "deferred": [
     "Android device validation",
     "long-session balance",
     "separated body artwork and hidden-part painting",
     "online, accounts and cloud save"
   ],
-  "editor_reimport_verified": false
+  "editor_reimport_verified": false,
+  "previous_published_main_commit": "83476a92c1018066d34bf3743e58f9006a33497f",
+  "previous_published_scope": [
+    "maps",
+    "raid arenas",
+    "hero skeletal rigs",
+    "unified UI",
+    "multidirectional combat",
+    "combat readability and motion polish"
+  ]
 }

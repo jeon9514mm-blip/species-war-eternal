@@ -31,5 +31,7 @@ func _init() -> void:
 		push_error("Armor should not enhance without enough gold")
 		quit(1)
 	print("equipment_smoke_test_ok before_power=%d after_power=%d weapon=%d gold=%d" % [before_power, after_power, equipment["weapon"], main.wallet_gold])
-	main.free()
+	main.set_process(false);main.set_physics_process(false)
+	main.presentation_runtime.audio.shutdown();await create_timer(.3).timeout
+	main.free();await process_frame
 	quit(0)

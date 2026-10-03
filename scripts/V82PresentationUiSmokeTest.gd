@@ -21,6 +21,8 @@ func _run() -> void:
 	check(item("PresentationSettingsEntry") != null and item("PortraitMenuScroll") != null, "new settings reachable without overcrowded fixed menu")
 	item("PresentationSettingsEntry").emit_signal("pressed"); await settle()
 	check(item("PresentationSettingsScroll") != null and item("PresentationClose") != null, "scroll body and fixed close control")
+	check(item("Presentation_orientation") == null and item("PresentationLandscapeNotice") != null, "landscape-only settings have no portrait/auto selector")
+	check(main.presentation_options.orientation == "landscape" and root.content_scale_size == Vector2i(1280,720), "saved settings and viewport stay landscape")
 	for name in ["music_volume","effects_volume","ui_volume","ambient_volume","haptics","performance"]:
 		check(item("Presentation_"+name) != null, "visible option " + name)
 	var gold: int = main.wallet_gold; var tick_rate: int = Engine.physics_ticks_per_second; var speed: float = main.battle_speed

@@ -3,6 +3,7 @@ extends RefCounted
 
 ## Shared, local equipment rules. Normalization validates saved data; it does not
 ## replace an authoritative server when player-to-player trading is introduced.
+const INVENTORY_CAP := 200
 const SLOTS := ["weapon", "armor", "accessory"]
 const RARITIES := ["일반", "희귀", "전설"]
 const HUNT_ROLES := ["dealer", "defender", "support"]

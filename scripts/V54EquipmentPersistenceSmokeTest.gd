@@ -73,12 +73,12 @@ func _nested_metadata() -> void:
 
 func _capacity() -> void:
 	var items: Array = []
-	for index in 32:
+	for index in SaveValidation.INVENTORY_CAP + 2:
 		items.append(_item("bag_%d" % index))
 	var extra := _item("overflow_existing")
 	var clean := SaveValidation.sanitize({"loot_inventory": items, "equipment_overflow": [extra]}, ["gray_meadow"])
-	_check(clean["loot_inventory"].size() == 30 and clean["equipment_overflow"].size() == 3, "oversized legacy bag moves protected excess into recovery storage")
-	_check(clean["equipment_overflow"][0]["id"] == "bag_30" and clean["equipment_overflow"][2]["id"] == "overflow_existing", "bag spill preserves exact items alongside existing recovery items")
+	_check(clean["loot_inventory"].size() == SaveValidation.INVENTORY_CAP and clean["equipment_overflow"].size() == 3, "oversized legacy bag moves protected excess into recovery storage")
+	_check(clean["equipment_overflow"][0]["id"] == "bag_%d" % SaveValidation.INVENTORY_CAP and clean["equipment_overflow"][2]["id"] == "overflow_existing", "bag spill preserves exact items alongside existing recovery items")
 	var many: Array = []
 	for index in 3002:
 		many.append({"id": "overflow_%d" % index, "slot": "armor", "locked": true})

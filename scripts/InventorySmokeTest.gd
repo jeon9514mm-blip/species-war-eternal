@@ -33,5 +33,7 @@ func _init() -> void:
 		push_error("Inventory decomposition failed")
 		quit(1)
 	print("inventory_smoke_test_ok rarity=%s level=%d gold=%d" % [equipped_rarity["weapon"], equipped["weapon"], main.wallet_gold])
-	main.free()
+	main.set_process(false);main.set_physics_process(false)
+	main.presentation_runtime.audio.shutdown();await create_timer(.3).timeout
+	main.free();await process_frame
 	quit(0)
