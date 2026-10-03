@@ -523,12 +523,12 @@
   "base_main_commit": "eb1812d9dd28eca0f830322f2e33a01bb434a57e",
   "documentation": "docs/ART_DIRECTION_PILOT_KO.md",
   "validation": "checks/art-direction-pilot/regression.json",
-  "script_checks_scope": "six newly added art-pilot scripts only; not a new whole-project script audit",
-  "script_checks_passed": 6,
-  "script_checks_total": 6,
+  "script_checks_scope": "seven newly added art-pilot scripts only; not a whole-project script audit",
+  "script_checks_passed": 7,
+  "script_checks_total": 7,
   "focused_engine_tests_passed": 1,
   "focused_engine_tests_total": 1,
-  "runtime_assertions_passed": 272,
+  "runtime_assertions_passed": 412,
   "runtime_assertions_note": "One pilot integration suite; previous raid totals are preserved separately.",
   "final_art_pilot_validation_complete": true,
   "actual_ui_captures": 7,
@@ -539,14 +539,23 @@
       "script": "scripts/ArtDirectionPilotSmokeTest.gd",
       "exit_code": 0,
       "passed": true,
-      "checks": 272,
+      "checks": 412,
       "log": "checks/art-direction-pilot/runtime.log",
       "results": "checks/art-direction-pilot/runtime-results.json"
     }
   ],
   "new_artwork_files_added": [
     "assets/art-direction/pilot-01/leonhardt-concept.png",
-    "assets/art-direction/pilot-01/meadow-ground.png"
+    "assets/art-direction/pilot-01/meadow-ground.png",
+    "assets/art-direction/pilot-01/layers/clouds.png",
+    "assets/art-direction/pilot-01/layers/foothills.png",
+    "assets/art-direction/pilot-01/layers/foreground.png",
+    "assets/art-direction/pilot-01/layers/ground-details.png",
+    "assets/art-direction/pilot-01/layers/midtrees.png",
+    "assets/art-direction/pilot-01/layers/mountains.png",
+    "assets/art-direction/pilot-01/layers/sky.png",
+    "assets/art-direction/pilot-01/layers/treeline.png",
+    "assets/art-direction/pilot-01/layers/village.png"
   ],
   "project_godot_changed": false,
   "production_entry_scene_changed": false,
@@ -586,11 +595,11 @@
       "use": "pilot ground material only",
       "visual_mapping_size": [
         64,
-        44
+        88
       ],
       "visual_mapping_origin": [
         -16,
-        -12
+        -34
       ],
       "gameplay_bounds": [
         32,
@@ -626,7 +635,21 @@
       "attack_1",
       "hit",
       "death"
-    ]
+    ],
+    "parallax": {
+      "render_layers": 18,
+      "new_paintings": 9,
+      "existing_ground_paintings": 1,
+      "cloud_and_foreground_reused": true,
+      "scroll_trigger": "actual battle camera focus; finite clamped offsets",
+      "gameplay_coordinates": [
+        32,
+        20
+      ],
+      "source_manifest": "assets/art-direction/pilot-01/ART_SOURCE.json",
+      "prompts": "docs/MAP_PARALLAX_PROMPTS_KO.md",
+      "resource_estimate": "checks/art-direction-pilot/layer-resource-estimate.json"
+    }
   },
   "editor_reimport_verified": true
 }

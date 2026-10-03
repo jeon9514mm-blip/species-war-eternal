@@ -10,13 +10,13 @@
 
 `scenes/art/ArtDirectionLab.tscn`을 F6로 실행하면 기존 실제 8방향 사냥·진형·피해·보상 흐름 위에서 새 초원을 검토합니다. `원래 맵과 비교` 버튼은 전투를 초기화하지 않고 표시 맵을 교체합니다. 사냥 캐릭터는 기존 원화·동작을 유지합니다. `영웅 원화 보기`는 `scenes/art/HeroConceptStudy.tscn`의 정적인 비교 화면으로 이동하며, 이 장면 자체는 `Main`이나 저장 서비스를 생성하지 않습니다.
 
-새 자산은 레온하르트 원화 시안 1164×1351 RGBA PNG와 회화풍 초원 바닥 1536×1024 PNG입니다. [ART_SOURCE.json](assets/art-direction/pilot-01/ART_SOURCE.json)에 AI 생성·참조 원화·사용 장면·미완료 상태를 기록했습니다. 신규 원화는 아직 분리 파트가 아니며 새 애니메이션 제작 수는 0입니다. 31개 파트와 21개 관절 명세는 새 그림 검수 후 수정할 제안값으로, 런타임에 연결하지 않았습니다.
+새 자산은 레온하르트 원화 시안 1164×1351 RGBA PNG, 회화풍 초원 바닥 1536×1024 PNG, 패럴랙스 배경 8종의 2172×724 PNG와 지면 장식 6형을 담은 1536×1024 단일 아틀라스입니다. 하늘·구름·산·언덕·숲·마을·수목·전경 원화를 18개 합성층으로 연결하며 구름과 전경은 두 깊이에 재사용합니다. [층별 제작 프롬프트](docs/MAP_PARALLAX_PROMPTS_KO.md)를 함께 제공합니다. [ART_SOURCE.json](assets/art-direction/pilot-01/ART_SOURCE.json)에 AI 생성·참조 원화·사용 장면·미완료 상태를 기록했습니다. 신규 원화는 아직 분리 파트가 아니며 새 애니메이션 제작 수는 0입니다. 31개 파트와 21개 관절 명세는 새 그림 검수 후 수정할 제안값으로, 런타임에 연결하지 않았습니다.
 
 시범의 진행·설정은 로드·영속 저장하지 않고 메모리에서만 처리합니다. 기본 저장본 대신 시범 이름 공간을 사용하며, 레이드 보고서만 별도 `user://art-direction-lab/raid-reports.json`에 기록합니다. 일반 F6 사용에는 별도 `XDG_DATA_HOME`이 필요하지 않습니다. 저장 보존을 검사하는 자동 테스트는 기본 경로 모양의 검증용 파일을 만들기 때문에 폐기 가능한 별도 `XDG_DATA_HOME`에서만 실행합니다.
 
 `project.godot`, 기본 실행 장면과 운영용 게임 코드는 그대로 유지합니다. GitHub main에는 검토용 장면·자산·문서가 추가되는 것이며, 완성 디자인을 기본 플레이에 적용하는 단계가 아닙니다. 가로 고정·장비 200칸·레이드 10배 수치도 유지합니다.
 
-이번 검사에서 새 스크립트 6/6개와 독립 시범 통합 272/272항목을 통과했습니다. 8방향 실제 전투·맵 비교·실제 포인터 입력과 장면 왕복·저장 격리를 확인하고 화면 7장과 실행 영상을 남겼습니다. 최종 집계는 [checks/art-direction-pilot/regression.json](checks/art-direction-pilot/regression.json), 캡처는 [captures](checks/art-direction-pilot/captures), 영상은 [pilot-live.mp4](checks/art-direction-pilot/pilot-live.mp4)에 남깁니다. 이전 레이드 단계의 405개·22종·17,405항목·13장은 이번 검증 숫자로 재사용하지 않습니다.
+이번 검사에서 새 스크립트 7/7개와 독립 시범 통합 412/412항목을 통과했습니다. 8방향 실제 전투·맵 비교·실제 포인터 입력과 장면 왕복·저장 격리를 확인하고 화면 7장과 실행 영상을 남겼습니다. 최종 집계는 [checks/art-direction-pilot/regression.json](checks/art-direction-pilot/regression.json), 캡처는 [captures](checks/art-direction-pilot/captures), 영상은 [pilot-live.mp4](checks/art-direction-pilot/pilot-live.mp4)에 남깁니다. 이전 레이드 단계의 405개·22종·17,405항목·13장은 이번 검증 숫자로 재사용하지 않습니다.
 
 다음 순서는 **원화·맵 검토 → 31개 부위 분리 → 핵심 6동작 → 16종 → 대표 4인 → 전체 30명**입니다. 신규 동작·모바일 기기 성능·전체 영웅 전환 완료를 주장하지 않습니다.
 

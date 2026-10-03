@@ -22,9 +22,463 @@
       1536,
       1024
     ],
-    "source": "AI-generated original hand-painted ground texture from a text prompt. Mapped once over a 64 by 44 visual apron centered at (16,10); existing 32 by 20 hunt coordinates are unchanged.",
+    "source": "AI-generated original hand-painted ground texture from a text prompt. Mapped once over a 64 by 88 visual apron centered at (16,10); existing 32 by 20 hunt coordinates are unchanged.",
     "used_by_production_combat": false,
     "used_by": "res://scripts/art/PainterlyMeadow.gd",
-    "status": "pilot_surface_review"
+    "status": "pilot_surface_review",
+    "visual_apron_origin": [
+      -16,
+      -34
+    ],
+    "visual_apron_size": [
+      64,
+      88
+    ],
+    "unchanged_hunt_size": [
+      32,
+      20
+    ]
+  },
+  "layered_meadow": {
+    "status": "pilot_implemented_and_validated_pending_visual_feedback",
+    "unique_new_image_assets": 9,
+    "composition_layer_count": 18,
+    "composition_breakdown": {
+      "new_image_first_use": 9,
+      "reused_cloud_and_foreground_images": 2,
+      "existing_world_ground": 1,
+      "procedural_haze_ground_light_dust_shafts_butterflies_bokeh": 6
+    },
+    "prompt_document": "docs/MAP_PARALLAX_PROMPTS_KO.md",
+    "prompt_document_note": "Recommended copy-paste recreation prompts and art direction, not an exact transcript of the original generation tool requests.",
+    "implementation": "res://scripts/art/LayeredMeadowBackdrop.gd",
+    "used_by": "res://scenes/art/ArtDirectionLab.tscn",
+    "used_by_production_combat": false,
+    "assets": [
+      {
+        "id": "sky",
+        "image": "layers/sky.png",
+        "size": [
+          2172,
+          724
+        ],
+        "aspect_ratio": "3:1",
+        "format": "RGB PNG",
+        "file_bytes": 1160193,
+        "sha256": "706f4f94bbf0a8545063830b33a726fdd6d4bd3d9e645d38221cc6c05ef2573f",
+        "alpha_extrema": null,
+        "transparent_background": false,
+        "source": "Original AI-generated image from a text-only prompt; no reference-image input",
+        "used_by_layers": [
+          "Sky"
+        ],
+        "verification": "file size, image mode, alpha range and SHA-256 measured; source image visually inspected",
+        "used_by_production_combat": false
+      },
+      {
+        "id": "clouds",
+        "image": "layers/clouds.png",
+        "size": [
+          2172,
+          724
+        ],
+        "aspect_ratio": "3:1",
+        "format": "RGBA PNG",
+        "file_bytes": 886136,
+        "sha256": "48e2e2480d2d7a28b0bc2c4cd2539c071f4ceb31fcaa656c5652d92a6831db3c",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_background": true,
+        "source": "Original AI-generated image from a text-only prompt; no reference-image input",
+        "used_by_layers": [
+          "FarClouds",
+          "NearClouds"
+        ],
+        "verification": "file size, image mode, alpha range and SHA-256 measured; source image visually inspected",
+        "used_by_production_combat": false
+      },
+      {
+        "id": "mountains",
+        "image": "layers/mountains.png",
+        "size": [
+          2172,
+          724
+        ],
+        "aspect_ratio": "3:1",
+        "format": "RGBA PNG",
+        "file_bytes": 1346463,
+        "sha256": "fb786969a45ffe0caf4bd3a7a786db33a4f13a635ebf943f6b62974f226c9c69",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_background": true,
+        "source": "Original AI-generated image from a text-only prompt; no reference-image input",
+        "used_by_layers": [
+          "Mountains"
+        ],
+        "verification": "file size, image mode, alpha range and SHA-256 measured; source image visually inspected",
+        "used_by_production_combat": false
+      },
+      {
+        "id": "foothills",
+        "image": "layers/foothills.png",
+        "size": [
+          2172,
+          724
+        ],
+        "aspect_ratio": "3:1",
+        "format": "RGBA PNG",
+        "file_bytes": 1305757,
+        "sha256": "fe5f4e299a7a37398177b2c3e010b9a1dd0a3909e1876868648bd9ab2f9091b3",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_background": true,
+        "source": "Original AI-generated image from a text-only prompt; no reference-image input",
+        "used_by_layers": [
+          "Foothills"
+        ],
+        "verification": "file size, image mode, alpha range and SHA-256 measured; source image visually inspected",
+        "used_by_production_combat": false
+      },
+      {
+        "id": "treeline",
+        "image": "layers/treeline.png",
+        "size": [
+          2172,
+          724
+        ],
+        "aspect_ratio": "3:1",
+        "format": "RGBA PNG",
+        "file_bytes": 1527325,
+        "sha256": "8dfb0f39a252c04a51962e256644f5d1f575b9513183db5225192aaca637621d",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_background": true,
+        "source": "Original AI-generated image from a text-only prompt; no reference-image input",
+        "used_by_layers": [
+          "Treeline"
+        ],
+        "verification": "file size, image mode, alpha range and SHA-256 measured; source image visually inspected",
+        "used_by_production_combat": false
+      },
+      {
+        "id": "village",
+        "image": "layers/village.png",
+        "size": [
+          2172,
+          724
+        ],
+        "aspect_ratio": "3:1",
+        "format": "RGBA PNG",
+        "file_bytes": 1432979,
+        "sha256": "f3bf93a7f675c9bac7d4577b036e86de044f2894a1ff19933224d922d34b680b",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_background": true,
+        "source": "Original AI-generated image from a text-only prompt; no reference-image input",
+        "used_by_layers": [
+          "Village"
+        ],
+        "verification": "file size, image mode, alpha range and SHA-256 measured; source image visually inspected",
+        "used_by_production_combat": false
+      },
+      {
+        "id": "midtrees",
+        "image": "layers/midtrees.png",
+        "size": [
+          2172,
+          724
+        ],
+        "aspect_ratio": "3:1",
+        "format": "RGBA PNG",
+        "file_bytes": 1720182,
+        "sha256": "41b28cf1f6c865887793207b11954b207e80ab2aa2614c69bd993cfcb67316cc",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_background": true,
+        "source": "Original AI-generated image from a text-only prompt; no reference-image input",
+        "used_by_layers": [
+          "Midtrees"
+        ],
+        "verification": "file size, image mode, alpha range and SHA-256 measured; source image visually inspected",
+        "used_by_production_combat": false
+      },
+      {
+        "id": "foreground",
+        "image": "layers/foreground.png",
+        "size": [
+          2172,
+          724
+        ],
+        "aspect_ratio": "3:1",
+        "format": "RGBA PNG",
+        "file_bytes": 1636125,
+        "sha256": "c82a3ce8f123659215a273849e3baa342582f3e0ea46631941759e5c6c28b004",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_background": true,
+        "source": "Original AI-generated image from a text-only prompt; no reference-image input",
+        "used_by_layers": [
+          "ForegroundFar",
+          "ForegroundNear"
+        ],
+        "verification": "file size, image mode, alpha range and SHA-256 measured; source image visually inspected",
+        "used_by_production_combat": false
+      },
+      {
+        "id": "ground_details",
+        "image": "layers/ground-details.png",
+        "size": [
+          1536,
+          1024
+        ],
+        "aspect_ratio": "3:2",
+        "format": "RGBA PNG",
+        "file_bytes": 2376888,
+        "sha256": "11ce9feba37009c090424f557a86aac526bbb497f5f52a10ed0257b5d1626f0f",
+        "alpha_extrema": [
+          0,
+          254
+        ],
+        "transparent_background": true,
+        "source": "Original AI-generated ground-patch atlas from a text-only prompt; no reference-image input",
+        "generation_artifact": "/workspace/generated_images/exec-f273f436-2533-4079-9c53-bcbc992abd8f.png",
+        "used_by_layers": [
+          "GroundDetails"
+        ],
+        "verification": "file size, image mode, alpha range and SHA-256 measured; source image visually inspected",
+        "used_by_production_combat": false,
+        "atlas_layout": {
+          "columns": 3,
+          "rows": 2,
+          "cell_size": [
+            512,
+            512
+          ],
+          "sprite_variation_count": 6,
+          "independent_image_count": 1,
+          "variants_reading_order": [
+            "clover",
+            "white daisies",
+            "mossy stones",
+            "yellow dandelions",
+            "blue wildflowers",
+            "grass and pale pebble"
+          ]
+        },
+        "placement": "UV regions on actual world-space ground meshes, not a detached screen-space ground overlay",
+        "world_patch_count": 24,
+        "render_mesh_count": 1
+      }
+    ],
+    "layers": [
+      {
+        "name": "Sky",
+        "source": "layers/sky.png",
+        "kind": "new_image"
+      },
+      {
+        "name": "FarClouds",
+        "source": "layers/clouds.png",
+        "kind": "new_image"
+      },
+      {
+        "name": "Mountains",
+        "source": "layers/mountains.png",
+        "kind": "new_image"
+      },
+      {
+        "name": "NearClouds",
+        "source": "layers/clouds.png",
+        "kind": "reused_image"
+      },
+      {
+        "name": "Foothills",
+        "source": "layers/foothills.png",
+        "kind": "new_image"
+      },
+      {
+        "name": "Treeline",
+        "source": "layers/treeline.png",
+        "kind": "new_image"
+      },
+      {
+        "name": "Village",
+        "source": "layers/village.png",
+        "kind": "new_image"
+      },
+      {
+        "name": "Midtrees",
+        "source": "layers/midtrees.png",
+        "kind": "new_image"
+      },
+      {
+        "name": "HorizonHaze",
+        "source": "procedural shader",
+        "kind": "procedural"
+      },
+      {
+        "name": "Ground",
+        "source": "meadow-ground.png",
+        "kind": "existing_world_material",
+        "camera_ratio": 1.0,
+        "world_anchored": true
+      },
+      {
+        "name": "GroundDapple",
+        "source": "procedural world-space light",
+        "kind": "procedural",
+        "camera_ratio": 1.0,
+        "world_anchored": true
+      },
+      {
+        "name": "GroundDetails",
+        "source": "layers/ground-details.png",
+        "kind": "new_image_world_material",
+        "camera_ratio": 1.0,
+        "world_anchored": true,
+        "sprite_variations": 6
+      },
+      {
+        "name": "LightShafts",
+        "source": "procedural canvas shader",
+        "kind": "procedural",
+        "protected_play_area_maximum_alpha": 0.026
+      },
+      {
+        "name": "ForegroundFar",
+        "source": "layers/foreground.png",
+        "kind": "new_image"
+      },
+      {
+        "name": "ForegroundNear",
+        "source": "layers/foreground.png",
+        "kind": "reused_image"
+      },
+      {
+        "name": "EdgeDust",
+        "source": "procedural animated decorative points",
+        "kind": "procedural",
+        "count": 28
+      },
+      {
+        "name": "AmbientButterflies",
+        "source": "procedural animated decorative shapes",
+        "kind": "procedural",
+        "count": 3
+      },
+      {
+        "name": "ForegroundBokeh",
+        "source": "procedural soft decorative shapes",
+        "kind": "procedural",
+        "count": 6
+      }
+    ],
+    "design_provenance": {
+      "user_reference": "User-provided Rellion gameplay video and shared Meta AI design discussion",
+      "meta_share_url": "https://www.meta.ai/share/c/OKcrGPZBNy?utm_source=android_meta_ai_sl",
+      "reference_type": "design suggestions; not verified evidence of the reference game engine or asset pipeline",
+      "adapted_ideas": [
+        "separate distant scenery, middle scenery and foreground",
+        "desaturated blue-green atmospheric perspective",
+        "warm upper-left diffuse light",
+        "transparent scenic layers",
+        "irregular top-down ground-patch variations",
+        "small pause-aware decorative butterflies and dust",
+        "subtle warm light shafts and edge bokeh"
+      ],
+      "not_adopted": [
+        "old ParallaxBackground/ParallaxLayer example",
+        "0.8 motion scale for actual battle ground",
+        "endless time-driven horizontal scrolling",
+        "claims that the reference game uses exactly five layers",
+        "CanvasItemMaterial Blur/Texture Blur property example",
+        "CanvasModulate Intensity property example",
+        "World2D.environment SDFGI and volumetric-fog example",
+        "unconditional Time.get_ticks_msec-driven decoration that ignores game pause"
+      ],
+      "additional_shared_quality_mockup": {
+        "reviewed": true,
+        "role": "Static design example with user-interface framing; not evidence of live gameplay, engine pipeline or measured performance",
+        "observed_aesthetic_features": [
+          "low central valley with grouped cottages toward both sides",
+          "muted blue distant mountains",
+          "varied clover, wildflowers and stones with a readable central lawn",
+          "warm upper-left shafts and softly blurred foreground",
+          "small decorative butterflies and motes"
+        ],
+        "used_as_image_generation_input": false
+      }
+    },
+    "camera_contract": "Decoration follows bounded offsets from the actual battle camera focus; the existing world ground, actors and combat markers remain anchored to the same camera coordinates.",
+    "new_hero_animation_tracks_authored": 0,
+    "android_performance_verified": false,
+    "reference_similarity_percentage_claimed": null,
+    "runtime_layer_kinds": {
+      "canvas_image_layers": 10,
+      "world_layers": 3,
+      "procedural_canvas_layers": 5
+    },
+    "environment_animation": {
+      "status": "implemented_and_runtime_validated",
+      "timer": "bounded presentation-only local clock; independent of gameplay RNG",
+      "enabled_only_when": [
+        "lab battle active",
+        "game processing enabled",
+        "not suspended",
+        "SceneTree not paused",
+        "environment animation enabled",
+        "painterly map active"
+      ],
+      "frozen_in": [
+        "original map comparison",
+        "menus",
+        "game pause",
+        "suspended game"
+      ],
+      "animated_effects": [
+        "edge dust",
+        "foreground sway",
+        "butterflies",
+        "light and bokeh variation"
+      ],
+      "foreground_sway_logical_pixels": [
+        1.4,
+        2.0
+      ],
+      "butterfly_count": 3,
+      "dust_count": 28,
+      "bokeh_count": 6,
+      "changes_battle_clock_or_coordinates": false,
+      "heavy_volumetric_fog_or_sdfgi_required": false,
+      "global_ui_tint_applied": false
+    },
+    "final_runtime_validation": {
+      "run": "run06",
+      "checks_passed": 412,
+      "checks_total": 412,
+      "actual_actor_head_and_foot_safe_area_samples": 4844,
+      "ground_patch_count": 24,
+      "ground_detail_mesh_count": 1,
+      "new_painted_files": 9,
+      "layer_count": 18,
+      "report": "checks/art-direction-pilot/regression.json",
+      "scope": "PC Godot pilot runtime; not Android performance or visual approval",
+      "natural_physics_only_startup_verified": true,
+      "live_recording_atmosphere_elapsed_seconds": 11.7416666666666
+    }
   }
 }

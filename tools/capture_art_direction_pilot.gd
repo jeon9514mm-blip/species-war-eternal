@@ -3,6 +3,7 @@ extends SceneTree
 ## Godot's --write-movie option; concept art is never substituted for live actors.
 var game: Node
 var output := "res://checks/art-direction-pilot/captures"
+var capture_metrics: Array[Dictionary] = []
 
 func _initialize() -> void:
 	_run.call_deferred()
@@ -15,6 +16,31 @@ func capture(label: String) -> void:
 	await RenderingServer.frame_post_draw
 	var path := ProjectSettings.globalize_path(output).path_join(label + ".png")
 	assert(root.get_texture().get_image().save_png(path) == OK)
+	capture_metrics.append({
+		"capture": label,
+		"window_size": [root.size.x, root.size.y],
+		"draw_calls": int(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)),
+		"rendered_objects": int(Performance.get_monitor(Performance.RENDER_TOTAL_OBJECTS_IN_FRAME)),
+		"texture_memory_bytes": int(Performance.get_monitor(Performance.RENDER_TEXTURE_MEM_USED)),
+		"video_memory_bytes": int(Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED)),
+	})
+	if game != null and game.get("combat_labels") is Dictionary:
+		var field = game.combat_labels.get("terrain")
+		if is_instance_valid(field) and field.get("backdrop") != null:
+			capture_metrics[-1]["painterly_active"] = field.painterly_active
+			capture_metrics[-1]["layer_count"] = field.backdrop.layer_manifest().size()
+			capture_metrics[-1]["atmosphere"] = field.backdrop.atmosphere_state()
+			if label == "meadow-live":
+				assert(field.backdrop.atmosphere_time > 1.0, "Live hunt must actually animate its atmosphere")
+	var filename := "movie-render-metrics.json" if "--movie" in OS.get_cmdline_user_args() else "render-metrics.json"
+	var metrics_file := FileAccess.open("res://checks/art-direction-pilot/" + filename, FileAccess.WRITE)
+	assert(metrics_file != null)
+	metrics_file.store_string(JSON.stringify({
+		"scope": "Whole preview window, including existing actors and UI; renderer counters, not device frame-rate measurements.",
+		"renderer": "Vulkan llvmpipe software renderer",
+		"captures": capture_metrics,
+	}, "  ") + "\n")
+	metrics_file.close()
 	print("ART_PILOT_CAPTURE ", label)
 
 func dispose_game() -> void:

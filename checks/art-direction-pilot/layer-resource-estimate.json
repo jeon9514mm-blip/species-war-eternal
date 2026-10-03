@@ -1,0 +1,106 @@
+{
+  "assets": [
+    {
+      "name": "clouds.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "file_bytes": 886136,
+      "rgba8_bytes": 6290112,
+      "transparent_pixels": 1094817
+    },
+    {
+      "name": "foothills.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "file_bytes": 1305757,
+      "rgba8_bytes": 6290112,
+      "transparent_pixels": 897254
+    },
+    {
+      "name": "foreground.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "file_bytes": 1636125,
+      "rgba8_bytes": 6290112,
+      "transparent_pixels": 928492
+    },
+    {
+      "name": "ground-details.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "file_bytes": 2376888,
+      "rgba8_bytes": 6291456,
+      "transparent_pixels": 869697
+    },
+    {
+      "name": "midtrees.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "file_bytes": 1720182,
+      "rgba8_bytes": 6290112,
+      "transparent_pixels": 924080
+    },
+    {
+      "name": "mountains.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "file_bytes": 1346463,
+      "rgba8_bytes": 6290112,
+      "transparent_pixels": 691281
+    },
+    {
+      "name": "sky.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGB",
+      "file_bytes": 1160193,
+      "rgba8_bytes": 6290112,
+      "transparent_pixels": 0
+    },
+    {
+      "name": "treeline.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "file_bytes": 1527325,
+      "rgba8_bytes": 6290112,
+      "transparent_pixels": 890545
+    },
+    {
+      "name": "village.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "file_bytes": 1432979,
+      "rgba8_bytes": 6290112,
+      "transparent_pixels": 999266
+    }
+  ],
+  "source_total_bytes": 13392048,
+  "estimated_rgba8_base_level_bytes": 56612352,
+  "note": "Conservative RGBA8 base-level estimate; not actual allocated GPU memory, excludes existing ground and all other game assets."
+}

@@ -1,9 +1,9 @@
 {
   "base_commit": "eb1812d9dd28eca0f830322f2e33a01bb434a57e",
   "engine": "4.7.2.stable.official.ed1daf0bf",
-  "scope": "Independent art pilot; six new scripts and one integration suite. Existing production runtime files and project.godot unchanged.",
-  "script_checks_passed": 6,
-  "script_checks_total": 6,
+  "scope": "Independent eighteen-layer art pilot; seven new scripts and one integration suite. Existing production runtime files and project.godot unchanged.",
+  "script_checks_passed": 7,
+  "script_checks_total": 7,
   "syntax": [
     {
       "script": "scripts/art/PainterlyMeadow.gd",
@@ -30,6 +30,12 @@
       "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
     },
     {
+      "script": "scripts/art/LayeredMeadowBackdrop.gd",
+      "exit_code": 0,
+      "passed": true,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
       "script": "scripts/ArtDirectionPilotSmokeTest.gd",
       "exit_code": 0,
       "passed": true,
@@ -44,12 +50,12 @@
   ],
   "focused_suites_passed": 1,
   "focused_suites_total": 1,
-  "reported_assertions_passed": 272,
+  "reported_assertions_passed": 412,
   "suite": {
     "script": "scripts/ArtDirectionPilotSmokeTest.gd",
     "exit_code": 0,
     "passed": true,
-    "checks": 272,
+    "checks": 412,
     "log": "checks/art-direction-pilot/runtime.log",
     "results": "checks/art-direction-pilot/runtime-results.json"
   },
@@ -60,7 +66,13 @@
     "Map comparison preserves HP, encounter and gameplay RNG",
     "Real pointer input on comparison and both scene transition buttons",
     "Four physical window sizes preserve landscape layout",
-    "Fifteen production save/config/archive paths unchanged across startup, play, navigation, writes and shutdown"
+    "Fifteen production save/config/archive paths unchanged across startup, play, navigation, writes and shutdown",
+    "18 actual composited layer nodes backed by 9 new paintings",
+    "Camera-driven depth offsets with world-anchored ground",
+    "Foreground alpha protection and input pass-through",
+    "4,844 live actor head/foot projection samples inside safe play area",
+    "Natural physics-only Main startup advances atmosphere without enabling a synthetic regular loop",
+    "Live Movie Maker capture asserts atmosphere time exceeds one second"
   ],
   "controlled_fixture_note": "Direction checks use a Leonhardt Lv35 fixture and existing support heroes. Times are integration evidence, not balance comparisons. Interactive lab default party is three Lv10 heroes.",
   "render": {
@@ -117,7 +129,9 @@
         ]
       }
     ],
-    "log": "checks/art-direction-pilot/render.log"
+    "log": "checks/art-direction-pilot/render.log",
+    "counter_snapshots": "checks/art-direction-pilot/render-metrics.json",
+    "counter_snapshot_note": "Whole window with existing actors and UI; software renderer counters, not mobile FPS."
   },
   "movie": {
     "exit_code": 0,
@@ -136,11 +150,12 @@
       ],
       "format": {
         "duration": "12.583333",
-        "size": "5214957"
+        "size": "3616252"
       }
     },
     "log": "checks/art-direction-pilot/movie.log",
-    "note": "Engine Movie Maker at fixed 24 FPS. This is live production hunt simulation with pilot visuals, not a device FPS measurement."
+    "note": "Engine Movie Maker at fixed 24 FPS. This is live production hunt simulation with pilot visuals, not a device FPS measurement.",
+    "atmosphere_metrics": "checks/art-direction-pilot/movie-render-metrics.json"
   },
   "editor_import": {
     "exit_code": 0,
@@ -154,10 +169,24 @@
   },
   "android_tests": 0,
   "limitations": [
-    "Trees and distant landscape remain procedural art studies.",
+    "Parallax background uses 9 new original paintings; clouds and foreground are reused across two depths each.",
     "New hero concept is not connected to combat; existing hero motion remains.",
-    "Hand-painted ground covers a visual 64 by 44 apron; gameplay bounds stay 32 by 20.",
+    "Hand-painted ground covers a visual 64 by 88 apron; gameplay bounds stay 32 by 20.",
     "Mobile GPU performance, heat and memory remain untested.",
     "No numeric visual similarity guarantee."
-  ]
+  ],
+  "parallax": {
+    "render_layers": 18,
+    "new_paintings": 9,
+    "existing_ground_paintings": 1,
+    "cloud_and_foreground_reused": true,
+    "scroll_trigger": "actual battle camera focus; finite clamped offsets",
+    "gameplay_coordinates": [
+      32,
+      20
+    ],
+    "source_manifest": "assets/art-direction/pilot-01/ART_SOURCE.json",
+    "prompts": "docs/MAP_PARALLAX_PROMPTS_KO.md",
+    "resource_estimate": "checks/art-direction-pilot/layer-resource-estimate.json"
+  }
 }

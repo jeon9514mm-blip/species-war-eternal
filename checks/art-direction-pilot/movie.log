@@ -5,8 +5,8 @@ Movie Maker mode enabled, recording movie in 1120×630 @ 24 FPS...
 ART_PILOT_CAPTURE meadow-live
 --------------------------------------------------------------------------------
 Done recording movie at path: /workspace/validation/art-pilot/pilot.avi
-302 frames at 24 FPS (movie length: 00:00:12:14), recorded in 00:00:56 (21% of real-time speed).
-CPU render time: 0.07 seconds (average: 0.24 ms/frame)
-GPU render time: 1.92 seconds (average: 6.35 ms/frame)
-Encoding time: 2.19 seconds (average: 7.27 ms/frame)
+302 frames at 24 FPS (movie length: 00:00:12:14), recorded in 00:00:53 (22% of real-time speed).
+CPU render time: 0.09 seconds (average: 0.28 ms/frame)
+GPU render time: 5.73 seconds (average: 18.97 ms/frame)
+Encoding time: 2.24 seconds (average: 7.41 ms/frame)
 --------------------------------------------------------------------------------

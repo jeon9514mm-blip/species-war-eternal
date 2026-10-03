@@ -5,6 +5,16 @@ const LAB_FIELD = preload("res://scripts/art/ArtDirectionBattlefield.gd")
 const LAB_SAVE_PATH := "user://art-direction-lab/progress.json"
 const LAB_SETTINGS_PATH := "user://art-direction-lab/preferences.cfg"
 
+class PilotHud extends "res://scripts/portrait/LandscapeHuntHud.gd":
+	func refresh() -> void:
+		super.refresh()
+		if is_instance_valid(stage_label):
+			stage_label.text = "빛바람 초원 · 시범  |  %d 스테이지" % game.idle_stage
+			stage_label.tooltip_text = stage_label.text
+
+func _new_hunt_hud() -> Control:
+	return PilotHud.new()
+
 func _init() -> void:
 	save_state_path = LAB_SAVE_PATH
 	presentation_preferences_path = LAB_SETTINGS_PATH

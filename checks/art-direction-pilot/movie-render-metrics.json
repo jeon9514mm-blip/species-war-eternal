@@ -1,0 +1,27 @@
+{
+  "captures": [
+    {
+      "atmosphere": {
+        "bokeh_count": 6,
+        "butterfly_count": 3,
+        "dust_count": 28,
+        "elapsed": 11.7416666666666,
+        "light_safe_alpha_max": 0.026,
+        "running": true
+      },
+      "capture": "meadow-live",
+      "draw_calls": 374,
+      "layer_count": 18,
+      "painterly_active": true,
+      "rendered_objects": 644,
+      "texture_memory_bytes": 277979648,
+      "video_memory_bytes": 331806512,
+      "window_size": [
+        1280,
+        720
+      ]
+    }
+  ],
+  "renderer": "Vulkan llvmpipe software renderer",
+  "scope": "Whole preview window, including existing actors and UI; renderer counters, not device frame-rate measurements."
+}
