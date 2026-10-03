@@ -278,6 +278,8 @@ var offline_rations := 0
 var offline_gear_rolls := 0
 var offline_stage_clears := 0
 var offline_efficiency := 0
+var hunt_productivity: Dictionary = {}
+var offline_reward_basis: String = ""
 var daily_reward_claimed_day := ""
 var rewarded_ad_claimed_count := 0
 var rewarded_ad_day := ""
@@ -4990,6 +4992,7 @@ func _challenge_tower(expected: Dictionary = {}) -> bool:
 	return CHALLENGE_DRIVER.start_tower(self, expected)
 
 func _set_auto_salvage(rarity: String) -> void:
+	if not SAVE_SAFETY.allow_mutation(self): return
 	auto_salvage_min_rarity = rarity
 	_show_toast("자동 분해 기준: %s 미만" % rarity)
 	_save_idle_state()

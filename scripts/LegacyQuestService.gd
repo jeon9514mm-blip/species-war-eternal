@@ -46,7 +46,7 @@ static func refresh_tutorial_state(main: Node) -> void:
 		main.tutorial_step = 1
 	elif main.idle_stage == 1 and main.idle_stage_kills == 0 and main.combat_kills == 0:
 		main.tutorial_step = 2
-	elif main.idle_stage < 2 and main.unclaimed_gold + main.unclaimed_xp <= 0:
+	elif main.idle_stage < 2:
 		main.tutorial_step = 3
 	elif main.loot_inventory.is_empty() and int(main._get_hero_progress(str(main.deployed_heroes[0]["id"])).get("level", 1)) <= 1:
 		main.tutorial_step = 4
@@ -69,13 +69,14 @@ static func tutorial_text(main: Node) -> String:
 		0: return "1/6 · 진영을 선택하세요. 두 진영은 영웅과 시작 수호신이 달라집니다."
 		1: return "2/6 · 첫 영웅 1명을 편성하세요. 사냥 진행에 따라 3→5→7→10인으로 확장됩니다."
 		2: return "3/6 · 자동사냥을 시작해 첫 몬스터 무리를 처치하세요."
-		3: return "4/6 · 누적 보상을 수령하고 다음 스테이지를 향해 진행하세요."
+		3: return "4/6 · 사냥 보상은 자동으로 들어와요. 무리를 격파해 스테이지 2에 도달하세요."
 		4: return "5/6 · 장비 또는 스킬트리를 강화해 전투력을 올리세요."
 		5: return "6/6 · 월드맵에서 보스 레이드나 무한탑에 도전하세요."
 	return "초반 원정 가이드 완료 · 이제 자유롭게 원정대를 성장시키세요."
 
 
 static func claim_quest(main: Node, quest_id: String) -> bool:
+	if not preload("res://scripts/SaveSafety.gd").allow_mutation(main): return false
 	if bool(main.quest_claimed.get(quest_id, false)):
 		return false
 	var complete = false

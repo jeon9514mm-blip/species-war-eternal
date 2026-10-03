@@ -30,6 +30,7 @@ static func guardian_reward(main: Node, value: int, key: String) -> int:
 
 
 static func guardian_equip(main: Node, id: String) -> bool:
+	if not preload("res://scripts/SaveSafety.gd").allow_mutation(main): return false
 	if not main.guardian_collection.has(id) or main.GUARDIANS.profile(id).is_empty():return false
 	main.guardian_equipped=id
 	main._refresh_growth_runtime()

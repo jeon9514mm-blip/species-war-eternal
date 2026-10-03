@@ -26,7 +26,7 @@ static func offline(main) -> void:
 	var panel: Panel = modal["panel"]
 	_emblem(panel, "bag", Rect2(280, 26, 60, 60), UI.PRIMARY)
 	_heading(main, panel, "다녀오셨군요!", Rect2(28, 100, 564, 41), 29, UI.INK)
-	_heading(main, panel, "자리를 비운 동안 모은 원정대의 선물이에요.", Rect2(28, 151, 564, 29), 16, UI.MUTED)
+	_heading(main, panel, main.offline_reward_basis if not main.offline_reward_basis.is_empty() else "자리를 비운 동안 모은 원정대의 선물이에요.", Rect2(28, 151, 564, 29), 16, UI.MUTED)
 	_heading(main, panel, "%s  ·  사냥 효율 %d%%" % [values["time"], values["efficiency"]], Rect2(28, 187, 564, 27), 15, UI.PRIMARY)
 	_reward_cell(main, panel, Rect2(28, 232, 273, 91), "gold", "골드", int(values["gold"]), UI.GOLD)
 	_reward_cell(main, panel, Rect2(319, 232, 273, 91), "growth", "경험치", int(values["xp"]), UI.PRIMARY)

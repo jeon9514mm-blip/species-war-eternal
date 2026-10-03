@@ -22,7 +22,13 @@ static func species_profile(monster_name: String, fallback: String = "brute") ->
 	return SPECIES.get(monster_name, {"role":fallback, "sight":2.4}).duplicate(true)
 
 static func stage_pressure(stage: int, unlock_stage: int) -> float:
-	return 1.0 + minf(0.35, float(maxi(0, clampi(stage, 1, 10000) - maxi(1, unlock_stage))) * 0.0125)
+	var progress := maxi(0, clampi(stage, 1, 10000) - maxi(1, unlock_stage))
+	# Preserve the first 28 stages; continue gradually instead of becoming flat.
+	var late := maxf(0.0, float(progress - 28))
+	return 1.0 + minf(0.35, float(progress) * 0.0125) + 0.15 * log(1.0 + late / 28.0)
+
+static func late_reward_multiplier(stage: int, unlock_stage: int) -> float:
+	return sqrt(maxf(1.0, stage_pressure(stage, unlock_stage) / 1.35))
 
 static func population_count(party_size: int, difficulty: int) -> int:
 	# v70: denser hunting grounds. The population grows from 8 up to 20,

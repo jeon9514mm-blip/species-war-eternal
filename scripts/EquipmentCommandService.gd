@@ -52,8 +52,9 @@ static func gear_update_item(main: Node, item: Dictionary, hero_id: String = "",
 
 
 static func gear_enhance_item(main: Node, item_id: String, hero_id: String = "", slot: String = "") -> Dictionary:
-	if main._save_blocked_for_newer_version:
-		return {"ok": false, "reason": "현재 저장 파일을 수정할 수 없습니다."}
+	var save_error: String = preload("res://scripts/SaveSafety.gd").mutation_error(main)
+	if not save_error.is_empty():
+		return {"ok": false, "reason": save_error}
 	var item = main._gear_item(item_id, hero_id, slot)
 	if item.is_empty():
 		return {"ok": false, "reason": "장비가 이동했습니다. 다시 선택해 주세요."}
@@ -83,8 +84,9 @@ static func gear_enhance_item(main: Node, item_id: String, hero_id: String = "",
 
 
 static func gear_equip_item(main: Node, item_id: String, hero_id: String) -> Dictionary:
-	if main._save_blocked_for_newer_version:
-		return {"ok": false, "reason": "현재 저장 파일을 수정할 수 없습니다."}
+	var save_error: String = preload("res://scripts/SaveSafety.gd").mutation_error(main)
+	if not save_error.is_empty():
+		return {"ok": false, "reason": save_error}
 	var index = main._gear_inventory_index(item_id)
 	if index < 0 or not main._valid_growth_hero(hero_id):
 		return {"ok": false, "reason": "장비나 영웅을 다시 선택해 주세요."}
@@ -102,8 +104,9 @@ static func gear_equip_item(main: Node, item_id: String, hero_id: String) -> Dic
 
 
 static func gear_decompose_item(main: Node, item_id: String, confirmed: bool = false) -> Dictionary:
-	if main._save_blocked_for_newer_version:
-		return {"ok": false, "reason": "현재 저장 파일을 수정할 수 없습니다."}
+	var save_error: String = preload("res://scripts/SaveSafety.gd").mutation_error(main)
+	if not save_error.is_empty():
+		return {"ok": false, "reason": save_error}
 	var index = main._gear_inventory_index(item_id)
 	var item = main._gear_item(item_id)
 	if index < 0 or item.is_empty():
@@ -122,8 +125,9 @@ static func gear_decompose_item(main: Node, item_id: String, confirmed: bool = f
 
 
 static func gear_workshop_action(main: Node, item_id: String, action: String, args: Dictionary = {}, hero_id: String = "", slot: String = "") -> Dictionary:
-	if main._save_blocked_for_newer_version:
-		return {"ok": false, "reason": "현재 저장 파일을 수정할 수 없습니다."}
+	var save_error: String = preload("res://scripts/SaveSafety.gd").mutation_error(main)
+	if not save_error.is_empty():
+		return {"ok": false, "reason": save_error}
 	var item = main._gear_item(item_id, hero_id, slot)
 	if item.is_empty():
 		return {"ok": false, "reason": "장비가 이동했습니다. 목록을 다시 확인하세요."}
@@ -157,8 +161,9 @@ static func gear_option_matches(main: Node, item: Dictionary, index: int, expect
 
 
 static func gear_extract_option(main: Node, item_id: String, index: int, hero_id: String = "", slot: String = "", expected_option: Dictionary = {}) -> Dictionary:
-	if main._save_blocked_for_newer_version:
-		return {"ok": false, "reason": "현재 저장 파일을 수정할 수 없습니다."}
+	var save_error: String = preload("res://scripts/SaveSafety.gd").mutation_error(main)
+	if not save_error.is_empty():
+		return {"ok": false, "reason": save_error}
 	var item = main._gear_item(item_id, hero_id, slot)
 	if item.is_empty():
 		return {"ok": false, "reason": "장비가 이동했습니다. 목록을 다시 확인하세요."}
@@ -186,8 +191,9 @@ static func gear_extract_option(main: Node, item_id: String, index: int, hero_id
 
 
 static func gear_apply_crystal(main: Node, crystal_id: String, target_item_id: String, hero_id: String = "", slot: String = "") -> Dictionary:
-	if main._save_blocked_for_newer_version:
-		return {"ok": false, "reason": "현재 저장 파일을 수정할 수 없습니다."}
+	var save_error: String = preload("res://scripts/SaveSafety.gd").mutation_error(main)
+	if not save_error.is_empty():
+		return {"ok": false, "reason": save_error}
 	var crystal_index = main._gear_inventory_index(crystal_id)
 	if crystal_index < 0:
 		return {"ok": false, "reason": "옵션 결정이 이동했거나 이미 사용되었습니다."}
@@ -207,13 +213,15 @@ static func gear_apply_crystal(main: Node, crystal_id: String, target_item_id: S
 
 
 static func set_gear_auto_equip(main: Node, value: bool) -> void:
+	if not preload("res://scripts/SaveSafety.gd").allow_mutation(main): return
 	main.gear_auto_equip = value
 	main._save_idle_state()
 
 
 static func gear_claim_overflow(main: Node, item_id: String) -> Dictionary:
-	if main._save_blocked_for_newer_version:
-		return {"ok": false, "reason": "현재 저장 파일을 수정할 수 없습니다."}
+	var save_error: String = preload("res://scripts/SaveSafety.gd").mutation_error(main)
+	if not save_error.is_empty():
+		return {"ok": false, "reason": save_error}
 	if main.loot_inventory.size() >= main.INVENTORY_CAP:
 		return {"ok": false, "reason": "가방에 빈칸이 필요합니다. 장비는 보관함에 남아 있습니다."}
 	for index in main.equipment_overflow.size():
@@ -284,8 +292,9 @@ static func market_snapshot(main: Node) -> Dictionary:
 
 
 static func market_submit(main: Node, action: String, params: Dictionary = {}) -> Dictionary:
-	if main._save_blocked_for_newer_version:
-		return {"ok": false, "reason": "현재 저장 파일을 수정할 수 없습니다."}
+	var save_error: String = preload("res://scripts/SaveSafety.gd").mutation_error(main)
+	if not save_error.is_empty():
+		return {"ok": false, "reason": save_error}
 	var ready = main._gear_market_ready()
 	if not bool(ready.get("ok", false)):
 		return ready
@@ -391,6 +400,7 @@ static func equip_item_direct(main: Node, index: int, hero_id: String) -> bool:
 
 
 static func recommend_equip_all(main: Node) -> void:
+	if not preload("res://scripts/SaveSafety.gd").allow_mutation(main): return
 	var roster = main.deployed_heroes if not main.deployed_heroes.is_empty() else main._hero_roster_for_faction().slice(0, 3)
 	if roster.is_empty() or main.loot_inventory.is_empty():
 		main._show_toast("추천장착할 영웅 또는 장비가 없습니다.")
@@ -418,6 +428,7 @@ static func recommend_equip_all(main: Node) -> void:
 
 
 static func bulk_enhance_equipped(main: Node) -> void:
+	if not preload("res://scripts/SaveSafety.gd").allow_mutation(main): return
 	var roster = main.deployed_heroes if not main.deployed_heroes.is_empty() else main._hero_roster_for_faction().slice(0, 3)
 	var upgraded = 0
 	var spent = 0

@@ -5,6 +5,7 @@ extends RefCounted
 ## No cached host reference, duplicate wallet, RNG or save schema is introduced.
 
 static func claim_daily_reward(main: Node, button: Button, status: Label) -> void:
+	if not preload("res://scripts/SaveSafety.gd").allow_mutation(main): return
 	var today = main._today_key()
 	if not main.daily_reward_claimed_day.is_empty() and today <= main.daily_reward_claimed_day:
 		status.text = "오늘의 보상은 이미 받았습니다."
@@ -19,6 +20,7 @@ static func claim_daily_reward(main: Node, button: Button, status: Label) -> voi
 
 
 static func claim_rewarded_ad(main: Node, button: Button, status: Label) -> void:
+	if not preload("res://scripts/SaveSafety.gd").allow_mutation(main): return
 	var today = main._today_key()
 	if main.rewarded_ad_day.is_empty() or today > main.rewarded_ad_day:
 		main.rewarded_ad_day = today
@@ -35,6 +37,7 @@ static func claim_rewarded_ad(main: Node, button: Button, status: Label) -> void
 
 
 static func claim_rewards(main: Node) -> void:
+	if not preload("res://scripts/SaveSafety.gd").allow_mutation(main): return
 	if main.unclaimed_gold == 0 and main.unclaimed_xp == 0 and main.idle_chest_gold == 0 and main.idle_chest_xp == 0:
 		main._show_toast("받을 보상이 없습니다.")
 		return

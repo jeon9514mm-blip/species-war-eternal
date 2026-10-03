@@ -53,6 +53,7 @@ func _on_offline_hunt_reward(gold: int, xp: int, chest_gold: int, chest_xp: int)
 	offline_pending_chest_gold+=chest_gold;offline_pending_chest_xp+=chest_xp
 
 func _claim_offline_rewards() -> void:
+	if not SAVE_SAFETY.allow_mutation(self): return
 	var gold:=mini(unclaimed_gold,offline_pending_gold)
 	var xp:=mini(unclaimed_xp,offline_pending_xp)
 	var chest_gold:=mini(idle_chest_gold,offline_pending_chest_gold)

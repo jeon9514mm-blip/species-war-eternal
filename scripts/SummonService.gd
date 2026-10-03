@@ -5,6 +5,7 @@ extends RefCounted
 ## No cached host reference, duplicate wallet, RNG or save schema is introduced.
 
 static func summon_once(main: Node) -> Dictionary:
+	if not preload("res://scripts/SaveSafety.gd").allow_mutation(main): return {}
 	var roster = main._hero_roster_for_faction()
 	if roster.is_empty():
 		return {}
@@ -28,6 +29,7 @@ static func summon_once(main: Node) -> Dictionary:
 
 
 static func summon_guardian(main: Node) -> Dictionary:
+	if not preload("res://scripts/SaveSafety.gd").allow_mutation(main): return {}
 	if main.selected_faction not in ["aurelia","noxfera"]:return {}
 	main._guardian_ensure_starter()
 	var free = not main.guardian_free_claimed

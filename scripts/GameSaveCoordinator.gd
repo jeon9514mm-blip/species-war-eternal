@@ -18,6 +18,8 @@ static func save_idle_state(main: Node) -> void:
 		"save_version": SaveStore.VERSION,
 		"battle_speed": main.battle_speed,
 		"formation_id": main.formation_id,
+		"hunt_productivity": main.hunt_productivity,
+		"offline_reward_basis": main.offline_reward_basis,
 		"skill_auto": main.skill_auto,
 		"ultimate_auto": main.ultimate_auto,
 		"offline_pending_gold": main.offline_pending_gold,
@@ -131,6 +133,8 @@ static func load_idle_state(main: Node) -> void:
 	var parsed = SaveValidation.sanitize(result["data"], main._zone_data().keys(), main.idle_stage_target)
 	var loaded_save_version = int(parsed.get("save_version", 1))
 	main.long_term_goals = parsed.get("long_term_goals", {}).duplicate(true)
+	main.hunt_productivity = parsed.get("hunt_productivity", {}).duplicate(true)
+	main.offline_reward_basis = str(parsed.get("offline_reward_basis", ""))
 	main.party_slot_legacy_cap = clampi(int(parsed.get("party_slot_legacy_cap", 0)), 0, main.PARTY_CAP)
 	main.unclaimed_gold = maxi(0, int(parsed.get("unclaimed_gold", 0)))
 	main.unclaimed_xp = maxi(0, int(parsed.get("unclaimed_xp", 0)))

@@ -5,6 +5,7 @@ extends RefCounted
 ## No cached host reference, duplicate wallet, RNG or save schema is introduced.
 
 static func calculate_offline_reward(main: Node) -> void:
+	if main._save_blocked_for_newer_version or preload("res://scripts/SaveSafety.gd").pending(main): return
 	if main._offline_checked:
 		return
 	main._offline_checked = true
@@ -28,6 +29,14 @@ static func calculate_offline_reward(main: Node) -> void:
 	if not main._is_zone_unlocked(main.current_zone_id):
 		main.current_zone_id = "gray_meadow"
 	var zone: Dictionary = main._current_zone()
+	var productivity = preload("res://scripts/HuntProductivity.gd")
+	var observed: Dictionary = productivity.observed(main, str(main.current_zone_id))
+	if observed.is_empty():
+		# New/changed parties must demonstrate the selected region's throughput.
+		# Preserve a starter allowance for existing saves without measurements.
+		zone = main._zone_data()["gray_meadow"]
+		observed = productivity.observed(main, "gray_meadow")
+	main.offline_reward_basis = "%s · %s" % [str(zone["name"]), "최근 사냥 기록 기준" if not observed.is_empty() else "기본 사냥 기준"]
 	var estimate = main.idle_hunt_estimator.estimate(
 		elapsed,
 		main._calculate_party_power(),
@@ -35,7 +44,8 @@ static func calculate_offline_reward(main: Node) -> void:
 		zone,
 		main.idle_stage,
 		main.idle_stage_kills,
-		main.idle_stage_target
+		main.idle_stage_target,
+		observed
 	)
 	var kills = int(estimate.get("kills", 0))
 	if kills <= 0:

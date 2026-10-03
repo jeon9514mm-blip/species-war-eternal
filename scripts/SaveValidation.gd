@@ -73,6 +73,8 @@ static func ids(value: Variant, allowed: Array, maximum: int = 10) -> Array:
 
 static func sanitize(raw: Dictionary, zone_ids: Array, stage_target: int = 10) -> Dictionary:
 	var data := raw.duplicate(true)
+	data["hunt_productivity"] = preload("res://scripts/HuntProductivity.gd").sanitize(raw.get("hunt_productivity"))
+	data["offline_reward_basis"] = string_value(raw.get("offline_reward_basis"), "", 160)
 	data["formation_id"] = preload("res://scripts/BattleFormation.gd").sanitize(raw.get("formation_id"))
 	data["combat_presets"] = preload("res://scripts/CombatPresetModel.gd").sanitize(raw.get("combat_presets", {}))
 	var now := int(Time.get_unix_time_from_system())

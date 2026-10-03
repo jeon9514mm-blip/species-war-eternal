@@ -1,0 +1,186 @@
+{
+  "base_commit": "d8ecd3a84aa209ef5e5b4d016c935ee34c98b9b8",
+  "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+  "validated_at_utc": "2026-10-03T22:18:50.991134+00:00",
+  "tests": [
+    {
+      "script": "scripts/GameplayReliabilitySmokeTest.gd",
+      "exit_code": 0,
+      "checks": 133,
+      "summary": "gameplay_reliability checks=133 failures=[]"
+    },
+    {
+      "script": "scripts/V8362InvasionSmokeTest.gd",
+      "exit_code": 0,
+      "checks": 175,
+      "summary": "v8362_invasion checks=175 failures=[]"
+    },
+    {
+      "script": "scripts/V8361OfflineSaveSmokeTest.gd",
+      "exit_code": 0,
+      "checks": 436,
+      "summary": "v8361_offline_save checks=436 failures=[]"
+    },
+    {
+      "script": "scripts/V27GrowthEconomySmokeTest.gd",
+      "exit_code": 0,
+      "checks": 40,
+      "summary": "v27_growth_economy_smoke_test checks=40 passed=40 failures=[]"
+    },
+    {
+      "script": "scripts/V83DomainParitySmokeTest.gd",
+      "exit_code": 0,
+      "checks": 144,
+      "summary": "v83_domain_parity checks=144 failures=[]"
+    },
+    {
+      "script": "scripts/V834PracticeLevelSmokeTest.gd",
+      "exit_code": 0,
+      "checks": 298,
+      "summary": "v834_practice_level checks=298 failures=[]"
+    },
+    {
+      "script": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "exit_code": 0,
+      "checks": 163,
+      "summary": "equipment_modal_save_recovery checks=163 failures=[]"
+    },
+    {
+      "script": "scripts/RaidStrengthSmokeTest.gd",
+      "exit_code": 0,
+      "checks": 442,
+      "summary": "raid_strength checks=442 failures=[]"
+    },
+    {
+      "script": "scripts/V834ResearchSmokeTest.gd",
+      "exit_code": 0,
+      "checks": 1006,
+      "summary": "v834_research checks=1006 failures=[]"
+    },
+    {
+      "script": "scripts/V53HuntEcologySmokeTest.gd",
+      "exit_code": 0,
+      "checks": 47,
+      "summary": "V53HuntEcologySmokeTest: 47 checks, 0 failures"
+    },
+    {
+      "script": "scripts/V27SaveRecoverySmokeTest.gd",
+      "exit_code": 0,
+      "checks": 80,
+      "summary": "v27_save_recovery_smoke_test_ok checks=80 atomic=ok backup=ok checksum=ok schema=ok migration=ok future=preserved pause=once isolation=ok"
+    }
+  ],
+  "total_checks": 2964,
+  "failures": 0,
+  "natural_hunting": [
+    "natural-productivity faction=aurelia packs=15 game_seconds=51.40 seconds_per_pack=3.427",
+    "natural-productivity faction=noxfera packs=15 game_seconds=54.90 seconds_per_pack=3.660"
+  ],
+  "limits": [
+    "Headless actual-game and service regression checks; no Android device performance or long-term balance test.",
+    "Repository target Godot 4.7.2 was not available in this environment."
+  ],
+  "expected_warnings": "Injected write failures exercise save protection and leave the in-memory receipt pending until retry.",
+  "changed_script_parse_checks": [
+    {
+      "path": "scripts/EquipmentCommandService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/FieldEcology.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GameSaveCoordinator.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GuardianProgressionService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroProgressionService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntFieldService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/IdleHuntEstimator.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/LegacyQuestService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/Main.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/OfflineRewardService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/PracticeBattleService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RewardClaimService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RewardDialogs.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/SaveSafety.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/SaveValidation.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/SummonService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitMain.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitPages.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntProductivity.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GameplayReliabilitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    }
+  ]
+}

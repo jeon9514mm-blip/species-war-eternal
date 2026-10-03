@@ -7,6 +7,19 @@ static func pending(main: Node) -> bool:
 static func entry_error(main: Node) -> String:
 	return "기록 저장 대기 중이에요. 먼저 다시 저장해 주세요." if pending(main) else ""
 
+static func mutation_error(main: Node) -> String:
+	if main._save_blocked_for_newer_version:
+		return "최신 버전의 저장 기록을 먼저 확인해 주세요."
+	if bool(main.get_meta("practice_active", false)):
+		return "연습을 마친 뒤 성장과 재화를 변경하세요."
+	return entry_error(main)
+
+static func allow_mutation(main: Node) -> bool:
+	var error := mutation_error(main)
+	if error.is_empty(): return true
+	main._show_toast(error)
+	return false
+
 static func observe(main: Node) -> void:
 	main.set_meta("game_save_pending", str(main.last_save_status) != "saved")
 	refresh_banner(main)

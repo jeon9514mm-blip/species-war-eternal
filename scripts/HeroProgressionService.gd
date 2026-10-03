@@ -215,6 +215,7 @@ static func ascension_requirement(main: Node, hero_id: String) -> Dictionary:
 
 
 static func try_ascend_hero(main: Node, hero_id: String) -> bool:
+	if not preload("res://scripts/SaveSafety.gd").allow_mutation(main): return false
 	if not main._valid_growth_hero(hero_id):
 		return false
 	var base = main._hero_base_grade_index(hero_id)
@@ -252,6 +253,7 @@ static func breakthrough_cost(main: Node, rank: int) -> int:
 
 
 static func try_breakthrough(main: Node, hero_id: String) -> bool:
+	if not preload("res://scripts/SaveSafety.gd").allow_mutation(main): return false
 	if not main._valid_growth_hero(hero_id):
 		return false
 	var rank = main._hero_breakthrough_rank(hero_id)

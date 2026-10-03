@@ -143,7 +143,7 @@ static func lobby(main: Node) -> void:
 		var action_method: String=('_build_faction_screen' if main.tutorial_step==0 else
 			'_build_hero_select_screen' if main.tutorial_step==1 else
 			'_lobby_start_hunt' if main.tutorial_step==2 else
-			'_build_lobby_screen' if main.tutorial_step==3 else
+			'_lobby_start_hunt' if main.tutorial_step==3 else
 			'_build_growth_screen' if main.tutorial_step==4 else '_build_meta_hub_screen')
 		action(goal,'목표 화면으로 이동',Callable(main,action_method),true).name='LobbyGuideAction'
 	var metrics := grid(page)

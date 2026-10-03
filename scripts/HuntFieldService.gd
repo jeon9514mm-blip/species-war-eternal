@@ -9,6 +9,7 @@ static func spawn_enemy_wave(main: Node, zone: Dictionary) -> void:
 		if is_instance_valid(bar): bar.queue_free()
 	main.enemy_wave.clear(); main.enemy_wave_sprites.clear(); main.enemy_hp_bars.clear()
 	main.roaming_hunt.clear_enemies(); main.invasion.reset()
+	preload("res://scripts/HuntProductivity.gd").begin_sample(main)
 	admit(main, zone)
 
 static func generate_corps(main: Node, zone: Dictionary) -> Array:
@@ -206,11 +207,13 @@ static func settle_corps(main: Node, fallen: Array, profile: Dictionary) -> void
 	var defeated_packs: Dictionary = {}
 	for enemy in fallen:
 		defeated_packs[int(enemy.get("habitat_pack", 0))] = true
-	var reward_units = clampi(defeated_packs.size(), 1, 3)
+	# A 16–20-member corps has four five-member packs, including its partial tail.
+	var reward_units = clampi(defeated_packs.size(), 1, 4)
 	var difficulty = clampi(int(zone.get("difficulty", 1)), 1, 3)
 	var combo_bonus = main._v77_begin_clear_combo(difficulty)
 	var event_reward_mult = float(profile.get("reward_mult", 1.0))
 	var clear_reward_mult = event_reward_mult * (1.0 + combo_bonus)
+	clear_reward_mult *= main.FIELD_ECOLOGY.late_reward_multiplier(main.idle_stage, int(zone.get("unlock_stage", 1)))
 	var kill_reward_gold = 0
 	var kill_reward_xp = 0
 	var stage_reward_gold = 0
@@ -299,6 +302,7 @@ static func settle_corps(main: Node, fallen: Array, profile: Dictionary) -> void
 	main._update_map_tiles()
 	main._update_reward_labels()
 	main._goal_record("hunt_packs", reward_units)
+	preload("res://scripts/HuntProductivity.gd").record(main, reward_units)
 	main._on_hunt_reward(kill_reward_gold, kill_reward_xp, equipment_drops, stage_cleared, stage_reward_gold, stage_reward_xp)
 	main._save_idle_state()
 
