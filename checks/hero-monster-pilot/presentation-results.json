@@ -1,0 +1,59 @@
+{
+  "checks": 1218,
+  "failures": [],
+  "presentation": {
+    "dust_peak": 16,
+    "ground_contact": {
+      "dust_cap": 16,
+      "dust_count": 0,
+      "emitted": 16,
+      "tracked_actors": 18
+    },
+    "hero_gpu_bones": 21,
+    "monster_poses": {
+      "가시 멧돼지": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "들개 무리": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "바람 까마귀": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "초원 고블린": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "natural_hero_clock": 0.591524555555555,
+    "naturally_animated_monsters": 15
+  },
+  "scope": "Actual pilot hero/monster rendering integration; headless state, resource and geometry validation, not GPU visual quality"
+}

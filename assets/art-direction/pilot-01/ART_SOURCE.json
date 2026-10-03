@@ -480,5 +480,13 @@
       "natural_physics_only_startup_verified": true,
       "live_recording_atmosphere_elapsed_seconds": 11.7416666666666
     }
+  },
+  "monster_pilot": {
+    "manifest": "assets/art-direction/pilot-01/monsters/monster-art-source.json",
+    "layout": "assets/art-direction/pilot-01/monsters/atlas-layout.json",
+    "species": 4,
+    "authored_raster_poses": 32,
+    "runtime_scope": "independent ArtDirectionLab and MonsterConceptStudy scenes",
+    "source_controllers_modified": false
   }
 }

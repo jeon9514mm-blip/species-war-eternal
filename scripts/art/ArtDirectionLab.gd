@@ -94,9 +94,16 @@ func _install_portrait_hud() -> void:
 	concept.size = Vector2(145, 38)
 	concept.z_index = 80
 	field.add_child(concept)
+	var monsters := P_SKIN.button("몬스터 시안 보기", _open_monster_study)
+	monsters.name = "MonsterConceptButton"
+	monsters.add_theme_font_size_override("font_size", 14)
+	monsters.position = Vector2(335, 10)
+	monsters.size = Vector2(150, 38)
+	monsters.z_index = 80
+	field.add_child(monsters)
 	var note := Label.new()
 	note.name = "ArtDirectionLabNotice"
-	note.text = "밝은 초원 · 시범  |  영웅은 기존 동작 검증 중  |  진행·설정 저장 안 함"
+	note.text = "밝은 초원 · 몬스터 4종 시범  |  진행·설정 저장 안 함"
 	note.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	note.position = Vector2(18, 114)
 	note.size = Vector2(combat_field_rect.size.x - 12, 20)
@@ -111,6 +118,11 @@ func _open_concept_study() -> void:
 	combat_running = false
 	if is_instance_valid(presentation_runtime): presentation_runtime.audio.shutdown()
 	get_tree().change_scene_to_file("res://scenes/art/HeroConceptStudy.tscn")
+
+func _open_monster_study() -> void:
+	combat_running = false
+	if is_instance_valid(presentation_runtime): presentation_runtime.audio.shutdown()
+	get_tree().change_scene_to_file("res://scenes/art/MonsterConceptStudy.tscn")
 
 func _apply_portrait_resize() -> void:
 	super._apply_portrait_resize()

@@ -1,0 +1,56 @@
+[
+  {
+    "script": "scripts/art/PilotHeroPresentation.gd",
+    "exit_code": 0,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "scripts/art/PilotMonsterPresentation.gd",
+    "exit_code": 0,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "scripts/art/PilotGroundContact.gd",
+    "exit_code": 0,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "scripts/art/MonsterConceptStudy.gd",
+    "exit_code": 0,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "scripts/art/ArtDirectionBattlefield.gd",
+    "exit_code": 0,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "scripts/art/ArtDirectionLab.gd",
+    "exit_code": 0,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "scripts/HeroMonsterPilotSmokeTest.gd",
+    "exit_code": 0,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "scripts/ArtDirectionPilotSmokeTest.gd",
+    "exit_code": 0,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "tools/capture_hero_monster_pilot.gd",
+    "exit_code": 0,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  }
+]

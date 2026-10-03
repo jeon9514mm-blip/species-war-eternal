@@ -3,12 +3,51 @@ extends "res://scripts/maps3d/Battlefield3DView.gd"
 ## continues to consume the exact production hunting world coordinates.
 const MEADOW = preload("res://scripts/art/PainterlyMeadow.gd")
 const BACKDROP = preload("res://scripts/art/LayeredMeadowBackdrop.gd")
+const HERO_PRESENTATION = preload("res://scripts/art/PilotHeroPresentation.gd")
+const MONSTER_PRESENTATION = preload("res://scripts/art/PilotMonsterPresentation.gd")
+const GROUND_CONTACT = preload("res://scripts/art/PilotGroundContact.gd")
 const LAB_CAMERA_OFFSET := Vector3(0, 18, 48)
 const HORIZON_RATIO := .285
 var painterly_active := true
 var comparison_button: Button
 var scene_label: Label
 var backdrop: Control
+var hero_presentation = HERO_PRESENTATION.new()
+var monster_presentation = MONSTER_PRESENTATION.new()
+var ground_contact = GROUND_CONTACT.new()
+var _presentation_delta := 0.0
+
+func _presentation_active() -> bool:
+	if not painterly_active or not is_visible_in_tree() or get_tree().paused or not is_instance_valid(game): return false
+	# Scenery animation may be disabled independently. Combatants still animate
+	# while the actual hunt runs; only their pause/menu/suspension gates are shared.
+	return (game.is_physics_processing() or game.is_processing()) and bool(game.combat_running) and str(game.active_screen) == "combat" and not bool(game._application_suspended)
+
+func _process(delta: float) -> void:
+	_presentation_delta = clampf(delta, 0.0, .1)
+	ground_contact.tick(world, _presentation_delta, _presentation_active() and animate_environment)
+	super._process(delta)
+	ground_contact.prune(actors)
+
+func sync_actor(source: AnimatedSprite2D, point: Vector2, hero: bool, live: Dictionary) -> void:
+	super.sync_actor(source, point, hero, live)
+	if not painterly_active or not is_instance_valid(source): return
+	var rendered: Sprite3D = actors.get(source.get_instance_id())
+	if not is_instance_valid(rendered): return
+	var active := _presentation_active()
+	if hero:
+		hero_presentation.sync(self, source, rendered, point, _presentation_delta, active)
+	else:
+		monster_presentation.sync(self, source, rendered, point, _presentation_delta, active)
+	ground_contact.sync(source, rendered, point, hero, active and animate_environment)
+
+func _actor_height(source: AnimatedSprite2D, hero: bool) -> float:
+	var result := super._actor_height(source, hero)
+	# The base renderer and its health overlay share this presentation height.
+	# Navigation, collision and combat never use the display adapter's value.
+	if painterly_active and not hero and source is MonsterSpriteController and monster_presentation.supports(source.pixel_monster_name):
+		result *= monster_presentation.height_factor(source.pixel_monster_name)
+	return result
 
 func _ready() -> void:
 	super._ready()

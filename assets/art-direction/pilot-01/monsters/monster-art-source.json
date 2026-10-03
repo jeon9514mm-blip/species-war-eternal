@@ -1,0 +1,885 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-10-04",
+  "tool": "image_gen.imagegen",
+  "style": "Original hand-painted anime fantasy 2D monster poses for the 2.5D meadow pilot",
+  "scope": "Four monster concepts, eight authored raster poses per species, mapped to five existing controller states; not skeletal models or eight directional sets.",
+  "pixel_edits_after_generation": false,
+  "layout_correction": "Each sheet received one image_gen spacing edit. No Python pixel alteration, compositing, scaling or alpha cleanup was performed. Exact generated PNG bytes are copied to the game.",
+  "limitations": [
+    "A two-pose walk cycle is a prototype and can still benefit from in-between frames.",
+    "The sheets have a logical 4x2 layout, but two extended attack poses exceed nominal cell width; explicit nonoverlapping atlas regions preserve complete weapons and wings.",
+    "The generated sheets retain RGB information in alpha-zero pixels; runtime rendering uses the alpha channel.",
+    "All poses face right; the existing game mirrors for left-facing motion. These are not separate eight-direction artworks."
+  ],
+  "assets": [
+    {
+      "slug": "meadow-goblin",
+      "source_name": "초원 고블린",
+      "path": "assets/art-direction/pilot-01/monsters/meadow-goblin.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "sha256": "eec278ac07834178e6573759855383fc0bf076391a877c5e837765ccc97b4078",
+      "bytes": 1955768,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "fully_transparent_pixels": 1179864,
+      "visible_alpha_gt_24_pixels": 334074,
+      "uncovered_visible_pixels": 0,
+      "original_generation_path": "/workspace/generated_images/exec-e6c1fc14-3774-4904-8f08-bf9c5462e34b.png",
+      "original_generation_sha256": "f96976a0fee0ace64a9bca01e8d31835f1cb31c6abc874eaf9f8a98ba3f7ef85",
+      "final_generation_path": "/workspace/generated_images/exec-a9452a35-327d-4ab2-844c-4f753487d219.png",
+      "initial_prompt": "Create a production-ready original 2D game monster animation sprite sheet for a landscape 2.5D hand-painted anime fantasy RPG set in a bright meadow. Transparent background, true RGBA alpha. Canvas ideally EXACTLY 1536 x 1024 pixels. Arrange EXACTLY 8 separate complete illustrations of THE SAME creature in EXACTLY 4 equal columns x 2 equal rows, read left to right then top to bottom. Every cell is 384 x 512, with NO grid lines, NO labels, NO text, NO borders. Keep all artwork safely contained in its cell, at least 36 pixels from cell edges. Same camera and body proportions in every cell, facing screen RIGHT in a slightly three-quarter side view appropriate for overhead-diagonal game camera. The creature is small but rendered with polished readable forms, hand-painted soft dimensional shading, selective crisp dark contour, warm sunlight highlights, naturally colored fur or skin. No background, NO cast shadow or contact shadow, no glow, no dust or detached particles, no scenery, no UI. Each pose is an individual isolated sprite and every limb must remain in its own cell. Align the contact-feet baseline at y=432 inside EVERY cell. Each creature uses about 260px width and 280px height in neutral pose, centered at x=192; retain same anatomical scale in action poses. Make gestures large enough to read at game scale. A genuine coherent eight-pose animation sheet, NOT eight different designs. POSE ORDER: row1 col1 relaxed neutral idle; row1 col2 a visibly different slight breathing idle with chest lifted and head attentive; row1 col3 walk stride with left legs/foot leading and right trailing; row1 col4 opposite walk stride with right leading and left trailing; row2 col1 attack anticipation clearly crouched/pulled back ready to strike; row2 col2 attack release clearly lunging toward the RIGHT; row2 col3 hit recoil pulled back to the LEFT but still facing right; row2 col4 defeated fallen on its side at the same floor baseline with closed eyes. No gore.\n\nCREATURE DESIGN: A mischievous sage-green meadow goblin with long pointed ears, small wide head and three-head-tall SD body, cream linen shirt, moss-brown short leather vest, dark brown shorts, scuffed little boots, a soft brown leather cap, and a simple crooked wooden club in its right hand. Warm amber eyes, expressive slightly grumpy face, tiny lower fangs, neither scary nor cute infant. Idle club held down; anticipation club pulled back; strike club swung forward to the right. In all eight frames this exact same character, costume, and single club.",
+      "correction_prompt": "Correct this supplied game sprite sheet layout while preserving the SAME eight poses, SAME monster, SAME anatomy, SAME costume/markings, SAME painterly rendering. Transparent true RGBA background, canvas1536×1024, EXACT4columns×2rows. This is a precision SPRITE ATLAS spacing edit. Each cell384×512. Reduce EACH INDIVIDUAL WHOLE SPRITE illustration to 70% of its current size, preserving that illustration's aspect ratio and ALL limbs/weapons/wings/tails. Then place each intact sprite at the CENTER of its own designated cell horizontally, contact baseline exactly y=425 within each cell. Keep the same original eight poses in row-major order. The absolute cell center/baselines are first row (192,425),(576,425),(960,425),(1344,425), second row (192,937),(576,937),(960,937),(1344,937). EVERY POSE including attack/extended wings/weapon must have large clear fully transparent gutters at least48pixels on BOTHleft andright inside its OWNcell. Maximumwholeposewidth288pixels. DO NOT add or crop any limb. All eight drawings clearly separated, no drawing crossing x384,x768,x1152 ory512. No new poses, no new objects, no labels, no grid, NObackgroundcolor, no shadow, no detached effects. Lay out these same eight existing characters with visibly MORE EMPTY TRANSPARENT SPACE between them. Crucial: retain coherent body scale between all poses; every pose shrinks by the same scale factor.",
+      "frame_layout": {
+        "source_name": "초원 고블린",
+        "sheet_size": [
+          1536,
+          1024
+        ],
+        "nominal_cell_size": [
+          384,
+          512
+        ],
+        "native_height": 340,
+        "regions": [
+          [
+            91,
+            116,
+            214,
+            352
+          ],
+          [
+            462,
+            116,
+            224,
+            352
+          ],
+          [
+            838,
+            119,
+            233,
+            349
+          ],
+          [
+            1214,
+            125,
+            276,
+            341
+          ],
+          [
+            59,
+            566,
+            264,
+            364
+          ],
+          [
+            395,
+            612,
+            385,
+            318
+          ],
+          [
+            839,
+            623,
+            291,
+            307
+          ],
+          [
+            1168,
+            770,
+            342,
+            175
+          ]
+        ],
+        "anchors": [
+          [
+            114,
+            347
+          ],
+          [
+            123,
+            347
+          ],
+          [
+            107,
+            344
+          ],
+          [
+            111,
+            336
+          ],
+          [
+            129,
+            357
+          ],
+          [
+            117,
+            312
+          ],
+          [
+            142,
+            301
+          ],
+          [
+            172,
+            168
+          ]
+        ],
+        "alpha_bounds": [
+          [
+            6,
+            7,
+            202,
+            340
+          ],
+          [
+            8,
+            7,
+            209,
+            340
+          ],
+          [
+            5,
+            7,
+            221,
+            338
+          ],
+          [
+            8,
+            6,
+            261,
+            330
+          ],
+          [
+            4,
+            6,
+            254,
+            351
+          ],
+          [
+            6,
+            7,
+            372,
+            305
+          ],
+          [
+            4,
+            8,
+            281,
+            293
+          ],
+          [
+            8,
+            7,
+            328,
+            161
+          ]
+        ],
+        "nominal_cell_alpha_bounds": [
+          [
+            97,
+            123,
+            202,
+            340
+          ],
+          [
+            86,
+            123,
+            209,
+            340
+          ],
+          [
+            75,
+            126,
+            221,
+            338
+          ],
+          [
+            70,
+            131,
+            261,
+            330
+          ],
+          [
+            63,
+            60,
+            254,
+            351
+          ],
+          [
+            17,
+            107,
+            372,
+            305
+          ],
+          [
+            75,
+            119,
+            281,
+            293
+          ],
+          [
+            24,
+            265,
+            328,
+            161
+          ]
+        ],
+        "anchor_notes": "Manual torso/foot-projection pivots avoid the attack weapon shifting the whole body. Hound and crow release/recoil anchors retain a small visual airborne gap; death anchors use the resting body floor."
+      }
+    },
+    {
+      "slug": "meadow-hound",
+      "source_name": "들개 무리",
+      "path": "assets/art-direction/pilot-01/monsters/meadow-hound.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "sha256": "65c844e18b0223a3834809dcd61fa6e11c09f85a3bee6ed7945a123f191b8faa",
+      "bytes": 1741336,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "fully_transparent_pixels": 1246079,
+      "visible_alpha_gt_24_pixels": 270432,
+      "uncovered_visible_pixels": 0,
+      "original_generation_path": "/workspace/generated_images/exec-11c08984-8fee-4d0a-8cdb-0024f83ef32f.png",
+      "original_generation_sha256": "fcfa8154e5ed5a6e51d4d36838f1bdcc1d4f7d482408e48ab3627f0d48be0adf",
+      "final_generation_path": "/workspace/generated_images/exec-f88d9803-f112-4324-8ff9-8d4c8b9939e5.png",
+      "initial_prompt": "Create a production-ready original 2D game monster animation sprite sheet for a landscape 2.5D hand-painted anime fantasy RPG set in a bright meadow. Transparent background, true RGBA alpha. Canvas ideally EXACTLY 1536 x 1024 pixels. Arrange EXACTLY 8 separate complete illustrations of THE SAME creature in EXACTLY 4 equal columns x 2 equal rows, read left to right then top to bottom. Every cell is 384 x 512, with NO grid lines, NO labels, NO text, NO borders. Keep all artwork safely contained in its cell, at least 36 pixels from cell edges. Same camera and body proportions in every cell, facing screen RIGHT in a slightly three-quarter side view appropriate for overhead-diagonal game camera. The creature is small but rendered with polished readable forms, hand-painted soft dimensional shading, selective crisp dark contour, warm sunlight highlights, naturally colored fur or skin. No background, NO cast shadow or contact shadow, no glow, no dust or detached particles, no scenery, no UI. Each pose is an individual isolated sprite and every limb must remain in its own cell. Align the contact-feet baseline at y=432 inside EVERY cell. Each creature uses about 260px width and 280px height in neutral pose, centered at x=192; retain same anatomical scale in action poses. Make gestures large enough to read at game scale. A genuine coherent eight-pose animation sheet, NOT eight different designs. POSE ORDER: row1 col1 relaxed neutral idle; row1 col2 a visibly different slight breathing idle with chest lifted and head attentive; row1 col3 walk stride with left legs/foot leading and right trailing; row1 col4 opposite walk stride with right leading and left trailing; row2 col1 attack anticipation clearly crouched/pulled back ready to strike; row2 col2 attack release clearly lunging toward the RIGHT; row2 col3 hit recoil pulled back to the LEFT but still facing right; row2 col4 defeated fallen on its side at the same floor baseline with closed eyes. No gore.\n\nCREATURE DESIGN: A lean ochre-gray wild meadow hound: a small four-legged canine with large upright ears, soft gray-ochre short fur, cream muzzle and chest, charcoal feet and ear tips, gold eyes, long upturned tail, and one small dusty rust-red neck scarf with two short ends. Natural but lightly SD proportions, charming alert silhouette, not a domestic puppy. Walking poses visibly alternate diagonal leg pairs. Attack anticipation lowered forebody and braced legs; strike leaping forward RIGHT with mouth open but no gore. Fallen last pose curled on side. All eight frames same markings, scarf and anatomy.",
+      "correction_prompt": "Correct this supplied game sprite sheet layout while preserving the SAME eight poses, SAME monster, SAME anatomy, SAME costume/markings, SAME painterly rendering. Transparent true RGBA background, canvas1536×1024, EXACT4columns×2rows. This is a precision SPRITE ATLAS spacing edit. Each cell384×512. Reduce EACH INDIVIDUAL WHOLE SPRITE illustration to 70% of its current size, preserving that illustration's aspect ratio and ALL limbs/weapons/wings/tails. Then place each intact sprite at the CENTER of its own designated cell horizontally, contact baseline exactly y=425 within each cell. Keep the same original eight poses in row-major order. The absolute cell center/baselines are first row (192,425),(576,425),(960,425),(1344,425), second row (192,937),(576,937),(960,937),(1344,937). EVERY POSE including attack/extended wings/weapon must have large clear fully transparent gutters at least48pixels on BOTHleft andright inside its OWNcell. Maximumwholeposewidth288pixels. DO NOT add or crop any limb. All eight drawings clearly separated, no drawing crossing x384,x768,x1152 ory512. No new poses, no new objects, no labels, no grid, NObackgroundcolor, no shadow, no detached effects. Lay out these same eight existing characters with visibly MORE EMPTY TRANSPARENT SPACE between them. Crucial: retain coherent body scale between all poses; every pose shrinks by the same scale factor.",
+      "frame_layout": {
+        "source_name": "들개 무리",
+        "sheet_size": [
+          1536,
+          1024
+        ],
+        "nominal_cell_size": [
+          384,
+          512
+        ],
+        "native_height": 267,
+        "regions": [
+          [
+            69,
+            143,
+            261,
+            278
+          ],
+          [
+            452,
+            124,
+            261,
+            297
+          ],
+          [
+            823,
+            150,
+            270,
+            271
+          ],
+          [
+            1208,
+            152,
+            275,
+            269
+          ],
+          [
+            51,
+            637,
+            296,
+            259
+          ],
+          [
+            421,
+            632,
+            334,
+            250
+          ],
+          [
+            827,
+            622,
+            261,
+            277
+          ],
+          [
+            1186,
+            762,
+            317,
+            139
+          ]
+        ],
+        "anchors": [
+          [
+            132,
+            272
+          ],
+          [
+            136,
+            291
+          ],
+          [
+            136,
+            265
+          ],
+          [
+            138,
+            263
+          ],
+          [
+            152,
+            252
+          ],
+          [
+            165,
+            254
+          ],
+          [
+            145,
+            269
+          ],
+          [
+            159,
+            135
+          ]
+        ],
+        "alpha_bounds": [
+          [
+            6,
+            5,
+            250,
+            267
+          ],
+          [
+            7,
+            5,
+            248,
+            286
+          ],
+          [
+            6,
+            6,
+            259,
+            259
+          ],
+          [
+            7,
+            6,
+            264,
+            257
+          ],
+          [
+            6,
+            9,
+            284,
+            243
+          ],
+          [
+            4,
+            5,
+            325,
+            238
+          ],
+          [
+            6,
+            4,
+            249,
+            265
+          ],
+          [
+            7,
+            5,
+            304,
+            130
+          ]
+        ],
+        "nominal_cell_alpha_bounds": [
+          [
+            75,
+            148,
+            250,
+            267
+          ],
+          [
+            75,
+            129,
+            248,
+            286
+          ],
+          [
+            61,
+            156,
+            259,
+            259
+          ],
+          [
+            63,
+            158,
+            264,
+            257
+          ],
+          [
+            57,
+            134,
+            284,
+            243
+          ],
+          [
+            41,
+            125,
+            325,
+            238
+          ],
+          [
+            65,
+            114,
+            249,
+            265
+          ],
+          [
+            41,
+            255,
+            304,
+            130
+          ]
+        ],
+        "anchor_notes": "Manual torso/foot-projection pivots avoid the attack weapon shifting the whole body. Hound and crow release/recoil anchors retain a small visual airborne gap; death anchors use the resting body floor."
+      }
+    },
+    {
+      "slug": "bristle-boar",
+      "source_name": "가시 멧돼지",
+      "path": "assets/art-direction/pilot-01/monsters/bristle-boar.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "sha256": "5a7ad6b02db7fb5e6f47c573371415bbb1171ea80b57349c1ded4801fe3a6aad",
+      "bytes": 1776122,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "fully_transparent_pixels": 1165751,
+      "visible_alpha_gt_24_pixels": 360699,
+      "uncovered_visible_pixels": 0,
+      "original_generation_path": "/workspace/generated_images/exec-fffc4de5-489a-4afb-a9ec-7238c0180041.png",
+      "original_generation_sha256": "348a2a55b8fa14cdf3589c360b26831608f5921706beee452eeb2f323a41c5ab",
+      "final_generation_path": "/workspace/generated_images/exec-ff6b3920-e7c5-4e59-bb52-703f1a464baa.png",
+      "initial_prompt": "Create a production-ready original 2D game monster animation sprite sheet for a landscape 2.5D hand-painted anime fantasy RPG set in a bright meadow. Transparent background, true RGBA alpha. Canvas ideally EXACTLY 1536 x 1024 pixels. Arrange EXACTLY 8 separate complete illustrations of THE SAME creature in EXACTLY 4 equal columns x 2 equal rows, read left to right then top to bottom. Every cell is 384 x 512, with NO grid lines, NO labels, NO text, NO borders. Keep all artwork safely contained in its cell, at least 36 pixels from cell edges. Same camera and body proportions in every cell, facing screen RIGHT in a slightly three-quarter side view appropriate for overhead-diagonal game camera. The creature is small but rendered with polished readable forms, hand-painted soft dimensional shading, selective crisp dark contour, warm sunlight highlights, naturally colored fur or skin. No background, NO cast shadow or contact shadow, no glow, no dust or detached particles, no scenery, no UI. Each pose is an individual isolated sprite and every limb must remain in its own cell. Align the contact-feet baseline at y=432 inside EVERY cell. Each creature uses about 260px width and 280px height in neutral pose, centered at x=192; retain same anatomical scale in action poses. Make gestures large enough to read at game scale. A genuine coherent eight-pose animation sheet, NOT eight different designs. POSE ORDER: row1 col1 relaxed neutral idle; row1 col2 a visibly different slight breathing idle with chest lifted and head attentive; row1 col3 walk stride with left legs/foot leading and right trailing; row1 col4 opposite walk stride with right leading and left trailing; row2 col1 attack anticipation clearly crouched/pulled back ready to strike; row2 col2 attack release clearly lunging toward the RIGHT; row2 col3 hit recoil pulled back to the LEFT but still facing right; row2 col4 defeated fallen on its side at the same floor baseline with closed eyes. No gore.\n\nCREATURE DESIGN: A stout russet woodland boar: compact four-legged body, soft chestnut/russet fur, ash-brown muzzle, short ivory side tusks, small reddish ears, four charcoal hooves, a dark reddish spiky ridge of bristles and a few integrated moss-green fur tufts along the upper back. Warm amber eyes and small curly tail. Confident grumpy animal with original charming fantasy silhouette, never armored or mounted. Walking poses alternate diagonal legs. Attack anticipation lowered head and braced hooves; strike a forceful lunge RIGHT with snout leading. Fallen last pose resting on side with closed eyes. Same markings and tusks in every frame.",
+      "correction_prompt": "Correct this supplied game sprite sheet layout while preserving the SAME eight poses, SAME monster, SAME anatomy, SAME costume/markings, SAME painterly rendering. Transparent true RGBA background, canvas1536×1024, EXACT4columns×2rows. This is a precision SPRITE ATLAS spacing edit. Each cell384×512. Reduce EACH INDIVIDUAL WHOLE SPRITE illustration to 70% of its current size, preserving that illustration's aspect ratio and ALL limbs/weapons/wings/tails. Then place each intact sprite at the CENTER of its own designated cell horizontally, contact baseline exactly y=425 within each cell. Keep the same original eight poses in row-major order. The absolute cell center/baselines are first row (192,425),(576,425),(960,425),(1344,425), second row (192,937),(576,937),(960,937),(1344,937). EVERY POSE including attack/extended wings/weapon must have large clear fully transparent gutters at least48pixels on BOTHleft andright inside its OWNcell. Maximumwholeposewidth288pixels. DO NOT add or crop any limb. All eight drawings clearly separated, no drawing crossing x384,x768,x1152 ory512. No new poses, no new objects, no labels, no grid, NObackgroundcolor, no shadow, no detached effects. Lay out these same eight existing characters with visibly MORE EMPTY TRANSPARENT SPACE between them. Crucial: retain coherent body scale between all poses; every pose shrinks by the same scale factor.",
+      "frame_layout": {
+        "source_name": "가시 멧돼지",
+        "sheet_size": [
+          1536,
+          1024
+        ],
+        "nominal_cell_size": [
+          384,
+          512
+        ],
+        "native_height": 256,
+        "regions": [
+          [
+            44,
+            173,
+            311,
+            264
+          ],
+          [
+            429,
+            159,
+            323,
+            279
+          ],
+          [
+            801,
+            190,
+            324,
+            250
+          ],
+          [
+            1188,
+            186,
+            320,
+            256
+          ],
+          [
+            32,
+            653,
+            322,
+            228
+          ],
+          [
+            388,
+            635,
+            376,
+            239
+          ],
+          [
+            815,
+            613,
+            304,
+            270
+          ],
+          [
+            1166,
+            702,
+            344,
+            181
+          ]
+        ],
+        "anchors": [
+          [
+            156,
+            260
+          ],
+          [
+            156,
+            274
+          ],
+          [
+            165,
+            244
+          ],
+          [
+            159,
+            250
+          ],
+          [
+            163,
+            222
+          ],
+          [
+            193,
+            240
+          ],
+          [
+            153,
+            264
+          ],
+          [
+            174,
+            174
+          ]
+        ],
+        "alpha_bounds": [
+          [
+            5,
+            4,
+            300,
+            256
+          ],
+          [
+            4,
+            6,
+            312,
+            268
+          ],
+          [
+            7,
+            5,
+            313,
+            239
+          ],
+          [
+            6,
+            5,
+            309,
+            245
+          ],
+          [
+            5,
+            4,
+            311,
+            218
+          ],
+          [
+            6,
+            5,
+            364,
+            228
+          ],
+          [
+            8,
+            8,
+            289,
+            256
+          ],
+          [
+            7,
+            8,
+            333,
+            166
+          ]
+        ],
+        "nominal_cell_alpha_bounds": [
+          [
+            49,
+            177,
+            300,
+            256
+          ],
+          [
+            49,
+            165,
+            312,
+            268
+          ],
+          [
+            40,
+            195,
+            313,
+            239
+          ],
+          [
+            42,
+            191,
+            309,
+            245
+          ],
+          [
+            37,
+            145,
+            311,
+            218
+          ],
+          [
+            10,
+            128,
+            364,
+            228
+          ],
+          [
+            55,
+            109,
+            289,
+            256
+          ],
+          [
+            21,
+            198,
+            333,
+            166
+          ]
+        ],
+        "anchor_notes": "Manual torso/foot-projection pivots avoid the attack weapon shifting the whole body. Hound and crow release/recoil anchors retain a small visual airborne gap; death anchors use the resting body floor."
+      }
+    },
+    {
+      "slug": "wind-crow",
+      "source_name": "바람 까마귀",
+      "path": "assets/art-direction/pilot-01/monsters/wind-crow.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "sha256": "59ffa9e38602686f0aeacd27407bc53c8019e272234a22f3de39e5be6f78cb26",
+      "bytes": 1737673,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "fully_transparent_pixels": 1254247,
+      "visible_alpha_gt_24_pixels": 267268,
+      "uncovered_visible_pixels": 0,
+      "original_generation_path": "/workspace/generated_images/exec-ca325b51-b45e-4150-b0b7-41118454d29f.png",
+      "original_generation_sha256": "8ea58557a3609a6838bce3d436db80157a3196e03318970620ab4d2437e884d6",
+      "final_generation_path": "/workspace/generated_images/exec-00594a01-f384-4462-9358-37addfa6d067.png",
+      "initial_prompt": "Create a production-ready original 2D game monster animation sprite sheet for a landscape 2.5D hand-painted anime fantasy RPG set in a bright meadow. Transparent background, true RGBA alpha. Canvas ideally EXACTLY 1536 x 1024 pixels. Arrange EXACTLY 8 separate complete illustrations of THE SAME creature in EXACTLY 4 equal columns x 2 equal rows, read left to right then top to bottom. Every cell is 384 x 512, with NO grid lines, NO labels, NO text, NO borders. Keep all artwork safely contained in its cell, at least 36 pixels from cell edges. Same camera and body proportions in every cell, facing screen RIGHT in a slightly three-quarter side view appropriate for overhead-diagonal game camera. The creature is small but rendered with polished readable forms, hand-painted soft dimensional shading, selective crisp dark contour, warm sunlight highlights, naturally colored fur or skin. No background, NO cast shadow or contact shadow, no glow, no dust or detached particles, no scenery, no UI. Each pose is an individual isolated sprite and every limb must remain in its own cell. Align the contact-feet baseline at y=432 inside EVERY cell. Each creature uses about 260px width and 280px height in neutral pose, centered at x=192; retain same anatomical scale in action poses. Make gestures large enough to read at game scale. A genuine coherent eight-pose animation sheet, NOT eight different designs. POSE ORDER: row1 col1 relaxed neutral idle; row1 col2 a visibly different slight breathing idle with chest lifted and head attentive; row1 col3 walk stride with left legs/foot leading and right trailing; row1 col4 opposite walk stride with right leading and left trailing; row2 col1 attack anticipation clearly crouched/pulled back ready to strike; row2 col2 attack release clearly lunging toward the RIGHT; row2 col3 hit recoil pulled back to the LEFT but still facing right; row2 col4 defeated fallen on its side at the same floor baseline with closed eyes. No gore.\n\nCREATURE DESIGN: An elegant little wind raven: small teal-and-deep-navy bird with pale sage blue chest, layered dark indigo wings with muted turquoise outer feathers, narrow black beak, two short dark feet with three toes, small upright swept-back feather crest, lively amber eyes and compact fan-shaped tail. Restrained natural colors, not neon, no magical effects. Mostly grounded, about two-head-tall SD proportions. Idle wings folded; walking poses alternating feet with slight wing lift; attack anticipation leaned back with half-open wings; strike leaping RIGHT with wings extended but contained within its cell and beak leading; hit recoiling with startled expression; fallen last pose on side with wings folded and closed eyes. Same plumage in all eight frames.",
+      "correction_prompt": "Correct this supplied game sprite sheet layout while preserving the SAME eight poses, SAME monster, SAME anatomy, SAME costume/markings, SAME painterly rendering. Transparent true RGBA background, canvas1536×1024, EXACT4columns×2rows. This is a precision SPRITE ATLAS spacing edit. Each cell384×512. Reduce EACH INDIVIDUAL WHOLE SPRITE illustration to 70% of its current size, preserving that illustration's aspect ratio and ALL limbs/weapons/wings/tails. Then place each intact sprite at the CENTER of its own designated cell horizontally, contact baseline exactly y=425 within each cell. Keep the same original eight poses in row-major order. The absolute cell center/baselines are first row (192,425),(576,425),(960,425),(1344,425), second row (192,937),(576,937),(960,937),(1344,937). EVERY POSE including attack/extended wings/weapon must have large clear fully transparent gutters at least48pixels on BOTHleft andright inside its OWNcell. Maximumwholeposewidth288pixels. DO NOT add or crop any limb. All eight drawings clearly separated, no drawing crossing x384,x768,x1152 ory512. No new poses, no new objects, no labels, no grid, NObackgroundcolor, no shadow, no detached effects. Lay out these same eight existing characters with visibly MORE EMPTY TRANSPARENT SPACE between them. Crucial: retain coherent body scale between all poses; every pose shrinks by the same scale factor.",
+      "frame_layout": {
+        "source_name": "바람 까마귀",
+        "sheet_size": [
+          1536,
+          1024
+        ],
+        "nominal_cell_size": [
+          384,
+          512
+        ],
+        "native_height": 265,
+        "regions": [
+          [
+            56,
+            168,
+            266,
+            276
+          ],
+          [
+            452,
+            163,
+            251,
+            278
+          ],
+          [
+            823,
+            182,
+            287,
+            256
+          ],
+          [
+            1206,
+            187,
+            282,
+            251
+          ],
+          [
+            48,
+            661,
+            317,
+            256
+          ],
+          [
+            434,
+            598,
+            354,
+            313
+          ],
+          [
+            860,
+            648,
+            257,
+            267
+          ],
+          [
+            1195,
+            786,
+            300,
+            130
+          ]
+        ],
+        "anchors": [
+          [
+            156,
+            270
+          ],
+          [
+            148,
+            274
+          ],
+          [
+            179,
+            252
+          ],
+          [
+            174,
+            247
+          ],
+          [
+            154,
+            251
+          ],
+          [
+            166,
+            321
+          ],
+          [
+            130,
+            277
+          ],
+          [
+            150,
+            125
+          ]
+        ],
+        "alpha_bounds": [
+          [
+            6,
+            5,
+            254,
+            265
+          ],
+          [
+            7,
+            6,
+            239,
+            268
+          ],
+          [
+            4,
+            4,
+            277,
+            248
+          ],
+          [
+            7,
+            5,
+            269,
+            242
+          ],
+          [
+            6,
+            5,
+            306,
+            246
+          ],
+          [
+            6,
+            5,
+            342,
+            301
+          ],
+          [
+            4,
+            4,
+            248,
+            256
+          ],
+          [
+            4,
+            8,
+            291,
+            117
+          ]
+        ],
+        "nominal_cell_alpha_bounds": [
+          [
+            62,
+            173,
+            254,
+            265
+          ],
+          [
+            75,
+            169,
+            239,
+            268
+          ],
+          [
+            59,
+            186,
+            277,
+            248
+          ],
+          [
+            61,
+            192,
+            269,
+            242
+          ],
+          [
+            54,
+            154,
+            306,
+            246
+          ],
+          [
+            56,
+            91,
+            342,
+            301
+          ],
+          [
+            96,
+            140,
+            248,
+            256
+          ],
+          [
+            47,
+            282,
+            291,
+            117
+          ]
+        ],
+        "anchor_notes": "Manual torso/foot-projection pivots avoid the attack weapon shifting the whole body. Hound and crow release/recoil anchors retain a small visual airborne gap; death anchors use the resting body floor."
+      }
+    }
+  ]
+}

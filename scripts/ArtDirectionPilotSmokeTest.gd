@@ -195,7 +195,7 @@ func test_geometry(game) -> void:
 	await pointer_click(field.view_button)
 	check(not field.overview_mode and gameplay_snapshot(game) == before, "returning to combat view preserves all simulation state")
 	var note: Label = game.content_root.get_node_or_null("ArtDirectionLabNotice")
-	check(note != null and note.text.contains("기존 동작") and note.text.contains("저장 안 함"), "visible pilot notice discloses existing hero motion and disposable progress")
+	check(note != null and note.text.contains("시범") and note.text.contains("저장 안 함"), "visible pilot notice identifies the study and disposable progress")
 	var leon = game.hero_map_sprites[game._deployed_hero_ids().find("leonhardt")]
 	var rig = leon.get_node_or_null("PortraitHeroSkeletalRig")
 	check(rig != null and rig.rest_frame != null and rig.rest_frame.atlas != null, "pilot uses the existing single-rest-image skeleton, not invented separated art")

@@ -1,0 +1,72 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "scope": "Independent art pilot only: four painted monster atlases and Leonhardt existing GPU-rig presentation polish.",
+  "script_checks_passed": 9,
+  "script_checks_total": 9,
+  "focused_engine_tests_passed": 2,
+  "focused_engine_tests_total": 2,
+  "runtime_assertions_passed": 1630,
+  "tests": [
+    {
+      "script": "scripts/HeroMonsterPilotSmokeTest.gd",
+      "checks": 1218,
+      "failures": []
+    },
+    {
+      "script": "scripts/ArtDirectionPilotSmokeTest.gd",
+      "checks": 412,
+      "failures": []
+    }
+  ],
+  "actual_ui_captures": 8,
+  "captures": [
+    "checks/hero-monster-pilot/captures/hero-concept-study.png",
+    "checks/hero-monster-pilot/captures/meadow-combat.png",
+    "checks/hero-monster-pilot/captures/meadow-live.png",
+    "checks/hero-monster-pilot/captures/meadow-overview.png",
+    "checks/hero-monster-pilot/captures/meadow-small.png",
+    "checks/hero-monster-pilot/captures/meadow-wide.png",
+    "checks/hero-monster-pilot/captures/monster-concepts.png",
+    "checks/hero-monster-pilot/captures/original-combat-same-state.png"
+  ],
+  "video": {
+    "path": "checks/hero-monster-pilot/pilot-live.mp4",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 1120,
+          "height": 630,
+          "r_frame_rate": "24/1"
+        }
+      ],
+      "format": {
+        "duration": "12.583333"
+      }
+    },
+    "note": "24fps recording format; not measured mobile device FPS."
+  },
+  "monsters": {
+    "species": 4,
+    "poses_per_species": 8,
+    "total_poses": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "hit",
+      "death"
+    ],
+    "animated_skeletal_models": 0,
+    "source": "assets/art-direction/pilot-01/monsters/monster-art-source.json"
+  },
+  "production_runtime_code_changed": false,
+  "project_godot_changed": false,
+  "production_entry_scene_changed": false,
+  "android_tests": 0,
+  "no_mobile_performance_claim": true,
+  "new_hero_art_parts": 0,
+  "new_hero_animation_tracks": 0,
+  "source_controllers_and_gameplay_rules_unchanged": true
+}

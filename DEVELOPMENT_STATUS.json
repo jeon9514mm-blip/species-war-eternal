@@ -103,7 +103,7 @@
   "combat_movement_rules_changed": false,
   "combat_damage_rules_changed": false,
   "game_zip_created": false,
-  "working_branch": "work/anime-art-pilot",
+  "working_branch": "work/hero-monster-art-pilot",
   "previous_hero_menu_validation": {
     "published_main_commit": "5225317abdd65641708c094a397d5ed746cc4a0b",
     "validation": "checks/hero-menu/regression.json",
@@ -521,42 +521,32 @@
     }
   },
   "base_main_commit": "eb1812d9dd28eca0f830322f2e33a01bb434a57e",
-  "documentation": "docs/ART_DIRECTION_PILOT_KO.md",
-  "validation": "checks/art-direction-pilot/regression.json",
-  "script_checks_scope": "seven newly added art-pilot scripts only; not a whole-project script audit",
-  "script_checks_passed": 7,
-  "script_checks_total": 7,
-  "focused_engine_tests_passed": 1,
-  "focused_engine_tests_total": 1,
-  "runtime_assertions_passed": 412,
-  "runtime_assertions_note": "One pilot integration suite; previous raid totals are preserved separately.",
+  "documentation": "docs/HERO_MONSTER_PILOT_KO.md",
+  "validation": "checks/hero-monster-pilot/regression.json",
+  "script_checks_scope": "9 changed or new pilot scripts; no claim of whole repository revalidation",
+  "script_checks_passed": 9,
+  "script_checks_total": 9,
+  "focused_engine_tests_passed": 2,
+  "focused_engine_tests_total": 2,
+  "runtime_assertions_passed": 1630,
+  "runtime_assertions_note": "1218 new hero/monster checks + 412 rerun art-pilot checks",
   "final_art_pilot_validation_complete": true,
-  "actual_ui_captures": 7,
-  "capture_directory": "checks/art-direction-pilot/captures",
-  "live_preview_video": "checks/art-direction-pilot/pilot-live.mp4",
+  "actual_ui_captures": 8,
+  "capture_directory": "checks/hero-monster-pilot/captures",
+  "live_preview_video": "checks/hero-monster-pilot/pilot-live.mp4",
   "completed_tests": [
     {
+      "script": "scripts/HeroMonsterPilotSmokeTest.gd",
+      "checks": 1218,
+      "failures": []
+    },
+    {
       "script": "scripts/ArtDirectionPilotSmokeTest.gd",
-      "exit_code": 0,
-      "passed": true,
       "checks": 412,
-      "log": "checks/art-direction-pilot/runtime.log",
-      "results": "checks/art-direction-pilot/runtime-results.json"
+      "failures": []
     }
   ],
-  "new_artwork_files_added": [
-    "assets/art-direction/pilot-01/leonhardt-concept.png",
-    "assets/art-direction/pilot-01/meadow-ground.png",
-    "assets/art-direction/pilot-01/layers/clouds.png",
-    "assets/art-direction/pilot-01/layers/foothills.png",
-    "assets/art-direction/pilot-01/layers/foreground.png",
-    "assets/art-direction/pilot-01/layers/ground-details.png",
-    "assets/art-direction/pilot-01/layers/midtrees.png",
-    "assets/art-direction/pilot-01/layers/mountains.png",
-    "assets/art-direction/pilot-01/layers/sky.png",
-    "assets/art-direction/pilot-01/layers/treeline.png",
-    "assets/art-direction/pilot-01/layers/village.png"
-  ],
+  "new_artwork_files_added": 15,
   "project_godot_changed": false,
   "production_entry_scene_changed": false,
   "production_runtime_code_changed": false,
@@ -573,7 +563,7 @@
     "hunt_scene_reuses_production_combat": true,
     "entrances": 8,
     "comparison_button": "same active hunt; replace presentation map only",
-    "hunt_heroes": "existing production art and existing motion tracks",
+    "hunt_heroes": "existing art and tracks; Leonhardt presentation adds distance-based gait, continuous breath, bounded secondary motion and contour",
     "new_hero_in_production_combat": false,
     "hero_concept": {
       "path": "assets/art-direction/pilot-01/leonhardt-concept.png",
@@ -649,7 +639,24 @@
       "source_manifest": "assets/art-direction/pilot-01/ART_SOURCE.json",
       "prompts": "docs/MAP_PARALLAX_PROMPTS_KO.md",
       "resource_estimate": "checks/art-direction-pilot/layer-resource-estimate.json"
-    }
+    },
+    "monster_concept_scene": "scenes/art/MonsterConceptStudy.tscn",
+    "monsters": {
+      "species": 4,
+      "poses_per_species": 8,
+      "total_poses": 32,
+      "states": [
+        "idle",
+        "walk",
+        "attack",
+        "hit",
+        "death"
+      ],
+      "animated_skeletal_models": 0,
+      "source": "assets/art-direction/pilot-01/monsters/monster-art-source.json"
+    },
+    "soft_ground_contact": true,
+    "foot_dust_cap": 16
   },
   "editor_reimport_verified": true
 }

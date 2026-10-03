@@ -1,0 +1,133 @@
+{
+  "captures": [
+    {
+      "atmosphere": {
+        "bokeh_count": 6,
+        "butterfly_count": 3,
+        "dust_count": 28,
+        "elapsed": 4.79814766666667,
+        "light_safe_alpha_max": 0.026,
+        "running": false
+      },
+      "capture": "meadow-combat",
+      "draw_calls": 336,
+      "layer_count": 18,
+      "painterly_active": true,
+      "rendered_objects": 549,
+      "texture_memory_bytes": 302883328,
+      "video_memory_bytes": 355994896,
+      "window_size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "atmosphere": {
+        "bokeh_count": 6,
+        "butterfly_count": 3,
+        "dust_count": 28,
+        "elapsed": 4.79814766666667,
+        "light_safe_alpha_max": 0.026,
+        "running": false
+      },
+      "capture": "original-combat-same-state",
+      "draw_calls": 362,
+      "layer_count": 18,
+      "painterly_active": false,
+      "rendered_objects": 514,
+      "texture_memory_bytes": 396461056,
+      "video_memory_bytes": 450364976,
+      "window_size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "atmosphere": {
+        "bokeh_count": 6,
+        "butterfly_count": 3,
+        "dust_count": 28,
+        "elapsed": 4.79814766666667,
+        "light_safe_alpha_max": 0.026,
+        "running": false
+      },
+      "capture": "meadow-overview",
+      "draw_calls": 340,
+      "layer_count": 18,
+      "painterly_active": true,
+      "rendered_objects": 539,
+      "texture_memory_bytes": 308377344,
+      "video_memory_bytes": 361518704,
+      "window_size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "atmosphere": {
+        "bokeh_count": 6,
+        "butterfly_count": 3,
+        "dust_count": 28,
+        "elapsed": 4.79814766666667,
+        "light_safe_alpha_max": 0.026,
+        "running": false
+      },
+      "capture": "meadow-wide",
+      "draw_calls": 340,
+      "layer_count": 18,
+      "painterly_active": true,
+      "rendered_objects": 539,
+      "texture_memory_bytes": 310121728,
+      "video_memory_bytes": 364714864,
+      "window_size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "atmosphere": {
+        "bokeh_count": 6,
+        "butterfly_count": 3,
+        "dust_count": 28,
+        "elapsed": 4.79814766666667,
+        "light_safe_alpha_max": 0.026,
+        "running": false
+      },
+      "capture": "meadow-small",
+      "draw_calls": 317,
+      "layer_count": 18,
+      "painterly_active": true,
+      "rendered_objects": 539,
+      "texture_memory_bytes": 302581248,
+      "video_memory_bytes": 359493744,
+      "window_size": [
+        960,
+        540
+      ]
+    },
+    {
+      "capture": "hero-concept-study",
+      "draw_calls": 18,
+      "rendered_objects": 178,
+      "texture_memory_bytes": 191566848,
+      "video_memory_bytes": 246687584,
+      "window_size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "monster-concepts",
+      "draw_calls": 89,
+      "rendered_objects": 223,
+      "texture_memory_bytes": 217125888,
+      "video_memory_bytes": 272442176,
+      "window_size": [
+        1280,
+        720
+      ]
+    }
+  ],
+  "renderer": "Vulkan llvmpipe software renderer",
+  "scope": "Whole preview window, including existing actors and UI; renderer counters, not device frame-rate measurements."
+}
