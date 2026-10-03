@@ -626,35 +626,8 @@ static func meta(main: Node) -> void:
 		var button := _content_tab(tabs,entry[1],func():main.set_meta('content_meta_tab',tab_id);main._build_meta_hub_screen(),selected==tab_id)
 		button.name='ContentTab_'+tab_id
 	if selected=='raids':
-		text(page,'세 개의 전장, 서로 다른 패턴',23,S.GOLD)
-		text(page,'보스 공격 범위를 보고 영웅의 수호·회복·제어 스킬로 대응하세요.',17,S.MUTED)
-		for zone_id: String in ZONES:
-			var zone: Dictionary=main._zone_data()[zone_id]
-			var design: Dictionary=RAID_DESIGN.raid(zone_id)
-			var open: bool=main._is_zone_unlocked(zone_id)
-			var raid_box := card(page,str(zone['boss'])+' · '+str(design['type']),design['accent'])
-			raid_box.get_parent().name='RaidCatalog_'+zone_id
-			var scene := Control.new();scene.name='RaidCatalogScene_'+zone_id
-			scene.custom_minimum_size=Vector2(0,168);scene.clip_contents=true
-			raid_box.add_child(scene)
-			var scenery := TextureRect.new();scenery.texture=load(RAID_ART[zone_id]);scenery.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
-			scenery.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
-			scenery.mouse_filter=Control.MOUSE_FILTER_IGNORE
-			scene.add_child(scenery);scenery.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-			var painting := TextureRect.new();painting.texture=main._boss_texture(str(zone['boss']))
-			painting.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;painting.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			painting.mouse_filter=Control.MOUSE_FILTER_IGNORE;painting.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
-			scene.add_child(painting);painting.set_anchors_and_offsets_preset(Control.PRESET_RIGHT_WIDE)
-			painting.offset_left=-205;painting.offset_right=-12;painting.offset_top=5;painting.offset_bottom=-5
-			text(raid_box,str(design['description']),18)
-			var phases: Array=design['phases']
-			text(raid_box,'패턴  '+str(phases[0]['name'])+'  →  '+str(phases[1]['name'])+'  →  '+str(phases[2]['name']),16,S.MUTED)
-			var count: int=int(main.raid_clears.get(zone_id,0))
-			text(raid_box,'전용 세트 1개 · 레이드 정수 %d개 · %d회 토벌'%[6+6*int(zone['difficulty']),count],16,S.GOLD)
-			text(raid_box,'스테이지 %d 해금 · 권장 전투력 %s'%[int(zone['unlock_stage']),main._compact_hud_amount(int(zone['power'])*3)],16,S.BLUE_SOFT)
-			var enter := action(raid_box,'원정대가 필요해요' if main.deployed_heroes.is_empty() else ('레이드 준비' if open else '아직 잠긴 레이드'),Callable(main,'_select_zone_for_raid').bind(zone_id),true)
-			enter.name='RaidCatalogEnter_'+zone_id;enter.disabled=not open or main.deployed_heroes.is_empty()
-		_content_party(main,page,'meta')
+		lab_actions.get_parent().remove_child(lab_actions);lab_actions.queue_free()
+		load('res://scripts/RaidCatalogView.gd').build(main,page,load('res://scripts/portrait/PortraitPages.gd'))
 		return
 	var last_result: Dictionary=main.get_meta('last_dungeon_result',{})
 	if selected==str(last_result.get('mode','')):

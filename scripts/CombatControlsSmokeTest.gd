@@ -80,5 +80,9 @@ func _run() -> void:
 		_fail("Sprite animation did not resume", main)
 		return
 	print("combat_controls_ok visible_buttons=4 scrollable_buttons=3 no_overlap=true pause_resume=true")
+	main.set_process(false)
+	main.presentation_runtime.audio.shutdown()
+	await create_timer(0.3).timeout
 	main.free()
+	await process_frame
 	quit(0)

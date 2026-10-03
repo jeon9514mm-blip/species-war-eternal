@@ -82,12 +82,16 @@ func _capacity() -> void:
 	var many: Array = []
 	for index in 3002:
 		many.append({"id": "overflow_%d" % index, "slot": "armor", "locked": true})
-	var bounded := SaveValidation.sanitize({"equipment_overflow": many}, ["gray_meadow"])
-	_check(bounded["equipment_overflow"].size() == 3000, "malformed over-cap recovery input is bounded to the runtime maximum")
+	var preserved := SaveValidation.sanitize({"equipment_overflow": many}, ["gray_meadow"])
+	_check(preserved["equipment_overflow"].size() == 3002, "already-owned recovery items survive beyond the runtime admission limit")
 	var ids: Dictionary = {}
-	for item in bounded["equipment_overflow"]:
+	for item in preserved["equipment_overflow"]:
 		ids[item["id"]] = true
-	_check(ids.size() == 3000, "recovery cap does not clone or recycle item IDs")
+	_check(ids.size() == 3002 and ids.has("overflow_3001"), "recovery migration preserves every unique ID including the newest item")
+	var legacy := SaveValidation.sanitize({"loot_inventory": items.slice(0, SaveValidation.INVENTORY_CAP) + many, "equipment_overflow": [extra, many.back(), null]}, ["gray_meadow"])
+	_check(legacy["loot_inventory"].size() == SaveValidation.INVENTORY_CAP and legacy["equipment_overflow"].size() == 3003, "legacy bag spill preserves every excess item alongside existing recovery storage")
+	_check(legacy["equipment_overflow"].slice(0, 3002) == preserved["equipment_overflow"] and legacy["equipment_overflow"].back() == extra, "overflow recovery still deduplicates stale copies and ignores invalid entries without dropping ownership")
+	_check(SaveValidation.sanitize(legacy, ["gray_meadow"])["equipment_overflow"] == legacy["equipment_overflow"], "over-limit recovery is stable across repeated validation")
 
 func _trade_item(item_id: String) -> Dictionary:
 	var item := _item(item_id)
@@ -296,6 +300,58 @@ func _main_crystal_roundtrip() -> void:
 	_check(final_main._gear_inventory_index(crystal_id) < 0 and final_main.gear_market_state["accounts"]["player_local"]["deliveries"].is_empty(), "consumed crystal cannot return from a stale bag or market delivery")
 	_dispose_main(final_main)
 
+func _main_overflow_roundtrip() -> void:
+	var path := fixture_root.path_join("main-overflow.json")
+	var main = await _new_main(path)
+	main.selected_faction = "aurelia"
+	main._setup_hero_progress(main._hero_roster_for_faction())
+	main.deployed_heroes = main._hero_roster_for_faction().slice(0, 1)
+	main._offline_checked = true
+	main.gear_auto_equip = false
+	main.wallet_gold = 1234
+	main.loot_inventory.clear()
+	main.equipment_overflow.clear()
+	var protected_item := _item("overflow-template")
+	for index in main.INVENTORY_CAP:
+		var item := protected_item.duplicate(true)
+		item["id"] = "full-bag-%d" % index
+		main.loot_inventory.append(item)
+	for index in main.GEAR_OVERFLOW_CAP:
+		var item := protected_item.duplicate(true)
+		item["id"] = "full-stash-%d" % index
+		main.equipment_overflow.append(item)
+	var earned := RULES.hunt_item("gray_meadow", "weapon", "전설", main.loot_rng, "defender")
+	var delivery: String = main._store_or_salvage_loot(earned)
+	_check(delivery == "보호 장비 보관함으로 배송" and main.equipment_overflow.size() == 3001, "actual protected hunt drop is retained after both storage limits are reached")
+	var bag: Array = main.loot_inventory.duplicate(true)
+	var overflow: Array = main.equipment_overflow.duplicate(true)
+	main._save_idle_state()
+	_check(main.last_save_status == "saved", "complete over-limit ownership snapshot saves successfully within the byte limit")
+	main._load_idle_state()
+	_check(main.loot_inventory == bag and main.equipment_overflow == overflow, "real Main save/load preserves all 200 bag and 3001 recovery items with exact metadata")
+	_check(main.equipment_overflow.back() == earned and main.wallet_gold == 1234, "newest legendary hunt reward survives restart without silent conversion or loss")
+	main._save_idle_state()
+	main._load_idle_state()
+	_check(main.equipment_overflow == overflow, "second save/load cannot truncate the restored recovery items")
+	# Exceed the real file byte limit with valid, uniquely owned gear. The
+	# writer must reject the whole snapshot before replacing either generation.
+	var primary_bytes := FileAccess.get_file_as_bytes(path)
+	var backup_bytes := FileAccess.get_file_as_bytes(path + ".bak")
+	var oversized_count := ceili(float(SaveStore.MAX_FILE_BYTES) / float(JSON.stringify(protected_item).to_utf8_buffer().size())) + 200
+	for index in range(main.equipment_overflow.size(), oversized_count):
+		var item := protected_item.duplicate(true)
+		item["id"] = "oversized-stash-%d" % index
+		main.equipment_overflow.append(item)
+	var complete: String = JSON.stringify(main.equipment_overflow)
+	_check(complete.to_utf8_buffer().size() > SaveStore.MAX_FILE_BYTES, "oversized fixture crosses the actual 8 MiB limit using valid equipment")
+	main._save_idle_state()
+	_check(main.last_save_status == "too_large" and preload("res://scripts/SaveSafety.gd").pending(main), "byte-limit failure is explicit and activates the common pending-save barrier")
+	_check(JSON.stringify(main.equipment_overflow) == complete and main.loot_inventory == bag, "failed oversized save retains every in-memory item for recovery")
+	_check(FileAccess.get_file_as_bytes(path) == primary_bytes and FileAccess.get_file_as_bytes(path + ".bak") == backup_bytes, "oversized write preserves both complete on-disk save generations")
+	main._load_idle_state()
+	_check(JSON.stringify(main.equipment_overflow) == complete and main.save_load_status == "goals_save_pending", "pending oversized snapshot cannot be replaced by an older on-disk generation")
+	_dispose_main(main)
+
 func _remove_tree(path: String) -> void:
 	var directory := DirAccess.open(path)
 	if directory == null:
@@ -318,6 +374,7 @@ func _run() -> void:
 	if "--schema-only" not in OS.get_cmdline_user_args():
 		await _main_roundtrip()
 		await _main_crystal_roundtrip()
+		await _main_overflow_roundtrip()
 	_remove_tree(fixture_root)
 	await create_timer(0.5).timeout
 	await process_frame

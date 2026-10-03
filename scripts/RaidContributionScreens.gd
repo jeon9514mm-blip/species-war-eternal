@@ -26,19 +26,21 @@ static func build(main, index: int = 0) -> void:
 	var box=P.card(page,str(report["entry"].get("name","레이드")),S.BLUE)
 	var outcome: String={"victory":"승리","timeout":"시간 초과","defeat":"전멸","cancelled":"취소"}.get(str(report["reason"]),str(report["reason"]))
 	P.text(box,"%s · %.1f게임초 · 생존 %d명"%[outcome,report["elapsed"],report["alive"]],20).name="RaidReportSummary"
+	if report["entry"].has("max_hp") and report["entry"].has("attack"):
+		P.text(box,"도전 당시 보스 HP %s · 기본 공격력 %s"%[main._compact_hud_amount(int(report["entry"]["max_hp"])),main._compact_hud_amount(int(report["entry"]["attack"]))],17,S.BLUE_SOFT).name="RaidReportStrength"
 	var totals: Dictionary=report["totals"]
 	P.text(box,"본체 피해 %d · 갑주 피해 %d · 수정핵 피해 %d"%[totals["boss_damage"],totals["guard_damage"],totals["add_damage"]],18)
 	P.text(box,"차단 성공 %d회 · 유효 치유 %d · 새로 부여한 보호막 %d"%[totals["interrupts"],totals["healing_given"],totals["shield_given"]],18)
 	P.text(box,"피해는 실제로 소모한 HP입니다. 보스가 회복한 뒤 다시 가한 피해도 포함하며, 심연의 중복 제외 점수와 다릅니다. 보호막 부여는 기존 보호막보다 늘어난 양만, 치유는 실제 회복량만 집계합니다.",15,S.MUTED)
 	if not bool(main.get_meta("raid_report_saved",true)) and report.get("stamp","")==main.get_meta("last_raid_contribution",{}).get("stamp",""):
 		P.text(box,"분석 기록 저장 실패 · 이번 실행 중에는 열람 가능. 게임 보상 저장과는 별도입니다.",17,S.GOLD)
-	# Comparison is deliberately limited: same boss/rule/faction/outcome and auto settings.
+	# Entry equality also keeps different difficulty revisions out of comparisons.
 	for j in range(index+1,list.size()):
 		var old: Dictionary=list[j]
 		if old["entry"]==report["entry"] and old["rule"]==report["rule"] and old["reason"]==report["reason"] and outcome!="취소":
 			var previous_dps: float=float(old["total_damage"])/maxf(.001,float(old["elapsed"]))
 			var dps: float=float(report["total_damage"])/maxf(.001,float(report["elapsed"]))
-			P.text(box,"같은 보스·규칙·종료·시작 자동설정 기록 대비: 초당 피해 %+.1f · 생존 %+d명"%[dps-previous_dps,int(report["alive"])-int(old["alive"])],16,S.BLUE_SOFT)
+			P.text(box,"같은 보스·난이도·규칙·종료·시작 자동설정 기록 대비: 초당 피해 %+.1f · 생존 %+d명"%[dps-previous_dps,int(report["alive"])-int(old["alive"])],16,S.BLUE_SOFT)
 			P.text(box,"레벨·장비·편성, 도중 설정 변경·수동 입력 차이는 포함됩니다. 통제된 성능 실험이나 영웅 우열 판정이 아닙니다.",15,S.MUTED)
 			break
 	for row in report["actors"]:

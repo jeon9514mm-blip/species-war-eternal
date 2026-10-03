@@ -5,6 +5,8 @@ const SKIN := preload('res://scripts/portrait/PortraitSkin.gd')
 const MENUS := preload('res://scripts/portrait/PortraitMenus.gd')
 const HUD := preload('res://scripts/portrait/PortraitHud.gd')
 const DESIGN := preload('res://scripts/RaidBossDesign.gd')
+const BALANCE := preload('res://scripts/RaidBalance.gd')
+const KITS := preload('res://scripts/HeroKitRuntime.gd')
 const TELEGRAPH := preload('res://scripts/portrait/RaidArenaTelegraph.gd')
 const BOSS_MOTION := preload('res://scripts/portrait/RaidBossMotion.gd')
 const FIELD := preload('res://scripts/RaidBattlefield.gd')
@@ -19,6 +21,8 @@ var information: Label
 var state_label: Label
 var state_title: Label
 var state_scroll: ScrollContainer
+var landscape_info: ScrollContainer
+var landscape_status: Control
 var rewards: Label
 var party_summary: Label
 var elapsed := 0.0
@@ -189,7 +193,7 @@ func install(main: Node) -> void:
 	SKIN.place(stage,follow_button,Rect2(0,0,120,39))
 	follow_button.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
 	follow_button.offset_left=14;follow_button.offset_right=170;follow_button.offset_top=-84;follow_button.offset_bottom=-16
-	var hint:=_text('바닥 터치 · 이동  /  위험 구역에서 회피',14,Color('#e0e9d8'))
+	var hint:=_text('바닥 터치 · 원정대 이동  /  회피 · 0.5초 무적',14,Color('#e0e9d8'))
 	hint.name='PortraitRaidMoveHint';hint.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	SKIN.place(stage,hint,Rect2(16,0,w-72,25))
 	hint.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
@@ -364,6 +368,25 @@ func _on_follow_pressed() -> void:
 func start_entry() -> void:
 	if not is_instance_valid(stage):return
 	last_phase=1;last_enraged=false
+	# Retrying reuses this view: revive its actors as soon as combat HP resets.
+	for id in hero_actors:
+		var actor: Node2D=hero_actors[id]
+		if not is_instance_valid(actor):continue
+		actor.position=game.raid_positions.get(id,actor.position)
+		actor.modulate=Color.WHITE;actor.self_modulate=Color.WHITE
+		actor.play_idle('right')
+		last_hp[id]=float(game.hero_battle_state.get(id,{}).get('hp',0))
+	if is_instance_valid(game.raid_boss_sprite):
+		game.raid_boss_sprite.modulate=Color.WHITE
+		game.raid_boss_sprite.self_modulate=Color.WHITE
+		game.raid_boss_sprite.play_idle('left')
+		game.raid_boss_sprite.set_world_position(game.raid_boss_position)
+	rally_marker.visible=false
+	telegraph.active=false;telegraph.shape={};telegraph.queue_redraw()
+	phase_flash.color.a=0.0
+	_dragging=false;_stage_pointer=-2
+	var old_victory:=stage.get_node_or_null('PortraitRaidVictory')
+	if is_instance_valid(old_victory):old_victory.queue_free()
 	if is_instance_valid(phase_banner):phase_banner.visible=false;phase_banner.modulate.a=0.0
 	var left:=ColorRect.new();left.color=Color('#091522');left.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	var right:=ColorRect.new();right.color=Color('#091522');right.mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -380,6 +403,7 @@ func start_entry() -> void:
 	transition.chain().tween_callback(func() -> void:
 		left.queue_free();right.queue_free();title.queue_free()
 	)
+	refresh()
 
 func _open_formation() -> void:
 	if game.raid_running:return
@@ -431,6 +455,44 @@ func _process(delta: float) -> void:
 	elapsed+=delta
 	if elapsed>.1:elapsed=0;refresh()
 
+func _refresh_manual_controls() -> void:
+	var state: Dictionary=game.hero_battle_state.get(selected_hero_id,{})
+	var runtime: Dictionary=game.hero_skill_runtime.get(selected_hero_id,{})
+	var selected_name: String=game._hero_short_name(selected_hero_id) if not selected_hero_id.is_empty() else '영웅'
+	skill_cast_button.disabled=true;ultimate_cast_button.disabled=true
+	skill_cast_button.text='스킬 사용';ultimate_cast_button.text='각성기'
+	skill_cast_button.tooltip_text='%s의 준비된 스킬 사용'%selected_name
+	ultimate_cast_button.tooltip_text='%s의 준비된 각성기 사용'%selected_name
+	if not game.raid_running:return
+	if int(state.get('hp',0))<=0:
+		skill_cast_button.text='전투불능';ultimate_cast_button.text='전투불능'
+		skill_cast_button.tooltip_text='생존한 영웅의 카드를 선택하세요.'
+		ultimate_cast_button.tooltip_text=skill_cast_button.tooltip_text
+		return
+	if game.raid_positions.get(selected_hero_id,FIELD.hero_entry(0)).distance_to(game.raid_boss_position)>335.0:
+		skill_cast_button.text='사거리 밖';ultimate_cast_button.text='사거리 밖'
+		skill_cast_button.tooltip_text='%s이 보스에게 접근하면 사용할 수 있어요. 자동 추적으로 복귀하세요.'%selected_name
+		ultimate_cast_button.tooltip_text=skill_cast_button.tooltip_text
+		return
+	skill_cast_button.disabled=not (KITS.can_use(game,selected_hero_id,'a1') or KITS.can_use(game,selected_hero_id,'a2'))
+	if skill_cast_button.disabled:
+		var remaining: float=minf(float(runtime.get('remaining',0)),float(runtime.get('secondary_remaining',0)))
+		skill_cast_button.text='스킬 %.1f초'%remaining if remaining>0.0 else '스킬 대기'
+		skill_cast_button.tooltip_text='%s · 재사용 %.1f초 남음'%[selected_name,remaining] if remaining>0.0 else '%s · 회복·수호·차단 조건이 충족되면 사용할 수 있어요.'%selected_name
+	ultimate_cast_button.disabled=not KITS.can_use(game,selected_hero_id,'ultimate')
+	var gauge: int=clampi(int(state.get('ultimate',0)),0,100)
+	ultimate_cast_button.text=('각성 %d%%'%gauge if gauge<100 else '각성기 대기') if ultimate_cast_button.disabled else '각성기 준비'
+	ultimate_cast_button.tooltip_text='%s · 각성 게이지 %d%%'%[selected_name,gauge]
+	if ultimate_cast_button.disabled and gauge==100:
+		ultimate_cast_button.tooltip_text+=' · 회복·수호·차단 조건을 기다립니다.'
+
+func _focus_landscape_state() -> void:
+	# The boss summary sits above this panel in preparation. Once a fight starts,
+	# keep warnings and results inside the short landscape information viewport.
+	await get_tree().process_frame
+	if not is_instance_valid(landscape_info) or not is_instance_valid(landscape_status):return
+	landscape_info.scroll_vertical=roundi(landscape_status.position.y)
+
 func refresh() -> void:
 	if not is_instance_valid(game) or not is_instance_valid(hp):return
 	skill_auto_button.text='스킬 AUTO  켬' if game.skill_auto else '스킬 AUTO  끔'
@@ -438,20 +500,17 @@ func refresh() -> void:
 	skill_auto_button.modulate=Color.WHITE if game.skill_auto else Color('#b4c2c6')
 	ultimate_auto_button.modulate=Color.WHITE if game.ultimate_auto else Color('#b4c2c6')
 	var zone: Dictionary=game._raid_zone()
+	var stats: Dictionary=BALANCE.stats(zone)
 	var clears: int=int(game.raid_clears.get(game.raid_encounter_zone,0))
 	var reward_crystals: int=6+6*int(zone['difficulty'])
 	rewards.text='전용 세트 1개 확정 · 레이드 정수 기본 %d개 + 기믹 성과 보너스\n%d승 후 전설 세트 보장 · 미보유 부위 우선'%[reward_crystals,5-clears%5]
-	party_summary.text='권장 전투력 %s · 원정대 전투력 %s'%[game._compact_hud_amount(int(zone['power'])*3),game._compact_hud_amount(game.party_power)]
-	hp.value=100.0*game.raid_boss_hp/maxf(1,game.raid_boss_max_hp) if game.raid_boss_max_hp>0 else 100.0
+	party_summary.text='권장 전투력 %s · 원정대 전투력 %s'%[game._compact_hud_amount(int(stats['recommended_power'])),game._compact_hud_amount(game.party_power)]
+	var encounter_started: bool=game.raid_running or not game.raid_last_result.is_empty()
+	hp.value=100.0*game.raid_boss_hp/maxf(1,game.raid_boss_max_hp) if encounter_started else 100.0
 	dodge_button.disabled=not game.raid_running or game.raid_dodge_cooldown>0.0
-	dodge_button.text='회피 %.1f초'%game.raid_dodge_cooldown if game.raid_dodge_cooldown>0.0 else '회피 준비'
+	dodge_button.text='무적 %.1f초'%game.raid_dodge_remaining if game.raid_dodge_remaining>0.0 else ('회피 %.1f초'%game.raid_dodge_cooldown if game.raid_dodge_cooldown>0.0 else '회피 준비')
 	follow_button.disabled=not game.raid_running or not game.raid_rally_active
-	skill_cast_button.disabled=not game.raid_running
-	ultimate_cast_button.disabled=not game.raid_running
-	if not selected_hero_id.is_empty():
-		skill_cast_button.text='스킬 사용';ultimate_cast_button.text='각성기'
-		skill_cast_button.tooltip_text='%s의 준비된 스킬 사용'%game._hero_short_name(selected_hero_id)
-		ultimate_cast_button.tooltip_text='%s의 준비된 각성기 사용'%game._hero_short_name(selected_hero_id)
+	_refresh_manual_controls()
 	boss_motion.casting=game.boss_telegraph_pending or game.raid_second_wave_remaining>0.0
 	boss_motion.enraged=game.raid_enraged
 	if is_instance_valid(game.raid_boss_sprite):
@@ -491,10 +550,11 @@ func refresh() -> void:
 	elif not game.raid_running:
 		last_enraged=false
 	if game.raid_running or not game.raid_last_result.is_empty():
-		information.text='HP %s · %.0f초 · %d단계'%[game._compact_hud_amount(game.raid_boss_hp),game.raid_elapsed,game.raid_phase]
+		information.text='HP %s · 남은 %.0f초 · %d단계'%[game._compact_hud_amount(game.raid_boss_hp),maxf(0,game.RAID_TIME_LIMIT-game.raid_elapsed),game.raid_phase]
 		information.tooltip_text='HP %s / %s · 제한 240초'%[game._compact_hud_amount(game.raid_boss_hp),game._compact_hud_amount(game.raid_boss_max_hp)]
 	else:
-		information.text='HP %s · 제한 240초'%game._compact_hud_amount(int(zone['power'])*20)
+		information.text='HP %s · 제한 240초'%game._compact_hud_amount(int(stats['max_hp']))
+		information.tooltip_text='보스 HP %d · 공격력 %d · 180초 광폭화 / 240초 제한'%[stats['max_hp'],stats['attack']]
 	start.disabled=game.raid_running or game.deployed_heroes.is_empty()
 	start.text='전투 중' if game.raid_running else ('다시 도전' if not game.raid_last_result.is_empty() else '레이드 시작')
 	formation.disabled=game.raid_running
@@ -506,7 +566,9 @@ func refresh() -> void:
 		next_section='telegraph'
 		state_title.text='보스 스킬 예고'
 		var break_percent: int=roundi(100.0*game.raid_break_gauge/maxf(1.0,game.raid_break_gauge_max))
-		next_text='%s · %.1f초 후 발동\n%s\n차단 게이지 %d%%'%['2차 지진' if followup else game.boss_telegraph_skill,game.raid_second_wave_remaining if followup else game.boss_telegraph_remaining,'위험 구역 밖으로 이동하거나 회피하세요.' if game.raid_control_immunity>0.0 else '위험 구역에서 이동·회피하거나 제어 스킬로 차단하세요.',break_percent]
+		var warning_profile: Dictionary=game.raid_second_wave_profile if followup else game.raid_cast_profile
+		var counter: String=str(warning_profile.get('counter','위험 구역 밖으로 이동하거나 회피하세요.'))
+		next_text='%s · %.1f초 후 발동\n%s\n%s'%['2차 지진' if followup else game.boss_telegraph_skill,game.raid_second_wave_remaining if followup else game.boss_telegraph_remaining,counter,'제어 면역 · 이동 또는 회피로 대응' if game.raid_control_immunity>0.0 else '차단 게이지 %d%% · 제어 스킬로 차단'%break_percent]
 		status_color=Color('#ffbd87')
 	elif game.raid_running:
 		next_section='running'
@@ -532,6 +594,7 @@ func refresh() -> void:
 	if _state_section!=next_section:
 		_state_section=next_section
 		state_scroll.scroll_vertical=0
+		if next_section!='guide' and is_instance_valid(landscape_info):_focus_landscape_state.call_deferred()
 	state_label.add_theme_color_override('font_color',status_color)
 	state_label.tooltip_text=state_label.text
 	for id in hero_bars:
@@ -554,6 +617,8 @@ func _wide_layout(body: Control, summary: Control, status: Control, actions: Con
 	var field_w: float = w * .63
 	body.position = Vector2(16,144); body.size = Vector2(field_w-28,h-436)
 	var info := ScrollContainer.new(); info.name = "LandscapeRaidInfo"
+	landscape_info=info;landscape_status=status
+	state_scroll.custom_minimum_size.y=160
 	SKIN.place(self,info,Rect2(field_w+8,144,w-field_w-24,h-480))
 	info.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	var column := VBoxContainer.new(); column.size_flags_horizontal = Control.SIZE_EXPAND_FILL

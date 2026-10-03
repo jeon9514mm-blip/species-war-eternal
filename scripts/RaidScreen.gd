@@ -2,6 +2,7 @@ extends RefCounted
 class_name RaidScreen
 
 const UI := preload("res://scripts/GameUiTheme.gd")
+const BALANCE := preload("res://scripts/RaidBalance.gd")
 const BOSS_FEET := Vector2(535, 365)
 
 static func _label(parent: Control, text: String, rect: Rect2, font_size: int = 16, color: Color = UI.INK, lines: int = 0) -> Label:
@@ -33,6 +34,7 @@ static func build(main) -> void:
 	main._reset_raid_encounter()
 	main.combat_labels.clear()
 	var zone: Dictionary = main._raid_zone()
+	var raid_stats: Dictionary = BALANCE.stats(zone)
 	main.party_power = main._calculate_party_power()
 	main._setup_hero_skills()
 	var boss_clears := int(main.raid_clears.get(main.raid_encounter_zone, 0))
@@ -66,7 +68,7 @@ static func build(main) -> void:
 	boss_mark.position = Vector2(58, 191)
 	root.add_child(boss_mark)
 	_label(root, "도전 정보", Rect2(90, 184, 260, 36), 21)
-	var record := _label(root, "고유 스킬 · %s\n권장 전투력 · %d\n레이드 클리어 · %d회" % [zone["boss_skill"], int(zone["power"]) * 3, boss_clears], Rect2(58, 234, 332, 78), 15, UI.MUTED, 3)
+	var record := _label(root, "고유 스킬 · %s\n권장 전투력 · %d\n레이드 클리어 · %d회" % [zone["boss_skill"], raid_stats["recommended_power"], boss_clears], Rect2(58, 234, 332, 78), 15, UI.MUTED, 3)
 	main.combat_labels["raid_record"] = record
 	_label(root, "공략 메모", Rect2(58, 323, 300, 24), 13, UI.GOLD)
 	var pattern: Dictionary = main._boss_pattern_profile(main.raid_encounter_zone)
@@ -102,7 +104,7 @@ static func build(main) -> void:
 	main.combat_labels["raid_start"] = start
 
 	_label(root, "전투 현황", Rect2(804, 186, 416, 36), 21)
-	var enemy := _label(root, "보스 HP · 전투 시작 전\n원정대 HP · 준비 완료\n원정대 전투력 · %d" % main.party_power, Rect2(804, 232, 418, 91), 15, UI.INK, 4)
+	var enemy := _label(root, "보스 HP · %d · 공격력 %d\n원정대 HP · 준비 완료\n원정대 전투력 · %d" % [raid_stats["max_hp"], raid_stats["attack"], main.party_power], Rect2(804, 232, 418, 91), 15, UI.INK, 4)
 	main.combat_labels["raid_enemy"] = enemy
 	_label(root, "토벌 진행", Rect2(804, 329, 416, 22), 12, UI.MUTED)
 	var progress := ProgressBar.new()

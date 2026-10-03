@@ -35,8 +35,17 @@ func _run() -> void:
 		_check(view.dodge_button!=null and view.skill_cast_button!=null and view.boss_motion.actor==game.raid_boss_sprite,zone+" has dodge, manual skills and moving boss art")
 		var first: String=str(game.deployed_heroes[0]["id"])
 		var second: String=str(game.deployed_heroes[1]["id"])
-		var click:=InputEventMouseButton.new();click.button_index=MOUSE_BUTTON_LEFT;click.pressed=true
-		view.hero_slots[second].gui_input.emit(click)
+		# This is a hit-shape/immunity fixture, not a progression or survivability
+		# benchmark. Keep the actor alive across the real strengthened boss hits;
+		# retain the normal defense/guard calculation and all boss statistics.
+		var fixture_hp: int=maxi(int(game.hero_battle_state[first]["max_hp"]),game.raid_boss_attack*12)
+		game.hero_battle_state[first]["max_hp"]=fixture_hp
+		game.hero_battle_state[first]["hp"]=fixture_hp
+		game._sync_party_hp_from_heroes()
+		# Selection happens on release to distinguish a tap from list dragging.
+		for down in [true,false]:
+			var click:=InputEventMouseButton.new();click.button_index=MOUSE_BUTTON_LEFT;click.pressed=down
+			view.hero_slots[second].gui_input.emit(click)
 		_check(view.selected_hero_id==second,zone+" hero card selects a controllable spell caster")
 		game.hero_battle_state[second]["ultimate"]=100.0
 		if preload("res://scripts/HeroKitRuntime.gd").can_use(game,second,"ultimate"):
@@ -63,16 +72,19 @@ func _run() -> void:
 		game.raid_pattern_shape=shape
 		var hp_before: int=int(game.hero_battle_state[first]["hp"])
 		game._apply_boss_pattern(profile)
-		_check(int(game.hero_battle_state[first]["hp"])<hp_before,zone+" pattern hits heroes still in the footprint")
+		_check(int(game.hero_battle_state[first]["hp"])>0 and int(game.hero_battle_state[first]["hp"])<hp_before,zone+" pattern damages the live fixture hero inside the footprint")
 		game.raid_positions[first]=safe
 		hp_before=int(game.hero_battle_state[first]["hp"])
 		game._apply_boss_pattern(profile)
-		_check(int(game.hero_battle_state[first]["hp"])==hp_before,zone+" moved hero avoids the same footprint")
+		_check(hp_before>0 and int(game.hero_battle_state[first]["hp"])==hp_before,zone+" live moved hero avoids the same footprint")
 		game.raid_positions[first]=inside
 		game._raid_dodge()
+		# Keep the target inside after dodge movement so only its immunity can
+		# prevent this hit, rather than passing because it moved to safety.
+		game.raid_positions[first]=inside
 		hp_before=int(game.hero_battle_state[first]["hp"])
 		game._apply_boss_pattern(profile)
-		_check(int(game.hero_battle_state[first]["hp"])==hp_before and game.raid_dodge_cooldown>4.9,zone+" dodge grants short immunity and starts cooldown")
+		_check(hp_before>0 and int(game.hero_battle_state[first]["hp"])==hp_before and game.raid_dodge_remaining>0.0 and game.raid_dodge_cooldown>4.9,zone+" dodge grants a live hero immunity inside the footprint and starts cooldown")
 		view.refresh()
 		_check(view.telegraph.active==false or view.telegraph.shape==game.raid_second_wave_shape or view.telegraph.shape==game.raid_pattern_shape,zone+" warning uses simulated shape")
 		game._finish_raid("cancelled")

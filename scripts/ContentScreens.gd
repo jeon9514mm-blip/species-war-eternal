@@ -320,7 +320,7 @@ static func bosses(main) -> void:
 		_text(main, card, str(zone["boss"]), Rect2(177, 43, 548, 32), 24)
 		_text(main, card, "%s  ·  고유기 %s" % [zone["name"], zone["boss_skill"]], Rect2(177, 85, 548, 29), 14, UI.MUTED)
 		_text(main, card, "권장 전투력", Rect2(748, 26, 196, 24), 12, UI.MUTED)
-		_text(main, card, "%d" % (int(zone["power"]) * 3), Rect2(748, 51, 196, 30), 24, accent)
+		_text(main, card, "%d" % int(preload("res://scripts/RaidBalance.gd").stats(zone).recommended_power), Rect2(748, 51, 196, 30), 24, accent)
 		_text(main, card, "토벌 %d회" % main.raid_clears.get(zone_id, 0), Rect2(748, 90, 196, 24), 13, UI.MUTED)
 		var button := _button(main, card, "도전하기" if unlocked else "스테이지 %d 해금" % zone["unlock_stage"], Rect2(954, 46, 192, 46), Callable(main, "_select_zone_for_raid").bind(zone_id), true, UI.LAVENDER)
 		button.disabled = not unlocked

@@ -10,6 +10,7 @@ static func begin(main) -> void:
 	var ledger = LEDGER.new()
 	ledger.begin(main.raid_encounter_serial, main.deployed_heroes, main.hero_battle_state,
 		{"faction":main.selected_faction,"zone":main.raid_encounter_zone,"name":main.raid_boss_name,
+		"max_hp":main.raid_boss_max_hp,"attack":main.raid_boss_attack,"balance_revision":preload("res://scripts/RaidBalance.gd").REVISION,
 		"auto_skill":main.skill_auto,"auto_ultimate":main.ultimate_auto})
 	main.set_meta("raid_contribution",ledger)
 static func add(main, source: String, kind: String, amount: int) -> void:

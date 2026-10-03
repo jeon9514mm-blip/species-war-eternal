@@ -3052,6 +3052,8 @@ func _heal_hero(target_id: String, amount: int) -> int:
 
 func _incoming_damage_to_hero(hero_id: String, base_damage: int, enemy_index: int = -1) -> int:
 	if challenge_session != null and not CHALLENGE_DRIVER._report_active(self): return 0
+	# The raid dodge promises party-wide immunity, including basic hits and add pulses.
+	if active_screen == "raid" and raid_dodge_remaining > 0.0: return 0
 	if base_damage <= 0 or hero_id.is_empty() or not hero_battle_state.has(hero_id):
 		return 0
 	var state: Dictionary = hero_battle_state[hero_id]
@@ -3717,9 +3719,10 @@ func _start_raid() -> void:
 	raid_running = true
 	raid_outcome = "running"
 	raid_boss_name = str(zone["boss"])
-	raid_boss_max_hp = int(zone["power"]) * 20
+	var raid_stats: Dictionary = preload("res://scripts/RaidBalance.gd").stats(zone)
+	raid_boss_max_hp = int(raid_stats["max_hp"])
 	raid_boss_hp = raid_boss_max_hp
-	raid_boss_attack = maxi(25, int(zone["power"]) / 3)
+	raid_boss_attack = int(raid_stats["attack"])
 	party_power = _calculate_party_power()
 	_raid_activate_phase_mechanic(1)
 	_setup_hero_skills()
@@ -4045,7 +4048,7 @@ func _finish_raid(outcome: String) -> void:
 			_show_battle_result_popup("RAID CLEAR", "%s 격파" % raid_boss_name, reward_detail, GREEN)
 		var record: Label = combat_labels.get("raid_record")
 		if is_instance_valid(record):
-			record.text = "고유 스킬 · %s\n권장 전투력 · %d\n레이드 클리어 · %d회" % [zone["boss_skill"], int(zone["power"]) * 3, int(raid_clears[raid_encounter_zone])]
+			record.text = "고유 스킬 · %s\n권장 전투력 · %d\n레이드 클리어 · %d회" % [zone["boss_skill"], preload("res://scripts/RaidBalance.gd").stats(zone)["recommended_power"], int(raid_clears[raid_encounter_zone])]
 		if is_instance_valid(status):
 			status.text = "클리어! %.1f초 · 골드 +%d · 경험치 +%d\n세트 장비 확정 · 레이드 정수 +%d" % [raid_elapsed, reward_gold, reward_xp, crystal_reward]
 			status.add_theme_color_override("font_color", GREEN)

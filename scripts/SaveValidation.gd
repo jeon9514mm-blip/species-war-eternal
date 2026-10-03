@@ -14,7 +14,6 @@ const EQUIPMENT_RULES = preload("res://scripts/EquipmentRules.gd")
 const DAILY_PROGRESS = preload("res://scripts/DailyDungeonProgress.gd")
 const EQUIPMENT_MARKET = preload("res://scripts/EquipmentMarketService.gd")
 const INVENTORY_CAP := EQUIPMENT_RULES.INVENTORY_CAP
-const EQUIPMENT_OVERFLOW_CAP := 3000
 const QUESTS := ["stage5", "raid1", "tower5"]
 const FACTIONS := ["aurelia", "noxfera"]
 const DICTIONARY_FIELDS := ["pet_progress", "guardian_collection", "hero_skill_tree", "hero_progress", "hero_equipment", "hero_equipment_rarity", "hero_equipment_names", "hero_equipment_sets", "hero_equipment_items", "gear_market_state", "raid_clears", "hero_shards", "hero_breakthrough", "hero_ascension", "quest_claimed", "codex_seen", "faction_war", "faction_march", "faction_conflict", "faction_party_presets", "faction_world_snapshots", "world_season", "world_authority", "world_server_gateway"]
@@ -282,16 +281,17 @@ static func _sanitize_equipment(data: Dictionary, hero_ids: Array) -> void:
 			if inventory.size() < INVENTORY_CAP:
 				seen[item["id"]] = true
 				inventory.append(item)
-			elif overflow.size() < EQUIPMENT_OVERFLOW_CAP:
+			else:
 				seen[item["id"]] = true
 				# Older versions truncated these entries. Preserve them in the
 				# recovery store instead, including crafted and locked gear.
 				overflow.append(item)
 	var raw_overflow = data.get("equipment_overflow", [])
 	if typeof(raw_overflow) == TYPE_ARRAY:
+		# The runtime admission limit cannot discard already-earned items.
+		# SaveStore bounds the entire file by bytes and rejects oversized writes
+		# explicitly, retaining the complete pending state for recovery.
 		for index in raw_overflow.size():
-			if overflow.size() >= EQUIPMENT_OVERFLOW_CAP:
-				break
 			var item := _equipment_item(raw_overflow[index], "legacy_overflow_%d" % index)
 			if item.is_empty() or seen.has(item["id"]):
 				continue

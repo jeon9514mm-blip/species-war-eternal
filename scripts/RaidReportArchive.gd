@@ -24,6 +24,13 @@ static func clean(raw: Variant) -> Dictionary:
 	var result: Dictionary = {"schema":1, "rule":"raid-contribution-1", "stamp":str(raw.get("stamp", "")).left(96),
 		"entry":{"faction":str(e["faction"]), "zone":str(e["zone"]), "name":str(e.get("name", "")).left(80), "auto_skill":e.get("auto_skill",true)==true, "auto_ultimate":e.get("auto_ultimate",true)==true},
 		"reason":str(raw.get("reason", "")).left(32), "actors":[], "totals":{}}
+	# Older reports remain readable; new reports retain the actual entry difficulty.
+	if e.has("balance_revision") or e.has("max_hp") or e.has("attack"):
+		if typeof(e.get("balance_revision")) != TYPE_STRING or str(e["balance_revision"]).is_empty(): return {}
+		for key: String in ["max_hp", "attack"]:
+			if not _number(e.get(key), 1.0, float(CHANNEL_CAP), true): return {}
+			result.entry[key] = int(e[key])
+		result.entry["balance_revision"] = str(e["balance_revision"]).left(80)
 	for k: String in ["serial", "elapsed", "alive", "total_damage"]:
 		var n: Variant = raw.get(k, 0)
 		var ceiling: float = float(DAMAGE_CAP if k == "total_damage" else CHANNEL_CAP)

@@ -32,6 +32,8 @@ var content_position:=0
 var right_rect: Rect2
 var art_rect: Rect2
 var detail: VBoxContainer
+var guarded_actions: Array[Dictionary]=[]
+var writes_blocked:=false
 
 static func build(main: Node, selected_id: String, requested_tab: String='') -> void:
 	if not main._hero_belongs_to_selected_faction(selected_id):
@@ -57,6 +59,7 @@ static func build(main: Node, selected_id: String, requested_tab: String='') -> 
 
 func install(main: Node, selected_id: String, selected_tab: String) -> void:
 	game=main;hero_id=selected_id;tab=selected_tab
+	writes_blocked=_mutation_blocked()
 	hero=R.hero(hero_id);progress_data=game._get_hero_progress(hero_id)
 	locked=game.idle_stage<int(hero.get('unlock_stage',1))
 	party_slot=game._deployed_hero_ids().find(hero_id)
@@ -191,7 +194,7 @@ func _identity() -> void:
 	scroll.set_deferred('scroll_vertical',content_position)
 	var deploy_text: String='스테이지 %d에서 합류'%int(hero.get('unlock_stage',1)) if locked else ('배치 해제' if party_slot>=0 else '원정대에 배치')
 	var deploy:=_button(deploy_text,_deploy,true);deploy.name='HeroDeployAction'
-	deploy.disabled=locked or (party_slot<0 and game.deployed_heroes.size()>=game._party_slot_cap()) or _mutation_blocked()
+	_guard_action(deploy,func():return locked or (party_slot<0 and game.deployed_heroes.size()>=game._party_slot_cap()))
 	if not locked and party_slot<0 and game.deployed_heroes.size()>=game._party_slot_cap():deploy.tooltip_text='원정대가 가득 찼습니다. 편성에서 자리를 선택해 교체하세요.'
 	_place(self,deploy,Rect2(right_rect.position.x,game.get_viewport_rect().size.y-160,right_rect.size.x,48))
 
@@ -234,9 +237,9 @@ func _growth() -> void:
 		var button:=_button('%s  %d / 10     + 1 P'%[entry[1],rank],func():_research(branch))
 		button.name='HeroResearch_'+branch;button.custom_minimum_size=Vector2(0,44);button.mouse_filter=Control.MOUSE_FILTER_PASS
 		button.alignment=HORIZONTAL_ALIGNMENT_LEFT;button.tooltip_text=game._skill_tree_branch_text(branch,rank)
-		button.disabled=locked or points<=0 or rank>=10 or _mutation_blocked();detail.add_child(button)
+		_guard_action(button,func():return locked or points<=0 or rank>=10);detail.add_child(button)
 	var reset:=_button('연구 재배분',Callable(game,'_open_research_allocation').bind(hero_id));reset.name='HeroResearchAllocation';reset.custom_minimum_size.y=44
-	reset.disabled=locked or _mutation_blocked();detail.add_child(reset)
+	_guard_action(reset,func():return locked);detail.add_child(reset)
 	if points<=0:_text(detail,'영웅 레벨이 3 오를 때마다 연구 포인트를 얻어요.',14,MUTED)
 
 func _skills() -> void:
@@ -281,7 +284,7 @@ func _ascension() -> void:
 		if _mutation_blocked() or locked:return
 		if game._try_ascend_hero(hero_id):build(game,hero_id,'ascension'),true)
 	ascend.name='HeroAscendAction';ascend.custom_minimum_size.y=48
-	ascend.disabled=locked or capped or int(progress_data.level)<int(requirement.level) or game.wallet_gold<int(requirement.gold) or _mutation_blocked();box.add_child(ascend)
+	_guard_action(ascend,func():return locked or capped or int(progress_data.level)<int(requirement.level) or game.wallet_gold<int(requirement.gold));box.add_child(ascend)
 	var rank: int=game._hero_breakthrough_rank(hero_id);var amount: int=game._hero_shard_count(hero_id);var cost: int=game._breakthrough_cost(rank)
 	var shards:=_section();_text(shards,'조각 돌파',22,INK)
 	_text(shards,'돌파 %d / 5   ·   조각 %d개 보유'%[rank,amount],17,ACCENT)
@@ -289,12 +292,28 @@ func _ascension() -> void:
 	var breakthrough:=_button('최대 돌파' if rank>=5 else '돌파 · 조각 %d개'%cost,func():
 		if _mutation_blocked() or locked:return
 		if game._try_breakthrough(hero_id):build(game,hero_id,'ascension'),true)
-	breakthrough.name='HeroBreakthroughAction';breakthrough.custom_minimum_size.y=48;breakthrough.disabled=locked or rank>=5 or amount<cost or _mutation_blocked();shards.add_child(breakthrough)
+	breakthrough.name='HeroBreakthroughAction';breakthrough.custom_minimum_size.y=48
+	_guard_action(breakthrough,func():return locked or rank>=5 or game._hero_shard_count(hero_id)<cost);shards.add_child(breakthrough)
 	var summon:=_button('소환 · 조각 획득',func():game.set_meta('summon_mode','hero');game.set_meta('summon_hero_id',hero_id);game._build_summon_screen())
 	summon.name='HeroShardSource';summon.custom_minimum_size.y=46;detail.add_child(summon)
 
 func _mutation_blocked() -> bool:
 	return game._save_blocked_for_newer_version or bool(game.get_meta('practice_active',false)) or SAFETY.pending(game)
+
+func _guard_action(button: Button, unavailable: Callable) -> void:
+	guarded_actions.append({'button':button,'unavailable':unavailable})
+	button.disabled=_mutation_blocked() or bool(unavailable.call())
+
+func _process(_delta: float) -> void:
+	if not is_instance_valid(game) or game.active_screen!='hero_detail':return
+	var blocked:=_mutation_blocked()
+	if blocked==writes_blocked:return
+	writes_blocked=blocked
+	# Saving can recover without navigating. Update only availability so the
+	# selected hero, task, scroll positions and keyboard focus stay intact.
+	for action: Dictionary in guarded_actions:
+		var button: Button=action.button
+		if is_instance_valid(button):button.disabled=blocked or bool(action.unavailable.call())
 
 func _deploy() -> void:
 	if locked or _mutation_blocked():return

@@ -281,7 +281,10 @@ func _toggle_lock() -> void:
 	game._show_toast(str(result.get('reason','')))
 
 func _sheet(title: String) -> VBoxContainer:
-	var shade:=ColorRect.new();shade.name='EquipmentOverlay';shade.color=Color(0,0,0,.72);shade.z_index=100;add_child(shade);shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	# GUI hit testing follows sibling order, independently of draw z_index.
+	# Keep the modal after the navigation so its shade consumes background taps.
+	var shade:=ColorRect.new();shade.name='EquipmentOverlay';shade.color=Color(0,0,0,.72);shade.z_index=100
+	shade.mouse_filter=Control.MOUSE_FILTER_STOP;game.content_root.add_child(shade);shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	settings_sheet=shade
 	var viewport: Vector2=game.get_viewport_rect().size
 	var panel:=_panel(shade,Rect2(viewport.x*.2,42,viewport.x*.6,viewport.y-84),S.BLUE_SOFT)

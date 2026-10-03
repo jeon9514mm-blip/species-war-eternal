@@ -1,8 +1,8 @@
 {
   "project": "Species War: Eternal",
   "development_step": "v83-6.5",
-  "workstream": "landscape_hero_menu",
-  "status": "validated_main",
+  "workstream": "raid_strength_quality",
+  "status": "implemented_and_validated",
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "save_version": 37,
   "orientation": "landscape_only",
@@ -47,87 +47,343 @@
     "feature_icons": 12,
     "uses_existing_navigation_callbacks": true
   },
-  "hunt_map_redesign_in_scope": false,
-  "hunt_hud_redesign_in_scope": false,
-  "hunt_ui_changes": "menu entry and its space only",
-  "script_checks_passed": 398,
-  "script_checks_total": 398,
-  "focused_engine_tests_passed": 15,
-  "focused_engine_tests_total": 15,
-  "final_hero_menu_ui_validation_complete": true,
-  "actual_ui_captures": 15,
+  "raid_balance": {
+    "source": "scripts/RaidBalance.gd",
+    "strength_multiplier": 10,
+    "revision": "raid-strength-10x-1",
+    "bosses": {
+      "gray_meadow": {
+        "max_hp": 36000,
+        "attack": 600,
+        "recommended_power": 5400
+      },
+      "forgotten_mine": {
+        "max_hp": 72000,
+        "attack": 1200,
+        "recommended_power": 10800
+      },
+      "moonrest_forest": {
+        "max_hp": 124000,
+        "attack": 2060,
+        "recommended_power": 18600
+      }
+    },
+    "retry_or_reload_multiplier_compounds": false,
+    "hunting_stats_changed": false,
+    "rewards_changed": false,
+    "unlock_requirements_changed": false,
+    "recommended_power_is_entry_requirement": false
+  },
+  "raid_ui": {
+    "catalog_columns": 3,
+    "preparation_hp_percent": 100,
+    "dodge_invulnerability_seconds": 0.5,
+    "dodge_cooldown_seconds": 5,
+    "dodge_includes_basic_attack_and_crystal_pulse": true,
+    "retry_resets_death_sprite": true,
+    "selected_hero_manual_actions_use_actual_readiness": true,
+    "remaining_time_and_counter_information_visible": true
+  },
+  "save_quality": {
+    "valid_protected_items_beyond_3000_preserved_on_load": true,
+    "save_file_limit_bytes": 8388608,
+    "oversized_save_explicitly_rejected": true,
+    "oversized_write_retains_previous_valid_save": true,
+    "unsaved_state_retained_in_memory": true,
+    "hero_action_reenable_after_save_retry": "verified",
+    "pending_save_manual_and_bulk_equipment_policy": "followup_required"
+  },
+  "equipment_modal_background_blocks_input": true,
+  "global_ui_redesign_in_scope": false,
+  "new_game_server_in_scope": false,
+  "script_checks_passed": 405,
+  "script_checks_total": 405,
+  "focused_engine_tests_passed": 22,
+  "focused_engine_tests_total": 22,
+  "runtime_assertions_passed": 17405,
+  "raid_strength_assertions_passed": 442,
+  "final_raid_quality_validation_complete": true,
+  "actual_ui_captures": 13,
+  "capture_directory": "checks/raid-strength-quality/captures",
   "all_historical_tests_executed": false,
   "android_tests": 0,
   "artwork_source_files_changed": false,
-  "balance_data_changed": false,
+  "balance_data_changed": true,
   "combat_movement_rules_changed": false,
+  "combat_damage_rules_changed": true,
   "game_zip_created": false,
-  "working_branch": "main",
-  "production_applied": true,
-  "documentation": "docs/HERO_MENU_UX_KO.md",
-  "validation": "checks/hero-menu/regression.json",
+  "working_branch": "work/raid-quality-pass",
+  "documentation": "docs/RAID_STRENGTH_QUALITY_KO.md",
+  "validation": "checks/raid-strength-quality/regression.json",
   "completed_tests": [
     {
-      "script": "scripts/HeroMenuUxSmokeTest.gd",
-      "passed": true
+      "script": "scripts/RaidStrengthSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 442,
+      "expected_warning": null
     },
     {
-      "script": "scripts/LandscapeRosterUiSmokeTest.gd",
-      "passed": true
+      "script": "scripts/V64RealtimeRaidSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 33,
+      "expected_warning": null
     },
     {
-      "script": "scripts/V83NavigationSmokeTest.gd",
-      "passed": true
+      "script": "scripts/V74BossRaidBehaviorSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 34,
+      "expected_warning": null
     },
     {
-      "script": "scripts/UnifiedInterfaceSmokeTest.gd",
-      "passed": true
+      "script": "scripts/V75RaidMechanicSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 18,
+      "expected_warning": null
     },
     {
-      "script": "scripts/V54EquipmentUiSmokeTest.gd",
-      "passed": true
+      "script": "scripts/V836RaidBattleSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 123,
+      "expected_warning": null
     },
     {
-      "script": "scripts/V55EquipmentDetailUiSmokeTest.gd",
-      "passed": true
+      "script": "scripts/V836RaidLedgerSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 63,
+      "expected_warning": null
     },
     {
-      "script": "scripts/V57QualityPassSmokeTest.gd",
-      "passed": true
+      "script": "scripts/RaidCatalogUiSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 805,
+      "expected_warning": null
     },
     {
-      "script": "scripts/V834GrowthUiSmokeTest.gd",
-      "passed": true
+      "script": "scripts/RaidCombatQualitySmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 32,
+      "expected_warning": null
     },
     {
-      "script": "scripts/V79ConvenienceFlowSmokeTest.gd",
-      "passed": true
+      "script": "scripts/V76RaidVisualSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 9,
+      "expected_warning": null
     },
     {
-      "script": "scripts/V834ResearchSmokeTest.gd",
-      "passed": true
-    },
-    {
-      "script": "scripts/V27GrowthEconomySmokeTest.gd",
-      "passed": true
-    },
-    {
-      "script": "scripts/V27LiveGrowthSmokeTest.gd",
-      "passed": true
-    },
-    {
-      "script": "scripts/V8362FormationDisplaySmokeTest.gd",
-      "passed": true
+      "script": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 163,
+      "expected_warning": "Three intentionally injected save write failures"
     },
     {
       "script": "scripts/EquipmentUpgradeSmokeTest.gd",
-      "passed": true
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 113,
+      "expected_warning": null
     },
     {
-      "script": "scripts/HeroSkeletalRigSmokeTest.gd",
-      "passed": true
+      "script": "scripts/HeroMenuUxSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 1065,
+      "expected_warning": null
+    },
+    {
+      "script": "scripts/V54EquipmentPersistenceSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 97,
+      "expected_warning": "Intentionally oversized save rejected with too_large"
+    },
+    {
+      "script": "scripts/V27SaveRecoverySmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 80,
+      "expected_warning": null
+    },
+    {
+      "script": "scripts/V83NavigationSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 101,
+      "expected_warning": null
+    },
+    {
+      "script": "scripts/UnifiedInterfaceSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 119,
+      "expected_warning": null
+    },
+    {
+      "script": "scripts/LandscapeRosterUiSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 7006,
+      "expected_warning": null
+    },
+    {
+      "script": "scripts/V54EquipmentUiSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 643,
+      "expected_warning": null
+    },
+    {
+      "script": "scripts/V55EquipmentDetailUiSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 6405,
+      "expected_warning": null
+    },
+    {
+      "script": "scripts/InventoryCapacitySmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 22,
+      "expected_warning": null
+    },
+    {
+      "script": "scripts/CombatControlsSmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": null,
+      "expected_warning": null
+    },
+    {
+      "script": "scripts/DirectionalHuntQualitySmokeTest.gd",
+      "passed": true,
+      "exit_code": 0,
+      "reported_checks": 32,
+      "expected_warning": null
     }
   ],
+  "controlled_raid_comparison": {
+    "faction": "aurelia",
+    "heroes": 10,
+    "levels": [
+      1,
+      60
+    ],
+    "seed": 1701,
+    "old_and_new_party_gear_pet_identical": true,
+    "levels_and_rosters_are_controlled_fixtures": true,
+    "level_1_old_outcomes": [
+      "victory",
+      "victory",
+      "victory"
+    ],
+    "level_1_new_outcomes": [
+      "defeat",
+      "defeat",
+      "defeat"
+    ],
+    "level_60_new_outcomes": [
+      "victory",
+      "victory",
+      "victory"
+    ],
+    "level_60_new_game_seconds": [
+      6.45,
+      11.35,
+      17.35
+    ],
+    "zone_order": [
+      "gray_meadow",
+      "forgotten_mine",
+      "moonrest_forest"
+    ],
+    "long_term_balance_verified": false,
+    "results": "checks/raid-strength-quality/raid-strength-results.json"
+  },
+  "previous_hero_menu_validation": {
+    "published_main_commit": "5225317abdd65641708c094a397d5ed746cc4a0b",
+    "validation": "checks/hero-menu/regression.json",
+    "documentation": "docs/HERO_MENU_UX_KO.md",
+    "script_checks_passed": 398,
+    "script_checks_total": 398,
+    "focused_engine_tests_passed": 15,
+    "focused_engine_tests_total": 15,
+    "runtime_assertions_passed": 18975,
+    "actual_ui_captures": 15,
+    "editor_reimport_verified": true,
+    "landscape_faction_and_party_layout_verified": true,
+    "completed_tests": [
+      {
+        "script": "scripts/HeroMenuUxSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/LandscapeRosterUiSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V83NavigationSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/UnifiedInterfaceSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V54EquipmentUiSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V55EquipmentDetailUiSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V57QualityPassSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V834GrowthUiSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V79ConvenienceFlowSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V834ResearchSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V27GrowthEconomySmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V27LiveGrowthSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/V8362FormationDisplaySmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/EquipmentUpgradeSmokeTest.gd",
+        "passed": true
+      },
+      {
+        "script": "scripts/HeroSkeletalRigSmokeTest.gd",
+        "passed": true
+      }
+    ]
+  },
   "previous_landscape_equipment_validation": {
     "published_main_commit": "f4ec23b14d347b50d1501b7ec765428d29c7ae2d",
     "validation": "checks/landscape-equipment/regression.json",
@@ -220,15 +476,38 @@
     "hero_motion_tracks": 16,
     "hero_motion_profiles": 30
   },
-  "pending_current_work": [],
   "deferred": [
-    "Android device validation",
-    "long-session balance",
-    "separated body artwork and hidden-part painting",
+    "consistent manual and bulk equipment actions during pending save",
+    "high-level and varied-roster long-session balance",
+    "high-resolution and separated body artwork",
+    "Android device touch, performance, memory and thermal validation",
     "online, accounts and cloud save"
   ],
   "editor_reimport_verified": true,
-  "runtime_assertions_passed": 18975,
-  "landscape_faction_and_party_layout_verified": true,
-  "previous_published_main_commit": "f4ec23b14d347b50d1501b7ec765428d29c7ae2d"
+  "publication_target": "main",
+  "base_commit": "5225317abdd65641708c094a397d5ed746cc4a0b",
+  "runtime_assertions_note": "Counted assertions only; CombatControlsSmokeTest passed without reporting a numeric assertion count.",
+  "suites_without_numeric_counter": [
+    "scripts/CombatControlsSmokeTest.gd"
+  ],
+  "attempted_obsolete_tests": [
+    {
+      "script": "scripts/V59ThreeRaidVisualSmokeTest.gd",
+      "result": "timeout_after_240_seconds",
+      "included_in_passing_total": false,
+      "reason": "Obsolete 2D PortraitRaidStageArt node contract. Node was already absent in base 5225317. Current RaidTerrain3D contract is covered by RaidCatalogUiSmokeTest, RaidCombatQualitySmokeTest, V76RaidVisualSmokeTest and actual rendered captures."
+    }
+  ],
+  "editor_import": {
+    "passed": true,
+    "exit_code": 0,
+    "log": "checks/raid-strength-quality/editor-import.log",
+    "warnings": "Three existing missing UID sidecars re-created from local cache; unrelated generated files excluded from this change."
+  },
+  "render": {
+    "passed": true,
+    "exit_code": 0,
+    "driver": "Vulkan llvmpipe software rendering",
+    "log": "checks/raid-strength-quality/render.log"
+  }
 }
