@@ -2,7 +2,7 @@ extends "res://scripts/HeroSpriteController.gd"
 ## Presentation only. All combat time, movement, damage and RNG remain in the v32 code.
 ## Uses 1--3 extracted source key poses per action. It does NOT claim hand-drawn in-betweens
 ## or new rear/up/down art. Vertical directions reuse the 3/4 source; left is mirrored.
-const ACTIONS: Array[String] = ["idle", "walk", "run", "attack_1", "attack_2", "skill", "ultimate", "hit", "knockback", "dodge", "guard", "buff", "debuff", "victory", "death"]
+const ACTIONS: Array[String] = ["idle", "walk", "run", "attack_1", "attack_2", "skill", "ultimate", "hit", "knockback", "dodge", "guard", "buff", "debuff", "victory", "death", "spawn"]
 const FRAME_PATHS: Dictionary = {"leonhardt":"res://assets/heroes/actions-v37/leonhardt/frames.tres", "valeria":"res://assets/heroes/actions-v37/valeria/frames.tres"}
 const PIVOT := Vector2(144,264)
 const BODY_HEIGHT: float = 128.0
@@ -53,7 +53,8 @@ func _build_sprite_frames() -> void:
 					for i: int in frames.get_frame_count(from_action):
 						frames.add_frame(alias, frames.get_frame_texture(from_action,i), frames.get_frame_duration(from_action,i))
 		_frames_cache[atlas_key] = frames
-	sprite_frames = _frames_cache[atlas_key] as SpriteFrames
+	sprite_frames = (_frames_cache[atlas_key] as SpriteFrames).duplicate(false) as SpriteFrames
+	preload("res://scripts/portrait/HeroRigMotionCatalog.gd").add_spawn_track(sprite_frames)
 	native_visual_height = BODY_HEIGHT
 	centered = false
 	offset = -PIVOT
@@ -85,6 +86,7 @@ func _legacy_state(action: String) -> String:
 func play_visual(action: String, restart: bool = true) -> bool:
 	if not _frames_ready or action not in ACTIONS or not sprite_frames.has_animation(action): return false
 	if action == visual_action and is_playing() and not restart: return true
+	visual_sequence += 1
 	visual_action = action
 	state = _legacy_state(action)
 	_locked = action not in CONTINUOUS and action != "death"
@@ -191,6 +193,9 @@ func _process(delta: float) -> void:
 	if speed_scale <= 0.0: return
 	super._process(delta)
 	_observe_main_state()
+	if get_node_or_null('PortraitHeroSkeletalRig')!=null:
+		offset=-PIVOT;rotation=0.0
+		return
 	var dt: float = maxf(0.0,delta)*absf(speed_scale)
 	_clock += dt
 	var move: Vector2 = Vector2.ZERO

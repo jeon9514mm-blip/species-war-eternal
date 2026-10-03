@@ -24,7 +24,7 @@ static func _hero_portrait(main: Node, parent: Node, hero_id: String, rect: Rect
 
 static func header(main: Node, text: String, detail: String = '', return_action: Callable = Callable()) -> void:
 	main.content_root.set_meta('portrait_ready',true)
-	var bg:=SKIN.panel(main.content_root,Rect2(0,0,main.get_viewport_rect().size.x,132),Color('#102d38f5'),SKIN.EDGE_SOFT,1,0)
+	var bg:=SKIN.panel(main.content_root,Rect2(0,0,main.get_viewport_rect().size.x,112),SKIN.DARK,SKIN.EDGE_SOFT,1,0)
 	bg.name='PortraitMenuHeader'
 	bg.anchor_right=1.0;bg.offset_right=0
 	var row:=HBoxContainer.new()
@@ -62,17 +62,17 @@ static func header(main: Node, text: String, detail: String = '', return_action:
 		chip.add_child(amount)
 	var sub:=SKIN.label(detail,16,SKIN.MUTED)
 	sub.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	sub.max_lines_visible=2
+	sub.max_lines_visible=1;sub.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 	sub.tooltip_text=detail
 	bg.add_child(sub)
 	sub.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
-	sub.offset_left=20;sub.offset_right=-20;sub.offset_top=80;sub.offset_bottom=120
+	sub.offset_left=20;sub.offset_right=-20;sub.offset_top=78;sub.offset_bottom=104
 	var faction_bar:=ColorRect.new()
-	faction_bar.color=_faction_accent(main)
+	faction_bar.color=SKIN.EDGE_SOFT
 	faction_bar.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	bg.add_child(faction_bar)
 	faction_bar.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
-	faction_bar.offset_top=-3
+	faction_bar.offset_top=-1
 
 static func landing(main: Node) -> void:
 	main._clear_screen()
@@ -100,7 +100,7 @@ static func landing(main: Node) -> void:
 	var note:=SKIN.label('최대 10인 자동사냥 · 성장 · 종의전쟁',17,SKIN.MUTED)
 	note.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	SKIN.place(brand,note,Rect2(20,163,brand.size.x-40,38))
-	var start:=SKIN.button('모험 시작',Callable(main,'_build_lobby_screen'),Color('#25827e'))
+	var start:=SKIN.button('모험 시작',Callable(main,'_build_lobby_screen'),SKIN.GOLD)
 	start.name='PortraitStartButton'
 	start.disabled=main._save_blocked_for_newer_version
 	start.add_theme_font_size_override('font_size',27)
@@ -293,7 +293,7 @@ static func roster(main: Node) -> void:
 		if not main.deployed_heroes.is_empty():
 			main._save_party_preset(maxi(0,main.active_preset_index))
 		main._confirm_party()
-	,Color('#e0a83e'))
+	,SKIN.GOLD)
 	confirm.name='RosterConfirm'
 	confirm.disabled=main.deployed_heroes.is_empty()
 	confirm.tooltip_text='최소 한 명을 편성하면 저장할 수 있습니다.' if confirm.disabled else '현재 출전 파티를 저장합니다.'
@@ -338,6 +338,10 @@ static func _party_slot(main: Node, slot_index: int, accent: Color, width: float
 		remove.name='RosterSlotRemove_'+hero_id
 		remove.tooltip_text=str(hero['name'])+' 편성 해제'
 		remove.add_theme_font_size_override('font_size',22)
+		for state in ['normal','hover','pressed','disabled']:
+			var compact:=remove.get_theme_stylebox(state).duplicate() as StyleBoxFlat
+			compact.content_margin_left=4;compact.content_margin_right=4
+			remove.add_theme_stylebox_override(state,compact)
 		SKIN.place(c,remove,Rect2(inner_width-46,4,44,48))
 		var progress: Dictionary=main._get_hero_progress(hero_id)
 		var hero_name:=SKIN.label(str(hero['name']).split(' ')[0],14,SKIN.INK)
@@ -447,10 +451,10 @@ static func retint(node: Node) -> void:
 		node.add_theme_stylebox_override('focus',SKIN.box(Color.TRANSPARENT,SKIN.GOLD,10,2))
 		node.add_theme_stylebox_override('disabled',SKIN.box(Color('#30394c'),Color('#536078'),10,1))
 	elif node is Label:
-		node.add_theme_color_override('font_color',SKIN.INK)
+		node.add_theme_color_override('font_color',SKIN.UI.text_color(node.get_theme_color('font_color')))
 		node.add_theme_font_size_override('font_size',maxi(14,node.get_theme_font_size('font_size')))
 		node.add_theme_color_override('font_outline_color',SKIN.EDGE)
-		node.add_theme_constant_override('outline_size',1)
+		node.add_theme_constant_override('outline_size',0)
 	elif node is GameUiIcon:
 		node.ink=SKIN.GOLD
 	for child: Node in node.get_children():retint(child)

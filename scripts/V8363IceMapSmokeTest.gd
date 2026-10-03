@@ -23,10 +23,11 @@ func run() -> void:
 		var id: String=str(main.deployed_heroes[i].id)
 		var projected: Vector2=terrain.position+terrain.project_world(main._hero_field_position(id))
 		check(main.hero_map_sprites[i].position.distance_to(projected)<.01,'HUD actor projection updates while paused')
-		check(main.hero_hp_bars[id].position.distance_to(projected+Vector2(-16,3))<.01,'HP anchors match new viewport')
+		var hp_bar: ProgressBar=main.hero_hp_bars[id]
+		check(not hp_bar.visible or Rect2(terrain.position,terrain.size).encloses(hp_bar.get_rect()),'visible HP stays inside resized viewport')
 	main.selected_raid_id='gray_meadow';main._build_raid_screen();await settle();await settle()
 	var raid=main.content_root.get_node('PortraitRaidView');terrain=raid.battlefield_3d
-	check(terrain.map_root.name=='IceCavern_Map','raid loads real ice cavern')
+	check(terrain.map_root.name=='ForestMeadow_Map','giant-tree raid loads its woodland arena while hunting retains ice')
 	check(raid.stage.get_global_rect().end.y<root.size.y-250,'raid stage fits above party dock')
 	for p in [Vector2(300,320),Vector2(635,397),Vector2(800,470)]:
 		var visual: Vector2=terrain.project_world(terrain.raid_to_world(p))

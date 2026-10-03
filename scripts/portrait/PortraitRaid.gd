@@ -51,7 +51,10 @@ var dodge_button: Button
 var follow_button: Button
 var rally_marker: Node2D
 var _dragging := false
+var _stage_pointer := -2
 var _state_section := ''
+var _slot_pointer := -2
+var _slot_drag_distance := 0.0
 
 func _text(value: String, points: int, color: Color = SKIN.INK) -> Label:
 	var result:=SKIN.label(value,points,color)
@@ -91,7 +94,8 @@ func install(main: Node) -> void:
 	var title:=_text(str(zone['boss']),25,SKIN.GOLD)
 	title.name='PortraitRaidBossName';title.tooltip_text=title.text
 	summary.add_child(title)
-	var location:=_text('%s · %s'%[zone['name'],zone['boss_title']],16,SKIN.MUTED)
+	var location_name: String=preload('res://scripts/maps/MapLoader.gd').RAID_MAP_TITLES.get(zone_id,str(zone['name']))
+	var location:=_text('%s · %s'%[location_name,zone['boss_title']],16,SKIN.MUTED)
 	summary.add_child(location)
 	party_summary=_text('',18,SKIN.BLUE_SOFT);party_summary.name='PortraitRaidPower'
 	summary.add_child(party_summary)
@@ -115,6 +119,9 @@ func install(main: Node) -> void:
 	stage.add_child(arena)
 	telegraph=TELEGRAPH.new();telegraph.name='PortraitRaidAttackArea';telegraph.size=arena.size
 	telegraph.accent=design['accent'];arena.add_child(telegraph)
+	var selection:=preload('res://scripts/portrait/RaidSelectionIndicator.gd').new()
+	selection.name='RaidSelectedHeroIndicator';selection.raid=self;stage.add_child(selection)
+	selection.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	boss_motion=BOSS_MOTION.new();boss_motion.name='PortraitRaidBossMotion'
 	boss_motion.zone_id=zone_id;boss_motion.accent=design['accent'];arena.add_child(boss_motion)
 	mechanic_visual=preload('res://scripts/portrait/RaidMechanicVisual.gd').new()
@@ -130,6 +137,9 @@ func install(main: Node) -> void:
 		actor.name='RaidHeroActor_'+hero_id
 		actor.position=game.raid_positions.get(hero_id,FIELD.hero_entry(i))
 		arena.add_child(actor);actor.play_idle('right')
+		var rig:=preload('res://scripts/portrait/PortraitHeroSkeletalRig.gd').new()
+		if not rig.install(actor):rig.queue_free()
+		elif actor.has_method('play_visual'):actor.play_visual('spawn')
 		hero_actors[hero_id]=actor
 		last_hp[hero_id]=float(game.hero_battle_state.get(hero_id,{}).get('hp',0))
 	rally_marker=Node2D.new();rally_marker.name='PortraitRaidMoveMarker'
@@ -147,41 +157,44 @@ func install(main: Node) -> void:
 	SKIN.place(stage,phase_banner,Rect2(40,stage.size.y*.34,w-120,72))
 	phase_banner.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
 	phase_banner.offset_left=-260;phase_banner.offset_right=260;phase_banner.offset_top=72;phase_banner.offset_bottom=142
-	information=_text('',17)
+	information=_text('',22)
 	information.name='PortraitRaidBossHealth'
 	SKIN.place(stage,information,Rect2(14,8,w-68,42))
 	information.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
-	information.offset_left=14;information.offset_right=-14;information.offset_top=8;information.offset_bottom=50
+	information.offset_left=14;information.offset_right=-14;information.offset_top=4;information.offset_bottom=44
+	information.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 	hp=SKIN.gauge(stage,Rect2(14,56,w-68,10),Color('#f26e79'))
 	hp.name='PortraitRaidBossHp'
 	hp.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
-	hp.offset_left=14;hp.offset_right=-14;hp.offset_top=56;hp.offset_bottom=66
-	cue=_text('',23,Color('#ffdaaa'));cue.name='PortraitRaidWarning'
+	hp.offset_left=14;hp.offset_right=-14;hp.offset_top=48;hp.offset_bottom=56
+	cue=_text('',25,Color('#ffdaaa'));cue.name='PortraitRaidWarning'
+	cue.add_theme_stylebox_override('normal',SKIN.box(Color('#172331ee'),SKIN.GOLD,8,1))
 	cue.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;cue.visible=false
 	SKIN.place(stage,cue,Rect2(12,83,w-64,38))
 	cue.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
-	cue.offset_left=12;cue.offset_right=-12;cue.offset_top=83;cue.offset_bottom=121
+	cue.offset_left=12;cue.offset_right=-12;cue.offset_top=62;cue.offset_bottom=106
 	cast_bar=SKIN.gauge(stage,Rect2(16,126,w-72,8),Color('#ff905d'))
 	cast_bar.name='PortraitRaidCastGauge';cast_bar.visible=false
 	cast_bar.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
-	cast_bar.offset_left=16;cast_bar.offset_right=-16;cast_bar.offset_top=126;cast_bar.offset_bottom=134
-	dodge_button=SKIN.button('회피  READY',_on_dodge_pressed,Color('#bd6a48'))
+	cast_bar.offset_left=16;cast_bar.offset_right=-16;cast_bar.offset_top=110;cast_bar.offset_bottom=118
+	dodge_button=SKIN.button('회피 준비',_on_dodge_pressed,SKIN.GOLD)
 	dodge_button.name='PortraitRaidDodge';dodge_button.tooltip_text='예고된 공격을 피하세요 · 전원 0.5초 무적 · 재사용 5초'
-	dodge_button.add_theme_font_size_override('font_size',17)
+	dodge_button.add_theme_font_size_override('font_size',22)
 	SKIN.place(stage,dodge_button,Rect2(0,0,154,43))
 	dodge_button.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
-	dodge_button.offset_left=-168;dodge_button.offset_right=-14;dodge_button.offset_top=-59;dodge_button.offset_bottom=-16
+	dodge_button.offset_left=-222;dodge_button.offset_right=-14;dodge_button.offset_top=-92;dodge_button.offset_bottom=-16
 	follow_button=SKIN.button('자동 추적',_on_follow_pressed,Color('#386968'))
 	follow_button.name='PortraitRaidAutoFollow';follow_button.tooltip_text='지정 이동을 취소하고 보스를 자동 추적합니다.'
-	follow_button.add_theme_font_size_override('font_size',15)
+	follow_button.add_theme_font_size_override('font_size',20)
 	SKIN.place(stage,follow_button,Rect2(0,0,120,39))
 	follow_button.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
-	follow_button.offset_left=14;follow_button.offset_right=134;follow_button.offset_top=-55;follow_button.offset_bottom=-16
+	follow_button.offset_left=14;follow_button.offset_right=170;follow_button.offset_top=-84;follow_button.offset_bottom=-16
 	var hint:=_text('바닥 터치 · 이동  /  위험 구역에서 회피',14,Color('#e0e9d8'))
 	hint.name='PortraitRaidMoveHint';hint.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	SKIN.place(stage,hint,Rect2(16,0,w-72,25))
 	hint.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
-	hint.offset_left=16;hint.offset_right=-16;hint.offset_top=143;hint.offset_bottom=168
+	hint.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+	hint.offset_left=16;hint.offset_right=-16;hint.offset_top=-122;hint.offset_bottom=-96
 	stage.resized.connect(_layout_arena)
 	rewards=_text('',17,SKIN.GOLD);rewards.name='PortraitRaidEquipmentRewards'
 	body.add_child(rewards)
@@ -223,7 +236,7 @@ func install(main: Node) -> void:
 	ultimate_cast_button.name='PortraitRaidCastUltimate';ultimate_cast_button.tooltip_text='준비된 영웅의 각성기를 즉시 사용'
 	ultimate_cast_button.add_theme_font_size_override('font_size',16)
 	ultimate_cast_button.size_flags_horizontal=Control.SIZE_EXPAND_FILL;actions.add_child(ultimate_cast_button)
-	start=SKIN.button('레이드 시작',Callable(game,'_start_raid'),Color('#527965'))
+	start=SKIN.button('레이드 시작',Callable(game,'_start_raid'),SKIN.GOLD)
 	start.name='PortraitRaidStart';start.size_flags_horizontal=Control.SIZE_EXPAND_FILL;actions.add_child(start)
 	game.combat_labels['raid_start']=start
 	var report_button=SKIN.button('레이드 분석 · 최근 기록',Callable(game,'_open_raid_report'),SKIN.SURFACE_2)
@@ -269,6 +282,7 @@ func install(main: Node) -> void:
 	HUD.navigation(game,game.content_root,'combat',h-90,90)
 	game.content_root.set_meta('portrait_ready',true)
 	if w > h: _wide_layout(body, summary.get_parent(), status_panel, actions, row, party_heading, w, h)
+	if w<=h:_compact_raid_layout(body,summary,status_panel,actions,row,party_heading,w,h)
 	_settle_stage_layout.call_deferred(body,w,h)
 	refresh()
 
@@ -285,14 +299,28 @@ func _on_stage_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index==MOUSE_BUTTON_LEFT:
 			_dragging=event.pressed
+			_stage_pointer=-1 if event.pressed else -2
 			if event.pressed:_on_move_input(event.position)
 	elif event is InputEventMouseMotion and _dragging:
 		_on_move_input(event.position)
 	elif event is InputEventScreenTouch:
-		_dragging=event.pressed
-		if event.pressed:_on_move_input(event.position)
-	elif event is InputEventScreenDrag and _dragging:
+		if event.pressed and _stage_pointer==-2:
+			_stage_pointer=event.index;_dragging=true;_on_move_input(event.position)
+		elif not event.pressed and _stage_pointer==event.index:
+			_stage_pointer=-2;_dragging=false
+	elif event is InputEventScreenDrag and _dragging and _stage_pointer==event.index:
 		_on_move_input(event.position)
+
+func _input(event: InputEvent) -> void:
+	# ScrollContainer can consume drag/release events before the hero card.
+	if event is InputEventScreenDrag and event.index==_slot_pointer:_slot_drag_distance+=event.relative.length()
+	elif event is InputEventMouseMotion and _slot_pointer==-1:_slot_drag_distance+=event.relative.length()
+	elif event is InputEventScreenTouch and not event.pressed and event.index==_slot_pointer:set_deferred('_slot_pointer',-2)
+	elif event is InputEventMouseButton and not event.pressed and event.button_index==MOUSE_BUTTON_LEFT and _slot_pointer==-1:set_deferred('_slot_pointer',-2)
+
+func _notification(what: int) -> void:
+	if what==NOTIFICATION_WM_WINDOW_FOCUS_OUT:
+		_slot_pointer=-2;_stage_pointer=-2;_dragging=false
 
 func _on_move_input(local_point: Vector2) -> void:
 	var world: Vector2=(local_point-arena.position)/maxf(.01,arena.scale.x)
@@ -314,10 +342,19 @@ func _on_manual_ultimate() -> void:
 	refresh()
 
 func _on_hero_slot_input(event: InputEvent, hero_id: String) -> void:
-	if event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and event.pressed:
-		selected_hero_id=hero_id;refresh()
-	elif event is InputEventScreenTouch and event.pressed:
-		selected_hero_id=hero_id;refresh()
+	# Select on release. A swipe through the party must not change manual casts.
+	if event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT:
+		if event.pressed:_slot_pointer=-1;_slot_drag_distance=0
+		elif _slot_pointer==-1:
+			if _slot_drag_distance<8:selected_hero_id=hero_id;refresh()
+			_slot_pointer=-2
+	elif event is InputEventScreenTouch:
+		if event.pressed and _slot_pointer==-2:_slot_pointer=event.index;_slot_drag_distance=0
+		elif not event.pressed and _slot_pointer==event.index:
+			if _slot_drag_distance<8 and not event.canceled:selected_hero_id=hero_id;refresh()
+			_slot_pointer=-2
+	elif event is InputEventScreenDrag and _slot_pointer==event.index:_slot_drag_distance+=event.relative.length()
+	elif event is InputEventMouseMotion and _slot_pointer==-1:_slot_drag_distance+=event.relative.length()
 
 func _on_follow_pressed() -> void:
 	game.raid_rally_active=false
@@ -407,13 +444,14 @@ func refresh() -> void:
 	party_summary.text='권장 전투력 %s · 원정대 전투력 %s'%[game._compact_hud_amount(int(zone['power'])*3),game._compact_hud_amount(game.party_power)]
 	hp.value=100.0*game.raid_boss_hp/maxf(1,game.raid_boss_max_hp) if game.raid_boss_max_hp>0 else 100.0
 	dodge_button.disabled=not game.raid_running or game.raid_dodge_cooldown>0.0
-	dodge_button.text='회피  %.1f초'%game.raid_dodge_cooldown if game.raid_dodge_cooldown>0.0 else '회피  READY'
+	dodge_button.text='회피 %.1f초'%game.raid_dodge_cooldown if game.raid_dodge_cooldown>0.0 else '회피 준비'
 	follow_button.disabled=not game.raid_running or not game.raid_rally_active
 	skill_cast_button.disabled=not game.raid_running
 	ultimate_cast_button.disabled=not game.raid_running
 	if not selected_hero_id.is_empty():
-		skill_cast_button.text='스킬 · %s'%game._hero_short_name(selected_hero_id)
-		ultimate_cast_button.text='각성 · %s'%game._hero_short_name(selected_hero_id)
+		skill_cast_button.text='스킬 사용';ultimate_cast_button.text='각성기'
+		skill_cast_button.tooltip_text='%s의 준비된 스킬 사용'%game._hero_short_name(selected_hero_id)
+		ultimate_cast_button.tooltip_text='%s의 준비된 각성기 사용'%game._hero_short_name(selected_hero_id)
 	boss_motion.casting=game.boss_telegraph_pending or game.raid_second_wave_remaining>0.0
 	boss_motion.enraged=game.raid_enraged
 	if is_instance_valid(game.raid_boss_sprite):
@@ -438,7 +476,7 @@ func refresh() -> void:
 		telegraph.kind=str(pattern.get('kind','aoe'))
 		telegraph.shape=game.raid_second_wave_shape if followup else game.raid_pattern_shape
 		telegraph.progress=clampf(1.0-(game.raid_second_wave_remaining/.42 if followup else game.boss_telegraph_remaining/maxf(.01,float(pattern.get('telegraph',1.0)))),0.0,1.0)
-		cue.text='2차 지진' if followup else str(game.boss_telegraph_skill)
+		cue.text='%s · %.1f초'%['2차 지진' if followup else str(game.boss_telegraph_skill),game.raid_second_wave_remaining if followup else game.boss_telegraph_remaining]
 		cast_bar.value=telegraph.progress*100.0
 	telegraph.queue_redraw()
 	if is_instance_valid(mechanic_visual):mechanic_visual.queue_redraw()
@@ -453,11 +491,12 @@ func refresh() -> void:
 	elif not game.raid_running:
 		last_enraged=false
 	if game.raid_running or not game.raid_last_result.is_empty():
-		information.text='보스 HP %s / %s\n경과 %.1f초 · 제한 240초 · %d단계'%[game._compact_hud_amount(game.raid_boss_hp),game._compact_hud_amount(game.raid_boss_max_hp),game.raid_elapsed,game.raid_phase]
+		information.text='HP %s · %.0f초 · %d단계'%[game._compact_hud_amount(game.raid_boss_hp),game.raid_elapsed,game.raid_phase]
+		information.tooltip_text='HP %s / %s · 제한 240초'%[game._compact_hud_amount(game.raid_boss_hp),game._compact_hud_amount(game.raid_boss_max_hp)]
 	else:
-		information.text='보스 HP %s · 시작 전\n180초 광폭화 · 제한 240초'%game._compact_hud_amount(int(zone['power'])*20)
+		information.text='HP %s · 제한 240초'%game._compact_hud_amount(int(zone['power'])*20)
 	start.disabled=game.raid_running or game.deployed_heroes.is_empty()
-	start.text='레이드 진행 중' if game.raid_running else ('다시 도전' if not game.raid_last_result.is_empty() else '레이드 시작')
+	start.text='전투 중' if game.raid_running else ('다시 도전' if not game.raid_last_result.is_empty() else '레이드 시작')
 	formation.disabled=game.raid_running
 	formation.tooltip_text='전투가 끝난 뒤 편성을 변경할 수 있어요.' if game.raid_running else '편성을 저장하면 이 보스의 준비 화면으로 돌아옵니다.'
 	var next_text: String
@@ -519,6 +558,8 @@ func _wide_layout(body: Control, summary: Control, status: Control, actions: Con
 	info.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	var column := VBoxContainer.new(); column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	info.add_child(column); summary.reparent(column); status.reparent(column)
+	# Put reward prose in the information column, giving the battlefield its full height.
+	rewards.reparent(column)
 	var toggle_w: float = (w-field_w-32)*.5
 	skill_auto_button.position = Vector2(field_w+8,h-332); skill_auto_button.size = Vector2(toggle_w,40)
 	ultimate_auto_button.position = Vector2(field_w+16+toggle_w,h-332); ultimate_auto_button.size = Vector2(toggle_w,40)
@@ -534,12 +575,51 @@ func _wide_layout(body: Control, summary: Control, status: Control, actions: Con
 			elif child is Label: child.position.y = 48; child.size = Vector2(cell-8,24); child.add_theme_font_size_override("font_size",14)
 			elif child is ProgressBar: child.position.y = 75; child.size.x = cell-12
 
+func _compact_raid_layout(body: Control,summary: Control,status: Control,actions: Control,party: Control,heading: Control,w: float,h: float) -> void:
+	# One battlefield, one command row, one horizontally scrolling party strip.
+	var sheet:=Control.new();sheet.name='RaidOptionsSheet';sheet.z_index=110
+	add_child(sheet);sheet.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var shade:=ColorRect.new();shade.color=Color(0,0,0,.65);sheet.add_child(shade)
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var panel:=PanelContainer.new();panel.name='RaidOptionsPanel'
+	panel.add_theme_stylebox_override('panel',SKIN.elevated(SKIN.SURFACE))
+	SKIN.place(sheet,panel,Rect2(20,maxf(20,(h-660)*.5),w-40,660))
+	var margin:=MarginContainer.new();panel.add_child(margin)
+	for edge in ['left','right','top','bottom']:margin.add_theme_constant_override('margin_'+edge,18)
+	var scroll:=ScrollContainer.new();SKIN.make_scroll_responsive(scroll);margin.add_child(scroll)
+	var column:=VBoxContainer.new();column.size_flags_horizontal=Control.SIZE_EXPAND_FILL;column.add_theme_constant_override('separation',12);scroll.add_child(column)
+	var title:=_text('레이드 설정 · 공략',26);column.add_child(title)
+	var close:=SKIN.button('닫기',sheet.hide);close.custom_minimum_size=Vector2(0,76);column.add_child(close)
+	for button in [skill_auto_button,ultimate_auto_button,formation,game.combat_labels['raid_report']]:
+		button.reparent(column,false);button.custom_minimum_size=Vector2(0,76);button.mouse_filter=Control.MOUSE_FILTER_PASS
+	status.reparent(column,false);status.custom_minimum_size.y=174
+	rewards.reparent(column,false);rewards.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	var options:=SKIN.button('레이드 설정',func():sheet.show());options.name='RaidOptionsButton'
+	options.size_flags_horizontal=Control.SIZE_EXPAND_FILL;actions.add_child(options);actions.move_child(options,0)
+	for button in [options,skill_cast_button,ultimate_cast_button,start]:
+		button.custom_minimum_size.y=76;button.add_theme_font_size_override('font_size',22)
+	actions.position=Vector2(20,h-302);actions.size=Vector2(w-40,76)
+	heading.hide()
+	var party_scroll:=ScrollContainer.new();party_scroll.name='RaidPartyScroll';party_scroll.scroll_deadzone=8
+	party_scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;party_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_AUTO
+	SKIN.place(self,party_scroll,Rect2(20,h-214,w-40,112))
+	party.reparent(party_scroll,false);party.position=Vector2.ZERO;party.custom_minimum_size=Vector2(10*136-8,108);party.size=party.custom_minimum_size
+	for i in party.get_child_count():
+		var slot: Control=party.get_child(i);slot.position=Vector2(i*136,0);slot.size=Vector2(128,108)
+		slot.mouse_filter=Control.MOUSE_FILTER_PASS
+		for child in slot.get_children():
+			if child is TextureRect:child.size=Vector2(122,58)
+			elif child is Label:child.size.x=120;child.add_theme_font_size_override('font_size',18)
+			elif child is ProgressBar:child.position.y=98;child.size.x=116
+	body.position=Vector2(20,128);body.size=Vector2(w-40,h-446)
+	sheet.hide()
+
 func _settle_stage_layout(body: Control,w: float,h: float) -> void:
 	# Container minimum sizes shrink after the information cards are reparented.
 	# Apply the requested height after those queued sorts, then frame the camera.
 	await get_tree().process_frame
 	await get_tree().process_frame
 	if not is_instance_valid(body):return
-	body.size=Vector2(w*.63-28,h-436) if w>h else Vector2(w-40,h-618)
+	body.size=Vector2(w*.63-28,h-436) if w>h else Vector2(w-40,h-446)
 	await get_tree().process_frame
 	_layout_arena()

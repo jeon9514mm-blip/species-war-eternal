@@ -15,6 +15,8 @@ const CONTROLLER_LATERAL_OFFSET := 0.72
 const ROSTER = preload("res://scripts/HeroRosterCatalog.gd")
 
 var holding_formation := false
+var formation_facing := Vector2.RIGHT
+var formation_threat := -1
 var formation_id := "balanced"
 var positions: Dictionary = {}
 var velocities: Dictionary = {}
@@ -28,6 +30,8 @@ var combat_goals: Dictionary = {}
 var _decisions := CombatDecisionEngine.new()
 
 func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
+	formation_facing=Vector2.RIGHT
+	formation_threat=-1
 	positions.clear()
 	velocities.clear()
 	targets.clear()
@@ -67,6 +71,8 @@ func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
 func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictionary, anchor: Vector2, enemies: Array, enemy_positions: Array[Vector2], returning: Array[bool], engaged: bool, paused := false, enemy_homes: Array[Vector2] = []) -> void:
 	if delta <= 0.0 or not is_finite(delta):
 		return
+	if holding_formation and not paused and engaged:
+		_face_threat(delta,anchor,enemies,enemy_positions,returning)
 	var before_positions := positions.duplicate()
 	for hero in heroes:
 		var id := str(hero.get("id", ""))
@@ -79,7 +85,7 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 		var runtime: Dictionary = runtimes.get(id, {})
 		if float(runtime.get("windup", -1.0)) >= 0.0:
 			continue
-		var goal: Vector2 = anchor + Vector2(travel_offsets.get(id, Vector2.ZERO))
+		var goal: Vector2 = formation_station(id,anchor)
 		if engaged:
 			var target := _select_target(id, start, enemies, enemy_positions, returning, state, states, before_positions, runtime)
 			targets[id] = target
@@ -88,8 +94,9 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 		else:
 			targets[id] = -1
 		if holding_formation:
-			var station: Vector2 = anchor + Vector2(travel_offsets.get(id, Vector2.ZERO))
-			goal = station + (goal - station).limit_length(0.85)
+			var station: Vector2 = formation_station(id,anchor)
+			var intercept: float=1.35 if bool(movement_profiles.get(id,{}).get('frontline_screen',false)) else 0.85
+			goal = station + (goal - station).limit_length(intercept)
 		goal = _clamp(goal)
 		var next := _move("hero_%s" % id, start, goal, WALK_SPEED * delta)
 		# Separation is a local steering force; global navigation always sees the full goal.
@@ -451,3 +458,31 @@ func _move(key: String, start: Vector2, target: Vector2, distance: float) -> Vec
 func apply_formation(heroes: Array, id: String) -> void:
 	formation_id = preload("res://scripts/BattleFormation.gd").sanitize(id)
 	travel_offsets = preload("res://scripts/BattleFormation.gd").offsets(heroes, formation_id)
+
+func place_formation(origin: Vector2) -> void:
+	# Only used when creating a battlefield; live changes keep gradual movement.
+	for id in travel_offsets:
+		positions[id] = _clamp(formation_station(id,origin))
+
+func formation_station(id: String, anchor: Vector2) -> Vector2:
+	var offset: Vector2=travel_offsets.get(id,Vector2.ZERO)
+	return anchor+offset.rotated(formation_facing.angle()) if holding_formation else anchor+offset
+
+func _face_threat(delta: float,anchor: Vector2,enemies: Array,enemy_positions: Array[Vector2],returning: Array[bool]) -> void:
+	# Follow closest living pressure rather than averaging opposite waves to zero.
+	var nearest:=-1;var nearest_distance:=INF
+	for i in mini(enemies.size(),enemy_positions.size()):
+		if not _eligible(i,enemies,enemy_positions,returning):continue
+		var distance:=anchor.distance_squared_to(enemy_positions[i])
+		if distance<nearest_distance:nearest=i;nearest_distance=distance
+	if nearest<0:return
+	if _eligible(formation_threat,enemies,enemy_positions,returning):
+		var retained_distance:=anchor.distance_squared_to(enemy_positions[formation_threat])
+		if retained_distance<=nearest_distance*1.25+.25:nearest=formation_threat
+	formation_threat=nearest
+	var direction:=enemy_positions[nearest]-anchor
+	# Once contact reaches the party core, keep the established defensive front.
+	if direction.length_squared()<4.0:return
+	var turn:=formation_facing.angle_to(direction.normalized())
+	if absf(turn)<.08:return
+	formation_facing=formation_facing.rotated(clampf(turn,-delta*.55,delta*.55)).normalized()

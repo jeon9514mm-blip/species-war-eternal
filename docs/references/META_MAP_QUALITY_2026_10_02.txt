@@ -1,0 +1,15 @@
+Source: https://www.meta.ai/share/c/xyr4jPvlab
+Title: 맵 퀄리티 높이기
+User-provided reference, read 2026-10-02. Code blocks extracted from public shared page.
+
+isometric top-down view game battleground, circular magic rune arena in center, highly detailed 3D PBR texture, Unreal Engine 5 render, 8k, ultra sharp focus, volumetric lighting, ambient occlusion, moss and micro details, stylized fantasy chibi game art style, clean edge, no characters, empty background for gameplay
+
+blurry, low resolution, distorted, characters, monsters, UI, text, icons, health bar, damage numbers, flat color, plastic, over saturated, low poly
+
+frozen abyss battlefield, floating island in deep dark blue void, giant translucent blue ice crystals with inner glow and refraction, sharp icicles hanging, ancient dark stone gate with blue runic light in the background, frost particles in air, cold moonlight, subsurface scattering on ice, cinematic rim light, dark fantasy
+
+red twilight canyon battlefield, floating desert mesa, layered red sandstone cliffs with erosion details, warm sunset orange sky, torch lights on cliff wall glowing, sandy ground with small pebbles and footprints, dust particles in volumetric sunset light, ancient mine entrance background, western fantasy canyon
+
+ancient magic sanctuary battlefield, overgrown forest ruins, lush green trees surrounding circular ancient stone arena with glowing cyan runes, mossy stone pillars, dense foliage, god rays through tree canopy, magical blue fireflies, damp ground with roots, highly detailed bark and leaves, mystical forest temple, enchanted garden
+
+, style of high-quality Korean mobile RPG map, chibi fantasy, clean and polished, trending on ArtStation, game art, background art, no noise

@@ -1,6 +1,27 @@
-# v83-6.2 검사 재현
+# v83-6.4 검사 재현 — Godot 4.7.2
 
-검증 엔진은 Linux x86_64 Godot4.6.3입니다. 다른 엔진 버전의 통과를 의미하지 않습니다.
+현재 개발 기준은 Linux x86_64 Godot **4.7.2**입니다. 실행 파일을 `--godot`으로 명시합니다.
+
+```sh
+python tools/run_tests.py --godot /path/to/Godot_v4.7.2 --jobs 3 --output /tmp/combat-view-results.json --tests V8364CombatViewSmokeTest.gd V8363IceMapSmokeTest.gd V8363MapLoaderSmokeTest.gd V8362LayoutSmokeTest.gd V8362InvasionSmokeTest.gd V8362FormationDisplaySmokeTest.gd V8362FieldSafetySmokeTest.gd V836RaidBattleSmokeTest.gd V836RaidLedgerSmokeTest.gd V82PresentationUiSmokeTest.gd
+python tools/static_validate.py
+python tools/validate_v83_architecture.py
+python tools/test_v83_architecture.py
+```
+
+화면 캡처에는 그래픽 디스플레이와 Vulkan 드라이버가 필요합니다. `--headless`는 실제 화면 검증이 아닙니다. Linux에서 플레이어 저장을 격리하려면 테스트마다 별도 `XDG_DATA_HOME`을 지정합니다.
+
+```sh
+mkdir -p /tmp/combat-captures /tmp/combat-test-user
+XDG_DATA_HOME=/tmp/combat-test-user MAP_CAPTURE_DIR=/tmp/combat-captures /path/to/Godot_v4.7.2 --audio-driver Dummy --path . --script res://scripts/V8363IceVisualSmokeTest.gd
+XDG_DATA_HOME=/tmp/combat-test-user MAP_CAPTURE_DIR=/tmp/combat-captures /path/to/Godot_v4.7.2 --audio-driver Dummy --path . --script res://scripts/V8364VisualSmokeTest.gd
+```
+
+부상·경고 화면은 재현 가능한 검증용 상태입니다. 결과와 제한은 [작업 기록](docs/V83_6_4_COMBAT_VIEW_KO.md)에 명시합니다.
+
+## 과거 v83-6.2 검사 재현
+
+아래는 **이전 v83-6.2**의 Godot 4.6.3 검사 절차입니다. 현재 버전의 검증과 구분합니다.
 
 ```sh
 python3 tools/run_v83_6_2_runtime_checks.py --godot /path/to/godot --expected-version 4.6.3 --workers 3 --timeout 600 --output /tmp/v8362-results.json

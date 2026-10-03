@@ -19,8 +19,9 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	if not active or shape.is_empty():return
-	var glow := .16 + .08 * sin(clock * 15.0) + .24 * progress
-	var edge := Color(accent,.66 + .32 * progress)
+	var glow := .10 + .07 * progress
+	var warning:=Color('#ffba69').lerp(Color('#ff626f'),smoothstep(.65,1.0,progress))
+	var edge := Color(warning,.9 + .1 * sin(clock * 8.0))
 	var fill := Color(accent,glow)
 	match str(shape.get('shape','')):
 		'lane':
@@ -39,26 +40,32 @@ func _draw() -> void:
 				var angle:=lerpf(base_angle-half_angle,base_angle+half_angle,float(i)/24.0)
 				points.append(origin+Vector2.from_angle(angle)*radius)
 			draw_colored_polygon(points,fill)
-			draw_polyline(points,edge,5.0)
+			draw_polyline(points,Color('#101823'),10.0,true)
+			draw_polyline(points,edge,5.0,true)
 			if points.size()>2:
 				draw_line(origin,points[1],edge,5.0)
 				draw_line(origin,points[points.size()-1],edge,5.0)
 		'marks':
 			for point: Vector2 in shape['centers']:
 				draw_circle(point,float(shape['radius']),fill)
+				draw_arc(point,float(shape['radius']),0,TAU,48,Color('#101823'),11.0,true)
 				draw_arc(point,float(shape['radius']),0,TAU,48,edge,5.0)
-				draw_circle(point,7.0,edge)
+				draw_line(point-Vector2(10,0),point+Vector2(10,0),edge,4.0,true)
+				draw_line(point-Vector2(0,10),point+Vector2(0,10),edge,4.0,true)
 		'ring':
 			var center: Vector2=shape['center']
 			var inner: float=shape['inner']
 			var outer: float=shape['outer']
 			draw_arc(center,(inner+outer)*.5,0,TAU,100,Color(accent,glow),outer-inner)
+			draw_arc(center,inner,0,TAU,100,Color('#101823'),11.0,true)
+			draw_arc(center,outer,0,TAU,100,Color('#101823'),11.0,true)
 			draw_arc(center,inner,0,TAU,100,edge,5.0)
 			draw_arc(center,outer,0,TAU,100,edge,5.0)
 		'circle':
 			var center: Vector2=shape['center']
 			var radius: float=shape['radius']
 			draw_circle(center,radius,fill)
+			draw_arc(center,radius,0,TAU,100,Color('#101823'),12.0,true)
 			draw_arc(center,radius,0,TAU,100,edge,6.0)
 	if progress>0.0 and str(shape.get('shape','')) in ['ring','circle']:
 		var center: Vector2=shape['center']
@@ -68,6 +75,7 @@ func _draw() -> void:
 
 func _draw_warning_rect(rect: Rect2, fill: Color, edge: Color) -> void:
 	draw_rect(rect,fill)
+	draw_rect(rect,Color('#101823'),false,11.0)
 	draw_rect(rect,edge,false,5.0)
 	var stripe_count := maxi(2,int(rect.size.x/34.0)) if rect.size.x < rect.size.y else maxi(2,int(rect.size.y/34.0))
 	for i in stripe_count:

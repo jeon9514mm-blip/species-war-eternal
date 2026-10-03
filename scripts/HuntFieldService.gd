@@ -1,5 +1,6 @@
 extends RefCounted
 ## Field orchestration separated from Main; the host owns all mutable state.
+const INVASION=preload('res://scripts/InvasionHuntDirector.gd')
 
 static func spawn_enemy_wave(main: Node, zone: Dictionary) -> void:
 	for sprite in main.enemy_wave_sprites:
@@ -81,9 +82,12 @@ static func advance_roaming_hunt(main: Node, delta: float, support_actors: Array
 	for enemy in main.enemy_wave:
 		immobile.append(float(enemy.get("stun_seconds", 0.0)) > 0.0)
 	var enemy_targets: Array[Vector2] = []
+	if main.roaming_hunt is INVASION:main.roaming_hunt.target_attack_reaches.clear()
 	for index in main.enemy_wave.size():
 		var hero_id = main._select_hero_target_for_enemy(index)
 		enemy_targets.append(main._hero_field_position(hero_id))
+		if main.roaming_hunt is INVASION:
+			main.roaming_hunt.target_attack_reaches.append(main.combat_decisions.spatial_range(int(main.hero_battle_state.get(hero_id,{}).get('range',1))))
 	var result = main.roaming_hunt.advance(delta, main._alive_enemy_mask(), immobile, enemy_targets)
 	for returned_index in result.get("returned_indices", []):
 		var enemy: Dictionary = main.enemy_wave[int(returned_index)]
@@ -312,7 +316,7 @@ static func admit(main: Node, zone: Dictionary = {}) -> void:
 	main.roaming_hunt.append_corps(members, corps_id)
 	main._spawn_enemy_wave_sprites(start)
 	main._sync_enemy_wave_summary()
-	main.hunt_event_text = "제%d부대 진입 · %d마리 · 생존 %d/25" % [corps_id,members.size(),main._enemy_wave_alive_count()]
+	main.hunt_event_text = "%s에서 제%d부대 진입 · %d마리 · 생존 %d/25" % [main.roaming_hunt.entry_side(corps_id).name,corps_id,members.size(),main._enemy_wave_alive_count()]
 
 static func compact(main: Node) -> void:
 	# Only retire whole settled corps. Live indices and pending attack targets
@@ -333,6 +337,7 @@ static func compact(main: Node) -> void:
 		var values: Array = main.roaming_hunt.get(key); var copy: Array = values.duplicate(); values.clear()
 		for i in keep: values.append(copy[i])
 	main.roaming_hunt.current_target = int(mapping.get(main.roaming_hunt.current_target,-1))
+	main.party_movement.formation_threat=int(mapping.get(main.party_movement.formation_threat,-1))
 	for id in main.hero_skill_runtime:
 		var runtime: Dictionary = main.hero_skill_runtime[id]
 		runtime["target_index"] = int(mapping.get(int(runtime.get("target_index",-1)),-1))

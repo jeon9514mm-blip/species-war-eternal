@@ -1,0 +1,26 @@
+[
+  {
+    "script": "tools/capture_raid_art.gd",
+    "check_only": true,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "tools/capture_raid_battles.gd",
+    "check_only": true,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "scripts/portrait/PortraitRaid.gd",
+    "check_only": true,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "scripts/RaidArenaQualitySmokeTest.gd",
+    "check_only": false,
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nraid_arena_quality checks=87 failures=[]\n"
+  }
+]

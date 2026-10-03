@@ -1,0 +1,44 @@
+{
+  "baseline_commit": "140a1c9",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "Forward+ / Vulkan llvmpipe",
+  "rendered_scenes": [
+    "IceCavern",
+    "Crimson",
+    "Arcane",
+    "Evergreen"
+  ],
+  "capture_size": [
+    1440,
+    1000
+  ],
+  "static_validation": true,
+  "architecture_unit_tests": 12,
+  "android_device_validation": false,
+  "editor_reimport": "blocked: sandbox does not permit the editor TCP listener",
+  "runtime_results": "regression.json",
+  "source_sha256": {
+    "assets/maps3d/materials/detail_rock.gdshader": "bea9eb7a328c72c966fa35e48df28d571bea8e929450231d7a9b4e1e86cb9fcd",
+    "assets/maps3d/materials/ice.gdshader": "a98cc84316466db2c68f98e6554dfefb958f4fedda8c36d10d54feb413a5f13b",
+    "assets/maps3d/materials/terrain.gdshader": "923b8baace3ca492d22c628a532eaaf32a0df6cd828631f808aaddac17053dec",
+    "scenes/maps3d/ArcaneField.tscn": "b180931e4b0af09793aecc52cd9a4c9d0f623235c09e9f303293e0ccea50a94d",
+    "scenes/maps3d/ArcaneRaid.tscn": "6962d263e8648e97478f59e639b9347fc3df478f1cfed4f2e8e54b442325b10e",
+    "scenes/maps3d/CrimsonField.tscn": "f61cbca3c23ec36fbef09f36ce0d80f872df477ec39269f9a501108b9eadfbae",
+    "scenes/maps3d/CrimsonRaid.tscn": "e2c23f01cbdc2e916671947af6ad5749f585eafe2b1616b7ad118bc17cc8893d",
+    "scenes/maps3d/EvergreenField.tscn": "c3392cf3a2573290b2a0c8702e362e45c90ed6687f11a8c43b582f8ebc344686",
+    "scenes/maps3d/EvergreenRaid.tscn": "14539d9dc396079e18638568fd93db564af53f1de3d56855f77711c532e81e7b",
+    "scenes/maps3d/IceCavernField.tscn": "26d0457501e6e6744d9e66f92fb30d922103c33d8d948396284a813157b22a23",
+    "scenes/maps3d/IceCavernRaid.tscn": "5e169a13725711e012420554ab2b0decf606dd892b9098d8001e9d4c7516e1b5",
+    "tools/build_3d_maps.gd": "b586f00f22f86e0f30b8aab92b19fd2f2f4de71ec01f635ca7ec15fe993e63e6",
+    "tools/build_ice_cavern.gd": "7cf181a9301a76bf456cab294a388c6dad4dc45be2a3bc9e495e5ab0900e7c5b",
+    "tools/MapArtPolish.gd": "f59c87cc11014bc58d98648d111163a6e202cd03c313c24e811522c247ae8a11",
+    "tools/capture_map_art.gd": "758be6d4a9f13e3e076b25b3da48b8684adb41de5c13b055853ff6b3dca0e792",
+    "tools/polish_3d_maps.gd": "bfc34bde23f5c3a4bed59f140d90365c87faabf77b07ff16e5d6ef56e7ab4b52",
+    "assets/maps3d/materials/ambient_motes.gdshader": "07b78fc3a3806c062bc4bffb044aa1b003aead4d0ad2ad260737e89f0fd4869a"
+  },
+  "script_checks_passed": 370,
+  "script_checks_total": 370,
+  "focused_engine_tests_passed": 5,
+  "focused_engine_tests_total": 5,
+  "runtime_check_count": 1301
+}

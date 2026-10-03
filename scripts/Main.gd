@@ -1888,6 +1888,7 @@ func _create_map_hero_sprites() -> void:
 	expedition_position = roaming_hunt.party_position
 	party_movement.configure(deployed_heroes, hero_battle_state, expedition_position)
 	party_movement.apply_formation(deployed_heroes, formation_id)
+	party_movement.place_formation(expedition_position)
 	combat_camera_position = _clamp_combat_camera(expedition_position)
 	_update_combat_camera(0.0)
 	for index in range(deployed_heroes.size()):
@@ -3586,9 +3587,9 @@ func _raid_role_destination(hero_id: String, index: int) -> Vector2:
 	var side := Vector2(-away.y,away.x)
 	var sign := -1.0 if abs(hash(hero_id))%2==0 else 1.0
 	var distance := 188.0 if attack_range>=3 else (154.0 if attack_range==2 else 116.0)
-	var lateral := float((index%5)-2)*13.0
+	var lateral := float((index%5)-2)*26.0
 	if role=='탱커' or style=='protector':
-		distance=112.0;lateral*=.55
+		distance=112.0;lateral*=.75
 	elif role=='서포터' or style=='support':
 		distance=284.0;lateral+=sign*18.0
 	elif role=='컨트롤러' or style in ['controller','control']:
@@ -3660,6 +3661,8 @@ func _raid_move_actors(delta: float) -> void:
 	var followup := raid_second_wave_remaining>0.0
 	var shape: Dictionary = raid_second_wave_shape if followup else raid_pattern_shape
 	var warning_remaining := raid_second_wave_remaining if followup else boss_telegraph_remaining
+	var goals: Dictionary={}
+	var speeds: Dictionary={}
 	for i in deployed_heroes.size():
 		var id: String = str(deployed_heroes[i]["id"])
 		if not raid_positions.has(id) or int(hero_battle_state.get(id, {}).get("hp", 0)) <= 0: continue
@@ -3667,11 +3670,15 @@ func _raid_move_actors(delta: float) -> void:
 		var role_destination: Vector2 = _raid_role_destination(id,i)
 		var destination: Vector2 = role_destination
 		if raid_rally_active:
-			destination = raid_rally_position + Vector2(float(i % 5 - 2) * 15.0, float(i / 5) * 29.0)
+			destination = raid_rally_position + Vector2(float(i % 5 - 2) * 48.0, float(i / 5) * 68.0-34.0)
 		elif not shape.is_empty() and (boss_telegraph_pending or followup) and warning_remaining <= _raid_reaction_window(id) and _raid_auto_evade_allowed(id,i) and RAID_FIELD.contains(shape,current):
 			destination = RAID_FIELD.escape_position(shape, current)
-		var speed := 205.0 if raid_rally_active else (158.0 if destination!=role_destination else 128.0)
-		raid_positions[id] = RAID_FIELD.clamp_to_floor(current.move_toward(RAID_FIELD.clamp_to_floor(destination), delta * speed))
+		goals[id]=RAID_FIELD.clamp_to_floor(destination)
+		speeds[id]=205.0 if raid_rally_active else (158.0 if destination!=role_destination else 128.0)
+	goals=RAID_FIELD.spread_destinations(goals,shape if boss_telegraph_pending or followup else {})
+	for id in goals:
+		var current: Vector2=raid_positions[id]
+		raid_positions[id]=RAID_FIELD.clamp_to_floor(current.move_toward(goals[id],delta*float(speeds[id])))
 
 func _apply_raid_second_wave() -> void:
 	var profile: Dictionary=raid_second_wave_profile.duplicate(true)

@@ -9,9 +9,15 @@ func _run() -> void:
 	for faction: String in ["aurelia","noxfera"]:
 		var main=await make_main(faction,10)
 		main.idle_stage=1;main.formation_id="volley";main._build_combat_screen();await settle()
+		for hero in main.deployed_heroes:
+			var hero_id: String=hero.id
+			var station: Vector2=main.field_navigation.clamp_to_walkable(main.expedition_position+Vector2(main.party_movement.travel_offsets[hero_id]))
+			check(main._hero_field_position(hero_id).is_equal_approx(station),"initial placement uses selected formation "+hero_id)
+		var live_positions: Dictionary=main.party_movement.positions.duplicate()
 		var id: String=main.deployed_heroes[0].id
 		var base: Dictionary=main.hero_battle_state[id].duplicate(true)
 		check(B.select(main,"assault"),"formation selection")
+		check(main.party_movement.positions==live_positions,"live formation changes do not teleport heroes")
 		var assault: Dictionary=main.hero_battle_state[id].duplicate(true)
 		check(assault.attack==roundi(base.attack*1.2),"assault attack +20%")
 		check(is_equal_approx(assault.attack_interval_mult/base.attack_interval_mult,1.2),"volley increases base attack speed 20%")

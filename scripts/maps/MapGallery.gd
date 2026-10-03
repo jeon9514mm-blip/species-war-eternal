@@ -9,6 +9,8 @@ var yaw:=.18
 var pitch:=.79
 var distance:=70.0
 var labels: Array[String]=['달빛 엘프 유적','붉은 협곡 광산','숲속 초원','빙하 심연 전장']
+var raid_variant:=false
+var selected_map:=3
 var title: Label
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -18,18 +20,23 @@ func _ready() -> void:
 	var bar:=HBoxContainer.new();bar.position=Vector2(24,20);bar.add_theme_constant_override('separation',10);add_child(bar)
 	for i in 4:
 		var button:=Button.new();button.text=str(i+1)+' · '+labels[i];button.custom_minimum_size=Vector2(180,46);bar.add_child(button);button.pressed.connect(select_map.bind(i))
-	title=Label.new();title.position=Vector2(28,82);title.add_theme_font_size_override('font_size',20);title.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(title)
+	var variant:=Button.new();variant.name='RaidVariantToggle';variant.text='레이드 맵 보기';variant.toggle_mode=true;variant.position=Vector2(24,78);variant.custom_minimum_size=Vector2(170,42);add_child(variant)
+	variant.toggled.connect(func(enabled):raid_variant=enabled;select_map(selected_map))
+	title=Label.new();title.position=Vector2(28,130);title.add_theme_font_size_override('font_size',20);title.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(title)
 	gui_input.connect(_on_input);select_map(3)
 func select_map(id: int) -> void:
-	map_root=loader.load_map(id,viewport_3d);camera=map_root.get_node('Arena/BattleCamera')
+	selected_map=id
+	map_root=loader.load_map(id,viewport_3d,raid_variant);camera=map_root.get_node('Arena/BattleCamera')
 	camera.size=44 if id==3 else 32;camera.current=true
-	title.text=labels[id]+'  |  드래그: 시점 회전 · 마우스 휠: 확대/축소'
+	title.text=labels[id]+(' · 레이드' if raid_variant else ' · 사냥')+'  |  드래그: 시점 회전 · 마우스 휠: 확대/축소'
 	pose()
 func pose() -> void:
 	var target:=Vector3(16,1,5)
 	camera.position=target+Vector3(sin(yaw)*cos(pitch),sin(pitch),cos(yaw)*cos(pitch))*distance
 	camera.look_at(target)
 func _on_input(event: InputEvent) -> void:
+	if event is InputEventScreenDrag:
+		yaw-=event.relative.x*.005;pitch=clampf(pitch+event.relative.y*.004,.35,1.35);pose()
 	if event is InputEventMouseMotion and event.button_mask&MOUSE_BUTTON_MASK_LEFT:
 		yaw-=event.relative.x*.005;pitch=clampf(pitch+event.relative.y*.004,.35,1.35);pose()
 	if event is InputEventMouseButton and event.pressed:

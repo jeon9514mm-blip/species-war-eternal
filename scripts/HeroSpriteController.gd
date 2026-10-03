@@ -13,6 +13,9 @@ class_name HeroSpriteController
 const DIRECTIONS := ["down", "left", "right", "up"]
 const STATES := ["idle", "walk", "attack", "hit", "death"]
 
+# Presentation event counter: repeated attacks must restart the skeletal track.
+var visual_sequence: int = 0
+
 var direction := "down"
 var state := "idle"
 var _frames_ready := false

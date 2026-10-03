@@ -1,0 +1,48 @@
+{
+  "version": "v83-6.4",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "baseline_commit": "1591f80d2533ebfdf11b8ff6fde192b0bc7e6a9e",
+  "recorded_at_utc": "2026-10-02T09:11:27.067885+00:00",
+  "script_compile": {
+    "passed": 367,
+    "total": 367
+  },
+  "selected_runtime_tests": {
+    "passed": 10,
+    "total": 10,
+    "assertions": 1722,
+    "new_camera_assertions": 1106
+  },
+  "visual_capture_tests": {
+    "scripts": 2,
+    "checks": 11,
+    "failures": 0,
+    "renderer": "Forward+ / software Vulkan llvmpipe",
+    "engine": "4.7.2",
+    "before_images": 3,
+    "after_images": 11
+  },
+  "static_validation": "367 GDScripts; resources and links OK",
+  "architecture_unit_tests": 12,
+  "source_sha256": {
+    "assets/maps3d/materials/arena_carving.gdshader": "53e9d63d5df07595d36e48009baeff95217e49c48e31d50fc3d27471cc4f2941",
+    "assets/maps3d/materials/terrain.gdshader": "90bd72f06bdfc3fdadd66ed22696fecf8f685b03cc81a0c8e07e3cca266f8181",
+    "project.godot": "44bd8e4dea96caf776c6252d144a71570229e88a517568a215f71812854edabe",
+    "scripts/V8363IceMapSmokeTest.gd": "6e1ed95479e740537170f8423de4e26acf6e22687fff5d2e05493c3be3e7b1c9",
+    "scripts/V8364CombatViewSmokeTest.gd": "34b7b63f253528fe70d9383ed06e08df4db70e8de1265425739eeb1e761b5042",
+    "scripts/V8364VisualSmokeTest.gd": "8bd4fa7daa7b418f65e39779133b6e14c6b2dd036dcc6d0f5f6fb99bbbb9a880",
+    "scripts/maps3d/Battlefield3DView.gd": "cdc1287268fb4da5609b9bade175c9ef11b974d930f5b52d2be115a7b325beda",
+    "scripts/maps3d/CombatCameraFraming.gd": "1e23844d84490bc8adb2932b06006c7e0b17c3235f3b16076891952d1cf84b2f",
+    "scripts/maps3d/CombatHealthLayout.gd": "cb68d6587e4f13c1b6b6162e0e2e3566da6f2cc8f903415b65efc97f95e240e0",
+    "scripts/maps3d/CombatHealthOverlay.gd": "d2898229697d621c959ca525955d916bcfae942b746fef1765d479e1ac50ef07",
+    "scripts/portrait/PortraitMain.gd": "e1081a62f2018197f927e8aca6ff14d575fc0c0358f5933706b9346a8e0f2ec8",
+    "scripts/portrait/PortraitRaid.gd": "ea7c2c91ed213937572e2145468df219eedd0e7d7a994252b208f6ff5ee9954e"
+  },
+  "limitations": [
+    "Android hardware FPS, memory, thermals and touch not tested.",
+    "Selected runtime tests only, not every historical smoke test.",
+    "Some visual overlap remains in dense formations; simulation positions unchanged.",
+    "Injured-label and raid-warning images use documented test fixtures.",
+    "Visual camera smoothing was not evaluated over a long play session."
+  ]
+}

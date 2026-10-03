@@ -1,0 +1,45 @@
+{
+  "status": "preview_only_waiting_for_user_design_review",
+  "base_commit": "07f4b021c2f4279023d701239c0ac74b7aa05a02",
+  "branch": "preview/reference-map-design-v83-6.6",
+  "main_updated": false,
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "Forward+ Vulkan llvmpipe",
+  "capture_resolution": [
+    1440,
+    1000
+  ],
+  "captures": 3,
+  "script_parse_checks": 372,
+  "focused_runtime_tests_passed": 7,
+  "runtime_checks": 1478,
+  "static_validation": true,
+  "architecture_unit_tests_passed": 12,
+  "android_device_tests": false,
+  "source_sha256": {
+    "assets/maps3d/materials/terrain.gdshader": "0de00c64ccfe3ad0b959296a7126ea434aea438f9e94204d214b36299aebd94e",
+    "scenes/maps3d/ArcaneField.tscn": "f2be764bdae229f2a61a415733f0cbc93b12229e43abf11656b18257eb664316",
+    "scenes/maps3d/ArcaneRaid.tscn": "e33a66cc1ab9d609f628278a9c8a9a547d026cd425981a9926cf21ecc509db7d",
+    "scenes/maps3d/CrimsonField.tscn": "7d073b609ed9fff72719127c8c2a65c5c3f6d7b0dcd223b8c07612f9b4b348d0",
+    "scenes/maps3d/CrimsonRaid.tscn": "b58de23c35ee3ce3c36d0d815b5eef74566ab36598dded190ccfaa6a2e638e52",
+    "scenes/maps3d/EvergreenField.tscn": "9f59ef2cf35a9109d21c918c62a2fc71ef4afc24f73fe3fb391ec2dab3d5e0d9",
+    "scenes/maps3d/EvergreenRaid.tscn": "f7822bc81c726301880bb63da7590d76049f6c2c7273d173c3576a741f88c23d",
+    "scenes/maps3d/IceCavernField.tscn": "80c2d3c2a3f4cb674d21d24cb4aad6ebe0cc3eee45be0001238253febe7c2577",
+    "scenes/maps3d/IceCavernRaid.tscn": "8367da03686eee97c35d25a95749875f991ccc07e35a987fd95ecc839552345a",
+    "scripts/maps3d/CavernRuntime.gd": "15c112218ccaaeab8d281867103a57c12b0dd38f6fa7b6cb59b2067e355f86d6",
+    "tools/MapArtPolish.gd": "0fe73fc2c1a8a075e0c1de960559e6d03e59a800f4ea4812d7ebb838294e7106",
+    "tools/build_3d_maps.gd": "add60e065211378723ef13dad2fad4ef3073abd2cbcf5db51b5d391cf3c1419f",
+    "tools/build_ice_cavern.gd": "1bdaafec6a9be35d64c48c73253198d27fa95d36f2690bf03803703bc3e15aef",
+    "tools/capture_map_art.gd": "bcdfb1dbfac0b611912df28acc3eb65305fc02013ad52c0f233b664094fd3255",
+    "tools/polish_3d_maps.gd": "79582837ccf37ce7329fb30fadec58e7b58f145e5e65105952d333f555891ea1",
+    "tools/ReferenceMapArt.gd": "0c233e89fc8df588a1f1a45b1e06a7604aef669c79cb0c6c0cc08612714fef0a",
+    "scripts/V8366MapArtSmokeTest.gd": "7ee32504b5f6703532985f9658abe15b8c206b720cdc6ad8de8a536187185eca",
+    "assets/maps3d/materials/sanctuary_paving.gdshader": "93eed7507f1c615c863d6921de96b207cb9bf8b8c4572fb3a58f57e4bb8471e9"
+  },
+  "limitations": [
+    "Design review pending; no production merge or upload.",
+    "Render captures use a software desktop renderer, not an Android performance measurement.",
+    "Foreground arcade intentionally broken and low; east entry corridor remains open.",
+    "Existing 2K assets reused; reference image fidelity is not one-to-one."
+  ]
+}

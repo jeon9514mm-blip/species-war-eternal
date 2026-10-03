@@ -150,7 +150,10 @@ func run() -> void:
 	check(main._is_hero_deployed('leonhardt'),'detail deploys the same hero')
 	main.hero_skill_tree['leonhardt']={'offense':0,'survival':0,'utility':0}
 	main._build_growth_screen();await settle()
-	await press(main._skill_tree_branch_text('offense',0))
+	var upgrade: Button=main.content_root.find_child('GrowthBranch_offense',true,false)
+	check(upgrade!=null and not upgrade.disabled,'offense research action enabled')
+	if upgrade!=null:upgrade.pressed.emit()
+	await settle()
 	check(main._get_skill_tree('leonhardt')['offense']==1,'training button spends one point on intended hero')
 	main._build_summon_screen();await settle()
 	var gems: int=main.wallet_gems
@@ -181,6 +184,7 @@ func run() -> void:
 	check(confirm!=null and confirm.text=='오프라인 사냥 받기','lobby opens offline receipt')
 	if confirm!=null:confirm.pressed.emit()
 	check(main.wallet_gold==before+100 and main.unclaimed_gold==0,'lobby offline receipt remains one-time')
-	main._clear_screen();main.free();await process_frame
+	main.presentation_runtime.audio.shutdown();await create_timer(.5).timeout
+	main._clear_screen();main.free();await create_timer(.35).timeout
 	print('V49 LAYOUT ',checks-failures.size(),'/',checks,' PASS · ',screens,' screen states')
 	quit(0 if failures.is_empty() else 1)

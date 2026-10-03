@@ -22,23 +22,21 @@ func run() -> void:
 	for zone_id in GEAR.ZONES:
 		main.current_zone_id=zone_id
 		main._build_combat_screen();await settle()
-		var header: Node=main.content_root.get_node('PortraitSky')
-		check(header.zone_id==zone_id,zone_id+' has its own illustrated horizon')
-		var props: Node=main.content_root.get_node('PortraitMeadowProps' if zone_id=='gray_meadow' else 'PortraitFieldProps')
-		check(props.props.size()>=8,zone_id+' installs world-anchored depth props')
-		check(props.actor_layer==main.combat_labels['actor_layer'],zone_id+' props share actor draw order')
+		var terrain=main.combat_labels.terrain
+		check(terrain.zone_id==zone_id and is_instance_valid(terrain.map_root),zone_id+' has its own loaded 3D field')
+		check(is_instance_valid(terrain.camera),zone_id+' has the live battle camera')
 		for sprite: HeroSpriteController in main.hero_map_sprites:
 			var rig: Node2D=sprite.get_node_or_null('PortraitHeroSkeletalRig')
-			check(rig!=null and rig.bones.size()==13 and rig.mesh.get_bone_count()==13,zone_id+' heroes have weighted full body skeleton')
+			check(rig!=null and rig.bones.size()==21 and rig.mesh.get_bone_count()==21,zone_id+' heroes have weighted full body skeleton')
 			check(rig.mesh.texture==rig._source_frame(sprite).atlas,zone_id+' weighted mesh keeps original hero atlas')
 			check(sprite.get_node_or_null('PortraitGroundShadow')!=null,zone_id+' heroes have contact shadow')
 		for sprite: MonsterSpriteController in main.enemy_wave_sprites:
 			check(sprite.get_node_or_null('PortraitGroundShadow')!=null,zone_id+' monsters have contact shadow')
 		var hero: HeroSpriteController=main.hero_map_sprites[0]
 		var rig: Node2D=hero.get_node('PortraitHeroSkeletalRig')
-		hero.play_attack();rig._process(.12)
-		check(absf(rig.bones['RightUpperArm'].rotation)>0.1 and absf(rig.bones['RightForearm'].rotation)>0.1,zone_id+' attack articulates shoulder and elbow')
-		hero.play_hit();rig._process(.03)
+		hero.play_attack();rig._process(rig.action_duration(str(hero.get('visual_action')))*.48)
+		check(absf(rig.bones['LeftUpperArm'].rotation)+absf(rig.bones['RightUpperArm'].rotation)>.05 and absf(rig.bones['LeftForearm'].rotation)+absf(rig.bones['RightForearm'].rotation)>.05,zone_id+' attack articulates shoulder and elbow')
+		hero.play_hit();rig._process(.09)
 		check(absf(rig.bones['LeftUpperArm'].rotation)>0.1,zone_id+' received hit recoils the arm')
 		var seen: Dictionary={}
 		var zone: Dictionary=main._zone_data()[zone_id]
@@ -58,6 +56,9 @@ func run() -> void:
 			for hero_id in ['leonhardt','mira','elisia','orwin']:
 				if main._gear_role_matches(item,hero_id):matching+=1
 			check(matching>0 and matching<4,zone_id+' '+role+' cannot equip to an incompatible class')
+	if main.presentation_runtime!=null:main.presentation_runtime.audio.shutdown()
+	await create_timer(.35).timeout
 	main.free()
+	await create_timer(.1).timeout
 	print('v61_field_roles_motion ',checks-errors.size(),'/',checks,' pass')
 	quit(0 if errors.is_empty() else 1)

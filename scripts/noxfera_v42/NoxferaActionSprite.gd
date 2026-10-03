@@ -1,8 +1,8 @@
 extends "res://scripts/HeroSpriteController.gd"
 ## Presentation-only. Read state; never write HP, world position, damage, RNG, cooldowns,
-## force IDs, roster, skills, currency or save files. 15 baked skinned-illustration tracks.
+## force IDs, roster, skills, currency or save files. 16 presentation tracks; skeletal rendering supplies joint movement.
 const CATALOG = preload("res://scripts/noxfera_v42/NoxferaMotionCatalog.gd")
-const ACTIONS: Array[String] = ["idle","walk","run","attack_1","attack_2","skill","ultimate","hit","knockback","dodge","guard","buff","debuff","victory","death"]
+const ACTIONS: Array[String] = ["idle","walk","run","attack_1","attack_2","skill","ultimate","hit","knockback","dodge","guard","buff","debuff","victory","death","spawn"]
 const LOOPS: Array[String] = ["idle","walk","run","debuff"]
 const PIVOT := Vector2(88,142)
 const BODY_HEIGHT: float = 64.0
@@ -47,6 +47,7 @@ func _build_sprite_frames() -> void:
 			frames.set_animation_loop(alias,frames.get_animation_loop(source))
 			for i: int in frames.get_frame_count(source):
 				frames.add_frame(alias,frames.get_frame_texture(source,i),frames.get_frame_duration(source,i))
+	preload("res://scripts/portrait/HeroRigMotionCatalog.gd").add_spawn_track(frames)
 	sprite_frames=frames
 	native_visual_height=BODY_HEIGHT
 	centered=false
@@ -80,6 +81,7 @@ func play_visual(action: String,restart: bool=true) -> bool:
 	if not _frames_ready or action not in ACTIONS:return false
 	if not sprite_frames.has_animation(action):return false
 	if action==visual_action and is_playing() and not restart:return true
+	visual_sequence+=1
 	visual_action=action
 	state=_legacy_state(action)
 	_locked=action not in LOOPS and action!="death"

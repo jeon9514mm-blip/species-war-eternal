@@ -2,19 +2,19 @@ extends RefCounted
 class_name GameUiTheme
 
 ## Shared visual language for menus, onboarding and the field HUD.
-## Legacy dark surface arguments are gently translated into the current palette.
-const BG := Color("#e5e8dc")
-const SURFACE := Color("#fbf7ed")
-const SOFT := Color("#edf0e4")
-const INK := Color("#254239")
-const MUTED := Color("#65766b")
-const PRIMARY := Color("#316c56")
-const GOLD := Color("#a27130")
-const LAVENDER := Color("#74649a")
-const BORDER := Color("#b6bea8")
-const BLUE := Color("#437e99")
-const RED := Color("#b45455")
-const GREEN := Color("#43815e")
+## Canonical palette used by both portrait pages and compatibility screens.
+const BG := Color("#0d141f")
+const SURFACE := Color("#172331")
+const SOFT := Color("#213246")
+const INK := Color("#eff3f5")
+const MUTED := Color("#9caebb")
+const PRIMARY := Color("#e3bf7c")
+const GOLD := Color("#e3bf7c")
+const LAVENDER := Color("#b39bce")
+const BORDER := Color("#334659")
+const BLUE := Color("#76bfc1")
+const RED := Color("#ef8490")
+const GREEN := Color("#7fb996")
 const FONT_PROVIDER = preload("res://scripts/UIFontProvider.gd")
 const ICON_SCRIPT := preload("res://scripts/GameUiIcon.gd")
 
@@ -25,32 +25,27 @@ static func _is_accent(color: Color) -> bool:
 	return false
 
 static func surface_color(color: Color) -> Color:
-	if color.a < 0.02 or _is_accent(color):
-		return color
-	if color.get_luminance() < 0.30:
-		var tint := SURFACE.lerp(color, 0.055)
-		return Color(tint, color.a)
-	return color
+	if color.a < 0.02 or _is_accent(color):return color
+	for token in [BG,SURFACE,SOFT]:
+		if Color(color,1.).is_equal_approx(token):return color
+	# Older screens used unrelated blue/green/cream surfaces. Translate them once.
+	return Color(SURFACE,maxf(color.a,.94))
 
 static func text_color(color: Color) -> Color:
-	# Old pale-blue / pastel labels were authored for dark panels. Keep their hue
-	# while restoring contrast on cream surfaces; explicit white remains available.
-	if color == Color.WHITE or color.a < 0.02:
-		return color
-	var result := color
-	while result.get_luminance() > 0.17:
-		result = result.darkened(0.10)
-	return Color(result, color.a)
+	if color.a < .02:return color
+	if _is_accent(color):return color
+	if color.get_luminance()<.35:return INK
+	return color
 
 static func panel(color: Color, border: Color = BORDER, radius: int = 14, width: int = 1) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
 	style.bg_color = surface_color(color)
 	style.border_color = BORDER if border.get_luminance() < 0.14 and not _is_accent(border) else border
 	style.set_border_width_all(maxi(0, width))
-	# Pixel bevels: preserve text/layout metrics while removing the soft web-card look.
-	style.set_corner_radius_all(clampi(radius, 0, 4))
-	style.corner_detail = 1
-	style.anti_aliasing = false
+	# Shared corner and border metrics across all pages.
+	style.set_corner_radius_all(clampi(radius, 0, 12))
+	style.corner_detail = 8
+	style.anti_aliasing = true
 	if radius >= 10 and style.bg_color.a > 0.8:
 		style.shadow_color = Color(0.16, 0.23, 0.17, 0.13)
 		style.shadow_size = 0
@@ -83,9 +78,9 @@ static func make_theme() -> Theme:
 	result.set_stylebox("panel", "PanelContainer", panel(SURFACE))
 	for type_name: String in ["Button", "OptionButton", "MenuButton"]:
 		result.set_stylebox("normal", type_name, _button_style(SOFT, BORDER))
-		result.set_stylebox("hover", type_name, _button_style(Color("#e4ebdb"), PRIMARY))
-		result.set_stylebox("pressed", type_name, _button_style(Color("#d7e3d1"), PRIMARY))
-		result.set_stylebox("disabled", type_name, _button_style(Color("#e8e9df"), Color("#d5d9cd")))
+		result.set_stylebox("hover", type_name, _button_style(SOFT, PRIMARY))
+		result.set_stylebox("pressed", type_name, _button_style(SOFT, PRIMARY))
+		result.set_stylebox("disabled", type_name, _button_style(SURFACE, BORDER))
 		var focus := panel(Color.TRANSPARENT, GOLD, 12, 2)
 		focus.expand_margin_left = 2
 		focus.expand_margin_right = 2
@@ -96,7 +91,7 @@ static func make_theme() -> Theme:
 		result.set_color("font_hover_color", type_name, INK)
 		result.set_color("font_pressed_color", type_name, PRIMARY)
 		result.set_color("font_focus_color", type_name, INK)
-		result.set_color("font_disabled_color", type_name, Color("#8a9587"))
+		result.set_color("font_disabled_color", type_name, MUTED)
 		result.set_font_size("font_size", type_name, 16)
 	var entry := panel(SURFACE, BORDER, 10)
 	entry.content_margin_left = 14
@@ -112,20 +107,20 @@ static func make_theme() -> Theme:
 	result.set_color("font_color", "LineEdit", INK)
 	result.set_color("font_placeholder_color", "LineEdit", MUTED)
 	result.set_color("caret_color", "LineEdit", PRIMARY)
-	result.set_color("selection_color", "LineEdit", Color("#c3d6bd"))
+	result.set_color("selection_color", "LineEdit", BORDER)
 	result.set_color("font_selected_color", "LineEdit", INK)
-	result.set_stylebox("background", "ProgressBar", panel(Color("#d8dfd0"), Color.TRANSPARENT, 4, 0))
+	result.set_stylebox("background", "ProgressBar", panel(BG, Color.TRANSPARENT, 4, 0))
 	result.set_stylebox("fill", "ProgressBar", panel(GREEN, Color.TRANSPARENT, 4, 0))
 	result.set_color("font_color", "ProgressBar", INK)
 	for type_name: String in ["HScrollBar", "VScrollBar"]:
-		var rail := panel(Color("#e6e9df"), Color.TRANSPARENT, 4, 0)
+		var rail := panel(BG, Color.TRANSPARENT, 4, 0)
 		rail.content_margin_left = 4
 		rail.content_margin_right = 4
 		rail.content_margin_top = 4
 		rail.content_margin_bottom = 4
 		result.set_stylebox("scroll", type_name, rail)
-		result.set_stylebox("grabber", type_name, panel(Color("#b6c5af"), Color.TRANSPARENT, 4, 0))
-		result.set_stylebox("grabber_highlight", type_name, panel(Color("#99b08e"), Color.TRANSPARENT, 4, 0))
+		result.set_stylebox("grabber", type_name, panel(BORDER, Color.TRANSPARENT, 4, 0))
+		result.set_stylebox("grabber_highlight", type_name, panel(MUTED, Color.TRANSPARENT, 4, 0))
 		result.set_stylebox("grabber_pressed", type_name, panel(GREEN, Color.TRANSPARENT, 4, 0))
 		result.set_constant("increment", type_name, 0)
 		result.set_constant("decrement", type_name, 0)
@@ -135,8 +130,9 @@ static func make_theme() -> Theme:
 	tooltip.content_margin_right = 12
 	tooltip.content_margin_top = 8
 	tooltip.content_margin_bottom = 8
+	tooltip.bg_color = SOFT
 	result.set_stylebox("panel", "TooltipPanel", tooltip)
-	result.set_color("font_color", "TooltipLabel", SURFACE)
+	result.set_color("font_color", "TooltipLabel", INK)
 	result.set_font_size("font_size", "TooltipLabel", 13)
 	return result
 
@@ -158,17 +154,17 @@ static func button(text: String, min_size: Vector2 = Vector2(0, 44), color: Colo
 	var fill := PRIMARY if primary else surface_color(color)
 	if not primary and _is_accent(color):
 		fill = SURFACE.lerp(color, 0.12)
-	var foreground := SURFACE if primary else INK
+	var foreground := BG if primary else INK
 	result.add_theme_font_size_override("font_size", 16)
 	result.add_theme_color_override("font_color", foreground)
 	result.add_theme_color_override("font_hover_color", foreground)
 	result.add_theme_color_override("font_pressed_color", foreground)
 	result.add_theme_color_override("font_focus_color", foreground)
-	result.add_theme_color_override("font_disabled_color", Color("#8a9587"))
+	result.add_theme_color_override("font_disabled_color", MUTED)
 	result.add_theme_stylebox_override("normal", _button_style(fill, PRIMARY if primary else BORDER))
-	result.add_theme_stylebox_override("hover", _button_style(fill.lightened(0.08) if primary else fill.lerp(Color("#dce6d4"), 0.38), PRIMARY))
-	result.add_theme_stylebox_override("pressed", _button_style(fill.darkened(0.10) if primary else fill.lerp(Color("#c5d6be"), 0.5), PRIMARY))
-	result.add_theme_stylebox_override("disabled", _button_style(Color("#e8e9df"), Color("#d5d9cd")))
+	result.add_theme_stylebox_override("hover", _button_style(fill.lightened(0.08) if primary else fill.lerp(SOFT, 0.38), PRIMARY))
+	result.add_theme_stylebox_override("pressed", _button_style(fill.darkened(0.10) if primary else fill.lerp(BG, 0.5), PRIMARY))
+	result.add_theme_stylebox_override("disabled", _button_style(SURFACE, BORDER))
 	var focus := panel(Color.TRANSPARENT, GOLD, 12, 2)
 	focus.expand_margin_left = 2
 	focus.expand_margin_right = 2
@@ -204,11 +200,3 @@ class AmbientBackground extends Control:
 
 	func _draw() -> void:
 		draw_rect(Rect2(Vector2.ZERO, size), BG)
-		# Quiet ordered checker pixels keep Korean labels clear on a matte canvas.
-		for y in range(0, int(size.y), 24):
-			for x in range(0, int(size.x), 24):
-				if (x / 24 + y / 24) % 2 == 0:
-					draw_rect(Rect2(x, y, 2, 2), Color("#d7ddce"))
-		draw_rect(Rect2(0, 0, size.x, 4), Color("#a7b397"))
-		draw_rect(Rect2(0, 4, size.x, 2), Color("#f2edda"))
-		draw_rect(Rect2(0, size.y - 4, size.x, 4), Color("#c4ceb8"))

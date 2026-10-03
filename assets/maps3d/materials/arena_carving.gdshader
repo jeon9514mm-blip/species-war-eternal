@@ -1,6 +1,7 @@
 shader_type spatial;
 uniform sampler2D carving : source_color,filter_linear_mipmap_anisotropic;
 uniform sampler2D border_stone : source_color,filter_linear_mipmap_anisotropic,repeat_enable;
+uniform float combat_readability : hint_range(0.0,1.0) = 0.0;
 varying vec3 world;
 void vertex(){world=(MODEL_MATRIX*vec4(VERTEX,1)).xyz;}
 void fragment(){
@@ -11,6 +12,10 @@ void fragment(){
  float blue=max(0.,color.b-color.r*1.15);
  ALBEDO=color*.9;ROUGHNESS=.73;SPECULAR=.35;
  EMISSION=vec3(.12,.62,1.)*smoothstep(.065,.22,blue)*.9*float(!outside);
+ // Quiet the combat area; keep the outer carvings bright as an arena boundary.
+ float quiet=(1.-smoothstep(11.,18.,length(world.xz-vec2(16,10))))*combat_readability;
+ ALBEDO*=mix(1.,.70,quiet);
+ EMISSION*=mix(1.,.24,quiet);
  // A tiny material relief makes engraved edges respond to the real lighting.
  vec2 texel=vec2(1./1536.);
  float dx=dot(texture(carving,uv+vec2(texel.x,0)).rgb-texture(carving,uv-vec2(texel.x,0)).rgb,vec3(.333));

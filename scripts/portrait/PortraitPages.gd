@@ -45,7 +45,7 @@ static func text(parent: Node, value: String, points: int = 18, color: Color = S
 	return label
 
 static func action(parent: Node, caption: String, callback: Callable, primary: bool = false) -> Button:
-	var button := S.button(caption,callback,S.BLUE.darkened(.2) if primary else S.SURFACE_2)
+	var button := S.button(caption,callback,S.GOLD if primary else S.SURFACE_2)
 	var ancestor: Node=parent
 	while ancestor!=null:
 		if ancestor is ScrollContainer:
@@ -63,7 +63,7 @@ static func action(parent: Node, caption: String, callback: Callable, primary: b
 static func card(parent: Node, title: String = '', accent: Color = S.EDGE_SOFT) -> VBoxContainer:
 	var panel := PanelContainer.new()
 	panel.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	var style := S.elevated(S.DARK_2,accent,18)
+	var style := S.elevated(S.DARK_2,S.EDGE_SOFT,12)
 	style.content_margin_left=18;style.content_margin_right=18
 	style.content_margin_top=17;style.content_margin_bottom=17
 	panel.add_theme_stylebox_override('panel',style)
@@ -74,6 +74,21 @@ static func card(parent: Node, title: String = '', accent: Color = S.EDGE_SOFT) 
 		heading.add_theme_color_override('font_color',S.INK)
 		heading.tooltip_text=title
 	return box
+
+static func disclosure(parent: Node, title: String, expanded: bool = false) -> VBoxContainer:
+	var panel:=PanelContainer.new();panel.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	panel.add_theme_stylebox_override('panel',S.elevated(S.SURFACE))
+	parent.add_child(panel)
+	var column:=stack(panel,8)
+	var toggle:=S.button(('−  ' if expanded else '+  ')+title,Callable())
+	toggle.name='Disclosure_'+title.validate_node_name();toggle.custom_minimum_size=Vector2(0,52)
+	toggle.alignment=HORIZONTAL_ALIGNMENT_LEFT;toggle.mouse_filter=Control.MOUSE_FILTER_PASS
+	column.add_child(toggle)
+	var body:=stack(column,10);body.visible=expanded
+	toggle.pressed.connect(func():
+		body.visible=not body.visible
+		toggle.text=('−  ' if body.visible else '+  ')+title)
+	return body
 
 static func picture(parent: Node, texture: Texture2D, extent: Vector2) -> TextureRect:
 	var art := TextureRect.new()
@@ -106,7 +121,7 @@ static func begin(main: Node, screen: String, title: String, detail: String, tab
 	S.make_scroll_responsive(scroll)
 	main.content_root.add_child(scroll)
 	scroll.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	scroll.offset_left=18;scroll.offset_top=148;scroll.offset_right=-18;scroll.offset_bottom=-108
+	scroll.offset_left=20;scroll.offset_top=132;scroll.offset_right=-20;scroll.offset_bottom=-108
 	var box := stack(scroll,14)
 	box.name='PageContent'
 	if restore_position>0:scroll.set_deferred('scroll_vertical',restore_position)
@@ -115,10 +130,6 @@ static func begin(main: Node, screen: String, title: String, detail: String, tab
 
 static func lobby(main: Node) -> void:
 	var page := begin(main,'lobby','원정대 캠프',main._faction_name(),'home')
-	var goal_summary := card(page,'장기 목표',S.GOLD)
-	goal_summary.name='LobbyLongTermGoals'
-	text(goal_summary,main.GOALS.tracked_text(main),18)
-	action(goal_summary,'목표·업적 보상 확인',Callable(main,'_open_goal_screen'),true).name='LobbyLongTermGoalAction'
 	var zone: Dictionary=main._current_zone()
 	var lead := card(page,str(zone['name']),S.BLUE)
 	text(lead,'지금 떠날 곳  ·  STAGE %02d'%main.idle_stage,16,S.BLUE_SOFT)
@@ -152,6 +163,10 @@ static func lobby(main: Node) -> void:
 			text(tile,str(hero['name']),14).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 			text(tile,'Lv.%d'%main._get_hero_progress(str(hero['id']))['level'],14,S.MUTED).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	action(party,'원정대 편성',Callable(main,'_lobby_deploy'))
+	var goal_summary := card(page,'장기 목표')
+	goal_summary.name='LobbyLongTermGoals'
+	text(goal_summary,main.GOALS.tracked_text(main),18)
+	action(goal_summary,'목표·업적 보상 확인',Callable(main,'_open_goal_screen')).name='LobbyLongTermGoalAction'
 	var rewards := card(page,'사냥 보상')
 	var gold: int=main.offline_pending_gold+main.offline_pending_chest_gold
 	var xp: int=main.offline_pending_xp+main.offline_pending_chest_xp
@@ -165,12 +180,10 @@ static func lobby(main: Node) -> void:
 	action(shortcuts,'수호신 소환',func():main.set_meta('summon_mode','guardian');main._build_summon_screen())
 
 static func _metric_tile(parent: Node, caption: String, value: String, accent: Color = S.BLUE_SOFT, note: String = '') -> VBoxContainer:
-	var box := card(parent,caption,accent)
-	var amount := text(box,value,24,accent)
-	amount.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	if not note.is_empty():
-		var hint := text(box,note,14,S.MUTED)
-		hint.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	var box:=stack(parent,4)
+	text(box,caption,16,S.MUTED).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	var amount:=text(box,value,24,accent);amount.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	if not note.is_empty():text(box,note,14,S.MUTED).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	return box
 
 static func _recommended_growth_branch(main: Node, hero_id: String) -> String:
@@ -451,8 +464,7 @@ static func _inventory_summary(main: Node, parent: Node) -> void:
 	var stats := grid(box,4)
 	for entry: Array in [['장비',equipment_count,S.BLUE_SOFT],['결정',crystal_count,S.BLUE_SOFT],['전설',legendary_count,S.GOLD],['보호',protected_count,S.SUCCESS]]:
 		var metric_accent: Color=entry[2]
-		var chip := card(stats,str(entry[0]),metric_accent)
-		text(chip,str(entry[1]),22,metric_accent).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+		_metric_tile(stats,str(entry[0]),str(entry[1]),metric_accent)
 
 static func inventory(main: Node) -> void:
 	var page := begin(main,'inventory','장비 가방','레이드 정수 %d · 필요한 장비를 빠르게 찾고 정리하세요.'%main.raid_crystals,'bag')
@@ -538,10 +550,11 @@ static func detail(main: Node, hero_id: String, scroll_position: int = 0) -> voi
 	_metric_tile(stats,'HP',main._compact_hud_amount(int(combat_stats['max_hp'])),S.SUCCESS)
 	_metric_tile(stats,'공격',main._compact_hud_amount(int(combat_stats['attack'])),S.GOLD)
 	_metric_tile(stats,'방어',main._compact_hud_amount(int(combat_stats['defense'])),S.BLUE_SOFT)
-	text(identity,'현재 전투 능력치 · HP %s · 공격 %s · 방어 %s'%[
+	var stats_description:=text(identity,'현재 전투 능력치 · HP %s · 공격 %s · 방어 %s'%[
 		main._compact_hud_amount(int(combat_stats['max_hp'])),
 		main._compact_hud_amount(int(combat_stats['attack'])),
-		main._compact_hud_amount(int(combat_stats['defense']))],15,S.MUTED).name='HeroCombatStats'
+		main._compact_hud_amount(int(combat_stats['defense']))],15,S.MUTED)
+	stats_description.name='HeroCombatStats';stats_description.visible=false
 	progress(identity,progress_data['xp'],main._hero_xp_to_next(int(progress_data['level'])))
 	text(identity,'경험치 %d / %d'%[progress_data['xp'],main._hero_xp_to_next(int(progress_data['level']))],15,S.MUTED)
 	var select := action(identity,'스테이지 %d에서 합류'%hero.get('unlock_stage',1) if locked else ('배치 해제' if main._is_hero_deployed(hero_id) else '원정대에 배치'),func():
@@ -549,7 +562,7 @@ static func detail(main: Node, hero_id: String, scroll_position: int = 0) -> voi
 	select.name='HeroDeployAction'
 	select.disabled=locked or (not main._is_hero_deployed(hero_id) and main.deployed_heroes.size()>=main._party_slot_cap())
 
-	var quick := card(page,'빠른 작업',S.BLUE)
+	var quick := card(page,'빠른 작업')
 	quick.get_parent().name='HeroQuickActions'
 	text(quick,'이 영웅을 유지한 채 성장·장비·돌파 화면으로 바로 이동합니다.',15,S.MUTED)
 	var quick_grid := grid(quick,3)
@@ -571,7 +584,7 @@ static func detail(main: Node, hero_id: String, scroll_position: int = 0) -> voi
 		text(box,slot_name+' · '+('게이지 100' if kit['slot']=='ultimate' else '재사용 %.1f초'%float(kit.get('cooldown',0))),15,S.GOLD)
 		text(box,str(kit['effect']),16,S.INK)
 	var profile: Dictionary=main.hero_identity_catalog.profile(hero_id)
-	var behavior := card(page,'전투 성향')
+	var behavior := disclosure(page,'전투 성향')
 	text(behavior,'%s · %s'%[main.hero_identity_catalog.ai_style_name(str(profile.get('ai_style','balanced'))),profile.get('trait','상황에 맞춘 균형 행동')],17,S.MUTED)
 
 	var equipment := card(page,'장비',S.BLUE)

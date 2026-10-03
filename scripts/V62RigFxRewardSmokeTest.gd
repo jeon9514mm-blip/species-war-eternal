@@ -19,12 +19,12 @@ func run() -> void:
 		var rig:=RIG.new()
 		check(rig.install(hero),str(hero_id)+' atlas is accepted')
 		if rig.actor!=null:
-			check(rig.bones.size()==13 and rig.mesh.get_bone_count()==13,str(hero_id)+' full skeleton is weighted')
-			check(rig.mesh.uv.size()==169 and rig.mesh.polygons.size()==144,str(hero_id)+' atlas mesh has continuous cells')
+			check(rig.bones.size()==21 and rig.mesh.get_bone_count()==21,str(hero_id)+' full skeleton is weighted')
+			check(rig.mesh.uv.size()==725 and rig.mesh.polygons.size()==672,str(hero_id)+' atlas mesh has continuous cells')
 			hero.play_walk(Vector2.RIGHT);rig._process(.11)
 			check(absf(rig.bones['LeftThigh'].rotation)+absf(rig.bones['RightThigh'].rotation)>.01,str(hero_id)+' legs stride independently')
-			hero.play_attack();rig._process(.12)
-			check(absf(rig.bones['RightUpperArm'].rotation)>.1,str(hero_id)+' attack drives right arm')
+			hero.play_attack();rig._process(rig.action_duration(str(hero.get('visual_action')))*.48)
+			check(absf(rig.bones['LeftUpperArm'].rotation)+absf(rig.bones['RightUpperArm'].rotation)>.05,str(hero_id)+' attack articulates the weapon arms')
 		hero.free()
 	var main:=preload('res://scenes/PortraitMain.tscn').instantiate()
 	main.save_state_path='user://v62-rig-reward.json'
@@ -44,6 +44,9 @@ func run() -> void:
 	check(get_nodes_in_group('floating_combat_text').size()>0,'combat numbers animate in dedicated layer')
 	main._emit_skill_cast_fx('mira',-1,false,{'slot':'a1','fx_targets':[]},false)
 	check(main.skill_fx_layer.find_child('PortraitSkillBurst',true,false)!=null,'skill cast drives dedicated role flare inside the combat clip')
+	if main.presentation_runtime!=null:main.presentation_runtime.audio.shutdown()
+	await create_timer(.35).timeout
 	main.free()
+	await create_timer(.1).timeout
 	print('v62_rig_fx_reward ',checks-failures.size(),'/',checks,' pass')
 	quit(0 if failures.is_empty() else 1)

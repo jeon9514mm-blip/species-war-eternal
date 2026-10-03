@@ -101,25 +101,18 @@ func _configure_mobile_display() -> void:
 	if OS.has_feature('mobile'):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 func _build_background() -> void:
-	# Unified fantasy-mobile backdrop used behind every portrait menu.
-	var tex:=TextureRect.new();tex.name='PortraitMenuBackground'
-	tex.texture=preload('res://assets/terrain-v70/evergreen-overview.png')
-	tex.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
-	tex.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	tex.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	tex.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	content_root.add_child(tex)
-	var shade:=ColorRect.new();shade.name='PortraitMenuShade';shade.color=Color('#102d33ab')
-	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);shade.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	content_root.add_child(shade)
+	var bg:=ColorRect.new();bg.name='PortraitMenuBackground';bg.color=P_SKIN.DARK
+	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	bg.mouse_filter=Control.MOUSE_FILTER_IGNORE;content_root.add_child(bg)
+
 func _combat_layout_for_width(_layout_w: float, _safe: Vector4) -> Dictionary:
 	var viewport_size: Vector2=get_viewport_rect().size
 	var w:=viewport_size.x;var h:=viewport_size.y
 	if w > h:
 		return {'left':0.0,'usable':w,'field':Rect2(12,136,w-360,h-276),'side':Rect2(w-354,132,330,h-246)}
-	var rows:=2 if maxi(_party_slot_cap(),deployed_heroes.size())>5 else 1
-	var bottom:=h-280.0-float(rows)*90.0
-	return {'left':0.0,'usable':w,'field':Rect2(0,310,w,maxf(240,bottom-310)),'side':Rect2(18,290,w-36,h-615)}
+	var top:=maxf(28,_safe_margins().y+10)+180
+	return {'left':0.0,'usable':w,'field':Rect2(0,top,w,maxf(240,h-320-top)),'side':Rect2(18,180,w-36,h-380)}
+
 func _combat_map_scale() -> Vector2:
 	# v69: show the complete 32x20 hunt lawn instead of a zoomed tile-sized crop.
 	if get_viewport_rect().size.x > get_viewport_rect().size.y:
@@ -159,6 +152,7 @@ func _create_map_hero_sprites() -> void:
 		_attach_hunt_shadow(sprite,18.0)
 		var rig:=P_HERO_RIG.new()
 		if not rig.install(sprite):rig.queue_free()
+		elif sprite.has_method('play_visual'):sprite.play_visual('spawn')
 func _attach_hunt_shadow(sprite: Node2D, radius: float) -> void:
 	if not is_instance_valid(sprite) or sprite.get_node_or_null('PortraitGroundShadow')!=null:return
 	var shadow:=P_GROUND_SHADOW.new()
@@ -283,7 +277,7 @@ func _install_portrait_hud() -> void:
 		_install_hunt_details_modal(details)
 	var danger: Label=combat_labels.get('danger_banner')
 	if is_instance_valid(danger):
-		danger.position=Vector2(22,maxf(38,_safe_margins().y+10)+250);danger.size=Vector2(get_viewport_rect().size.x-44,42)
+		danger.position=Vector2(22,combat_field_rect.position.y+8);danger.size=Vector2(get_viewport_rect().size.x-44,42)
 		danger.z_index=105;danger.add_theme_font_size_override('font_size',19)
 		danger.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 		P_MENUS.retint(danger)
@@ -338,7 +332,7 @@ func _apply_portrait_resize() -> void:
 		if is_instance_valid(details):details.position=combat_side_rect.position;details.size=combat_side_rect.size
 		var danger: Label=combat_labels.get('danger_banner')
 		if is_instance_valid(danger):
-			danger.position=Vector2(22,maxf(38,_safe_margins().y+10)+250)
+			danger.position=Vector2(22,combat_field_rect.position.y+8)
 			danger.size=Vector2(get_viewport_rect().size.x-44,42)
 		if is_instance_valid(portrait_hud):portrait_hud.free()
 		portrait_hud=_new_hunt_hud();content_root.add_child(portrait_hud);portrait_hud.build(self)
@@ -451,13 +445,14 @@ func _show_main_menu() -> void:
 	var close:=P_SKIN.button('닫기',root.queue_free)
 	close.custom_minimum_size=Vector2(92,52);heading.add_child(close)
 	var entries: Array = NAV.menu_entries()
-	var menu_grid:=P_PAGES.grid(box,2)
-	for entry in entries:
-		if str(entry["id"]) in ["training", "title", "formation"]: continue
-		var menu_button:=P_PAGES.action(menu_grid,str(entry['label']),Callable(self,str(entry['method'])))
-		menu_button.name='PortraitMenu_'+str(entry['id'])
-	P_PAGES.text(box,'화면과 소리',20,P_SKIN.GOLD)
-	var switches:=P_PAGES.grid(box,2)
+	for group: String in ['전투와 탐험','영웅과 성장','보상과 계정']:
+		P_PAGES.text(box,group,18,P_SKIN.MUTED)
+		var menu_grid:=P_PAGES.grid(box,2)
+		for entry: Dictionary in entries:
+			if str(entry.group)!=group:continue
+			P_PAGES.action(menu_grid,str(entry.label),Callable(self,str(entry.method))).name='PortraitMenu_'+str(entry.id)
+	var quick_settings:=P_PAGES.disclosure(box,'빠른 설정')
+	var switches:=P_PAGES.grid(quick_settings,2)
 	var effects:=CheckButton.new();effects.name='PortraitEffectSetting'
 	effects.text='전투 연출';effects.button_pressed=combat_effects_enabled
 	effects.custom_minimum_size=Vector2(0,52);effects.add_theme_font_size_override('font_size',18)
@@ -477,14 +472,6 @@ func _show_main_menu() -> void:
 	P_PAGES.action(box,'화면 · 소리 · 진동 · 성능 설정',Callable(self,'_open_presentation_settings')).name='PresentationSettingsEntry'
 	P_PAGES.action(box,'원정 가이드',Callable(self,'_show_portrait_guide')).name='PortraitOpenGuide'
 	if not tutorial_completed:P_PAGES.text(box,_tutorial_text(),16,P_SKIN.MUTED)
-	# Keep existing settings/guide in their original visible position. Routes
-	# carried over from the compatibility menu remain available below them.
-	var extra_grid:=P_PAGES.grid(box,2)
-	for entry: Dictionary in entries:
-		if str(entry["id"]) not in ["training", "title", "formation"]: continue
-		var extra:=P_PAGES.action(extra_grid,str(entry["label"]),Callable(self,str(entry["method"])))
-		extra.name="PortraitMenu_"+str(entry["id"])
-
 
 func _show_portrait_guide() -> void:
 	var sheet:=content_root.get_node_or_null('PortraitActionSheet')
@@ -502,6 +489,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			sheet.queue_free()
 			get_viewport().set_input_as_handled()
 			return
+		if active_screen=='combat' and is_instance_valid(portrait_hud) and is_instance_valid(portrait_hud.options_layer) and portrait_hud.options_layer.visible:
+			portrait_hud.options_layer.hide();get_viewport().set_input_as_handled();return
+		var raid_options: Control=content_root.get_node_or_null('PortraitRaidView/RaidOptionsSheet')
+		if is_instance_valid(raid_options) and raid_options.visible:
+			raid_options.hide();get_viewport().set_input_as_handled();return
 		var details: Control=combat_labels.get('details_panel')
 		if active_screen=='combat' and is_instance_valid(details) and details.visible:
 			_toggle_hunt_details()
@@ -571,6 +563,6 @@ func _map_world_position(cell: Vector2,offset:=Vector2.ZERO) -> Vector2:
 	return super._map_world_position(cell,offset)
 func _sprite_head_offset(sprite: Node2D) -> Vector2:
 	var terrain=combat_labels.get('terrain')
-	if active_screen=='combat' and is_instance_valid(terrain) and terrain.has_method('project_world'):
-		return terrain.project_world(Vector2(16,10),2.25)-terrain.project_world(Vector2(16,10))
+	if active_screen=='combat' and is_instance_valid(terrain) and terrain.has_method('actor_head_offset') and sprite is AnimatedSprite2D:
+		return terrain.actor_head_offset(sprite)
 	return super._sprite_head_offset(sprite)

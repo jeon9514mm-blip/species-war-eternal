@@ -4,7 +4,7 @@
 
 ## 가장 쉬운 방법: GitHub Desktop
 
-1. 사용할 컴퓨터에 [GitHub Desktop](https://desktop.github.com/)과 [Godot 4.6.3](https://godotengine.org/download/archive/4.6.3-stable/) 일반 에디터를 설치합니다.
+1. 사용할 컴퓨터에 [GitHub Desktop](https://desktop.github.com/)과 [Godot 4.7.2](https://godotengine.org/download/archive/4.7.2-stable/) 일반 에디터를 설치합니다.
 2. GitHub Desktop에 저장소 소유 계정 또는 접근 권한을 받은 계정으로 로그인합니다.
 3. **File → Clone repository → URL**에 위 저장소 주소를 넣고 저장할 폴더를 선택합니다.
 4. Godot 프로젝트 관리자에서 **가져오기(Import)**를 누르고 복제한 폴더의 `project.godot`를 선택합니다.
@@ -41,7 +41,7 @@ git push -u origin work/my-change
 
 - **로컬 Codex**: 복제한 `species-war-eternal` 폴더를 프로젝트로 열고 `README.md`, `CURRENT_DEVELOPMENT.md`, `MAPS_3D_README.md`를 먼저 읽도록 요청합니다.
 - **GitHub를 사용하는 클라우드 Codex**: GitHub 연결에 이 비공개 저장소 접근을 허용하고 해당 저장소·브랜치를 선택합니다. 접근 목록에 안 보이면 GitHub 앱의 저장소 접근 범위를 확인합니다.
-- 실행 검증에는 해당 환경에도 Godot 4.6.3이 설치되어 있어야 합니다. 리소스 최초 임포트는 `godot --headless --editor --path . --quit`로 할 수 있습니다.
+- 실행 검증에는 해당 환경에도 Godot 4.7.2가 설치되어 있어야 합니다. 리소스 최초 임포트는 `godot --headless --editor --path . --quit`로 할 수 있습니다.
 - 이 저장소는 소스와 개발 문서를 보관합니다. 이 ChatGPT 대화 전체가 GitHub에 자동 복제되지는 않습니다.
 
 ## 버전과 복구

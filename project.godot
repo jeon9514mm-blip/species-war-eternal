@@ -6,7 +6,7 @@ config_version=5
 [application]
 config/name="종의전쟁: 이터널"
 run/main_scene="res://scenes/PortraitMain.tscn"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 
 [display]
 

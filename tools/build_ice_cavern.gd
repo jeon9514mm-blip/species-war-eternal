@@ -16,6 +16,8 @@ var column_mesh: CylinderMesh
 var tip_mesh: CylinderMesh
 func _init() -> void: build.call_deferred()
 func build() -> void:
+	if DisplayServer.get_name()=='headless':
+		push_error('Map authoring needs a display renderer to preserve MultiMesh instance buffers. Run without --headless.');quit(1);return
 	rng.seed=837014
 	for i in 4:rocks.append(author.rock(120+i))
 	materials()
@@ -25,6 +27,7 @@ func build() -> void:
 		rng.seed=837014
 		scene=Node3D.new();scene.set_script(load('res://scripts/maps3d/CavernRuntime.gd'));scene.name='IceCavernRaid' if raid else 'IceCavernField';root.add_child(scene)
 		lighting();arena_floor();cliffs();walls();door();atmosphere()
+		preload('res://tools/MapArtPolish.gd').new().apply(scene,'ice')
 		var packed:=PackedScene.new();assert(packed.pack(scene)==OK)
 		assert(ResourceSaver.save(packed,'res://scenes/maps3d/'+scene.name+'.tscn')==OK)
 		print('Built ',scene.name,' nodes=',scene.get_child_count());scene.free()

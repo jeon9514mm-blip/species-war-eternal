@@ -1,20 +1,21 @@
 extends RefCounted
 ## Presentation-only skin shared by the portrait UI. Gameplay state is never mutated here.
-const DARK := Color('#102b34')
-const DARK_2 := Color('#21404a')
-const SURFACE := Color('#294d55')
-const SURFACE_2 := Color('#36616a')
-const EDGE := Color('#102c35')
-const EDGE_SOFT := Color('#82b2ac')
-const INK := Color('#fff9ed')
-const GOLD := Color('#f6d887')
-const BLUE := Color('#72c9c0')
-const BLUE_SOFT := Color('#b7eee0')
-const AURELIA := Color('#4c9cff')
-const NOXFERA := Color('#d55f91')
-const MUTED := Color('#d5e4e0')
-const MUTED_DARK := Color('#b0c9c5')
-const SUCCESS := Color('#65c77f')
+const UI = preload('res://scripts/GameUiTheme.gd')
+const DARK = UI.BG
+const DARK_2 = UI.SURFACE
+const SURFACE = UI.SURFACE
+const SURFACE_2 = UI.SOFT
+const EDGE = UI.BG
+const EDGE_SOFT = UI.BORDER
+const INK = UI.INK
+const GOLD = UI.GOLD
+const BLUE = UI.BLUE
+const BLUE_SOFT = UI.BLUE
+const AURELIA := Color('#79aeea')
+const NOXFERA := Color('#d88caa')
+const MUTED = UI.MUTED
+const MUTED_DARK = UI.MUTED
+const SUCCESS = UI.GREEN
 const FONT_PROVIDER = preload("res://scripts/UIFontProvider.gd")
 
 static func font() -> Font:
@@ -32,31 +33,22 @@ static func faction_color(faction: String) -> Color:
 	return AURELIA if faction == 'aurelia' else (NOXFERA if faction == 'noxfera' else BLUE)
 
 static func box(fill: Color, edge: Color = EDGE, radius: int = 10, border: int = 3) -> StyleBoxFlat:
-	var s := StyleBoxFlat.new()
-	s.bg_color = fill
-	s.border_color = edge
-	s.set_border_width_all(border)
-	s.set_corner_radius_all(radius)
-	s.corner_detail = 8
-	s.anti_aliasing = true
+	var s:=UI.panel(fill,edge,mini(radius,12),mini(border,2))
+	# Health, grades and faction badges retain their semantic colors.
+	if fill.get_luminance()>.35 and fill.a>.4:s.bg_color=fill
 	return s
 
-static func elevated(fill: Color, edge: Color = EDGE_SOFT, radius: int = 16) -> StyleBoxFlat:
-	var style := box(fill,edge,radius,1)
-	style.border_width_top=3
-	style.shadow_color=Color('#051a22a0')
-	style.shadow_size=7
-	style.shadow_offset=Vector2(0,3)
-	return style
+static func elevated(fill: Color, edge: Color = EDGE_SOFT, radius: int = 12) -> StyleBoxFlat:
+	return box(fill,EDGE_SOFT,radius,1)
 
 static func label(text: String, points: int = 22, color: Color = INK) -> Label:
 	var n := Label.new()
 	n.text = text
 	n.add_theme_font_override('font', bold_font() if points>=22 else font())
 	n.add_theme_font_size_override('font_size', points)
-	n.add_theme_color_override('font_color', color)
+	n.add_theme_color_override('font_color', UI.text_color(color))
 	n.add_theme_color_override('font_outline_color', Color('#11172a'))
-	n.add_theme_constant_override('outline_size', 1)
+	n.add_theme_constant_override('outline_size', 0)
 	n.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	n.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return n
@@ -70,27 +62,13 @@ static func panel(parent: Node, rect: Rect2, fill: Color = Color('#22304fe8'), e
 	parent.add_child(n)
 	return n
 
-static func button(text: String, action: Callable, color: Color = Color('#2d5f9c')) -> Button:
-	var n := Button.new()
-	n.text = text
-	n.add_theme_font_override('font', bold_font())
-	n.add_theme_font_size_override('font_size', 20)
-	for state in ['font_color','font_hover_color','font_pressed_color','font_focus_color']:
-		n.add_theme_color_override(state, INK)
-	n.add_theme_color_override('font_disabled_color', Color('#9aa7c2'))
-	n.add_theme_color_override('font_outline_color', EDGE)
-	n.add_theme_constant_override('outline_size', 1)
-	n.add_theme_stylebox_override('normal', box(color, Color('#729a99'), 12, 1))
-	n.add_theme_stylebox_override('hover', box(color.lightened(.10), GOLD, 12, 1))
-	n.add_theme_stylebox_override('pressed', box(color.darkened(.14), GOLD, 12, 2))
-	n.add_theme_stylebox_override('disabled', box(Color('#2b4247'), Color('#526b70'), 12, 1))
-	n.add_theme_stylebox_override('focus', box(Color.TRANSPARENT, GOLD, 10, 3))
-	n.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	n.clip_text=true
-	n.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
-	n.tooltip_text=text
-	if action.is_valid():
-		n.pressed.connect(action)
+static func button(text: String, action: Callable, color: Color = SURFACE_2) -> Button:
+	var primary:=Color(color,1.).is_equal_approx(GOLD)
+	var n:=UI.button(text,Vector2.ZERO,UI.PRIMARY if primary else (Color.TRANSPARENT if color.a<.02 else SURFACE_2))
+	n.add_theme_font_override('font',bold_font())
+	n.add_theme_font_size_override('font_size',18)
+	n.clip_text=true;n.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS;n.tooltip_text=text
+	if action.is_valid():n.pressed.connect(action)
 	return n
 
 static func chip(parent: Node, rect: Rect2, text_value: String, accent: Color = BLUE, fill: Color = Color('#17243ed9')) -> Panel:
@@ -130,8 +108,8 @@ static func make_scroll_responsive(scroll: ScrollContainer) -> void:
 	scroll.scroll_deadzone=8
 	var bar:=scroll.get_v_scroll_bar()
 	bar.custom_minimum_size.x=12
-	bar.add_theme_stylebox_override('scroll',box(Color('#17333bbb'),Color.TRANSPARENT,8,0))
-	bar.add_theme_stylebox_override('grabber',box(BLUE_SOFT,Color.TRANSPARENT,8,0))
+	bar.add_theme_stylebox_override('scroll',box(DARK,Color.TRANSPARENT,8,0))
+	bar.add_theme_stylebox_override('grabber',box(EDGE_SOFT,Color.TRANSPARENT,8,0))
 	bar.add_theme_stylebox_override('grabber_highlight',box(GOLD,Color.TRANSPARENT,8,0))
 	bar.add_theme_stylebox_override('grabber_pressed',box(GOLD,Color.TRANSPARENT,8,0))
 

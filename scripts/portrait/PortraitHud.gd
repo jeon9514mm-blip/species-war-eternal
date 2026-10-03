@@ -2,7 +2,6 @@ extends Control
 ## A read-only HUD/view adapter. All buttons delegate to existing v32 commands.
 const NAV = preload("res://scripts/NavigationCatalog.gd")
 const SKIN := preload('res://scripts/portrait/PortraitSkin.gd')
-const MINIMAP := preload('res://scripts/portrait/PortraitMinimap.gd')
 const ICON := preload('res://scripts/portrait/PortraitIcon.gd')
 const REWARD_FEED := preload('res://scripts/portrait/PortraitRewardFeed.gd')
 var game: Node
@@ -34,124 +33,93 @@ var _layout_rows := 2
 var hud_bounds: Array[Rect2] = []
 var reward_feed: Control
 
+var options_layer: Control
 func build(main: Node) -> void:
-	game=main
-	name='PortraitHud'
-	mouse_filter=Control.MOUSE_FILTER_IGNORE
-	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	z_index=90
-	var screen: Vector2 = game.get_viewport_rect().size
-	var w := screen.x
-	var h := screen.y
-	var safe: Vector4 = game._safe_margins()
-	var margin := maxf(12,safe.x)
-	var top := maxf(38,safe.y+10)
-	# Keep field information in one header, leaving the encounter unobstructed.
-	SKIN.panel(self,Rect2(margin,top,304,100),Color('#17343feF'),SKIN.EDGE_SOFT,1,16)
-	var face := SKIN.button('',Callable(game,'_open_hero_menu'))
-	SKIN.place(self,face,Rect2(margin+5,top+5,74,88))
-	face.name='PortraitProfileButton'
-	face.add_theme_stylebox_override('normal',SKIN.box(Color('#2b5053'),SKIN.GOLD,12,1))
-	if not game.deployed_heroes.is_empty():
-		_add_portrait(face,str(game.deployed_heroes[0]['id']),Rect2(3,3,68,80))
-	profile_name=SKIN.label('나의 원정대',21)
-	SKIN.place(self,profile_name,Rect2(margin+90,top+3,200,28))
-	profile_level=SKIN.label('대표 Lv.1',16,Color('#8fc7ff'))
-	SKIN.place(self,profile_level,Rect2(margin+90,top+32,190,23))
-	profile_xp=SKIN.gauge(self,Rect2(margin+90,top+57,196,8),Color('#4f9dff'))
-	power_label=SKIN.label('',17)
-	SKIN.place(self,power_label,Rect2(margin+117,top+69,169,25))
-	_icon('battle',Rect2(margin+88,top+69,25,25))
-	var money_x := maxf(332,w*.47)
-	var money_w := (w-money_x-margin-9)/2.0
-	SKIN.panel(self,Rect2(money_x,top+3,money_w,42),SKIN.SURFACE,SKIN.EDGE_SOFT,1,14)
-	SKIN.panel(self,Rect2(money_x+money_w+9,top+3,money_w,42),SKIN.SURFACE,SKIN.EDGE_SOFT,1,14)
-	_icon('gem',Rect2(money_x,top+4,38,38))
-	_icon('coin',Rect2(money_x+money_w+10,top+4,38,38))
-	gem_label=SKIN.label('',20)
-	gold_label=SKIN.label('',20)
-	for amount in [gem_label,gold_label]:
-		amount.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
-	SKIN.place(self,gem_label,Rect2(money_x+40,top+4,money_w-46,40))
-	SKIN.place(self,gold_label,Rect2(money_x+money_w+49,top+4,money_w-46,40))
-	var more := SKIN.button('메뉴',Callable(game,'_show_main_menu'),Color('#305354'))
-	more.name='PortraitMoreButton'
-	more.add_theme_font_size_override('font_size',17)
-	SKIN.place(self,more,Rect2(w-margin-88,top+52,88,48))
-	offline_button=SKIN.button('',_open_offline_rewards,Color('#705b38'))
-	offline_button.name='PortraitOfflineRewards'
-	offline_button.add_theme_font_size_override('font_size',16)
-	SKIN.place(self,offline_button,Rect2(money_x,top+52,w-margin-100-money_x,48))
-	var formation := SKIN.button('진형',Callable(game,'_open_battle_formation'))
-	formation.name='HuntFormation'; formation.add_theme_font_size_override('font_size',16)
-	SKIN.place(self,formation,Rect2(w-margin-154,top+102,154,32))
-	var stage_y := top+140
-	var information_w := w-margin*2-168
-	SKIN.panel(self,Rect2(margin,stage_y,information_w,126),Color('#173640ee'),SKIN.EDGE_SOFT,1,16)
-	stage_label=SKIN.label('',22,SKIN.GOLD)
-	stage_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
-	SKIN.place(self,stage_label,Rect2(margin+12,stage_y+3,information_w-24,34))
-	stage_progress=SKIN.gauge(self,Rect2(margin+13,stage_y+48,information_w-122,12),Color('#fbd839'))
-	enemy_label=SKIN.label('',16,Color('#bce4cc'))
-	enemy_label.name='PortraitEnemyCount'
-	SKIN.place(self,enemy_label,Rect2(margin+information_w-105,stage_y+38,90,32))
-	var quest := SKIN.button('',Callable(game,'_open_goal_screen'),Color('#2b5553'))
-	quest.name='PortraitQuestButton'
-	SKIN.place(self,quest,Rect2(margin+7,stage_y+77,information_w-14,42))
-	var qtitle:=SKIN.label('목표',16,SKIN.GOLD)
-	SKIN.place(quest,qtitle,Rect2(8,0,40,42))
-	quest_label=SKIN.label('',16)
-	quest_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
-	SKIN.place(quest,quest_label,Rect2(49,0,quest.size.x-58,42))
-	var map_button := SKIN.button('',Callable(game,'_build_world_map_screen'),Color('#1b3d41e8'))
-	map_button.name='PortraitMapButton'
-	map_button.tooltip_text='사냥터 지도 열기'
-	SKIN.place(self,map_button,Rect2(w-margin-154,stage_y,154,126))
-	var map_title:=SKIN.label('사냥터 지도',16,SKIN.MUTED)
-	SKIN.place(map_button,map_title,Rect2(10,3,134,25))
-	var minimap:=MINIMAP.new()
-	minimap.game=game
-	SKIN.place(map_button,minimap,Rect2(8,31,138,84))
-	_layout_rows=2 if maxi(game._party_slot_cap(),game.deployed_heroes.size())>5 else 1
-	var party_height := float(_layout_rows*92-8)
-	var party_y := h-134-party_height
-	var command_y := party_y-60
-	reward_feed=REWARD_FEED.new()
-	SKIN.place(self,reward_feed,Rect2((w-minf(370.0,w-28.0))*.5,command_y-154,minf(370.0,w-28.0),94))
-	reward_feed.build(w)
-	var toggle_width: float=(w-margin*2-8)*.5
-	skill_button=SKIN.button('',_toggle_skill_auto,Color('#285f69'))
-	skill_button.name='PortraitSkillAuto'
-	skill_button.tooltip_text='액티브 스킬 1·2의 자동 사용'
-	skill_button.add_theme_font_size_override('font_size',17)
-	SKIN.place(self,skill_button,Rect2(margin,command_y-54,toggle_width,48))
-	ultimate_button=SKIN.button('',_toggle_ultimate_auto,Color('#605076'))
-	ultimate_button.name='PortraitUltimateAuto'
-	ultimate_button.tooltip_text='각성기(궁극기)의 자동 사용'
-	ultimate_button.add_theme_font_size_override('font_size',17)
-	SKIN.place(self,ultimate_button,Rect2(margin+toggle_width+8,command_y-54,toggle_width,48))
-	details_button=SKIN.button('사냥 정보',Callable(game,'_toggle_hunt_details'),Color('#315659'))
-	details_button.name='PortraitDetailsButton'
-	details_button.add_theme_font_size_override('font_size',18)
-	SKIN.place(self,details_button,Rect2(margin,command_y,132,48))
-	auto_button=SKIN.button('',_toggle_auto,Color('#317962'))
-	auto_button.name='PortraitAutoButton'
-	SKIN.place(self,auto_button,Rect2(margin+144,command_y,w-margin*2-250,48))
-	speed_button=SKIN.button('×1',_cycle_speed,Color('#315659'))
-	speed_button.name='PortraitSpeedButton'
-	SKIN.place(self,speed_button,Rect2(w-margin-94,command_y,94,48))
-	SKIN.panel(self,Rect2(margin-6,party_y-6,w-margin*2+12,party_height+12),Color('#183440f1'),SKIN.EDGE_SOFT,1,16)
-	slot_row=Control.new()
-	slot_row.name='PortraitPartySlots'
-	SKIN.place(self,slot_row,Rect2(margin,party_y,w-margin*2,party_height))
-	_build_slots()
-	var ribbon:=SKIN.panel(self,Rect2(0,h-126,w,26),Color('#17353ae8'),Color.TRANSPARENT,0)
-	status_label=SKIN.label('',16,Color('#f2f6ff'))
-	status_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	SKIN.place(ribbon,status_label,Rect2(16,0,w-32,26))
+	game=main;name='PortraitHud';mouse_filter=Control.MOUSE_FILTER_IGNORE
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);z_index=90
+	var screen: Vector2=game.get_viewport_rect().size
+	var w:=screen.x;var h:=screen.y;var margin:=20.0
+	var top:=maxf(28,game._safe_margins().y+10)
+	SKIN.panel(self,Rect2(margin,top,w-margin*2,80),SKIN.SURFACE,SKIN.EDGE_SOFT,1)
+	var face:=SKIN.button('',Callable(game,'_open_hero_menu'));face.name='PortraitProfileButton'
+	SKIN.place(self,face,Rect2(margin+8,top+9,60,62))
+	if not game.deployed_heroes.is_empty():_add_portrait(face,str(game.deployed_heroes[0].id),Rect2(3,3,54,56))
+	profile_name=SKIN.label('나의 원정대',22)
+	SKIN.place(self,profile_name,Rect2(margin+82,top+9,w-390,28))
+	profile_level=SKIN.label('',16,SKIN.MUTED);SKIN.place(self,profile_level,Rect2(margin+82,top+45,110,26))
+	power_label=SKIN.label('',16,SKIN.BLUE);SKIN.place(self,power_label,Rect2(margin+192,top+45,100,26))
+	profile_xp=SKIN.gauge(self,Rect2(margin+82,top+75,206,3),SKIN.BLUE)
+	gold_label=SKIN.label('',18,SKIN.GOLD);gem_label=SKIN.label('',18,SKIN.BLUE)
+	SKIN.place(self,gold_label,Rect2(w-242,top+10,192,27));SKIN.place(self,gem_label,Rect2(w-242,top+42,192,27))
+	gold_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;gem_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
+	var stage_y:=top+90
+	SKIN.panel(self,Rect2(margin,stage_y,w-margin*2,78),SKIN.SURFACE,SKIN.EDGE_SOFT,1)
+	stage_label=SKIN.label('',22);stage_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	SKIN.place(self,stage_label,Rect2(margin+14,stage_y+7,w-184,30))
+	enemy_label=SKIN.label('',17,SKIN.MUTED);enemy_label.name='PortraitEnemyCount'
+	SKIN.place(self,enemy_label,Rect2(w-140,stage_y+8,98,30))
+	stage_progress=SKIN.gauge(self,Rect2(margin+14,stage_y+48,w-margin*2-28,6),SKIN.GOLD)
+	var entry_label:=SKIN.label('',15,SKIN.MUTED);entry_label.name='HuntEntryDirection'
+	SKIN.place(self,entry_label,Rect2(margin+14,stage_y+56,w-margin*2-28,20))
+	var command_y:=h-302
+	details_button=SKIN.button('사냥 설정',_toggle_options);details_button.name='PortraitDetailsButton'
+	SKIN.place(self,details_button,Rect2(margin,command_y,148,76))
+	auto_button=SKIN.button('',_toggle_auto,SKIN.GOLD);auto_button.name='PortraitAutoButton'
+	SKIN.place(self,auto_button,Rect2(margin+160,command_y,w-margin*2-262,76))
+	speed_button=SKIN.button('×1',_cycle_speed);speed_button.name='PortraitSpeedButton'
+	SKIN.place(self,speed_button,Rect2(w-margin-90,command_y,90,76))
+	for button in [details_button,auto_button,speed_button]:button.add_theme_font_size_override('font_size',22)
+	_layout_rows=1
+	var party_scroll:=ScrollContainer.new();party_scroll.name='HuntPartyScroll'
+	party_scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	party_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_AUTO;party_scroll.scroll_deadzone=8
+	SKIN.place(self,party_scroll,Rect2(margin,h-220,w-margin*2,96))
+	slot_row=Control.new();slot_row.name='PortraitPartySlots';slot_row.custom_minimum_size=Vector2(10*108-8,84)
+	party_scroll.add_child(slot_row);slot_row.size=slot_row.custom_minimum_size;_build_slots()
+	status_label=SKIN.label('',16,SKIN.MUTED);status_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	SKIN.place(self,status_label,Rect2(margin,h-122,w-margin*2,25))
+	reward_feed=REWARD_FEED.new();SKIN.place(self,reward_feed,Rect2(w*.5-185,command_y-100,370,94));reward_feed.build(w)
 	navigation(game,self,'combat',h-90,90)
-	hud_bounds=[Rect2(margin,top,304,100),Rect2(money_x,top,money_w*2+9,44),slot_row.get_rect(),quest.get_rect(),map_button.get_rect()]
+	_build_options(w,h)
+	hud_bounds=[Rect2(margin,top,w-margin*2,168),Rect2(margin,command_y,w-margin*2,158)]
 	refresh()
+
+func _build_options(w: float,h: float) -> void:
+	options_layer=Control.new();options_layer.name='HuntOptionsSheet';options_layer.z_index=110
+	options_layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);add_child(options_layer)
+	var shade:=ColorRect.new();shade.color=Color(0,0,0,.65);shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	options_layer.add_child(shade)
+	var panel:=PanelContainer.new();panel.name='HuntOptionsPanel'
+	panel.add_theme_stylebox_override('panel',SKIN.elevated(SKIN.SURFACE))
+	SKIN.place(options_layer,panel,Rect2(20,maxf(20,(h-650)*.5),w-40,minf(650,h-40)))
+	var margin:=MarginContainer.new();panel.add_child(margin)
+	for edge in ['left','right','top','bottom']:margin.add_theme_constant_override('margin_'+edge,20)
+	var scroll:=ScrollContainer.new();SKIN.make_scroll_responsive(scroll);margin.add_child(scroll)
+	var box:=VBoxContainer.new();box.size_flags_horizontal=Control.SIZE_EXPAND_FILL;box.add_theme_constant_override('separation',12);scroll.add_child(box)
+	var heading:=HBoxContainer.new();box.add_child(heading)
+	var title:=SKIN.label('사냥 설정',26);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;heading.add_child(title)
+	var close:=SKIN.button('닫기',_toggle_options);close.custom_minimum_size=Vector2(100,76);heading.add_child(close)
+	quest_label=SKIN.label('',18,SKIN.MUTED);quest_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;box.add_child(quest_label)
+	skill_button=_option(box,'',_toggle_skill_auto,'PortraitSkillAuto')
+	ultimate_button=_option(box,'',_toggle_ultimate_auto,'PortraitUltimateAuto')
+	_option(box,'전투 진형',Callable(game,'_open_battle_formation'),'HuntFormation')
+	_option(box,'사냥 정보 · 피해와 보상',func():options_layer.hide();game._toggle_hunt_details(),'HuntStatistics')
+	_option(box,'사냥터 지도',Callable(game,'_build_world_map_screen'),'PortraitMapButton')
+	_option(box,'목표 · 업적',Callable(game,'_open_goal_screen'),'PortraitQuestButton')
+	offline_button=_option(box,'',_open_offline_rewards,'PortraitOfflineRewards')
+	_option(box,'화면 · 소리 · 성능',Callable(game,'_open_presentation_settings'),'HuntSettings')
+	options_layer.hide()
+
+func _option(parent: Node,caption: String,callback: Callable,node_name: String) -> Button:
+	var button:=SKIN.button(caption,func():
+		if node_name not in ['PortraitSkillAuto','PortraitUltimateAuto']:options_layer.hide()
+		callback.call())
+	button.name=node_name
+	button.custom_minimum_size=Vector2(0,76);button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	button.add_theme_font_size_override('font_size',22)
+	button.mouse_filter=Control.MOUSE_FILTER_PASS;parent.add_child(button);return button
+
+func _toggle_options() -> void:options_layer.visible=not options_layer.visible
 
 func show_hunt_reward(gold: int, xp: int, drops: Array[Dictionary], chest: bool) -> void:
 	if is_instance_valid(reward_feed):reward_feed.add_reward(gold,xp,drops,chest)
@@ -182,13 +150,13 @@ func _party_signature() -> String:
 func _build_slots() -> void:
 	for child in slot_row.get_children(): child.free()
 	bars.clear()
-	var cell: float=(slot_row.size.x-4*8)/5.0
+	var cell:=100.0
 	var cap: int=game._party_slot_cap()
 	for i in 10:
 		var slot:=SKIN.button('',Callable(game,'_open_hero_menu'),Color('#264448'))
-		slot.name='PortraitSlot%d'%i
-		SKIN.place(slot_row,slot,Rect2((i%5)*(cell+8),(i/5)*92,cell,84))
-		slot.visible=i<_layout_rows*5
+		slot.name='PortraitSlot%d'%i;slot.mouse_filter=Control.MOUSE_FILTER_PASS
+		SKIN.place(slot_row,slot,Rect2(i*(cell+8),0,cell,84))
+		slot.visible=true
 		slot.add_theme_stylebox_override('normal',SKIN.box(Color('#264448f2'),Color('#799e98'),10,1))
 		if i>=game.deployed_heroes.size():
 			var caption:=SKIN.label('영웅 추가' if i<cap else '%d 스테이지'%game._party_slot_unlock_stage(i),13,SKIN.MUTED)
@@ -230,17 +198,13 @@ func _process(delta: float) -> void:
 		refresh()
 func refresh() -> void:
 	if not is_instance_valid(game):return
-	var rows:=2 if maxi(game._party_slot_cap(),game.deployed_heroes.size())>5 else 1
-	if rows!=_layout_rows:
-		game._portrait_resize()
-		return
 	if _party_signature()!=_slot_signature: _build_slots()
 	refresh_count+=1
 	if _power_elapsed>=float(game._presentation_profile()['power_interval']):
 		_power_elapsed=0.0;power_evaluations+=1
 		power_label.text=game._compact_hud_amount(game._calculate_party_power())
-	gold_label.text=game._compact_hud_amount(game.wallet_gold)
-	gem_label.text=game._compact_hud_amount(game.wallet_gems)
+	gold_label.text="G  "+game._compact_hud_amount(game.wallet_gold)
+	gem_label.text="◆  "+game._compact_hud_amount(game.wallet_gems)
 	var pending_gold: int=game.offline_pending_gold+game.offline_pending_chest_gold
 	var pending_xp: int=game.offline_pending_xp+game.offline_pending_chest_xp
 	offline_button.disabled=pending_gold<=0 and pending_xp<=0
@@ -273,8 +237,9 @@ func refresh() -> void:
 	speed_button.text='×%d'%int(game.battle_speed)
 	auto_button.text='영웅 편성하기' if game.deployed_heroes.is_empty() else ('Ⅱ  자동사냥 중' if game.combat_running else '▶  사냥 재개')
 	auto_button.tooltip_text='영웅 편성 열기' if game.deployed_heroes.is_empty() else ('자동사냥 일시정지' if game.combat_running else '자동사냥 재개')
-	var details: Control=game.combat_labels.get('details_panel')
-	details_button.text='정보 닫기' if is_instance_valid(details) and details.visible else '사냥 정보'
+	details_button.text='사냥 설정'
+	var entry: Label=get_node_or_null('HuntEntryDirection')
+	if entry!=null:entry.text=game.hunt_event_text
 	auto_button.modulate=Color.WHITE if game.combat_running else Color('#c5cede')
 	if not game.deployed_heroes.is_empty():
 		var id:=str(game.deployed_heroes[0]['id'])
@@ -283,8 +248,7 @@ func refresh() -> void:
 		profile_xp.value=100.0*float(progress['xp'])/maxf(1,game._hero_xp_to_next(int(progress['level'])))
 	for id in bars:
 		var role: String=str(game._hero_role_group(id))
-		var role_name: String={'탱커':'방어','서포터':'지원','컨트롤러':'제어','딜러':'공격'}.get(role,'공격')
-		bars[id]['level'].text='%s %sLv.%d'%[role_name,'연습 ' if bool(game.get_meta('practice_active',false)) and str(game.get_meta('practice_level_override',{}).get('mode','actual'))=='matched' else '',game._effective_combat_level(id)]
+		bars[id]['level'].text='Lv.%d'%game._effective_combat_level(id)
 		var state: Dictionary=game.hero_battle_state.get(id,{})
 		var hp: ProgressBar=bars[id]['hp']
 		var ult: ProgressBar=bars[id]['ultimate']
@@ -298,7 +262,7 @@ func refresh() -> void:
 		var runtime: Dictionary=game.hero_skill_runtime.get(id,{})
 		var cooldown:=minf(float(runtime.get('remaining',0)),float(runtime.get('secondary_remaining',0)))
 		var skill: Label=bars[id]['skill']
-		skill.text='전투불능' if hp.value<=0 else ('궁극 준비' if ult.value>=100 else ('기술 %d초'%ceili(cooldown) if cooldown>0 else '기술 준비'))
+		skill.text='전투불능' if hp.value<=0 else ('궁극' if ult.value>=100 else ('%d초'%ceili(cooldown) if cooldown>0 else '준비'))
 		skill.add_theme_color_override('font_color',Color('#ffcf5a') if ult.value>=100 and hp.value>0 else Color('#b3d4ee'))
 		bars[id]['slot'].tooltip_text='%s · %s\nHP %d / %d · 궁극기 %d%%'%[str(game._hero_short_name(id)),role,int(state.get('hp',0)),int(state.get('max_hp',1)),int(ult.value)]
 		bars[id]['slot'].modulate=Color('#9298a2') if hp.value<=0 else Color.WHITE
@@ -338,8 +302,8 @@ static func navigation(main: Node, parent: Node, active: String, y: float, heigh
 		var e: Dictionary=entries[i]
 		var selected: bool = str(e['id']) == selected_tab
 		var is_battle: bool=e['id']=='battle'
-		var top: float=-8.0 if is_battle else 5.0
-		var button_height: float=height+2.0 if is_battle else height-10.0
+		var top:=5.0
+		var button_height:=height-10.0
 		var fill: Color=Color('#224654') if selected else Color('#0d223000')
 		var edge: Color=SKIN.GOLD if selected else Color('#35556600')
 		var btn:=SKIN.button('',Callable(main,str(e['method'])),fill)
@@ -348,13 +312,13 @@ static func navigation(main: Node, parent: Node, active: String, y: float, heigh
 		btn.add_theme_stylebox_override('hover',SKIN.box(Color('#1b3b49'),Color(SKIN.BLUE_SOFT,.55),16 if is_battle else 12,1))
 		btn.add_theme_stylebox_override('pressed',SKIN.box(Color('#18323e'),SKIN.GOLD,16 if is_battle else 12,2))
 		SKIN.place(panel,btn,Rect2(i*bw+4,top,bw-8,button_height))
-		var icon:=ICON.new();icon.kind=str(e['portrait_icon'])
-		var icon_size:=46.0 if is_battle else 33.0
+		var icon_size:=30.0
+		var icon:=SKIN.UI.icon(str(e['portrait_icon']),Vector2.ONE*icon_size,SKIN.GOLD if selected else SKIN.MUTED)
 		SKIN.place(btn,icon,Rect2((bw-icon_size)/2,7,icon_size,icon_size))
 		if selected:
 			var marker:=ColorRect.new();marker.color=SKIN.GOLD;marker.mouse_filter=Control.MOUSE_FILTER_IGNORE
 			SKIN.place(btn,marker,Rect2((bw-28)/2,2,28,3))
-		var text:=SKIN.label(str(e['label']),13 if not is_battle else 14,SKIN.GOLD if selected else SKIN.MUTED_DARK)
+		var text:=SKIN.label(str(e['label']),16,SKIN.GOLD if selected else SKIN.MUTED_DARK)
 		text.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 		SKIN.place(btn,text,Rect2(0,45,bw-8,24))
 	return panel

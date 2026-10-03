@@ -1,3 +1,7 @@
+# 현재 기준: Godot 4.7.2 / v83-6.5
+
+현재 맵 미술 변경과 실제 화면은 [v83-6.5 기록](docs/V83_6_5_MAP_ART_KO.md)에 있습니다. 아래 내용은 v83-6.3의 초기 통합 기록입니다.
+
 # v83-6.3 — Godot 3D 맵 작업본
 
 Godot 4.6.3에서 제작·확인했습니다. 기존 v83-6.2 프로젝트의 전투·저장 데이터를 바탕으로 실제 3D 전장을 연결한 작업본입니다.
@@ -45,8 +49,8 @@ PC 기본 렌더러는 Forward+, 모바일 설정은 Mobile입니다. Forward+�
 
 ```sh
 godot --headless --editor --path . --quit
-godot --headless --path . --script tools/build_3d_maps.gd
-godot --headless --path . --script tools/build_ice_cavern.gd
+godot --audio-driver Dummy --path . --script tools/build_3d_maps.gd
+godot --audio-driver Dummy --path . --script tools/build_ice_cavern.gd
 godot --headless --path . --script tools/build_map_wrappers.gd
 ```
 

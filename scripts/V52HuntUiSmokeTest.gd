@@ -14,7 +14,12 @@ func settle() -> void:
 func text_layout(node: Node, frame: Rect2) -> void:
 	if node is Control and not node.is_visible_in_tree():return
 	if node is Label and not node.text.is_empty():
-		check(frame.grow(1).encloses(node.get_global_rect()),node.name+' text stays on screen')
+		var scrolling:=false;var ancestor:=node.get_parent()
+		while ancestor!=null:
+			if ancestor is ScrollContainer and ancestor.horizontal_scroll_mode!=ScrollContainer.SCROLL_MODE_DISABLED:scrolling=true
+			ancestor=ancestor.get_parent()
+		var rect: Rect2=node.get_global_rect()
+		check((rect.position.y>=frame.position.y-1 and rect.end.y<=frame.end.y+1) if scrolling else frame.grow(1).encloses(rect),node.name+' text stays on screen or in swipeable row')
 		check(node.get_line_count()*node.get_line_height()<=node.size.y+2,node.text+' has full line height')
 		if node.text_overrun_behavior==TextServer.OVERRUN_NO_TRIMMING:
 			var font: Font=node.get_theme_font('font')
@@ -48,13 +53,14 @@ func run() -> void:
 			var hud: Control=main.portrait_hud
 			check(hp_before==main.hero_battle_state,'resize preserves current HP and statuses')
 			check(hud.bars.size()==count,'one live card per deployed hero')
-			check(hud.slot_row.size.y==(176 if count>5 else 84),'compact one-row party when no second row is unlocked')
+			check(hud.slot_row.size.y==84,'party strip remains one row for every party size')
 			check(main._combat_camera_anchor().y<hud.auto_button.position.y-150,'party camera remains clear of bottom controls')
-			var map: Control=hud.get_node('PortraitMapButton')
-			check(map.get_rect().end.y<main._combat_camera_anchor().y-150,'map stays above active encounter')
-			check(hud.get_node('PortraitQuestButton').get_global_rect().end.y<main._combat_camera_anchor().y-150,'quest stays above active encounter')
-			check(hud.auto_button.position.y-map.get_rect().end.y>=600,'at least 600 logical pixels of clear battle height')
-			var controls: Array[Control]=[hud.details_button,hud.auto_button,hud.speed_button,hud.slot_row,map]
+			var map: Control=hud.find_child('PortraitMapButton',true,false)
+			check(map!=null and not map.is_visible_in_tree(),'map retained in collapsed hunting settings')
+			var quest: Control=hud.find_child('PortraitQuestButton',true,false)
+			check(quest!=null and not quest.is_visible_in_tree(),'quest retained in settings')
+			check(main.combat_field_rect.size.y>=700,'at least 700 logical pixels of clear battle height')
+			var controls: Array[Control]=[hud.details_button,hud.auto_button,hud.speed_button,hud.slot_row.get_parent()]
 			for i in controls.size():
 				check(main.get_viewport_rect().encloses(controls[i].get_global_rect()),controls[i].name+' stays in viewport')
 				for j in range(i+1,controls.size()):
@@ -65,7 +71,7 @@ func run() -> void:
 				check(Rect2(Vector2.ZERO,card.slot.size).encloses(card.ultimate.get_rect()),id+' ultimate fits card')
 				check(not card.level.text.is_empty(),id+' has visible role and level')
 			check(hud.enemy_label.text=='적 %d'%main._enemy_wave_alive_count(),'enemy count follows actual living enemies')
-			check(hud.get_node('PortraitNavigation').get_child_count()==7,'all seven navigation actions preserved')
+			check(hud.get_node('PortraitNavigation').get_child_count()==5,'five shared navigation destinations')
 			text_layout(hud,main.get_viewport_rect())
 	var id: String=str(main.deployed_heroes[0]['id'])
 	main.hero_battle_state[id]['hp']=int(main.hero_battle_state[id]['max_hp']*.2)
@@ -73,11 +79,11 @@ func run() -> void:
 	main.hero_skill_runtime[id]['remaining']=3.1
 	main.hero_skill_runtime[id]['secondary_remaining']=5.2
 	main.portrait_hud.refresh()
-	check(main.portrait_hud.bars[id].skill.text=='기술 4초','skill clock rounds remaining cooldown up')
+	check(main.portrait_hud.bars[id].skill.text=='4초','skill clock rounds remaining cooldown up')
 	check(main.portrait_hud.bars[id].hp_band==0,'low HP is visibly red')
 	main.hero_battle_state[id]['ultimate']=100
 	main.portrait_hud.refresh()
-	check(main.portrait_hud.bars[id].skill.text=='궁극 준비','full charge has a readable ultimate-ready label')
+	check(main.portrait_hud.bars[id].skill.text=='궁극','full charge has a readable ultimate-ready label')
 	main.hero_battle_state[id]['hp']=0
 	main.portrait_hud.refresh()
 	check(main.portrait_hud.bars[id].skill.text=='전투불능','dead hero does not show a usable ultimate')
@@ -93,9 +99,10 @@ func run() -> void:
 	check(main.portrait_hud.slot_row.size.y==84,'party row shrinks when second row is no longer needed')
 	main.idle_stage=15
 	main.portrait_hud.refresh();await settle()
-	check(main.portrait_hud.slot_row.size.y==176,'newly unlocked party slots appear without resetting battle')
+	check(main.portrait_hud.slot_row.size.y==84 and main.portrait_hud.slot_row.get_child_count()==10,'new slots stay accessible in swipeable strip without resetting battle')
 	main.portrait_hud.bars[id].slot.pressed.emit();await settle()
 	check(main.active_screen=='hero_detail','party card opens the matching hero detail')
-	main._clear_screen();main.free();await process_frame
+	main.presentation_runtime.audio.shutdown();await create_timer(.5).timeout
+	main._clear_screen();main.free();await create_timer(.35).timeout
 	print('V52 HUNT UI ',checks-failures.size(),'/',checks,' PASS')
 	quit(0 if failures.is_empty() else 1)

@@ -17,12 +17,15 @@ var gold_mat: StandardMaterial3D
 var glow_mat: StandardMaterial3D
 func _init() -> void: build.call_deferred()
 func build() -> void:
+	if DisplayServer.get_name()=='headless':
+		push_error('Map authoring needs a display renderer to preserve MultiMesh instance buffers. Run without --headless.');quit(1);return
 	for t in 3:
 		for boss in [false,true]:
 			theme=t;raid=boss;rng.seed=83630+t*11+int(boss)
 			root_node=Node3D.new();root_node.set_script(load('res://scripts/maps3d/CavernRuntime.gd'));root_node.name=['Evergreen','Crimson','Arcane'][t]+('Raid' if raid else 'Field')
 			root.add_child(root_node)
 			materials();ground();lighting();detailed_scenery();detailed_landmark();grass();reference_details()
+			preload('res://tools/MapArtPolish.gd').new().apply(root_node,['forest','canyon','sanctuary'][t])
 			var packed:=PackedScene.new();var result:=packed.pack(root_node)
 			assert(result==OK)
 			var path: String='res://scenes/maps3d/'+root_node.name+'.tscn'

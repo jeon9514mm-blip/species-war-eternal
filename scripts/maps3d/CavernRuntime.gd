@@ -3,7 +3,7 @@ extends Node3D
 func _ready() -> void:
 	var groups: Dictionary={}
 	for child in get_children():
-		if not child is MeshInstance3D or child.mesh==null or child.get_child_count()>0:continue
+		if not child is MeshInstance3D or not child.visible or child.mesh==null or child.get_child_count()>0:continue
 		var key:=str(child.mesh.get_rid())+':'+str(child.material_override.get_rid() if child.material_override!=null else RID())
 		if not groups.has(key):groups[key]=[]
 		groups[key].append(child)

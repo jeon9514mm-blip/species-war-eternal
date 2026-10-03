@@ -1,0 +1,114 @@
+[
+  {
+    "entrance": "east",
+    "faction": "aurelia",
+    "hp_removed": 1686,
+    "seconds": 73.2,
+    "survivors": 3
+  },
+  {
+    "entrance": "west",
+    "faction": "aurelia",
+    "hp_removed": 1970,
+    "seconds": 74.3,
+    "survivors": 3
+  },
+  {
+    "entrance": "north",
+    "faction": "aurelia",
+    "hp_removed": 1688,
+    "seconds": 62.3,
+    "survivors": 3
+  },
+  {
+    "entrance": "south",
+    "faction": "aurelia",
+    "hp_removed": 1343,
+    "seconds": 54.9,
+    "survivors": 3
+  },
+  {
+    "entrance": "northeast",
+    "faction": "aurelia",
+    "hp_removed": 804,
+    "seconds": 37.9,
+    "survivors": 3
+  },
+  {
+    "entrance": "southwest",
+    "faction": "aurelia",
+    "hp_removed": 1836,
+    "seconds": 73.1,
+    "survivors": 3
+  },
+  {
+    "entrance": "northwest",
+    "faction": "aurelia",
+    "hp_removed": 1769,
+    "seconds": 66.6,
+    "survivors": 3
+  },
+  {
+    "entrance": "southeast",
+    "faction": "aurelia",
+    "hp_removed": 662,
+    "seconds": 36.6,
+    "survivors": 3
+  },
+  {
+    "entrance": "east",
+    "faction": "noxfera",
+    "hp_removed": 2147,
+    "seconds": 43.6,
+    "survivors": 3
+  },
+  {
+    "entrance": "west",
+    "faction": "noxfera",
+    "hp_removed": 2429,
+    "seconds": 42.7,
+    "survivors": 3
+  },
+  {
+    "entrance": "north",
+    "faction": "noxfera",
+    "hp_removed": 2523,
+    "seconds": 43.8,
+    "survivors": 3
+  },
+  {
+    "entrance": "south",
+    "faction": "noxfera",
+    "hp_removed": 2625,
+    "seconds": 50.1,
+    "survivors": 3
+  },
+  {
+    "entrance": "northeast",
+    "faction": "noxfera",
+    "hp_removed": 1062,
+    "seconds": 26.8,
+    "survivors": 2
+  },
+  {
+    "entrance": "southwest",
+    "faction": "noxfera",
+    "hp_removed": 1406,
+    "seconds": 33.1,
+    "survivors": 3
+  },
+  {
+    "entrance": "northwest",
+    "faction": "noxfera",
+    "hp_removed": 2505,
+    "seconds": 55.0,
+    "survivors": 3
+  },
+  {
+    "entrance": "southeast",
+    "faction": "noxfera",
+    "hp_removed": 1223,
+    "seconds": 34.7,
+    "survivors": 3
+  }
+]
