@@ -1,0 +1,96 @@
+{
+  "hero_count": 15,
+  "records": [
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/leonhardt/concept.png",
+      "hero_id": "leonhardt",
+      "sha256": "7d6af340c2eccc44f822c9299679416f6cab8e3e4d99efb0c517fa16f7c2af99",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/mira/concept.png",
+      "hero_id": "mira",
+      "sha256": "b26efba7efd313d50c493376971602b09f1863a69813d1045e60fabce5c1a9ce",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/elisia/concept.png",
+      "hero_id": "elisia",
+      "sha256": "04f35acc3228b51e90843a9cdff7161e81574b03f7ff2eb8bcd001540e1fdd49",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/kairen/concept.png",
+      "hero_id": "kairen",
+      "sha256": "587a80f890c6b42c995566691490789d2a8a66127fd4328f68a8d7d6fdeb6656",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/orwin/concept.png",
+      "hero_id": "orwin",
+      "sha256": "0a3c1d23af2a796a739d3ec430dabf7cc232572baa7e5281eb000696fc9e20ae",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/seria/concept.png",
+      "hero_id": "seria",
+      "sha256": "60322a2a22ea06aa094101bfcbeb37e2f0a4e007164d9071fbd1ac93178120ec",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/astel/concept.png",
+      "hero_id": "astel",
+      "sha256": "9cc01870a4859e1607dbc071318f19276ff0e8d4dcd6d149276a230a0bd38708",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/darius/concept.png",
+      "hero_id": "darius",
+      "sha256": "ec8a662600b69e4e39787ab4510f897b18742b093ed8d3ee30a04530935f7034",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/lunea/concept.png",
+      "hero_id": "lunea",
+      "sha256": "89f3738add62e3b8241fc671838491db03ec2e4b908f05b158158f69ef43889d",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/caelum/concept.png",
+      "hero_id": "caelum",
+      "sha256": "2ebba76977b340bf46c63949cd9e4c59f7f02ab0810f16cb61f278c79e4648e6",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/adrien/concept.png",
+      "hero_id": "adrien",
+      "sha256": "d50f6fa0a178d6aca51c1185d3462330f4b572bf7834e50c197a6370b2c733b3",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/tessa/concept.png",
+      "hero_id": "tessa",
+      "sha256": "d16f5982d637b3e1d13597d61086df648321ca7b5588bc8e18989afb2a1da588",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/naia/concept.png",
+      "hero_id": "naia",
+      "sha256": "e4d861e4bb20c41351dc41a954b90d897ace51925e86a84275810e72d2c63504",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/sael/concept.png",
+      "hero_id": "sael",
+      "sha256": "0d0c34e91d4653ea81db467d837a900c1d4b9dd78f1995ebdaec3373664753de",
+      "static_reference_only": true
+    },
+    {
+      "concept": "res://assets/art-direction/aurelia-4head/odelia/concept.png",
+      "hero_id": "odelia",
+      "sha256": "c03b740247977ba2adc180fbe7dced9dd01fe52c7a38927b9971e918d1622ed6",
+      "static_reference_only": true
+    }
+  ],
+  "scope": "Static reference paintings rendered in a labelled Godot gallery; not assembled heroes or animation approval."
+}

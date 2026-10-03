@@ -1,0 +1,27 @@
+{
+  "id": "elisia",
+  "prompt": "Create ONE new complete full-body character concept based on the FIRST attached small original game hero, redrawn to match the SECOND attached polished blond knight's exact professional illustration quality and slightly elongated FOUR-HEAD-TALL SD proportions. The second image is only a quality/proportion/style reference, NOT a costume or character to copy. Preserve the first character's exact visual identity, hair color and hairstyle, facial features, race, outfit colors, accessories and individual weapon. Render with crisp elegant anime linework, exceptionally polished hand-painted shading, rich fabric folds, metallic highlights, readable small ornate gold details, expressive refined face, clear human anatomy and hands. Four-head body, visibly longer torso and legs than the tiny old chibi, no infant proportions, no simplification. Full figure from top of hair to soles visible with ample transparent margin. Single figure on TRUE RGBA transparent background, NO ground shadow, no scenery, no text, no frame, no decorative floating FX. Relaxed front three-quarter pose turned slightly toward screen RIGHT; weight evenly on both feet, arms slightly apart so limbs are readable, neutral ready stance suitable for subsequent anatomical cutout rigging. Weapon shown complete and recognizable, not crossing the face. Maintain same warm neutral studio key light as the knight.\nCHARACTER: Elisia, a graceful young adult elf forest priestess with pale champagne-blond long hair, pointed elf ears, vivid green eyes, white flowers and green leaves woven near the temples. Elegant layered ivory-white and forest-green vestments with golden vine embroidery, structured green waist sash, long split priestess robe revealing the lower boots enough for readable legs, white and gold boots, soft green cape. Original long golden-wooden sacred staff in her left anatomical hand has an ornate circular leaf setting and large fresh green gem at the top. One open gentle right hand at her side. Preserve the original gentle face, floral hair and priestess identity, no armor knight styling.",
+  "input": "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/elisia-pose.png",
+  "style": "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png",
+  "output": "/workspace/generated_images/exec-1bbc3888-cbf2-4743-9a48-c1a0b3bb2a62.png",
+  "schema_version": 1,
+  "tool": "image_gen.imagegen",
+  "kind": "static_fullbody_concept_not_animation",
+  "sha256": "59a5752c1255a3986950455bffe22efeea8212c57d9dd525e3f00503766ca162",
+  "dimensions": [
+    1164,
+    1351
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "alpha_bbox": [
+    0,
+    0,
+    1164,
+    1351
+  ],
+  "pixel_edits_after_generation": false
+}

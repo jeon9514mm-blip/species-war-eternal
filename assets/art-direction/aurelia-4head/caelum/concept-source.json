@@ -1,0 +1,86 @@
+{
+  "schema_version": 2,
+  "hero_id": "caelum",
+  "asset_kind": "single full-body elongated SD hero concept",
+  "generated_with": "image_gen.imagegen",
+  "generation": {
+    "id": "caelum",
+    "prompt": "Correct ONLY the anatomical proportions of the full-body character in IMAGE 1, keeping all of that character's own colors, face identity, hairstyle, ears, outfit, cape and exact complete weapon. IMAGE 2 is the approved proportion master. IMAGE 3 is this hero's original identity reference. MATCH IMAGE 2'S HEAD SIZE AND BODY SHAPE EXACTLY. Image 1 is too tall with a too-small head: make the head 40 percent larger relative to the body, shorten both shins and thighs modestly, shorten torso slightly. It must become a 4.5–5-head-tall elongated SD anime game character like IMAGE 2, not a 6–7-head adult fashion illustration, and not a 3-head baby chibi. On a 1536 pixel tall canvas with head-to-feet spanning roughly 1440 pixels, head from scalp crown to chin should be about 300 pixels. Keep visible thighs and shins, an elegant high waist and distinct elbows/knees. Draw a complete new clean coherent painting with those proportions, not a mechanically stretched cutout. Neutral ready standing pose, both feet visible and separated, weapons complete. Preserve this character, do not turn it into the blond blue-armored man of Image 2. Painterly anime fantasy line and material quality remains identical. True transparent RGBA background, all non-character pixels fully transparent. No gradient backdrop, no ground, no shadow, no glow/aura/VFX, no text. Retain blond hair, blue eyes, white fur collar, silver-gold sun armor, blue cape and GOLD metal sun sword; no shield. The blade is polished gold metal with painted highlights, not a glowing lightsaber or an emitted light source.",
+    "reference_paths": [
+      "/workspace/generated_images/exec-7ece1cfb-589c-43bf-8c64-38ff71f5a0b9.png",
+      "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/leonhardt/concept.png",
+      "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/caelum-pose.png"
+    ],
+    "transparent_background_requested": true,
+    "original_output_path": "/workspace/generated_images/exec-12cbdfbc-6ae6-42ad-82aa-b6f903fb4a94.png",
+    "rejected_attempts": [
+      {
+        "args": {
+          "prompt": "Create a new full-body game-character concept, matching the elongated slim semi-SD ANATOMICAL PROPORTIONS and polished anime paint quality of REFERENCE IMAGE 2. The user has explicitly rejected big-headed short baby chibi. Target 4.5–5 heads tall from crown to soles; head is only about 20–22% of standing body height, with a high waist, visible long thighs and long shins, proportionally smaller head, slender limbs. Closely match Image 2's head-to-body ratio and full-length elegant silhouette. Do not compress legs or enlarge head. REFERENCE IMAGE 1 supplies this specific hero's unique identity, hairstyle, ears, colors, outfit and EXACT weapon; do NOT copy Image 2's blond blue knight, sword or shield. Retain Image 1 identity and full equipment. One character only, full body standing with both separated feet visible and every weapon tip visible with generous margins. Neutral relaxed ready A-pose, hands gently away from hips, slight turn toward screen RIGHT. Polished fine outlines, softly modeled hand-painted anime fantasy materials, coherent upper-left illumination, game-readable details. Vertical portrait canvas. True transparent RGBA background with every non-character pixel transparent; no backdrop, no gradient haze, no floor, no cast shadow, no aura, no weapon emission or particles, no text. Caelum Ardor, a fair-skinned young adult male human sun-sword knight. Preserve the first image's bright golden-blond windswept hair, blue eyes, confident face, polished silver armor with abundant rich gold decorative edges and golden sun motifs, white fur collar at both shoulders, blue and white cape, deep blue tunic panels and gold belts. His exact weapon is a single broad GOLDEN SUN SWORD with golden blade and ornate winged gold hilt, held in his right hand (viewer left), sword angled down and outward fully visible. No shield and no spear. Athletic adult proportions, friendly resolute expression. Preserve his fur mantle and gold sword to distinguish from Leonhardt.",
+          "referenced_image_paths": [
+            "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/caelum-pose.png",
+            "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/leonhardt/concept.png"
+          ],
+          "transparent_background": true
+        },
+        "original_output_path": "/workspace/generated_images/exec-7ece1cfb-589c-43bf-8c64-38ff71f5a0b9.png",
+        "reason": "Head is visually too small and legs/body too extended (approximately 6–7-head appearance), overshooting accepted 4.5–5-head master."
+      }
+    ]
+  },
+  "candidate_selection": {
+    "reason": "Updated after user requested longer/slimmer 4.5–5-head silhouettes. Initial long candidate overshot to a much smaller head; this revision enlarges head and shortens excessive limb lengths to approach the accepted Leonhardt master.",
+    "comparison_master": "assets/art-direction/aurelia-4head/leonhardt/concept.png",
+    "previous_short_concept": "concept-draft-short/concept.png",
+    "previous_short_provenance": "concept-draft-short/concept-source.json"
+  },
+  "limits": [
+    "Static concept only. No separated parts, skeletal assembly, animation tracks or direction views were produced.",
+    "Proportions follow the approximately 4.5–5-head style target by visual comparison; they are not a measured 3D anatomy guarantee.",
+    "Own hairstyle, color family and weapon type are retained; fine costume ornament and footwear shapes remain painted redesign details.",
+    "Generated PNG bytes copied intact; no manual pixel editing."
+  ],
+  "artifact": {
+    "path": "assets/art-direction/aurelia-4head/caelum/concept.png",
+    "original_preserved": true,
+    "sha256": "2ebba76977b340bf46c63949cd9e4c59f7f02ab0810f16cb61f278c79e4648e6",
+    "bytes": 2412068,
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA"
+  },
+  "audit": {
+    "checked_at_utc": "2026-10-03T18:08:59.287253+00:00",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 740634,
+    "fully_transparent_fraction": 0.470882,
+    "visible_alpha8_bbox": [
+      8,
+      19,
+      1018,
+      1527
+    ],
+    "visible_alpha8_border_pixels": 0,
+    "visual_notes": [
+      "Golden-blond hair and blue eyes",
+      "White fur collar, blue/silver/gold sun armor, single gold sun sword without shield",
+      "Head size increased from rejected long draft; elongated separate greaves and feet retained"
+    ],
+    "full_body_and_both_feet_visible": true,
+    "weapon_type_and_complete_silhouette_visible": true,
+    "single_character": true,
+    "separated_body_parts": 0,
+    "authored_motion_tracks": 0,
+    "manual_pixel_edits": false
+  },
+  "input_sha256": {
+    "/workspace/generated_images/exec-7ece1cfb-589c-43bf-8c64-38ff71f5a0b9.png": "799745b93f51cc589a06538d3c693f40430a2b7d8f62138240a8bbe7523bd32d",
+    "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/leonhardt/concept.png": "7d6af340c2eccc44f822c9299679416f6cab8e3e4d99efb0c517fa16f7c2af99",
+    "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/caelum-pose.png": "cee162b4ef4c218cca5f71c7b98acfb2bba8f1ec1df4e3b61fd70b5e36319212"
+  }
+}

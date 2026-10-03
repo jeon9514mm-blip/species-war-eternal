@@ -1,0 +1,115 @@
+{
+  "schema_version": 2,
+  "id": "elisia",
+  "tool": "image_gen.imagegen",
+  "kind": "static_fullbody_concept_not_animation",
+  "input": "assets/art-direction/aurelia-4head/elisia/concept-draft-short/concept.png",
+  "identity_reference": "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/elisia-pose.png",
+  "style": "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/leonhardt/concept.png",
+  "prompt": "Make a precise, restrained revision of the FIRST supplied image: ELISIA, our original elf forest priestess. The second reference is her original identity source. The third reference (Leonhardt) is the newly approved proportion and quality master ONLY. Do not copy the knight's gender, face, armor, weapon, hair color or blue palette.\n\nPRIMARY CHANGES: Make her read as a slender 4.5-to-5-head-tall anime fantasy SD character with a high waist, clearly elongated thighs and calves, and BOTH leg silhouettes readable through the front of the robe. The current long closed front skirt hides the right leg and conceals the intended taller anatomy. Keep the beautiful ivory/forest-green/gold priestess robe, enormous elegant bell sleeves, leaf embroidery, white flowers, layered green panels and floor-length outer side/back robe tails. Open and separate the CENTER FRONT panels from mid-thigh downward: keep a modest opaque white-and-gold short inner tunic/lining ending around mid-thigh and sweeping formal robe panels at the sides, so the left and right legs can both be seen from lower thigh through knees and calves to the boots. This remains a dignified woodland PRIESTESS in a flowing ceremonial robe, not a warrior in shorts, not a miniskirt redesign, not a swimsuit or lingerie. Avoid excessive exposed skin: retain pale ivory/green fitted lower-leg coverings and matching elegant ivory/gold leaf boots from the original. Do not increase bust or hip curves.\n\nPROPORTION: approximately 4.8 head units from crown to soles, head around 20–22 percent of anatomical standing height, similar in apparent scale to the third reference. Preserve the present attractive gentle face and long elegant neck, narrow waist and modest shoulders. Lengthen/readably expose thighs and shins rather than shrinking the head into a realistic adult. No compressed two-to-four-head chibi, no huge head, no short chunky shins. High waist at about 42–45% down the full standing height. Feet separate with both boots visible and grounded at one baseline.\n\nIDENTITY MUST REMAIN: very fair skin, light ivory/platinum long flowing wavy hair, green eyes, pointed elf ears, white flowers and green leaves in hair, soft kind closed-mouth smile, white-and-deep-green priestess costume with intricate gold leaf ornament. Exact weapon is the same complete natural wooden branch staff with circular leaf crown, white flowers and embedded bright green crystal, held in the same hand at the side. One staff only, no sword, shield, bow or generic new orb. Keep relaxed nearly frontal ready pose with a subtle viewer-right turn and free hand gently open, arms separate enough to be readable. Retain polished crisp colored outline and high quality soft anime cel-painted fabric/hair/material details. Match current quality rather than simplifying.\n\nOUTPUT: ONE complete full-body character with whole staff and every boot visible, clean TRUE TRANSPARENT RGBA alpha-zero background. Clear margin on every side including staff crown, robe tips and feet. No scenery, floor, cast shadow, background haze or gradients, glow halo, particles, text, labels, UI, watermark or extra character. This is a static concept-only revision, not a part sheet.",
+  "referenced_image_paths_at_generation": [
+    "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/elisia/concept.png",
+    "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/elisia-pose.png",
+    "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/leonhardt/concept.png"
+  ],
+  "output": "/workspace/generated_images/exec-005ce526-c7b0-4fc1-ab0d-74319720a4cd.png",
+  "sha256": "04f35acc3228b51e90843a9cdff7161e81574b03f7ff2eb8bcd001540e1fdd49",
+  "dimensions": [
+    1164,
+    1351
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "alpha_bbox": [
+    0,
+    0,
+    1164,
+    1341
+  ],
+  "pixel_edits_after_generation": false,
+  "transparent_background": true,
+  "scope": "Concept-only update; no part sheets, code, assembly or review/approval flags changed.",
+  "generation_history": [
+    {
+      "stage": "original_closed_front_priestess_concept",
+      "metadata": {
+        "id": "elisia",
+        "prompt": "Create ONE new complete full-body character concept based on the FIRST attached small original game hero, redrawn to match the SECOND attached polished blond knight's exact professional illustration quality and slightly elongated FOUR-HEAD-TALL SD proportions. The second image is only a quality/proportion/style reference, NOT a costume or character to copy. Preserve the first character's exact visual identity, hair color and hairstyle, facial features, race, outfit colors, accessories and individual weapon. Render with crisp elegant anime linework, exceptionally polished hand-painted shading, rich fabric folds, metallic highlights, readable small ornate gold details, expressive refined face, clear human anatomy and hands. Four-head body, visibly longer torso and legs than the tiny old chibi, no infant proportions, no simplification. Full figure from top of hair to soles visible with ample transparent margin. Single figure on TRUE RGBA transparent background, NO ground shadow, no scenery, no text, no frame, no decorative floating FX. Relaxed front three-quarter pose turned slightly toward screen RIGHT; weight evenly on both feet, arms slightly apart so limbs are readable, neutral ready stance suitable for subsequent anatomical cutout rigging. Weapon shown complete and recognizable, not crossing the face. Maintain same warm neutral studio key light as the knight.\nCHARACTER: Elisia, a graceful young adult elf forest priestess with pale champagne-blond long hair, pointed elf ears, vivid green eyes, white flowers and green leaves woven near the temples. Elegant layered ivory-white and forest-green vestments with golden vine embroidery, structured green waist sash, long split priestess robe revealing the lower boots enough for readable legs, white and gold boots, soft green cape. Original long golden-wooden sacred staff in her left anatomical hand has an ornate circular leaf setting and large fresh green gem at the top. One open gentle right hand at her side. Preserve the original gentle face, floral hair and priestess identity, no armor knight styling.",
+        "input": "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/elisia-pose.png",
+        "style": "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png",
+        "output": "/workspace/generated_images/exec-1bbc3888-cbf2-4743-9a48-c1a0b3bb2a62.png",
+        "schema_version": 1,
+        "tool": "image_gen.imagegen",
+        "kind": "static_fullbody_concept_not_animation",
+        "sha256": "59a5752c1255a3986950455bffe22efeea8212c57d9dd525e3f00503766ca162",
+        "dimensions": [
+          1164,
+          1351
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1164,
+          1351
+        ],
+        "pixel_edits_after_generation": false
+      },
+      "selected": false,
+      "archive": "concept-draft-short/concept.png",
+      "reason": "Closed front robe concealed the right leg and long-leg silhouette requested with the new master."
+    },
+    {
+      "stage": "long_legs_readable_front_opening",
+      "prompt": "Make a precise, restrained revision of the FIRST supplied image: ELISIA, our original elf forest priestess. The second reference is her original identity source. The third reference (Leonhardt) is the newly approved proportion and quality master ONLY. Do not copy the knight's gender, face, armor, weapon, hair color or blue palette.\n\nPRIMARY CHANGES: Make her read as a slender 4.5-to-5-head-tall anime fantasy SD character with a high waist, clearly elongated thighs and calves, and BOTH leg silhouettes readable through the front of the robe. The current long closed front skirt hides the right leg and conceals the intended taller anatomy. Keep the beautiful ivory/forest-green/gold priestess robe, enormous elegant bell sleeves, leaf embroidery, white flowers, layered green panels and floor-length outer side/back robe tails. Open and separate the CENTER FRONT panels from mid-thigh downward: keep a modest opaque white-and-gold short inner tunic/lining ending around mid-thigh and sweeping formal robe panels at the sides, so the left and right legs can both be seen from lower thigh through knees and calves to the boots. This remains a dignified woodland PRIESTESS in a flowing ceremonial robe, not a warrior in shorts, not a miniskirt redesign, not a swimsuit or lingerie. Avoid excessive exposed skin: retain pale ivory/green fitted lower-leg coverings and matching elegant ivory/gold leaf boots from the original. Do not increase bust or hip curves.\n\nPROPORTION: approximately 4.8 head units from crown to soles, head around 20–22 percent of anatomical standing height, similar in apparent scale to the third reference. Preserve the present attractive gentle face and long elegant neck, narrow waist and modest shoulders. Lengthen/readably expose thighs and shins rather than shrinking the head into a realistic adult. No compressed two-to-four-head chibi, no huge head, no short chunky shins. High waist at about 42–45% down the full standing height. Feet separate with both boots visible and grounded at one baseline.\n\nIDENTITY MUST REMAIN: very fair skin, light ivory/platinum long flowing wavy hair, green eyes, pointed elf ears, white flowers and green leaves in hair, soft kind closed-mouth smile, white-and-deep-green priestess costume with intricate gold leaf ornament. Exact weapon is the same complete natural wooden branch staff with circular leaf crown, white flowers and embedded bright green crystal, held in the same hand at the side. One staff only, no sword, shield, bow or generic new orb. Keep relaxed nearly frontal ready pose with a subtle viewer-right turn and free hand gently open, arms separate enough to be readable. Retain polished crisp colored outline and high quality soft anime cel-painted fabric/hair/material details. Match current quality rather than simplifying.\n\nOUTPUT: ONE complete full-body character with whole staff and every boot visible, clean TRUE TRANSPARENT RGBA alpha-zero background. Clear margin on every side including staff crown, robe tips and feet. No scenery, floor, cast shadow, background haze or gradients, glow halo, particles, text, labels, UI, watermark or extra character. This is a static concept-only revision, not a part sheet.",
+      "input_paths": [
+        "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/elisia/concept.png",
+        "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/elisia-pose.png",
+        "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/leonhardt/concept.png"
+      ],
+      "output_path": "/workspace/generated_images/exec-005ce526-c7b0-4fc1-ab0d-74319720a4cd.png",
+      "sha256": "04f35acc3228b51e90843a9cdff7161e81574b03f7ff2eb8bcd001540e1fdd49",
+      "selected": true
+    }
+  ],
+  "selection_source": {
+    "path": "/workspace/generated_images/exec-005ce526-c7b0-4fc1-ab0d-74319720a4cd.png",
+    "sha256": "04f35acc3228b51e90843a9cdff7161e81574b03f7ff2eb8bcd001540e1fdd49",
+    "selected_at_utc": "2026-10-03T18:04:03.881544+00:00",
+    "comparison_master": "res://assets/art-direction/aurelia-4head/leonhardt/concept.png",
+    "previous_concept_archive": "concept-draft-short/concept.png",
+    "previous_metadata_archive": "concept-draft-short/concept-source.json",
+    "reason": "Both legs and boots are readable through a modest front robe opening while the ivory/green/gold priestess costume, face and wooden leaf staff remain identifiable."
+  },
+  "image_audit": {
+    "fully_transparent_pixel_count": 633603,
+    "fully_transparent_fraction": 0.402911,
+    "visible_alpha_threshold": 32,
+    "visible_bbox": [
+      2,
+      5,
+      1162,
+      1339
+    ],
+    "visible_pixels_on_canvas_edges": {
+      "left": 0,
+      "right": 0,
+      "top": 0,
+      "bottom": 0
+    },
+    "visible_edge_clipping_detected": false,
+    "source_bytes_preserved": true
+  },
+  "limitations": [
+    "Single static front/three-quarter concept illustration only.",
+    "Requested approximately 4.5–5-head proportions assessed visually, not numerically certified.",
+    "Current part atlases were intentionally not changed by this concept task and need independent later reconstruction/review."
+  ]
+}

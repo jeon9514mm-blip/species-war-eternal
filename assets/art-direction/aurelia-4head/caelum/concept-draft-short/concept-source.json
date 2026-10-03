@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "hero_id": "caelum",
+  "asset_kind": "single full-body SD hero concept",
+  "generated_with": "image_gen.imagegen",
+  "generation": {
+    "id": "caelum",
+    "prompt": "Create ONE full-body 4-HEAD-TALL SD / SUPER-DEFORMED ANIME GAME HERO on a true transparent background. Exactly four heads from crown to soles: enlarged head occupies one quarter of total body height, compact torso occupies second quarter, short legs and boots occupy lower half. The deliberate cute but heroic proportions must be like reference image 2. NOT a slender realistic 6-head fashion figure. Reference image 1 supplies this hero's identity and equipment. Reference image 2 supplies only the SD proportions and polished painting style; do not copy its specific blond sword/shield knight. Full-body centered in a SQUARE canvas, entire weapons and both boots visible with generous empty margins. Mostly front view, slight turn toward screen RIGHT, relaxed ready A-pose with arms slightly separate and clearly separated feet. Confident finely inked contours, beautiful hand-painted anime shading, clean colors and materials matching image 2. No scene, no floor, no shadow, no background gradient, no glow, no VFX, no labels. All empty space fully transparent RGBA. Caelum Ardor, a fair-skinned young adult male human sun-sword knight. Preserve the first image's bright golden-blond windswept hair, blue eyes, confident face, polished silver armor with abundant rich gold decorative edges and golden sun motifs, white fur collar at both shoulders, blue and white cape, deep blue tunic panels and gold belts. His exact weapon is a single broad GOLDEN SUN SWORD with golden blade and ornate winged gold hilt, held in his right hand (viewer left), sword angled down and outward fully visible. No shield and no spear. Athletic adult proportions, friendly resolute expression. Preserve his fur mantle and gold sword to distinguish from Leonhardt.",
+    "reference_paths": [
+      "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/caelum-pose.png",
+      "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png"
+    ],
+    "transparent_background_requested": true,
+    "original_output_path": "/workspace/generated_images/exec-3124b002-902a-4c7f-b4cd-851c40358a7d.png",
+    "rejected_attempts": []
+  },
+  "limits": [
+    "Static single painting only; no separated parts, skeletal assembly, authored animation tracks or new direction views.",
+    "Target proportions are approximately four-head SD, visually assessed; not a measured 3D body ratio.",
+    "Original identity, color family and weapon type guide the redesign; ornamental details are newly interpreted.",
+    "Generated PNG bytes copied intact, without pixel editing."
+  ],
+  "artifact": {
+    "path": "assets/art-direction/aurelia-4head/caelum/concept.png",
+    "original_preserved": true,
+    "sha256": "0868f1a2954c9e8999be8de2ad16235b7d4576e4619c895ddfd1b6a4ba24ffd6",
+    "bytes": 1703013,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA"
+  },
+  "audit": {
+    "checked_at_utc": "2026-10-03T17:08:48.503798+00:00",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 872154,
+    "fully_transparent_fraction": 0.554623,
+    "visible_alpha8_bbox": [
+      36,
+      47,
+      1200,
+      1222
+    ],
+    "visible_alpha8_border_pixels": 0,
+    "identity_features_visually_checked": [
+      "Golden-blond hair and blue eyes",
+      "White fur collar and blue/silver/gold sun armor",
+      "Golden broad sun sword without shield"
+    ],
+    "full_body_and_both_feet_visible": true,
+    "weapon_type_and_complete_silhouette_visible": true,
+    "single_character": true,
+    "separated_body_parts": 0,
+    "authored_motion_tracks": 0,
+    "visual_proportions": "Approximate 4-head SD target; head size includes stylized hair volume.",
+    "manual_pixel_edits": false
+  }
+}

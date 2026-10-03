@@ -1,0 +1,50 @@
+{
+  "checks": 803,
+  "directions": [],
+  "failures": [],
+  "parts": {
+    "leonhardt": {
+      "attack_ergonomics": {
+        "attack_1": {
+          "elbow_flexion_valid": true,
+          "maximum_joint_step_radians": 0.0869474411010742,
+          "maximum_wrist_degrees": 6.87549039968286,
+          "samples": 241
+        },
+        "attack_2": {
+          "elbow_flexion_valid": true,
+          "maximum_joint_step_radians": 0.0874643921852112,
+          "maximum_wrist_degrees": 6.8754929610038,
+          "samples": 241
+        }
+      },
+      "component_integrity_verified": true,
+      "joints": 21,
+      "parts": 18,
+      "pose_samples": 80,
+      "reviewed": false,
+      "states": {
+        "attack_1": 5,
+        "attack_2": 5,
+        "buff": 5,
+        "death": 5,
+        "debuff": 5,
+        "dodge": 5,
+        "guard": 5,
+        "hit": 5,
+        "idle": 5,
+        "knockback": 5,
+        "run": 5,
+        "skill": 5,
+        "spawn": 5,
+        "ultimate": 5,
+        "victory": 5,
+        "walk": 5
+      }
+    }
+  },
+  "requested_development_ids": [
+    "leonhardt"
+  ],
+  "scope": "Painted multipart 2.5D hero fixtures and sixteen source-timed procedural motion tracks; selected IDs and visual review status are recorded separately; not volumetric 3D models or hand-drawn sixteen-frame sequences"
+}

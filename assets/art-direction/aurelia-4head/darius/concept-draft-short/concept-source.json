@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "hero_id": "darius",
+  "asset_kind": "single full-body SD hero concept",
+  "generated_with": "image_gen.imagegen",
+  "generation": {
+    "id": "darius",
+    "prompt": "Create ONE full-body 4-HEAD-TALL SD / SUPER-DEFORMED ANIME GAME HERO on a true transparent background. Exactly four heads from crown to soles: enlarged head occupies one quarter of total body height, compact torso occupies second quarter, short legs and boots occupy lower half. The deliberate cute but heroic proportions must be like reference image 2. NOT a slender realistic 6-head fashion figure. Reference image 1 supplies this hero's identity and equipment. Reference image 2 supplies only the SD proportions and polished painting style; do not copy its specific blond sword/shield knight. Full-body centered in a SQUARE canvas, entire weapons and both boots visible with generous empty margins. Mostly front view, slight turn toward screen RIGHT, relaxed ready A-pose with arms slightly separate and clearly separated feet. Confident finely inked contours, beautiful hand-painted anime shading, clean colors and materials matching image 2. No scene, no floor, no shadow, no background gradient, no glow, no VFX, no labels. All empty space fully transparent RGBA. Darius Cron, a fair-skinned young adult male human kingdom executioner. Preserve the first image's short windswept very dark brown hair with a conspicuous pale ash/white forelock, red eyes, stern face, near-black and gunmetal angular heavy armor with silver sharp edging, crimson tabard and cape, dark red leather and small gold chain details. His exact weapon is one massive broad dark iron greatsword with a pale silver cutting edge and dark crimson inset, held one-handed in his left hand (viewer right) with point diagonally down away from feet; complete blade, hilt and hand visible. No shield, no lance, no blue cape. Strong athletic adult stance, sinister disciplined knight rather than horror monster.",
+    "reference_paths": [
+      "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/darius-pose.png",
+      "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png"
+    ],
+    "transparent_background_requested": true,
+    "original_output_path": "/workspace/generated_images/exec-e8b5b364-35a7-4e27-a142-a57cb525dd15.png",
+    "rejected_attempts": []
+  },
+  "limits": [
+    "Static single painting only; no separated parts, skeletal assembly, authored animation tracks or new direction views.",
+    "Target proportions are approximately four-head SD, visually assessed; not a measured 3D body ratio.",
+    "Original identity, color family and weapon type guide the redesign; ornamental details are newly interpreted.",
+    "Generated PNG bytes copied intact, without pixel editing."
+  ],
+  "artifact": {
+    "path": "assets/art-direction/aurelia-4head/darius/concept.png",
+    "original_preserved": true,
+    "sha256": "b6baa1f4e1518d1294478352c4e400d048c8857c33e2865e89597d4bdd06c48d",
+    "bytes": 1698253,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA"
+  },
+  "audit": {
+    "checked_at_utc": "2026-10-03T17:08:48.397760+00:00",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 859779,
+    "fully_transparent_fraction": 0.546754,
+    "visible_alpha8_bbox": [
+      44,
+      28,
+      1241,
+      1232
+    ],
+    "visible_alpha8_border_pixels": 0,
+    "identity_features_visually_checked": [
+      "Dark brown hair with pale forelock and red eyes",
+      "Gunmetal armor and crimson cape",
+      "Broad dark crimson greatsword"
+    ],
+    "full_body_and_both_feet_visible": true,
+    "weapon_type_and_complete_silhouette_visible": true,
+    "single_character": true,
+    "separated_body_parts": 0,
+    "authored_motion_tracks": 0,
+    "visual_proportions": "Approximate 4-head SD target; head size includes stylized hair volume.",
+    "manual_pixel_edits": false
+  }
+}

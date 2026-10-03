@@ -1,0 +1,86 @@
+{
+  "schema_version": 2,
+  "hero_id": "lunea",
+  "asset_kind": "single full-body elongated SD hero concept",
+  "generated_with": "image_gen.imagegen",
+  "generation": {
+    "id": "lunea",
+    "prompt": "Correct ONLY the anatomical proportions of the full-body character in IMAGE 1, keeping all of that character's own colors, face identity, hairstyle, ears, outfit, cape and exact complete weapon. IMAGE 2 is the approved proportion master. IMAGE 3 is this hero's original identity reference. MATCH IMAGE 2'S HEAD SIZE AND BODY SHAPE EXACTLY. Image 1 is too tall with a too-small head: make the head 40 percent larger relative to the body, shorten both shins and thighs modestly, shorten torso slightly. It must become a 4.5–5-head-tall elongated SD anime game character like IMAGE 2, not a 6–7-head adult fashion illustration, and not a 3-head baby chibi. On a 1536 pixel tall canvas with head-to-feet spanning roughly 1440 pixels, head from scalp crown to chin should be about 300 pixels. Keep visible thighs and shins, an elegant high waist and distinct elbows/knees. Draw a complete new clean coherent painting with those proportions, not a mechanically stretched cutout. Neutral ready standing pose, both feet visible and separated, weapons complete. Preserve this character, do not turn it into the blond blue-armored man of Image 2. Painterly anime fantasy line and material quality remains identical. True transparent RGBA background, all non-character pixels fully transparent. No gradient backdrop, no ground, no shadow, no glow/aura/VFX, no text. Retain lavender hair, violet eyes, elf ears, navy/white/lavender lunar robe, white flower with gold crescent and purple orb armillary staff. Dark closed ankle shoes/short boots as Image 3; no tall stiletto fashion heels. Both lower legs clearly visible below split hem.",
+    "reference_paths": [
+      "/workspace/generated_images/exec-54c53d9e-5607-4e7a-9915-669a6bc3d4bf.png",
+      "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/leonhardt/concept.png",
+      "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/lunea-pose.png"
+    ],
+    "transparent_background_requested": true,
+    "original_output_path": "/workspace/generated_images/exec-c9e69478-783f-4782-b575-7b4fb674620e.png",
+    "rejected_attempts": [
+      {
+        "args": {
+          "prompt": "Create a new full-body game-character concept, matching the elongated slim semi-SD ANATOMICAL PROPORTIONS and polished anime paint quality of REFERENCE IMAGE 2. The user has explicitly rejected big-headed short baby chibi. Target 4.5–5 heads tall from crown to soles; head is only about 20–22% of standing body height, with a high waist, visible long thighs and long shins, proportionally smaller head, slender limbs. Closely match Image 2's head-to-body ratio and full-length elegant silhouette. Do not compress legs or enlarge head. REFERENCE IMAGE 1 supplies this specific hero's unique identity, hairstyle, ears, colors, outfit and EXACT weapon; do NOT copy Image 2's blond blue knight, sword or shield. Retain Image 1 identity and full equipment. One character only, full body standing with both separated feet visible and every weapon tip visible with generous margins. Neutral relaxed ready A-pose, hands gently away from hips, slight turn toward screen RIGHT. Polished fine outlines, softly modeled hand-painted anime fantasy materials, coherent upper-left illumination, game-readable details. Vertical portrait canvas. True transparent RGBA background with every non-character pixel transparent; no backdrop, no gradient haze, no floor, no cast shadow, no aura, no weapon emission or particles, no text. Lunea Mistleaf, a fair-skinned young adult female elf mist sage. Preserve the first image's long wavy lavender-silver hair, purple eyes, prominent pointed elf ears, dark navy floral hair ornament with white flower and gold crescent moon, violet and white flowing robes with dark navy outer panels and intricate gold celestial embroidery, pale billowing sleeves and dainty dark shoes. Her exact weapon is a slender dark-and-gold staff with a large spherical purple magical glass orb in an ornate asymmetrical gold crescent/armillary ring, held in her right hand (viewer left), with the entire staff from butt to orb visible. Orb is a painted object, no emitted light or particle effects. Free hand gently open. Serene thoughtful adult expression. Distinct lunar purple identity, not blue crystal healer.",
+          "referenced_image_paths": [
+            "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/lunea-pose.png",
+            "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/leonhardt/concept.png"
+          ],
+          "transparent_background": true
+        },
+        "original_output_path": "/workspace/generated_images/exec-54c53d9e-5607-4e7a-9915-669a6bc3d4bf.png",
+        "reason": "Head is visually too small and legs/body too extended (approximately 6–7-head appearance), overshooting accepted 4.5–5-head master."
+      }
+    ]
+  },
+  "candidate_selection": {
+    "reason": "Updated after user requested longer/slimmer 4.5–5-head silhouettes. Initial long candidate overshot to a much smaller head; this revision enlarges head and shortens excessive limb lengths to approach the accepted Leonhardt master.",
+    "comparison_master": "assets/art-direction/aurelia-4head/leonhardt/concept.png",
+    "previous_short_concept": "concept-draft-short/concept.png",
+    "previous_short_provenance": "concept-draft-short/concept-source.json"
+  },
+  "limits": [
+    "Static concept only. No separated parts, skeletal assembly, animation tracks or direction views were produced.",
+    "Proportions follow the approximately 4.5–5-head style target by visual comparison; they are not a measured 3D anatomy guarantee.",
+    "Own hairstyle, color family and weapon type are retained; fine costume ornament and footwear shapes remain painted redesign details.",
+    "Generated PNG bytes copied intact; no manual pixel editing."
+  ],
+  "artifact": {
+    "path": "assets/art-direction/aurelia-4head/lunea/concept.png",
+    "original_preserved": true,
+    "sha256": "89f3738add62e3b8241fc671838491db03ec2e4b908f05b158158f69ef43889d",
+    "bytes": 2723227,
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA"
+  },
+  "audit": {
+    "checked_at_utc": "2026-10-03T18:08:59.209806+00:00",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 564642,
+    "fully_transparent_fraction": 0.35899,
+    "visible_alpha8_bbox": [
+      16,
+      24,
+      1008,
+      1521
+    ],
+    "visible_alpha8_border_pixels": 0,
+    "visual_notes": [
+      "Lavender hair, violet eyes, elf ears",
+      "Lunar dark navy/white robes, crescent flower hair ornament, purple orb armillary staff",
+      "Head-to-body ratio approaches new master; lower legs and both shoes visible; shoes are interpreted closed-toe strapped heels, not pixel-exact original footwear"
+    ],
+    "full_body_and_both_feet_visible": true,
+    "weapon_type_and_complete_silhouette_visible": true,
+    "single_character": true,
+    "separated_body_parts": 0,
+    "authored_motion_tracks": 0,
+    "manual_pixel_edits": false
+  },
+  "input_sha256": {
+    "/workspace/generated_images/exec-54c53d9e-5607-4e7a-9915-669a6bc3d4bf.png": "63c2b9c891b1255fc5f701c52bee821152ebe64afda45d8c633e3825303f5182",
+    "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/leonhardt/concept.png": "7d6af340c2eccc44f822c9299679416f6cab8e3e4d99efb0c517fa16f7c2af99",
+    "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/lunea-pose.png": "4b5655ead8fb2cc5a6ec6c7a6158ff62c5ee6a658d367e9815c8a5ffd336a60d"
+  }
+}

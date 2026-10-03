@@ -87,7 +87,7 @@ func _install_portrait_hud() -> void:
 		previous.queue_free()
 	content_root.add_child(field)
 	content_root.move_child(field, 0)
-	var concept := P_SKIN.button("영웅 원화 보기", _open_concept_study)
+	var concept := P_SKIN.button("영웅 동작 검토", _open_concept_study)
 	concept.name = "ArtDirectionConceptButton"
 	concept.add_theme_font_size_override("font_size", 14)
 	concept.position = Vector2(180, 10)
@@ -117,7 +117,7 @@ func _install_portrait_hud() -> void:
 func _open_concept_study() -> void:
 	combat_running = false
 	if is_instance_valid(presentation_runtime): presentation_runtime.audio.shutdown()
-	get_tree().change_scene_to_file("res://scenes/art/HeroConceptStudy.tscn")
+	get_tree().change_scene_to_file("res://scenes/art/HeroPartsStudy.tscn")
 
 func _open_monster_study() -> void:
 	combat_running = false

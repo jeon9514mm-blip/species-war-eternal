@@ -1,0 +1,27 @@
+{
+  "id": "mira",
+  "prompt": "Create ONE new complete full-body character concept based on the FIRST attached small original game hero, redrawn to match the SECOND attached polished blond knight's exact professional illustration quality and slightly elongated FOUR-HEAD-TALL SD proportions. The second image is only a quality/proportion/style reference, NOT a costume or character to copy. Preserve the first character's exact visual identity, hair color and hairstyle, facial features, race, outfit colors, accessories and individual weapon. Render with crisp elegant anime linework, exceptionally polished hand-painted shading, rich fabric folds, metallic highlights, readable small ornate gold details, expressive refined face, clear human anatomy and hands. Four-head body, visibly longer torso and legs than the tiny old chibi, no infant proportions, no simplification. Full figure from top of hair to soles visible with ample transparent margin. Single figure on TRUE RGBA transparent background, NO ground shadow, no scenery, no text, no frame, no decorative floating FX. Relaxed front three-quarter pose turned slightly toward screen RIGHT; weight evenly on both feet, arms slightly apart so limbs are readable, neutral ready stance suitable for subsequent anatomical cutout rigging. Weapon shown complete and recognizable, not crossing the face. Maintain same warm neutral studio key light as the knight.\nCHARACTER: Mira, a confident young adult human royal archer woman, chestnut auburn high ponytail tied with dark crimson/black bow, red-brown eyes, small gold wing hair ornament, burgundy and ivory ranger tunic with fine gold buckles and armor accents, cropped red cloak with gold hem and subtle crest, brown leather gloves, thigh-high dark armored boots, quiver with white-fletched arrows. Her weapon is the original tall ornate gold-and-ivory recurved bow, held in the left anatomical hand at her side; right hand holds a single arrow near waist. Preserve original archer costume and ponytail, no sword or shield.",
+  "input": "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/mira-pose.png",
+  "style": "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png",
+  "output": "/workspace/generated_images/exec-71ed511f-c64d-4509-ad34-cca644e0d402.png",
+  "schema_version": 1,
+  "tool": "image_gen.imagegen",
+  "kind": "static_fullbody_concept_not_animation",
+  "sha256": "b26efba7efd313d50c493376971602b09f1863a69813d1045e60fabce5c1a9ce",
+  "dimensions": [
+    1164,
+    1351
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "alpha_bbox": [
+    0,
+    0,
+    1164,
+    1351
+  ],
+  "pixel_edits_after_generation": false
+}

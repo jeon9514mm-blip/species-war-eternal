@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "hero_id": "astel",
+  "asset_kind": "single full-body SD hero concept",
+  "generated_with": "image_gen.imagegen",
+  "generation": {
+    "id": "astel",
+    "prompt": "Create ONE full-body 4-HEAD-TALL SD / SUPER-DEFORMED ANIME GAME HERO on a true transparent background. Exactly four heads from crown to soles: enlarged head occupies one quarter of total body height, compact torso occupies second quarter, short legs and boots occupy lower half. The deliberate cute but heroic proportions must be like reference image 2. NOT a slender realistic 6-head fashion figure. Reference image 1 supplies this hero's identity and equipment. Reference image 2 supplies only the SD proportions and polished painting style; do not copy its specific blond sword/shield knight. Full-body centered in a SQUARE canvas, entire weapons and both boots visible with generous empty margins. Mostly front view, slight turn toward screen RIGHT, relaxed ready A-pose with arms slightly separate and clearly separated feet. Confident finely inked contours, beautiful hand-painted anime shading, clean colors and materials matching image 2. No scene, no floor, no shadow, no background gradient, no glow, no VFX, no labels. All empty space fully transparent RGBA. Astel Virel, a fair-skinned young adult female elf dawn choir healer. Preserve the first image's long pearl-white hair in soft loose waves with two low flowing sections, bright blue eyes, long pointed elf ears, a large white flower with gold foliage at her temple, ivory and pale-blue ceremonial robe with elegant navy inserts and fine gold embroidery, white and gold shoulder mantle, dark stockings and small refined shoes. Her exact weapon is a slender gold-and-brown staff topped by an ornate circular gold frame cradling a large FACETED pale-blue crystal, held in her left hand (viewer right), complete from foot to finial. Staff has crystalline angled detail, not a moon orb. Free right hand open and slightly away from her body. Gentle adult healer expression, stately silhouette. Shoes clearly visible below split robe.",
+    "reference_paths": [
+      "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/astel-pose.png",
+      "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png"
+    ],
+    "transparent_background_requested": true,
+    "original_output_path": "/workspace/generated_images/exec-aa53acce-9bf1-4c27-926e-6fe6479b0624.png",
+    "rejected_attempts": [
+      {
+        "args": {
+          "prompt": "Transform the character in REFERENCE IMAGE 1 into a new clean high-resolution full-body game hero concept. REFERENCE IMAGE 2 is ONLY the target drawing style, rendering quality, and slightly elongated FOUR-HEAD-TALL SD proportions. Preserve Image 1's unique identity, hairstyle, ears, face colors, outfit palette, accessories and exact weapon type; do not copy the blond knight character or his shield from Image 2. Render polished hand-painted anime fantasy mobile RPG art: fine confident colored outlines, crisp readable silhouette, softly modeled volumes, beautiful material highlights, restrained detail at small game scale. Character anatomy from crown to soles approximately FOUR times head height, adult but stylized with a moderately large head; neither two-head baby chibi nor six-head realistic. One original character only. Full body including BOTH separated feet clearly visible, entire hairstyle and weapon in frame with generous transparent margin. Neutral relaxed ready A-pose, body facing mostly front turned slightly toward viewer's RIGHT, head aligned, arms gently separated so elbows/wrists can later be segmented. Separate boots/legs readable. Soft consistent upper-left illumination. TRANSPARENT RGBA background, no ground plane, no cast shadow, no glow halo, no VFX, no scenery, no text, no UI, no extra views. Tall portrait canvas. Astel Virel, a fair-skinned young adult female elf dawn choir healer. Preserve the first image's long pearl-white hair in soft loose waves with two low flowing sections, bright blue eyes, long pointed elf ears, a large white flower with gold foliage at her temple, ivory and pale-blue ceremonial robe with elegant navy inserts and fine gold embroidery, white and gold shoulder mantle, dark stockings and small refined shoes. Her exact weapon is a slender gold-and-brown staff topped by an ornate circular gold frame cradling a large FACETED pale-blue crystal, held in her left hand (viewer right), complete from foot to finial. Staff has crystalline angled detail, not a moon orb. Free right hand open and slightly away from her body. Gentle adult healer expression, stately silhouette. Shoes clearly visible below split robe.",
+          "referenced_image_paths": [
+            "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/astel-pose.png",
+            "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png"
+          ],
+          "transparent_background": true
+        },
+        "output_hint": "Generated images are saved to /workspace/generated_images as /workspace/generated_images/exec-ff540758-5bcd-432d-bafe-9050eb415012.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+        "reason": "Initial generation had roughly 5–6-head-tall proportions rather than requested 4-head SD."
+      }
+    ]
+  },
+  "limits": [
+    "Static single painting only; no separated parts, skeletal assembly, authored animation tracks or new direction views.",
+    "Target proportions are approximately four-head SD, visually assessed; not a measured 3D body ratio.",
+    "Original identity, color family and weapon type guide the redesign; ornamental details are newly interpreted.",
+    "Generated PNG bytes copied intact, without pixel editing."
+  ],
+  "artifact": {
+    "path": "assets/art-direction/aurelia-4head/astel/concept.png",
+    "original_preserved": true,
+    "sha256": "56bf3854449ed3f5617d3f8d96c6ece4528aea08b06df6ba159036fd0e6036a5",
+    "bytes": 2026250,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA"
+  },
+  "audit": {
+    "checked_at_utc": "2026-10-03T17:08:48.356211+00:00",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 725130,
+    "fully_transparent_fraction": 0.461127,
+    "visible_alpha8_bbox": [
+      99,
+      28,
+      1229,
+      1239
+    ],
+    "visible_alpha8_border_pixels": 0,
+    "identity_features_visually_checked": [
+      "Pearl-white hair, blue eyes, elf ears",
+      "White/blue/gold healer robes and flower ornament",
+      "Gold staff with faceted blue crystal"
+    ],
+    "full_body_and_both_feet_visible": true,
+    "weapon_type_and_complete_silhouette_visible": true,
+    "single_character": true,
+    "separated_body_parts": 0,
+    "authored_motion_tracks": 0,
+    "visual_proportions": "Approximate 4-head SD target; head size includes stylized hair volume.",
+    "manual_pixel_edits": false
+  }
+}

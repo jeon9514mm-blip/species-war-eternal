@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "hero_id": "odelia",
+  "asset": "concept.png",
+  "status": "original_static_concept_only",
+  "generator": "image_gen",
+  "requested_style": "Slightly elongated approximately four-head SD, matching the established Leonhardt art-direction concept.",
+  "requested_background": "transparent RGBA",
+  "identity_reference": "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/odelia-pose.png",
+  "style_reference": "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png",
+  "roster_reference": "res://assets/heroes/sd-v36/roster-reference.json",
+  "original_output_path": "/workspace/generated_images/exec-2ec32e40-f790-4836-8418-9e23c6d8f4d8.png",
+  "pixel_editing_performed": false,
+  "generations": [
+    {
+      "stage": "initial_identity_concept",
+      "prompt": "Create ONE polished original full-body anime fantasy game character concept, transforming the FIRST reference character from a compressed chibi into a slightly elongated FOUR-HEAD-TALL SD adventurer. First reference is IDENTITY AUTHORITY: preserve its face, hairstyle, skin tone, dominant costume colors, exact weapon class and recognizable ornamental motifs. Second reference (blond knight Leonhardt) is STYLE AND PROPORTIONS ONLY: use comparable premium painted cel shading, crisp dark colored outlines, warm soft material rendering, clear readable face and anatomy; DO NOT copy his blonde hair, sword, shield, armor or blue palette where not present in the first character. Approximately head height 1/4 of complete anatomical standing body height. Develop distinct torso, upper and lower arms, thighs, calves and visible separate boots. No baby or two-head chibi proportions, no realistic adult seven-head anatomy.\n\nComposition: ONLY ONE character, complete head-to-toe including all equipment on a TRUE TRANSPARENT RGBA background. Generous clear margin around every extremity and weapon, no crop. Mostly front view, gently turned toward VIEWER'S RIGHT by about 10-15 degrees. Standing neutral relaxed ready A-pose suitable for subsequent joint separation: feet set shoulder-width, both feet on same ground baseline, knees nearly straight, arms gently separated from torso wherever equipment allows. Face and eyes open calm, no wink, no attack gesture, no jumping. Clothing drapes naturally without extreme wind. Full weapon visible; neither weapon nor accessories obscure the face or both legs. Use the first reference's equipment identity even if a fashionable generic replacement seems easier. NO environment, no floor, no ground ellipse, no cast shadow, no floating VFX, no aura, no bloom, no motion blur, no UI/text/watermark, no turnarounds, no extra characters, no extra limbs. Lit consistently from upper left, clean isolated game asset.\n\nCharacter ID ODELIA SILBROOK, human royal seal scholar: very fair skin, long pale blonde/ivory hair with soft side bangs and gathered low locks, large violet eyes, delicate white flower and dark purple/gold ribbon in hair. Preserve elegant deep purple and ivory layered scholar dress/robe, gold embroidered angular star/sigil hems, white blouse sleeves, slender brown/gold belts, purple/gold mantle and hood/headband trim, and delicate dark purple-white boots. Equipment is MANDATORY: a physical OPEN THICK PURPLE-AND-GOLD GRIMOIRE BOOK with gilded decorative cover and clearly visible cream pages, supported by left hand at one side of waist/chest (viewer-right); AND several physical long ivory PAPER TALISMAN strips with small gold/purple abstract seal marks held naturally in the other hand (viewer-left), including a strip hanging downward. Book must read as an actual rectangular bound book, not a cube, not a generic orb, not a shield. Paper talismans must read as flat hanging paper ribbons, not glowing energy trails. ZERO ORBS anywhere. No staff, no sword. Pose calm, arms separated enough to show book and paper while face, waist and boots remain readable; front robe split enough to reveal lower boot silhouettes. No emitted magic/VFX.",
+      "input_paths": [
+        "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/odelia-pose.png",
+        "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png"
+      ],
+      "transparent_background": true,
+      "output_path": "/workspace/generated_images/exec-ef9bcbb9-2a14-44cc-a96d-155598720784.png",
+      "selected": false,
+      "reason_not_selected": "Body proportions appeared too tall beside the established SD style anchor."
+    },
+    {
+      "stage": "four_head_proportion_revision",
+      "prompt": "Edit the FIRST supplied character image to CORRECT ITS PROPORTIONS. Preserve this exact character's identity, hair and eye color, skin, costume palette, unique equipment and ornament motifs. The first image is too tall/adult: transform it into an appealing FOUR-HEAD-TALL SD anime JRPG game hero like the SECOND reference character. Match the SECOND reference's noticeably large expressive head, compact short torso, shorter legs, big clear hands/boots, rounded youthful SD silhouette and gorgeous painted cel shading.\n\nMEASUREMENT: From anatomical skull crown (exclude flying hair and decorations) to chin is ONE UNIT. From that skull crown to soles of boots must be FOUR UNITS TOTAL, never five, six or seven. At least 25% of anatomical standing height is the actual head, not hairstyle. Chin about 25% down, waist about 49% down, knees about 74% down, boot soles 100%. Enlarge the head relative to the body and shorten torso/thighs/calves sufficiently to hit this visible ratio. Keep four-head SD, not a two-head baby chibi. Do not make chest/hips mature or exaggerate body curves. The purpose is a consistent game character roster, not an adult fashion illustration.\n\nNeutral relaxed standing ready A-pose, mostly front facing with gentle viewer-RIGHT turn. Feet clearly separate and visible, arms gently separated wherever equipment permits, no dramatic action, no wink. Retain both exact weapon type and number, fully visible and not cropped. Keep outline silhouette readable. One complete character only, centered with EMPTY TRANSPARENT MARGIN on all edges. Entire character and weapon must fit in 85% of canvas extents. TRUE RGBA transparency with alpha zero outside character, absolutely no backdrop, brown/gray haze, vignette, floor, cast shadow, magic effects, particles, text or watermark. Do not include second reference knight or borrow his identity.\n\nIdentity and exact equipment to preserve:\nCharacter ID ODELIA SILBROOK, human royal seal scholar: very fair skin, long pale blonde/ivory hair with soft side bangs and gathered low locks, large violet eyes, delicate white flower and dark purple/gold ribbon in hair. Preserve elegant deep purple and ivory layered scholar dress/robe, gold embroidered angular star/sigil hems, white blouse sleeves, slender brown/gold belts, purple/gold mantle and hood/headband trim, and delicate dark purple-white boots. Equipment is MANDATORY: a physical OPEN THICK PURPLE-AND-GOLD GRIMOIRE BOOK with gilded decorative cover and clearly visible cream pages, supported by left hand at one side of waist/chest (viewer-right); AND several physical long ivory PAPER TALISMAN strips with small gold/purple abstract seal marks held naturally in the other hand (viewer-left), including a strip hanging downward. Book must read as an actual rectangular bound book, not a cube, not a generic orb, not a shield. Paper talismans must read as flat hanging paper ribbons, not glowing energy trails. ZERO ORBS anywhere. No staff, no sword. Pose calm, arms separated enough to show book and paper while face, waist and boots remain readable; front robe split enough to reveal lower boot silhouettes. No emitted magic/VFX.",
+      "input_paths": [
+        "/workspace/generated_images/exec-ef9bcbb9-2a14-44cc-a96d-155598720784.png",
+        "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png"
+      ],
+      "transparent_background": true,
+      "output_path": "/workspace/generated_images/exec-2ec32e40-f790-4836-8418-9e23c6d8f4d8.png",
+      "selected": true
+    }
+  ],
+  "visual_review": {
+    "original_identity_preserved": true,
+    "full_body_and_equipment_visible": true,
+    "neutral_ready_pose": true,
+    "face_and_feet_readable": true,
+    "approximate_four_head_proportions": true,
+    "proportions_note": "Visually reviewed against the established style reference; illustrative proportions are approximate, not anatomical measurement or a certified numerical ratio.",
+    "weapons_by_hero": "Open purple-and-gold bound book plus physical paper talismans; no orb."
+  },
+  "limitations": [
+    "Static single-view concept illustration only.",
+    "No separated parts, skeleton, animation tracks, 3D model or in-game integration produced by this asset task.",
+    "Not an eight-direction character sheet.",
+    "Cannon and robe equipment overlaps require deliberate part redraw and joint coverage during later rig preparation.",
+    "Original generated PNG bytes copied without pixel editing; originals retained."
+  ],
+  "created_at_utc": "2026-10-03T17:11:33.096327+00:00",
+  "sha256": "7d4e8005597e7765e63e0a8c033cfa54a7089d77b6bb5eda62511966371246a4",
+  "byte_count": 2183795,
+  "image_audit": {
+    "format": "PNG",
+    "mode": "RGBA",
+    "dimensions": [
+      1164,
+      1351
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "fully_transparent_pixel_count": 645413,
+    "fully_transparent_fraction": 0.410421,
+    "visible_alpha_threshold": 32,
+    "visible_bbox": [
+      45,
+      60,
+      1143,
+      1341
+    ],
+    "visible_pixels_on_canvas_edges": {
+      "left": 0,
+      "right": 0,
+      "top": 0,
+      "bottom": 0
+    },
+    "visible_edge_clipping_detected": false,
+    "source_bytes_preserved": true
+  }
+}

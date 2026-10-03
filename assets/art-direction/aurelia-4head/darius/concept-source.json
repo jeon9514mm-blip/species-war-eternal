@@ -1,0 +1,86 @@
+{
+  "schema_version": 2,
+  "hero_id": "darius",
+  "asset_kind": "single full-body elongated SD hero concept",
+  "generated_with": "image_gen.imagegen",
+  "generation": {
+    "id": "darius",
+    "prompt": "Correct ONLY the anatomical proportions of the full-body character in IMAGE 1, keeping all of that character's own colors, face identity, hairstyle, ears, outfit, cape and exact complete weapon. IMAGE 2 is the approved proportion master. IMAGE 3 is this hero's original identity reference. MATCH IMAGE 2'S HEAD SIZE AND BODY SHAPE EXACTLY. Image 1 is too tall with a too-small head: make the head 40 percent larger relative to the body, shorten both shins and thighs modestly, shorten torso slightly. It must become a 4.5–5-head-tall elongated SD anime game character like IMAGE 2, not a 6–7-head adult fashion illustration, and not a 3-head baby chibi. On a 1536 pixel tall canvas with head-to-feet spanning roughly 1440 pixels, head from scalp crown to chin should be about 300 pixels. Keep visible thighs and shins, an elegant high waist and distinct elbows/knees. Draw a complete new clean coherent painting with those proportions, not a mechanically stretched cutout. Neutral ready standing pose, both feet visible and separated, weapons complete. Preserve this character, do not turn it into the blond blue-armored man of Image 2. Painterly anime fantasy line and material quality remains identical. True transparent RGBA background, all non-character pixels fully transparent. No gradient backdrop, no ground, no shadow, no glow/aura/VFX, no text. Retain dark brown hair with white forelock, red eyes, gunmetal silver-edged armor, red cape and broad dark crimson greatsword; one greatsword, no shield. Head shape and silhouette should match master head proportion while retaining Darius's stern face.",
+    "reference_paths": [
+      "/workspace/generated_images/exec-69475b6a-a78f-42a6-872b-c8b031b71b5b.png",
+      "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/leonhardt/concept.png",
+      "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/darius-pose.png"
+    ],
+    "transparent_background_requested": true,
+    "original_output_path": "/workspace/generated_images/exec-b0b193ed-d05e-4e6c-b712-a9d338830e0d.png",
+    "rejected_attempts": [
+      {
+        "args": {
+          "prompt": "Create a new full-body game-character concept, matching the elongated slim semi-SD ANATOMICAL PROPORTIONS and polished anime paint quality of REFERENCE IMAGE 2. The user has explicitly rejected big-headed short baby chibi. Target 4.5–5 heads tall from crown to soles; head is only about 20–22% of standing body height, with a high waist, visible long thighs and long shins, proportionally smaller head, slender limbs. Closely match Image 2's head-to-body ratio and full-length elegant silhouette. Do not compress legs or enlarge head. REFERENCE IMAGE 1 supplies this specific hero's unique identity, hairstyle, ears, colors, outfit and EXACT weapon; do NOT copy Image 2's blond blue knight, sword or shield. Retain Image 1 identity and full equipment. One character only, full body standing with both separated feet visible and every weapon tip visible with generous margins. Neutral relaxed ready A-pose, hands gently away from hips, slight turn toward screen RIGHT. Polished fine outlines, softly modeled hand-painted anime fantasy materials, coherent upper-left illumination, game-readable details. Vertical portrait canvas. True transparent RGBA background with every non-character pixel transparent; no backdrop, no gradient haze, no floor, no cast shadow, no aura, no weapon emission or particles, no text. Darius Cron, a fair-skinned young adult male human kingdom executioner. Preserve the first image's short windswept very dark brown hair with a conspicuous pale ash/white forelock, red eyes, stern face, near-black and gunmetal angular heavy armor with silver sharp edging, crimson tabard and cape, dark red leather and small gold chain details. His exact weapon is one massive broad dark iron greatsword with a pale silver cutting edge and dark crimson inset, held one-handed in his left hand (viewer right) with point diagonally down away from feet; complete blade, hilt and hand visible. No shield, no lance, no blue cape. Strong athletic adult stance, sinister disciplined knight rather than horror monster.",
+          "referenced_image_paths": [
+            "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/darius-pose.png",
+            "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/leonhardt/concept.png"
+          ],
+          "transparent_background": true
+        },
+        "original_output_path": "/workspace/generated_images/exec-69475b6a-a78f-42a6-872b-c8b031b71b5b.png",
+        "reason": "Head is visually too small and legs/body too extended (approximately 6–7-head appearance), overshooting accepted 4.5–5-head master."
+      }
+    ]
+  },
+  "candidate_selection": {
+    "reason": "Updated after user requested longer/slimmer 4.5–5-head silhouettes. Initial long candidate overshot to a much smaller head; this revision enlarges head and shortens excessive limb lengths to approach the accepted Leonhardt master.",
+    "comparison_master": "assets/art-direction/aurelia-4head/leonhardt/concept.png",
+    "previous_short_concept": "concept-draft-short/concept.png",
+    "previous_short_provenance": "concept-draft-short/concept-source.json"
+  },
+  "limits": [
+    "Static concept only. No separated parts, skeletal assembly, animation tracks or direction views were produced.",
+    "Proportions follow the approximately 4.5–5-head style target by visual comparison; they are not a measured 3D anatomy guarantee.",
+    "Own hairstyle, color family and weapon type are retained; fine costume ornament and footwear shapes remain painted redesign details.",
+    "Generated PNG bytes copied intact; no manual pixel editing."
+  ],
+  "artifact": {
+    "path": "assets/art-direction/aurelia-4head/darius/concept.png",
+    "original_preserved": true,
+    "sha256": "ec8a662600b69e4e39787ab4510f897b18742b093ed8d3ee30a04530935f7034",
+    "bytes": 2353291,
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA"
+  },
+  "audit": {
+    "checked_at_utc": "2026-10-03T18:08:59.125438+00:00",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 798214,
+    "fully_transparent_fraction": 0.507491,
+    "visible_alpha8_bbox": [
+      17,
+      29,
+      1013,
+      1525
+    ],
+    "visible_alpha8_border_pixels": 0,
+    "visual_notes": [
+      "Dark brown hair with pale forelock and red eyes",
+      "Gunmetal/silver armor, crimson cape, broad crimson greatsword",
+      "Head is larger and thighs/shins shorter than rejected long draft; full separate boots visible"
+    ],
+    "full_body_and_both_feet_visible": true,
+    "weapon_type_and_complete_silhouette_visible": true,
+    "single_character": true,
+    "separated_body_parts": 0,
+    "authored_motion_tracks": 0,
+    "manual_pixel_edits": false
+  },
+  "input_sha256": {
+    "/workspace/generated_images/exec-69475b6a-a78f-42a6-872b-c8b031b71b5b.png": "807aeec168befe7a5ce262df1d1a99da74eb0e91e27c3e4996ad6f44b1110059",
+    "/workspace/species-war-eternal/assets/art-direction/aurelia-4head/leonhardt/concept.png": "7d6af340c2eccc44f822c9299679416f6cab8e3e4d99efb0c517fa16f7c2af99",
+    "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/darius-pose.png": "deadb65a57eae5e7e49402eceab6da1526cd7e7bebe81e25ff8be894817bd15c"
+  }
+}

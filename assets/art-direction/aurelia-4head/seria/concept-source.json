@@ -1,0 +1,70 @@
+{
+  "schema_version": 2,
+  "hero_id": "seria",
+  "asset_kind": "single full-body elongated SD hero concept",
+  "generated_with": "image_gen.imagegen",
+  "generation": {
+    "id": "seria",
+    "prompt": "Transform the character in REFERENCE IMAGE 1 into a new clean high-resolution full-body game hero concept. REFERENCE IMAGE 2 is ONLY the target drawing style, rendering quality, and slightly elongated FOUR-HEAD-TALL SD proportions. Preserve Image 1's unique identity, hairstyle, ears, face colors, outfit palette, accessories and exact weapon type; do not copy the blond knight character or his shield from Image 2. Render polished hand-painted anime fantasy mobile RPG art: fine confident colored outlines, crisp readable silhouette, softly modeled volumes, beautiful material highlights, restrained detail at small game scale. Character anatomy from crown to soles approximately FOUR times head height, adult but stylized with a moderately large head; neither two-head baby chibi nor six-head realistic. One original character only. Full body including BOTH separated feet clearly visible, entire hairstyle and weapon in frame with generous transparent margin. Neutral relaxed ready A-pose, body facing mostly front turned slightly toward viewer's RIGHT, head aligned, arms gently separated so elbows/wrists can later be segmented. Separate boots/legs readable. Soft consistent upper-left illumination. TRANSPARENT RGBA background, no ground plane, no cast shadow, no glow halo, no VFX, no scenery, no text, no UI, no extra views. Tall portrait canvas. Seria Windril, a fair-skinned young adult female elf wind tracker. Preserve the first image's long pale ash-blond hair gathered high with loose side bangs, leaf-green eyes, long pointed elf ears, green ribbon and leafy white-flower hair ornament, forest-green and ivory layered ranger clothing with gold detailing, dark fitted underlayers, brown leather belts and tall dark boots. Her exact weapons are TWO elegant curved single-edged silver blades with pale mint/green accents and gold/brown hilts, one in each hand. Both blades must be complete and recognizable, pointing diagonally down and out in relaxed ready stance, hands separate from hips. Agile adult proportions; composed alert expression. Preserve green lightweight ranger identity, no shield and no new plate armor.",
+    "reference_paths": [
+      "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/seria-pose.png",
+      "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png"
+    ],
+    "transparent_background_requested": true,
+    "original_output_path": "/workspace/generated_images/exec-e9f66b10-d773-4bba-b5b7-0d9016766c99.png"
+  },
+  "candidate_selection": {
+    "selected_at_utc": "2026-10-03T18:00:09.441927+00:00",
+    "selection_only_no_new_generation": true,
+    "reason": "User changed target to longer, slimmer approximately 4.5–5-head proportions. Preserved first generation is closer to the accepted new Leonhardt master than the short draft.",
+    "comparison_master": "assets/art-direction/aurelia-4head/leonhardt/concept.png",
+    "previous_short_concept": "concept-draft-short/concept.png",
+    "previous_short_provenance": "concept-draft-short/concept-source.json",
+    "historical_rejection_reason": "Initial generation had roughly 5–6-head-tall proportions rather than requested 4-head SD.",
+    "caveat": "Legs are longer and slimmer than the new master; this is the closest existing candidate, not a measured proportion match."
+  },
+  "artifact": {
+    "path": "assets/art-direction/aurelia-4head/seria/concept.png",
+    "original_preserved": true,
+    "sha256": "60322a2a22ea06aa094101bfcbeb37e2f0a4e007164d9071fbd1ac93178120ec",
+    "bytes": 2419973,
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA"
+  },
+  "audit": {
+    "checked_at_utc": "2026-10-03T18:00:09.444691+00:00",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 797611,
+    "fully_transparent_fraction": 0.507107,
+    "visible_alpha8_bbox": [
+      8,
+      2,
+      1021,
+      1512
+    ],
+    "visible_alpha8_border_pixels": 0,
+    "identity_features_visually_checked": [
+      "Pale-blond hair, green eyes, elf ears",
+      "Green/ivory ranger costume",
+      "Two separate curved blades"
+    ],
+    "full_body_and_both_feet_visible": true,
+    "weapon_type_and_complete_silhouette_visible": true,
+    "single_character": true,
+    "separated_body_parts": 0,
+    "authored_motion_tracks": 0,
+    "visual_proportions": "Elongated, small-head silhouette closer to the newer master; Seria is visibly more slender and longer-legged.",
+    "manual_pixel_edits": false
+  },
+  "limits": [
+    "Static concept only. No separated parts, skeletal assembly, animation tracks or direction views were produced.",
+    "Longer 4.5–5-head direction is assessed visually; exact head-count is not guaranteed by this painting.",
+    "PNG bytes copied intact from preserved generated output; no pixel editing."
+  ]
+}

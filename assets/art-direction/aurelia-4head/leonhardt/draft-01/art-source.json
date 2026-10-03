@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "hero_id": "leonhardt",
+  "tool": "image_gen.imagegen",
+  "kind": "true_separated_anatomical_parts",
+  "generated_parts": 25,
+  "reviewed": false,
+  "component_integrity_verified": true,
+  "original_generated_path": "/workspace/generated_images/exec-f0a439d1-03cb-410b-b897-997c15aca29d.png",
+  "prompt": "Produce a precision game cutout-animation PARTS ATLAS for the EXACT knight character in the attached concept. This is NOT a character pose sheet. Do NOT draw ANY complete assembled person. Draw exactly TWENTY-FIVE separate isolated anatomical/clothing/equipment parts in a strict FIVE columns by FIVE rows square grid. Square canvas ideally2048×2048, true transparent RGBA. Each equal cell holds exactly ONE unconnected part, centered, with generous transparent gutters. No cell lines, labels, numbers, text, backgrounds, cast shadows, particles or magic. Maintain the concept's exceptional polished anime-painted quality: pale gold blond hair, blue eyes, silver armor with gold heraldic trim, royal blue cloth, black undersuit, ornate sword and royal-blue white-crested gold-rimmed shield. All parts are for the same slightly elongated four-head-tall character, front view with very slight screen-right three-quarter turn. CRITICAL: Every arm is split into UPPER ARM, FOREARM, HAND; every leg is split into THIGH, SHIN, FOOT. Do NOT draw whole connected arms or legs. Paint the normally hidden round joint ends completely, with enough overlapping material for animation. Limbs point straight down, proximal end at top and distal end at bottom. Feet point slightly outward. Each part is complete, no cropped edges or missing joint ends. Face/head must have no hairstyle attached because hair is two separate pieces. Chest must have NO head, no arms, no hands, no lowerbody. Pelvis must have NO legs attached. Hands contain NO weapon. Weapons contain NO hand. Anatomical LEFT means the character's own LEFT and will appear on viewer RIGHT.\nEXACT ROW-MAJOR CELL CONTENTS:\nROW1 COL1: bare full HEAD/face with ears and short neck, blue eyes, no hair at all, no clothing.\nROW1 COL2: complete BACK HAIR mass only, gold-blond rear hair with neck-length tips, no face, no head.\nROW1 COL3: FRONT HAIR/BANGS only, gold-blond fringe and top spikes, no face or head.\nROW1 COL4: CHEST/TORSO silver breastplate from neckbase to waist with gold ornaments and black undercloth, no shoulders or limbs.\nROW1 COL5: PELVIS/hip armor and black shorts only from waist to upperleg sockets, no legs and no long tabards.\nROW2 COL1: LEFT UPPER ARM upper-arm armor sleeve from shoulder ball to elbow, no forearm.\nROW2 COL2: LEFT FOREARM silver vambrace from elbow round joint to wrist, no hand.\nROW2 COL3: LEFT HAND black leather glove only with complete wrist cuff, fingers relaxed ready to hold shield, no arm.\nROW2 COL4: RIGHT UPPER ARM armor sleeve from shoulder ball to elbow, no forearm.\nROW2 COL5: RIGHT FOREARM silver vambrace from elbow round joint to wrist, no hand.\nROW3 COL1: RIGHT HAND black leather glove only with wrist cuff, gripping shape but empty, no arm.\nROW3 COL2: LEFT THIGH black undersuit and silver upperleg armor from hip round end to knee round end, no lowerleg or foot.\nROW3 COL3: LEFT SHIN silver greave from knee round joint to ankle, no foot.\nROW3 COL4: LEFT FOOT silver armored boot foot only from ankle to toe and heel, no shin.\nROW3 COL5: RIGHT THIGH black undersuit and silver upperleg armor from hip round end to knee round end, no lowerleg.\nROW4 COL1: RIGHT SHIN silver greave from knee round joint to ankle, no foot.\nROW4 COL2: RIGHT FOOT silver armored boot foot only from ankle to toe and heel, no shin.\nROW4 COL3: full BACK CAPE royal blue with fine gold hem, entire cloth from collar attachment to lower hem, hanging downward, no body.\nROW4 COL4: FRONT TABARD one blue-and-ivory gold-embroidered narrow cloth panel hanging straight from belt, no belt or body.\nROW4 COL5: complete LONG SWORD only, silver blade pointing vertically UP, gold guard and hilt down, no hand, no effects.\nROW5 COL1: complete SHIELD only, tall blue shield with gold rim and white wing/royal crest, front surface facing viewer, no hand/arm.\nROW5 COL2: LEFT SHOULDER pauldron only, curved silver-and-gold plate, no arm.\nROW5 COL3: RIGHT SHOULDER pauldron only, matching silver-and-gold plate, no arm.\nROW5 COL4: brown leather BELT with gold star buckle only, horizontally laid straight, no torso or pelvis.\nROW5 COL5: REAR GARMENT/TABARD cloth panel only, ivory-blue rear skirt flap with gold trim, hanging straight, no legs or body.\nPreserve exact 5×5 order. There must be25 separate illustrations and NO full character anywhere. Use each cell efficiently but leave minimum12% transparent margin. The head, hair, chest, pelvis and each joint segment are independent pieces ready to assemble with a skeletal rig.",
+  "reference_images": [
+    "res://assets/art-direction/pilot-01/leonhardt-concept.png"
+  ],
+  "atlas_dimensions": [
+    1254,
+    1254
+  ],
+  "sha256": "2e3b1ca59609a10a43a1c53085127d8e1331fda8dd8c4c32d6e178794d25560f",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "large_component_count": 25,
+  "pixel_edits_after_generation": false,
+  "alpha_regions": [
+    {
+      "id": "head",
+      "region": [
+        46,
+        53,
+        170,
+        205
+      ],
+      "pixels_gt_24": 24048
+    },
+    {
+      "id": "hair_back",
+      "region": [
+        267,
+        16,
+        222,
+        235
+      ],
+      "pixels_gt_24": 31833
+    },
+    {
+      "id": "hair_front",
+      "region": [
+        491,
+        28,
+        274,
+        220
+      ],
+      "pixels_gt_24": 31289
+    },
+    {
+      "id": "chest",
+      "region": [
+        790,
+        29,
+        184,
+        232
+      ],
+      "pixels_gt_24": 32478
+    },
+    {
+      "id": "pelvis",
+      "region": [
+        1008,
+        57,
+        231,
+        199
+      ],
+      "pixels_gt_24": 34483
+    },
+    {
+      "id": "left_upper_arm",
+      "region": [
+        81,
+        283,
+        134,
+        206
+      ],
+      "pixels_gt_24": 18613
+    },
+    {
+      "id": "left_forearm",
+      "region": [
+        334,
+        275,
+        102,
+        215
+      ],
+      "pixels_gt_24": 14174
+    },
+    {
+      "id": "left_hand",
+      "region": [
+        565,
+        305,
+        146,
+        175
+      ],
+      "pixels_gt_24": 13198
+    },
+    {
+      "id": "right_upper_arm",
+      "region": [
+        819,
+        281,
+        150,
+        210
+      ],
+      "pixels_gt_24": 20236
+    },
+    {
+      "id": "right_forearm",
+      "region": [
+        1076,
+        271,
+        97,
+        213
+      ],
+      "pixels_gt_24": 13618
+    },
+    {
+      "id": "right_hand",
+      "region": [
+        63,
+        542,
+        127,
+        157
+      ],
+      "pixels_gt_24": 11677
+    },
+    {
+      "id": "left_thigh",
+      "region": [
+        297,
+        502,
+        157,
+        224
+      ],
+      "pixels_gt_24": 23732
+    },
+    {
+      "id": "left_shin",
+      "region": [
+        570,
+        500,
+        116,
+        227
+      ],
+      "pixels_gt_24": 15731
+    },
+    {
+      "id": "left_foot",
+      "region": [
+        772,
+        559,
+        184,
+        160
+      ],
+      "pixels_gt_24": 16306
+    },
+    {
+      "id": "right_thigh",
+      "region": [
+        1043,
+        502,
+        154,
+        222
+      ],
+      "pixels_gt_24": 23369
+    },
+    {
+      "id": "right_shin",
+      "region": [
+        89,
+        736,
+        117,
+        231
+      ],
+      "pixels_gt_24": 16695
+    },
+    {
+      "id": "right_foot",
+      "region": [
+        303,
+        799,
+        164,
+        158
+      ],
+      "pixels_gt_24": 15353
+    },
+    {
+      "id": "cape_back",
+      "region": [
+        495,
+        744,
+        265,
+        242
+      ],
+      "pixels_gt_24": 37824
+    },
+    {
+      "id": "cape_front",
+      "region": [
+        819,
+        744,
+        129,
+        237
+      ],
+      "pixels_gt_24": 20272
+    },
+    {
+      "id": "weapon",
+      "region": [
+        1075,
+        727,
+        104,
+        266
+      ],
+      "pixels_gt_24": 8650
+    },
+    {
+      "id": "offhand",
+      "region": [
+        33,
+        969,
+        196,
+        270
+      ],
+      "pixels_gt_24": 34970
+    },
+    {
+      "id": "left_shoulder",
+      "region": [
+        261,
+        1024,
+        205,
+        188
+      ],
+      "pixels_gt_24": 23015
+    },
+    {
+      "id": "right_shoulder",
+      "region": [
+        527,
+        1024,
+        205,
+        188
+      ],
+      "pixels_gt_24": 22997
+    },
+    {
+      "id": "belt",
+      "region": [
+        759,
+        1072,
+        229,
+        70
+      ],
+      "pixels_gt_24": 10027
+    },
+    {
+      "id": "garment_back",
+      "region": [
+        1020,
+        995,
+        218,
+        233
+      ],
+      "pixels_gt_24": 30687
+    }
+  ],
+  "limitations": [
+    "Anatomical components are generated painting pieces, not a 3D mesh model.",
+    "This is an unapproved assembly draft until the actual skeletal viewer is visually reviewed.",
+    "Existing procedural motion curves are reused/adapted; no claim of 16 newly drawn animation sequences."
+  ]
+}

@@ -531,15 +531,16 @@ func test_concept_roundtrip(game):
 	var open_concept: Button = game.content_root.find_child("ArtDirectionConceptButton", true, false)
 	await pointer_click(open_concept)
 	for frame in 60:
-		if current_scene != null and current_scene.scene_file_path == "res://scenes/art/HeroConceptStudy.tscn": break
+		if current_scene != null and current_scene.scene_file_path == "res://scenes/art/HeroPartsStudy.tscn": break
 		await process_frame
-	var reached: bool = current_scene != null and current_scene.scene_file_path == "res://scenes/art/HeroConceptStudy.tscn"
-	check(reached, "real pointer opens the separate hero concept scene")
+	var reached: bool = current_scene != null and current_scene.scene_file_path == "res://scenes/art/HeroPartsStudy.tscn"
+	check(reached, "real pointer opens the separate hero parts review scene")
 	if not reached: return game
 	check(not is_instance_id_valid(previous_id), "scene transition frees the prior game instead of running hidden combat")
 	var concept = current_scene
-	var concept_image: TextureRect = concept.find_child("NewHeroConcept", true, false)
-	check(concept_image != null and concept_image.texture != null and concept_image.is_visible_in_tree(), "concept scene displays the actual new hero artwork")
+	var concept_image: TextureRect = concept.find_child("StaticConceptReference", true, false)
+	check(concept_image != null and concept_image.texture != null and concept_image.is_visible_in_tree(), "parts review labels and displays the static source artwork")
+	check(bool(concept.gallery_state().parts_ready) and bool(concept.gallery_state().source_is_hidden), "parts review renders the independent rig with its source controller hidden")
 	var return_button: Button = concept.find_child("OpenArtDirectionLab", true, false)
 	await pointer_click(return_button)
 	for frame in 180:

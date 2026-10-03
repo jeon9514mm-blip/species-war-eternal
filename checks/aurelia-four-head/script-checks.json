@@ -1,0 +1,62 @@
+[
+  {
+    "script": "scripts/art/HeroPartsCatalog.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "script": "scripts/art/HeroPartsMotion.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "script": "scripts/art/HeroPartsRig3D.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "script": "scripts/art/HeroPartsStudy.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "script": "scripts/art/ArtDirectionBattlefield.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "script": "scripts/art/ArtDirectionLab.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "script": "scripts/AureliaHeroPartsSmokeTest.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "script": "scripts/ArtDirectionPilotSmokeTest.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "script": "tools/capture_aurelia_concepts.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "script": "tools/capture_aurelia_parts.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "script": "tools/capture_aurelia_pose_sheets.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "script": "tools/capture_leonhardt_quality_review.gd",
+    "exit_code": 0,
+    "passed": true
+  }
+]

@@ -1,0 +1,212 @@
+{
+  "schema_version": 2,
+  "hero_id": "leonhardt",
+  "tool": "image_gen.imagegen",
+  "master": "concept.png",
+  "master_sha256": "7d6af340c2eccc44f822c9299679416f6cab8e3e4d99efb0c517fa16f7c2af99",
+  "master_target": "user_selected_longer_slimmer4.5_to5_head",
+  "kind": "18_concept_faithful_raster_parts",
+  "prompt": "Create a concept-faithful CUTOUT ANIMATION KIT from this exact attached Leonhardt master painting. Preserve its SAME face and hair, SAME camera angle and limb perspective, SAME silver/gold armor ornaments, SAME blue cape, SAME sword/shield and SAME slender long-legged4.5-to-5-head body design. This is a careful separation of ONE EXISTING MASTER, not independent redesign of each body piece. Existing visible surfaces should match the master as closely as possible; only paint the small normally occluded surfaces needed to rotate joints. Never change his facial identity or redraw different hair bangs. The FULL HEAD WITH FACE AND ALL FRONT HAIR IS ONE SINGLE INTACT PIECE, not a bald head. Chest and waist remain ONE continuous core preserving the actual silhouette.\nDraw exactly18 complete independent pieces in a precise SIX columns by THREE rows atlas. Canvas1536×1024, transparent RGBA. Each cell256×341approximately. Center one part per cell, with at least35px fully transparent margins on ALL sides. Every part must remain ENTIRELY inside its own cell: maximum180px width and270px height. Preserve each part's aspect ratio when fitting into its cell. No text, no labels, no numbering, no grid lines, no cast shadows, no environment. Do NOT include any complete whole person anywhere. Do NOT add spare armor or alternate parts.\nANATOMY AND ASSEMBLY QUALITY: These are natural overlapping painted body layers, NOT mannequin/mechanical components. NO BLACK CIRCULAR HOLES, NO EMPTY CYLINDRICAL SOCKETS, NO RINGS OUTLINING CUT ENDS. Joint ends must be CLOSED with opaque continuation of the existing dark undersuit, skin or armor, extending a little under the adjoining piece. Those invisible extension areas should be plain opaque material, not conspicuous caps or metal cuffs. Every arm is separated at shoulder, elbow and wrist; every leg at hip, knee and ankle. Hands contain no weapon; weapons contain no hands. Do not duplicate armor: each shoulder pauldron belongs only to its upper-arm piece, never also to the chest core. Kneecap armor belongs once to its shin piece. The master's slender thigh and shin silhouettes must stay slender, not chunky short chibi legs. Keep parts in their original master-view orientation, not different side/front views.\nEXACT ROW-MAJOR ORDER:\nROW1COL1: COMPLETE INTACT HEAD including his recognizable blue-eyed face, ears, tousled golden-blond hairstyle including front fringe and crown, and short neck continuation. Eyes both clearly visible. No torso or clothing.\nROW1COL2: SMALL REAR HAIR/NAPE TIP LAYER only, the short golden-blond trailing nape wisps from behind this same head. No head, no face, no full hair helmet. This piece is only secondary-motion hair tips, not a replacement head.\nROW1COL3: CONTINUOUS TORSO+WAIST CORE: neck collar, silver/gold breastplate, dark undersuit waist, brown belt, hip armor and the short blue/ivory front tabard from the exact master, one connected piece. NO head, NO arms, NO shoulder pauldrons and NO legs. Natural fully painted closed shoulder and hip overlap areas, no socket openings.\nROW1COL4: COMPLETE BLUE BACK CAPE cloth only from collar attachment to gold-edged trailing hem, preserving master folds and blue/gold design, no body or arms.\nROW1COL5: COMPLETE SILVER/GOLD LONG SWORD only from tip to pommel, same master sword design, no hand, no effects.\nROW1COL6: COMPLETE BLUE HERALDIC SHIELD only, same gold rim and white wing crest, no hand/arm.\nROW2COL1: Anatomical LEFT UPPER ARM including its shoulder pauldron and upper-arm undersuit only, closed shoulder overlap and elbow overlap; no forearm.\nROW2COL2: LEFT FOREARM vambrace from closed elbow overlap to wrist overlap only; no hand and no upper arm.\nROW2COL3: LEFT HAND black glove only, natural closed wrist extension, shield-gripping hand shape, no shield or arm.\nROW2COL4: Anatomical RIGHT UPPER ARM including its shoulder pauldron and upper-arm undersuit only; closed ends; no forearm.\nROW2COL5: RIGHT FOREARM silver vambrace only; no hand or upper arm.\nROW2COL6: RIGHT HAND black glove only, original sword-gripping hand shape, no sword.\nROW3COL1: LEFT THIGH only, long slender dark undersuit with silver/gold thigh plate from master, closed hip and knee overlap, no shin or foot.\nROW3COL2: LEFT SHIN only, long slender silver/gold greave including its kneecap armor, closed knee and ankle overlaps, NO toe or heel or foot.\nROW3COL3: LEFT BOOT FOOT only including ankle overlap, heel, sole and toe, no shin.\nROW3COL4: RIGHT THIGH only, same master long slender thigh design with closed overlaps, no shin or foot.\nROW3COL5: RIGHT SHIN only including kneecap armor and long greave, closed overlaps, NO foot, no toe.\nROW3COL6: RIGHT BOOT FOOT only with ankle overlap, heel, sole and toe, no shin.\nAnatomical LEFT is the knight's own left, appearing viewerRIGHT. Separate all18 pieces by generous transparent empty space and keep this exact layout. The output should enable the original natural master pose to be reconstructed faithfully, with the same face, proportional silhouette and camera perspective. Natural reconstruction quality is more important than inventing additional detail.",
+  "original_generated_path": "/workspace/generated_images/exec-8b574b3b-c872-4314-854a-faec62630648.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "sha256": "936d4eda1105d6d9a87b82a37ddefd03dca5fcf120f8d883bfbf72191ddb194b",
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "large_component_count": 18,
+  "pixel_edits_after_generation": false,
+  "prior_version": "draft-01",
+  "component_integrity_verified": true,
+  "reviewed": false,
+  "parts": [
+    {
+      "id": "head",
+      "region": [
+        25,
+        58,
+        294,
+        299
+      ],
+      "pixels_gt_24": 50897
+    },
+    {
+      "id": "hair_back",
+      "region": [
+        328,
+        218,
+        142,
+        123
+      ],
+      "pixels_gt_24": 8431
+    },
+    {
+      "id": "chest",
+      "region": [
+        504,
+        34,
+        252,
+        370
+      ],
+      "pixels_gt_24": 53806
+    },
+    {
+      "id": "cape_back",
+      "region": [
+        783,
+        28,
+        287,
+        403
+      ],
+      "pixels_gt_24": 64515
+    },
+    {
+      "id": "weapon",
+      "region": [
+        1086,
+        15,
+        152,
+        395
+      ],
+      "pixels_gt_24": 15265
+    },
+    {
+      "id": "offhand",
+      "region": [
+        1282,
+        32,
+        239,
+        373
+      ],
+      "pixels_gt_24": 58467
+    },
+    {
+      "id": "left_upper_arm",
+      "region": [
+        101,
+        414,
+        168,
+        248
+      ],
+      "pixels_gt_24": 26138
+    },
+    {
+      "id": "left_forearm",
+      "region": [
+        341,
+        434,
+        135,
+        213
+      ],
+      "pixels_gt_24": 14716
+    },
+    {
+      "id": "left_hand",
+      "region": [
+        562,
+        519,
+        108,
+        144
+      ],
+      "pixels_gt_24": 8499
+    },
+    {
+      "id": "right_upper_arm",
+      "region": [
+        795,
+        431,
+        157,
+        233
+      ],
+      "pixels_gt_24": 23507
+    },
+    {
+      "id": "right_forearm",
+      "region": [
+        1062,
+        435,
+        170,
+        223
+      ],
+      "pixels_gt_24": 17070
+    },
+    {
+      "id": "right_hand",
+      "region": [
+        1344,
+        517,
+        112,
+        131
+      ],
+      "pixels_gt_24": 8686
+    },
+    {
+      "id": "left_thigh",
+      "region": [
+        58,
+        672,
+        152,
+        320
+      ],
+      "pixels_gt_24": 31020
+    },
+    {
+      "id": "left_shin",
+      "region": [
+        347,
+        678,
+        109,
+        319
+      ],
+      "pixels_gt_24": 23004
+    },
+    {
+      "id": "left_foot",
+      "region": [
+        1327,
+        750,
+        153,
+        224
+      ],
+      "pixels_gt_24": 19003
+    },
+    {
+      "id": "right_thigh",
+      "region": [
+        831,
+        673,
+        172,
+        329
+      ],
+      "pixels_gt_24": 31784
+    },
+    {
+      "id": "right_shin",
+      "region": [
+        1087,
+        681,
+        110,
+        320
+      ],
+      "pixels_gt_24": 22968
+    },
+    {
+      "id": "right_foot",
+      "region": [
+        547,
+        750,
+        163,
+        203
+      ],
+      "pixels_gt_24": 17345
+    }
+  ],
+  "limitations": [
+    "Raster cutout parts, not a3D anatomical model.",
+    "Generated visible surfaces are matched to one master but are not mathematically pixel-identical extractions.",
+    "Actual neutral/motion reconstruction review is still required before battle enable."
+  ]
+}

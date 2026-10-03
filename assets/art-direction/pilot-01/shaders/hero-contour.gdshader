@@ -12,6 +12,9 @@ uniform vec4 rim_color : source_color = vec4(1.0, 0.94, 0.73, 1.0);
 uniform float outline_px : hint_range(0.0, 2.0) = 1.05;
 uniform float rim_strength : hint_range(0.0, 0.5) = 0.18;
 uniform float facing_sign = 1.0;
+// Cutout sheets can retain faint matte values around isolated components.
+// Keep the published single-image hero default; articulated sheets opt in.
+uniform float alpha_cutoff : hint_range(0.0, 1.0) = 0.025;
 
 vec4 atlas_sample(vec2 uv) {
 	vec2 lo = atlas_rect.xy + atlas_texel * 0.5;
@@ -45,5 +48,5 @@ void fragment() {
 	vec3 combined = mix(outline_color.rgb, painted, base.a / max(opacity, 0.0001));
 	ALBEDO = combined * actor_tint.rgb;
 	ALPHA = opacity * actor_tint.a;
-	ALPHA_SCISSOR_THRESHOLD = 0.025;
+	ALPHA_SCISSOR_THRESHOLD = alpha_cutoff;
 }

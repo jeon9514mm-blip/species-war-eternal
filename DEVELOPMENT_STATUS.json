@@ -2,7 +2,7 @@
   "project": "Species War: Eternal",
   "development_step": "v83-6.5",
   "workstream": "anime_art_direction_pilot",
-  "status": "prototype_pending_visual_feedback",
+  "status": "leonhardt_grip_and_attack_revision_ready_for_visual_review",
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "save_version": 37,
   "orientation": "landscape_only",
@@ -103,7 +103,7 @@
   "combat_movement_rules_changed": false,
   "combat_damage_rules_changed": false,
   "game_zip_created": false,
-  "working_branch": "work/hero-monster-art-pilot",
+  "working_branch": "work/aurelia-four-head",
   "previous_hero_menu_validation": {
     "published_main_commit": "5225317abdd65641708c094a397d5ed746cc4a0b",
     "validation": "checks/hero-menu/regression.json",
@@ -520,44 +520,44 @@
       "log": "checks/raid-strength-quality/render.log"
     }
   },
-  "base_main_commit": "eb1812d9dd28eca0f830322f2e33a01bb434a57e",
-  "documentation": "docs/HERO_MONSTER_PILOT_KO.md",
-  "validation": "checks/hero-monster-pilot/regression.json",
-  "script_checks_scope": "9 changed or new pilot scripts; no claim of whole repository revalidation",
-  "script_checks_passed": 9,
-  "script_checks_total": 9,
+  "base_main_commit": "af1d9d6f327599372998b9b8ead74e80881a60c4",
+  "documentation": "docs/AURELIA_HERO_ART_KO.md",
+  "validation": "checks/aurelia-four-head/regression.json",
+  "script_checks_scope": "12 changed or new multipart pilot scripts; no claim of whole repository revalidation",
+  "script_checks_passed": 12,
+  "script_checks_total": 12,
   "focused_engine_tests_passed": 2,
   "focused_engine_tests_total": 2,
-  "runtime_assertions_passed": 1630,
-  "runtime_assertions_note": "1218 new hero/monster checks + 412 rerun art-pilot checks",
+  "runtime_assertions_passed": 1216,
+  "runtime_assertions_note": "803 multipart checks + 413 actual pilot regression checks",
   "final_art_pilot_validation_complete": true,
-  "actual_ui_captures": 8,
-  "capture_directory": "checks/hero-monster-pilot/captures",
-  "live_preview_video": "checks/hero-monster-pilot/pilot-live.mp4",
+  "actual_ui_captures": 17,
+  "capture_directory": "checks/aurelia-four-head",
+  "live_preview_video": "checks/aurelia-four-head/leonhardt-v2/motion-review.mp4",
   "completed_tests": [
     {
-      "script": "scripts/HeroMonsterPilotSmokeTest.gd",
-      "checks": 1218,
+      "script": "scripts/AureliaHeroPartsSmokeTest.gd",
+      "checks": 803,
       "failures": []
     },
     {
       "script": "scripts/ArtDirectionPilotSmokeTest.gd",
-      "checks": 412,
+      "checks": 413,
       "failures": []
     }
   ],
-  "new_artwork_files_added": 15,
+  "new_artwork_files_added": null,
   "project_godot_changed": false,
   "production_entry_scene_changed": false,
   "production_runtime_code_changed": false,
   "art_pilot": {
     "selected_hero": "leonhardt",
     "selected_map": "bright_meadow",
-    "proportion": "slightly elongated approximately four-head-tall SD",
+    "proportion": "user-selected longer slender legs, approximately 4.5 to 5 heads tall",
     "visual_style": "anime characters with bright hand-painted fantasy environments",
     "preserved_identity": "blond hair, blue eyes, silver-and-gold armor, blue cape, sword and heraldic shield; existing frontline protector gameplay role",
     "scene": "scenes/art/ArtDirectionLab.tscn",
-    "concept_scene": "scenes/art/HeroConceptStudy.tscn",
+    "concept_scene": "scenes/art/HeroPartsStudy.tscn",
     "scene_launch": "Open either scene in Godot 4.7.2 and press F6; no separate XDG_DATA_HOME is needed for ordinary scene use.",
     "concept_scene_instantiates_main": false,
     "hunt_scene_reuses_production_combat": true,
@@ -566,14 +566,14 @@
     "hunt_heroes": "existing art and tracks; Leonhardt presentation adds distance-based gait, continuous breath, bounded secondary motion and contour",
     "new_hero_in_production_combat": false,
     "hero_concept": {
-      "path": "assets/art-direction/pilot-01/leonhardt-concept.png",
+      "path": "assets/art-direction/aurelia-4head/leonhardt/concept.png",
       "size": [
-        1164,
-        1351
+        1024,
+        1536
       ],
       "format": "RGBA PNG",
-      "source": "AI-generated concept based on the project hero reference",
-      "approval": "awaiting_visual_feedback"
+      "source": "AI-edited concept preserving Leonhardt identity; user selected longer 4.5 to 5-head proportion",
+      "approval": "master_selected_for_assembly_review; not final assembled-art approval"
     },
     "ground_texture": {
       "path": "assets/art-direction/pilot-01/meadow-ground.png",
@@ -597,12 +597,12 @@
       ]
     },
     "art_sources": "assets/art-direction/pilot-01/ART_SOURCE.json",
-    "part_spec": "assets/art-direction/pilot-01/hero-part-spec.json",
+    "part_spec": "assets/art-direction/aurelia-4head/leonhardt/parts.json",
     "proposed_joints": 21,
-    "proposed_parts": 31,
-    "part_spec_connected_to_runtime": false,
-    "separated_parts_completed": 0,
-    "new_animation_tracks_authored": 0,
+    "proposed_parts": 18,
+    "part_spec_connected_to_runtime": true,
+    "separated_parts_completed": 18,
+    "new_animation_tracks_authored": 16,
     "production_design_applied": false,
     "progression_persistence": "read and write blocked; in-memory session only",
     "settings_persistence": "read and write blocked; in-memory session only",
@@ -611,12 +611,11 @@
     "diagnostic_requires_disposable_xdg_data_home": true,
     "diagnostic_xdg_path_required_substring": "art-pilot",
     "roadmap": [
-      "review hero concept and meadow",
-      "create complete 31-part art set",
-      "author 6 core actions",
-      "author full 16 action states",
-      "representative 4-hero party",
-      "expand to all 30 heroes and maps"
+      "reconstruct natural Leonhardt neutral pose from the longer master",
+      "review idle walk and attack in actual separated-part renderer",
+      "expand the approved standard to the fifteen Aurelia heroes including Leonhardt",
+      "review sixteen source-time action states per hero",
+      "connect visually reviewed definitions to the independent live hunt"
     ],
     "core_six_actions": [
       "idle",
@@ -656,7 +655,71 @@
       "source": "assets/art-direction/pilot-01/monsters/monster-art-source.json"
     },
     "soft_ground_contact": true,
-    "foot_dust_cap": 16
+    "foot_dust_cap": 16,
+    "previous_static_concept_scene": "scenes/art/HeroConceptStudy.tscn",
+    "aurelia_parts": {
+      "faction": "aurelia",
+      "total_heroes": 15,
+      "additional_heroes_after_leonhardt": 14,
+      "viewer": "scenes/art/HeroPartsStudy.tscn",
+      "renderer": "scripts/art/HeroPartsRig3D.gd",
+      "catalog": "scripts/art/HeroPartsCatalog.gd",
+      "joint_nodes": 21,
+      "source_action_states": 16,
+      "rest_pose_is_separate_review_control": true,
+      "first_long_leg_assembly_parts": 18,
+      "approval_gate": "reviewed and component_integrity_verified",
+      "approved_hero_ids": [],
+      "artwork_state": "15 static concept drafts; Leonhardt long-leg18-part assembly and bounded equipment wrists rendered for review; other14 active multipart definitions absent",
+      "new_leonhardt_motion_state": "16 source-time prototypes; attack foreground/grip corrected and all equipment wrists bounded; reviewed=false",
+      "new_hand_drawn_240_sequences_completed": false,
+      "scope_document": "docs/AURELIA_HERO_ART_KO.md",
+      "motion_revision": "leonhardt_parts_keyposes_v4_bounded_equipment_wrists",
+      "remaining_hero_ids": [
+        "mira",
+        "elisia",
+        "kairen",
+        "orwin",
+        "seria",
+        "astel",
+        "darius",
+        "lunea",
+        "caelum",
+        "adrien",
+        "tessa",
+        "naia",
+        "sael",
+        "odelia"
+      ]
+    },
+    "new_animation_tracks_scope": "Leonhardt source-time procedural prototypes; not final hand-drawn frame sequences or approved animations."
   },
-  "editor_reimport_verified": true
+  "editor_reimport_verified": true,
+  "previous_hero_monster_pilot_validation": {
+    "documentation": "docs/HERO_MONSTER_PILOT_KO.md",
+    "validation": "checks/hero-monster-pilot/regression.json",
+    "script_checks_scope": "9 changed or new pilot scripts; no claim of whole repository revalidation",
+    "script_checks_passed": 9,
+    "script_checks_total": 9,
+    "focused_engine_tests_passed": 2,
+    "focused_engine_tests_total": 2,
+    "runtime_assertions_passed": 1630,
+    "runtime_assertions_note": "1218 new hero/monster checks + 412 rerun art-pilot checks",
+    "actual_ui_captures": 8,
+    "capture_directory": "checks/hero-monster-pilot/captures",
+    "live_preview_video": "checks/hero-monster-pilot/pilot-live.mp4",
+    "completed_tests": [
+      {
+        "script": "scripts/HeroMonsterPilotSmokeTest.gd",
+        "checks": 1218,
+        "failures": []
+      },
+      {
+        "script": "scripts/ArtDirectionPilotSmokeTest.gd",
+        "checks": 412,
+        "failures": []
+      }
+    ]
+  },
+  "new_artwork_files_added_note": "15 current concepts and Leonhardt separated-art candidates; historical drafts preserved; see art source records rather than a bulk completion count."
 }

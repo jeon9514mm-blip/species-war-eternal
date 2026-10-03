@@ -1,0 +1,6 @@
+{
+  "source": "res://assets/art-direction/pilot-01/leonhardt-concept.png",
+  "action": "exact byte copy of previously approved style concept",
+  "sha256": "1e85f6d2dfcf1a36d675fa2b8d28bd8026d38f0655b921e8b70223fc7191da99",
+  "pixel_edits_after_generation": false
+}

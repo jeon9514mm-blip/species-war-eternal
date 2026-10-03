@@ -1,0 +1,27 @@
+{
+  "id": "kairen",
+  "prompt": "Create ONE new complete full-body character concept based on the FIRST attached small original game hero, redrawn to match the SECOND attached polished blond knight's exact professional illustration quality and slightly elongated FOUR-HEAD-TALL SD proportions. The second image is only a quality/proportion/style reference, NOT a costume or character to copy. Preserve the first character's exact visual identity, hair color and hairstyle, facial features, race, outfit colors, accessories and individual weapon. Render with crisp elegant anime linework, exceptionally polished hand-painted shading, rich fabric folds, metallic highlights, readable small ornate gold details, expressive refined face, clear human anatomy and hands. Four-head body, visibly longer torso and legs than the tiny old chibi, no infant proportions, no simplification. Full figure from top of hair to soles visible with ample transparent margin. Single figure on TRUE RGBA transparent background, NO ground shadow, no scenery, no text, no frame, no decorative floating FX. Relaxed front three-quarter pose turned slightly toward screen RIGHT; weight evenly on both feet, arms slightly apart so limbs are readable, neutral ready stance suitable for subsequent anatomical cutout rigging. Weapon shown complete and recognizable, not crossing the face. Maintain same warm neutral studio key light as the knight.\nCHARACTER: Kairen, the original androgynous youthful adult elf star mage, long flowing pale lilac-silver hair, pointed ears, violet eyes, gold star hair ornament at right temple, ornate deep navy blue and white layered mage garments with thin gold constellation-like trim, short cape panels and fitted waist, dark boots with gold fittings. Preserve the delicate face and original hair arrangement. Hold the original long navy-and-gold staff beside the body in the left anatomical hand, topped with a complete gold ring holding a rich sapphire-blue orb and small pointed star details. Right hand relaxed and open near waist. No floating magic, no wand replacing the staff, no knight armor.",
+  "input": "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/kairen-pose.png",
+  "style": "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png",
+  "output": "/workspace/generated_images/exec-78abef51-8af5-4b3f-a206-3a03849fb06f.png",
+  "schema_version": 1,
+  "tool": "image_gen.imagegen",
+  "kind": "static_fullbody_concept_not_animation",
+  "sha256": "587a80f890c6b42c995566691490789d2a8a66127fd4328f68a8d7d6fdeb6656",
+  "dimensions": [
+    1164,
+    1351
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "alpha_bbox": [
+    0,
+    5,
+    1164,
+    1351
+  ],
+  "pixel_edits_after_generation": false
+}

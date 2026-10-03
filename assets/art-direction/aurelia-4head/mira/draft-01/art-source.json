@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "hero_id": "mira",
+  "tool": "image_gen.imagegen",
+  "kind": "true_separated_anatomical_parts",
+  "generated_parts": 25,
+  "bound_parts": 25,
+  "reviewed": false,
+  "component_integrity_verified": true,
+  "original_generated_path": "/workspace/generated_images/exec-ec1d77ed-6f48-41a6-87c8-80ee0229f2e8.png",
+  "final_generated_path": "/workspace/generated_images/exec-d0809a48-bffd-4213-b79f-642040a2d17f.png",
+  "prompt": "Create a precision cutout-animation BODY-PARTS ATLAS for the character in the FIRST attached image. The SECOND attached image is ONLY an example of required 25-piece layout and separation, never copy its knight costume or face. Keep the first image's exact face, hair, color palette, clothing details and weapon. Match its polished professional anime-painted finish. Do NOT draw a complete character or multiple poses. Exactly5columns×5rows on square transparentRGBA canvas, ideally2048×2048. No labels, grid lines, text, background, cast shadows, particles or glow. Each cell holds one complete isolated anatomical part with generous transparent gutters. Upperarms, forearms and hands MUST be three separate pieces; thighs, shins and feet MUST be three separate pieces. Paint closed hidden joint ends and overlap allowance, never leave missing tops. Limbs point downward with proximal joint at top. Face/head is bald without attached hair; hair is split into back mass and front bangs. Chest has NO head, arms, pelvis or legs attached. Pelvis has NO legs attached. Hands have NO weapons attached. Weapons have NO hands. Anatomical LEFT is the character's own left, viewerRIGHT. Keep every object complete and safely inside its cell.\nEXACT25 CELL ORDER (row major):\nROW1: [1] bald face/head with ears and short neck, no hair; [2] entire back hair mass only; [3] front hair bangs and top strands only, no face; [4] chest/upper torso clothing from neckbase to waist, NO limbs or lowerbody; [5] pelvis/hip clothing from waist to upperleg sockets, NO attached legs or long robe.\nROW2: [6] LEFT upper arm from shoulder round joint to elbow, no forearm; [7] LEFT forearm from elbow to wrist, no hand; [8] LEFT hand with wrist cuff only, no arm or weapon; [9] RIGHT upper arm only; [10] RIGHT forearm only.\nROW3: [11] RIGHT hand only; [12] LEFT thigh segment hip-to-knee only; [13] LEFT shin/lowerleg knee-to-ankle only, no foot; [14] LEFT foot shoe only, no shin; [15] RIGHT thigh hip-to-knee only.\nROW4: [16] RIGHT shin knee-to-ankle only; [17] RIGHT foot shoe only; [18] entire back cape/outer cloak cloth only; [19] front skirt/robe/tabard panel only without body; [20] complete PRIMARY WEAPON only.\nROW5: [21] secondary offhand equipment as specified below; [22] LEFT shoulder clothing/armor ornament only with no upperarm; [23] RIGHT shoulder clothing/armor ornament only with no upperarm; [24] waist belt/sash complete only, no torso; [25] rear skirt/garment cloth panel only, no body or limbs.\nINDIVIDUAL DESIGN: Character Mira: auburn high ponytail, red-brown eyes, human ears, burgundy cloak, ivory blouse, brown leather armor and gold accents, black leather gloves, bare skin on upper thighs, dark armored high boots. Backhair includes COMPLETE high ponytail and its tie. Primaryweapon cell20 is COMPLETE ornate tall gold-and-ivory recurved BOW, vertical, bowstring intact; no hands. Offhand cell21 is a SINGLE complete arrow with white fletching and metal point, vertical. Legs must be separate thigh, boot-shin and boot-foot parts, NOT whole boots. Front robe cell19 is the short ivory-and-red tunic flap; rear garment cell25 a short burgundy split tunic flap. No knight's heavy armor or shield.",
+  "correction_prompt": "Precision layout correction of this supplied cutout body-parts atlas. KEEP THE EXACT SAME25 ANATOMICAL PIECES and their row-major5×5 order and same beautiful painting, no complete character anywhere. TRUE TRANSPARENT RGBA background. Square canvas. CRITICAL: Scale every intact individual part illustration to60% of its current size, preserving its aspect ratio, then recenter it within its own cell. Every complete part including long hair, long weapon and cape must fit wholly inside its own exact square cell with at least20% fully transparent empty margin on ALL FOUR SIDES. Nothing may cross a grid border or touch another part. Weapons and clothing must NEVER touch or merge. Do not add text, lines, labels, background or shadows. Every slot is isolated on all sides. Hands separate from forearms, feet separate from shins, thighs separate from pelvis. Redraw hidden closed joint ends where needed. Keep appearance and same25 anatomical subjects, only improve isolation and precise5×5 spacing. The atlas is a kit of detachable body pieces, not an assembled body. IMPORTANT: the bow in row4 col5 and red rear garment in row5 col5 must be completely separated by a broad transparent gap. The bow must fit entirely inside row4 col5 including every bow tip and string. The rear skirt flap must stay entirely inside row5 col5.",
+  "reference_images": [
+    "res://assets/art-direction/aurelia-4head/mira/concept.png",
+    "res://assets/art-direction/aurelia-4head/leonhardt/parts.png"
+  ],
+  "atlas_dimensions": [
+    1254,
+    1254
+  ],
+  "sha256": "f5a8fad6c5dac1dfbede1367e4f43740e61b10b6214b1fc7d516a4483870ae4f",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "large_component_count": 25,
+  "pixel_edits_after_generation": false,
+  "alpha_regions": [
+    {
+      "id": "head",
+      "region": [
+        45,
+        80,
+        152,
+        177
+      ],
+      "pixels_gt_24": 18826
+    },
+    {
+      "id": "hair_back",
+      "region": [
+        245,
+        37,
+        252,
+        259
+      ],
+      "pixels_gt_24": 41131
+    },
+    {
+      "id": "hair_front",
+      "region": [
+        539,
+        62,
+        193,
+        220
+      ],
+      "pixels_gt_24": 19672
+    },
+    {
+      "id": "chest",
+      "region": [
+        784,
+        72,
+        198,
+        196
+      ],
+      "pixels_gt_24": 26465
+    },
+    {
+      "id": "pelvis",
+      "region": [
+        1022,
+        83,
+        204,
+        198
+      ],
+      "pixels_gt_24": 24731
+    },
+    {
+      "id": "left_upper_arm",
+      "region": [
+        59,
+        322,
+        146,
+        194
+      ],
+      "pixels_gt_24": 15242
+    },
+    {
+      "id": "left_forearm",
+      "region": [
+        312,
+        336,
+        134,
+        181
+      ],
+      "pixels_gt_24": 11749
+    },
+    {
+      "id": "left_hand",
+      "region": [
+        585,
+        351,
+        118,
+        164
+      ],
+      "pixels_gt_24": 10332
+    },
+    {
+      "id": "right_upper_arm",
+      "region": [
+        816,
+        332,
+        151,
+        192
+      ],
+      "pixels_gt_24": 15279
+    },
+    {
+      "id": "right_forearm",
+      "region": [
+        1062,
+        330,
+        136,
+        188
+      ],
+      "pixels_gt_24": 12103
+    },
+    {
+      "id": "right_hand",
+      "region": [
+        61,
+        592,
+        126,
+        153
+      ],
+      "pixels_gt_24": 9155
+    },
+    {
+      "id": "left_thigh",
+      "region": [
+        333,
+        560,
+        125,
+        186
+      ],
+      "pixels_gt_24": 15997
+    },
+    {
+      "id": "left_shin",
+      "region": [
+        579,
+        551,
+        108,
+        199
+      ],
+      "pixels_gt_24": 13536
+    },
+    {
+      "id": "left_foot",
+      "region": [
+        795,
+        599,
+        153,
+        147
+      ],
+      "pixels_gt_24": 12176
+    },
+    {
+      "id": "right_thigh",
+      "region": [
+        1059,
+        557,
+        137,
+        178
+      ],
+      "pixels_gt_24": 16824
+    },
+    {
+      "id": "right_shin",
+      "region": [
+        76,
+        777,
+        91,
+        197
+      ],
+      "pixels_gt_24": 11690
+    },
+    {
+      "id": "right_foot",
+      "region": [
+        288,
+        830,
+        132,
+        141
+      ],
+      "pixels_gt_24": 10230
+    },
+    {
+      "id": "cape_back",
+      "region": [
+        492,
+        770,
+        262,
+        217
+      ],
+      "pixels_gt_24": 27623
+    },
+    {
+      "id": "cape_front",
+      "region": [
+        785,
+        793,
+        213,
+        185
+      ],
+      "pixels_gt_24": 22403
+    },
+    {
+      "id": "weapon",
+      "region": [
+        1105,
+        752,
+        84,
+        276
+      ],
+      "pixels_gt_24": 7050
+    },
+    {
+      "id": "offhand",
+      "region": [
+        111,
+        1020,
+        39,
+        177
+      ],
+      "pixels_gt_24": 2837
+    },
+    {
+      "id": "left_shoulder",
+      "region": [
+        282,
+        1062,
+        184,
+        129
+      ],
+      "pixels_gt_24": 9999
+    },
+    {
+      "id": "right_shoulder",
+      "region": [
+        548,
+        1062,
+        167,
+        129
+      ],
+      "pixels_gt_24": 9594
+    },
+    {
+      "id": "belt",
+      "region": [
+        780,
+        1073,
+        190,
+        127
+      ],
+      "pixels_gt_24": 11028
+    },
+    {
+      "id": "garment_back",
+      "region": [
+        1027,
+        1051,
+        203,
+        161
+      ],
+      "pixels_gt_24": 14790
+    }
+  ],
+  "limitations": [
+    "Unapproved assembly draft until actual skeletal viewer is visually reviewed.",
+    "Raster anatomical components are not a 3D model.",
+    "Generated artwork required an image_gen spacing correction; originals preserved."
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "schema_version": 2,
+  "hero_id": "leonhardt",
+  "tool": "image_gen.imagegen",
+  "master": "concept.png",
+  "master_sha256": "7d6af340c2eccc44f822c9299679416f6cab8e3e4d99efb0c517fa16f7c2af99",
+  "master_target": "user_selected_longer_slimmer4.5_to5_head",
+  "kind": "18_concept_faithful_raster_parts",
+  "prompt": "Create a concept-faithful CUTOUT ANIMATION KIT from this exact attached Leonhardt master painting. Preserve its SAME face and hair, SAME camera angle and limb perspective, SAME silver/gold armor ornaments, SAME blue cape, SAME sword/shield and SAME slender long-legged4.5-to-5-head body design. This is a careful separation of ONE EXISTING MASTER, not independent redesign of each body piece. Existing visible surfaces should match the master as closely as possible; only paint the small normally occluded surfaces needed to rotate joints. Never change his facial identity or redraw different hair bangs. The FULL HEAD WITH FACE AND ALL FRONT HAIR IS ONE SINGLE INTACT PIECE, not a bald head. Chest and waist remain ONE continuous core preserving the actual silhouette.\nDraw exactly18 complete independent pieces in a precise SIX columns by THREE rows atlas. Canvas1536×1024, transparent RGBA. Each cell256×341approximately. Center one part per cell, with at least35px fully transparent margins on ALL sides. Every part must remain ENTIRELY inside its own cell: maximum180px width and270px height. Preserve each part's aspect ratio when fitting into its cell. No text, no labels, no numbering, no grid lines, no cast shadows, no environment. Do NOT include any complete whole person anywhere. Do NOT add spare armor or alternate parts.\nANATOMY AND ASSEMBLY QUALITY: These are natural overlapping painted body layers, NOT mannequin/mechanical components. NO BLACK CIRCULAR HOLES, NO EMPTY CYLINDRICAL SOCKETS, NO RINGS OUTLINING CUT ENDS. Joint ends must be CLOSED with opaque continuation of the existing dark undersuit, skin or armor, extending a little under the adjoining piece. Those invisible extension areas should be plain opaque material, not conspicuous caps or metal cuffs. Every arm is separated at shoulder, elbow and wrist; every leg at hip, knee and ankle. Hands contain no weapon; weapons contain no hands. Do not duplicate armor: each shoulder pauldron belongs only to its upper-arm piece, never also to the chest core. Kneecap armor belongs once to its shin piece. The master's slender thigh and shin silhouettes must stay slender, not chunky short chibi legs. Keep parts in their original master-view orientation, not different side/front views.\nEXACT ROW-MAJOR ORDER:\nROW1COL1: COMPLETE INTACT HEAD including his recognizable blue-eyed face, ears, tousled golden-blond hairstyle including front fringe and crown, and short neck continuation. Eyes both clearly visible. No torso or clothing.\nROW1COL2: SMALL REAR HAIR/NAPE TIP LAYER only, the short golden-blond trailing nape wisps from behind this same head. No head, no face, no full hair helmet. This piece is only secondary-motion hair tips, not a replacement head.\nROW1COL3: CONTINUOUS TORSO+WAIST CORE: neck collar, silver/gold breastplate, dark undersuit waist, brown belt, hip armor and the short blue/ivory front tabard from the exact master, one connected piece. NO head, NO arms, NO shoulder pauldrons and NO legs. Natural fully painted closed shoulder and hip overlap areas, no socket openings.\nROW1COL4: COMPLETE BLUE BACK CAPE cloth only from collar attachment to gold-edged trailing hem, preserving master folds and blue/gold design, no body or arms.\nROW1COL5: COMPLETE SILVER/GOLD LONG SWORD only from tip to pommel, same master sword design, no hand, no effects.\nROW1COL6: COMPLETE BLUE HERALDIC SHIELD only, same gold rim and white wing crest, no hand/arm.\nROW2COL1: Anatomical LEFT UPPER ARM including its shoulder pauldron and upper-arm undersuit only, closed shoulder overlap and elbow overlap; no forearm.\nROW2COL2: LEFT FOREARM vambrace from closed elbow overlap to wrist overlap only; no hand and no upper arm.\nROW2COL3: LEFT HAND black glove only, natural closed wrist extension, shield-gripping hand shape, no shield or arm.\nROW2COL4: Anatomical RIGHT UPPER ARM including its shoulder pauldron and upper-arm undersuit only; closed ends; no forearm.\nROW2COL5: RIGHT FOREARM silver vambrace only; no hand or upper arm.\nROW2COL6: RIGHT HAND black glove only, original sword-gripping hand shape, no sword.\nROW3COL1: LEFT THIGH only, long slender dark undersuit with silver/gold thigh plate from master, closed hip and knee overlap, no shin or foot.\nROW3COL2: LEFT SHIN only, long slender silver/gold greave including its kneecap armor, closed knee and ankle overlaps, NO toe or heel or foot.\nROW3COL3: LEFT BOOT FOOT only including ankle overlap, heel, sole and toe, no shin.\nROW3COL4: RIGHT THIGH only, same master long slender thigh design with closed overlaps, no shin or foot.\nROW3COL5: RIGHT SHIN only including kneecap armor and long greave, closed overlaps, NO foot, no toe.\nROW3COL6: RIGHT BOOT FOOT only with ankle overlap, heel, sole and toe, no shin.\nAnatomical LEFT is the knight's own left, appearing viewerRIGHT. Separate all18 pieces by generous transparent empty space and keep this exact layout. The output should enable the original natural master pose to be reconstructed faithfully, with the same face, proportional silhouette and camera perspective. Natural reconstruction quality is more important than inventing additional detail.",
+  "original_generated_path": "/workspace/generated_images/exec-8b574b3b-c872-4314-854a-faec62630648.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "sha256": "5b1ec5060dc15c087f4ddb62389774601dd40dce07e84170348be1027b10f302",
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "large_component_count": 18,
+  "pixel_edits_after_generation": false,
+  "prior_version": "draft-02-first18",
+  "component_integrity_verified": true,
+  "reviewed": false,
+  "parts": [
+    {
+      "id": "head",
+      "region": [
+        24,
+        60,
+        296,
+        295
+      ],
+      "pixels_gt_24": 50573
+    },
+    {
+      "id": "hair_back",
+      "region": [
+        320,
+        223,
+        149,
+        123
+      ],
+      "pixels_gt_24": 10034
+    },
+    {
+      "id": "chest",
+      "region": [
+        494,
+        35,
+        255,
+        376
+      ],
+      "pixels_gt_24": 55285
+    },
+    {
+      "id": "cape_back",
+      "region": [
+        803,
+        69,
+        284,
+        281
+      ],
+      "pixels_gt_24": 48662
+    },
+    {
+      "id": "weapon",
+      "region": [
+        1151,
+        14,
+        141,
+        402
+      ],
+      "pixels_gt_24": 16454
+    },
+    {
+      "id": "offhand",
+      "region": [
+        1312,
+        44,
+        216,
+        358
+      ],
+      "pixels_gt_24": 51447
+    },
+    {
+      "id": "left_upper_arm",
+      "region": [
+        76,
+        405,
+        169,
+        251
+      ],
+      "pixels_gt_24": 28433
+    },
+    {
+      "id": "left_forearm",
+      "region": [
+        336,
+        433,
+        142,
+        214
+      ],
+      "pixels_gt_24": 16207
+    },
+    {
+      "id": "left_hand",
+      "region": [
+        557,
+        511,
+        120,
+        159
+      ],
+      "pixels_gt_24": 10506
+    },
+    {
+      "id": "right_upper_arm",
+      "region": [
+        806,
+        408,
+        167,
+        248
+      ],
+      "pixels_gt_24": 27299
+    },
+    {
+      "id": "right_forearm",
+      "region": [
+        1075,
+        432,
+        175,
+        224
+      ],
+      "pixels_gt_24": 18591
+    },
+    {
+      "id": "right_hand",
+      "region": [
+        1346,
+        516,
+        114,
+        132
+      ],
+      "pixels_gt_24": 9265
+    },
+    {
+      "id": "left_thigh",
+      "region": [
+        72,
+        663,
+        133,
+        313
+      ],
+      "pixels_gt_24": 27000
+    },
+    {
+      "id": "left_shin",
+      "region": [
+        341,
+        683,
+        99,
+        295
+      ],
+      "pixels_gt_24": 19431
+    },
+    {
+      "id": "left_foot",
+      "region": [
+        1305,
+        771,
+        192,
+        215
+      ],
+      "pixels_gt_24": 21943
+    },
+    {
+      "id": "right_thigh",
+      "region": [
+        818,
+        664,
+        142,
+        314
+      ],
+      "pixels_gt_24": 27195
+    },
+    {
+      "id": "right_shin",
+      "region": [
+        1061,
+        683,
+        114,
+        295
+      ],
+      "pixels_gt_24": 20124
+    },
+    {
+      "id": "right_foot",
+      "region": [
+        541,
+        774,
+        175,
+        203
+      ],
+      "pixels_gt_24": 18391
+    }
+  ],
+  "limitations": [
+    "Raster cutout parts, not a3D anatomical model.",
+    "Generated visible surfaces are matched to one master but are not mathematically pixel-identical extractions.",
+    "Actual neutral/motion reconstruction review is still required before battle enable."
+  ],
+  "revision": "v2_joint_repair",
+  "targeted_repair": {
+    "prompt": "Targeted repair of the FIRST image, an18-piece6columns×3rows cutout atlas, to reconstruct the SECOND image's natural longer-legged knight correctly. Keep the SAME18 pieces in EXACTLY the same order and the same polished painting. Keep every piece fully isolated with large transparent gaps. True RGBA transparent background; no labels/grid/text/shadows/effects. Do NOT assemble the knight on this sheet. The second image is the exact approved master silhouette and costume reference.\nApply these SPECIFIC corrections:\n1. Row1col1 HEAD: preserve the complete recognizable face, blue eyes and all front hair exactly. Remove the extra blue clothing collar from this head piece. Finish below the chin with a short natural bare NECK continuation only. There will be ONE blue collar in the torso core, so no second neck scarf on head.\n2. Row1col3 CORE: preserve continuous breastplate, waist, belt and short thigh tabard. Keep its single royal-blue neck collar. Do not add shoulders or legs. Shoulder attachment zones must be solid dark undersuit continuation with no visible circular holes. Preserve master broad natural breastplate, not a tiny narrow torso.\n3. Row1col4 CAPE: replace the narrow hanging shape with the master's BROAD FLOWING BLUE CAPE silhouette that fans strongly outward toward viewerLEFT and trails down on both sides. The overall cape piece should be wider than it is tall, approximately1.3:1 width:height, with large natural diagonal folds and flowing gold-edged lower corners. Collar attachment near the upper middle-right; same blue/gold fabric. No body attached. This cape will be BEHIND the whole body, so it needs the broad full silhouette from the master, not a narrow strip.\n4. Row3col1 LEFT THIGH and row3col4 RIGHT THIGH: make each a LONG SLENDER HIP-TO-KNEE segment, comparable in anatomical length to the shin. Do NOT make bulky short upper legs. Keep dark undersuit and silver/gold outer thigh plate from the master. The SINGLE gold-star KNEECAP armor belongs at the very BOTTOM of each thigh segment, within its distal15%, covering the knee junction. No long black extension hanging below that knee plate; only a tiny opaque hidden overlap. Hip tops smoothly filled dark fabric, no visible round socket/cap. Thighs should have about1:3 width:height, not a thick cylinder.\n5. Row3col2 LEFT SHIN and row3col5 RIGHT SHIN: PLAIN continuous slim silver greaves BELOW the knee, no second gold-star kneecap, NO large star ornament at the top, NO black open circular rim at the top or bottom. The top is an ordinary solid silver/dark-undercloth overlapping continuation that tucks BEHIND the thigh's kneecap. Long graceful silver armor tapering toward ankle, fine gold edge accents only. No foot, toe or heel. These are lower legs, not a second knee.\n6. Row3col3 and row3col6 BOOT FEET: preserve correct left/right foot shape, make each full natural-sized armored foot with clear heel, sole and elegant toe like the master. Reduce excessive tall black ankle stubs; only a short CLOSED overlap at ankle. The boot foot itself should fill most of its illustration, not a tiny toe below a long empty tube. The knee-to-ankle and ankle-to-sole anatomy must match the second master.\n7. Keep the four arm pieces and two hands separate, natural master perspective, solid closed overlap ends instead of hollow round openings. Upper-arm pauldrons appear exactly once, no duplicate shoulder pieces. Sword and shield keep the master shapes and no hands.\nKeep the exact eighteen-slot order from the first image. Make all parts safely fit their own cells with no overlap, no cropping, no connecting neighboring pieces. The aim is natural anatomy and seamless overlapping joints when assembled, not merely a kit of mechanical objects.",
+    "output": "/workspace/generated_images/exec-da1499c9-8f89-41a4-aa9f-418a5a7edd80.png"
+  },
+  "spacing_correction": {
+    "prompt": "Precision spacing-only correction of this18-part sprite atlas. Preserve ALL18 existing paintings exactly, same positions and order except the cape. ONLY the LARGE BLUE CAPE in the FIRST ROW FOURTH POSITION must become15% SMALLER, uniformly scaled to85% of current width and height, centered about its current center. It must have a clear transparent gap of at least20 pixels from the torso core on its left, sword on its right, and shoulder/upper-arm piece beneath it. Keep its broad flowing silhouette, all folds and gold hem unchanged. Do not change any other part, face, neck, limbs, boots, armor or equipment. Keep the exact1536×1024 canvas and TRUE TRANSPARENT RGBA background. No additional parts, no text, no grid, no labels, no shadows. ONLY SHRINK THE CAPE slightly to provide ample transparent separation from neighboring parts. The original18 pieces and all targeted joint repairs remain intact.",
+    "output": "/workspace/generated_images/exec-c239842a-4f20-48e9-b8b1-ac2e74ee3eb8.png"
+  }
+}

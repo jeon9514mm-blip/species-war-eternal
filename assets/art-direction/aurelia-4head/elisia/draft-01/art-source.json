@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "hero_id": "elisia",
+  "tool": "image_gen.imagegen",
+  "kind": "true_separated_anatomical_parts",
+  "generated_parts": 25,
+  "bound_parts": 24,
+  "reviewed": false,
+  "component_integrity_verified": true,
+  "original_generated_path": "/workspace/generated_images/exec-af057570-acd8-4605-a47c-b81c096739a8.png",
+  "final_generated_path": "/workspace/generated_images/exec-935fac55-c820-40f4-b780-e9d1a538adc1.png",
+  "prompt": "Create a precision cutout-animation BODY-PARTS ATLAS for the character in the FIRST attached image. The SECOND attached image is ONLY an example of required 25-piece layout and separation, never copy its knight costume or face. Keep the first image's exact face, hair, color palette, clothing details and weapon. Match its polished professional anime-painted finish. Do NOT draw a complete character or multiple poses. Exactly5columns×5rows on square transparentRGBA canvas, ideally2048×2048. No labels, grid lines, text, background, cast shadows, particles or glow. Each cell holds one complete isolated anatomical part with generous transparent gutters. Upperarms, forearms and hands MUST be three separate pieces; thighs, shins and feet MUST be three separate pieces. Paint closed hidden joint ends and overlap allowance, never leave missing tops. Limbs point downward with proximal joint at top. Face/head is bald without attached hair; hair is split into back mass and front bangs. Chest has NO head, arms, pelvis or legs attached. Pelvis has NO legs attached. Hands have NO weapons attached. Weapons have NO hands. Anatomical LEFT is the character's own left, viewerRIGHT. Keep every object complete and safely inside its cell.\nEXACT25 CELL ORDER (row major):\nROW1: [1] bald face/head with ears and short neck, no hair; [2] entire back hair mass only; [3] front hair bangs and top strands only, no face; [4] chest/upper torso clothing from neckbase to waist, NO limbs or lowerbody; [5] pelvis/hip clothing from waist to upperleg sockets, NO attached legs or long robe.\nROW2: [6] LEFT upper arm from shoulder round joint to elbow, no forearm; [7] LEFT forearm from elbow to wrist, no hand; [8] LEFT hand with wrist cuff only, no arm or weapon; [9] RIGHT upper arm only; [10] RIGHT forearm only.\nROW3: [11] RIGHT hand only; [12] LEFT thigh segment hip-to-knee only; [13] LEFT shin/lowerleg knee-to-ankle only, no foot; [14] LEFT foot shoe only, no shin; [15] RIGHT thigh hip-to-knee only.\nROW4: [16] RIGHT shin knee-to-ankle only; [17] RIGHT foot shoe only; [18] entire back cape/outer cloak cloth only; [19] front skirt/robe/tabard panel only without body; [20] complete PRIMARY WEAPON only.\nROW5: [21] secondary offhand equipment as specified below; [22] LEFT shoulder clothing/armor ornament only with no upperarm; [23] RIGHT shoulder clothing/armor ornament only with no upperarm; [24] waist belt/sash complete only, no torso; [25] rear skirt/garment cloth panel only, no body or limbs.\nINDIVIDUAL DESIGN: Character Elisia: pale champagne long wavy hair, green eyes, pointed elf ears, white flowers and leaves in the hair, layered ivory-white and forest-green priestess clothes with fine gold vine embroidery. Backhair includes long wavy lengths. Headface is bald with elf ears, no floral crown attached; floral ornaments are on front/back hair. Chest has fitted priestess bodice; upperarms have the original bare shoulder plus upper sleeve; forearms contain separate flowing white/green bell sleeves, each with closed elbowjoint and wrist visible, no hands; hands are bare. Pelvis is a short ivory underskirt only, independent of long separate skirt panels. Thighs include pale leg/stocking underrobe, shins original white-gold boot shafts, feet white-gold boot feet only. Backcape cell18 is the green outer cloak; frontgarment cell19 is ivory-green embroidered long split front robe panel; reargarment cell25 is a separate ivory-green rear robe cloth. Primaryweapon cell20 is the COMPLETE long wooden-gold sacred STAFF with green gemstone in circular leafy ornament, held vertically, all shaft visible. Offhand cell21 is a small detached existing white-flower/green-leaf costume ornament, no new weapon or orb. No armor or shield.",
+  "correction_prompt": "Precision layout correction of this supplied cutout body-parts atlas. KEEP THE EXACT SAME25 ANATOMICAL PIECES and their row-major5×5 order and same beautiful painting, no complete character anywhere. TRUE TRANSPARENT RGBA background. Square canvas. CRITICAL: Scale every intact individual part illustration to60% of its current size, preserving its aspect ratio, then recenter it within its own cell. Every complete part including long hair, long weapon and cape must fit wholly inside its own exact square cell with at least20% fully transparent empty margin on ALL FOUR SIDES. Nothing may cross a grid border or touch another part. Weapons and clothing must NEVER touch or merge. Do not add text, lines, labels, background or shadows. Every slot is isolated on all sides. Hands separate from forearms, feet separate from shins, thighs separate from pelvis. Redraw hidden closed joint ends where needed. Keep appearance and same25 anatomical subjects, only improve isolation and precise5×5 spacing. The atlas is a kit of detachable body pieces, not an assembled body.",
+  "reference_images": [
+    "res://assets/art-direction/aurelia-4head/elisia/concept.png",
+    "res://assets/art-direction/aurelia-4head/leonhardt/parts.png"
+  ],
+  "atlas_dimensions": [
+    1254,
+    1254
+  ],
+  "sha256": "b484901f2393a53a7a2ebfc5969db8672ad5c930e9fd6ba2eb5d85772b3e9001",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "large_component_count": 25,
+  "pixel_edits_after_generation": false,
+  "alpha_regions": [
+    {
+      "id": "head",
+      "region": [
+        49,
+        78,
+        160,
+        149
+      ],
+      "pixels_gt_24": 13721
+    },
+    {
+      "id": "hair_back",
+      "region": [
+        274,
+        41,
+        202,
+        209
+      ],
+      "pixels_gt_24": 26208
+    },
+    {
+      "id": "hair_front",
+      "region": [
+        540,
+        37,
+        184,
+        212
+      ],
+      "pixels_gt_24": 20895
+    },
+    {
+      "id": "chest",
+      "region": [
+        798,
+        52,
+        159,
+        194
+      ],
+      "pixels_gt_24": 21873
+    },
+    {
+      "id": "pelvis",
+      "region": [
+        1022,
+        65,
+        195,
+        159
+      ],
+      "pixels_gt_24": 22616
+    },
+    {
+      "id": "left_upper_arm",
+      "region": [
+        56,
+        309,
+        119,
+        169
+      ],
+      "pixels_gt_24": 11687
+    },
+    {
+      "id": "left_forearm",
+      "region": [
+        298,
+        302,
+        138,
+        178
+      ],
+      "pixels_gt_24": 15144
+    },
+    {
+      "id": "left_hand",
+      "region": [
+        576,
+        336,
+        108,
+        131
+      ],
+      "pixels_gt_24": 6779
+    },
+    {
+      "id": "right_upper_arm",
+      "region": [
+        824,
+        307,
+        117,
+        171
+      ],
+      "pixels_gt_24": 11402
+    },
+    {
+      "id": "right_forearm",
+      "region": [
+        1077,
+        302,
+        120,
+        179
+      ],
+      "pixels_gt_24": 13274
+    },
+    {
+      "id": "right_hand",
+      "region": [
+        73,
+        580,
+        105,
+        120
+      ],
+      "pixels_gt_24": 6457
+    },
+    {
+      "id": "left_thigh",
+      "region": [
+        341,
+        531,
+        106,
+        189
+      ],
+      "pixels_gt_24": 12904
+    },
+    {
+      "id": "left_shin",
+      "region": [
+        596,
+        539,
+        65,
+        177
+      ],
+      "pixels_gt_24": 7226
+    },
+    {
+      "id": "left_foot",
+      "region": [
+        815,
+        560,
+        116,
+        144
+      ],
+      "pixels_gt_24": 9026
+    },
+    {
+      "id": "right_thigh",
+      "region": [
+        1069,
+        532,
+        111,
+        188
+      ],
+      "pixels_gt_24": 13112
+    },
+    {
+      "id": "right_shin",
+      "region": [
+        95,
+        783,
+        72,
+        191
+      ],
+      "pixels_gt_24": 8020
+    },
+    {
+      "id": "right_foot",
+      "region": [
+        309,
+        816,
+        135,
+        141
+      ],
+      "pixels_gt_24": 10220
+    },
+    {
+      "id": "cape_back",
+      "region": [
+        507,
+        770,
+        230,
+        215
+      ],
+      "pixels_gt_24": 28536
+    },
+    {
+      "id": "cape_front",
+      "region": [
+        778,
+        762,
+        198,
+        225
+      ],
+      "pixels_gt_24": 28328
+    },
+    {
+      "id": "weapon",
+      "region": [
+        1045,
+        763,
+        160,
+        226
+      ],
+      "pixels_gt_24": 9141
+    },
+    {
+      "id": "left_shoulder",
+      "region": [
+        298,
+        1052,
+        150,
+        138
+      ],
+      "pixels_gt_24": 11251
+    },
+    {
+      "id": "right_shoulder",
+      "region": [
+        564,
+        1041,
+        141,
+        148
+      ],
+      "pixels_gt_24": 11142
+    },
+    {
+      "id": "belt",
+      "region": [
+        779,
+        1026,
+        190,
+        175
+      ],
+      "pixels_gt_24": 16308
+    },
+    {
+      "id": "garment_back",
+      "region": [
+        1017,
+        1030,
+        200,
+        176
+      ],
+      "pixels_gt_24": 23829
+    }
+  ],
+  "limitations": [
+    "Unapproved assembly draft until actual skeletal viewer is visually reviewed.",
+    "Raster anatomical components are not a 3D model.",
+    "Generated artwork required an image_gen spacing correction; originals preserved."
+  ]
+}

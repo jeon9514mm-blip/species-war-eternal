@@ -1,0 +1,646 @@
+{
+  "schema_version": 1,
+  "hero_id": "leonhardt",
+  "atlas": "res://assets/art-direction/aurelia-4head/leonhardt/parts.png",
+  "atlas_size": [
+    1254,
+    1254
+  ],
+  "art_status": "draft_requires_assembled_visual_review",
+  "reviewed": false,
+  "component_integrity_verified": true,
+  "weapon_hand": "right",
+  "parts": [
+    {
+      "id": "head",
+      "bone": "Head",
+      "region": [
+        46,
+        53,
+        170,
+        205
+      ],
+      "anchor": [
+        0.5,
+        0.95
+      ],
+      "display_size": [
+        0.21561,
+        0.26
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 45,
+      "rotation": 0,
+      "alpha_visible_pixels": 24048
+    },
+    {
+      "id": "hair_back",
+      "bone": "Hair",
+      "region": [
+        267,
+        16,
+        222,
+        235
+      ],
+      "anchor": [
+        0.5,
+        0.53
+      ],
+      "display_size": [
+        0.273957,
+        0.29
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": -30,
+      "rotation": 0,
+      "alpha_visible_pixels": 31833
+    },
+    {
+      "id": "hair_front",
+      "bone": "Hair",
+      "region": [
+        491,
+        28,
+        274,
+        220
+      ],
+      "anchor": [
+        0.5,
+        0.63
+      ],
+      "display_size": [
+        0.313855,
+        0.252
+      ],
+      "offset": [
+        0,
+        -0.04
+      ],
+      "z_order": 50,
+      "rotation": 0,
+      "alpha_visible_pixels": 31289
+    },
+    {
+      "id": "chest",
+      "bone": "Chest",
+      "region": [
+        790,
+        29,
+        184,
+        232
+      ],
+      "anchor": [
+        0.5,
+        0.34
+      ],
+      "display_size": [
+        0.23,
+        0.29
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 10,
+      "rotation": 0,
+      "alpha_visible_pixels": 32478
+    },
+    {
+      "id": "pelvis",
+      "bone": "Pelvis",
+      "region": [
+        1008,
+        57,
+        231,
+        199
+      ],
+      "anchor": [
+        0.5,
+        0.3
+      ],
+      "display_size": [
+        0.197337,
+        0.17
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 12,
+      "rotation": 0,
+      "alpha_visible_pixels": 34483
+    },
+    {
+      "id": "left_upper_arm",
+      "bone": "LeftUpperArm",
+      "region": [
+        81,
+        283,
+        134,
+        206
+      ],
+      "anchor": [
+        0.5,
+        0.12
+      ],
+      "display_size": [
+        0.139854,
+        0.215
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 21,
+      "rotation": -0.25169,
+      "alpha_visible_pixels": 18613
+    },
+    {
+      "id": "left_forearm",
+      "bone": "LeftForearm",
+      "region": [
+        334,
+        275,
+        102,
+        215
+      ],
+      "anchor": [
+        0.5,
+        0.12
+      ],
+      "display_size": [
+        0.080651,
+        0.17
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 23,
+      "rotation": -0.141897,
+      "alpha_visible_pixels": 14174
+    },
+    {
+      "id": "left_hand",
+      "bone": "LeftHand",
+      "region": [
+        565,
+        305,
+        146,
+        175
+      ],
+      "anchor": [
+        0.5,
+        0.2
+      ],
+      "display_size": [
+        0.069246,
+        0.083
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 25,
+      "rotation": 0,
+      "alpha_visible_pixels": 13198
+    },
+    {
+      "id": "right_upper_arm",
+      "bone": "RightUpperArm",
+      "region": [
+        819,
+        281,
+        150,
+        210
+      ],
+      "anchor": [
+        0.5,
+        0.12
+      ],
+      "display_size": [
+        0.153571,
+        0.215
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": -5,
+      "rotation": 0.25169,
+      "alpha_visible_pixels": 20236
+    },
+    {
+      "id": "right_forearm",
+      "bone": "RightForearm",
+      "region": [
+        1076,
+        271,
+        97,
+        213
+      ],
+      "anchor": [
+        0.5,
+        0.12
+      ],
+      "display_size": [
+        0.077418,
+        0.17
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": -3,
+      "rotation": 0.141897,
+      "alpha_visible_pixels": 13618
+    },
+    {
+      "id": "right_hand",
+      "bone": "RightHand",
+      "region": [
+        63,
+        542,
+        127,
+        157
+      ],
+      "anchor": [
+        0.5,
+        0.2
+      ],
+      "display_size": [
+        0.06714,
+        0.083
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": -1,
+      "rotation": 0,
+      "alpha_visible_pixels": 11677
+    },
+    {
+      "id": "left_thigh",
+      "bone": "LeftThigh",
+      "region": [
+        297,
+        502,
+        157,
+        224
+      ],
+      "anchor": [
+        0.5,
+        0.1
+      ],
+      "display_size": [
+        0.16471,
+        0.235
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 5,
+      "rotation": -0.048742,
+      "alpha_visible_pixels": 23732
+    },
+    {
+      "id": "left_shin",
+      "bone": "LeftShin",
+      "region": [
+        570,
+        500,
+        116,
+        227
+      ],
+      "anchor": [
+        0.5,
+        0.1
+      ],
+      "display_size": [
+        0.104758,
+        0.205
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 6,
+      "rotation": -0.0,
+      "alpha_visible_pixels": 15731
+    },
+    {
+      "id": "left_foot",
+      "bone": "LeftFoot",
+      "region": [
+        772,
+        559,
+        184,
+        160
+      ],
+      "anchor": [
+        0.65,
+        0.33
+      ],
+      "display_size": [
+        0.0943,
+        0.082
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 7,
+      "rotation": 0,
+      "alpha_visible_pixels": 16306
+    },
+    {
+      "id": "right_thigh",
+      "bone": "RightThigh",
+      "region": [
+        1043,
+        502,
+        154,
+        222
+      ],
+      "anchor": [
+        0.5,
+        0.1
+      ],
+      "display_size": [
+        0.163018,
+        0.235
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 1,
+      "rotation": 0.048742,
+      "alpha_visible_pixels": 23369
+    },
+    {
+      "id": "right_shin",
+      "bone": "RightShin",
+      "region": [
+        89,
+        736,
+        117,
+        231
+      ],
+      "anchor": [
+        0.5,
+        0.1
+      ],
+      "display_size": [
+        0.103831,
+        0.205
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 2,
+      "rotation": -0.0,
+      "alpha_visible_pixels": 16695
+    },
+    {
+      "id": "right_foot",
+      "bone": "RightFoot",
+      "region": [
+        303,
+        799,
+        164,
+        158
+      ],
+      "anchor": [
+        0.36,
+        0.33
+      ],
+      "display_size": [
+        0.085114,
+        0.082
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 3,
+      "rotation": 0,
+      "alpha_visible_pixels": 15353
+    },
+    {
+      "id": "cape_back",
+      "bone": "Cape",
+      "region": [
+        495,
+        744,
+        265,
+        242
+      ],
+      "anchor": [
+        0.5,
+        0.1
+      ],
+      "display_size": [
+        0.613223,
+        0.56
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": -40,
+      "rotation": 0,
+      "alpha_visible_pixels": 37824
+    },
+    {
+      "id": "cape_front",
+      "bone": "Pelvis",
+      "region": [
+        819,
+        744,
+        129,
+        237
+      ],
+      "anchor": [
+        0.5,
+        0.06
+      ],
+      "display_size": [
+        0.152405,
+        0.28
+      ],
+      "offset": [
+        0,
+        -0.015
+      ],
+      "z_order": 16,
+      "rotation": 0,
+      "alpha_visible_pixels": 20272
+    },
+    {
+      "id": "weapon",
+      "bone": "Weapon",
+      "region": [
+        1075,
+        727,
+        104,
+        266
+      ],
+      "anchor": [
+        0.5,
+        0.87
+      ],
+      "display_size": [
+        0.218947,
+        0.56
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 30,
+      "rotation": -2.5,
+      "alpha_visible_pixels": 8650
+    },
+    {
+      "id": "offhand",
+      "bone": "Offhand",
+      "region": [
+        33,
+        969,
+        196,
+        270
+      ],
+      "anchor": [
+        0.5,
+        0.44
+      ],
+      "display_size": [
+        0.29763,
+        0.41
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 33,
+      "rotation": 0,
+      "alpha_visible_pixels": 34970
+    },
+    {
+      "id": "left_shoulder",
+      "bone": "LeftUpperArm",
+      "region": [
+        261,
+        1024,
+        205,
+        188
+      ],
+      "anchor": [
+        0.5,
+        0.48
+      ],
+      "display_size": [
+        0.130851,
+        0.12
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 28,
+      "rotation": -0.25169,
+      "alpha_visible_pixels": 23015
+    },
+    {
+      "id": "right_shoulder",
+      "bone": "RightUpperArm",
+      "region": [
+        527,
+        1024,
+        205,
+        188
+      ],
+      "anchor": [
+        0.5,
+        0.48
+      ],
+      "display_size": [
+        0.130851,
+        0.12
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": 27,
+      "rotation": 0.25169,
+      "alpha_visible_pixels": 22997
+    },
+    {
+      "id": "belt",
+      "bone": "Pelvis",
+      "region": [
+        759,
+        1072,
+        229,
+        70
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "display_size": [
+        0.24,
+        0.073362
+      ],
+      "offset": [
+        0.0,
+        -0.025
+      ],
+      "z_order": 29,
+      "rotation": 0,
+      "alpha_visible_pixels": 10027
+    },
+    {
+      "id": "garment_back",
+      "bone": "Pelvis",
+      "region": [
+        1020,
+        995,
+        218,
+        233
+      ],
+      "anchor": [
+        0.5,
+        0.08
+      ],
+      "display_size": [
+        0.261974,
+        0.28
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "z_order": -20,
+      "rotation": 0,
+      "alpha_visible_pixels": 30687
+    }
+  ],
+  "artist_notes": [
+    "25 genuinely separate pieces verified against atlas visually and by alpha components.",
+    "Initial proportional assembly preserves each piece aspect ratio and corrects short back hair and waist-attached front tabard; actual runtime assembly review pending.",
+    "Hidden ends are illustrated; pose contact and draw order require motion review.",
+    "Actual assembled idle/run/attack preview review: raised front bangs by0.04 bodyheight to expose both blue eyes while preserving hair-piece scale; second visual review pending."
+  ]
+}

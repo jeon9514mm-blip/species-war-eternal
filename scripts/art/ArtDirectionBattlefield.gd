@@ -6,6 +6,8 @@ const BACKDROP = preload("res://scripts/art/LayeredMeadowBackdrop.gd")
 const HERO_PRESENTATION = preload("res://scripts/art/PilotHeroPresentation.gd")
 const MONSTER_PRESENTATION = preload("res://scripts/art/PilotMonsterPresentation.gd")
 const GROUND_CONTACT = preload("res://scripts/art/PilotGroundContact.gd")
+const HERO_PARTS = preload("res://scripts/art/HeroPartsRig3D.gd")
+const HERO_PARTS_CATALOG = preload("res://scripts/art/HeroPartsCatalog.gd")
 const LAB_CAMERA_OFFSET := Vector3(0, 18, 48)
 const HORIZON_RATIO := .285
 var painterly_active := true
@@ -16,6 +18,7 @@ var hero_presentation = HERO_PRESENTATION.new()
 var monster_presentation = MONSTER_PRESENTATION.new()
 var ground_contact = GROUND_CONTACT.new()
 var _presentation_delta := 0.0
+var hero_parts_definitions: Dictionary = {}
 
 func _presentation_active() -> bool:
 	if not painterly_active or not is_visible_in_tree() or get_tree().paused or not is_instance_valid(game): return false
@@ -36,10 +39,34 @@ func sync_actor(source: AnimatedSprite2D, point: Vector2, hero: bool, live: Dict
 	if not is_instance_valid(rendered): return
 	var active := _presentation_active()
 	if hero:
-		hero_presentation.sync(self, source, rendered, point, _presentation_delta, active)
+		if not _sync_hero_parts(source, rendered, active):
+			hero_presentation.sync(self, source, rendered, point, _presentation_delta, active)
 	else:
 		monster_presentation.sync(self, source, rendered, point, _presentation_delta, active)
 	ground_contact.sync(source, rendered, point, hero, active and animate_environment)
+
+func _sync_hero_parts(source: AnimatedSprite2D, rendered: Sprite3D, active: bool) -> bool:
+	var hero_id := str(source.get("atlas_key"))
+	# Texture alpha and region validation runs once per hero in this field,
+	# never once per animation frame. Unreviewed art stays in its review scene.
+	if not hero_parts_definitions.has(hero_id):
+		hero_parts_definitions[hero_id] = HERO_PARTS_CATALOG.load_definition(hero_id)
+	var definition: Dictionary = hero_parts_definitions[hero_id]
+	if definition.is_empty(): return false
+	var rig = rendered.get_node_or_null("HeroPartsRig3D")
+	if rig == null:
+		rig = HERO_PARTS.new()
+		rendered.add_child(rig)
+		if not rig.bind(source, definition):
+			rig.queue_free()
+			hero_parts_definitions[hero_id] = {}
+			return false
+	var original := rendered.get_node_or_null("HeroSkeletalBillboard") as Node3D
+	if original != null: original.visible = false
+	var velocity: Vector2 = game.party_movement.velocities.get(hero_id, Vector2.ZERO)
+	var distance: float = float(game.party_movement.distance_walked.get(hero_id, -1.0))
+	rig.sync(camera, _actor_height(source, true), rendered.modulate, _presentation_delta, active, velocity, distance)
+	return true
 
 func _actor_height(source: AnimatedSprite2D, hero: bool) -> float:
 	var result := super._actor_height(source, hero)

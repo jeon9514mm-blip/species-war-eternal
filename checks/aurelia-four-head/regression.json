@@ -1,0 +1,160 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "baseline_main_commit": "af1d9d6f327599372998b9b8ead74e80881a60c4",
+  "scope": "15 static concept drafts; Leonhardt18 independently painted parts on21 hierarchical hinges and16 source-timed procedural pose prototypes. No automatic production hero replacement.",
+  "approved_hero_ids": [],
+  "reviewed": false,
+  "motion_revision": "leonhardt_parts_keyposes_v4_bounded_equipment_wrists",
+  "script_checks": [
+    {
+      "script": "scripts/art/HeroPartsCatalog.gd",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "script": "scripts/art/HeroPartsMotion.gd",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "script": "scripts/art/HeroPartsRig3D.gd",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "script": "scripts/art/HeroPartsStudy.gd",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "script": "scripts/art/ArtDirectionBattlefield.gd",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "script": "scripts/art/ArtDirectionLab.gd",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "script": "scripts/AureliaHeroPartsSmokeTest.gd",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "script": "scripts/ArtDirectionPilotSmokeTest.gd",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "script": "tools/capture_aurelia_concepts.gd",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "script": "tools/capture_aurelia_parts.gd",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "script": "tools/capture_aurelia_pose_sheets.gd",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "script": "tools/capture_leonhardt_quality_review.gd",
+      "exit_code": 0,
+      "passed": true
+    }
+  ],
+  "tests": [
+    {
+      "script": "scripts/AureliaHeroPartsSmokeTest.gd",
+      "checks": 803,
+      "failures": [],
+      "results": "checks/aurelia-four-head/leonhardt-final-results.json"
+    },
+    {
+      "script": "scripts/ArtDirectionPilotSmokeTest.gd",
+      "checks": 413,
+      "failures": [],
+      "results": "checks/aurelia-four-head/pilot-final-results.json"
+    }
+  ],
+  "runtime_assertions_passed": 1216,
+  "attack_ergonomics": {
+    "attack_1": {
+      "elbow_flexion_valid": true,
+      "maximum_joint_step_radians": 0.0869474411010742,
+      "maximum_wrist_degrees": 6.87549039968286,
+      "samples": 241
+    },
+    "attack_2": {
+      "elbow_flexion_valid": true,
+      "maximum_joint_step_radians": 0.0874643921852112,
+      "maximum_wrist_degrees": 6.8754929610038,
+      "samples": 241
+    }
+  },
+  "actual_png_captures": [
+    "checks/aurelia-four-head/captures/leonhardt-attack_1.png",
+    "checks/aurelia-four-head/captures/leonhardt-death.png",
+    "checks/aurelia-four-head/captures/leonhardt-idle.png",
+    "checks/aurelia-four-head/captures/leonhardt-run.png",
+    "checks/aurelia-four-head/captures/leonhardt-skill.png",
+    "checks/aurelia-four-head/concept-lineup.png",
+    "checks/aurelia-four-head/leonhardt-v2/attack_1-24.png",
+    "checks/aurelia-four-head/leonhardt-v2/attack_1-48.png",
+    "checks/aurelia-four-head/leonhardt-v2/attack_1-80.png",
+    "checks/aurelia-four-head/leonhardt-v2/idle-65.png",
+    "checks/aurelia-four-head/leonhardt-v2/movie-attack_1.png",
+    "checks/aurelia-four-head/leonhardt-v2/movie-guard.png",
+    "checks/aurelia-four-head/leonhardt-v2/movie-idle.png",
+    "checks/aurelia-four-head/leonhardt-v2/movie-walk.png",
+    "checks/aurelia-four-head/leonhardt-v2/neutral.png",
+    "checks/aurelia-four-head/leonhardt-v2/walk-22.png",
+    "checks/aurelia-four-head/pose-sheets/leonhardt.png"
+  ],
+  "video": {
+    "path": "checks/aurelia-four-head/leonhardt-v2/motion-review.mp4",
+    "sha256": "1aac5c0ae87f7de484161cabdaeb8be575abb0ca5f83c7319d9f0210c37cd8e4",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "width": 1120,
+          "height": 630,
+          "r_frame_rate": "24/1"
+        }
+      ],
+      "format": {
+        "duration": "11.125000"
+      }
+    },
+    "recording_frame_rate_is_not_device_performance": true,
+    "renderer": "Vulkan Forward+ llvmpipe software rendering",
+    "logical_viewport": [
+      1280,
+      720
+    ]
+  },
+  "preserved_rules": {
+    "orientation": "landscape_only",
+    "inventory_capacity": 200,
+    "raid_strength_multiplier": 10,
+    "spawn_directions": 8,
+    "project_godot_changed": false,
+    "default_f5_hero_replacement": false
+  },
+  "remaining": [
+    "Final visual approval of Leonhardt proportions and all16 action prototypes",
+    "New separated parts and individual motions for other14 Aurelia heroes",
+    "Android device performance and memory checks"
+  ],
+  "historical_checks": [
+    "leonhardt-parts-results.json",
+    "leonhardt-v2-grip-results.json",
+    "leonhardt-v2-layers-results.json"
+  ]
+}

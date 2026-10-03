@@ -1,0 +1,70 @@
+{
+  "schema_version": 2,
+  "hero_id": "orwin",
+  "asset_kind": "single full-body elongated SD hero concept",
+  "generated_with": "image_gen.imagegen",
+  "generation": {
+    "id": "orwin",
+    "prompt": "Transform the character in REFERENCE IMAGE 1 into a new clean high-resolution full-body game hero concept. REFERENCE IMAGE 2 is ONLY the target drawing style, rendering quality, and slightly elongated FOUR-HEAD-TALL SD proportions. Preserve Image 1's unique identity, hairstyle, ears, face colors, outfit palette, accessories and exact weapon type; do not copy the blond knight character or his shield from Image 2. Render polished hand-painted anime fantasy mobile RPG art: fine confident colored outlines, crisp readable silhouette, softly modeled volumes, beautiful material highlights, restrained detail at small game scale. Character anatomy from crown to soles approximately FOUR times head height, adult but stylized with a moderately large head; neither two-head baby chibi nor six-head realistic. One original character only. Full body including BOTH separated feet clearly visible, entire hairstyle and weapon in frame with generous transparent margin. Neutral relaxed ready A-pose, body facing mostly front turned slightly toward viewer's RIGHT, head aligned, arms gently separated so elbows/wrists can later be segmented. Separate boots/legs readable. Soft consistent upper-left illumination. TRANSPARENT RGBA background, no ground plane, no cast shadow, no glow halo, no VFX, no scenery, no text, no UI, no extra views. Tall portrait canvas. Orwin Halbrecht, a fair-skinned young adult male human golden-lance royal guard. Preserve the first image's short tousled ash-blond hair, blue eyes, compact stern handsome face, silver and gold heavy articulated armor, dark navy underlayers, royal blue cape and tall blue kite shield decorated with a gold heraldic star/floral emblem. His exact equipment is a LONG slender royal lance with a steel spearhead, gold accents and dark blue shaft, and that shield: do not replace his spear with the style reference's sword. Calm protective expression. Spear in his right hand (viewer left), held upright angled a little away from the body so complete spearhead and shaft fit; shield in his left hand (viewer right), slightly away from his torso. Athletic adult build.",
+    "reference_paths": [
+      "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/orwin-pose.png",
+      "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png"
+    ],
+    "transparent_background_requested": true,
+    "original_output_path": "/workspace/generated_images/exec-508ae478-e328-490f-904e-8acbab61c5f5.png"
+  },
+  "candidate_selection": {
+    "selected_at_utc": "2026-10-03T18:00:09.365649+00:00",
+    "selection_only_no_new_generation": true,
+    "reason": "User changed target to longer, slimmer approximately 4.5–5-head proportions. Preserved first generation is closer to the accepted new Leonhardt master than the short draft.",
+    "comparison_master": "assets/art-direction/aurelia-4head/leonhardt/concept.png",
+    "previous_short_concept": "concept-draft-short/concept.png",
+    "previous_short_provenance": "concept-draft-short/concept-source.json",
+    "historical_rejection_reason": "Initial generation had roughly 5–6-head-tall proportions rather than requested 4-head SD.",
+    "caveat": "Ornamental details are a redesign; proportion assessment is visual rather than a measured model ratio."
+  },
+  "artifact": {
+    "path": "assets/art-direction/aurelia-4head/orwin/concept.png",
+    "original_preserved": true,
+    "sha256": "0a3c1d23af2a796a739d3ec430dabf7cc232572baa7e5281eb000696fc9e20ae",
+    "bytes": 2380212,
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA"
+  },
+  "audit": {
+    "checked_at_utc": "2026-10-03T18:00:09.370063+00:00",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 791094,
+    "fully_transparent_fraction": 0.502964,
+    "visible_alpha8_bbox": [
+      8,
+      37,
+      1015,
+      1513
+    ],
+    "visible_alpha8_border_pixels": 0,
+    "identity_features_visually_checked": [
+      "Ash-blond hair and blue eyes",
+      "Blue/gold shield and full lance",
+      "Silver/gold armor and blue cape"
+    ],
+    "full_body_and_both_feet_visible": true,
+    "weapon_type_and_complete_silhouette_visible": true,
+    "single_character": true,
+    "separated_body_parts": 0,
+    "authored_motion_tracks": 0,
+    "visual_proportions": "Elongated torso and legs with reduced relative head size, visually closer to the accepted longer master.",
+    "manual_pixel_edits": false
+  },
+  "limits": [
+    "Static concept only. No separated parts, skeletal assembly, animation tracks or direction views were produced.",
+    "Longer 4.5–5-head direction is assessed visually; exact head-count is not guaranteed by this painting.",
+    "PNG bytes copied intact from preserved generated output; no pixel editing."
+  ]
+}

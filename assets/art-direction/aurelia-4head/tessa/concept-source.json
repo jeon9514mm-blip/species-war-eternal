@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "hero_id": "tessa",
+  "asset": "concept.png",
+  "status": "original_static_concept_only",
+  "generator": "image_gen",
+  "requested_style": "Longer and slimmer approximately 4.5–5-head anime SD, following the newly accepted Leonhardt concept master.",
+  "requested_background": "transparent RGBA",
+  "identity_reference": "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/tessa-pose.png",
+  "style_reference": "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png",
+  "roster_reference": "res://assets/heroes/sd-v36/roster-reference.json",
+  "original_output_path": "/workspace/generated_images/exec-96aca319-d30b-46e4-893c-1164efaef275.png",
+  "pixel_editing_performed": false,
+  "generations": [
+    {
+      "stage": "initial_identity_concept",
+      "prompt": "Create ONE polished original full-body anime fantasy game character concept, transforming the FIRST reference character from a compressed chibi into a slightly elongated FOUR-HEAD-TALL SD adventurer. First reference is IDENTITY AUTHORITY: preserve its face, hairstyle, skin tone, dominant costume colors, exact weapon class and recognizable ornamental motifs. Second reference (blond knight Leonhardt) is STYLE AND PROPORTIONS ONLY: use comparable premium painted cel shading, crisp dark colored outlines, warm soft material rendering, clear readable face and anatomy; DO NOT copy his blonde hair, sword, shield, armor or blue palette where not present in the first character. Approximately head height 1/4 of complete anatomical standing body height. Develop distinct torso, upper and lower arms, thighs, calves and visible separate boots. No baby or two-head chibi proportions, no realistic adult seven-head anatomy.\n\nComposition: ONLY ONE character, complete head-to-toe including all equipment on a TRUE TRANSPARENT RGBA background. Generous clear margin around every extremity and weapon, no crop. Mostly front view, gently turned toward VIEWER'S RIGHT by about 10-15 degrees. Standing neutral relaxed ready A-pose suitable for subsequent joint separation: feet set shoulder-width, both feet on same ground baseline, knees nearly straight, arms gently separated from torso wherever equipment allows. Face and eyes open calm, no wink, no attack gesture, no jumping. Clothing drapes naturally without extreme wind. Full weapon visible; neither weapon nor accessories obscure the face or both legs. Use the first reference's equipment identity even if a fashionable generic replacement seems easier. NO environment, no floor, no ground ellipse, no cast shadow, no floating VFX, no aura, no bloom, no motion blur, no UI/text/watermark, no turnarounds, no extra characters, no extra limbs. Lit consistently from upper left, clean isolated game asset.\n\nCharacter ID TESSA COGWELL, human rune cannon engineer: fair skin, warm brown/hazel eyes both open, light brown/chestnut hair in a high voluminous side ponytail, brass goggles with blue glass perched on head. Preserve white blouse, navy-blue and brass/gold coat panels, dark fitted shorts/leggings, brown leather utility harness, pouches, brown fingerless gloves and sturdy brown/brass boots. Exact weapon: ONE compact yet substantial brass-and-gold cylindrical rune cannon, large blue rune-glass round muzzle with concentric mechanical rings, blue gem disks and machined barrel segments, matching the first reference. Hold the cannon in a quiet lowered two-hand ready carry at hip/waist level, barrel pointing slightly viewer-right and down, complete cannon muzzle and rear visible, not aimed directly at viewer; legs and face stay unobscured. No ordinary firearm, no sword, no staff, no backpack replacing the cannon. Preserve engineer identity and goggle silhouette.",
+      "input_paths": [
+        "/workspace/species-war-eternal/assets/heroes/sd-v36/sheets/tessa-pose.png",
+        "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png"
+      ],
+      "transparent_background": true,
+      "output_path": "/workspace/generated_images/exec-96aca319-d30b-46e4-893c-1164efaef275.png",
+      "selected": true
+    },
+    {
+      "stage": "four_head_proportion_revision",
+      "prompt": "Edit the FIRST supplied character image to CORRECT ITS PROPORTIONS. Preserve this exact character's identity, hair and eye color, skin, costume palette, unique equipment and ornament motifs. The first image is too tall/adult: transform it into an appealing FOUR-HEAD-TALL SD anime JRPG game hero like the SECOND reference character. Match the SECOND reference's noticeably large expressive head, compact short torso, shorter legs, big clear hands/boots, rounded youthful SD silhouette and gorgeous painted cel shading.\n\nMEASUREMENT: From anatomical skull crown (exclude flying hair and decorations) to chin is ONE UNIT. From that skull crown to soles of boots must be FOUR UNITS TOTAL, never five, six or seven. At least 25% of anatomical standing height is the actual head, not hairstyle. Chin about 25% down, waist about 49% down, knees about 74% down, boot soles 100%. Enlarge the head relative to the body and shorten torso/thighs/calves sufficiently to hit this visible ratio. Keep four-head SD, not a two-head baby chibi. Do not make chest/hips mature or exaggerate body curves. The purpose is a consistent game character roster, not an adult fashion illustration.\n\nNeutral relaxed standing ready A-pose, mostly front facing with gentle viewer-RIGHT turn. Feet clearly separate and visible, arms gently separated wherever equipment permits, no dramatic action, no wink. Retain both exact weapon type and number, fully visible and not cropped. Keep outline silhouette readable. One complete character only, centered with EMPTY TRANSPARENT MARGIN on all edges. Entire character and weapon must fit in 85% of canvas extents. TRUE RGBA transparency with alpha zero outside character, absolutely no backdrop, brown/gray haze, vignette, floor, cast shadow, magic effects, particles, text or watermark. Do not include second reference knight or borrow his identity.\n\nIdentity and exact equipment to preserve:\nCharacter ID TESSA COGWELL, human rune cannon engineer: fair skin, warm brown/hazel eyes both open, light brown/chestnut hair in a high voluminous side ponytail, brass goggles with blue glass perched on head. Preserve white blouse, navy-blue and brass/gold coat panels, dark fitted shorts/leggings, brown leather utility harness, pouches, brown fingerless gloves and sturdy brown/brass boots. Exact weapon: ONE compact yet substantial brass-and-gold cylindrical rune cannon, large blue rune-glass round muzzle with concentric mechanical rings, blue gem disks and machined barrel segments, matching the first reference. Hold the cannon in a quiet lowered two-hand ready carry at hip/waist level, barrel pointing slightly viewer-right and down, complete cannon muzzle and rear visible, not aimed directly at viewer; legs and face stay unobscured. No ordinary firearm, no sword, no staff, no backpack replacing the cannon. Preserve engineer identity and goggle silhouette.",
+      "input_paths": [
+        "/workspace/generated_images/exec-96aca319-d30b-46e4-893c-1164efaef275.png",
+        "/workspace/species-war-eternal/assets/art-direction/pilot-01/leonhardt-concept.png"
+      ],
+      "transparent_background": true,
+      "output_path": "/workspace/generated_images/exec-6d22a5c1-f1a0-4dcc-a251-f85725645fc5.png",
+      "selected": false,
+      "reason_not_selected": "User changed target to longer/slimmer approximately 4.5–5-head character proportions; preserved first concept is closer to the newly accepted Leonhardt master."
+    }
+  ],
+  "visual_review": {
+    "original_identity_preserved": true,
+    "full_body_and_equipment_visible": true,
+    "neutral_ready_pose": true,
+    "face_and_feet_readable": true,
+    "proportions_note": "Read-only comparison found this earlier, longer first generation closer to the new 4.5–5-head/slimmer direction than the archived short revision. This is a visual style assessment, not an anatomical measurement or animation/battle approval.",
+    "weapons_by_hero": "One brass rune cannon and head goggles."
+  },
+  "limitations": [
+    "Static single-view concept illustration only.",
+    "No separated parts, skeleton, animation tracks, 3D model or in-game integration produced by this asset task.",
+    "Not an eight-direction character sheet.",
+    "Cannon and robe equipment overlaps require deliberate part redraw and joint coverage during later rig preparation.",
+    "Original generated PNG bytes copied without pixel editing; originals retained."
+  ],
+  "created_at_utc": "2026-10-03T17:11:32.932889+00:00",
+  "sha256": "d16f5982d637b3e1d13597d61086df648321ca7b5588bc8e18989afb2a1da588",
+  "byte_count": 2512659,
+  "image_audit": {
+    "format": "PNG",
+    "mode": "RGBA",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixel_count": 759365,
+    "fully_transparent_fraction": 0.482791,
+    "visible_alpha_threshold": 32,
+    "visible_bbox": [
+      30,
+      19,
+      1013,
+      1523
+    ],
+    "visible_pixels_on_canvas_edges": {
+      "left": 0,
+      "right": 0,
+      "top": 0,
+      "bottom": 0
+    },
+    "visible_edge_clipping_detected": false,
+    "source_bytes_preserved": true
+  },
+  "selection_source": {
+    "path": "/workspace/generated_images/exec-96aca319-d30b-46e4-893c-1164efaef275.png",
+    "sha256": "d16f5982d637b3e1d13597d61086df648321ca7b5588bc8e18989afb2a1da588",
+    "reason": "Promoted existing longer first generation after read-only visual comparison against accepted Leonhardt master; no image regeneration.",
+    "approved_scope": "concept selection only",
+    "selected_at_utc": "2026-10-03T18:00:34.784341+00:00",
+    "comparison_master": "res://assets/art-direction/aurelia-4head/leonhardt/concept.png",
+    "previous_concept_sha256": "42e3efa0c64d1bd9b23917fc401df2b19b5ea6d5e70fd6512259d5b5dd1a55d9",
+    "previous_concept_archive": "concept-draft-short/concept.png",
+    "previous_metadata_archive": "concept-draft-short/concept-source.json"
+  }
+}
