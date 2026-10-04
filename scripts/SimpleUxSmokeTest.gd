@@ -37,34 +37,31 @@ func run() -> void:
 	check(node('HuntOptionsClose').global_position==close_position,'hunt close stays visible while options scroll')
 	await press('HuntOptionsClose');check(battle()==snapshot,'closing controls preserves battle and wallet')
 	await press('LandscapeMenuButton')
-	check(node('MenuPage_battle').visible and not node('MenuPage_heroes').visible and not node('MenuPage_account').visible,'menu initially shows one task group')
+	check(node('MenuFeaturedCards')!=null and node('MenuIconGrid')!=null,'menu restores illustrated cards and icon shortcuts')
 	for entry: Dictionary in preload('res://scripts/NavigationCatalog.gd').menu_entries():check(node('PortraitMenu_'+str(entry.id))!=null,'destination retained '+str(entry.id))
-	check(node('MenuFeaturedCards')==null,'menu has no duplicate promotional destinations')
-	await press('MenuGroup_heroes');check(node('MenuPage_heroes').visible and not node('MenuPage_battle').visible,'hero group switches by touch')
+	check(node('MenuGroup_battle')==null,'group tabs removed from restored menu')
 	await press('PortraitMenu_party');check(main.active_screen=='hero_select','party route opens the actual formation editor')
 	await press('PortraitNav_home');check(main.active_screen=='combat','hunting tab returns directly to hunt')
 	await press('PortraitNav_battle');check(main.active_screen=='meta_hub' and node('ContentTab_raids').disabled,'challenge tab opens raid choices instead of restarting hunt')
-	main.set_meta('content_meta_tab','quests');main._show_main_menu();await settle();await press('MenuGroup_battle');await press('PortraitMenu_growth')
+	main.set_meta('content_meta_tab','quests');main._show_main_menu();await settle();await press('PortraitMenu_growth')
 	check(str(main.get_meta('content_meta_tab'))=='daily','dungeon menu cannot restore an unrelated goal screen')
 	main._build_boss_select_screen();await settle()
 	await press('ContentTab_daily');check(node('DungeonDetailCard')!=null and not node('PracticeOpen').is_visible_in_tree(),'challenge starts with real content; practice tools collapsed')
 	await press('Disclosure_연습 · 전투 설정');check(node('PracticeOpen').is_visible_in_tree(),'optional practice tools remain reachable')
 	await press('PortraitNav_bag');check(main.active_screen=='inventory','bag route retained')
 	await press('EquipmentBagBack');check(main.active_screen=='combat','bag back returns directly to hunting')
-	await press('LandscapeMenuButton');await press('MenuGroup_account')
+	await press('LandscapeMenuButton')
 	await press('PresentationSettingsEntry');check(node('PresentationSettingsOverlay')!=null and node('PortraitActionSheet')==null,'settings opens with one modal')
 	await press('PresentationClose')
 	for dimensions: Vector2i in [Vector2i(1280,720),Vector2i(1560,720),Vector2i(640,360),Vector2i(1920,1080)]:
 		root.size=dimensions;await settle();main._show_main_menu();await settle()
-		for key: String in ['battle','heroes','account']:
-			await press('MenuGroup_'+key)
-			var menu=node('PortraitActionSheet');check(main.get_viewport_rect().grow(1).encloses(menu.pane.get_global_rect()),'menu fits '+str(dimensions)+' '+key)
-			var visible_rects: Array[Rect2]=[]
-			for button: Button in menu.pages[key].find_children('*','Button',true,false):
-				if not button.is_visible_in_tree():continue
-				check(button.size.y>=44,'phone target at least 44px '+button.name)
-				var rect:=button.get_global_rect()
-				for other: Rect2 in visible_rects:check(not rect.intersects(other),'menu buttons do not overlap')
-				visible_rects.append(rect)
+		var menu=node('PortraitActionSheet');check(main.get_viewport_rect().grow(1).encloses(menu.pane.get_global_rect()),'menu fits '+str(dimensions))
+		var visible_rects: Array[Rect2]=[]
+		for button: Button in menu.pane.find_children('*','Button',true,false):
+			if not button.is_visible_in_tree():continue
+			check(button.size.y>=44,'phone target at least 44px '+button.name)
+			var rect:=button.get_global_rect()
+			for other: Rect2 in visible_rects:check(not rect.intersects(other),'menu buttons do not overlap')
+			visible_rects.append(rect)
 		await press('PortraitMenuClose');check(node('PortraitActionSheet')==null,'close dismisses menu after resize')
 	await dispose(main);done('simple_ux')

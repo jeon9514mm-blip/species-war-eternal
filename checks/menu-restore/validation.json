@@ -1,0 +1,44 @@
+{
+  "base_commit": "cca3a4bc3309057cc4fd81e99ba76fcab2f4ea3a",
+  "restored_menu_from": "d19678b81ef019d7e02c2fc7342c403f6f42ae32",
+  "engine": "Godot 4.6.3",
+  "suites": [
+    {
+      "script": "scripts/SimpleUxSmokeTest.gd",
+      "exit": 0,
+      "seconds": 10.86,
+      "errors": [],
+      "result": [
+        "simple_ux checks=1281 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HeroMenuUxSmokeTest.gd",
+      "exit": 0,
+      "seconds": 21.9,
+      "errors": [],
+      "result": [
+        "hero_menu_ux checks=1065 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V57QualityPassSmokeTest.gd",
+      "exit": 0,
+      "seconds": 9.85,
+      "errors": [],
+      "result": [
+        "V57 QUALITY PASS 36/36 PASS"
+      ]
+    },
+    {
+      "script": "scripts/HuntingHomeSmokeTest.gd",
+      "exit": 0,
+      "seconds": 18.83,
+      "errors": [],
+      "result": [
+        "HUNTING_HOME_SMOKE checks=53 failures=[]"
+      ]
+    }
+  ],
+  "passed": 4
+}

@@ -18,11 +18,14 @@ func run() -> void:
 	game._restore_deployed_heroes(['leonhardt','mira','elisia','kairen','orwin'])
 	for hero: Dictionary in game._hero_roster_for_faction():game.hero_progress[str(hero.id)]={'level':25,'xp':460}
 	root.content_scale_size=Vector2i(1280,720);root.size=Vector2i(1280,720);await settle()
+	if '--menu-only' in OS.get_cmdline_user_args():
+		output=ProjectSettings.globalize_path('res://checks/menu-restore');DirAccess.make_dir_recursive_absolute(output)
+		game._build_combat_screen();await settle();game.combat_running=true;game._show_main_menu();await shot('menu')
+		game.presentation_runtime.audio.shutdown();game.queue_free();await create_timer(.4).timeout;quit();return
 	game._build_combat_screen();await settle();game.combat_running=true;await shot('hunt')
 	game.portrait_hud._toggle_options();await shot('hunt-controls');game.portrait_hud._toggle_options()
 	game._show_main_menu();await shot('menu-battle')
-	var menu=game.content_root.get_node('PortraitActionSheet');menu._select_group('heroes');await shot('menu-heroes')
-	menu._select_group('account');await shot('menu-account');menu.close();await settle()
+	var menu=game.content_root.get_node('PortraitActionSheet');menu.close();await settle()
 	game._build_boss_select_screen();await shot('challenges')
 	game.set_meta('content_meta_tab','daily');game._build_meta_hub_screen();await shot('daily')
 	game._build_hero_detail_screen('mira');await shot('hero')
