@@ -44,7 +44,7 @@ func _ready() -> void:
 	viewport_3d.msaa_3d=Viewport.MSAA_2X;viewport_3d.positional_shadow_atlas_size=1024
 	viewport_3d.render_target_update_mode=SubViewport.UPDATE_ALWAYS;container.add_child(viewport_3d)
 	map_loader=MAP_LOADER.new();map_loader.name='MapLoader';add_child(map_loader)
-	map_root=map_loader.load_zone(zone_id,viewport_3d,raid_mode)
+	map_root=_create_map_root()
 	if map_root==null:return
 	world=map_root.get_node('Arena');camera=world.get_node('BattleCamera')
 	if not raid_mode:
@@ -66,6 +66,8 @@ func _ready() -> void:
 	resized.connect(_resize_world);_resize_world()
 	# Runs after the source AnimatedSprite2D controllers and HUD positions update.
 	process_priority=100
+func _create_map_root() -> Node3D:
+	return map_loader.load_zone(zone_id,viewport_3d,raid_mode)
 func configure(next_zone_id: String,next_zone_color: Color) -> void:
 	zone_id=next_zone_id;zone_color=next_zone_color
 func configure_world_view(ppu: float,anchor: Vector2) -> void:

@@ -110,7 +110,7 @@ func install(main: Node) -> void:
 	stage.size_flags_stretch_ratio=3.0;stage.clip_contents=true;stage.mouse_filter=Control.MOUSE_FILTER_STOP
 	stage.gui_input.connect(_on_stage_input)
 	body.add_child(stage)
-	battlefield_3d=preload('res://scripts/maps3d/Battlefield3DView.gd').new()
+	battlefield_3d=_new_battlefield()
 	battlefield_3d.name='RaidTerrain3D';battlefield_3d.game=game;battlefield_3d.raid_view=self;battlefield_3d.raid_mode=true
 	battlefield_3d.configure(zone_id,design['accent'])
 	stage.add_child(battlefield_3d);battlefield_3d.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -132,25 +132,40 @@ func install(main: Node) -> void:
 	boss_motion.zone_id=zone_id;boss_motion.accent=design['accent'];arena.add_child(boss_motion)
 	mechanic_visual=preload('res://scripts/portrait/RaidMechanicVisual.gd').new()
 	mechanic_visual.name='PortraitRaidMechanicVisual';arena.add_child(mechanic_visual);mechanic_visual.bind(game,design['accent'])
+	var encounter_started: bool=game.raid_running or not game.raid_last_result.is_empty()
+	var previous_view: Node=game.content_root.get_node_or_null('PreviousRaidView')
+	var previous_actors: Dictionary=previous_view.get('hero_actors') if previous_view!=null else {}
 	if is_instance_valid(game.raid_boss_sprite):
 		game.raid_boss_sprite.reparent(arena,false)
 		game.raid_boss_sprite.show()
 		boss_motion.actor=game.raid_boss_sprite
-		game.raid_boss_sprite.set_world_position(FIELD.ENTRY)
+		game.raid_boss_sprite.set_world_position(game.raid_boss_position if encounter_started else FIELD.ENTRY)
 	for i in game.deployed_heroes.size():
 		var hero_id: String=str(game.deployed_heroes[i]['id'])
-		var actor:=HeroSpriteFactory.create_hero(hero_id,Vector2(.13,.13))
-		actor.name='RaidHeroActor_'+hero_id
+		var down: bool=encounter_started and float(game.hero_battle_state.get(hero_id,{}).get('hp',0))<=0.0
+		var previous_actor: HeroSpriteController=previous_actors.get(hero_id)
+		var actor: HeroSpriteController
+		if down and is_instance_valid(previous_actor) and previous_actor.state=='death':
+			# A presentation rebuild must not revive a fallen hero or restart the
+			# corpse fade. Keep its animation and skeletal pose intact on resize.
+			actor=previous_actor
+			actor.reparent(arena,false)
+		else:
+			actor=HeroSpriteFactory.create_hero(hero_id,Vector2(.13,.13))
+			actor.name='RaidHeroActor_'+hero_id
+			arena.add_child(actor);actor.play_idle('right')
+			var rig:=preload('res://scripts/portrait/PortraitHeroSkeletalRig.gd').new()
+			if not rig.install(actor):rig.queue_free()
+			elif not down and actor.has_method('play_visual'):actor.play_visual('spawn')
+			if down:actor.play_death('right')
 		actor.position=game.raid_positions.get(hero_id,FIELD.hero_entry(i))
-		arena.add_child(actor);actor.play_idle('right')
-		var rig:=preload('res://scripts/portrait/PortraitHeroSkeletalRig.gd').new()
-		if not rig.install(actor):rig.queue_free()
-		elif actor.has_method('play_visual'):actor.play_visual('spawn')
 		hero_actors[hero_id]=actor
 		last_hp[hero_id]=float(game.hero_battle_state.get(hero_id,{}).get('hp',0))
 	rally_marker=Node2D.new();rally_marker.name='PortraitRaidMoveMarker'
 	rally_marker.set_script(preload('res://scripts/portrait/RaidRallyMarker.gd'))
-	rally_marker.visible=false;arena.add_child(rally_marker)
+	rally_marker.position=game.raid_rally_position
+	rally_marker.visible=game.raid_running and game.raid_rally_active
+	arena.add_child(rally_marker)
 	if is_instance_valid(game.skill_fx_layer):
 		game.skill_fx_layer.reparent(arena,false)
 		game.skill_fx_layer.show()
@@ -704,3 +719,6 @@ func _follow_recovery() -> void:
 	if route=='party':_open_formation()
 	elif route=='hunt':game._open_home()
 	else:game._build_growth_screen()
+
+func _new_battlefield() -> Control:
+	return preload("res://scripts/maps3d/Battlefield3DView.gd").new()

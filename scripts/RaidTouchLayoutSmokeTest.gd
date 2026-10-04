@@ -23,15 +23,19 @@ func run() -> void:
 				main._build_raid_screen();await settle();await settle()
 				var view=main.content_root.get_node("PortraitRaidView")
 				var scroll: ScrollContainer=view.get_node("RaidPartyScroll")
-				var nav: Control=main.content_root.get_node("PortraitNavigation")
-				check(scroll.get_global_rect().end.y<=nav.get_global_rect().position.y,"party strip clears navigation "+str(dimensions))
+				check(main.content_root.get_node_or_null("PortraitNavigation")==null,"raid back route replaces the bottom navigation "+str(dimensions))
+				check(scroll.get_global_rect().end.y<=main.get_viewport_rect().size.y,"party strip remains inside the landscape viewport %s: bottom=%.2f limit=%.2f" % [dimensions,scroll.get_global_rect().end.y,main.get_viewport_rect().size.y])
+				check(view.stage.size.x>=main.get_viewport_rect().size.x-26,"production raid uses the full landscape width")
+				check(main.get_viewport_rect().size.x>main.get_viewport_rect().size.y,"portrait-shaped device windows keep a landscape game")
 				check(not scroll.get_global_rect().intersects(view.start.get_global_rect()),"party strip clears raid commands")
+				for button in [view.follow_button,view.skill_cast_button,view.ultimate_cast_button,view.start,view.dodge_button]:
+					check(button.get_global_rect().position.y>view.stage.get_global_rect().end.y,"raid controls remain outside the touch-to-move arena")
 				for slot in view.hero_slots.values():check(slot.size.x>=128 and slot.size.y>=108,"raid hero retains a large touch target")
 				var terrain=view.battlefield_3d
 				for point in [FIELD.FLOOR.position,FIELD.FLOOR.end,Vector2(214,486),Vector2(824,280),FIELD.ENTRY]:
 					var projected: Vector2=terrain.project_world(terrain.raid_to_world(point))
 					check(Rect2(Vector2.ZERO,terrain.size).has_point(projected),"all reachable corners stay visible")
-					check(projected.y<minf(view.dodge_button.position.y,view.follow_button.position.y)-4,"all floor points clear dodge and follow buttons")
+					check(projected.y<view.battle_hint.position.y-4,"all floor points clear the context strip")
 					check(projected.distance_to(view.arena.position+point*view.arena.scale)<.02,"camera warnings and touch use the same coordinates")
 				main._start_raid();main.combat_timer.stop();await settle()
 				var ids: Array=main._deployed_hero_ids();var selected: String=view.selected_hero_id

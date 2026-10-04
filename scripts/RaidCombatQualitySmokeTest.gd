@@ -14,12 +14,20 @@ func check(ok: bool,note: String) -> void:
 func settle() -> void:
 	for i in 8:await process_frame
 
+func tap(control: Control) -> void:
+	for pressed in [true,false]:
+		var event:=InputEventScreenTouch.new()
+		event.position=root.get_final_transform()*control.get_global_rect().get_center()
+		event.pressed=pressed;Input.parse_input_event(event)
+	await settle()
+
 func restart(game) -> void:
 	if game.raid_running:game._finish_raid('defeat')
 	game._start_raid();game.combat_timer.stop()
 
 func run() -> void:
 	root.content_scale_size=Vector2i(1280,720);root.size=Vector2i(1280,720)
+	Input.set_use_accumulated_input(false);Input.emulate_mouse_from_touch=true
 	var game=load('res://scenes/PortraitMain.tscn').instantiate()
 	game.save_state_path='user://raid-combat-quality-'+str(Time.get_ticks_usec())+'.json'
 	root.add_child(game);await settle()
@@ -44,9 +52,9 @@ func run() -> void:
 	game.hero_skill_runtime[selected].remaining=0.0;game.hero_skill_runtime[selected].secondary_remaining=0.0
 	game.hero_battle_state[selected].ultimate=100.0;view.refresh()
 	check(not view.skill_cast_button.disabled and not view.ultimate_cast_button.disabled,'ready selected hero enables manual actions')
-	view.skill_cast_button.pressed.emit();view.refresh()
+	await tap(view.skill_cast_button);view.refresh()
 	check(float(game.hero_skill_runtime[selected].remaining)>0.0 or float(game.hero_skill_runtime[selected].secondary_remaining)>0.0,'enabled manual skill actually casts for selected hero')
-	view.ultimate_cast_button.pressed.emit();view.refresh()
+	await tap(view.ultimate_cast_button);view.refresh()
 	check(float(game.hero_battle_state[selected].ultimate)<100.0 and view.ultimate_cast_button.disabled,'manual ultimate consumes charge and immediately updates availability')
 	game.raid_positions[selected]=Vector2(226,290);game.raid_boss_position=Vector2(812,476);view.refresh()
 	check(view.skill_cast_button.disabled and view.ultimate_cast_button.disabled and view.skill_cast_button.text=='사거리 밖','out of range explains why both actions are unavailable')
@@ -72,10 +80,15 @@ func run() -> void:
 	view.refresh();await settle()
 	check(view.telegraph.active and view.telegraph.shape==game.raid_pattern_shape,'warning uses the actual incoming damage footprint')
 	check(view.state_label.text.contains('부채꼴 바깥 측면으로 이동'),'warning explains this cast counter instead of generic advice')
-	var info_rect: Rect2=view.landscape_info.get_global_rect()
-	check(info_rect.encloses(view.state_scroll.get_global_rect()),'landscape warning instructions are visible without scrolling')
-	view.landscape_info.scroll_vertical=0;view.refresh();await settle()
-	check(view.landscape_info.scroll_vertical==0,'routine warning refresh preserves the player scroll position')
+	check(view.battle_hint.text.contains('부채꼴 바깥 측면으로 이동'),'live warning counter is readable with the details sheet closed')
+	view._open_options();await settle()
+	var details_scroll: ScrollContainer=view.options_sheet.get_node('RaidOptionsPanel/Margin/Scroll')
+	details_scroll.ensure_control_visible(view.state_scroll);await settle()
+	check(details_scroll.get_global_rect().encloses(view.state_scroll.get_global_rect()),'full warning instructions are reachable in the guide sheet')
+	var details_position: int=details_scroll.scroll_vertical
+	view.refresh();await settle()
+	check(details_scroll.scroll_vertical==details_position,'routine warning refresh preserves the player guide scroll position')
+	view.options_sheet.hide()
 
 	# Keep one non-dodging tank in melee; verify an actual basic attack resolves.
 	restart(game)
@@ -117,7 +130,12 @@ func run() -> void:
 	check(field_damage>0,'raid dodge does not leak into ordinary combat')
 	game.active_screen='raid';game._finish_raid('defeat')
 	view.refresh();await settle()
-	check(view.state_title.text=='전투 결과' and view.landscape_info.get_global_rect().encloses(view.state_scroll.get_global_rect()),'defeat result moves into the visible landscape panel for retry decisions')
+	check(view.start.text=='다시 도전' and not view.start.disabled,'defeat immediately presents a usable retry outside the guide')
+	view._open_options();await settle()
+	details_scroll.ensure_control_visible(view.state_scroll);await settle()
+	check(view.state_title.text=='전투 결과' and details_scroll.get_global_rect().encloses(view.state_scroll.get_global_rect()),'defeat report remains reachable in the guide sheet')
+	details_scroll.ensure_control_visible(view.recovery_action);await settle()
+	check(view.recovery_action.visible and details_scroll.get_global_rect().encloses(view.recovery_action.get_global_rect()),'post-defeat recovery action remains reachable')
 
 	# Switching bosses must never present the previous battle's depleted gauge.
 	game.raid_boss_hp=123;game.raid_boss_max_hp=3600

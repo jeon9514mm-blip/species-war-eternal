@@ -371,7 +371,7 @@ func _apply_portrait_resize() -> void:
 			var old_node:=content_root.get_node_or_null(node_name)
 			if old_node!=null:old_node.free()
 		if old_view!=null:old_view.name='PreviousRaidView'
-		var view:=preload('res://scripts/portrait/PortraitRaid.gd').new()
+		var view:=_new_raid_view()
 		content_root.add_child(view);view.install(self)
 		if view.hero_slots.has(selected_id):
 			view.selected_hero_id=selected_id;view.refresh()
@@ -449,7 +449,7 @@ func _emit_boss_telegraph(skill_name: String, seconds: float) -> void:
 	if is_instance_valid(view):view.refresh()
 func _build_raid_screen() -> void:
 	super._build_raid_screen()
-	var panel:=preload('res://scripts/portrait/PortraitRaid.gd').new()
+	var panel:=_new_raid_view()
 	content_root.add_child(panel);panel.install(self)
 func _build_faction_war_screen() -> void:
 	super._build_faction_war_screen();P_MENUS.war(self)
@@ -549,3 +549,7 @@ func _sprite_head_offset(sprite: Node2D) -> Vector2:
 	if active_screen=='combat' and is_instance_valid(terrain) and terrain.has_method('actor_head_offset') and sprite is AnimatedSprite2D:
 		return terrain.actor_head_offset(sprite)
 	return super._sprite_head_offset(sprite)
+
+func _new_raid_view() -> Control:
+	return preload("res://scripts/art/RaidPresentationV2.gd").new()
+
