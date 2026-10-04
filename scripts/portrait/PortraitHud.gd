@@ -329,8 +329,9 @@ static func navigation(main: Node, parent: Node, active: String, y: float, heigh
 		var e: Dictionary=entries[i]
 		var selected: bool = str(e['id']) == selected_tab
 		var is_battle: bool=e['id']=='battle'
-		var top:=5.0
-		var button_height:=height-10.0
+		var slim_dock := height <= 56
+		var top:=4.0 if slim_dock else 5.0
+		var button_height:=height-8.0 if slim_dock else height-10.0
 		var fill: Color=Color('#224654') if selected else Color('#0d223000')
 		var edge: Color=SKIN.GOLD if selected else Color('#35556600')
 		var btn:=SKIN.button('',Callable(main,str(e['method'])),fill)
@@ -339,13 +340,14 @@ static func navigation(main: Node, parent: Node, active: String, y: float, heigh
 		btn.add_theme_stylebox_override('hover',SKIN.box(Color('#1b3b49'),Color(SKIN.BLUE_SOFT,.55),16 if is_battle else 12,1))
 		btn.add_theme_stylebox_override('pressed',SKIN.box(Color('#18323e'),SKIN.GOLD,16 if is_battle else 12,2))
 		SKIN.place(panel,btn,Rect2(i*bw+4,top,bw-8,button_height))
-		var icon_size:=30.0
+		var compact_dock := height < 80
+		var icon_size:=20.0 if slim_dock else (24.0 if compact_dock else 30.0)
 		var icon:=SKIN.UI.icon(str(e['portrait_icon']),Vector2.ONE*icon_size,SKIN.GOLD if selected else SKIN.MUTED)
-		SKIN.place(btn,icon,Rect2((bw-icon_size)/2,7,icon_size,icon_size))
+		SKIN.place(btn,icon,Rect2((bw-icon_size)/2,3 if slim_dock else (5 if compact_dock else 7),icon_size,icon_size))
 		if selected:
 			var marker:=ColorRect.new();marker.color=SKIN.GOLD;marker.mouse_filter=Control.MOUSE_FILTER_IGNORE
 			SKIN.place(btn,marker,Rect2((bw-28)/2,2,28,3))
-		var text:=SKIN.label(str(e['label']),16,SKIN.GOLD if selected else SKIN.MUTED_DARK)
+		var text:=SKIN.label(str(e['label']),12 if slim_dock else (13 if compact_dock else 16),SKIN.GOLD if selected else SKIN.MUTED_DARK)
 		text.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-		SKIN.place(btn,text,Rect2(0,45,bw-8,24))
+		SKIN.place(btn,text,Rect2(0,25 if slim_dock else (31 if compact_dock else 45),bw-8,16 if slim_dock else (18 if compact_dock else 24)))
 	return panel

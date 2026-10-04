@@ -1,0 +1,116 @@
+{
+  "commit": "0ef13172ec8cf6361714ba71cf8ac45765b210d8",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Selected existing regression tests; headless Linux; isolated XDG per test; no Android device measurements",
+  "suites": [
+    {
+      "script": "scripts/HuntCompactHudSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 7.99,
+      "errors": [],
+      "result": [
+        "HUNT_COMPACT_HUD checks=133 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HuntMenuStateSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 35.52,
+      "errors": [],
+      "result": [
+        "HUNT_MENU_STATE checks=94 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/TouchScrollSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 11.25,
+      "errors": [],
+      "result": [
+        "TOUCH_SCROLL_SMOKE checks=51 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V8364CombatViewSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 11.62,
+      "errors": [],
+      "result": [
+        "v8364_combat_view checks=1312 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HuntAttackQualitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 4.95,
+      "errors": [],
+      "result": [
+        "hunt_attack_quality checks=23 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/EquipmentMailSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 11.22,
+      "errors": [],
+      "result": [
+        "equipment_mail checks=35 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/RaidDesignSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "errors": [],
+      "result": [
+        "RAID_DESIGN checks=486 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/RaidTouchLayoutSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 46.76,
+      "errors": [],
+      "result": [
+        "RAID_TOUCH_LAYOUT checks=1044 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/RaidCombatQualitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 5.35,
+      "errors": [],
+      "result": [
+        "raid_combat_quality checks=35 failures=[]"
+      ]
+    }
+  ],
+  "passed": 9,
+  "total": 9,
+  "status": "User-approved UI; integrated with latest raid arenas; all selected integration suites passed",
+  "base_remote_commit": "6491aece9b5762596a9f12a438977d2843a9f1d2",
+  "navigation_height": 52,
+  "captured_hero_counts": [
+    3,
+    10
+  ],
+  "total_counted_checks": 3213,
+  "capture_note": "Actual Godot Linux review captures with controlled HP/ultimate values; no Android device run"
+}

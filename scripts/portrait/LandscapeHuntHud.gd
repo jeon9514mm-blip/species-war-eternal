@@ -1,5 +1,6 @@
 extends "res://scripts/portrait/PortraitHud.gd"
-## Same commands and refresh code as portrait, with a dedicated wide layout.
+## Wide hunt: unobstructed battlefield and a single row of live hero gauges.
+const LAYOUT := preload("res://scripts/portrait/LandscapeHuntLayout.gd")
 func _label_at(value: String, box: Rect2, points: int = 18) -> Label:
 	var label := SKIN.label(value, points)
 	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
@@ -16,52 +17,77 @@ func build(main: Node) -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var screen: Vector2 = game.get_viewport_rect().size
 	var w: float = screen.x; var h: float = screen.y
-	var side: float = w - 334.0
-	SKIN.panel(self,Rect2(side,12,322,h-106),SKIN.DARK,SKIN.EDGE_SOFT,1,14)
-	SKIN.panel(self,Rect2(12,12,side-24,112),SKIN.DARK,SKIN.EDGE_SOFT,1,14)
-	profile_name = _label_at("원정대",Rect2(side+12,18,156,28))
-	_button_at("편성",Callable(game,"_build_hero_select_screen"),Rect2(side+176,14,70,44),"HuntPartyEdit")
-	profile_level = _label_at("",Rect2(side+12,46,148,26),16)
-	power_label = _label_at("",Rect2(side+170,60,130,24),18)
-	var menu:=_button_at("",Callable(game,"_show_main_menu"),Rect2(w-68,18,44,44),"LandscapeMenuButton")
-	menu.tooltip_text="전체 메뉴"
-	var menu_icon:=preload("res://scripts/GameUiIcon.gd").new();menu_icon.icon_name="hamburger";menu_icon.ink=SKIN.INK
-	SKIN.place(menu,menu_icon,Rect2(10,10,24,24))
-	profile_xp = SKIN.gauge(self,Rect2(side+12,84,294,4),SKIN.GOLD)
-	stage_label = _label_at("",Rect2(24,18,side-310,34),22)
-	gold_label = _label_at("",Rect2(side-250,20,112,30)); gem_label = _label_at("",Rect2(side-126,20,102,30))
-	stage_progress = SKIN.gauge(self,Rect2(24,62,side-160,8),SKIN.GOLD)
-	enemy_label = _label_at("",Rect2(side-118,48,95,30))
-	quest_label = _label_at("",Rect2(24,82,side-44,30),16)
-	first_session_action = _button_at("원정 가이드",Callable(game,"_follow_first_session_guide"),Rect2(side-218,76,194,44),"FirstSessionGuideAction")
-	status_label = _label_at("",Rect2(20,h-128,side-40,30),16)
-	_layout_rows = 2 if maxi(game._party_slot_cap(),game.deployed_heroes.size()) > 5 else 1
+	var header := Rect2(12,12,w-24,112)
+	var footer := LAYOUT.footer(screen)
+	SKIN.panel(self,header,SKIN.DARK,SKIN.EDGE_SOFT,1,14)
+	var strip := SKIN.panel(self,footer,SKIN.DARK,SKIN.EDGE_SOFT,1,10)
+	strip.name = "HuntHeroGaugeStrip"
+	# Retain the base refresh adapter without displaying the former profile panel.
+	profile_name = _label_at("",Rect2()); profile_name.hide()
+	profile_level = _label_at("",Rect2()); profile_level.hide()
+	power_label = _label_at("",Rect2()); power_label.hide()
+	profile_xp = SKIN.gauge(self,Rect2(),SKIN.GOLD); profile_xp.hide()
+	stage_label = _label_at("",Rect2(24,18,w-652,34),22)
+	gold_label = _label_at("",Rect2(w-614,20,142,30),16)
+	gem_label = _label_at("",Rect2(w-466,20,94,30),16)
+	_button_at("편성",Callable(game,"_build_hero_select_screen"),Rect2(w-368,18,68,44),"HuntPartyEdit")
+	auto_button = _button_at("",_toggle_auto,Rect2(w-292,18,84,44),"PortraitAutoButton")
+	speed_button = _button_at("",_cycle_speed,Rect2(w-200,18,56,44),"PortraitSpeedButton")
+	speed_button.tooltip_text = "사냥 배속 전환 · ×1 / ×2"
+	details_button = _button_at("",_toggle_options,Rect2(w-136,18,48,44),"PortraitDetailsButton")
+	details_button.tooltip_text = "사냥 조작 · 자동 각성기 · 보상"
+	_add_command_icon(details_button,"settings")
+	var menu := _button_at("",Callable(game,"_show_main_menu"),Rect2(w-80,18,56,44),"LandscapeMenuButton")
+	menu.tooltip_text = "전체 메뉴"; _add_command_icon(menu,"hamburger")
+	stage_progress = SKIN.gauge(self,Rect2(24,62,w-160,8),SKIN.GOLD)
+	enemy_label = _label_at("",Rect2(w-118,48,95,30),16)
+	quest_label = _label_at("",Rect2(24,82,w-48,30),16)
+	first_session_action = _button_at("원정 가이드",Callable(game,"_follow_first_session_guide"),Rect2(w-218,76,194,44),"FirstSessionGuideAction")
+	status_label = _label_at("",Rect2(20,footer.position.y-24,w-40,22),14)
 	slot_row = Control.new(); slot_row.name = "PortraitPartySlots"
-	SKIN.place(self,slot_row,Rect2(side+10,92,302,320)); _build_slots()
-	var y: float = h-302
-	var party_hint:=_label_at("영웅을 누르면 성장 · 장비 관리",Rect2(side+12,y,294,26),15)
-	party_hint.add_theme_color_override('font_color',SKIN.MUTED)
-	auto_button = _button_at("",_toggle_auto,Rect2(side+10,y+34,224,52),"PortraitAutoButton")
-	speed_button = _button_at("",_cycle_speed,Rect2(side+242,y+34,68,52),"PortraitSpeedButton")
-	details_button = _button_at("사냥 조작",_toggle_options,Rect2(side+10,y+96,302,52),"PortraitDetailsButton")
-	offline_button = _button_at("",_open_offline_rewards,Rect2(side+10,y+158,302,44),"PortraitOfflineRewards")
-	_build_options(w,h,false)
-	reward_feed = REWARD_FEED.new(); SKIN.place(self,reward_feed,Rect2(24,h-235,320,90)); reward_feed.build(320)
-	navigation(game,self,"combat",h-90,90)
-	hud_bounds = [Rect2(side,12,322,h-106),Rect2(12,12,side-24,112)]
+	slot_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	SKIN.place(self,slot_row,footer); _build_slots()
+	_build_options(w,h,true)
+	reward_feed = REWARD_FEED.new()
+	SKIN.place(self,reward_feed,Rect2(24,LAYOUT.field(screen).end.y-96,320,90)); reward_feed.build(320)
+	navigation(game,self,"combat",h-LAYOUT.NAV_HEIGHT,LAYOUT.NAV_HEIGHT)
+	hud_bounds = [header,footer]
 	refresh()
+func _add_command_icon(button: Button, icon_name: String) -> void:
+	var icon := preload("res://scripts/GameUiIcon.gd").new()
+	icon.icon_name = icon_name; icon.ink = SKIN.INK
+	SKIN.place(button,icon,Rect2((button.size.x-24)/2,10,24,24))
+func refresh() -> void:
+	super.refresh()
+	quest_label.size.x = (first_session_action.position.x-36 if first_session_action.visible else game.get_viewport_rect().size.x-48)
+	auto_button.text = "편성" if game.deployed_heroes.is_empty() else ("Ⅱ 사냥" if game.combat_running else "▶ 재개")
+	details_button.text = ""
+	for id in bars:
+		if bars[id].skill.text == "궁극": bars[id].skill.text = "각성"
 func _build_slots() -> void:
 	for child in slot_row.get_children(): child.free()
 	bars.clear()
-	for i in mini(10,game.deployed_heroes.size()):
+	var count := mini(10,game.deployed_heroes.size())
+	var cell_width := minf(180,slot_row.size.x/maxi(1,count))
+	for i in count:
 		var hero: Dictionary = game.deployed_heroes[i]; var id: String = str(hero.id)
+		var width := cell_width-4
 		var slot := SKIN.button("",Callable(game,"_build_hero_detail_screen").bind(id))
-		SKIN.place(slot_row,slot,Rect2((i%2)*154,(i/2)*62,148,58))
-		var title := SKIN.label(game._hero_short_name(id),14); SKIN.place(slot,title,Rect2(6,0,136,20))
+		slot.name = "HuntHero_"+id
+		SKIN.place(slot_row,slot,Rect2(i*cell_width+2,2,width,60))
+		var title := SKIN.label(game._hero_short_name(id),14)
+		SKIN.place(slot,title,Rect2(6,1,width-12,18))
 		title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		var level := SKIN.label("",12); SKIN.place(slot,level,Rect2(6,19,74,18))
-		var skill := SKIN.label("",11); SKIN.place(slot,skill,Rect2(80,19,64,18))
-		var hp := SKIN.gauge(slot,Rect2(6,39,136,7),SKIN.SUCCESS)
-		var ult := SKIN.gauge(slot,Rect2(6,50,136,3),SKIN.GOLD)
+		var level := SKIN.label("",11); SKIN.place(slot,level,Rect2(6,19,width-52,17))
+		var skill := SKIN.label("",11); SKIN.place(slot,skill,Rect2(width-48,19,42,17))
+		var hp_label := SKIN.label("HP",10,SKIN.MUTED)
+		SKIN.place(slot,hp_label,Rect2(6,34,24,14))
+		var ult_label := SKIN.label("각성",10,SKIN.GOLD)
+		SKIN.place(slot,ult_label,Rect2(6,47,24,14))
+		var hp := SKIN.gauge(slot,Rect2(32,38,width-38,7),SKIN.SUCCESS)
+		var ult := SKIN.gauge(slot,Rect2(32,51,width-38,5),SKIN.GOLD)
 		bars[id] = {"hp":hp,"ultimate":ult,"slot":slot,"level":level,"skill":skill,"hp_band":-1}
+	if count == 0:
+		var edit := SKIN.button("영웅을 편성해 사냥 시작",Callable(game,"_build_hero_select_screen"))
+		edit.name = "HuntEmptyPartyEdit"; SKIN.place(slot_row,edit,Rect2(6,6,260,52))
 	_slot_signature = _party_signature()

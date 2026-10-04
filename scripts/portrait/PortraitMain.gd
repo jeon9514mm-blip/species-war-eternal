@@ -117,7 +117,7 @@ func _combat_layout_for_width(_layout_w: float, _safe: Vector4) -> Dictionary:
 	var viewport_size: Vector2=get_viewport_rect().size
 	var w:=viewport_size.x;var h:=viewport_size.y
 	if w > h:
-		return {'left':0.0,'usable':w,'field':Rect2(12,136,w-360,h-276),'side':Rect2(w-354,132,330,h-246)}
+		return {'left':0.0,'usable':w,'field':preload('res://scripts/portrait/LandscapeHuntLayout.gd').field(viewport_size),'side':Rect2(w-354,132,330,h-246)}
 	var top:=maxf(28,_safe_margins().y+10)+180
 	return {'left':0.0,'usable':w,'field':Rect2(0,top,w,maxf(240,h-320-top)),'side':Rect2(18,180,w-36,h-380)}
 
