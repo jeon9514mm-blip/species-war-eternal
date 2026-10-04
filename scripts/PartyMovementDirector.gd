@@ -113,7 +113,7 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 		var next := _move("hero_%s" % id, start, goal, WALK_SPEED * delta)
 		# Separation is a local steering force; global navigation always sees the full goal.
 		var separation := Vector2.ZERO
-		var spacing := 0.95 if independent_hunt else SEPARATION_RADIUS
+		var spacing := 1.15 if independent_hunt else SEPARATION_RADIUS
 		for other_id in before_positions:
 			if other_id == id or int(states.get(other_id, {}).get("hp", 0)) <= 0:
 				continue

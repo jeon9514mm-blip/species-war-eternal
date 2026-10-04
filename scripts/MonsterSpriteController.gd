@@ -20,6 +20,7 @@ var _single_image_mode := false
 var _base_scale := Vector2.ONE
 var _base_position := Vector2.ZERO
 var _motion_time := 0.0
+var visual_state_time := 0.0
 var _hit_flash_time := 0.0
 var spawn_scale := 1.0
 var sheet_layout := "legacy"
@@ -103,6 +104,7 @@ func play_state(next_state: String, next_direction := "") -> void:
 	if resolved_state == state and not direction_changed and animation == "%s_%s" % [state, direction] and is_playing():
 		return
 	state = resolved_state
+	visual_state_time = 0.0
 	_motion_time = 0.0
 	if sheet_layout in ["bright", "pixel_v32", "casual_v58"]:
 		flip_h = direction == "left"
@@ -143,7 +145,9 @@ func _process(delta: float) -> void:
 	# Main pauses animation with speed_scale = 0; visual timers must pause too.
 	if speed_scale <= 0.0:
 		return
-	_motion_time += delta
+	var visual_delta := delta * absf(speed_scale)
+	_motion_time += visual_delta
+	visual_state_time += visual_delta
 	if _single_image_mode:
 		var duration := 0.30 if state == "attack" else 0.22
 		if state in ["attack", "hit"] and _motion_time >= duration:
@@ -156,7 +160,7 @@ func _process(delta: float) -> void:
 	if state == "death":
 		modulate.a = maxf(0.08, 1.0 - _motion_time * 1.8)
 	if _hit_flash_time > 0.0:
-		_hit_flash_time -= delta
+		_hit_flash_time -= visual_delta
 		self_modulate = Color("#ffb0b0") if int(_hit_flash_time * 30.0) % 2 == 0 else Color.WHITE
 	elif self_modulate != Color.WHITE:
 		self_modulate = Color.WHITE

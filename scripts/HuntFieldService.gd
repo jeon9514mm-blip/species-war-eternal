@@ -85,8 +85,10 @@ static func advance_roaming_hunt(main: Node, delta: float, support_actors: Array
 	if main.enemy_wave.is_empty():
 		return
 	var immobile: Array = []
-	for enemy in main.enemy_wave:
-		immobile.append(float(enemy.get("stun_seconds", 0.0)) > 0.0)
+	for index in main.enemy_wave.size():
+		var enemy: Dictionary=main.enemy_wave[index]
+		if main.challenge_session == null:preload('res://scripts/HuntAttackDirector.gd').refresh_enemy_intent(main,index)
+		immobile.append(float(enemy.get("stun_seconds", 0.0)) > 0.0 or (main.challenge_session == null and enemy.has("attack_intent")))
 	var enemy_targets: Array[Vector2] = []
 	if main.roaming_hunt is INVASION:
 		main.roaming_hunt.target_attack_reaches.clear()
@@ -176,6 +178,11 @@ static func advance_auto_hunt_step(main: Node, step: float) -> void:
 					main.hero_map_sprites[slot].play_idle()
 			main._sync_party_hp_from_heroes()
 		if main.party_hp >= int(main.party_max_hp * main._hunt_recovery_exit_ratio()):
+			# Recovery freezes enemy attack state. Discard old commitments only
+			# when the revived party is ready to engage again.
+			for enemy in main.enemy_wave:
+				enemy.erase('attack_intent')
+				enemy['attack_remaining']=maxf(.22,float(enemy.get('attack_remaining',.9)))
 			main.hunt_ai.set_state(AutoHuntController.State.MOVING)
 			main.roaming_hunt.mode = RoamingHuntDirector.Mode.PATROL
 			main.roaming_hunt.aggro_active = false

@@ -6,6 +6,7 @@ const MAP_LOADER=preload('res://scripts/maps/MapLoader.gd')
 const FRAMING=preload('res://scripts/maps3d/CombatCameraFraming.gd')
 const HEALTH_LAYOUT=preload('res://scripts/maps3d/CombatHealthLayout.gd')
 const HEALTH_OVERLAY=preload('res://scripts/maps3d/CombatHealthOverlay.gd')
+const HUNT_OVERLAY=preload('res://scripts/maps3d/HuntCombatOverlay.gd')
 const CAMERA_OFFSET=Vector3(0,40,28)
 const HERO_HEIGHT=2.25
 const ENEMY_HEIGHT=1.75
@@ -27,6 +28,10 @@ var _health_links: Array[PackedVector2Array]=[]
 var _health_overlay: Control
 var overview_mode:=false
 var view_button: Button
+var hunt_overlay: Control
+var _impact_age:=1.0
+var _impact_duration:=.16
+var _impact_strength:=0.0
 const RAID_PIVOT:=Vector2(519,383)
 const RAID_UNITS:=26.0
 const RAID_BOTTOM_CLEARANCE:=102.0
@@ -42,6 +47,10 @@ func _ready() -> void:
 	map_root=map_loader.load_zone(zone_id,viewport_3d,raid_mode)
 	if map_root==null:return
 	world=map_root.get_node('Arena');camera=world.get_node('BattleCamera')
+	if not raid_mode:
+		hunt_overlay=HUNT_OVERLAY.new();hunt_overlay.name='HuntCombatOverlay';hunt_overlay.terrain=self
+		hunt_overlay.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(hunt_overlay)
+		hunt_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_health_overlay=HEALTH_OVERLAY.new();_health_overlay.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	add_child(_health_overlay);_health_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	camera.keep_aspect=Camera3D.KEEP_HEIGHT
@@ -159,6 +168,17 @@ func raid_origin() -> Vector2:
 func _process(delta: float) -> void:
 	if not is_instance_valid(game) or not is_instance_valid(camera):return
 	if not raid_mode:_update_hunt_camera(delta)
+	if not raid_mode:
+		var speed:=visual_speed() if visual_running() else 0.0
+		for actor in game.hero_map_sprites+game.enemy_wave_sprites:
+			if is_instance_valid(actor):
+				actor.speed_scale=speed
+				if actor is MonsterSpriteController:actor.set_process(speed>0)
+		if speed>0:_impact_age+=maxf(0,delta)*speed
+	if not raid_mode and _impact_age<_impact_duration:
+		var beat:=sin(_impact_age/_impact_duration*TAU*1.5)*(1-clampf(_impact_age/_impact_duration,0,1))
+		camera.h_offset=beat*_impact_strength;camera.v_offset=beat*_impact_strength*.35
+	elif not raid_mode:camera.h_offset=0
 	var live: Dictionary={}
 	_health_entries.clear()
 	_health_links.clear()
@@ -203,6 +223,21 @@ func _process(delta: float) -> void:
 	_health_overlay.links=_health_links
 	_health_overlay.queue_redraw()
 
+func hunt_hit(point: Vector2,source: Vector2,tint: Color,critical: bool) -> void:
+	if is_instance_valid(hunt_overlay):hunt_overlay.hit(point,source,tint,critical)
+
+func visual_running() -> bool:
+	return is_instance_valid(game) and game.active_screen=='combat' and game.combat_running and not game._application_suspended and not bool(game.get_meta('equipment_mail_paused',false)) and not preload('res://scripts/SaveSafety.gd').pending(game)
+
+func visual_speed() -> float:
+	return clampf(game.battle_speed,1,2) if is_finite(game.battle_speed) else 1.0
+
+func camera_impact(intensity: float,duration: float,_zoom: float) -> void:
+	# Only the world moves. Menus, touch coordinates and the party dock stay fixed.
+	if not is_instance_valid(camera) or _impact_age<.18:return
+	_impact_age=0;_impact_duration=clampf(duration,.10,.20)
+	_impact_strength=minf(.085,maxf(0,intensity)*.015)
+
 func _queue_health(bar: ProgressBar,anchor: Vector2,shown: bool,hp: float,hero: bool,selected: bool) -> void:
 	if not is_instance_valid(bar):return
 	# Healthy party members remain visible in the persistent party dock.
@@ -233,7 +268,9 @@ func _actor_height(source: AnimatedSprite2D,hero: bool) -> float:
 	var native: float=maxf(1,source.native_visual_height)
 	if raid_mode:return native*absf(source.scale.y)/RAID_UNITS
 	if hero:return HERO_HEIGHT
-	return ENEMY_HEIGHT*clampf(absf(source.scale.y)/maxf(.001,source.presentation_scale.y),.15,1.35)
+	# Atlas normalization is not a gameplay size bonus. Compare against the
+	# normalized rest scale, then apply only spawn/hit/death presentation changes.
+	return ENEMY_HEIGHT*clampf(absf(source.scale.y)/maxf(.001,source._base_scale.y),.15,1.35)
 
 func actor_head_offset(source: AnimatedSprite2D) -> Vector2:
 	if not is_instance_valid(camera):return Vector2.ZERO
@@ -272,7 +309,18 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 	sprite.pixel_size=height/native
 	var canvas_offset: Vector2=source.offset if not source.centered else source.offset-texture.get_size()*.5
 	sprite.offset=Vector2(canvas_offset.x+texture.get_width()*.5,-canvas_offset.y-texture.get_height()*.5)
-	sprite.position=Vector3(point.x,.10,point.y);sprite.flip_h=source.flip_h
+	var motion:=Vector3.ZERO
+	if not raid_mode:
+		var age: float=source.visual_state_time
+		var facing: Vector2={'left':Vector2.LEFT,'right':Vector2.RIGHT,'up':Vector2.UP,'down':Vector2.DOWN}.get(source.direction,Vector2.RIGHT)
+		if source.state=='attack':
+			var contact: float=source.visual_attack_duration*.44 if hero else preload('res://scripts/HuntAttackDirector.gd').ENEMY_WINDUP
+			var stroke:=sin(clampf(age/maxf(.01,contact),0,1)*PI*.5)*(1-smoothstep(contact,contact+.16,age))
+			motion=Vector3(facing.x,0,facing.y)*stroke*(.13 if hero else .20)
+		elif source.state=='hit':
+			motion=-Vector3(facing.x,0,facing.y)*sin(clampf(age/.22,0,1)*PI)*.10
+		elif source.state=='walk':motion.y=absf(sin(age*10))*.045
+	sprite.position=Vector3(point.x,.10,point.y)+motion;sprite.flip_h=source.flip_h
 	sprite.modulate=source.modulate*Color(source.self_modulate.r,source.self_modulate.g,source.self_modulate.b,1)
 	sprite.visible=source.visible
 	if hero:
@@ -288,6 +336,7 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 	source.self_modulate.a=0
 	for child in source.get_children():
 		if child is CanvasItem:child.visible=false
-	var shadow: MeshInstance3D=sprite.get_node('ContactShadow');shadow.position=Vector3(0,-.02,0)
+	var shadow: MeshInstance3D=sprite.get_node('ContactShadow');shadow.position=Vector3(0,-.02,0)-motion
 	shadow.visible=source.modulate.a>.15
+	sprite.get_node('TeamFootRing').position=Vector3(0,.04,0)-motion
 	sprite.get_node('TeamFootRing').visible=source.modulate.a>.5 and source.state!='death'

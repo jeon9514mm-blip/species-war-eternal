@@ -15,6 +15,8 @@ const STATES := ["idle", "walk", "attack", "hit", "death"]
 
 # Presentation event counter: repeated attacks must restart the skeletal track.
 var visual_sequence: int = 0
+var visual_attack_duration := .34
+var visual_state_time := 0.0
 
 var direction := "down"
 var state := "idle"
@@ -84,6 +86,7 @@ func play_state(next_state: String, next_direction := "") -> void:
 		direction = next_direction
 	var next: String = next_state if next_state in STATES else "idle"
 	if next != state:
+		visual_state_time = 0.0
 		_death_time = 0.0
 		_hit_flash_time = 0.18 if next == "hit" else 0.0
 	state = next
@@ -109,7 +112,10 @@ func play_walk(velocity := Vector2.ZERO) -> void:
 	play_state("walk", direction)
 
 func play_attack(next_direction := "") -> void:
+	visual_sequence += 1
+	visual_state_time = 0.0
 	play_state("attack", next_direction)
+	if _frames_ready: set_frame_and_progress(0,0)
 
 func play_hit(next_direction := "") -> void:
 	play_state("hit", next_direction)
@@ -118,12 +124,17 @@ func play_death(next_direction := "") -> void:
 	play_state("death", next_direction)
 
 func _on_animation_finished() -> void:
+	if state == 'attack' and visual_state_time < visual_attack_duration: return
 	if state == "attack" or state == "hit":
 		action_finished.emit(state)
 		play_idle(direction)
 
 func _process(delta: float) -> void:
 	var visual_delta := delta * absf(speed_scale)
+	visual_state_time += visual_delta
+	if state == 'attack' and not has_method('play_visual') and visual_state_time >= visual_attack_duration:
+		action_finished.emit(state)
+		play_idle(direction)
 	_hit_flash_time = maxf(0.0, _hit_flash_time - visual_delta)
 	self_modulate = Color("#ffb0b0") if _hit_flash_time > 0.0 else Color.WHITE
 	if state == "death":

@@ -6,6 +6,7 @@ const CAMERA_META := &"combat_camera_impact"
 
 var host: Control
 var layer: Control
+var battlefield_ref: WeakRef
 var enabled := true
 var optional_node_limit: int = 96
 var active_projectiles := 0
@@ -23,6 +24,7 @@ var boss_arrival_sequence := 0
 
 func bind(next_host: Control, next_layer: Control) -> void:
 	_restore_camera(host)
+	battlefield_ref = null
 	host = next_host
 	layer = next_layer
 	active_projectiles = 0
@@ -377,6 +379,10 @@ func camera_impact(intensity := 5.0, duration := 0.16, zoom := 0.012) -> void:
 	if not _valid():
 		return
 	camera_sequence += 1
+	var battlefield = battlefield_ref.get_ref() if battlefield_ref != null else null
+	if is_instance_valid(battlefield) and battlefield.has_method('camera_impact'):
+		battlefield.camera_impact(intensity,duration,zoom)
+		return
 	# A new impact replaces the current shake from its real resting transform.
 	# Otherwise rapid hits accumulate screen offset and zoom permanently.
 	_restore_camera(host)

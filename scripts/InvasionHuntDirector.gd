@@ -40,11 +40,11 @@ func advance(delta: float, alive_mask: Array, immobile_mask: Array = [], hero_ta
 		# A ranged enemy cannot hold a melee-only defender in permanent stalemate.
 		if i<target_attack_reaches.size():preferred=minf(preferred,maxf(.46,target_attack_reaches[i]-.08))
 		var approach := _approach_slot(i, target, preferred, alive_mask)
-		if distance > preferred:
-			pos = _move_actor("enemy_%d" % i, pos, approach, float(behavior.speed)*delta)
-		elif bool(behavior.retreat) and distance<.65 and distance>.01:
+		if bool(behavior.retreat) and distance<.65 and distance>.01:
 			var away:=pos+(pos-target).normalized()*(preferred-distance)
 			pos=_move_actor("enemy_%d"%i,pos,_clamp_field(away),.75*delta)
+		elif distance > preferred or pos.distance_to(approach) > .12:
+			pos = _move_actor("enemy_%d" % i, pos, approach, float(behavior.speed)*delta)
 		enemy_positions[i] = _clamp_field(pos)
 	_separate_enemies(delta, alive_mask, immobile_mask)
 	current_target = _nearest_alive_enemy(alive_mask)
@@ -65,6 +65,9 @@ func append_corps(enemies: Array, corps_id: int) -> void:
 		var point: Vector2 = _clamp_field(anchor-outward*(i/5)*1.15+tangent*(i%5-2)*1.8)
 		if field_navigation!=null:point=field_navigation.clamp_to_walkable(point)
 		enemies[i]["entry_side"]=entry.id
+		# Invasions roam the whole field. Hero pursuit must use that same rule;
+		# an old habitat leash must not prevent closing on a waiting ring.
+		enemies[i]['leash_radius']=0.0
 		enemy_positions.append(point); enemy_home_positions.append(point); enemy_wander_targets.append(party_position)
 		enemy_pack_ids.append(corps_id); enemy_archetypes.append(str(enemies[i].get("archetype","brute")))
 		enemy_sight_ranges.append(32.0); enemy_leash_ranges.append(0.0)
@@ -82,7 +85,19 @@ func _approach_slot(index: int, target: Vector2, radius: float, alive_mask: Arra
 	if index < target_hero_ids.size():
 		for other in index:
 			if other < alive_mask.size() and bool(alive_mask[other]) and other < target_hero_ids.size() and target_hero_ids[other] == target_hero_ids[index]: rank += 1
-	# Reserved approach angles stop every member following the hero's exact center.
-	var point := _clamp_field(target + direction.rotated((float(rank % 5) - 2.0) * 0.38) * radius)
-	if field_navigation != null and not field_navigation.is_walkable(point): return target
+	# Two contact lanes fit the actor footprints. Overflow waits in spaced rings
+	# and advances as a lane opens instead of piling fifteen bodies on one hero.
+	var angle := (-PI*.5 if rank == 0 else PI*.5)
+	if rank >= 2:
+		angle = float((rank-2)%6)*TAU/6.0
+		radius = 2.15 + float((rank-2)/6)*1.10
+	var point := _clamp_field(target + direction.rotated(angle) * radius)
+	if rank < 2 and field_navigation != null:
+		# A contact slot projected to the far side of a rock creates a stalemate
+		# at the hero's pursuit leash. Find a clear lane on the target's side.
+		for offset in [0.0,-.45,.45,-.90,.90,-1.5,1.5,PI]:
+			var candidate := _clamp_field(target + direction.rotated(angle+offset) * radius)
+			if field_navigation.is_walkable(candidate) and field_navigation.has_clear_path(target,candidate):return candidate
+		return target
+	if field_navigation != null and not field_navigation.is_walkable(point): return field_navigation.clamp_to_walkable(point)
 	return point

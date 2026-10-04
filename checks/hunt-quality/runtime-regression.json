@@ -1,0 +1,161 @@
+{
+  "commit": "f73e5686d9cfa3f5f853a82673e6cdb940242a63",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Selected existing regression tests; headless Linux; isolated XDG per test; no Android device measurements",
+  "suites": [
+    {
+      "script": "scripts/CombatQualitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 5.27,
+      "errors": [],
+      "result": [
+        "combat_quality checks=669 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/MultiDirectionHuntSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 24.77,
+      "errors": [],
+      "result": [
+        "multidirection_hunt checks=4391 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/IndependentHuntSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 15.73,
+      "errors": [],
+      "result": [
+        "INDEPENDENT_HUNT checks=89 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/AutoCombatTacticsSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 0.41,
+      "errors": [],
+      "result": [
+        "auto_combat_tactics_smoke_test_ok heal=smart guard=smart elite=priority ultimate=held"
+      ]
+    },
+    {
+      "script": "scripts/V8364CombatViewSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 12.27,
+      "errors": [],
+      "result": [
+        "v8364_combat_view checks=1312 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/EquipmentMailSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 11.75,
+      "errors": [],
+      "result": [
+        "equipment_mail checks=35 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HuntMenuStateSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 37.89,
+      "errors": [],
+      "result": [
+        "HUNT_MENU_STATE checks=94 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HuntAttackQualitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 4.81,
+      "errors": [],
+      "result": [
+        "hunt_attack_quality checks=23 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/DirectionalHuntQualitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 81.36,
+      "errors": [],
+      "result": [
+        "directional_hunt_quality checks=32 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V52HuntIntegrationSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 32.98,
+      "errors": [],
+      "result": [
+        "v52_hunt_integration checks=111 failures=0 rows=6 pause_recovery_reward_contracts=true"
+      ]
+    },
+    {
+      "script": "scripts/TouchScrollSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 11.7,
+      "errors": [],
+      "result": [
+        "TOUCH_SCROLL_SMOKE checks=51 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/RaidCombatQualitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 6.78,
+      "errors": [],
+      "result": [
+        "raid_combat_quality checks=32 failures=[]"
+      ]
+    }
+  ],
+  "passed": 12,
+  "total": 12,
+  "source_sha256": {
+    "scripts/CombatFxDirector.gd": "7172334fede1ebcf9111ae78cc13bb9ef3c4c54192028689a2c0b00d47a4c64e",
+    "scripts/HeroSpriteController.gd": "08bbd94c80fbf7c1cd345660639bebccdd2e7f96f1d7f932c8344adb23ce07de",
+    "scripts/HuntFieldService.gd": "5c21f240bf1b06b3981a415967b011a5dc58b58bcbf98e04f10139817c998c07",
+    "scripts/InvasionHuntDirector.gd": "31433c4a91d9b570ec0dd9ffb5cf8b14779c90d802f633fee4b8a108626327cd",
+    "scripts/Main.gd": "41b1f4fe9304cb8151156900ffbce30df5f24cbfe2088ed9853af52e6d8ce309",
+    "scripts/MonsterSpriteController.gd": "95285b70549c16a5066a40bfbedeb51c4f5c6620bbc5f76fb9fdd5f1edb3faa2",
+    "scripts/PartyMovementDirector.gd": "a58d5012c28352bf15d5c1058eb68ad2df48105ca86a46d28ad39b07300adbdb",
+    "scripts/maps3d/Battlefield3DView.gd": "0d529a035d5bd14b84c019b64ad7fd24f2fd6ca5200331b877f314262f047c9b",
+    "scripts/maps3d/CombatCameraFraming.gd": "df830accd2fe3bd134cc277887dd6048ebaeefc9b5ffcbcc95a37ad786dc4e7e",
+    "scripts/portrait/PortraitDamageNumber.gd": "091dfbdf520b3da44799605a4523f16ae8f64342ff649e67979b4587f2cb9265",
+    "scripts/portrait/PortraitHeroSkeletalRig.gd": "a6849e58c0532150afee2f8ce6a7f4e6ae851036966544911e2a3febdfbae9a8",
+    "scripts/portrait/PortraitMain.gd": "5a3321d645beecc62af714a94f44e9c2048e93666e8e5ced22a2b10111682a3f",
+    "scripts/HuntAttackDirector.gd": "b7e0feec2338263d27dd8c2ce1f02a8d86d46ce776b957094decfef30d12a38f",
+    "scripts/HuntAttackQualitySmokeTest.gd": "af17011e40df3ca23e612560970b770c0db166da03c6a35a09483ee077e2eebe",
+    "scripts/maps3d/HuntCombatOverlay.gd": "e7459b4455c63272980ddf43bfc36ca0ca5c3ffd1f73c810707171aa735f52e1",
+    "tools/capture_hunt_quality.gd": "ac25dfd3347437c2149497869d5bc2ec00ea370477321f5e77dfcd9d2f4e9918"
+  },
+  "numbered_checks": 6839,
+  "note": "Also includes the auto tactics scenario test without a numeric check count; existing baseline failures reported separately."
+}

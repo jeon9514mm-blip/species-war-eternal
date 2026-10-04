@@ -178,6 +178,7 @@ func _build_mesh(source: AtlasTexture) -> void:
 	for key in bones:mesh.add_bone(mesh.get_path_to(bones[key]),per_bone[key])
 
 func action_duration(action: String) -> float:
+	if action in ['attack_1','attack_2','skill','ultimate']:return actor.visual_attack_duration
 	if not actor.sprite_frames.has_animation(action):return .6
 	var duration:=0.0
 	for i in actor.sprite_frames.get_frame_count(action):duration+=actor.sprite_frames.get_frame_duration(action,i)

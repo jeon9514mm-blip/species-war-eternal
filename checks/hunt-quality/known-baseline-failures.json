@@ -1,0 +1,70 @@
+{
+  "scope": "Existing failures reproduced on isolated baseline worktree and current source; excluded from passing release checks.",
+  "suites": [
+    {
+      "script": "V51CombatSafetySmokeTest",
+      "baseline_commit": "f73e5686d9cfa3f5f853a82673e6cdb940242a63",
+      "current_exit": 1,
+      "baseline_errors": [
+        "ERROR: curse fixture triggers lethal Bron counter",
+        "ERROR: curse counter-killed boss remains dead",
+        "ERROR: curse counter damage settles once without overkill credit",
+        "ERROR: aoe fixture triggers lethal Bron counter",
+        "ERROR: aoe counter-killed boss remains dead",
+        "ERROR: aoe counter damage settles once without overkill credit",
+        "ERROR: counter kill settles victory during the same production tick",
+        "ERROR: counter victory awards the normal raid reward"
+      ],
+      "current_errors": [
+        "ERROR: curse fixture triggers lethal Bron counter",
+        "ERROR: curse counter-killed boss remains dead",
+        "ERROR: curse counter damage settles once without overkill credit",
+        "ERROR: aoe fixture triggers lethal Bron counter",
+        "ERROR: aoe counter-killed boss remains dead",
+        "ERROR: aoe counter damage settles once without overkill credit",
+        "ERROR: counter kill settles victory during the same production tick",
+        "ERROR: counter victory awards the normal raid reward",
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "same_errors": false,
+      "same_assertion_failures": true,
+      "additional_engine_diagnostics": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ]
+    },
+    {
+      "script": "V53HuntSupportSmokeTest",
+      "baseline_commit": "f73e5686d9cfa3f5f853a82673e6cdb940242a63",
+      "current_exit": 1,
+      "baseline_errors": [
+        "ERROR: distant enemy naturally releases combat into patrol"
+      ],
+      "current_errors": [
+        "ERROR: distant enemy naturally releases combat into patrol"
+      ],
+      "same_errors": true,
+      "same_assertion_failures": true,
+      "additional_engine_diagnostics": []
+    },
+    {
+      "script": "V63AutoFxOfflineSmokeTest",
+      "baseline_commit": "f73e5686d9cfa3f5f853a82673e6cdb940242a63",
+      "current_exit": 1,
+      "baseline_errors": [
+        "ERROR: V63 reward feed leaves auto buttons unobstructed",
+        "ERROR: V63 online hunt credits currency and account XP without a claim",
+        "ERROR: V63 online stage chest pays immediately without a hidden claim",
+        "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+      ],
+      "current_errors": [
+        "ERROR: V63 reward feed leaves auto buttons unobstructed",
+        "ERROR: V63 online hunt credits currency and account XP without a claim",
+        "ERROR: V63 online stage chest pays immediately without a hidden claim",
+        "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+      ],
+      "same_errors": true,
+      "same_assertion_failures": true,
+      "additional_engine_diagnostics": []
+    }
+  ]
+}

@@ -176,7 +176,7 @@ func _spawn_enemy_wave_sprites(start_index: int = 0) -> void:
 		_attach_hunt_shadow(sprite,17.0)
 func _damage_enemy(enemy_index: int, damage: int, source_index := 0) -> int:
 	var actual: int=super._damage_enemy(enemy_index,damage,source_index)
-	if actual>0 and active_screen=='combat' and enemy_index>=0 and enemy_index<enemy_wave.size() and int(enemy_wave[enemy_index].get('hp',1))<=0 and enemy_index<enemy_wave_sprites.size() and is_instance_valid(skill_fx_layer) and combat_fx._fx_budget_available() and combat_effects_enabled:
+	if actual>0 and active_screen=='combat' and enemy_index>=0 and enemy_index<enemy_wave.size() and (bool(enemy_wave[enemy_index].get('elite',false)) or bool(enemy_wave[enemy_index].get('treasure',false))) and int(enemy_wave[enemy_index].get('hp',1))<=0 and enemy_index<enemy_wave_sprites.size() and is_instance_valid(skill_fx_layer) and combat_fx._fx_budget_available() and combat_effects_enabled:
 		var sprite: MonsterSpriteController=enemy_wave_sprites[enemy_index]
 		if is_instance_valid(sprite):
 			var burst:=P_KILL_BURST.new()
@@ -205,27 +205,26 @@ func _spawn_floating_combat_text(message: String, color: Color, origin: Vector2)
 	if not combat_effects_enabled or not is_instance_valid(content_root):return
 	if message=='무리 격파':return
 	var amount:=message.replace(' HP','').strip_edges()
+	var critical:=amount.begins_with('치명! ')
+	if critical:amount=amount.trim_prefix('치명! ')
 	var is_number:=amount.begins_with('-') or amount.begins_with('+')
 	if not is_number:
 		super._spawn_floating_combat_text(message,color,origin)
 		return
 	var number:=absi(int(amount))
 	var is_heal:=amount.begins_with('+')
-	var near_hero:=false
-	for sprite in hero_map_sprites:
-		if is_instance_valid(sprite) and sprite.position.distance_to(origin+Vector2(90,75))<60.0:
-			near_hero=true;break
+	var near_hero:=message.ends_with(' HP')
 	var tint:=P_SKIN.SUCCESS if is_heal else (Color('#ff777a') if near_hero else Color('#ffe19a'))
-	var displayed:=('+' if is_heal else '−')+str(number)
-	var field_top:=combat_field_rect.position.y+145.0
-	var field_bottom:=get_viewport_rect().size.y-(390.0 if maxi(_party_slot_cap(),deployed_heroes.size())>5 else 300.0)
-	var center:=Vector2(clampf(origin.x+90.0,84.0,get_viewport_rect().size.x-84.0),clampf(origin.y+45.0,field_top,maxf(field_top+42,field_bottom)))
+	var displayed:=('치명 ' if critical else '')+('+' if is_heal else '−')+str(number)
+	var field_top:=combat_field_rect.position.y+32.0
+	var field_bottom:=combat_field_rect.end.y-30.0
+	var center:=Vector2(clampf(origin.x+90.0,combat_field_rect.position.x+48.0,combat_field_rect.end.x-48.0),clampf(origin.y+45.0,field_top,maxf(field_top+42,field_bottom)))
 	var floats:=get_tree().get_nodes_in_group('floating_combat_text')
 	while floats.size()>=int(_presentation_profile()['float_limit']):
 		var oldest: Node=floats.pop_front();oldest.remove_from_group('floating_combat_text');oldest.queue_free()
 	_number_lane+=1
 	var label:=P_DAMAGE.new();content_root.add_child(label)
-	label.show_value(displayed,tint,center,number>=300,_number_lane)
+	label.show_value(displayed,tint,center,critical,_number_lane)
 
 func _on_hunt_reward(gold: int, xp: int, drops: Array[Dictionary], stage_cleared: bool, chest_gold := 0, chest_xp := 0) -> void:
 	# Hero XP was granted by the hunt. Move its account XP and gold directly to
@@ -272,6 +271,7 @@ func _install_portrait_hud() -> void:
 	terrain.game=self
 	content_root.add_child(terrain);content_root.move_child(terrain,0)
 	combat_labels['terrain']=terrain
+	combat_fx.battlefield_ref=weakref(terrain)
 	if is_instance_valid(original):original.hide()
 	# Geometry, illumination and atmospheric depth are rendered in the 3D viewport.
 	var details: Control=combat_labels.get('details_panel')

@@ -1,0 +1,4 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+INDEPENDENT_HUNT_METRICS [{"constrained":{"farthest":1.97129797935486,"spread":1.90923018124368,"targets":8},"faction":"aurelia","individual":{"farthest":3.59883856773376,"spread":3.87486012246874,"targets":8},"natural":{"cycles":2,"hero_hp_removed":19,"monster_targets":4}},{"constrained":{"farthest":1.98084592819214,"spread":2.0275086581707,"targets":8},"faction":"noxfera","individual":{"farthest":4.26379537582397,"spread":4.4794434858693,"targets":8},"natural":{"cycles":2,"hero_hp_removed":12,"monster_targets":3}}]
+INDEPENDENT_HUNT checks=89 failures=[]

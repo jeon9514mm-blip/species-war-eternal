@@ -2948,6 +2948,9 @@ func _emit_basic_attack_fx(hero_id: String, target_index: int) -> void:
 		_presentation_event("sword" if int(hero_battle_state.get(hero_id, {}).get("range", 1)) <= 1 else "bow")
 	if not combat_effects_enabled or target_index < 0:
 		return
+	var terrain: Control = combat_labels.get("terrain")
+	# The live battlefield draws the release on the simulation windup, before damage.
+	if active_screen == "combat" and challenge_session == null and is_instance_valid(terrain) and terrain.has_method("hunt_hit"): return
 	var state: Dictionary = hero_battle_state.get(hero_id, {})
 	var attack_range := int(state.get("range", 1))
 	var start := _combat_hero_screen_position(hero_id) + Vector2(20, -12)
@@ -3064,12 +3067,18 @@ func _damage_enemy(enemy_index: int, damage: int, source_index := 0) -> int:
 	if enemy_index < enemy_wave_sprites.size() and is_instance_valid(enemy_wave_sprites[enemy_index]):
 		var sprite: MonsterSpriteController = enemy_wave_sprites[enemy_index]
 		var killed := int(enemy["hp"]) <= 0
+		# Preserve the victim's facing; a hit from another direction is not a turn command.
 		if killed:
-			sprite.play_death("left")
+			sprite.play_death()
 		else:
-			sprite.play_hit("left")
+			sprite.play_hit()
 		combat_fx.hit_flash(sprite, Color("#fff0e2") if critical else Color("#ffd4d4"))
-		combat_fx.impact(sprite.position - Vector2(0, 12), GOLD if critical else RED, 24.0 if critical else 16.0)
+		var terrain: Control = combat_labels.get("terrain")
+		if active_screen == "combat" and challenge_session == null and is_instance_valid(terrain) and terrain.has_method("hunt_hit"):
+			var source_id := str(deployed_heroes[source_index].get("id", "")) if source_index >= 0 and source_index < deployed_heroes.size() else ""
+			terrain.hunt_hit(roaming_hunt.enemy_position(enemy_index), _hero_field_position(source_id), GOLD if critical else _hero_accent_color(source_id), critical)
+		else:
+			combat_fx.impact(sprite.position - Vector2(0, 12), GOLD if critical else RED, 24.0 if critical else 16.0)
 		if critical:
 			combat_fx.hit_spark(sprite.position - Vector2(0, 12), GOLD, true, false)
 			combat_fx.camera_impact(2.2, 0.10, 0.004)
@@ -3082,8 +3091,10 @@ func _damage_enemy(enemy_index: int, damage: int, source_index := 0) -> int:
 		if killed and not bool(enemy.get("v72_death_fx", false)):
 			enemy["v72_death_fx"] = true
 			var death_color := GOLD if bool(enemy.get("treasure", false)) else (GOLD if bool(enemy.get("elite", false)) else Color("#dce9dd"))
-			combat_fx.death_burst(sprite.position - Vector2(0, 10), death_color, bool(enemy.get("elite", false)) or bool(enemy.get("treasure", false)))
-			combat_fx.camera_impact(4.4 if bool(enemy.get("elite", false)) or bool(enemy.get("treasure", false)) else 2.6, 0.14, 0.007 if bool(enemy.get("elite", false)) or bool(enemy.get("treasure", false)) else 0.004)
+			if active_screen != "combat" or bool(enemy.get("elite", false)) or bool(enemy.get("treasure", false)):
+				combat_fx.death_burst(sprite.position - Vector2(0, 10), death_color, true)
+			if bool(enemy.get("elite", false)) or bool(enemy.get("treasure", false)):
+				combat_fx.camera_impact(4.4, 0.14, 0.007)
 		_spawn_floating_combat_text(("치명! " if critical else "") + "-%d" % actual, GOLD if critical else RED, sprite.position - Vector2(90, 60) + Vector2(0, maxi(0, source_index) * 3))
 	_sync_enemy_wave_summary()
 	return actual
@@ -3155,7 +3166,7 @@ func _incoming_damage_to_hero(hero_id: String, base_damage: int, enemy_index: in
 		combat_fx.impact(sprite.position - Vector2(0, 8), RED, 15.0)
 		if received >= maxi(8, int(float(state.get("max_hp", 1)) * 0.08)):
 			combat_fx.camera_impact(2.4, 0.11, 0.004)
-		_spawn_floating_combat_text("-%d" % received, RED, sprite.position - Vector2(90, 78))
+		_spawn_floating_combat_text("-%d HP" % received, RED, sprite.position - Vector2(90, 78))
 		if int(state["hp"]) <= 0:
 			sprite.play_death()
 		elif received>0:
@@ -4562,7 +4573,7 @@ func _advance_hunt_attacks(delta: float, support_actors: Array[String] = []) -> 
 				if use_skill and not _should_use_skill(hero_id):
 					use_skill = false
 				var action := "ultimate" if use_ultimate else ("a2" if use_secondary else ("a1" if use_skill else "basic"))
-				var target_index: int = HERO_KITS.select_target(self, hero_id, action)
+				var target_index: int = preload("res://scripts/HuntAttackDirector.gd").committed_target(self, hero_id, action, str(runtime.get("prepared_action", action))) if challenge_session == null else HERO_KITS.select_target(self, hero_id, action)
 				runtime["target_index"] = target_index
 				runtime["cast"] = false
 				runtime["cast_ultimate"] = false
@@ -4605,10 +4616,14 @@ func _advance_hunt_attacks(delta: float, support_actors: Array[String] = []) -> 
 				runtime["cast"] = use_skill
 				runtime["cast_secondary"] = use_secondary
 				runtime["windup"] = 0.24 if use_ultimate else 0.15
+				runtime["prepared_action"] = action
+				runtime["attack_windup_duration"] = runtime["windup"]
 				if use_skill or use_ultimate or use_secondary:
 					_skill_spacing = 0.22
 				if index < hero_map_sprites.size() and is_instance_valid(hero_map_sprites[index]):
 					var hero_sprite: HeroSpriteController = hero_map_sprites[index]
+					hero_sprite.visual_attack_duration = float(runtime["windup"]) / .44
+					hero_sprite.visual_state_time = 0.0
 					hero_sprite.set_direction_from_vector(roaming_hunt.enemy_position(target_index) - _hero_field_position(hero_id) if target_index >= 0 else Vector2.RIGHT)
 					hero_sprite.play_attack()
 	# Each surviving monster attacks independently. Tank/taunt priority creates an actual front line.
@@ -4629,10 +4644,15 @@ func _advance_hunt_attacks(delta: float, support_actors: Array[String] = []) -> 
 		var enemy_archetype := str(enemy.get("archetype", ""))
 		if active_screen == "combat" and roaming_hunt.is_returning(enemy_index):
 			continue
-		var attack_target := _select_hero_target_for_enemy(enemy_index, true)
-		if attack_target.is_empty() and enemy_archetype != "support":
-			continue
-		enemy["attack_remaining"] = maxf(0.0, float(enemy.get("attack_remaining", 0.9)) - delta)
+		var attack_target := ""
+		if challenge_session == null:
+			var intent: Dictionary = preload("res://scripts/HuntAttackDirector.gd").advance_enemy(self, enemy_index, delta)
+			if not bool(intent.get("ready", false)): continue
+			attack_target = str(intent.get("target", ""))
+		else:
+			attack_target = _select_hero_target_for_enemy(enemy_index, true)
+			if attack_target.is_empty() and enemy_archetype != "support": continue
+			enemy["attack_remaining"] = maxf(0.0, float(enemy.get("attack_remaining", 0.9)) - delta)
 		if float(enemy["attack_remaining"]) <= 0.0:
 			if float(enemy.get("stun_seconds", 0.0)) > 0.0:
 				continue
@@ -4667,7 +4687,7 @@ func _advance_hunt_attacks(delta: float, support_actors: Array[String] = []) -> 
 					_begin_hunt_recovery()
 					return
 				var received := _incoming_damage_to_hero(target_id, int(enemy.get("attack", 1)), enemy_index)
-				if enemy_index < enemy_wave_sprites.size() and is_instance_valid(enemy_wave_sprites[enemy_index]):
+				if challenge_session != null and enemy_index < enemy_wave_sprites.size() and is_instance_valid(enemy_wave_sprites[enemy_index]):
 					enemy_wave_sprites[enemy_index].set_direction_from_vector(_hero_field_position(target_id) - roaming_hunt.enemy_position(enemy_index))
 					enemy_wave_sprites[enemy_index].play_attack()
 				if received > 0 and _alive_hero_ids().is_empty():
@@ -4747,7 +4767,7 @@ func _update_map_hero_motion(_delta: float) -> void:
 			var target := int(runtime.get("target_index", -1))
 			if target >= 0:
 				sprite.set_direction_from_vector(roaming_hunt.enemy_position(target) - _hero_field_position(hero_id))
-		elif movement.length_squared() > 0.0064:
+		elif movement.length_squared() > 0.0064 and sprite.state not in ["attack", "hit"]:
 			sprite.play_walk(movement)
 		elif sprite.state == "walk":
 			sprite.play_idle()

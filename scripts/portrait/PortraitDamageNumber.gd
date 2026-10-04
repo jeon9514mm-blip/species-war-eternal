@@ -11,9 +11,9 @@ func show_value(message: String, tint: Color, origin: Vector2, large: bool, lane
 	horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	vertical_alignment=VERTICAL_ALIGNMENT_CENTER
 	size=Vector2(156,42)
-	position=origin+Vector2(-78.0+float(lane%3-1)*18.0,-13.0-float(lane%4)*12.0)
+	position=origin+Vector2(-78.0+float(lane%3-1)*9.0,-13.0-float(lane%3)*6.0)
 	add_theme_font_override('font',SKIN.bold_font())
-	add_theme_font_size_override('font_size',27 if large else 22)
+	add_theme_font_size_override('font_size',23 if large else 17)
 	add_theme_color_override('font_color',tint)
 	add_theme_color_override('font_shadow_color',Color('#06161dcc'))
 	add_theme_constant_override('shadow_offset_x',2)
