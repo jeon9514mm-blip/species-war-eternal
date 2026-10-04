@@ -1,0 +1,340 @@
+{
+  "schema_version": 1,
+  "hero_id": "caelum",
+  "source": "concept.png, artist inspected pixel landmarks",
+  "reviewed": false,
+  "master_body_span_px": 1500,
+  "master_landmarks_px": {
+    "floor": 1530,
+    "crown": 30,
+    "root_x": 562,
+    "neck": [
+      551,
+      343
+    ],
+    "left_arm": [
+      [
+        696,
+        457
+      ],
+      [
+        722,
+        643
+      ],
+      [
+        768,
+        789
+      ]
+    ],
+    "right_arm": [
+      [
+        400,
+        465
+      ],
+      [
+        392,
+        613
+      ],
+      [
+        321,
+        756
+      ]
+    ],
+    "left_leg": [
+      [
+        621,
+        767
+      ],
+      [
+        708,
+        1061
+      ],
+      [
+        813,
+        1377
+      ]
+    ],
+    "right_leg": [
+      [
+        508,
+        770
+      ],
+      [
+        471,
+        1048
+      ],
+      [
+        450,
+        1342
+      ]
+    ]
+  },
+  "joint_rest": {
+    "Root": [
+      0,
+      0
+    ],
+    "Pelvis": [
+      0,
+      -0.521667
+    ],
+    "Head": [
+      -0.007333,
+      -0.791333
+    ],
+    "Chest": [
+      0.0,
+      -0.736333
+    ],
+    "Torso": [
+      0,
+      -0.629
+    ],
+    "Hair": [
+      -0.007333,
+      -0.846333
+    ],
+    "Cape": [
+      0,
+      -0.748333
+    ],
+    "LeftUpperArm": [
+      0.089333,
+      -0.715333
+    ],
+    "LeftForearm": [
+      0.106667,
+      -0.591333
+    ],
+    "LeftHand": [
+      0.137333,
+      -0.494
+    ],
+    "LeftThigh": [
+      0.039333,
+      -0.508667
+    ],
+    "LeftShin": [
+      0.097333,
+      -0.312667
+    ],
+    "LeftFoot": [
+      0.167333,
+      -0.102
+    ],
+    "RightUpperArm": [
+      -0.108,
+      -0.71
+    ],
+    "RightForearm": [
+      -0.113333,
+      -0.611333
+    ],
+    "RightHand": [
+      -0.160667,
+      -0.516
+    ],
+    "RightThigh": [
+      -0.036,
+      -0.506667
+    ],
+    "RightShin": [
+      -0.060667,
+      -0.321333
+    ],
+    "RightFoot": [
+      -0.074667,
+      -0.125333
+    ]
+  },
+  "core_height": 0.45,
+  "head_height": 0.23,
+  "weapon_long_axis": 0.53,
+  "offhand_long_axis": 0.12,
+  "part_landmarks": {
+    "left_upper_arm": {
+      "proximal": [
+        0.64,
+        0.18
+      ],
+      "distal": [
+        0.64,
+        0.72
+      ]
+    },
+    "left_forearm": {
+      "proximal": [
+        0.26,
+        0.09
+      ],
+      "distal": [
+        0.76,
+        0.9
+      ]
+    },
+    "left_thigh": {
+      "proximal": [
+        0.58,
+        0.1
+      ],
+      "distal": [
+        0.52,
+        0.7
+      ]
+    },
+    "left_shin": {
+      "proximal": [
+        0.53,
+        0.08
+      ],
+      "distal": [
+        0.5,
+        0.86
+      ]
+    },
+    "right_upper_arm": {
+      "proximal": [
+        0.3,
+        0.18
+      ],
+      "distal": [
+        0.2,
+        0.72
+      ]
+    },
+    "right_forearm": {
+      "proximal": [
+        0.3,
+        0.1
+      ],
+      "distal": [
+        0.63,
+        0.9
+      ]
+    },
+    "right_thigh": {
+      "proximal": [
+        0.4,
+        0.1
+      ],
+      "distal": [
+        0.5,
+        0.7
+      ]
+    },
+    "right_shin": {
+      "proximal": [
+        0.55,
+        0.08
+      ],
+      "distal": [
+        0.48,
+        0.86
+      ]
+    },
+    "left_hand": {
+      "anchor": [
+        0.58,
+        0.09
+      ],
+      "finger_axis": [
+        -0.2,
+        1
+      ],
+      "grip": [
+        0.54,
+        0.57
+      ],
+      "height": 0.074
+    },
+    "right_hand": {
+      "anchor": [
+        0.54,
+        0.06
+      ],
+      "finger_axis": [
+        0,
+        1
+      ],
+      "grip": [
+        0.53,
+        0.58
+      ],
+      "height": 0.074
+    },
+    "left_foot": {
+      "anchor": [
+        0.5,
+        0.23
+      ],
+      "height": 0.11
+    },
+    "right_foot": {
+      "anchor": [
+        0.5,
+        0.23
+      ],
+      "height": 0.11
+    },
+    "head": {
+      "anchor": [
+        0.435,
+        0.965
+      ]
+    },
+    "chest": {
+      "neck": [
+        0.45,
+        0.025
+      ]
+    },
+    "hair_back": {
+      "anchor": [
+        0.5,
+        0.14
+      ],
+      "height": 0.125
+    },
+    "cape_back": {
+      "anchor": [
+        0.5,
+        0.04
+      ],
+      "height": 0.74
+    },
+    "weapon": {
+      "anchor": [
+        0.22,
+        0.19
+      ],
+      "rotation": 0.13
+    },
+    "offhand": {
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "rotation": 0
+    }
+  },
+  "neck_attachment": {
+    "head_anchor": [
+      0.435,
+      0.965
+    ],
+    "core_seat": [
+      0.45,
+      0.025
+    ],
+    "head_seam_uv": [
+      0.305,
+      0.949,
+      0.565,
+      0.971
+    ],
+    "max_bend_radians": 0.105,
+    "underlap_body_units": 0.006,
+    "scope": "Source neck base is seated at the core collar; only the tiny lower skin cut fades, below the face."
+  },
+  "atlas_sha256": "f262b7190a17e32147377cf9f4139337597bc34de4417252301f6cbade7e5bf1"
+}

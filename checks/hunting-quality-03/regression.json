@@ -1,0 +1,37 @@
+{
+  "date_kst": "2026-10-04",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "integration_base_commit": "4751bb2151fa74ed90773dd7f2ee3c581855b95f",
+  "checks_passed": 13979,
+  "failures": [],
+  "tests": [
+    {
+      "file": "three-zone-results.json",
+      "checks": 845,
+      "failures": []
+    },
+    {
+      "file": "base-results.json",
+      "checks": 460,
+      "failures": []
+    },
+    {
+      "file": "hero-results.json",
+      "checks": 11456,
+      "failures": []
+    },
+    {
+      "file": "monster-results.json",
+      "checks": 1218,
+      "failures": []
+    }
+  ],
+  "entrances_tested": 24,
+  "actual_map_captures": 12,
+  "actual_hero_neutral_captures": 15,
+  "design_approval": "pending user review",
+  "android_performance_verified": false,
+  "production_design_applied": false,
+  "scope": "Focused pilot and hero-part checks; not all historical repository tests.",
+  "integration_validation": "passed on latest main plus published source changes"
+}

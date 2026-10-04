@@ -1,0 +1,30 @@
+{
+  "theme": "ruins",
+  "reviewed": false,
+  "size": [
+    1536,
+    1024
+  ],
+  "assets": [
+    {
+      "file": "ground.png",
+      "source": "/workspace/generated_images/exec-31213e96-5b56-4393-bf78-a4e68f080208.png",
+      "prompt": "Original premium anime fantasy game environment painting, refined layered brushwork, warm highlights and cool shadows, beautiful 2.5D silhouettes, coherent material design. No UI, text, labels, character, monster, logo or copied game asset. One landscape 1536x1024 straight-down orthographic ground albedo texture for an ancient elven forest sanctuary hunting floor at blue hour. NO horizon, sky, perspective or upright structure. Continuous flat walkable weathered pale gray-green stone paving, broad irregular but quiet central 65 percent. Cracks and thin moss seams, subtle worn circular stone inlay near middle, ONLY a few very faint pale turquoise engraved strokes, no large glowing magic circle or bright stars. Peripheral fern and clover patches, mossy low stones, tiny blue mushrooms and small violet flowers. Gentle warm light from upper left with cool teal soft forest shadows. Premium elegant detailed ancient stone, preserved readable battle space. No raised wall, pit or water. Single full-bleed ground texture.",
+      "editing": "Original generated pixels preserved; runtime atlas regions only."
+    },
+    {
+      "file": "layers.png",
+      "source": "/workspace/generated_images/exec-534ffe48-9d87-4e12-a6a8-f8196e535361.png",
+      "prompt": "Original premium anime fantasy game environment painting, refined layered brushwork, warm highlights and cool shadows, beautiful 2.5D silhouettes, coherent material design. No UI, text, labels, character, monster, logo or copied game asset. Transparent 1536x1024 panorama layer atlas with EXACTLY THREE SEPARATE FULL-WIDTH HORIZONTAL BANDS, each about 285 pixels high and separated by at least 50 pixels EMPTY transparent gutter. Do not fill gutters with color. TOP band between y30 and y285: distant misty moonlit enchanted forest panorama, layered blue-green rounded leafy canopy silhouettes with distant faint ancient ruin spires and central low valley, no sky behind, transparent above trees and below base. MIDDLE band between y375 and y650: forest sanctuary side frame, delicate ancient broken stone arches at left and right among thick mossy roots and hanging violet wisteria, small restrained cyan crystals at stone feet, central 55 percent EMPTY TRANSPARENT, no floor or tree across center. BOTTOM band between y735 and y990: near foreground only, lush ferns and subtle blue mushrooms at bottom-left and bottom-right edges with a few winding roots, upper and central 70 percent EMPTY TRANSPARENT. Soft pale upper-left light with beautiful deep teal blue shadows, elegant mysterious but clearly readable colors. No sky, background color, UI or text. All three bands entirely separate.",
+      "editing": "Original generated pixels preserved; runtime atlas regions only."
+    },
+    {
+      "file": "props.png",
+      "source": "/workspace/generated_images/exec-964b5ba0-75eb-434d-a43a-acbdea24f659.png",
+      "prompt": "Original premium anime fantasy game environment painting, refined layered brushwork, warm highlights and cool shadows, beautiful 2.5D silhouettes, coherent material design. No UI, text, labels, character, monster, logo or copied game asset. Transparent landscape 1536x1024 atlas with SIX isolated upright environment prop cutouts, arranged strict 3 columns x 2 rows, one per 512x512 cell, at least 28 pixels transparent gutter, never touching another prop. Camera front 3/4 slightly elevated, not top-down. Elegant cool moonlit forest palette with gentle pale upper-left highlights. Row1 left: tall mossy broken gray limestone column wrapped in winding mature tree roots and a little trailing violet wisteria. Row1 center: ancient asymmetric stone arch column with curling roots, moss and delicate vines. Row1 right: complete low broken elven stone arch with ivy and tiny hanging violet flower bunches. Row2 left: waist-high broken sanctuary wall, beautifully chipped gray stones covered in moss, small ferns and clover. Row2 center: low stepped worn stone plinth supporting a modest small luminous cyan crystal cluster, controlled glow only near crystal. Row2 right: lush fern and tiny blue mushroom cluster with little violet flowers and soft moss mound. No magic circle, floor tile, background scene, text, characters or contact between props. True alpha outside all six silhouettes. Painted high detail but clean readable natural shapes.",
+      "editing": "Original generated pixels preserved; runtime atlas regions only."
+    }
+  ],
+  "layer_scope": "18 composition layers; three painted strips share one atlas. Not eighteen separately painted images.",
+  "collision_objects": 0
+}

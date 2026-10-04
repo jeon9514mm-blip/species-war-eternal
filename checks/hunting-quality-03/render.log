@@ -1,0 +1,39 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.305 - Forward Mobile - Using Device #0: Unknown - llvmpipe (LLVM 19.1.7, 256 bits)
+
+WARNING: Screen-space ambient occlusion (SSAO) is only available when using the Forward+ or Compatibility renderers.
+     at: environment_set_ssao (servers/rendering/storage/environment_storage.cpp:700)
+     GDScript backtrace (most recent call first):
+         [0] load_map (res://scripts/maps/MapLoader.gd:16)
+         [1] load_zone (res://scripts/maps/MapLoader.gd:12)
+         [2] _ready (res://scripts/maps3d/Battlefield3DView.gd:41)
+         [3] _install_portrait_hud (res://scripts/portrait/PortraitMain.gd:265)
+         [4] _install_portrait_hud (res://scripts/art/ArtDirectionLab.gd:79)
+         [5] _build_combat_screen (res://scripts/portrait/PortraitMain.gd:146)
+         [6] _ready (res://scripts/art/ArtDirectionLab.gd:51)
+         [7] capture_scene (res://tools/capture_hunting_quality.gd:29)
+         [8] run (res://tools/capture_hunting_quality.gd:71)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+     GDScript backtrace (most recent call first):
+         [0] load_map (res://scripts/maps/MapLoader.gd:16)
+         [1] load_zone (res://scripts/maps/MapLoader.gd:12)
+         [2] _ready (res://scripts/maps3d/Battlefield3DView.gd:41)
+         [3] _install_portrait_hud (res://scripts/portrait/PortraitMain.gd:265)
+         [4] _install_portrait_hud (res://scripts/art/ArtDirectionLab.gd:79)
+         [5] _build_combat_screen (res://scripts/portrait/PortraitMain.gd:146)
+         [6] _ready (res://scripts/art/ArtDirectionLab.gd:51)
+         [7] capture_scene (res://tools/capture_hunting_quality.gd:29)
+         [8] run (res://tools/capture_hunting_quality.gd:71)
+MEADOW_CAPTURE meadow-hunt
+MEADOW_CAPTURE meadow-overview
+MEADOW_CAPTURE meadow-mobile-size
+MEADOW_CAPTURE meadow-map-design
+MEADOW_CAPTURE canyon-hunt
+MEADOW_CAPTURE canyon-overview
+MEADOW_CAPTURE canyon-mobile-size
+MEADOW_CAPTURE canyon-map-design
+MEADOW_CAPTURE ruins-hunt
+MEADOW_CAPTURE ruins-overview
+MEADOW_CAPTURE ruins-mobile-size
+MEADOW_CAPTURE ruins-map-design

@@ -1,0 +1,118 @@
+{
+  "checks": 460,
+  "directions": [
+    {
+      "all_actor_points_inside_safe_area": true,
+      "clears": 1,
+      "entrance": "east",
+      "initial_hp": 4907,
+      "maximum_alive": 21,
+      "maximum_groups": 2,
+      "maximum_projection_error": 0.00000393209984395071,
+      "removed_hp": 4907,
+      "screen_samples": 560,
+      "seconds": 16.2,
+      "world_render_alignment": true
+    },
+    {
+      "all_actor_points_inside_safe_area": true,
+      "clears": 1,
+      "entrance": "west",
+      "initial_hp": 4907,
+      "maximum_alive": 21,
+      "maximum_groups": 2,
+      "maximum_projection_error": 0.00000426496126237907,
+      "removed_hp": 4907,
+      "screen_samples": 792,
+      "seconds": 23.7,
+      "world_render_alignment": true
+    },
+    {
+      "all_actor_points_inside_safe_area": true,
+      "clears": 1,
+      "entrance": "north",
+      "initial_hp": 4907,
+      "maximum_alive": 21,
+      "maximum_groups": 2,
+      "maximum_projection_error": 0.00000393209984395071,
+      "removed_hp": 4907,
+      "screen_samples": 432,
+      "seconds": 12.4,
+      "world_render_alignment": true
+    },
+    {
+      "all_actor_points_inside_safe_area": true,
+      "clears": 1,
+      "entrance": "south",
+      "initial_hp": 4907,
+      "maximum_alive": 20,
+      "maximum_groups": 2,
+      "maximum_projection_error": 0.000003814697265625,
+      "removed_hp": 4907,
+      "screen_samples": 472,
+      "seconds": 14.1,
+      "world_render_alignment": true
+    },
+    {
+      "all_actor_points_inside_safe_area": true,
+      "clears": 1,
+      "entrance": "northeast",
+      "initial_hp": 4907,
+      "maximum_alive": 21,
+      "maximum_groups": 2,
+      "maximum_projection_error": 0.00000393209984395071,
+      "removed_hp": 4907,
+      "screen_samples": 496,
+      "seconds": 14.3,
+      "world_render_alignment": true
+    },
+    {
+      "all_actor_points_inside_safe_area": true,
+      "clears": 1,
+      "entrance": "southwest",
+      "initial_hp": 4907,
+      "maximum_alive": 21,
+      "maximum_groups": 2,
+      "maximum_projection_error": 0.00000539479651706642,
+      "removed_hp": 4907,
+      "screen_samples": 546,
+      "seconds": 16.4,
+      "world_render_alignment": true
+    },
+    {
+      "all_actor_points_inside_safe_area": true,
+      "clears": 1,
+      "entrance": "northwest",
+      "initial_hp": 4907,
+      "maximum_alive": 20,
+      "maximum_groups": 2,
+      "maximum_projection_error": 0.00000426496126237907,
+      "removed_hp": 4907,
+      "screen_samples": 556,
+      "seconds": 16.2,
+      "world_render_alignment": true
+    },
+    {
+      "all_actor_points_inside_safe_area": true,
+      "clears": 1,
+      "entrance": "southeast",
+      "initial_hp": 4907,
+      "maximum_alive": 21,
+      "maximum_groups": 2,
+      "maximum_projection_error": 0.00000786419968790142,
+      "removed_hp": 4907,
+      "screen_samples": 550,
+      "seconds": 16.1,
+      "world_render_alignment": true
+    }
+  ],
+  "failures": [],
+  "scope": "Actual independent pilot scene; isolated progression, preferences and raid archive; live production hunt engine",
+  "startup_runtime": {
+    "atmosphere_elapsed": 0.303122444444444,
+    "atmosphere_running": true,
+    "invasion_elapsed": 0.3,
+    "physics_processing": true,
+    "regular_processing": false
+  }
+}

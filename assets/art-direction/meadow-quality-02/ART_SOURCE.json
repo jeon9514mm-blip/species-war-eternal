@@ -1,0 +1,94 @@
+{
+  "date_kst": "2026-10-04",
+  "status": "actual_pilot_review_pending_user_visual_feedback",
+  "production_design_applied": false,
+  "source": "AI-generated original ground painting from a text-only prompt; PNG copied unchanged",
+  "image": "meadow-ground.png",
+  "size": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "sha256": "ec94b59b0f5db139ef265c849e05f9b5d8206b7e851c3e7a03a87bd0d5813d97",
+  "used_by": "res://scripts/art/PainterlyMeadow.gd",
+  "scene": "res://scenes/art/ArtDirectionLab.tscn",
+  "central_world_mapping": {
+    "origin": [
+      -16,
+      -11.333333
+    ],
+    "size": [
+      64,
+      42.666667
+    ],
+    "gameplay_bounds": [
+      32,
+      20
+    ],
+    "outside_gameplay": "Mirrored painting at constant feature scale; weak distance color treatment outside the hunt"
+  },
+  "previous_painting_preserved": "assets/art-direction/pilot-01/meadow-ground.png",
+  "new_paintings": 2,
+  "composition_layers": 21,
+  "grass": {
+    "clumps": 176,
+    "blades": 880,
+    "draw_batches": 1,
+    "collision_nodes": 0,
+    "clock": "existing pause-aware atmosphere_time"
+  },
+  "android_performance_verified": false,
+  "props": {
+    "file": "environment-props.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "sha256": "79b9f1e47577d602c588ff6eb7f98dc19b2287b7beddc5009ca4d243b0c9714d",
+    "variants": 6,
+    "world_instances": 12,
+    "source": "AI-generated original transparent environment atlas; copied unchanged",
+    "regions": [
+      [
+        9,
+        8,
+        568,
+        591
+      ],
+      [
+        593,
+        3,
+        403,
+        593
+      ],
+      [
+        1001,
+        56,
+        531,
+        518
+      ],
+      [
+        8,
+        637,
+        537,
+        352
+      ],
+      [
+        557,
+        603,
+        481,
+        399
+      ],
+      [
+        1043,
+        594,
+        472,
+        421
+      ]
+    ],
+    "rendering": "Upright painted 2.5D cards anchored outside the actual hunting rectangle",
+    "shadow_batches": 1,
+    "collision_nodes": 0
+  }
+}

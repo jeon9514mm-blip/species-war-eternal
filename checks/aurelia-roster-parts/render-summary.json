@@ -1,0 +1,82 @@
+{
+  "renderer": "actual_Godot_4.7.2_viewports",
+  "logical_size": [
+    1280,
+    720
+  ],
+  "reviewed": false,
+  "heroes": [
+    {
+      "hero_id": "mira",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "elisia",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "kairen",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "orwin",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "seria",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "astel",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "darius",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "lunea",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "caelum",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "adrien",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "tessa",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "naia",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "sael",
+      "stills": true,
+      "movie": true
+    },
+    {
+      "hero_id": "odelia",
+      "stills": true,
+      "movie": true
+    }
+  ],
+  "motion_recording_fps": 24,
+  "scope": "Source-timed cutout prototypes; recording rate is not measured device FPS."
+}

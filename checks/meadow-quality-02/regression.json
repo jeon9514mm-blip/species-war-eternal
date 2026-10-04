@@ -1,0 +1,21 @@
+{
+  "date_kst": "2026-10-04",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "checks_passed": 1678,
+  "failures": [],
+  "tests": [
+    {
+      "file": "hunt-results.json",
+      "checks": 460
+    },
+    {
+      "file": "hero-monster-results.json",
+      "checks": 1218
+    }
+  ],
+  "design_approval": "pending user review",
+  "android_performance_verified": false,
+  "production_design_applied": false,
+  "integration_base_commit": "15a4ff035c0de2c4f83722bd433dc505fd056035",
+  "integration_validation": "meadow-only checks passed before three-zone extension; see checks/hunting-quality-03/regression.json for latest"
+}

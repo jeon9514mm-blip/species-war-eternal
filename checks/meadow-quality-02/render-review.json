@@ -1,0 +1,63 @@
+{
+  "captures": [
+    {
+      "atmosphere_time": 3.946928,
+      "draw_calls": 342,
+      "file": "hunt.png",
+      "ground_sha256": "ec94b59b0f5db139ef265c849e05f9b5d8206b7e851c3e7a03a87bd0d5813d97",
+      "layers": 21,
+      "renderer": "mobile",
+      "size": [
+        1280,
+        720
+      ],
+      "texture_memory_bytes": 301709824
+    },
+    {
+      "atmosphere_time": 3.946928,
+      "draw_calls": 354,
+      "file": "overview.png",
+      "ground_sha256": "ec94b59b0f5db139ef265c849e05f9b5d8206b7e851c3e7a03a87bd0d5813d97",
+      "layers": 21,
+      "renderer": "mobile",
+      "size": [
+        1280,
+        720
+      ],
+      "texture_memory_bytes": 301709824
+    },
+    {
+      "atmosphere_time": 3.946928,
+      "draw_calls": 331,
+      "file": "mobile-size.png",
+      "ground_sha256": "ec94b59b0f5db139ef265c849e05f9b5d8206b7e851c3e7a03a87bd0d5813d97",
+      "layers": 21,
+      "renderer": "mobile",
+      "size": [
+        960,
+        540
+      ],
+      "texture_memory_bytes": 301407744
+    },
+    {
+      "atmosphere_time": 3.946928,
+      "draw_calls": 174,
+      "file": "map-design.png",
+      "ground_sha256": "ec94b59b0f5db139ef265c849e05f9b5d8206b7e851c3e7a03a87bd0d5813d97",
+      "layers": 21,
+      "renderer": "mobile",
+      "size": [
+        1280,
+        720
+      ],
+      "texture_memory_bytes": 311901184
+    }
+  ],
+  "scope": "Actual Godot pilot captures; art review pending; renderer counters are not Android FPS.",
+  "source_sha256": {
+    "scripts/art/PainterlyMeadow.gd": "de28846dfe09a20e752af32fb26d189362ac1d2ac43cdb2c85292b0f52fa1e82",
+    "scripts/art/LayeredMeadowBackdrop.gd": "c866548b50fdc7d26d233bd438531f2e26093c021e7ed2845e606114ff8383b0",
+    "scripts/art/ArtDirectionBattlefield.gd": "08938800943625e0132ef10b81a71d33f49423ef39c817749712f9a9cdc1fb06",
+    "assets/art-direction/meadow-quality-02/environment-props.png": "79b9f1e47577d602c588ff6eb7f98dc19b2287b7beddc5009ca4d243b0c9714d"
+  }
+}

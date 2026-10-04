@@ -3,10 +3,12 @@ extends RefCounted
 ## tuning target; other heroes keep their existing curves until individually
 ## reviewed. No source animation, combat timing, hit event or world-position write.
 const REVISION := "leonhardt_parts_keyposes_v4_bounded_equipment_wrists"
+const AURELIA = preload("res://scripts/art/AureliaPartsMotion.gd")
 
 static func apply(profile: Dictionary, action: String, time: float, duration: float, base: Dictionary, weapon_rest: float, offhand_rest: float) -> Dictionary:
 	var q := base.duplicate()
-	if str(profile.get("hero_id", "")) != "leonhardt": return q
+	if str(profile.get("hero_id", "")) != "leonhardt":
+		return AURELIA.apply(profile, action, time, duration, q, weapon_rest, offhand_rest)
 	var u := clampf(time / maxf(.001, duration), 0.0, 1.0)
 	var wind := smoothstep(0.0, .24, u) * (1.0 - smoothstep(.24, .42, u))
 	# These release bounds match the original source-time presentation windows.

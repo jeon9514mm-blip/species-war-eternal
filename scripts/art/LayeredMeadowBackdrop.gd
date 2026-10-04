@@ -2,10 +2,11 @@ extends Control
 ## Bounded camera parallax for the art laboratory. There is no time-driven
 ## endless scrolling, and this node never owns simulation coordinates or RNG.
 const ART_ROOT := "res://assets/art-direction/pilot-01/layers/"
+const SCENERY := preload("res://scripts/art/HuntingSceneryCatalog.gd")
 const LAYERS := [
 	{"name":"Sky", "ratio":.02, "source":"sky.png", "kind":"painted", "rect":Rect2(-.08,-.04,1.16,.47)},
 	{"name":"FarClouds", "ratio":.035, "source":"clouds.png", "kind":"painted", "rect":Rect2(-.12,-.035,1.24,.18)},
-	{"name":"Mountains", "ratio":.10, "source":"mountains.png", "kind":"painted", "rect":Rect2(-.10,.018,1.20,.29)},
+	{"name":"Mountains", "ratio":.10, "source":"mountains.png", "kind":"painted", "rect":Rect2(-.10,-.045,1.20,.35)},
 	{"name":"NearClouds", "ratio":.065, "source":"clouds.png", "kind":"reused", "rect":Rect2(-.18,.045,1.36,.18)},
 	{"name":"Foothills", "ratio":.17, "source":"foothills.png", "kind":"painted", "rect":Rect2(-.09,.125,1.18,.225)},
 	{"name":"Treeline", "ratio":.25, "source":"treeline.png", "kind":"painted", "rect":Rect2(-.09,.205,1.18,.15)},
@@ -15,6 +16,9 @@ const LAYERS := [
 	{"name":"Ground", "ratio":1.0, "camera_bound":true, "world_anchored":true, "source":"world/QuietPlayLawn", "kind":"world"},
 	{"name":"GroundDapple", "ratio":1.0, "camera_bound":true, "world_anchored":true, "source":"world/GroundDapple", "kind":"world"},
 	{"name":"GroundDetails", "ratio":1.0, "camera_bound":true, "world_anchored":true, "source":"world/GroundDetails", "kind":"world"},
+	{"name":"MeadowGrass", "ratio":1.0, "camera_bound":true, "world_anchored":true, "source":"world/MeadowGrass", "kind":"world"},
+	{"name":"MeadowProps", "ratio":1.0, "camera_bound":true, "world_anchored":true, "source":"world/MeadowProps", "kind":"world_props"},
+	{"name":"PropContactShadows", "ratio":1.0, "camera_bound":true, "world_anchored":true, "source":"world/PropContactShadows", "kind":"world"},
 	{"name":"LightShafts", "ratio":.65, "source":"procedural", "kind":"procedural"},
 	{"name":"ForegroundFar", "ratio":1.05, "source":"foreground.png", "kind":"painted", "rect":Rect2(-.08,-.04,1.16,1.10)},
 	{"name":"ForegroundNear", "ratio":1.50, "source":"foreground.png", "kind":"reused", "rect":Rect2(-.15,-.07,1.30,1.16)},
@@ -34,9 +38,28 @@ var _butterflies: Control
 var _bokeh: Control
 var _active := true
 var atmosphere_time := 0.0
+var art_theme := "meadow"
+var _layers: Array = []
+
+func _configure_layers() -> void:
+	_layers = LAYERS.duplicate(true)
+	if art_theme=="meadow": return
+	var profile := SCENERY.profile(art_theme)
+	_layers = _layers.filter(func(entry: Dictionary): return entry.name not in ["Foothills","Treeline","Village"])
+	for entry: Dictionary in _layers:
+		match str(entry.name):
+			"Sky": entry.source="procedural"; entry.kind="procedural"
+			"Mountains":
+				entry.source=profile.layers;entry.region=profile.layer_regions[0];entry.rect=Rect2(-.10,.0,1.20,.31)
+			"Midtrees":
+				entry.source=profile.layers;entry.region=profile.layer_regions[1];entry.rect=Rect2(-.10,-.095,1.20,.43)
+			"ForegroundFar","ForegroundNear":
+				entry.source=profile.layers;entry.region=profile.layer_regions[2]
+				entry.rect=Rect2(-.08,.48,1.16,.57) if entry.name=="ForegroundFar" else Rect2(-.15,.49,1.30,.59)
 
 func bind(next_field: Control) -> void:
 	field = next_field
+	_configure_layers()
 	name = "LayeredMeadowBackdrop"
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	z_index = -1
@@ -48,9 +71,12 @@ func bind(next_field: Control) -> void:
 	field.add_child(foreground_root)
 	foreground_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_front_shader = _make_foreground_shader()
-	for definition: Dictionary in LAYERS:
+	for definition: Dictionary in _layers:
 		var named := str(definition.name)
-		if definition.kind == "world": continue
+		if definition.kind in ["world","world_props"]: continue
+		if named=="Sky" and art_theme!="meadow":
+			_build_theme_sky()
+			continue
 		if named == "HorizonHaze":
 			_build_haze()
 			continue
@@ -70,7 +96,12 @@ func bind(next_field: Control) -> void:
 			continue
 		var picture := TextureRect.new()
 		picture.name = named
-		picture.texture = _texture(str(definition.source), named != "Sky" and not named.begins_with("Foreground"))
+		picture.texture = _texture(str(definition.source), not definition.has("region") and named != "Sky" and not named.begins_with("Foreground"))
+		if definition.has("region"):
+			var frame := AtlasTexture.new()
+			frame.atlas = picture.texture
+			frame.region = definition.region
+			picture.texture = frame
 		picture.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		picture.stretch_mode = TextureRect.STRETCH_SCALE
@@ -85,9 +116,12 @@ func bind(next_field: Control) -> void:
 		else:
 			if named == "FarClouds": picture.modulate = Color(.93,.96,1,.53)
 			if named == "NearClouds": picture.modulate.a = .45
+			if art_theme == "ruins" and named in ["FarClouds","NearClouds"]:
+				picture.modulate=Color(.53,.71,.79,.16)
 			if named == "Mountains":
 				var material := ShaderMaterial.new()
 				material.shader = _make_distance_shader()
+				if art_theme != "meadow": material.set_shader_parameter("distance_tint",Color(SCENERY.profile(art_theme).fog))
 				picture.material = material
 			add_child(picture)
 		_nodes[named] = picture
@@ -96,16 +130,17 @@ func bind(next_field: Control) -> void:
 
 func layer_manifest() -> Array[Dictionary]:
 	var manifest: Array[Dictionary] = []
-	for definition: Dictionary in LAYERS:
+	for definition: Dictionary in _layers:
 		var entry := definition.duplicate(true)
 		entry.erase("rect")
+		entry.erase("region")
 		manifest.append(entry)
 	return manifest
 
 func _texture(file_name: String, trim_alpha: bool) -> Texture2D:
 	var key := file_name + str(trim_alpha)
 	if _textures.has(key): return _textures[key]
-	var path := ART_ROOT + file_name
+	var path := file_name if file_name.begins_with("res://") else ART_ROOT + file_name
 	if not ResourceLoader.exists(path): return null
 	var texture := load(path) as Texture2D
 	if texture == null: return null
@@ -146,7 +181,7 @@ func _sync_layout() -> void:
 	if not is_instance_valid(field) or size.x < 1 or size.y < 1: return
 	var camera_delta := (_focus - Vector2(16,10)).clamp(Vector2(-12,-8),Vector2(12,8))
 	var clear: Rect2 = field.safe_play_rect()
-	for definition: Dictionary in LAYERS:
+	for definition: Dictionary in _layers:
 		var named := str(definition.name)
 		if not _nodes.has(named): continue
 		var picture: Control = _nodes[named]
@@ -164,6 +199,9 @@ func _sync_layout() -> void:
 			material.set_shader_parameter("clear_rect", Vector4(clear.position.x/size.x,clear.position.y/size.y,clear.end.x/size.x,clear.end.y/size.y))
 			material.set_shader_parameter("canvas_origin", picture.position / size)
 			material.set_shader_parameter("canvas_extent", picture.size / size)
+		elif named == "Sky" and picture is ColorRect:
+			picture.position=Vector2(-size.x*.1,-size.y*.04)
+			picture.size=size*Vector2(1.20,.47)
 		elif named == "HorizonHaze":
 			picture.position = Vector2(0,size.y*.165)
 			picture.size = Vector2(size.x,size.y*.17)
@@ -218,6 +256,7 @@ func _make_distance_shader() -> Shader:
 	var shader := Shader.new()
 	shader.code = """
 shader_type canvas_item;
+uniform vec3 distance_tint=vec3(.63,.77,.85);
 varying vec4 vertex_tint;
 void vertex() { vertex_tint=COLOR; }
 void fragment() {
@@ -230,7 +269,7 @@ void fragment() {
     float grey=dot(c.rgb,vec3(.2126,.7152,.0722));
     c.rgb=mix(c.rgb,vec3(grey),.23);
     // Paint-distance treatment, confined to the mountain texture itself.
-    c.rgb=mix(c.rgb,vec3(.63,.77,.85),.27);
+    c.rgb=mix(c.rgb,distance_tint,.27);
     c.a*=.91;
     COLOR=c*vertex_tint;
 }
@@ -245,18 +284,45 @@ func _build_haze() -> void:
 	var shader := Shader.new()
 	shader.code = """
 shader_type canvas_item;
+uniform vec3 haze_color=vec3(.76,.85,.79);
 void fragment() {
     float band=smoothstep(0.0,.40,UV.y)*(1.0-smoothstep(.55,1.0,UV.y));
     float sun=1.0-smoothstep(.0,.8,UV.x);
-    vec3 haze=mix(vec3(.76,.85,.79),vec3(.97,.91,.72),sun*.26);
+    vec3 haze=mix(haze_color,vec3(.97,.91,.72),sun*.26);
     COLOR=vec4(haze,band*.18);
 }
 """
 	var material := ShaderMaterial.new()
 	material.shader = shader
+	if art_theme!="meadow": material.set_shader_parameter("haze_color",Color(SCENERY.profile(art_theme).fog))
 	band.material = material
 	add_child(band)
 	_nodes[band.name] = band
+
+func _build_theme_sky() -> void:
+	var profile := SCENERY.profile(art_theme)
+	var sky := ColorRect.new()
+	sky.name="Sky"
+	sky.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	sky.set_meta("parallax_ratio",.02)
+	var shader := Shader.new()
+	shader.code="""
+shader_type canvas_item;
+uniform vec3 top_color=vec3(.1,.2,.3);
+uniform vec3 bottom_color=vec3(.4,.6,.5);
+void fragment() {
+    vec3 sky=mix(top_color,bottom_color,smoothstep(.05,1.0,UV.y));
+    float glow=exp(-dot((UV-vec2(.20,.32))*vec2(1.4,2.0),(UV-vec2(.20,.32))*vec2(1.4,2.0))*7.0)*.10;
+    COLOR=vec4(sky+vec3(.13,.11,.07)*glow,1.0);
+}
+"""
+	var material := ShaderMaterial.new()
+	material.shader=shader
+	material.set_shader_parameter("top_color",Color(profile.sky_top))
+	material.set_shader_parameter("bottom_color",Color(profile.sky_bottom))
+	sky.material=material
+	add_child(sky)
+	_nodes.Sky=sky
 
 func _build_overlay(node_name: String, ratio: float) -> Control:
 	var overlay := Control.new()
@@ -331,6 +397,10 @@ func _draw_butterflies() -> void:
 		var center: Vector2 = anchors[i]*size + offset + Vector2(sin(atmosphere_time*.55+phase)*6.0, sin(atmosphere_time*.8+phase)*3.0)
 		center = center.clamp(Vector2(5,5),size-Vector2(5,5))
 		if protected.has_point(center): continue
+		if art_theme != "meadow":
+			var glow := Color(.98,.72,.40,.35) if art_theme == "canyon" else Color(.42,.96,.86,.55)
+			_butterflies.draw_circle(center,1.3+.5*sin(atmosphere_time+phase),glow)
+			continue
 		var opening := .25+.75*absf(sin(atmosphere_time*7.0+phase))
 		var angle := sin(atmosphere_time*.6+phase)*.3
 		var tint := Color(.99,.89,.58,.65) if i%2 == 0 else Color(.82,.92,.99,.60)

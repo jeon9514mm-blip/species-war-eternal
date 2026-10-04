@@ -5,7 +5,7 @@ const PILOT_SCENE := "res://scenes/art/ArtDirectionLab.tscn"
 const INVASION := preload("res://scripts/InvasionHuntDirector.gd")
 const REPORT := preload("res://scripts/RaidReportArchive.gd")
 const SIDES := ["east", "west", "north", "south", "northeast", "southwest", "northwest", "southeast"]
-const LAYERS := ["Sky", "FarClouds", "Mountains", "NearClouds", "Foothills", "Treeline", "Village", "Midtrees", "HorizonHaze", "Ground", "GroundDapple", "GroundDetails", "LightShafts", "ForegroundFar", "ForegroundNear", "EdgeDust", "AmbientButterflies", "ForegroundBokeh"]
+const LAYERS := ["Sky", "FarClouds", "Mountains", "NearClouds", "Foothills", "Treeline", "Village", "Midtrees", "HorizonHaze", "Ground", "GroundDapple", "GroundDetails", "MeadowGrass", "MeadowProps", "PropContactShadows", "LightShafts", "ForegroundFar", "ForegroundNear", "EdgeDust", "AmbientButterflies", "ForegroundBokeh"]
 var checks := 0
 var failures: Array[String] = []
 var protected: Dictionary = {}
@@ -206,7 +206,7 @@ func test_backdrop(game) -> void:
 	var field = game.combat_labels.terrain
 	var backdrop = field.backdrop
 	var manifest: Array = backdrop.layer_manifest()
-	check(manifest.size() == LAYERS.size(), "eighteen declared layers back the actual meadow composition")
+	check(manifest.size() == LAYERS.size(), "declared layers back the actual meadow composition")
 	check(field.viewport_3d.transparent_bg, "live 3D actors and ground composite over the painted background")
 	var actual_names: Array[String] = []
 	var ratios: Dictionary = {}
@@ -218,6 +218,18 @@ func test_backdrop(game) -> void:
 		ratios[str(layer.get("ratio", ""))] = true
 		var kind: String = str(layer.get("kind", ""))
 		var source: String = str(layer.get("source", ""))
+		if kind == "world_props":
+			var props: Node3D = field.world.get_node_or_null(source.trim_prefix("world/"))
+			check(props != null and props.get_child_count() >= 6, "painted world props are present in the actual field")
+			if props != null:
+				for prop: Sprite3D in props.get_children():
+					var at: Vector2 = prop.get_meta("world_anchor")
+					check(not Rect2(0,0,32,20).has_point(at), "prop root stays outside the hunting bounds: "+prop.name)
+					check(Vector2(prop.position.x,prop.position.z).is_equal_approx(at) and is_zero_approx(prop.position.y), "prop root remains on the actual floor: "+prop.name)
+					var atlas := prop.texture as AtlasTexture
+					check(atlas != null and atlas.atlas.resource_path == "res://assets/art-direction/meadow-quality-02/environment-props.png", "prop binds the generated atlas: "+prop.name)
+					if atlas != null: sources[atlas.atlas.resource_path] = true
+			continue
 		if kind == "world":
 			var mesh = field.world.get_node_or_null(source.trim_prefix("world/"))
 			check(mesh is MeshInstance3D and mesh.mesh != null and mesh.visible, "world layer is actual rendered geometry: " + named)
@@ -226,6 +238,8 @@ func test_backdrop(game) -> void:
 				check(atlas != null and atlas.resource_path == "res://assets/art-direction/pilot-01/layers/ground-details.png", "world ground details bind their actual ninth painted atlas")
 				if atlas != null: sources[atlas.resource_path] = true
 				test_ground_detail_geometry(field, mesh)
+			if named == "MeadowGrass" and mesh is MeshInstance3D:
+				test_grass_geometry(mesh)
 			continue
 		var node: Control = backdrop.find_child(named, true, false)
 		if node == null: node = backdrop.foreground_root.find_child(named, true, false)
@@ -240,7 +254,7 @@ func test_backdrop(game) -> void:
 			check(texture != null and texture.resource_path == expected_source, "painted layer binds its declared imported texture: " + named)
 			sources[source] = true
 	for named: String in LAYERS: check(actual_names.count(named) == 1, "composition contains exactly one " + named)
-	check(sources.size() == 9, "nine independent paintings supply depth layers and world ground details")
+	check(sources.size() == 10, "ten paintings supply depth layers, world ground details and upright props")
 	check(ratios.size() >= 6, "layers have meaningfully distinct parallax depth ratios")
 	check(backdrop.foreground_root.mouse_filter == Control.MOUSE_FILTER_IGNORE, "foreground root passes pointer input through")
 	check(backdrop.foreground_clear_rect().is_equal_approx(field.safe_play_rect()), "foreground shader clears the same rectangle that contains the battle")
@@ -303,6 +317,23 @@ func test_ground_detail_geometry(field, details: MeshInstance3D) -> void:
 	check(valid_uv and tiles.size() == 6, "all six painted atlas cells are used by actual ground triangles")
 	check(projection_error < 0.001, "ground decoration vertices share the actor world projection")
 
+func test_grass_geometry(grass: MeshInstance3D) -> void:
+	var arrays: Array = grass.mesh.surface_get_arrays(0)
+	var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+	var clear: Rect2 = grass.get_meta("central_clear_world_rect")
+	var roots := 0
+	var clear_center := true
+	var low_blades := true
+	for vertex: Vector3 in vertices:
+		if is_equal_approx(vertex.y,-.012):
+			roots += 1
+			# Account for the deliberately small authored clump scatter.
+			if clear.grow(-.34).has_point(Vector2(vertex.x,vertex.z)): clear_center = false
+		low_blades = low_blades and vertex.y <= .45 and vertex.y >= -.01201
+	check(roots > 100 and vertices.size() > 1000 and grass.mesh.get_surface_count() == 1, "upright grass is rooted world geometry in one batch")
+	check(clear_center and low_blades, "short peripheral grass preserves the central hunting area")
+	check(grass.material_override is ShaderMaterial and not grass.material_override.shader.code.contains("TIME"), "grass wind consumes the pause-aware art clock")
+
 func test_atmosphere_clock(game) -> void:
 	var field = game.combat_labels.terrain
 	var backdrop = field.backdrop
@@ -334,10 +365,13 @@ func test_atmosphere_clock(game) -> void:
 	check(not game.is_processing() and game.is_physics_processing() and is_equal_approx(backdrop.atmosphere_time - before, 0.075), "a physics-only game advances atmosphere exactly once per presentation frame")
 	check(foreground.position.distance_to(prior_foreground) > 0.001, "active atmosphere moves the actual foreground presentation")
 	check(light != null and light.material is ShaderMaterial and is_equal_approx(float(light.material.get_shader_parameter("art_time")), backdrop.atmosphere_time), "animated light receives the actual local atmosphere clock")
+	var grass: MeshInstance3D = field.world.get_node("MeadowGrass")
+	check(is_equal_approx(float(grass.material_override.get_shader_parameter("art_time")),backdrop.atmosphere_time), "world grass receives the same active atmosphere clock")
 	before = backdrop.atmosphere_time
 	game.combat_running = false
 	field._process(0.075)
 	check(is_equal_approx(backdrop.atmosphere_time, before), "pausing hunting freezes atmosphere")
+	check(is_equal_approx(float(grass.material_override.get_shader_parameter("art_time")),before), "pausing hunting freezes grass wind without changing its world roots")
 	game.combat_running = true
 	game._application_suspended = true
 	field._process(0.075)
@@ -421,11 +455,11 @@ func gameplay_snapshot(game) -> Dictionary:
 		"rng": game.loot_rng.state, "gold": game.wallet_gold, "xp": game.wallet_xp,
 		"stage": game.idle_stage, "hunt_cycle": game.combat_hunt_cycle}
 
-func test_directions(game) -> void:
+func test_directions(game, test_zone := "gray_meadow") -> void:
 	for serial in range(1, 9):
-		game.current_zone_id = "gray_meadow"
+		game.current_zone_id = test_zone
 		game.idle_stage = 1
-		game.hero_progress["leonhardt"] = {"level": 35, "xp": 0}
+		game.hero_progress["leonhardt"] = {"level": 35 if test_zone == "gray_meadow" else 100, "xp": 0}
 		game.loot_rng.seed = 90217
 		game._build_combat_screen()
 		await settle()

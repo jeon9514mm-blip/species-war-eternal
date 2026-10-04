@@ -11,7 +11,7 @@ const LABELS := {
 	"knockback": "밀려남", "dodge": "회피", "guard": "방어", "buff": "강화",
 	"debuff": "약화", "victory": "승리", "death": "사망", "spawn": "등장",
 }
-const OUTPUT := "res://checks/aurelia-four-head/pose-sheets/"
+var OUTPUT := "res://checks/aurelia-four-head/pose-sheets/"
 const CELL_SIZE := Vector2(306, 151)
 var page: Control
 var metrics: Array[Dictionary] = []
@@ -21,6 +21,8 @@ func _init() -> void:
 	run.call_deferred()
 
 func run() -> void:
+	var output_override := OS.get_environment("AURELIA_CAPTURE_OUTPUT")
+	if output_override.begins_with("res://checks/"): OUTPUT = output_override.trim_suffix("/") + "/"
 	root.size = Vector2i(1280, 720)
 	root.content_scale_size = Vector2i(1280, 720)
 	root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
@@ -53,7 +55,7 @@ func run() -> void:
 		page.add_child(background)
 		var profile := CATALOG.profile(id)
 		add_label(page, str(profile.name) + " · 16가지 조립 동작", Rect2(18, 9, 1244, 29), 24)
-		add_label(page, "분리 원화 · 기존 16가지 동작 곡선 적용 · 자세 확인을 위해 사망도 불투명 표시", Rect2(19, 42, 1242, 24), 14)
+		add_label(page, "분리 원화 · 영웅별 16가지 절차적 동작 시안 · 자세 확인을 위해 사망도 불투명 표시", Rect2(19, 42, 1242, 24), 14)
 		var states: Array[Dictionary] = []
 		for index in CATALOG.ACTIONS.size():
 			var action: String = CATALOG.ACTIONS[index]
@@ -66,9 +68,10 @@ func run() -> void:
 			var error := screenshot.save_png(OUTPUT + id + ".png")
 			if error != OK: failures.append(id + ": PNG save error " + str(error))
 		var result := {"hero_id": id, "reviewed": bool(definition.get("reviewed", false)),
+			"definition_sha256": FileAccess.get_sha256(CATALOG.definition_path(id)), "atlas_sha256": FileAccess.get_sha256(str(definition.atlas)),
 			"rendered": not prepare_only, "neutral_preview": false, "logical_size": [1280, 720], "cells": states,
 			"capture": OUTPUT + id + ".png" if not prepare_only else "",
-			"scope": "Sixteen actual independent multipart Godot rigs in source-action poses, not neutral rest previews; existing procedural curves, not sixteen newly drawn image sequences. Death pose is deliberately opaque for art review."}
+			"scope": "Sixteen actual independent multipart Godot rigs in source-action poses, not neutral rest previews; source-timed weapon-family procedural prototypes, not sixteen newly drawn image sequences. Death pose is deliberately opaque for art review."}
 		metrics.append(result)
 		write_json(OUTPUT + id + ".json", result)
 		print("AURELIA_POSE_SHEET ", id, " cells=", states.size(), " rendered=", not prepare_only)

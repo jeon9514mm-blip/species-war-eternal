@@ -1,0 +1,525 @@
+{
+  "schema_version": 1,
+  "hero_id": "tessa",
+  "atlas": "res://assets/art-direction/aurelia-4head/tessa/parts.png",
+  "atlas_size": [
+    1536,
+    1024
+  ],
+  "reviewed": false,
+  "component_integrity_verified": true,
+  "art_status": "long_leg_parts_initial_fit_pending_visual_review",
+  "weapon_hand": "right",
+  "long_leg_neutral_fitted": true,
+  "attack_foreground": true,
+  "joint_rest": {
+    "Root": [
+      0,
+      0
+    ],
+    "Pelvis": [
+      0,
+      -0.52
+    ],
+    "Torso": [
+      0,
+      -0.63
+    ],
+    "Chest": [
+      0,
+      -0.735
+    ],
+    "Head": [
+      0.005,
+      -0.777
+    ],
+    "Hair": [
+      0,
+      -0.91
+    ],
+    "Cape": [
+      0,
+      -0.755
+    ],
+    "LeftUpperArm": [
+      0.108,
+      -0.735
+    ],
+    "LeftForearm": [
+      0.17,
+      -0.6
+    ],
+    "LeftHand": [
+      0.22,
+      -0.52
+    ],
+    "LeftThigh": [
+      0.058,
+      -0.505
+    ],
+    "LeftShin": [
+      0.095,
+      -0.285
+    ],
+    "LeftFoot": [
+      0.12,
+      -0.075
+    ],
+    "RightUpperArm": [
+      -0.108,
+      -0.735
+    ],
+    "RightForearm": [
+      -0.14,
+      -0.565
+    ],
+    "RightHand": [
+      0.015,
+      -0.535
+    ],
+    "RightThigh": [
+      -0.058,
+      -0.505
+    ],
+    "RightShin": [
+      -0.095,
+      -0.285
+    ],
+    "RightFoot": [
+      -0.12,
+      -0.075
+    ]
+  },
+  "parts": [
+    {
+      "id": "head",
+      "bone": "Head",
+      "region": [
+        34,
+        89,
+        208,
+        214
+      ],
+      "anchor": [
+        0.5,
+        0.77
+      ],
+      "display_size": [
+        0.26728971962616827,
+        0.275
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 9,
+      "rotation": 0.0,
+      "alpha_visible_pixels": 28709
+    },
+    {
+      "id": "hair_back",
+      "bone": "Hair",
+      "region": [
+        295,
+        61,
+        195,
+        307
+      ],
+      "anchor": [
+        0.5,
+        0.15
+      ],
+      "display_size": [
+        0.304885993485342,
+        0.48
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": -30,
+      "rotation": 0.0,
+      "alpha_visible_pixels": 33141
+    },
+    {
+      "id": "chest",
+      "bone": "Chest",
+      "region": [
+        538,
+        83,
+        166,
+        265
+      ],
+      "anchor": [
+        0.5,
+        0.1
+      ],
+      "display_size": [
+        0.23177358490566038,
+        0.37
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 10,
+      "rotation": 0.0,
+      "alpha_visible_pixels": 29751
+    },
+    {
+      "id": "cape_back",
+      "bone": "Cape",
+      "region": [
+        762,
+        85,
+        251,
+        276
+      ],
+      "anchor": [
+        0.5,
+        0.05
+      ],
+      "display_size": [
+        0.5183695652173913,
+        0.57
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": -40,
+      "rotation": 0.0,
+      "alpha_visible_pixels": 39542
+    },
+    {
+      "id": "weapon",
+      "bone": "Weapon",
+      "region": [
+        1031,
+        127,
+        327,
+        182
+      ],
+      "anchor": [
+        0.15,
+        0.64
+      ],
+      "display_size": [
+        0.48510989010989014,
+        0.27
+      ],
+      "offset": [
+        0.03220237909936124,
+        0.00623271853536022
+      ],
+      "z_order": 30,
+      "rotation": 0.0,
+      "alpha_visible_pixels": 31810
+    },
+    {
+      "id": "left_upper_arm",
+      "bone": "LeftUpperArm",
+      "region": [
+        47,
+        399,
+        142,
+        212
+      ],
+      "anchor": [
+        0.6493196466937217,
+        0.12
+      ],
+      "display_size": [
+        0.1295066666195004,
+        0.19334798115024002
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 22,
+      "rotation": -0.577973766648872,
+      "alpha_visible_pixels": 18293
+    },
+    {
+      "id": "left_forearm",
+      "bone": "LeftForearm",
+      "region": [
+        323,
+        423,
+        129,
+        198
+      ],
+      "anchor": [
+        0.3831266741170418,
+        0.12
+      ],
+      "display_size": [
+        0.07652869821699573,
+        0.11746265307724926
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 23,
+      "rotation": -0.22932497890194758,
+      "alpha_visible_pixels": 13134
+    },
+    {
+      "id": "left_hand",
+      "bone": "LeftHand",
+      "region": [
+        589,
+        473,
+        99,
+        133
+      ],
+      "anchor": [
+        0.5,
+        0.12
+      ],
+      "display_size": [
+        0.05954887218045113,
+        0.08
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 25,
+      "rotation": -0.5585993153435624,
+      "alpha_visible_pixels": 7292
+    },
+    {
+      "id": "right_upper_arm",
+      "bone": "RightUpperArm",
+      "region": [
+        857,
+        405,
+        139,
+        207
+      ],
+      "anchor": [
+        0.35153197239162987,
+        0.12
+      ],
+      "display_size": [
+        0.1514243425007117,
+        0.22550243811257067
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 20,
+      "rotation": 0.32233033703301506,
+      "alpha_visible_pixels": 17636
+    },
+    {
+      "id": "right_forearm",
+      "bone": "RightForearm",
+      "region": [
+        1127,
+        427,
+        92,
+        202
+      ],
+      "anchor": [
+        0.3618732976899022,
+        0.12
+      ],
+      "display_size": [
+        0.09430942403261319,
+        0.20707069189769417
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 21,
+      "rotation": -1.2997806575275233,
+      "alpha_visible_pixels": 11942
+    },
+    {
+      "id": "right_hand",
+      "bone": "RightHand",
+      "region": [
+        1370,
+        476,
+        91,
+        138
+      ],
+      "anchor": [
+        0.5,
+        0.12
+      ],
+      "display_size": [
+        0.0527536231884058,
+        0.08
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 24,
+      "rotation": -1.3796118671978828,
+      "alpha_visible_pixels": 7358
+    },
+    {
+      "id": "left_thigh",
+      "bone": "LeftThigh",
+      "region": [
+        86,
+        676,
+        109,
+        269
+      ],
+      "anchor": [
+        0.5438926378042308,
+        0.12
+      ],
+      "display_size": [
+        0.11887089074833937,
+        0.29336027166333295
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 5,
+      "rotation": -0.20152414370739735,
+      "alpha_visible_pixels": 22266
+    },
+    {
+      "id": "left_shin",
+      "bone": "LeftShin",
+      "region": [
+        338,
+        684,
+        92,
+        256
+      ],
+      "anchor": [
+        0.40217391304347827,
+        0.12
+      ],
+      "display_size": [
+        0.09941295454805726,
+        0.2766273517858985
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 6,
+      "rotation": -0.00988177999724571,
+      "alpha_visible_pixels": 14584
+    },
+    {
+      "id": "left_foot",
+      "bone": "LeftFoot",
+      "region": [
+        544,
+        742,
+        165,
+        186
+      ],
+      "anchor": [
+        0.5,
+        0.375
+      ],
+      "display_size": [
+        0.10645161290322581,
+        0.12
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 7,
+      "rotation": 0.0,
+      "alpha_visible_pixels": 18299
+    },
+    {
+      "id": "right_thigh",
+      "bone": "RightThigh",
+      "region": [
+        850,
+        674,
+        117,
+        271
+      ],
+      "anchor": [
+        0.40475224494211837,
+        0.12
+      ],
+      "display_size": [
+        0.12651115112645753,
+        0.29303010218179476
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 1,
+      "rotation": 0.225517171432132,
+      "alpha_visible_pixels": 23111
+    },
+    {
+      "id": "right_shin",
+      "bone": "RightShin",
+      "region": [
+        1107,
+        684,
+        92,
+        255
+      ],
+      "anchor": [
+        0.5892678660669666,
+        0.12
+      ],
+      "display_size": [
+        0.09975369535560114,
+        0.2764912208225901
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 2,
+      "rotation": 0.005458269147569084,
+      "alpha_visible_pixels": 14540
+    },
+    {
+      "id": "right_foot",
+      "bone": "RightFoot",
+      "region": [
+        1337,
+        744,
+        146,
+        186
+      ],
+      "anchor": [
+        0.5,
+        0.375
+      ],
+      "display_size": [
+        0.09419354838709677,
+        0.12
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "z_order": 3,
+      "rotation": 0.0,
+      "alpha_visible_pixels": 17213
+    }
+  ],
+  "artist_notes": [
+    "Generated independent parts from the existing master; all active rectangles are disjoint.",
+    "PNG pixels untouched; read-only alpha analysis supplies region and limb endpoints.",
+    "Region/pivot fitting and16 source-time motion prototypes require actual enlarged rendering and final user review."
+  ]
+}

@@ -4,6 +4,7 @@ extends Node3D
 const CATALOG = preload("res://scripts/art/HeroPartsCatalog.gd")
 const MOTIONS = preload("res://scripts/portrait/HeroRigMotionCatalog.gd")
 const PART_MOTION = preload("res://scripts/art/HeroPartsMotion.gd")
+const GRIP_CONSTRAINT = preload("res://scripts/art/AureliaGripConstraint.gd")
 const PART_SHADER = preload("res://assets/art-direction/pilot-01/shaders/hero-contour.gdshader")
 var source: AnimatedSprite2D
 var definition: Dictionary = {}
@@ -153,10 +154,11 @@ func sync(camera: Camera3D, height: float, tint: Color, delta: float, active: bo
 					pose[key] = lerp_angle(float(_transition_pose.get(key, pose[key])), float(pose[key]), blend)
 				else:
 					pose[key] = lerpf(float(_transition_pose.get(key, 0.0)), float(pose[key]), blend)
+		GRIP_CONSTRAINT.apply(pose, definition, action, action_time, float(sample.duration))
 		_current_pose = pose
 		_apply_pose(pose)
 		_apply_part_layers(action)
-		if str(definition.hero_id) == "leonhardt": _ground_pose(action)
+		if str(definition.hero_id) == "leonhardt" or bool(definition.get("long_leg_neutral_fitted", false)): _ground_pose(action)
 	_was_active = running
 	_last_debug = {
 		"hero_id": str(definition.hero_id), "ready": _ready_parts,
@@ -181,7 +183,7 @@ func sync(camera: Camera3D, height: float, tint: Color, delta: float, active: bo
 		"ground_offset": _ground_offset,
 		"draw_order_override": _draw_order_override,
 		"front_attack_parts": _front_attack_parts.duplicate(),
-		"motion_revision": PART_MOTION.REVISION if str(definition.hero_id) == "leonhardt" else "legacy_adapted_curves",
+		"motion_revision": PART_MOTION.REVISION if str(definition.hero_id) == "leonhardt" else PART_MOTION.AURELIA.REVISION,
 	}
 
 func debug_snapshot() -> Dictionary:
@@ -301,7 +303,10 @@ func _apply_pose(pose: Dictionary) -> void:
 	for key in joints:
 		var joint: Node3D = joints[key]
 		joint.position = _rest_positions[key]
-		joint.rotation = Vector3(0.0, 0.0, -float(pose.get(key, 0.0)))
+		var angle := float(pose.get(key, 0.0))
+		if key == "Head" and definition.has("neck_attachment"):
+			angle = clampf(angle, -float(definition.neck_attachment.max_bend_radians), float(definition.neck_attachment.max_bend_radians))
+		joint.rotation = Vector3(0.0, 0.0, -angle)
 	joints.Root.position += Vector3(float(pose.get("root_x", 0.0)), -float(pose.get("root_y", 0.0)), 0.0)
 	joints.Chest.position.y += float(pose.get("chest_lift", 0.0))
 	if pose.has("_weapon_angle"): _aim_gripped_part("weapon", "Weapon", float(pose._weapon_angle))
@@ -345,9 +350,12 @@ func _apply_part_layers(action: String) -> void:
 	# An inactive sync does not sample a new pose, so pause also freezes its order.
 	for id in _authored_part_depths:
 		parts[id].position.z = float(_authored_part_depths[id])
+	if str(definition.hero_id) in ["mira", "naia"] and parts.has("offhand"):
+		var phase := action_time / maxf(float(_source_sample().duration), .001)
+		parts.offhand.visible = action not in ["attack_1", "attack_2", "skill", "ultimate"] or phase <= .44 or phase >= .9
 	_front_attack_parts.clear()
 	_draw_order_override = ""
-	if str(definition.hero_id) != "leonhardt" or action not in ["attack_1", "attack_2"]: return
+	if (str(definition.hero_id) != "leonhardt" and not bool(definition.get("attack_foreground", false))) or action not in ["attack_1", "attack_2"]: return
 	var side := "left" if float(motion_profile.side) > 0.0 else "right"
 	var top_depth := -INF
 	var lead_depth := INF
@@ -391,6 +399,17 @@ func _silhouette_support(entry: Dictionary, atlas: Image) -> PackedVector3Array:
 	var size := Vector2(float(entry.display_size[0]), float(entry.display_size[1]))
 	var anchor := Vector2(float(entry.anchor[0]), float(entry.anchor[1]))
 	var offset := _geometry_offset(entry)
+	var silhouette := PackedVector2Array()
+	for point: Array in entry.get("silhouette_uv", []):
+		silhouette.append(Vector2(float(point[0]), float(point[1])))
+	if not silhouette.is_empty():
+		# These vertices were traced from this component's own alpha. They give
+		# its ground support directly, including concave edges, without scanning
+		# neighboring paint in a shared bounding rectangle on every pose rebuild.
+		for point in silhouette:
+			var local := (point - anchor) * size + offset
+			result.append(Vector3(local.x, -local.y, 0.0))
+		return result
 	# Read-only alpha analysis at bind time. Ends of 21 sampled columns approximate
 	# the actual painted outline even when a separated part rotates in a fall.
 	for column in 21:
@@ -398,6 +417,7 @@ func _silhouette_support(entry: Dictionary, atlas: Image) -> PackedVector3Array:
 		var top := -1
 		var bottom := -1
 		for y in rect.size.y:
+			if not silhouette.is_empty() and not Geometry2D.is_point_in_polygon(Vector2(float(x), float(y)) / Vector2(rect.size), silhouette): continue
 			if atlas.get_pixel(rect.position.x + x, rect.position.y + y).a > .15:
 				if top < 0: top = y
 				bottom = y
@@ -422,10 +442,26 @@ func _make_part(entry: Dictionary, texture: Texture2D) -> MeshInstance3D:
 	var uv_high := region.end / atlas_size
 	var arrays: Array = []
 	arrays.resize(Mesh.ARRAY_MAX)
-	arrays[Mesh.ARRAY_VERTEX] = PackedVector3Array([Vector3(low.x, -low.y, 0), Vector3(high.x, -low.y, 0), Vector3(high.x, -high.y, 0), Vector3(low.x, -high.y, 0)])
-	arrays[Mesh.ARRAY_NORMAL] = PackedVector3Array([Vector3.BACK, Vector3.BACK, Vector3.BACK, Vector3.BACK])
-	arrays[Mesh.ARRAY_TEX_UV] = PackedVector2Array([uv_low, Vector2(uv_high.x, uv_low.y), uv_high, Vector2(uv_low.x, uv_high.y)])
-	arrays[Mesh.ARRAY_INDEX] = PackedInt32Array([0, 1, 2, 0, 2, 3])
+	var polygon := PackedVector2Array()
+	for point: Array in entry.get("silhouette_uv", []):
+		polygon.append(Vector2(float(point[0]), float(point[1])))
+	if polygon.is_empty(): polygon = PackedVector2Array([Vector2.ZERO, Vector2.RIGHT, Vector2.ONE, Vector2.DOWN])
+	var vertices := PackedVector3Array()
+	var normals := PackedVector3Array()
+	var uvs := PackedVector2Array()
+	for point in polygon:
+		var local := low + point * size
+		vertices.append(Vector3(local.x, -local.y, 0))
+		normals.append(Vector3.BACK)
+		uvs.append(uv_low + point * (uv_high - uv_low))
+	arrays[Mesh.ARRAY_VERTEX] = vertices
+	arrays[Mesh.ARRAY_NORMAL] = normals
+	arrays[Mesh.ARRAY_TEX_UV] = uvs
+	# Triangulate in source pixel units: tiny normalized contour edges can fall
+	# below the triangulator's epsilon on thin arrows and jewelry.
+	var pixel_polygon := PackedVector2Array()
+	for point in polygon: pixel_polygon.append(point * region.size)
+	arrays[Mesh.ARRAY_INDEX] = Geometry2D.triangulate_polygon(pixel_polygon)
 	var mesh := ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
 	part.mesh = mesh
@@ -442,6 +478,15 @@ func _make_part(entry: Dictionary, texture: Texture2D) -> MeshInstance3D:
 	# Ignore low-alpha matte left outside the painted shapes. With alpha scissor,
 	# those faint values otherwise become opaque rectangular fragments.
 	material.set_shader_parameter("alpha_cutoff", .12)
+	if entry.has("core_neck_mask"):
+		var mask: Array=entry.core_neck_mask
+		material.set_shader_parameter("core_neck_mask_enabled",true)
+		material.set_shader_parameter("core_neck_skin_only",bool(entry.get("core_neck_skin_only",false)))
+		material.set_shader_parameter("core_neck_mask_rect",Vector4(mask[0],mask[1],mask[2],mask[3]))
+	if entry.has("neck_seam"):
+		var seam: Array = entry.neck_seam
+		material.set_shader_parameter("neck_seam_enabled", true)
+		material.set_shader_parameter("neck_seam_rect", Vector4(float(seam[0]), float(seam[1]), float(seam[2]), float(seam[3])))
 	part.material_override = material
 	part.set_meta("part_id", str(entry.id))
 	part.set_meta("atlas_region", region)

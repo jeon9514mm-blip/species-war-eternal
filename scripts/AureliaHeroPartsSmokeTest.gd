@@ -216,6 +216,7 @@ func test_multipart_heroes(game, field, definitions: Dictionary) -> void:
 				body_parents[part.get_parent().get_instance_id()] = true
 		check(actual_parts == rig.parts.size() and body_parents.size() >= 10, id + " separates body components across real joint parents")
 		test_mesh_regions(id, rig, definitions[id])
+		test_painted_anatomy_connections(id, source, rig, field, definitions[id])
 		var weapon = rig.joints.get("Weapon")
 		check(weapon != null and weapon.get_parent() in [rig.joints.get("LeftHand"), rig.joints.get("RightHand")], id + " weapon joint is attached to the actual wrist")
 		var samples := 0
@@ -250,6 +251,8 @@ func test_multipart_heroes(game, field, definitions: Dictionary) -> void:
 		test_attack_draw_order(id, source, rig, field, definitions[id])
 		var attack_ergonomics := test_attack_ergonomics(id, source, rig, field)
 		test_equipment_wrists(id, source, rig, field)
+		test_supporting_grip(id, source, rig, field)
+		test_bow_release(id, source, rig, field)
 		test_parts_pause_and_mirror(id, source, rig, field, distance)
 		parts_results[id] = {"parts": rig.parts.size(), "joints": rig.joints.size(), "states": action_results, "pose_samples": samples,
 			"reviewed": bool(definitions[id].get("reviewed", false)), "component_integrity_verified": bool(definitions[id].get("component_integrity_verified", false)), "attack_ergonomics": attack_ergonomics}
@@ -429,14 +432,18 @@ func test_equipment_grip_offsets(id: String, source: AnimatedSprite2D, field, de
 		var anchor := Vector2(float(entry.anchor[0]), float(entry.anchor[1]))
 		var offset := Vector2(float(entry.offset[0]), float(entry.offset[1]))
 		var low := -anchor * size + offset
-		var corners: Array[Vector2] = [low, low + Vector2(size.x, 0), low + size, low + Vector2(0, size.y)]
+		var texture_size: Vector2 = (load(str(fixture.atlas)) as Texture2D).get_size()
+		var region := Rect2(float(entry.region[0]),float(entry.region[1]),float(entry.region[2]),float(entry.region[3]))
+		var uvs: PackedVector2Array = part.mesh.surface_get_arrays(0)[Mesh.ARRAY_TEX_UV]
 		var neutral_preserved := true
-		for index in 4:
-			var original_corner := Vector3(corners[index].x, -corners[index].y, 0).rotated(Vector3.BACK, -float(entry.rotation))
+		for index in vertices.size():
+			var normalized: Vector2 = (uvs[index] * texture_size - region.position) / region.size
+			var original_point := low + normalized * size
+			var original_corner := Vector3(original_point.x, -original_point.y, 0).rotated(Vector3.BACK, -float(entry.rotation))
 			original_corner.z += float(entry.z_order) * .0008
 			var actual: Vector3 = hand.to_local(part.to_global(vertices[index]))
 			neutral_preserved = neutral_preserved and actual.distance_to(original_corner) < .00001
-		check(neutral_preserved, id + " " + part_id + " mount promotion preserves all four authored neutral quad corners")
+		check(neutral_preserved, id + " " + part_id + " mount promotion preserves every authored silhouette vertex")
 		var mount: Vector3 = rig.joints[joint_name].get_meta("grip_mount_local", Vector3.ZERO)
 		check(mount.length() > .05, id + " " + part_id + " fixture exercises a genuinely nonzero wrist mount")
 		for mirrored: bool in [false, true]:
@@ -445,9 +452,9 @@ func test_equipment_grip_offsets(id: String, source: AnimatedSprite2D, field, de
 			for degrees: float in [-170.0, -75.0, 145.0, 500.0]:
 				var before := source_timing_snapshot(source)
 				rig._aim_gripped_part(part_id, joint_name, deg_to_rad(degrees))
-				# Interpolate the actual texture anchor inside the actual GPU quad.
+				# Reconstruct the texture anchor from the actual mesh UV transform.
 				# No metadata-only position claim can satisfy this geometry check.
-				var grip_vertex: Vector3 = vertices[0] + (vertices[1] - vertices[0]) * anchor.x + (vertices[3] - vertices[0]) * anchor.y
+				var grip_vertex := painted_uv_point(part, entry, anchor, texture_size)
 				var actual_grip: Vector3 = hand.to_local(part.to_global(grip_vertex))
 				check(Vector2(actual_grip.x, actual_grip.y).distance_to(Vector2(mount.x, mount.y)) < .00001, id + " " + part_id + " grip stays fixed to its hand under aim=" + str(degrees) + " mirror=" + str(mirrored))
 				check(is_equal_approx(actual_grip.z, mount.z + float(entry.z_order) * .0008), id + " " + part_id + " aimed grip preserves its paint-layer depth")
@@ -478,7 +485,7 @@ func test_attack_draw_order(id: String, source: AnimatedSprite2D, rig, field, de
 		rig.sync(field.camera, 2.25, Color.WHITE, .1, true)
 		var state: Dictionary = rig.debug_snapshot()
 		check(source_timing_snapshot(source) == before, id + " " + action + " layer correction leaves source timing intact")
-		if id != "leonhardt":
+		if id != "leonhardt" and not bool(rig.definition.get("attack_foreground", false)):
 			check(depths_match(rig, baseline) and state.get("draw_order_override", "") != "lead_arm_in_front", id + " does not inherit Leonhardt's attack-only layer override")
 			continue
 		var declared: Array = state.get("front_attack_parts", []).duplicate()
@@ -500,10 +507,10 @@ func test_attack_draw_order(id: String, source: AnimatedSprite2D, rig, field, de
 		var part: MeshInstance3D = rig.parts.weapon
 		var vertices: PackedVector3Array = part.mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX]
 		var anchor := Vector2(float(weapon_entry.anchor[0]), float(weapon_entry.anchor[1]))
-		var grip := vertices[0] + (vertices[1] - vertices[0]) * anchor.x + (vertices[3] - vertices[0]) * anchor.y
+		var grip := painted_uv_point(part, weapon_entry, anchor, (load(str(definition.atlas)) as Texture2D).get_size())
 		var actual_grip: Vector3 = hand.to_local(part.to_global(grip))
 		var mount: Vector3 = rig.joints.Weapon.get_meta("grip_mount_local", Vector3.ZERO)
-		check(Vector2(actual_grip.x, actual_grip.y).distance_to(Vector2(mount.x, mount.y)) < .00001 and is_equal_approx(actual_grip.z, mount.z + float(baseline.weapon) + delta), action + " real quad grip keeps its hand-local XY while its layer moves with the glove")
+		check(Vector2(actual_grip.x, actual_grip.y).distance_to(Vector2(mount.x, mount.y)) < .00001 and is_equal_approx(actual_grip.z, mount.z + float(baseline.weapon) + delta), action + " painted component grip keeps its hand-local XY while its layer moves with the glove")
 		var frozen := depth_map(rig)
 		source.play_visual("idle")
 		rig.sync(field.camera, 2.25, Color.WHITE, .1, false)
@@ -525,7 +532,7 @@ func test_attack_draw_order(id: String, source: AnimatedSprite2D, rig, field, de
 		rig.sync(field.camera, 2.25, Color.WHITE, 0, false)
 		check(rig.debug_snapshot().applied_action == "rest_pose" and rig.debug_snapshot().get("draw_order_override", "") == "", action + " neutral preview does not retain the attack foreground override")
 		rig.set_rest_pose_preview(false)
-	if id == "leonhardt":
+	if id == "leonhardt" or bool(rig.definition.get("attack_foreground", false)):
 		for action: String in PARTS_ACTIONS:
 			if action in ["attack_1", "attack_2"]: continue
 			source.play_visual("attack_1")
@@ -573,7 +580,6 @@ func test_attack_ergonomics(id: String, source: AnimatedSprite2D, rig, field) ->
 	return result
 
 func test_equipment_wrists(id: String, source: AnimatedSprite2D, rig, field) -> void:
-	if id != "leonhardt": return
 	for action: String in PARTS_ACTIONS:
 		source.speed_scale = 1.0
 		source.play_visual(action)
@@ -583,7 +589,35 @@ func test_equipment_wrists(id: String, source: AnimatedSprite2D, rig, field) -> 
 			rig.sync(field.camera, 2.25, Color.WHITE, .02, true)
 			for hand: String in ["LeftHand", "RightHand"]:
 				maximum = maxf(maximum, absf(rig.joints[hand].rotation.z))
-		check(maximum < deg_to_rad(15), action + " sword and shield wrists remain within fifteen degrees throughout the source action")
+		check(maximum < deg_to_rad(15), id + " " + action + " equipment wrists remain within fifteen degrees throughout the source action")
+
+func test_supporting_grip(id: String, source: AnimatedSprite2D, rig, field) -> void:
+	if id not in ["mira", "naia", "tessa"]: return
+	var constraint = load("res://scripts/art/AureliaGripConstraint.gd")
+	for action: String in ["idle", "walk", "run", "attack_1", "attack_2", "skill", "ultimate", "hit", "knockback", "dodge", "guard", "debuff"]:
+		source.play_visual(action)
+		var maximum := 0.0
+		for tick in 81:
+			set_source_progress(source, float(tick) / 80.0)
+			rig.sync(field.camera, 2.25, Color.WHITE, .02, true)
+			maximum = maxf(maximum, float(constraint.error(rig)))
+		check(maximum < .015, id + " " + action + " supporting glove follows the bow/cannon grip within1.5% body height: " + str(maximum))
+
+func test_bow_release(id: String, source: AnimatedSprite2D, rig, field) -> void:
+	if id not in ["mira", "naia"]: return
+	for action: String in ["attack_1", "attack_2", "skill", "ultimate"]:
+		source.play_visual(action)
+		for phase: float in [.20, .60, .95]:
+			set_source_progress(source, phase)
+			rig.sync(field.camera, 2.25, Color.WHITE, .02, true)
+			check(rig.parts.offhand.visible == (phase != .60), id + " " + action + " nocked arrow follows prepare, release and recovery")
+		var visible: bool = rig.parts.offhand.visible
+		set_source_progress(source, .60)
+		rig.sync(field.camera, 2.25, Color.WHITE, .1, false)
+		check(rig.parts.offhand.visible == visible, id + " " + action + " pause retains the sampled arrow state")
+	source.play_visual("idle")
+	rig.sync(field.camera, 2.25, Color.WHITE, .1, true)
+	check(rig.parts.offhand.visible, id + " idle restores the next nocked arrow")
 
 func depth_map(rig) -> Dictionary:
 	var result: Dictionary = {}
@@ -632,7 +666,9 @@ func test_mesh_regions(id: String, rig, definition: Dictionary) -> void:
 		check(part.get_parent() == rig.joints[str(entry.bone)], id + " " + str(entry.id) + " hangs from its declared actual joint")
 		check(part.mesh.get_surface_count() == 1, id + " " + str(entry.id) + " is one independent painted plane")
 		var surface: Array = part.mesh.surface_get_arrays(0)
-		check(surface[Mesh.ARRAY_VERTEX].size() == 4 and surface[Mesh.ARRAY_INDEX].size() == 6, id + " " + str(entry.id) + " uses its own quad, not a warped whole-body skin")
+		var expected_vertices := (entry.get("silhouette_uv", []) as Array).size()
+		if expected_vertices == 0: expected_vertices = 4
+		check(surface[Mesh.ARRAY_VERTEX].size() == expected_vertices and surface[Mesh.ARRAY_INDEX].size() == (expected_vertices - 2) * 3, id + " " + str(entry.id) + " uses its own triangulated painted component")
 		var region := Rect2(float(entry.region[0]), float(entry.region[1]), float(entry.region[2]), float(entry.region[3]))
 		var uv_region := Rect2(region.position / dimensions, region.size / dimensions)
 		var uv_valid := true
@@ -686,3 +722,63 @@ func finish() -> void:
 		out.close()
 	print("aurelia_hero_parts checks=%d failures=%s" % [checks, JSON.stringify(failures)])
 	quit(0 if failures.is_empty() else 1)
+
+func painted_uv_point(part: MeshInstance3D, entry: Dictionary, local_uv: Vector2, atlas_size: Vector2) -> Vector3:
+	# Recover the affine UV-to-position map from a well-conditioned actual GPU
+	# triangle. Supports quads and source-alpha silhouettes with the same math.
+	var surface: Array = part.mesh.surface_get_arrays(0)
+	var indices: PackedInt32Array = surface[Mesh.ARRAY_INDEX]
+	var uvs: PackedVector2Array = surface[Mesh.ARRAY_TEX_UV]
+	var vertices: PackedVector3Array = surface[Mesh.ARRAY_VERTEX]
+	var best := -1
+	var maximum := 0.0
+	for offset in range(0, indices.size(), 3):
+		var a := uvs[indices[offset]]
+		var area := absf((uvs[indices[offset+1]]-a).cross(uvs[indices[offset+2]]-a))
+		if area > maximum: maximum = area; best = offset
+	assert(best >= 0 and maximum > 0)
+	var i := indices[best]
+	var j := indices[best+1]
+	var k := indices[best+2]
+	var target := (Vector2(float(entry.region[0]),float(entry.region[1])) + local_uv * Vector2(float(entry.region[2]),float(entry.region[3]))) / atlas_size
+	var ab := uvs[j]-uvs[i]
+	var ac := uvs[k]-uvs[i]
+	var ap := target-uvs[i]
+	var b := ap.cross(ac)/ab.cross(ac)
+	var c := ab.cross(ap)/ab.cross(ac)
+	return vertices[i]*(1-b-c)+vertices[j]*b+vertices[k]*c
+
+func test_painted_anatomy_connections(id: String, source: AnimatedSprite2D, rig, field, definition: Dictionary) -> void:
+	if not definition.has("neck_attachment"): return
+	var head: Dictionary = {}
+	var core: Dictionary = {}
+	for entry: Dictionary in definition.parts:
+		if entry.id == "head": head = entry
+		if entry.id == "chest": core = entry
+	var size: Vector2 = (load(str(definition.atlas)) as Texture2D).get_size()
+	var neck: Dictionary = definition.neck_attachment
+	var core_seat := Vector2(float(neck.core_seat[0]),float(neck.core_seat[1]))
+	var neck_pivot := painted_uv_point(rig.parts.chest,core,core_seat,size)
+	check(rig.parts.chest.position.z > rig.parts.head.position.z, id + " collar paint overlaps the head neck cut")
+	check(bool((rig.parts.head.material_override as ShaderMaterial).get_shader_parameter("neck_seam_enabled")), id + " fitted head softens only its skin termination")
+	for action: String in PARTS_ACTIONS:
+		source.speed_scale = 1
+		source.play_visual(action)
+		var maximum_seat_gap := 0.0
+		var maximum_endpoint_gap := 0.0
+		var maximum_bend := 0.0
+		for tick in 33:
+			set_source_progress(source,float(tick)/32.0)
+			rig.sync(field.camera,2.25,Color.WHITE,.02,true)
+			var actual: Vector3 = rig.joints.Head.to_local(rig.parts.chest.to_global(neck_pivot))
+			maximum_seat_gap = maxf(maximum_seat_gap,Vector2(actual.x,actual.y).length())
+			maximum_bend = maxf(maximum_bend,absf(rig.joints.Head.rotation.z))
+			for entry: Dictionary in definition.parts:
+				if not entry.has("distal_anchor"): continue
+				var uv := Vector2(float(entry.distal_anchor[0]),float(entry.distal_anchor[1]))
+				var painted := painted_uv_point(rig.parts[str(entry.id)],entry,uv,size)
+				var end: Vector3 = rig.joints[str(entry.distal_joint)].to_local(rig.parts[str(entry.id)].to_global(painted))
+				maximum_endpoint_gap = maxf(maximum_endpoint_gap,Vector2(end.x,end.y).length())
+		check(maximum_seat_gap < .0001,id+" "+action+" actual collar vertex transform stays seated on the neck hinge")
+		check(maximum_endpoint_gap < .0001,id+" "+action+" painted limb endpoints meet the next physical hinge")
+		check(maximum_bend <= float(neck.max_bend_radians)+.00001,id+" "+action+" head stays within the fitted neck bend range")

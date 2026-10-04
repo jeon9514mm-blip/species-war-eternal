@@ -1,0 +1,109 @@
+{
+  "hero_id": "caelum",
+  "reviewed": false,
+  "atlas_sha256": "f262b7190a17e32147377cf9f4139337597bc34de4417252301f6cbade7e5bf1",
+  "spec_sha256": "67047e99cca6a98d549cadcb3bb1a2c1c0079db26b7d8200ddbcab3fb480c183",
+  "painted_components": 18,
+  "active_parts": 17,
+  "painted_silhouettes_disjoint": true,
+  "joint_landmarks": [
+    {
+      "part_id": "left_upper_arm",
+      "source_proximal_uv": [
+        0.64,
+        0.18
+      ],
+      "source_distal_uv": [
+        0.64,
+        0.72
+      ],
+      "rest_endpoint_error": 1.3877787807814457e-17
+    },
+    {
+      "part_id": "left_forearm",
+      "source_proximal_uv": [
+        0.26,
+        0.09
+      ],
+      "source_distal_uv": [
+        0.76,
+        0.9
+      ],
+      "rest_endpoint_error": 6.938893903907228e-18
+    },
+    {
+      "part_id": "right_upper_arm",
+      "source_proximal_uv": [
+        0.3,
+        0.18
+      ],
+      "source_distal_uv": [
+        0.2,
+        0.72
+      ],
+      "rest_endpoint_error": 1.3904866443919908e-17
+    },
+    {
+      "part_id": "right_forearm",
+      "source_proximal_uv": [
+        0.3,
+        0.1
+      ],
+      "source_distal_uv": [
+        0.63,
+        0.9
+      ],
+      "rest_endpoint_error": 1.3877787807814457e-17
+    },
+    {
+      "part_id": "left_thigh",
+      "source_proximal_uv": [
+        0.58,
+        0.1
+      ],
+      "source_distal_uv": [
+        0.52,
+        0.7
+      ],
+      "rest_endpoint_error": 4.163336342344337e-17
+    },
+    {
+      "part_id": "left_shin",
+      "source_proximal_uv": [
+        0.53,
+        0.08
+      ],
+      "source_distal_uv": [
+        0.5,
+        0.86
+      ],
+      "rest_endpoint_error": 3.1031676915590914e-17
+    },
+    {
+      "part_id": "right_thigh",
+      "source_proximal_uv": [
+        0.4,
+        0.1
+      ],
+      "source_distal_uv": [
+        0.5,
+        0.7
+      ],
+      "rest_endpoint_error": 1.734723475976807e-17
+    },
+    {
+      "part_id": "right_shin",
+      "source_proximal_uv": [
+        0.55,
+        0.08
+      ],
+      "source_distal_uv": [
+        0.48,
+        0.86
+      ],
+      "rest_endpoint_error": 6.938893903907228e-18
+    }
+  ],
+  "maximum_rest_endpoint_error": 4.163336342344337e-17,
+  "scope": "Binding geometry only, not an artistic approval."
+}

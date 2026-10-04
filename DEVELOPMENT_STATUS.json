@@ -282,7 +282,7 @@
     "Android device touch, performance, memory and thermal validation",
     "online, accounts and cloud save"
   ],
-  "publication_target": "main",
+  "publication_target": "GitHub main",
   "base_commit": "eb1812d9dd28eca0f830322f2e33a01bb434a57e",
   "previous_raid_quality_validation": {
     "published_main_commit": "eb1812d9dd28eca0f830322f2e33a01bb434a57e",
@@ -670,29 +670,57 @@
       "first_long_leg_assembly_parts": 18,
       "approval_gate": "reviewed and component_integrity_verified",
       "approved_hero_ids": [],
-      "artwork_state": "15 static concept drafts; Leonhardt long-leg18-part assembly and bounded equipment wrists rendered for review; other14 active multipart definitions absent",
+      "artwork_state": "15 individualized anatomical refit drafts; previous assemblies rejected by user; focus on neck-collar connection; actual enlargement review pending",
       "new_leonhardt_motion_state": "16 source-time prototypes; attack foreground/grip corrected and all equipment wrists bounded; reviewed=false",
       "new_hand_drawn_240_sequences_completed": false,
       "scope_document": "docs/AURELIA_HERO_ART_KO.md",
       "motion_revision": "leonhardt_parts_keyposes_v4_bounded_equipment_wrists",
-      "remaining_hero_ids": [
-        "mira",
-        "elisia",
-        "kairen",
-        "orwin",
-        "seria",
-        "astel",
-        "darius",
-        "lunea",
-        "caelum",
-        "adrien",
-        "tessa",
-        "naia",
-        "sael",
-        "odelia"
-      ]
+      "remaining_hero_ids": [],
+      "remaining_work": "Actual enlarged neck/body/motion visual review and final user design approval",
+      "anatomy_revision": "individual_concept_and_painted_joint_landmarks_v3",
+      "anatomy_specs": "tools/hero-anatomy",
+      "neck_max_relative_bend_radians": 0.105,
+      "neck_collar_overlap": true,
+      "anatomy_regression": {
+        "checks_passed": 11456,
+        "failures": [],
+        "file": "checks/aurelia-anatomy-v3/full-results.json",
+        "does_not_prove_artistic_quality": true
+      },
+      "review_directory": "checks/aurelia-anatomy-v3",
+      "previous_assemblies_rejected": true
     },
-    "new_animation_tracks_scope": "Leonhardt source-time procedural prototypes; not final hand-drawn frame sequences or approved animations."
+    "new_animation_tracks_scope": "Leonhardt source-time procedural prototypes; not final hand-drawn frame sequences or approved animations.",
+    "hunting_scenery": {
+      "themes": [
+        "meadow",
+        "canyon",
+        "ruins"
+      ],
+      "composition_layers": {
+        "meadow": 21,
+        "canyon": 18,
+        "ruins": 18
+      },
+      "reviewed": false,
+      "documentation": "docs/HUNTING_SCENERY_03_KO.md",
+      "validation": "checks/hunting-quality-03/regression.json",
+      "production_design_applied": false,
+      "android_performance_verified": false,
+      "checks_passed": 13979,
+      "validation_base_commit": "4751bb2151fa74ed90773dd7f2ee3c581855b95f",
+      "validation_status": "passed"
+    },
+    "hero_image_review": "checks/aurelia-anatomy-v3/IMAGE_REVIEW_KO.md",
+    "hero_neck_patch": {
+      "heroes": [
+        "mira",
+        "elisia"
+      ],
+      "scope": "Authored duplicate torso neck patches masked; Mira collar paint preserved. Visual joint and equipment improvements remain.",
+      "reviewed": false
+    },
+    "validation_base_commit": "4751bb2151fa74ed90773dd7f2ee3c581855b95f"
   },
   "editor_reimport_verified": true,
   "previous_hero_monster_pilot_validation": {
@@ -721,5 +749,6 @@
       }
     ]
   },
-  "new_artwork_files_added_note": "15 current concepts and Leonhardt separated-art candidates; historical drafts preserved; see art source records rather than a bulk completion count."
+  "new_artwork_files_added_note": "15 current concepts and Leonhardt separated-art candidates; historical drafts preserved; see art source records rather than a bulk completion count.",
+  "publication_base_commit": "4751bb2151fa74ed90773dd7f2ee3c581855b95f"
 }

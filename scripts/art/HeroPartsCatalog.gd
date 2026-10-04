@@ -89,6 +89,8 @@ static func profile(hero_id: String) -> Dictionary:
 		"motion_provenance": "Existing 16 procedural curves available for individually reviewed separated artwork; not 240 newly hand-drawn animations."})
 	if hero_id == "leonhardt":
 		result.motion_provenance = "Multipart key-pose prototype sampled at the existing controller's frame progress; new assembly and motion still require visual review. No hand-drawn action sequences."
+	else:
+		result.motion_provenance = "Individual weapon-family 16-action cutout prototypes, source-frame timed; bow/cannon supporting wrist uses planar IK. New art requires visual review; not hand-drawn animation sequences."
 	return result
 
 static func definition_path(hero_id: String) -> String:
@@ -145,6 +147,7 @@ static func validate_definition(definition: Dictionary, allow_unreviewed := fals
 	if entries.size() > 32: issues.append("Parts budget exceeds 32 per hero")
 	var seen: Dictionary = {}
 	var regions: Array[Rect2] = []
+	var silhouettes: Array[PackedVector2Array] = []
 	for entry in entries:
 		if not entry is Dictionary: issues.append("Part entry must be a dictionary"); continue
 		var id := str(entry.get("id", ""))
@@ -160,9 +163,22 @@ static func validate_definition(definition: Dictionary, allow_unreviewed := fals
 		var rect := Rect2(float(region[0]), float(region[1]), float(region[2]), float(region[3]))
 		if not rect.position.is_finite() or not rect.size.is_finite() or rect.size.x < 2 or rect.size.y < 2 or not Rect2(Vector2.ZERO, atlas_size).encloses(rect):
 			issues.append("Invalid atlas region for " + id); continue
-		for other in regions:
-			if rect.intersects(other): issues.append("Overlapping texture regions at " + id); break
+		var silhouette := PackedVector2Array()
+		var outline = entry.get("silhouette_uv", [])
+		if not outline is Array: outline = []; issues.append("Invalid silhouette at " + id)
+		if not outline.is_empty():
+			if outline.size() < 3 or outline.size() > 2048: issues.append("Invalid silhouette vertex budget at " + id)
+			for point in outline:
+				if not _pair(point) or float(point[0]) < 0 or float(point[0]) > 1 or float(point[1]) < 0 or float(point[1]) > 1:
+					issues.append("Silhouette must stay inside its own region: " + id); continue
+				silhouette.append(rect.position + Vector2(float(point[0]), float(point[1])) * rect.size)
+			if Geometry2D.triangulate_polygon(silhouette).is_empty(): issues.append("Silhouette does not triangulate: " + id)
+		for index in regions.size():
+			if not rect.intersects(regions[index]): continue
+			if silhouette.is_empty() or silhouettes[index].is_empty() or not Geometry2D.intersect_polygons(silhouette, silhouettes[index]).is_empty():
+				issues.append("Overlapping painted component geometry at " + id); break
 		regions.append(rect)
+		silhouettes.append(silhouette)
 		if atlas_image != null and atlas_image.get_region(Rect2i(rect)).get_used_rect().size == Vector2i.ZERO:
 			issues.append("Empty alpha region for " + id)
 		var anchor = entry.get("anchor", [])

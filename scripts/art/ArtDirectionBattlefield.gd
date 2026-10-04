@@ -8,6 +8,7 @@ const MONSTER_PRESENTATION = preload("res://scripts/art/PilotMonsterPresentation
 const GROUND_CONTACT = preload("res://scripts/art/PilotGroundContact.gd")
 const HERO_PARTS = preload("res://scripts/art/HeroPartsRig3D.gd")
 const HERO_PARTS_CATALOG = preload("res://scripts/art/HeroPartsCatalog.gd")
+const SCENERY := preload("res://scripts/art/HuntingSceneryCatalog.gd")
 const LAB_CAMERA_OFFSET := Vector3(0, 18, 48)
 const HORIZON_RATIO := .285
 var painterly_active := true
@@ -19,6 +20,8 @@ var monster_presentation = MONSTER_PRESENTATION.new()
 var ground_contact = GROUND_CONTACT.new()
 var _presentation_delta := 0.0
 var hero_parts_definitions: Dictionary = {}
+var art_theme := "meadow"
+var theme_picker: OptionButton
 
 func _presentation_active() -> bool:
 	if not painterly_active or not is_visible_in_tree() or get_tree().paused or not is_instance_valid(game): return false
@@ -78,7 +81,9 @@ func _actor_height(source: AnimatedSprite2D, hero: bool) -> float:
 
 func _ready() -> void:
 	super._ready()
+	art_theme = SCENERY.theme_for_zone(zone_id)
 	backdrop = BACKDROP.new()
+	backdrop.art_theme = art_theme
 	add_child(backdrop)
 	move_child(backdrop, 0)
 	backdrop.bind(self)
@@ -92,7 +97,7 @@ func _ready() -> void:
 	add_child(comparison_button)
 	scene_label = Label.new()
 	scene_label.name = "ArtDirectionSceneLabel"
-	scene_label.text = "빛바람 초원 · 패럴랙스 시범"
+	scene_label.text = str(SCENERY.profile(art_theme).title)+" · 시범"
 	scene_label.position = Vector2(14, 53)
 	scene_label.add_theme_font_size_override("font_size", 18)
 	scene_label.add_theme_color_override("font_color", Color("eef4de"))
@@ -101,11 +106,51 @@ func _ready() -> void:
 	scene_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	scene_label.z_index = 80
 	add_child(scene_label)
+	theme_picker=OptionButton.new()
+	theme_picker.name="HuntingSceneryPicker"
+	for id: String in SCENERY.IDS: theme_picker.add_item(str(SCENERY.profile(id).title))
+	theme_picker.select(SCENERY.IDS.find(art_theme))
+	theme_picker.position=Vector2(310,51)
+	theme_picker.size=Vector2(190,32)
+	theme_picker.z_index=80
+	theme_picker.add_theme_font_size_override("font_size",14)
+	theme_picker.item_selected.connect(func(index: int): set_art_theme(SCENERY.IDS[index]))
+	add_child(theme_picker)
+
+func set_art_theme(next: String) -> void:
+	if next not in SCENERY.IDS or next==art_theme: return
+	var elapsed: float = backdrop.atmosphere_time
+	var saved_focus := focus
+	var saved_transform := camera.transform
+	var saved_size := camera.size
+	var saved_offset := camera.v_offset
+	if is_instance_valid(backdrop.foreground_root):
+		remove_child(backdrop.foreground_root)
+		backdrop.foreground_root.queue_free()
+	remove_child(backdrop)
+	backdrop.queue_free()
+	art_theme=next
+	backdrop=BACKDROP.new()
+	backdrop.art_theme=next
+	backdrop.atmosphere_time=elapsed
+	add_child(backdrop)
+	move_child(backdrop,0)
+	backdrop.bind(self)
+	_switch_art(true)
+	focus=saved_focus
+	camera.transform=saved_transform
+	camera.size=saved_size
+	camera.v_offset=saved_offset
+	_camera_initialized=true
+	_sync_layers(0.0)
+	if is_instance_valid(theme_picker): theme_picker.select(SCENERY.IDS.find(next))
+	comparison_button.text="원래 맵과 비교"
+	scene_label.text=str(SCENERY.profile(art_theme).title)+" · 시범"
 
 func _toggle_art() -> void:
 	_switch_art(not painterly_active)
-	comparison_button.text = "원래 맵과 비교" if painterly_active else "새 초원으로 복귀"
-	scene_label.text = "빛바람 초원 · 패럴랙스 시범" if painterly_active else "현재 맵 · 비교 중"
+	comparison_button.text = "원래 맵과 비교" if painterly_active else "새 사냥터로 복귀"
+	scene_label.text = str(SCENERY.profile(art_theme).title)+" · 시범" if painterly_active else "현재 맵 · 비교 중"
 
 func _switch_art(painterly: bool) -> void:
 	# The optional comparison replaces rendering nodes only. Never call any
@@ -125,6 +170,7 @@ func _switch_art(painterly: bool) -> void:
 		map_root.name = "PainterlyMeadowMap"
 		map_root.set_meta("art_lab_map", true)
 		var arena := MEADOW.new()
+		arena.art_theme = art_theme
 		arena.name = "Arena"
 		map_root.add_child(arena)
 		viewport_3d.add_child(map_root)
@@ -193,6 +239,8 @@ func _layered_frame(sine: float, overview: bool) -> Dictionary:
 func _sync_layers(delta: float) -> void:
 	if not painterly_active or not is_instance_valid(camera): return
 	if is_instance_valid(backdrop): backdrop.sync_camera(focus,delta)
+	if is_instance_valid(world) and world.has_method("set_atmosphere_time") and is_instance_valid(backdrop):
+		world.set_atmosphere_time(backdrop.atmosphere_time)
 	if is_instance_valid(world) and world.has_method("set_horizon_z"):
 		# This is a real ground-plane intersection. Backdrop meets the y=0 floor
 		# at the same camera ray used by damage effects, feet and hit markers.

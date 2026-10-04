@@ -1,0 +1,161 @@
+{
+  "captures": [
+    {
+      "atmosphere_time": 2.034237,
+      "draw_calls": 350,
+      "file": "meadow-hunt.png",
+      "ground_sha256": "ec94b59b0f5db139ef265c849e05f9b5d8206b7e851c3e7a03a87bd0d5813d97",
+      "layers": 21,
+      "renderer": "mobile",
+      "size": [
+        1280,
+        720
+      ],
+      "texture_memory_bytes": 301714944
+    },
+    {
+      "atmosphere_time": 2.034237,
+      "draw_calls": 362,
+      "file": "meadow-overview.png",
+      "ground_sha256": "ec94b59b0f5db139ef265c849e05f9b5d8206b7e851c3e7a03a87bd0d5813d97",
+      "layers": 21,
+      "renderer": "mobile",
+      "size": [
+        1280,
+        720
+      ],
+      "texture_memory_bytes": 301714944
+    },
+    {
+      "atmosphere_time": 2.034237,
+      "draw_calls": 338,
+      "file": "meadow-mobile-size.png",
+      "ground_sha256": "ec94b59b0f5db139ef265c849e05f9b5d8206b7e851c3e7a03a87bd0d5813d97",
+      "layers": 21,
+      "renderer": "mobile",
+      "size": [
+        960,
+        540
+      ],
+      "texture_memory_bytes": 301413632
+    },
+    {
+      "atmosphere_time": 2.034237,
+      "draw_calls": 174,
+      "file": "meadow-map-design.png",
+      "ground_sha256": "ec94b59b0f5db139ef265c849e05f9b5d8206b7e851c3e7a03a87bd0d5813d97",
+      "layers": 21,
+      "renderer": "mobile",
+      "size": [
+        1280,
+        720
+      ],
+      "texture_memory_bytes": 311906304
+    },
+    {
+      "atmosphere_time": 2.03638533333333,
+      "draw_calls": 336,
+      "file": "canyon-hunt.png",
+      "ground_sha256": "09daed46d28bef85fd0797a76b220d41b1354172ab6b235093e75709b4703529",
+      "layers": 18,
+      "renderer": "mobile",
+      "size": [
+        1280,
+        720
+      ],
+      "texture_memory_bytes": 240827136
+    },
+    {
+      "atmosphere_time": 2.03638533333333,
+      "draw_calls": 349,
+      "file": "canyon-overview.png",
+      "ground_sha256": "09daed46d28bef85fd0797a76b220d41b1354172ab6b235093e75709b4703529",
+      "layers": 18,
+      "renderer": "mobile",
+      "size": [
+        1280,
+        720
+      ],
+      "texture_memory_bytes": 240827136
+    },
+    {
+      "atmosphere_time": 2.03638533333333,
+      "draw_calls": 325,
+      "file": "canyon-mobile-size.png",
+      "ground_sha256": "09daed46d28bef85fd0797a76b220d41b1354172ab6b235093e75709b4703529",
+      "layers": 18,
+      "renderer": "mobile",
+      "size": [
+        960,
+        540
+      ],
+      "texture_memory_bytes": 240525824
+    },
+    {
+      "atmosphere_time": 2.03638533333333,
+      "draw_calls": 167,
+      "file": "canyon-map-design.png",
+      "ground_sha256": "09daed46d28bef85fd0797a76b220d41b1354172ab6b235093e75709b4703529",
+      "layers": 18,
+      "renderer": "mobile",
+      "size": [
+        1280,
+        720
+      ],
+      "texture_memory_bytes": 251018496
+    },
+    {
+      "atmosphere_time": 1.98592788888889,
+      "draw_calls": 330,
+      "file": "ruins-hunt.png",
+      "ground_sha256": "6d86b29b7d6bef29e1dceb51ae6b99945dc2ebf98c226a67a930294f9187e9f7",
+      "layers": 18,
+      "renderer": "mobile",
+      "size": [
+        1280,
+        720
+      ],
+      "texture_memory_bytes": 240827136
+    },
+    {
+      "atmosphere_time": 1.98592788888889,
+      "draw_calls": 343,
+      "file": "ruins-overview.png",
+      "ground_sha256": "6d86b29b7d6bef29e1dceb51ae6b99945dc2ebf98c226a67a930294f9187e9f7",
+      "layers": 18,
+      "renderer": "mobile",
+      "size": [
+        1280,
+        720
+      ],
+      "texture_memory_bytes": 240827136
+    },
+    {
+      "atmosphere_time": 1.98592788888889,
+      "draw_calls": 319,
+      "file": "ruins-mobile-size.png",
+      "ground_sha256": "6d86b29b7d6bef29e1dceb51ae6b99945dc2ebf98c226a67a930294f9187e9f7",
+      "layers": 18,
+      "renderer": "mobile",
+      "size": [
+        960,
+        540
+      ],
+      "texture_memory_bytes": 240525824
+    },
+    {
+      "atmosphere_time": 1.98592788888889,
+      "draw_calls": 167,
+      "file": "ruins-map-design.png",
+      "ground_sha256": "6d86b29b7d6bef29e1dceb51ae6b99945dc2ebf98c226a67a930294f9187e9f7",
+      "layers": 18,
+      "renderer": "mobile",
+      "size": [
+        1280,
+        720
+      ],
+      "texture_memory_bytes": 251018496
+    }
+  ],
+  "scope": "Actual Godot pilot captures; art review pending; renderer counters are not Android FPS."
+}

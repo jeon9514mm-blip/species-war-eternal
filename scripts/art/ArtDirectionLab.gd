@@ -4,12 +4,15 @@ extends "res://scripts/portrait/PortraitMain.gd"
 const LAB_FIELD = preload("res://scripts/art/ArtDirectionBattlefield.gd")
 const LAB_SAVE_PATH := "user://art-direction-lab/progress.json"
 const LAB_SETTINGS_PATH := "user://art-direction-lab/preferences.cfg"
+@export_enum("gray_meadow","forgotten_mine","moonrest_forest") var preview_zone_id := "gray_meadow"
 
 class PilotHud extends "res://scripts/portrait/LandscapeHuntHud.gd":
 	func refresh() -> void:
 		super.refresh()
 		if is_instance_valid(stage_label):
-			stage_label.text = "빛바람 초원 · 시범  |  %d 스테이지" % game.idle_stage
+			var field = game.combat_labels.get("terrain")
+			var title := str(preload("res://scripts/art/HuntingSceneryCatalog.gd").profile(field.art_theme).title) if is_instance_valid(field) and field is LAB_FIELD else "사냥터"
+			stage_label.text = "%s · 시범  |  %d 스테이지" % [title,game.idle_stage]
 			stage_label.tooltip_text = stage_label.text
 
 func _new_hunt_hud() -> Control:
@@ -34,7 +37,7 @@ func _ready() -> void:
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("user://art-direction-lab"))
 	super._ready()
 	selected_faction = "aurelia"
-	current_zone_id = "gray_meadow"
+	current_zone_id = preview_zone_id
 	tutorial_completed = true
 	idle_stage = 1
 	party_slot_legacy_cap = 3
@@ -57,6 +60,11 @@ func _save_idle_state() -> void:
 	# passing any snapshot to SaveStore (also covers close/pause/menu callbacks).
 	_deposit_nonoffline_rewards()
 	last_save_status = "art_lab_no_persistence"
+
+func _queue_hunt_save() -> void:
+	# The production async writer bypasses _save_idle_state. Keep both save
+	# entry points in memory in this isolated art study.
+	_save_idle_state()
 
 func _calculate_offline_reward() -> void:
 	_offline_checked = true
@@ -103,7 +111,7 @@ func _install_portrait_hud() -> void:
 	field.add_child(monsters)
 	var note := Label.new()
 	note.name = "ArtDirectionLabNotice"
-	note.text = "밝은 초원 · 몬스터 4종 시범  |  진행·설정 저장 안 함"
+	note.text = "3개 사냥터 시범 · 그래픽 검토  |  진행·설정 저장 안 함"
 	note.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	note.position = Vector2(18, 114)
 	note.size = Vector2(combat_field_rect.size.x - 12, 20)
