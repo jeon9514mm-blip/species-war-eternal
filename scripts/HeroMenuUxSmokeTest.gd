@@ -19,6 +19,9 @@ func press(named: String) -> void:
 	var target: Button = node(named)
 	check(target != null, "control exists " + named)
 	if target == null: return
+	if target.has_meta("menu_group"):
+		var menu: Node = node("PortraitActionSheet")
+		if menu != null: menu._select_group(str(target.get_meta("menu_group")))
 	var parent: Node = target.get_parent()
 	while parent != null:
 		if parent is ScrollContainer: parent.ensure_control_visible(target)

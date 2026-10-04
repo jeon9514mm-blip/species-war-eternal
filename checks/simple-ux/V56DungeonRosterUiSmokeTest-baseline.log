@@ -1,0 +1,646 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: V56 dungeon/roster UI: action exists GearTile_legacy_equipped_leonhardt_weapon
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:30)
+       [2] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [3] verify_dungeons (res://scripts/V56DungeonRosterUiSmokeTest.gd:223)
+       [4] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [5] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [6] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: equipment inspection preserves dungeon formation route
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] verify_dungeons (res://scripts/V56DungeonRosterUiSmokeTest.gd:224)
+       [2] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [3] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: action exists EquipmentDetailBack
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:30)
+       [2] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [3] verify_dungeons (res://scripts/V56DungeonRosterUiSmokeTest.gd:225)
+       [4] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [5] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [6] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: action exists PortraitMenuBack
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:30)
+       [2] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [3] verify_dungeons (res://scripts/V56DungeonRosterUiSmokeTest.gd:225)
+       [4] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [5] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [6] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: gear and hero back actions return to content formation
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] verify_dungeons (res://scripts/V56DungeonRosterUiSmokeTest.gd:226)
+       [2] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [3] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: action exists RosterConfirm
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:30)
+       [2] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [3] verify_dungeons (res://scripts/V56DungeonRosterUiSmokeTest.gd:228)
+       [4] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [5] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [6] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: saving formation returns to selected dungeon tab
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] verify_dungeons (res://scripts/V56DungeonRosterUiSmokeTest.gd:229)
+       [2] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [3] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: successful formation return consumes route
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] verify_dungeons (res://scripts/V56DungeonRosterUiSmokeTest.gd:231)
+       [2] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [3] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: action exists ContentPartyButton
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:30)
+       [2] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [3] verify_dungeons (res://scripts/V56DungeonRosterUiSmokeTest.gd:232)
+       [4] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [5] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [6] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: action exists RosterClear
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:30)
+       [2] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [3] verify_dungeons (res://scripts/V56DungeonRosterUiSmokeTest.gd:232)
+       [4] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [5] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [6] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+SCRIPT ERROR: Invalid access to property or key 'disabled' on a base object of type 'null instance'.
+          at: verify_dungeons (res://scripts/V56DungeonRosterUiSmokeTest.gd:233)
+          GDScript backtrace (most recent call first):
+              [0] verify_dungeons (res://scripts/V56DungeonRosterUiSmokeTest.gd:233)
+              [1] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+              [2] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+              [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: moon forest raid preparation PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:265)
+       [3] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [4] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [5] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: moon forest raid preparation PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:265)
+       [3] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [4] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [5] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: moon forest raid preparation RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:265)
+       [3] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [4] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [5] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: moon forest raid preparation PortraitRaidHeroName_caelum 카엘룸 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:265)
+       [3] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [4] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [5] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: moon forest raid preparation regions do not collide PortraitRaidStatus / PortraitRaidParty
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:265)
+       [4] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [5] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [6] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: moon forest raid preparation regions do not collide PortraitRaidStatus / PortraitRaidActions
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:265)
+       [4] press (res://scripts/V56DungeonRosterUiSmokeTest.gd:42)
+       [5] press_control (res://scripts/V56DungeonRosterUiSmokeTest.gd:40)
+       [6] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid long telegraph PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:281)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid long telegraph PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:281)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid long telegraph RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:281)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid long telegraph PortraitRaidHeroName_caelum 카엘룸 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:281)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid long telegraph cross-parent text collision ["PortraitRaidWarning [달잠 숲의 고대 수호자가 ] / @Label@5749 [던전 진입 · 월식의 여왕]"]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:105)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:281)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (720, 1560) PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (720, 1560) PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (720, 1560) RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (720, 1560) PortraitRaidHeroName_caelum 카엘룸 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (720, 1560) cross-parent text collision ["PortraitRaidWarning [달잠 숲의 고대 수호자가 ] / @Label@5749 [던전 진입 · 월식의 여왕]"]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:105)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (810, 1440) PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (810, 1440) PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (810, 1440) RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (810, 1440) PortraitRaidHeroName_caelum 카엘룸 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (720, 1280) PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (720, 1280) PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (720, 1280) RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: live raid resize (720, 1280) PortraitRaidHeroName_caelum 카엘룸 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:284)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid 토벌 성공 long result PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:290)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid 토벌 성공 long result PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:290)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid 토벌 성공 long result RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:290)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid 토벌 성공 long result PortraitRaidHeroName_caelum 카엘룸 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:290)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid 토벌 실패 long result PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:290)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid 토벌 실패 long result PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:290)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid 토벌 실패 long result RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:290)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: raid 토벌 실패 long result PortraitRaidHeroName_caelum 카엘룸 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_raid (res://scripts/V56DungeonRosterUiSmokeTest.gd:290)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (320, 568) _build_world_map_screen CombatViewToggle 전장 보기 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (320, 568) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (320, 568) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (320, 568) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (320, 568) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (320, 568) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (320, 568) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (360, 640) _build_world_map_screen CombatViewToggle 전장 보기 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (360, 640) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (360, 640) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (360, 640) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (360, 640) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (360, 640) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (360, 640) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1280) _build_world_map_screen CombatViewToggle 전장 보기 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1280) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1280) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1280) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1280) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1280) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1280) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (810, 1440) _build_world_map_screen CombatViewToggle 전장 보기 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (810, 1440) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (810, 1440) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (810, 1440) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (810, 1440) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (810, 1440) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (810, 1440) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1560) _build_world_map_screen CombatViewToggle 전장 보기 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1560) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1560) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1560) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1560) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1560) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: (720, 1560) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:300)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: logical (720, 960) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:308)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: logical (720, 960) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:308)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: logical (720, 960) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:85)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:308)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: logical (720, 960) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:77)
+       [2] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:308)
+       [3] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: logical (720, 960) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:308)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+ERROR: V56 dungeon/roster UI: logical (720, 960) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/V56DungeonRosterUiSmokeTest.gd:18)
+       [1] separate (res://scripts/V56DungeonRosterUiSmokeTest.gd:55)
+       [2] audit (res://scripts/V56DungeonRosterUiSmokeTest.gd:108)
+       [3] verify_sizes (res://scripts/V56DungeonRosterUiSmokeTest.gd:308)
+       [4] settle (res://scripts/V56DungeonRosterUiSmokeTest.gd:20)
+V56 DUNGEON ROSTER UI 11246/11329 PASS · 60 screen states
+600 logical width exploratory findings: 6
+EXPLORATORY logical (600, 1066) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size
+EXPLORATORY logical (600, 1066) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size
+EXPLORATORY logical (600, 1066) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size
+EXPLORATORY logical (600, 1066) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width
+EXPLORATORY logical (600, 1066) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty
+EXPLORATORY logical (600, 1066) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions

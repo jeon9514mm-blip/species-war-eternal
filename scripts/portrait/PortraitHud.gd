@@ -15,6 +15,7 @@ var stage_progress: ProgressBar
 var enemy_label: Label
 var profile_xp: ProgressBar
 var quest_label: Label
+var options_quest_label: Label
 var first_session_action: Button
 var compact_guide_layout := false
 var status_label: Label
@@ -89,29 +90,33 @@ func build(main: Node) -> void:
 	hud_bounds=[Rect2(margin,top,w-margin*2,168),Rect2(margin,command_y,w-margin*2,158),Rect2()]
 	refresh()
 
-func _build_options(w: float,h: float) -> void:
+func _build_options(w: float,h: float,include_offline: bool = true) -> void:
 	options_layer=Control.new();options_layer.name='HuntOptionsSheet';options_layer.z_index=110
 	options_layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);add_child(options_layer)
 	var shade:=ColorRect.new();shade.color=Color(0,0,0,.65);shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	options_layer.add_child(shade)
 	var panel:=PanelContainer.new();panel.name='HuntOptionsPanel'
 	panel.add_theme_stylebox_override('panel',SKIN.elevated(SKIN.SURFACE))
-	SKIN.place(options_layer,panel,Rect2(20,maxf(20,(h-650)*.5),w-40,minf(650,h-40)))
+	var rect:=Rect2(w-374,106,354,h-214) if compact_guide_layout else Rect2(20,maxf(20,(h-650)*.5),w-40,minf(650,h-40))
+	SKIN.place(options_layer,panel,rect)
 	var margin:=MarginContainer.new();panel.add_child(margin)
 	for edge in ['left','right','top','bottom']:margin.add_theme_constant_override('margin_'+edge,20)
-	var scroll:=ScrollContainer.new();SKIN.make_scroll_responsive(scroll);margin.add_child(scroll)
+	var layout:=VBoxContainer.new();layout.add_theme_constant_override('separation',12);margin.add_child(layout)
+	var heading:=HBoxContainer.new();layout.add_child(heading)
+	var title:=SKIN.label('사냥 조작',22);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;heading.add_child(title)
+	var close:=SKIN.button('닫기',_toggle_options);close.name='HuntOptionsClose';close.custom_minimum_size=Vector2(76,52);heading.add_child(close)
+	var scroll:=ScrollContainer.new();scroll.name='HuntOptionsScroll';SKIN.make_scroll_responsive(scroll)
+	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;layout.add_child(scroll)
 	var box:=VBoxContainer.new();box.size_flags_horizontal=Control.SIZE_EXPAND_FILL;box.add_theme_constant_override('separation',12);scroll.add_child(box)
-	var heading:=HBoxContainer.new();box.add_child(heading)
-	var title:=SKIN.label('사냥 설정',26);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;heading.add_child(title)
-	var close:=SKIN.button('닫기',_toggle_options);close.custom_minimum_size=Vector2(100,76);heading.add_child(close)
-	quest_label=SKIN.label('',18,SKIN.MUTED);quest_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;box.add_child(quest_label)
+	options_quest_label=SKIN.label('',18,SKIN.MUTED);options_quest_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;box.add_child(options_quest_label)
+	if not is_instance_valid(quest_label):quest_label=options_quest_label
 	skill_button=_option(box,'',_toggle_skill_auto,'PortraitSkillAuto')
 	ultimate_button=_option(box,'',_toggle_ultimate_auto,'PortraitUltimateAuto')
 	_option(box,'전투 진형',Callable(game,'_open_battle_formation'),'HuntFormation')
 	_option(box,'사냥 정보 · 피해와 보상',func():options_layer.hide();game._toggle_hunt_details(),'HuntStatistics')
 	_option(box,'사냥터 지도',Callable(game,'_build_world_map_screen'),'PortraitMapButton')
 	_option(box,'목표 · 업적',Callable(game,'_open_goal_screen'),'PortraitQuestButton')
-	offline_button=_option(box,'',_open_offline_rewards,'PortraitOfflineRewards')
+	if include_offline:offline_button=_option(box,'',_open_offline_rewards,'PortraitOfflineRewards')
 	_option(box,'화면 · 소리 · 성능',Callable(game,'_open_presentation_settings'),'HuntSettings')
 	options_layer.hide()
 
@@ -120,8 +125,8 @@ func _option(parent: Node,caption: String,callback: Callable,node_name: String) 
 		if node_name not in ['PortraitSkillAuto','PortraitUltimateAuto']:options_layer.hide()
 		callback.call())
 	button.name=node_name
-	button.custom_minimum_size=Vector2(0,76);button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	button.add_theme_font_size_override('font_size',22)
+	button.custom_minimum_size=Vector2(0,52 if compact_guide_layout else 76);button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	button.add_theme_font_size_override('font_size',18 if compact_guide_layout else 22)
 	button.mouse_filter=Control.MOUSE_FILTER_PASS;parent.add_child(button);return button
 
 func _toggle_options() -> void:options_layer.visible=not options_layer.visible
@@ -158,7 +163,7 @@ func _build_slots() -> void:
 	var cell:=100.0
 	var cap: int=game._party_slot_cap()
 	for i in 10:
-		var slot:=SKIN.button('',Callable(game,'_open_hero_menu'),Color('#264448'))
+		var slot:=SKIN.button('',Callable(game,'_build_hero_select_screen'),Color('#264448'))
 		slot.name='PortraitSlot%d'%i;slot.mouse_filter=Control.MOUSE_FILTER_PASS
 		SKIN.place(slot_row,slot,Rect2(i*(cell+8),0,cell,84))
 		slot.visible=true
@@ -177,7 +182,7 @@ func _build_slots() -> void:
 		var hero: Dictionary=game.deployed_heroes[i]
 		var id:=str(hero['id'])
 		slot.tooltip_text=str(hero['name'])+' · 상세'
-		slot.pressed.disconnect(Callable(game,'_open_hero_menu'))
+		slot.pressed.disconnect(Callable(game,'_build_hero_select_screen'))
 		slot.pressed.connect(Callable(game,'_build_hero_detail_screen').bind(id))
 		var accent: Color=game._hero_grade_color(id)
 		slot.add_theme_stylebox_override('normal',SKIN.box(Color('#2a4a4cf5'),Color(accent,.80),10,1))
@@ -207,16 +212,17 @@ func refresh() -> void:
 	refresh_count+=1
 	if _power_elapsed>=float(game._presentation_profile()['power_interval']):
 		_power_elapsed=0.0;power_evaluations+=1
-		power_label.text=game._compact_hud_amount(game._calculate_party_power())
-	gold_label.text="G  "+game._compact_hud_amount(game.wallet_gold)
-	gem_label.text="◆  "+game._compact_hud_amount(game.wallet_gems)
+		power_label.text=('전투력 ' if compact_guide_layout else '')+game._compact_hud_amount(game._calculate_party_power())
+	gold_label.text="골드 "+game._compact_hud_amount(game.wallet_gold)
+	gem_label.text="젬 "+game._compact_hud_amount(game.wallet_gems)
 	var pending_gold: int=game.offline_pending_gold+game.offline_pending_chest_gold
 	var pending_xp: int=game.offline_pending_xp+game.offline_pending_chest_xp
 	offline_button.disabled=pending_gold<=0 and pending_xp<=0
+	if compact_guide_layout:offline_button.visible=not offline_button.disabled
 	offline_button.text='오프라인 보상 없음' if offline_button.disabled else '오프라인 사냥 받기'
 	offline_button.tooltip_text='오프라인 골드 %d · 계정 경험치 %d'%[pending_gold,pending_xp]
-	skill_button.text='스킬 AUTO  켬' if game.skill_auto else '스킬 AUTO  끔'
-	ultimate_button.text='각성기 AUTO  켬' if game.ultimate_auto else '각성기 AUTO  끔'
+	skill_button.text='스킬 자동 사용 · 켬' if game.skill_auto else '스킬 자동 사용 · 끔'
+	ultimate_button.text='궁극기 자동 사용 · 켬' if game.ultimate_auto else '궁극기 자동 사용 · 끔'
 	skill_button.modulate=Color.WHITE if game.skill_auto else Color('#b4c2c6')
 	ultimate_button.modulate=Color.WHITE if game.ultimate_auto else Color('#b4c2c6')
 	stage_label.text='%s  %d 스테이지'%[game._current_zone()['name'],game.idle_stage]
@@ -225,6 +231,7 @@ func refresh() -> void:
 	stage_progress.tooltip_text='스테이지 처치 %d / %d'%[game.idle_stage_kills,game.idle_stage_target]
 	enemy_label.text='적 %d'%game._enemy_wave_alive_count()
 	quest_label.text=game._tracked_quest_text()
+	if quest_label.text.is_empty():quest_label.text='자동으로 사냥하고 보상을 모아요.'
 	var title_text: String=game.GOALS.title_text(game)
 	profile_name.text='나의 원정대' if title_text=='칭호 미선택' else title_text
 	profile_name.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
@@ -251,11 +258,13 @@ func refresh() -> void:
 			if is_instance_valid(reward_feed):reward_feed.position.y=game.get_viewport_rect().size.y-302.0-(150.0 if first_session_action.visible else 100.0)
 		if compact_guide_layout:
 			quest_label.size.x=game.get_viewport_rect().size.x-334.0-(258.0 if first_session_action.visible else 44.0)
+	if is_instance_valid(options_quest_label) and options_quest_label!=quest_label:
+		options_quest_label.text=quest_label.text;options_quest_label.tooltip_text=quest_label.tooltip_text
 	status_label.text='%s  ·  원정대 %d/%d'%[game._hunt_state_text(),game._alive_hero_ids().size(),game.deployed_heroes.size()]
 	speed_button.text='×%d'%int(game.battle_speed)
 	auto_button.text='영웅 편성하기' if game.deployed_heroes.is_empty() else ('Ⅱ  자동사냥 중' if game.combat_running else '▶  사냥 재개')
 	auto_button.tooltip_text='영웅 편성 열기' if game.deployed_heroes.is_empty() else ('자동사냥 일시정지' if game.combat_running else '자동사냥 재개')
-	details_button.text='사냥 설정'
+	details_button.text='사냥 조작'
 	var entry: Label=get_node_or_null('HuntEntryDirection')
 	if entry!=null:entry.text=game.hunt_event_text
 	auto_button.modulate=Color.WHITE if game.combat_running else Color('#c5cede')
@@ -287,7 +296,7 @@ func refresh() -> void:
 func _toggle_auto() -> void:
 	# An empty expedition needs the roster, not a resume action that does nothing.
 	if game.deployed_heroes.is_empty():
-		game._open_hero_menu()
+		game._build_hero_select_screen()
 		return
 	var original: Button=game.combat_labels.get('toggle')
 	if is_instance_valid(original):game._toggle_combat(original)

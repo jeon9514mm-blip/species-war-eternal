@@ -129,7 +129,7 @@ static func begin(main: Node, screen: String, title: String, detail: String, tab
 	return box
 
 static func lobby(main: Node) -> void:
-	var page := begin(main,'lobby','원정대 캠프',main._faction_name(),'more')
+	var page := begin(main,'lobby','원정대 현황',main._faction_name(),'more')
 	var zone: Dictionary=main._current_zone()
 	var lead := card(page,str(zone['name']),S.BLUE)
 	text(lead,'지금 떠날 곳  ·  STAGE %02d'%main.idle_stage,16,S.BLUE_SOFT)
@@ -608,20 +608,22 @@ static func _content_requirement(main: Node, parent: Node, required: int) -> boo
 
 static func meta(main: Node) -> void:
 	main._reset_daily_dungeon_if_needed();main._reset_weekly_if_needed();main._auto_track_quest()
-	var page := begin(main,'meta_hub','던전 · 성장','콘텐츠를 선택하고 보상과 출전 조건을 확인하세요.','content')
-	var lab_actions := grid(page,2)
+	var page := begin(main,'meta_hub','도전','레이드·던전을 선택하고 출전하세요.','content')
+	var tools := disclosure(page,'연습 · 전투 설정')
+	tools.get_parent().name='ChallengeTools'
+	var lab_actions := grid(tools,2)
 	action(lab_actions,'무보상 연습전',Callable(main,'_open_practice_screen')).name='PracticeOpen'
 	action(lab_actions,'통합 전투 프리셋',Callable(main,'_open_combat_presets')).name='CombatPresetsOpen'
 	var selected: String=str(main.get_meta('content_meta_tab','daily'))
 	if selected not in ['daily','tower','weekly','raids','quests']:selected='daily'
 	var tabs := grid(page,5)
 	tabs.add_theme_constant_override('h_separation',7)
-	for entry in [['daily','일일'],['tower','무한탑'],['weekly','주간'],['raids','레이드'],['quests','목표']]:
+	for entry in [['raids','레이드'],['daily','일일 던전'],['tower','무한탑'],['weekly','주간 원정'],['quests','목표 · 업적']]:
 		var tab_id: String=entry[0]
 		var button := _content_tab(tabs,entry[1],func():main.set_meta('content_meta_tab',tab_id);main._build_meta_hub_screen(),selected==tab_id)
 		button.name='ContentTab_'+tab_id
 	if selected=='raids':
-		lab_actions.get_parent().remove_child(lab_actions);lab_actions.queue_free()
+		tools.get_parent().get_parent().queue_free()
 		load('res://scripts/RaidCatalogView.gd').build(main,page,load('res://scripts/portrait/PortraitPages.gd'))
 		return
 	var last_result: Dictionary=main.get_meta('last_dungeon_result',{})
@@ -671,22 +673,15 @@ static func meta(main: Node) -> void:
 		text(box,'오늘의 원정을 모두 완료했어요.' if daily else '이번 주 심연 원정을 모두 완료했어요.',20,S.SUCCESS)
 		text(box,'다음 초기화 후 다시 보상을 받을 수 있어요.',17,S.MUTED)
 	else:
-		text(box,'이번 도전 보상',18,S.MUTED)
-		var rewards := grid(box)
 		var next_run: int=runs+1
 		if daily:
-			var daily_reward: Dictionary=DAILY_RULES.reward(runs)
-			_content_stat(main,rewards,'골드',int(daily_reward['gold']))
-			_content_stat(main,rewards,'경험치',int(daily_reward['xp']),S.BLUE_SOFT)
-			text(box,'수호신 경험치 +%d'%daily_reward['pet_xp'],16,S.MUTED)
+			var reward: Dictionary=DAILY_RULES.reward(runs)
+			text(box,'완료 보상 · 골드 %s · 경험치 %s · 수호신 경험치 %d'%[main._compact_hud_amount(int(reward.gold)),main._compact_hud_amount(int(reward.xp)),int(reward.pet_xp)],17,S.GOLD)
 		elif tower:
-			var tower_reward: Dictionary=TOWER_RULES.reward(int(main.tower_floor))
-			_content_stat(main,rewards,'골드',int(tower_reward.get('gold',0)))
-			_content_stat(main,rewards,'젬',int(tower_reward.get('gems',0)),S.BLUE_SOFT)
+			var reward: Dictionary=TOWER_RULES.reward(int(main.tower_floor))
+			text(box,'완료 보상 · 골드 %s · 젬 %d'%[main._compact_hud_amount(int(reward.get('gold',0))),int(reward.get('gems',0))],17,S.GOLD)
 		else:
-			_content_stat(main,rewards,'골드',1200+next_run*400)
-			_content_stat(main,rewards,'젬',15+next_run*3,S.BLUE_SOFT)
-			text(box,'영웅 경험치 +%s'%main._compact_hud_amount(350+next_run*100),16,S.MUTED)
+			text(box,'완료 보상 · 골드 %s · 젬 %d · 경험치 %s'%[main._compact_hud_amount(1200+next_run*400),15+next_run*3,main._compact_hud_amount(350+next_run*100)],17,S.GOLD)
 	var required: int=650+runs*250 if daily else (500+main.tower_floor*180 if tower else 900+runs*550)
 	var tower_error: String=main._tower_entry_error() if tower else ''
 	var weekly_error: String=main._weekly_entry_error() if not daily and not tower else ''
@@ -714,7 +709,7 @@ static func meta(main: Node) -> void:
 		text(box,str(weekly_plan.get('description',''))+'\n전멸·취소·피해 0은 기록·횟수·보상을 변경하지 않아요.',16,S.MUTED).name='WeeklyPatternObjective'
 	var tower_context: Dictionary=main._tower_entry_context() if tower else {}
 	var weekly_context: Dictionary=main._weekly_entry_context() if not daily and not tower else {}
-	var enter := action(box,'도전 횟수 소진' if exhausted else ('전투 시작' if can_enter else '출전 조건 미달'),func():
+	var enter := action(box,'도전 횟수 소진' if exhausted else ('도전 시작' if can_enter else '출전 조건 미달'),func():
 		if daily:main._run_daily_dungeon(daily_variant)
 		elif tower:main._challenge_tower(tower_context)
 		else:main._run_weekly_trial(weekly_context),true)
@@ -728,6 +723,7 @@ static func meta(main: Node) -> void:
 		text(box,sweep_reason if not sweep_reason.is_empty() else '직접 클리어 기록 확인 · 이 진영·유형·단계 소탕 가능',16,S.MUTED).name='DungeonSweepStatus'
 	_content_party(main,page,'meta')
 	action(page,'장비 관리',Callable(main,'_build_inventory_screen'))
+	page.move_child(tools.get_parent().get_parent(),-1)
 
 static func summon(main: Node) -> void:
 	var page := begin(main,'summon','소환 · 돌파','보유 재화와 보장 상태를 먼저 확인하고 필요한 성장만 진행하세요.','summon')

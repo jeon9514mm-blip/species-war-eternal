@@ -19,14 +19,15 @@ func build(main: Node) -> void:
 	var side: float = w - 334.0
 	SKIN.panel(self,Rect2(side,12,322,h-106),SKIN.DARK,SKIN.EDGE_SOFT,1,14)
 	SKIN.panel(self,Rect2(12,12,side-24,112),SKIN.DARK,SKIN.EDGE_SOFT,1,14)
-	profile_name = _label_at("원정대",Rect2(side+12,18,180,28))
+	profile_name = _label_at("원정대",Rect2(side+12,18,156,28))
+	_button_at("편성",Callable(game,"_build_hero_select_screen"),Rect2(side+176,14,70,44),"HuntPartyEdit")
 	profile_level = _label_at("",Rect2(side+12,46,148,26),16)
-	power_label = _label_at("",Rect2(side+170,46,80,26),18)
+	power_label = _label_at("",Rect2(side+170,60,130,24),18)
 	var menu:=_button_at("",Callable(game,"_show_main_menu"),Rect2(w-68,18,44,44),"LandscapeMenuButton")
 	menu.tooltip_text="전체 메뉴"
 	var menu_icon:=preload("res://scripts/GameUiIcon.gd").new();menu_icon.icon_name="hamburger";menu_icon.ink=SKIN.INK
 	SKIN.place(menu,menu_icon,Rect2(10,10,24,24))
-	profile_xp = SKIN.gauge(self,Rect2(side+12,78,294,6),SKIN.GOLD)
+	profile_xp = SKIN.gauge(self,Rect2(side+12,84,294,4),SKIN.GOLD)
 	stage_label = _label_at("",Rect2(24,18,side-310,34),22)
 	gold_label = _label_at("",Rect2(side-250,20,112,30)); gem_label = _label_at("",Rect2(side-126,20,102,30))
 	stage_progress = SKIN.gauge(self,Rect2(24,62,side-160,8),SKIN.GOLD)
@@ -37,15 +38,14 @@ func build(main: Node) -> void:
 	_layout_rows = 2 if maxi(game._party_slot_cap(),game.deployed_heroes.size()) > 5 else 1
 	slot_row = Control.new(); slot_row.name = "PortraitPartySlots"
 	SKIN.place(self,slot_row,Rect2(side+10,92,302,320)); _build_slots()
-	var y: float = h-290
-	_button_at("전투 진형",Callable(game,"_open_battle_formation"),Rect2(side+10,y,146,42),"HuntFormation")
-	_button_at("설정",Callable(game,"_open_presentation_settings"),Rect2(side+164,y,146,42),"HuntSettings")
-	skill_button = _button_at("",_toggle_skill_auto,Rect2(side+10,y+46,146,42),"PortraitSkillAuto")
-	ultimate_button = _button_at("",_toggle_ultimate_auto,Rect2(side+164,y+46,146,42),"PortraitUltimateAuto")
-	auto_button = _button_at("",_toggle_auto,Rect2(side+10,y+92,224,42),"PortraitAutoButton")
-	speed_button = _button_at("",_cycle_speed,Rect2(side+242,y+92,68,42),"PortraitSpeedButton")
-	details_button = _button_at("",Callable(game,"_toggle_hunt_details"),Rect2(side+10,y+138,146,42),"PortraitDetailsButton")
-	offline_button = _button_at("",_open_offline_rewards,Rect2(side+164,y+138,146,42),"PortraitOfflineRewards")
+	var y: float = h-302
+	var party_hint:=_label_at("영웅을 누르면 성장 · 장비 관리",Rect2(side+12,y,294,26),15)
+	party_hint.add_theme_color_override('font_color',SKIN.MUTED)
+	auto_button = _button_at("",_toggle_auto,Rect2(side+10,y+34,224,52),"PortraitAutoButton")
+	speed_button = _button_at("",_cycle_speed,Rect2(side+242,y+34,68,52),"PortraitSpeedButton")
+	details_button = _button_at("사냥 조작",_toggle_options,Rect2(side+10,y+96,302,52),"PortraitDetailsButton")
+	offline_button = _button_at("",_open_offline_rewards,Rect2(side+10,y+158,302,44),"PortraitOfflineRewards")
+	_build_options(w,h,false)
 	reward_feed = REWARD_FEED.new(); SKIN.place(self,reward_feed,Rect2(24,h-235,320,90)); reward_feed.build(320)
 	navigation(game,self,"combat",h-90,90)
 	hud_bounds = [Rect2(side,12,322,h-106),Rect2(12,12,side-24,112)]

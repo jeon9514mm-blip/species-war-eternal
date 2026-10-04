@@ -1,0 +1,29 @@
+{
+  "renderer": "OpenGL Compatibility, Mesa llvmpipe",
+  "logical_resolution": [
+    1280,
+    720
+  ],
+  "saved_previews": [
+    {
+      "file": "checks/simple-ux/captures/hunt.png",
+      "bytes": 1193449,
+      "sha256": "a92d792ff51d837757a9e43b8bc3cd50042cd237ed96ff7107d1ef6b277a9878"
+    },
+    {
+      "file": "checks/simple-ux/captures/menu-battle.png",
+      "bytes": 361338,
+      "sha256": "05e3ea13f94d5ab0c7009b1daee07f27dec465a54e6f161511406a435116ae8b"
+    },
+    {
+      "file": "checks/simple-ux/captures/daily.png",
+      "bytes": 78705,
+      "sha256": "0b37763d79b0807d2701e194ba4482247bf022937dc99c7303d6923686093fbf"
+    },
+    {
+      "file": "checks/simple-ux/captures/bag.png",
+      "bytes": 131077,
+      "sha256": "8bb5d43efa5dec59912bdc83323698ec18c416918c968c0e871db8c97b7b45d2"
+    }
+  ]
+}

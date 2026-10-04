@@ -11,6 +11,9 @@ func press(main: Node, named: String) -> void:
 	var target: Button=main.content_root.find_child(named,true,false)
 	check(target!=null,'button exists '+named)
 	if target==null:return
+	if not target.is_visible_in_tree() and target.is_inside_tree():
+		var hud: Node=main.portrait_hud
+		if is_instance_valid(hud) and is_instance_valid(hud.options_layer):hud.options_layer.show()
 	var ancestor: Node=target.get_parent()
 	while ancestor!=null:
 		if ancestor is ScrollContainer:ancestor.ensure_control_visible(target)
@@ -51,6 +54,7 @@ func _run() -> void:
 	main._unhandled_key_input(_back_key());await settle()
 	check(not main.content_root.has_node('PresentationSettingsOverlay') and main.active_screen=='combat','back dismisses presentation settings before navigation')
 	await press(main,'PortraitDetailsButton')
+	await press(main,'HuntStatistics')
 	check(main.combat_labels['details_panel'].visible,'hunt details are accessible from the sidebar')
 	main._unhandled_key_input(_back_key());await settle()
 	check(not main.combat_labels['details_panel'].visible and main.active_screen=='combat','back dismisses hunt details before navigation')

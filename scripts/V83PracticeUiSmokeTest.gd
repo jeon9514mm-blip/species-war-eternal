@@ -17,7 +17,7 @@ func _run() -> void:
 	for name in ["PracticeStart_gold_rush","PracticeStart_survival","PracticeStart_boss_hunt","PracticeStart_tower","PracticeStart_weekly","PracticeDailyTier"]:
 		check(main.find_child(name,true,false)!=null, "practice UI control " +name)
 	var scroll: ScrollContainer = main.find_child("PortraitContentScroll",true,false)
-	check(scroll != null and scroll.size.x > 620 and scroll.size.y > 600, "actual viewport content is not zero-sized")
+	check(scroll != null and scroll.size.x > 620 and scroll.size.y > 400 and main.get_viewport_rect().grow(1).encloses(scroll.get_global_rect()), "practice content fits the current landscape viewport")
 	if scroll != null:
 		scroll.scroll_vertical = int(scroll.get_v_scroll_bar().max_value); await settle()
 		var last = main.find_child("PracticeStart_weekly",true,false)

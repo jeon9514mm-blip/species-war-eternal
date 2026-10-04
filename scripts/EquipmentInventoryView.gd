@@ -64,13 +64,13 @@ func install(main: Node) -> void:
 	var w:=viewport.x;var h:=viewport.y
 	var top:=HBoxContainer.new();top.add_theme_constant_override('separation',16)
 	add_child(top);top.position=Vector2(20,12);top.size=Vector2(w-40,60)
-	var back:=_button(top,'‹',Callable(game,'_build_lobby_screen'));back.name='EquipmentBagBack';back.custom_minimum_size.x=52;back.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+	var back:=_button(top,'‹ 사냥',Callable(game,'_open_home'));back.name='EquipmentBagBack';back.custom_minimum_size.x=110;back.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
 	var title:=P.text(top,'장비 관리',27);title.custom_minimum_size.x=152;title.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
 	var selector:=OptionButton.new();selector.name='GearBagHero';selector.custom_minimum_size=Vector2(250,56)
 	selector.size_flags_horizontal=Control.SIZE_EXPAND_FILL;selector.clip_text=true;selector.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 	selector.add_theme_font_size_override('font_size',21);top.add_child(selector);M.retint(selector)
 	for hero: Dictionary in game._hero_roster_for_faction():
-		selector.add_item(str(hero.get('name','영웅')));selector.set_item_metadata(selector.item_count-1,str(hero.id))
+		selector.add_item('장착 영웅 · '+str(hero.get('name','영웅')));selector.set_item_metadata(selector.item_count-1,str(hero.id))
 		if str(hero.id)==hero_id:selector.select(selector.item_count-1)
 	selector.disabled=selector.item_count==0
 	selector.item_selected.connect(func(index: int):
@@ -79,7 +79,6 @@ func install(main: Node) -> void:
 	var money:=P.text(top,'G  '+game._compact_hud_amount(game.wallet_gold),21,S.GOLD)
 	gold_label=money;gold_label.name='GearGoldValue'
 	money.custom_minimum_size.x=135;money.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;money.size_flags_horizontal=Control.SIZE_SHRINK_END
-	var close:=_button(top,'×',Callable(game,'_build_lobby_screen'));close.name='EquipmentBagClose';close.custom_minimum_size.x=56;close.size_flags_horizontal=Control.SIZE_SHRINK_END
 	var body_y:=86.0;var body_h:=h-190.0
 	var bag_w:=clampf(w*.35,430.0,530.0);var action_w:=120.0
 	var compare_w:=w-64-bag_w-action_w
@@ -245,17 +244,15 @@ func _item_card(caption: String, item: Dictionary, candidate: bool, preview: Dic
 	var count:=0
 	for value in sets.values():
 		if str(value)==set_name:count+=1
-	var set_box:=P.card(body,'세트 효과')
-	P.text(set_box,set_name+'  %d / 3'%count,20,_accent(item))
-	for threshold in [2,3]:
+	var set_box:=P.card(body,'세트 효과 없음' if set_name=='초보자' else set_name+' 세트 · %d / 3'%count)
+	for threshold in ([] if set_name=='초보자' else [2,3]):
 		var sample: Dictionary={'weapon':set_name,'armor':set_name,'accessory':set_name if threshold==3 else '초보자'}
 		var summary: String=GEAR.set_profile(sample).summary
 		var prior: String=GEAR.set_profile({'weapon':set_name,'armor':set_name,'accessory':'초보자'}).summary
 		if threshold==3 and summary.begins_with(prior+' · '):summary=summary.trim_prefix(prior+' · ')
 		elif threshold==3 and summary==prior:summary='추가 효과 없음'
 		var active: bool=count>=int(threshold) and set_name!='초보자'
-		P.text(set_box,('● ' if active else '○ ')+'%d세트'%threshold,18,LIME if active else S.MUTED)
-		P.text(set_box,summary,16,S.INK if active else S.MUTED)
+		P.text(set_box,('● ' if active else '○ ')+'%d세트 · '%threshold+summary,16,LIME if active else S.MUTED)
 	if candidate and not preview.is_empty():
 		for change: Dictionary in preview.changes:
 			P.text(body,C.change_text(change),16,S.SUCCESS if int(change.after)>int(change.before) else S.UI.RED)

@@ -1,0 +1,227 @@
+{
+  "base_commit": "d19678b81ef019d7e02c2fc7342c403f6f42ae32",
+  "engine": "Godot 4.6.3",
+  "suites": [
+    {
+      "script": "scripts/SimpleUxSmokeTest.gd",
+      "exit": 0,
+      "seconds": 12.14,
+      "errors": [],
+      "result": [
+        "simple_ux checks=460 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/UnifiedInterfaceSmokeTest.gd",
+      "exit": 0,
+      "seconds": 9.33,
+      "errors": [],
+      "result": [
+        "unified_interface checks=122 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HeroMenuUxSmokeTest.gd",
+      "exit": 0,
+      "seconds": 21.15,
+      "errors": [],
+      "result": [
+        "hero_menu_ux checks=1065 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V57QualityPassSmokeTest.gd",
+      "exit": 0,
+      "seconds": 9.79,
+      "errors": [],
+      "result": [
+        "V57 QUALITY PASS 36/36 PASS"
+      ]
+    },
+    {
+      "script": "scripts/HuntingHomeSmokeTest.gd",
+      "exit": 0,
+      "seconds": 16.73,
+      "errors": [],
+      "result": [
+        "HUNTING_HOME_SMOKE checks=53 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HuntMenuStateSmokeTest.gd",
+      "exit": 0,
+      "seconds": 34.36,
+      "errors": [],
+      "result": [
+        "HUNT_MENU_STATE checks=94 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/TouchScrollSmokeTest.gd",
+      "exit": 0,
+      "seconds": 10.68,
+      "errors": [],
+      "result": [
+        "TOUCH_SCROLL_SMOKE checks=51 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/RaidCatalogUiSmokeTest.gd",
+      "exit": 0,
+      "seconds": 12.32,
+      "errors": [],
+      "result": [
+        "raid_catalog_ui checks=805 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "exit": 0,
+      "seconds": 11.8,
+      "errors": [],
+      "result": [
+        "equipment_modal_save_recovery checks=163 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/FirstSessionEconomySmokeTest.gd",
+      "exit": 0,
+      "seconds": 16.68,
+      "errors": [],
+      "result": [
+        "first_session_economy checks=226 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/RaidTouchLayoutSmokeTest.gd",
+      "exit": 0,
+      "seconds": 85.81,
+      "errors": [],
+      "result": [
+        "RAID_TOUCH_LAYOUT checks=852 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/GameplayReliabilitySmokeTest.gd",
+      "exit": 0,
+      "seconds": 46.37,
+      "errors": [],
+      "result": [
+        "gameplay_reliability checks=133 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V83PracticeUiSmokeTest.gd",
+      "exit": 0,
+      "seconds": 4.62,
+      "errors": [],
+      "result": [
+        "v83_practice_ui checks=28 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V56DungeonRosterUiSmokeTest.gd",
+      "exit": 1,
+      "seconds": 79.05,
+      "errors": [
+        "ERROR: V56 dungeon/roster UI: action exists GearTile_legacy_equipped_leonhardt_weapon",
+        "ERROR: V56 dungeon/roster UI: equipment inspection preserves dungeon formation route",
+        "ERROR: V56 dungeon/roster UI: action exists EquipmentDetailBack",
+        "ERROR: V56 dungeon/roster UI: action exists PortraitMenuBack",
+        "ERROR: V56 dungeon/roster UI: gear and hero back actions return to content formation",
+        "ERROR: V56 dungeon/roster UI: action exists RosterConfirm",
+        "ERROR: V56 dungeon/roster UI: saving formation returns to selected dungeon tab",
+        "ERROR: V56 dungeon/roster UI: successful formation return consumes route",
+        "ERROR: V56 dungeon/roster UI: action exists ContentPartyButton",
+        "ERROR: V56 dungeon/roster UI: action exists RosterClear",
+        "SCRIPT ERROR: Invalid access to property or key 'disabled' on a base object of type 'null instance'.",
+        "ERROR: V56 dungeon/roster UI: moon forest raid preparation PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: moon forest raid preparation PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: moon forest raid preparation RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: moon forest raid preparation PortraitRaidHeroName_caelum 카엘룸 full width",
+        "ERROR: V56 dungeon/roster UI: moon forest raid preparation regions do not collide PortraitRaidStatus / PortraitRaidParty",
+        "ERROR: V56 dungeon/roster UI: moon forest raid preparation regions do not collide PortraitRaidStatus / PortraitRaidActions",
+        "ERROR: V56 dungeon/roster UI: raid long telegraph PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: raid long telegraph PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: raid long telegraph RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: raid long telegraph PortraitRaidHeroName_caelum 카엘룸 full width",
+        "ERROR: V56 dungeon/roster UI: raid long telegraph cross-parent text collision [\"PortraitRaidWarning [달잠 숲의 고대 수호자가 ] / @Label@5754 [던전 진입 · 월식의 여왕]\"]",
+        "ERROR: V56 dungeon/roster UI: live raid resize (720, 1560) PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: live raid resize (720, 1560) PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: live raid resize (720, 1560) RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: live raid resize (720, 1560) PortraitRaidHeroName_caelum 카엘룸 full width",
+        "ERROR: V56 dungeon/roster UI: live raid resize (720, 1560) cross-parent text collision [\"PortraitRaidWarning [달잠 숲의 고대 수호자가 ] / @Label@5754 [던전 진입 · 월식의 여왕]\"]",
+        "ERROR: V56 dungeon/roster UI: live raid resize (810, 1440) PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: live raid resize (810, 1440) PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: live raid resize (810, 1440) RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: live raid resize (810, 1440) PortraitRaidHeroName_caelum 카엘룸 full width",
+        "ERROR: V56 dungeon/roster UI: live raid resize (720, 1280) PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: live raid resize (720, 1280) PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: live raid resize (720, 1280) RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: live raid resize (720, 1280) PortraitRaidHeroName_caelum 카엘룸 full width",
+        "ERROR: V56 dungeon/roster UI: raid 토벌 성공 long result PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: raid 토벌 성공 long result PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: raid 토벌 성공 long result RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: raid 토벌 성공 long result PortraitRaidHeroName_caelum 카엘룸 full width",
+        "ERROR: V56 dungeon/roster UI: raid 토벌 실패 long result PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: raid 토벌 실패 long result PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: raid 토벌 실패 long result RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: raid 토벌 실패 long result PortraitRaidHeroName_caelum 카엘룸 full width",
+        "ERROR: V56 dungeon/roster UI: (320, 568) _build_world_map_screen CombatViewToggle 전장 보기 touch size",
+        "ERROR: V56 dungeon/roster UI: (320, 568) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: (320, 568) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: (320, 568) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: (320, 568) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width",
+        "ERROR: V56 dungeon/roster UI: (320, 568) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty",
+        "ERROR: V56 dungeon/roster UI: (320, 568) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions",
+        "ERROR: V56 dungeon/roster UI: (360, 640) _build_world_map_screen CombatViewToggle 전장 보기 touch size",
+        "ERROR: V56 dungeon/roster UI: (360, 640) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: (360, 640) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: (360, 640) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: (360, 640) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width",
+        "ERROR: V56 dungeon/roster UI: (360, 640) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty",
+        "ERROR: V56 dungeon/roster UI: (360, 640) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions",
+        "ERROR: V56 dungeon/roster UI: (720, 1280) _build_world_map_screen CombatViewToggle 전장 보기 touch size",
+        "ERROR: V56 dungeon/roster UI: (720, 1280) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: (720, 1280) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: (720, 1280) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: (720, 1280) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width",
+        "ERROR: V56 dungeon/roster UI: (720, 1280) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty",
+        "ERROR: V56 dungeon/roster UI: (720, 1280) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions",
+        "ERROR: V56 dungeon/roster UI: (810, 1440) _build_world_map_screen CombatViewToggle 전장 보기 touch size",
+        "ERROR: V56 dungeon/roster UI: (810, 1440) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: (810, 1440) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: (810, 1440) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: (810, 1440) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width",
+        "ERROR: V56 dungeon/roster UI: (810, 1440) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty",
+        "ERROR: V56 dungeon/roster UI: (810, 1440) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions",
+        "ERROR: V56 dungeon/roster UI: (720, 1560) _build_world_map_screen CombatViewToggle 전장 보기 touch size",
+        "ERROR: V56 dungeon/roster UI: (720, 1560) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: (720, 1560) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: (720, 1560) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: (720, 1560) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width",
+        "ERROR: V56 dungeon/roster UI: (720, 1560) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty",
+        "ERROR: V56 dungeon/roster UI: (720, 1560) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions",
+        "ERROR: V56 dungeon/roster UI: logical (720, 960) _build_raid_screen PortraitRaidSkillAuto 스킬 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: logical (720, 960) _build_raid_screen PortraitRaidUltimateAuto 각성기 AUTO  켬 touch size",
+        "ERROR: V56 dungeon/roster UI: logical (720, 960) _build_raid_screen RaidContributionOpen 레이드 분석 · 최근 기록 touch size",
+        "ERROR: V56 dungeon/roster UI: logical (720, 960) _build_raid_screen PortraitRaidHeroName_caelum 별빛과 full width",
+        "ERROR: V56 dungeon/roster UI: logical (720, 960) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidParty",
+        "ERROR: V56 dungeon/roster UI: logical (720, 960) _build_raid_screen regions do not collide PortraitRaidStatus / PortraitRaidActions"
+      ],
+      "result": []
+    }
+  ],
+  "passed": 13,
+  "baseline_comparison": {
+    "script": "scripts/V56DungeonRosterUiSmokeTest.gd",
+    "baseline_commit": "d19678b81ef019d7e02c2fc7342c403f6f42ae32",
+    "baseline_exit": 1,
+    "current_exit": 1,
+    "baseline_errors": 84,
+    "current_errors": 84,
+    "normalized_errors_identical": true,
+    "note": "Legacy fixture uses superseded hero/equipment controls and portrait layout bounds. Both tested baseline and current source fail the same checks; generated anonymous Label node numbers were normalized."
+  },
+  "passed_checks": 4088
+}

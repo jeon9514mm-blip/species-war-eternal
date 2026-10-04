@@ -19,6 +19,10 @@ func settle() -> void:
 func tap(button: Button) -> void:
 	verify(button!=null,'target button exists')
 	if button==null:return
+	if button.has_meta('menu_group'):
+		var menu: Node=element('PortraitActionSheet')
+		if menu!=null:menu._select_group(str(button.get_meta('menu_group')))
+		await settle()
 	var event:=InputEventMouseButton.new()
 	event.button_index=MOUSE_BUTTON_LEFT
 	event.position=button.get_global_rect().get_center()

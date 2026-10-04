@@ -1,0 +1,62 @@
+[
+  {
+    "script": "scripts/EquipmentInventoryView.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/HeroMenuUxSmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/LandscapeMainMenu.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/NavigationCatalog.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/UnifiedInterfaceSmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/V57QualityPassSmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/V83PracticeUiSmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/portrait/LandscapeHuntHud.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/portrait/PortraitHud.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/portrait/PortraitPages.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/SimpleUxSmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "tools/capture_simple_ux.gd",
+    "passed": true,
+    "errors": []
+  }
+]
