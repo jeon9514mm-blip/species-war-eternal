@@ -1,0 +1,61 @@
+{
+  "commit": "85061f5192c38c15d0c85480a054aa3c2a11a4bd",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Combined upstream art/scenery commit with equipment mail. Four relevant runtime suites re-executed in isolated XDG directories. Original 15-suite and economy evidence remains valid for identical gameplay sources.",
+  "suites": [
+    {
+      "script": "scripts/EquipmentStashSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 39.03,
+      "errors": [],
+      "result": [
+        "equipment_stash checks=586 failures=[]"
+      ],
+      "log_sha256": "5734ae45e7283b68d64043065c23fcd71092dd875ff40475629e6e6dfdd84ba7"
+    },
+    {
+      "script": "scripts/EquipmentMailSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 11.9,
+      "errors": [],
+      "result": [
+        "equipment_mail checks=35 failures=[]"
+      ],
+      "log_sha256": "aad09885d8145fb56efe66176348924536933e9461bb175d614994499796f86a"
+    },
+    {
+      "script": "scripts/HuntMenuStateSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 35.95,
+      "errors": [],
+      "result": [
+        "HUNT_MENU_STATE checks=94 failures=[]"
+      ],
+      "log_sha256": "36dffc58ab5cb3b93621f9dbbea425faa895bc8e8d10ba67619203f57c480712"
+    },
+    {
+      "script": "scripts/TouchScrollSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 11.14,
+      "errors": [],
+      "result": [
+        "TOUCH_SCROLL_SMOKE checks=51 failures=[]"
+      ],
+      "log_sha256": "7d3325559c71cbd62194bac3519fed75a8101c434028e892d9e7037367c014fd"
+    }
+  ],
+  "passed": 4,
+  "total": 4,
+  "upstream_commit": "37c30282d4138e530c2b5fc9586f8f321fbd2964",
+  "source_files_unchanged_from_original_verification": true,
+  "upstream_changes_preserved": true,
+  "checks": 766
+}

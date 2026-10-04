@@ -1,0 +1,113 @@
+{
+  "active_seconds_per_day": 600,
+  "assumptions": "Fixed starter guardian; fill unlocked slots, spend research, recommend gear and upgrade once/minute. No real-money/ad payouts or extra dungeon rewards. Full active combat and production offline receipts; visual nodes and disk saves omitted.",
+  "economy_revision": "first-session-economy-2",
+  "faction": "aurelia",
+  "first_ten_minutes": {
+    "average_gear_level": 1.73333333333333,
+    "bag": 50,
+    "day": 1,
+    "first_pack_seconds": 78.0,
+    "first_three_seconds": 240.0,
+    "first_upgrade_seconds": 120.0,
+    "gold": 2370,
+    "levels": [
+      7,
+      5,
+      5,
+      1,
+      1
+    ],
+    "max_level_heroes": 0,
+    "overflow": 0,
+    "packs": 72,
+    "party": 5,
+    "power": 2191,
+    "spent_gold": 3950,
+    "stage": 8
+  },
+  "offline_seconds_per_day": 28800,
+  "rows": [
+    {
+      "average_gear_level": 2.73333333333333,
+      "bag": 68,
+      "day": 1,
+      "first_pack_seconds": 78.0,
+      "first_three_seconds": 240.0,
+      "first_upgrade_seconds": 120.0,
+      "gold": 25923,
+      "levels": [
+        13,
+        12,
+        12,
+        11,
+        11
+      ],
+      "max_level_heroes": 0,
+      "overflow": 0,
+      "packs": 72,
+      "party": 5,
+      "power": 4853,
+      "spent_gold": 17187,
+      "stage": 13
+    },
+    {
+      "average_gear_level": 7.73333333333333,
+      "bag": 200,
+      "day": 7,
+      "first_pack_seconds": 78.0,
+      "first_three_seconds": 240.0,
+      "first_upgrade_seconds": 120.0,
+      "gold": 87273,
+      "levels": [
+        34,
+        34,
+        34,
+        34,
+        34,
+        33,
+        33,
+        32,
+        32,
+        32
+      ],
+      "max_level_heroes": 0,
+      "overflow": 1294,
+      "packs": 1813,
+      "party": 10,
+      "power": 39863,
+      "spent_gold": 732046,
+      "stage": 220
+    },
+    {
+      "average_gear_level": 9.76666666666667,
+      "bag": 200,
+      "day": 30,
+      "first_pack_seconds": 78.0,
+      "first_three_seconds": 240.0,
+      "first_upgrade_seconds": 120.0,
+      "gold": 331702,
+      "levels": [
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        54
+      ],
+      "max_level_heroes": 0,
+      "overflow": 3000,
+      "packs": 3971,
+      "party": 10,
+      "power": 63491,
+      "spent_gold": 3175983,
+      "stage": 554
+    }
+  ],
+  "schema": 1,
+  "seed": 3401
+}

@@ -448,7 +448,7 @@ static func _inventory_settings(main: Node, parent: Node, filters: Dictionary) -
 		if salvage.get_item_metadata(i)==main.auto_salvage_min_rarity:salvage.select(i)
 	salvage.item_selected.connect(func(index):main._set_auto_salvage(str(salvage.get_item_metadata(index))))
 	settings.add_child(salvage);M.retint(salvage)
-	text(settings,'레이드·옵션·잠금 장비는 자동 분해하지 않습니다. 가방이 가득 차면 보호 보관함으로 이동합니다.',15,S.MUTED)
+	text(settings,'레이드·옵션·잠금 장비는 자동 분해하지 않습니다. 가방을 넘는 장비는 우편함으로 배송됩니다. 직접 설정한 자동 분해만 적용합니다.',15,S.MUTED)
 
 static func _inventory_summary(main: Node, parent: Node) -> void:
 	var equipment_count := 0
@@ -467,7 +467,7 @@ static func _inventory_summary(main: Node, parent: Node) -> void:
 	text(box,'%d / %d칸 사용 · 여유 %d칸'%[main.loot_inventory.size(),main.INVENTORY_CAP,maxi(0,main.INVENTORY_CAP-main.loot_inventory.size())],21,S.INK)
 	progress(box,usage*100.0,100.0)
 	if usage>=0.85:
-		text(box,'가방이 거의 가득 찼어요 · 보관함 이동이나 분해를 권장합니다.',15,S.GOLD if usage<0.95 else Color('#ff8b86'))
+		text(box,'가방이 거의 가득 찼어요 · 우편 수령 전에 필요 없는 장비를 정리해 주세요.',15,S.GOLD if usage<0.95 else Color('#ff8b86'))
 	var stats := grid(box,4)
 	for entry: Array in [['장비',equipment_count,S.BLUE_SOFT],['결정',crystal_count,S.BLUE_SOFT],['전설',legendary_count,S.GOLD],['보호',protected_count,S.SUCCESS]]:
 		var metric_accent: Color=entry[2]

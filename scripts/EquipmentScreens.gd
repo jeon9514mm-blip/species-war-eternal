@@ -413,17 +413,7 @@ static func market(main: Node) -> void:
 	P.action(page,'거래소 새로고침',Callable(main,'_build_equipment_market')).name='MarketRefresh'
 
 static func stash(main: Node) -> void:
-	var page := P.begin(main,'equipment_stash','보호 보관함','가방 %d / %d칸 · 보관 장비 %d개'%[main.loot_inventory.size(),main.INVENTORY_CAP,main.equipment_overflow.size()],'bag')
-	P.action(page,'가방으로 돌아가기',Callable(main,'_build_inventory_screen'))
-	P.text(P.card(page,'소중한 장비를 보관해요'),'가방이 가득 차도 레이드·옵션·잠금 장비와 추출한 결정은 이곳에 보관됩니다. 가방에 빈칸을 만든 뒤 받을 수 있습니다.',18,S.MUTED)
-	if main.equipment_overflow.is_empty():P.text(P.card(page),'보관 중인 장비가 없습니다.',18,S.MUTED)
-	for item: Dictionary in main.equipment_overflow:
-		var box := _item_card(main,page,item)
-		var item_id := str(item.get('id',''))
-		var claim := P.action(box,'가방으로 받기',func():
-			var result: Dictionary=main._gear_claim_overflow(item_id)
-			main._build_equipment_stash();_result(main,result),true)
-		claim.name='StashClaim_'+item_id;claim.disabled=main.loot_inventory.size()>=main.INVENTORY_CAP
+	preload('res://scripts/EquipmentStashView.gd').build(main)
 
 static func _confirm_extract(main: Node, item_id: String, index: int, hero_id: String, slot: String) -> void:
 	var item: Dictionary=main._gear_item(item_id,hero_id,slot)
@@ -432,7 +422,7 @@ static func _confirm_extract(main: Node, item_id: String, index: int, hero_id: S
 	var expected_option: Dictionary=affixes[index].duplicate(true)
 	var confirm := ConfirmationDialog.new()
 	confirm.name='EquipmentExtractConfirmation';confirm.title='옵션 결정 추출'
-	confirm.dialog_text='%s\n레이드 정수 18개를 사용합니다.\n원본 장비에서 이 옵션이 제거되고 수치가 같은 결정이 생깁니다.\n결정은 가방에 보관되며, 가득 차면 보호 보관함으로 이동합니다.\n구매한 옵션은 추출해도 귀속이 유지됩니다.'%GEAR.stat_text(affixes[index])
+	confirm.dialog_text='%s\n레이드 정수 18개를 사용합니다.\n원본 장비에서 이 옵션이 제거되고 수치가 같은 결정이 생깁니다.\n결정은 가방에 보관되며, 가득 차면 우편함으로 이동합니다.\n구매한 옵션은 추출해도 귀속이 유지됩니다.'%GEAR.stat_text(affixes[index])
 	confirm.ok_button_text='18 정수로 추출';confirm.cancel_button_text='옵션 유지'
 	confirm.min_size=Vector2i(480,230)
 	main.add_child(confirm)

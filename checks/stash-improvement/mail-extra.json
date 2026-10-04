@@ -1,0 +1,42 @@
+{
+  "commit": "0ed1eeddf0e88866e047271bd2933986650c9348",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Selected existing regression tests; headless Linux; isolated XDG per test; no Android device measurements",
+  "suites": [
+    {
+      "script": "scripts/V8362InvasionSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 19.64,
+      "errors": [],
+      "result": [
+        "v8362_invasion checks=175 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V8361OfflineSaveSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 6.56,
+      "errors": [],
+      "result": [
+        "v8361_offline_save checks=436 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V83PracticeBattleSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 79.04,
+      "errors": [],
+      "result": [
+        "v83_practice_battle checks=870 failures=[]"
+      ]
+    }
+  ],
+  "passed": 3,
+  "total": 3
+}

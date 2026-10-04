@@ -302,6 +302,13 @@ static func _sanitize_equipment(data: Dictionary, hero_ids: Array) -> void:
 			overflow.append(item)
 	data["loot_inventory"] = inventory
 	data["equipment_overflow"] = overflow
+	data["equipment_mail_headers"] = preload("res://scripts/EquipmentMailService.gd").sanitize_headers(overflow,data.get("equipment_mail_headers"))
+	var pending_rolls: Dictionary={}
+	var raw_rolls: Dictionary=dictionary(data.get("pending_equipment_rolls"))
+	for zone_id in EQUIPMENT_RULES.ZONES:
+		var count:=number(raw_rolls.get(zone_id),0,0,1000000000)
+		if count>0:pending_rolls[zone_id]=count
+	data["pending_equipment_rolls"]=pending_rolls
 	var market := EQUIPMENT_MARKET.new()
 	market.from_dict(dictionary(data.get("gear_market_state")), seen.keys())
 	data["gear_market_state"] = market.to_dict()

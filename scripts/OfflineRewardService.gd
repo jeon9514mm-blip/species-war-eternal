@@ -83,8 +83,10 @@ static func calculate_offline_reward(main: Node) -> void:
 	# Full 8-hour idling can represent thousands of kills. Replaying every
 	# equipment roll would stall mobile devices and overflow inventory, so use
 	# a bounded loot-cache sample while keeping online drops unchanged.
-	for _roll in main.offline_gear_rolls:
-		main._roll_equipment_drop(zone)
+	var reward_zone: String=main.GEAR._zone_id(zone)
+	# Persist unrolled rewards when storage is full; no item or RNG is consumed.
+	main.pending_equipment_rolls[reward_zone]=int(main.pending_equipment_rolls.get(reward_zone,0))+main.offline_gear_rolls
+	preload("res://scripts/EquipmentMailService.gd").deliver_pending(main,false)
 
 	main._on_offline_hunt_reward(main.offline_reward_gold,main.offline_reward_xp,chest_gold if main.offline_stage_clears>0 else 0,chest_xp if main.offline_stage_clears>0 else 0)
 	main._offline_notice_pending = true

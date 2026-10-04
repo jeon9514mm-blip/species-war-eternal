@@ -24,7 +24,8 @@ const GROWTH_UI := preload("res://scripts/GrowthInventoryScreens.gd")
 const GEAR := preload("res://scripts/EquipmentRules.gd")
 const WORKSHOP := preload("res://scripts/EquipmentWorkshop.gd")
 const GEAR_UI := preload("res://scripts/EquipmentScreens.gd")
-const GEAR_OVERFLOW_CAP := 3000
+const GEAR_MAIL_CAP := 3000
+const GEAR_OVERFLOW_CAP := GEAR_MAIL_CAP # Existing saves and command integrations.
 
 # v80 work-in-progress: shared actual daily combat and clear-gated sweeps.
 const CHALLENGE_DRIVER = preload("res://scripts/ChallengeBattleDirector.gd")
@@ -302,6 +303,8 @@ var hero_ascension: Dictionary = {}
 var hero_equipment_sets: Dictionary = {}
 var hero_equipment_items: Dictionary = {}
 var equipment_overflow: Array = []
+var equipment_mail_headers: Dictionary = {}
+var pending_equipment_rolls: Dictionary = {}
 var raid_crystals := 0
 var gear_auto_equip := true
 var gear_market_state: Dictionary = {}
@@ -2218,30 +2221,14 @@ func _store_or_salvage_loot(item: Dictionary) -> String:
 	if loot_inventory.size() < INVENTORY_CAP:
 		loot_inventory.append(normalized)
 		return "인벤토리에 보관"
-	var worst_index := -1
-	var worst_score := 2147483647
-	for index in loot_inventory.size():
-		if GEAR.protected(loot_inventory[index]):
-			continue
-		var score := _inventory_item_score(loot_inventory[index])
-		if score < worst_score:
-			worst_score = score
-			worst_index = index
-	var new_score := _inventory_item_score(normalized)
-	if worst_index >= 0 and (protected or new_score > worst_score):
-		var salvage := _inventory_salvage_value(loot_inventory[worst_index])
-		wallet_gold += salvage
-		loot_inventory[worst_index] = normalized
-		return "낮은 장비 자동 분해 +%dG" % salvage
-	if protected:
-		# Raid entry reserves delivery space; protected gear never enters salvage.
-		equipment_overflow.append(normalized)
-		return "보호 장비 보관함으로 배송"
-	var new_salvage := _inventory_salvage_value(normalized)
-	wallet_gold += new_salvage
-	return "가방 가득 참 · 자동 분해 +%dG" % new_salvage
+	if preload("res://scripts/EquipmentMailService.gd").deliver(self, normalized):
+		return "우편함으로 배송"
+	return "우편함이 가득 찼습니다. 장비 지급을 보류합니다."
 
 func _roll_equipment_drop(zone: Dictionary) -> Dictionary:
+	if not SAVE_SAFETY.mutation_error(self).is_empty() or preload("res://scripts/EquipmentMailService.gd").available(self,false)<1:
+		last_drop_text="우편함이 가득 찼습니다. 장비 지급 대기"
+		return {}
 	if deployed_heroes.is_empty():
 		last_drop_text = "장비를 획득할 원정대가 없습니다."
 		return {}
@@ -3774,8 +3761,8 @@ func _start_raid() -> void:
 		_show_toast("연습을 종료하거나 저장 대기를 먼저 해결해 주세요."); return
 	if active_screen != "raid" or raid_running or deployed_heroes.is_empty():
 		return
-	if equipment_overflow.size() >= GEAR_OVERFLOW_CAP and loot_inventory.size() >= INVENTORY_CAP:
-		_show_toast("보호 장비 보관함을 정리한 뒤 레이드에 도전하세요.")
+	if equipment_overflow.size()>GEAR_OVERFLOW_CAP-2:
+		_show_toast("레이드 보상 배송을 위해 우편함에 빈칸 2개를 확보하세요.")
 		return
 	if is_instance_valid(combat_timer):
 		combat_timer.stop()
@@ -4405,6 +4392,7 @@ func _advance_auto_hunt(delta: float) -> void:
 		remaining -= step
 
 func _advance_auto_hunt_step(step: float) -> void:
+	if preload("res://scripts/EquipmentMailService.gd").pause_hunt(self):return
 	_FIELD.advance_auto_hunt_step(self, step)
 
 func _advance_v77_hunt_variety(delta: float) -> void:
@@ -4439,6 +4427,7 @@ func _v77_begin_clear_combo(difficulty: int) -> float:
 	return HUNT_VARIETY.combo_bonus(hunt_combo)
 
 func _v77_guaranteed_hunt_drop(zone: Dictionary, source_label: String) -> Dictionary:
+	if not SAVE_SAFETY.mutation_error(self).is_empty() or preload("res://scripts/EquipmentMailService.gd").available(self,false)<1:return {}
 	if deployed_heroes.is_empty():
 		return {}
 	var difficulty := clampi(int(zone.get("difficulty", 1)), 1, 3)
@@ -5528,6 +5517,9 @@ func _set_gear_auto_equip(value: bool) -> void:
 
 func _gear_claim_overflow(item_id: String) -> Dictionary:
 	return _EQUIPMENT_COMMANDS.gear_claim_overflow(self, item_id)
+
+func _gear_claim_overflow_many(item_ids: Array) -> Dictionary:
+	return _EQUIPMENT_COMMANDS.gear_claim_overflow_many(self, item_ids)
 
 func _roll_raid_equipment(zone: Dictionary) -> Dictionary:
 	return _EQUIPMENT_COMMANDS.roll_raid_equipment(self, zone)

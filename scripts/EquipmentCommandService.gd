@@ -171,8 +171,8 @@ static func gear_extract_option(main: Node, item_id: String, index: int, hero_id
 	if not main._gear_option_matches(item, index, expected_option):
 		return {"ok": false, "reason": "옵션이 변경되었습니다. 목록을 다시 확인하세요."}
 	var into_inventory = main.loot_inventory.size() < main.INVENTORY_CAP
-	if not into_inventory and main.equipment_overflow.size() >= main.GEAR_OVERFLOW_CAP:
-		return {"ok": false, "reason": "가방과 보호 보관함이 가득 찼습니다. 빈칸을 확보한 뒤 추출하세요."}
+	if not into_inventory and main.equipment_overflow.size() >= main.GEAR_OVERFLOW_CAP-(2 if main.raid_running else 0):
+		return {"ok": false, "reason": "가방과 우편함이 가득 찼습니다. 빈칸을 확보한 뒤 추출하세요."}
 	var result: Dictionary = main.WORKSHOP.extract(item, index, main.raid_crystals)
 	if not bool(result.get("ok", false)):
 		return result
@@ -183,10 +183,10 @@ static func gear_extract_option(main: Node, item_id: String, index: int, hero_id
 	if into_inventory:
 		main.loot_inventory.append(result["crystal"].duplicate(true))
 	else:
-		main.equipment_overflow.append(result["crystal"].duplicate(true))
+		preload("res://scripts/EquipmentMailService.gd").deliver(main,result["crystal"],"옵션 추출 결정 배송")
 	main.raid_crystals = int(result["balance"])
 	result["destination"] = "inventory" if into_inventory else "overflow"
-	result["reason"] = "수치를 유지한 옵션 결정을 %s에 보냈습니다." % ("가방" if into_inventory else "보호 보관함")
+	result["reason"] = "수치를 유지한 옵션 결정을 %s에 보냈습니다." % ("가방" if into_inventory else "우편함")
 	main._save_idle_state()
 	return result
 
@@ -220,21 +220,56 @@ static func set_gear_auto_equip(main: Node, value: bool) -> void:
 
 
 static func gear_claim_overflow(main: Node, item_id: String) -> Dictionary:
+	return gear_claim_overflow_many(main, [item_id])
+
+
+static func gear_claim_overflow_many(main: Node, item_ids: Array) -> Dictionary:
 	var save_error: String = preload("res://scripts/SaveSafety.gd").mutation_error(main)
 	if not save_error.is_empty():
 		return {"ok": false, "reason": save_error}
-	if main.loot_inventory.size() >= main.INVENTORY_CAP:
-		return {"ok": false, "reason": "가방에 빈칸이 필요합니다. 장비는 보관함에 남아 있습니다."}
-	for index in main.equipment_overflow.size():
-		if str(main.equipment_overflow[index].get("id", "")) == item_id:
-			main.loot_inventory.append(main.equipment_overflow[index].duplicate(true))
-			main.equipment_overflow.remove_at(index)
-			main._save_idle_state()
-			return {"ok": true, "reason": "장비를 가방으로 받았습니다."}
-	return {"ok": false, "reason": "이미 받았거나 존재하지 않는 장비입니다."}
+	if item_ids.is_empty() or item_ids.size() > main.INVENTORY_CAP:
+		return {"ok": false, "reason": "받을 장비를 선택해 주세요."}
+	if item_ids.size() > main.INVENTORY_CAP - main.loot_inventory.size():
+		return {"ok": false, "reason": "가방에 빈칸이 부족합니다. 선택한 장비는 모두 우편함에 남아 있습니다."}
+	var wanted: Dictionary = {}
+	for id: Variant in item_ids:
+		if not id is String or str(id).is_empty() or wanted.has(id):
+			return {"ok": false, "reason": "장비 선택이 중복되거나 잘못되었습니다. 다시 선택해 주세요."}
+		wanted[id] = true
+	# Resolve all IDs before moving anything. A stale selection must not partially
+	# claim, and a duplicate ID must not clone an already owned/equipped item.
+	var found: Dictionary = {}
+	var remaining: Array = []
+	for item: Dictionary in main.equipment_overflow:
+		var id: String = str(item.get("id", ""))
+		if not wanted.has(id):
+			remaining.append(item)
+		elif found.has(id):
+			return {"ok": false, "reason": "우편의 장비 ID가 중복되어 수령을 보류했습니다."}
+		else:
+			found[id] = item
+	if found.size() != wanted.size():
+		return {"ok": false, "reason": "이미 받았거나 이동한 장비가 있습니다. 목록을 새로고침해 주세요."}
+	var owned: Array = main.loot_inventory.duplicate()
+	for equipment: Dictionary in main.hero_equipment_items.values():
+		owned.append_array(equipment.values())
+	for item: Dictionary in owned:
+		if wanted.has(str(item.get("id", ""))):
+			return {"ok": false, "reason": "이미 보유한 장비 ID가 있어 수령을 보류했습니다."}
+	var claimed: Array = []
+	for id: String in item_ids:
+		claimed.append(found[id].duplicate(true))
+	main.loot_inventory.append_array(claimed)
+	main.equipment_overflow = remaining
+	for id in item_ids:main.equipment_mail_headers.erase(id)
+	main._save_idle_state()
+	var pending: bool = preload("res://scripts/SaveSafety.gd").pending(main)
+	return {"ok": true, "count": claimed.size(), "save_pending": pending,
+		"reason": "장비 %d개를 가방으로 받았습니다.%s" % [claimed.size(), " · 저장 대기" if pending else ""]}
 
 
 static func roll_raid_equipment(main: Node, zone: Dictionary) -> Dictionary:
+	if not preload("res://scripts/SaveSafety.gd").mutation_error(main).is_empty() or preload("res://scripts/EquipmentMailService.gd").available(main,false)<1:return {}
 	var zone_id = main.raid_encounter_zone if not main.raid_encounter_zone.is_empty() else main.current_zone_id
 	var clear_count = int(main.raid_clears.get(zone_id, 0))
 	var milestone = clear_count > 0 and clear_count % 5 == 0

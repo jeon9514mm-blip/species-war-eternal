@@ -1,0 +1,97 @@
+{
+  "commit": "0ed1eeddf0e88866e047271bd2933986650c9348",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Selected existing regression tests; headless Linux; isolated XDG per test; no Android device measurements",
+  "suites": [
+    {
+      "script": "scripts/InventoryCapacitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 2.5,
+      "errors": [],
+      "result": [
+        "inventory_capacity checks=22 failures=0"
+      ]
+    },
+    {
+      "script": "scripts/V54EquipmentIntegrationSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 6.38,
+      "errors": [],
+      "result": [
+        "v54_equipment_integration checks=359 passed=359 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 10.05,
+      "errors": [],
+      "result": [
+        "equipment_modal_save_recovery checks=163 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/SimpleUxSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 9.86,
+      "errors": [],
+      "result": [
+        "simple_ux checks=1281 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/TouchScrollSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 10.97,
+      "errors": [],
+      "result": [
+        "TOUCH_SCROLL_SMOKE checks=51 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HuntMenuStateSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 34.07,
+      "errors": [],
+      "result": [
+        "HUNT_MENU_STATE checks=94 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V83LoadoutSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 5.28,
+      "errors": [],
+      "result": [
+        "v83_loadout checks=46 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/GameplayReliabilitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 42.91,
+      "errors": [],
+      "result": [
+        "gameplay_reliability checks=133 failures=[]"
+      ]
+    }
+  ],
+  "passed": 8,
+  "total": 8
+}

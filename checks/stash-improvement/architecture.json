@@ -1,0 +1,26 @@
+{
+  "base_commit": "0ed1eeddf0e88866e047271bd2933986650c9348",
+  "before": {
+    "ok": false,
+    "errors": [
+      "_save_idle_state: compatibility facade changed",
+      "_load_idle_state: compatibility facade changed",
+      "Main grew beyond v83-6.2 orchestration budget"
+    ],
+    "service_modules": 9,
+    "scope": "current facade, state ownership, field extraction and canonical naming; runtime suite validates behavior",
+    "historical_check": "--historical-v82 checks original v82 fingerprints and is expected to differ after feature changes"
+  },
+  "after": {
+    "ok": false,
+    "errors": [
+      "_save_idle_state: compatibility facade changed",
+      "_load_idle_state: compatibility facade changed",
+      "Main grew beyond v83-6.2 orchestration budget"
+    ],
+    "service_modules": 9,
+    "scope": "current facade, state ownership, field extraction and canonical naming; runtime suite validates behavior",
+    "historical_check": "--historical-v82 checks original v82 fingerprints and is expected to differ after feature changes"
+  },
+  "existing_errors_unchanged": true
+}

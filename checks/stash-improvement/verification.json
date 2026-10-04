@@ -1,0 +1,351 @@
+{
+  "base_commit": "0ed1eeddf0e88866e047271bd2933986650c9348",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "15 selected actual Godot runtime suites; headless Linux; isolated XDG per run. Injected save-failure warnings are intentional. No Android device measurements. Latest final UI/mail runs replace earlier observations.",
+  "suites": [
+    {
+      "script": "scripts/EquipmentMailSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 16.73,
+      "errors": [],
+      "result": [
+        "equipment_mail checks=35 failures=[]"
+      ],
+      "log_sha256": "aad09885d8145fb56efe66176348924536933e9461bb175d614994499796f86a"
+    },
+    {
+      "script": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 9.92,
+      "errors": [],
+      "result": [
+        "equipment_modal_save_recovery checks=163 failures=[]"
+      ],
+      "log_sha256": "5b7a28a021f6b03c43dac678fd120ff03e5762ed3744ce65ab469baf6ac2f15b"
+    },
+    {
+      "script": "scripts/EquipmentStashSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 47.79,
+      "errors": [],
+      "result": [
+        "equipment_stash checks=586 failures=[]"
+      ],
+      "log_sha256": "087fd9a0ff8575c974ee2065d039ccdb18be6a96dfb7eb4e2c84a393d9701a81"
+    },
+    {
+      "script": "scripts/GameplayReliabilitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 44.71,
+      "errors": [],
+      "result": [
+        "gameplay_reliability checks=133 failures=[]"
+      ],
+      "log_sha256": "4672efa32fdd4f9d4329d2f6a01c746f1749509b7ac1fb812073b5248a9fafe3"
+    },
+    {
+      "script": "scripts/HuntAutosaveSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 11.01,
+      "errors": [],
+      "result": [
+        "HUNT_AUTOSAVE checks=10 failures=[]"
+      ],
+      "log_sha256": "de9f6c1780a71d46c17f28416c2588845702ec5933a7b85c208b60183aefb5cd"
+    },
+    {
+      "script": "scripts/HuntMenuStateSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 38.62,
+      "errors": [],
+      "result": [
+        "HUNT_MENU_STATE checks=94 failures=[]"
+      ],
+      "log_sha256": "47c9a4ba40e9e8d3e33acc1dfaba05b08f9fd001282fe6da80147d6b9df0acde"
+    },
+    {
+      "script": "scripts/InventoryCapacitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 2.5,
+      "errors": [],
+      "result": [
+        "inventory_capacity checks=22 failures=0"
+      ],
+      "log_sha256": "59ead300c273ad2025a094735f20def02425dbf999b62eff0d3c676bff225d21"
+    },
+    {
+      "script": "scripts/SimpleUxSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 10.21,
+      "errors": [],
+      "result": [
+        "simple_ux checks=1281 failures=[]"
+      ],
+      "log_sha256": "e8dceb15887179bd49926c5bb6582f434d0c4ba3f92ee8efb8eda0ad10662fa6"
+    },
+    {
+      "script": "scripts/TouchScrollSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 10.97,
+      "errors": [],
+      "result": [
+        "TOUCH_SCROLL_SMOKE checks=51 failures=[]"
+      ],
+      "log_sha256": "7d3325559c71cbd62194bac3519fed75a8101c434028e892d9e7037367c014fd"
+    },
+    {
+      "script": "scripts/V52HuntIntegrationSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 33.21,
+      "errors": [],
+      "result": [
+        "v52_hunt_integration checks=111 failures=0 rows=6 pause_recovery_reward_contracts=true"
+      ],
+      "log_sha256": "6f25d1b3ec524cb752531f9d54b1b642adbec7af64ccab40586acf2cc2d06a12"
+    },
+    {
+      "script": "scripts/V54EquipmentIntegrationSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 6.38,
+      "errors": [],
+      "result": [
+        "v54_equipment_integration checks=359 passed=359 failures=[]"
+      ],
+      "log_sha256": "7b9e3a9fdfc7847d82b25f9d3b414f4770e3b4d36cc6c6a933edadc015aca2f7"
+    },
+    {
+      "script": "scripts/V8361OfflineSaveSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 6.56,
+      "errors": [],
+      "result": [
+        "v8361_offline_save checks=436 failures=[]"
+      ],
+      "log_sha256": "10cec2dfec732ff8962969750e3ef37acd64d6b1f5b9030df891088533e339ee"
+    },
+    {
+      "script": "scripts/V8362InvasionSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 19.64,
+      "errors": [],
+      "result": [
+        "v8362_invasion checks=175 failures=[]"
+      ],
+      "log_sha256": "37fc691321aeccd09253825920f3d28d356d99bb455fe075ccf7efd08af1efff"
+    },
+    {
+      "script": "scripts/V83LoadoutSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 5.28,
+      "errors": [],
+      "result": [
+        "v83_loadout checks=46 failures=[]"
+      ],
+      "log_sha256": "621a133498c3535c9031ef0a8ef209c936ab8f4fede500f90c749b06d50d1b74"
+    },
+    {
+      "script": "scripts/V83PracticeBattleSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 79.04,
+      "errors": [],
+      "result": [
+        "v83_practice_battle checks=870 failures=[]"
+      ],
+      "log_sha256": "ed43037ee09d13becfd983d8d1a5f95dd18f3eb6f0422517e8f5dab4f5e08075"
+    }
+  ],
+  "passed": 15,
+  "total": 15,
+  "checks": 4372,
+  "source_sha256": {
+    "checks/stash-improvement/StashPerformanceProbe.gd": "f0d166bf4463346e3f7af3f300b15cfbaeeace709001df6fe22b88336c1cc1b8",
+    "scripts/EquipmentCommandService.gd": "92ec6f78dea7902f5a6452f6abfc32789c8592dc068fe32aab54487ad86499e5",
+    "scripts/EquipmentInventoryView.gd": "d3b5345ad4138dd2aa444c87bc551f3a196e540e8eaa0deb9c7efa1aba13fe34",
+    "scripts/EquipmentMailService.gd": "50be58d8982cb2edd468f63ac2f975e66fd5c8f262ff65b4ebbfd3dfe792dbec",
+    "scripts/EquipmentMailSmokeTest.gd": "c2d1c53b6d44eaa12dfef5daf2afde335eede216da3d79737fd3dfba6c4984d1",
+    "scripts/EquipmentScreens.gd": "88f549bcc2fb8f34b1062149c7f7a13e788d67a280191ee266de3014c2ce0e98",
+    "scripts/EquipmentStashSmokeTest.gd": "82bfda7804b983da70007d02992278f65e7c108f481aa0a7fcfa2a54ae98d044",
+    "scripts/EquipmentStashView.gd": "eb9c7d1be03b651966fa915005cb3edb4d47e7fbeaff57fb389b8a226ecd00b0",
+    "scripts/GameSaveCoordinator.gd": "88150558bd9b1364774695f63ba373f874a861f6cad8449bd9d0f06c8bed45f6",
+    "scripts/GrowthInventoryScreens.gd": "f6add049a2c2ff986419a895ef6621c26c9db1cd1a009dd5a6d747bdb4f78508",
+    "scripts/HuntFieldService.gd": "f9a60006349afa83dd3138969981d8f0ce65fe431aa88b8326e0f4e83e281f3c",
+    "scripts/InvasionWaveState.gd": "eaf4ca86318cc04e5fe83d56625210753c7291b7beeb2ad5ec7e74b73e8abbd7",
+    "scripts/InventoryCapacitySmokeTest.gd": "e709c53f3192d94983a68ee56bc17f07654e809b3e3bbd4f26168a05572dad55",
+    "scripts/Main.gd": "c93d946a3b4a53b7d2a3f38c407876f2b1a394fccfb65bdb97a75541b7bd7be6",
+    "scripts/OfflineRewardService.gd": "f97aefcdd783e1debcc208420997f8b284ae5014dd240cc83935a28d981b9e85",
+    "scripts/PracticeBattleService.gd": "89b9b714e70ffe0d84e04992a70b6a83861c005db466793ba6a2bdb0277f8462",
+    "scripts/RewardDialogs.gd": "fe724a63b2d9c2e93377c4d63be92208998080121d9dc1c1d213b1e81855d0a3",
+    "scripts/SaveValidation.gd": "bce06f6c55946e57af4921256909b7b55c286c184581100ee012b7a085b0489d",
+    "scripts/portrait/PortraitPages.gd": "db2f41b15d173fd5d29b5c34add2bb599b1e5f5f9b02f45906255ff665399274",
+    "tools/capture_stash_ui.gd": "93a16e9605e07fc26df5e2446d4888cfd47c51cd395ab34bc744d57ac1c88551",
+    "scripts/V54EquipmentIntegrationSmokeTest.gd": "043438739563bba7fb8e2185b1b630525edebbb66ae3254ca0365a194211f1f6",
+    "scripts/EquipmentModalSaveRecoverySmokeTest.gd": "7292b56053242536a3fdc8f62d1e65c5c7165f586c19c53a1c4a05a63dc7faa7",
+    "scripts/SimpleUxSmokeTest.gd": "2fd11b19862a7fa4c40031c7834f97615d1585bf9d3d28e0faa30686c64dc812",
+    "scripts/TouchScrollSmokeTest.gd": "1b3c416a511577d0f46f0691bdf16d58a1986d1dda72fcf3e87c07970d935cab",
+    "scripts/HuntMenuStateSmokeTest.gd": "015fd45a6e3507eb8faa6ff9354432634e8881138bea108bf0801cce3410c7b8",
+    "scripts/V83LoadoutSmokeTest.gd": "253a0723ec19588d4e537b260f00154df9e21936eee0e33b1200091c675559b1",
+    "scripts/GameplayReliabilitySmokeTest.gd": "b95f8475e465ed2e74a21af24d34c9f9732f72d5b65988798330a016c490a458",
+    "scripts/HuntAutosaveSmokeTest.gd": "9b565f0132843fe66b30bcb62c92c1e4c0b4da4eda04dd185e67237607060162",
+    "scripts/V52HuntIntegrationSmokeTest.gd": "2791e8871759820697d9e6eb6d627a4a8d74dbac85d446c1e81b7d62aa3e7827",
+    "scripts/V8362InvasionSmokeTest.gd": "7c2f2fd55ce570a5abf4c3c1df6da17b07388bba22bb9fbdb4f457b62cde2a03",
+    "scripts/V8361OfflineSaveSmokeTest.gd": "7160eeb9d05aa0804c4dd46d3dd9938eee4795a7783a307f894160a73eb27840",
+    "scripts/V83PracticeBattleSmokeTest.gd": "e665895614938409056326b7d98858479a2eac019517118b90b32dbef68bd56f"
+  },
+  "economy": {
+    "runner": "tools/run_economy_audit.py --days 30 --seeds 3401 --jobs 2 --output checks/stash-improvement/economy-30",
+    "cases_passed": 2,
+    "cases_total": 2,
+    "checkpoints": [
+      {
+        "faction": "aurelia",
+        "checkpoints": [
+          {
+            "day": 1,
+            "bag": 68,
+            "mail": 0,
+            "stage": 13,
+            "levels": [
+              13,
+              12,
+              12,
+              11,
+              11
+            ]
+          },
+          {
+            "day": 7,
+            "bag": 200,
+            "mail": 1294,
+            "stage": 220,
+            "levels": [
+              34,
+              34,
+              34,
+              34,
+              34,
+              33,
+              33,
+              32,
+              32,
+              32
+            ]
+          },
+          {
+            "day": 30,
+            "bag": 200,
+            "mail": 3000,
+            "stage": 554,
+            "levels": [
+              54,
+              54,
+              54,
+              54,
+              54,
+              54,
+              54,
+              54,
+              54,
+              54
+            ]
+          }
+        ]
+      },
+      {
+        "faction": "noxfera",
+        "checkpoints": [
+          {
+            "day": 1,
+            "bag": 99,
+            "mail": 0,
+            "stage": 17,
+            "levels": [
+              13,
+              12,
+              12,
+              11,
+              11,
+              1,
+              1
+            ]
+          },
+          {
+            "day": 7,
+            "bag": 200,
+            "mail": 1432,
+            "stage": 238,
+            "levels": [
+              37,
+              36,
+              36,
+              36,
+              36,
+              35,
+              35,
+              35,
+              35,
+              35
+            ]
+          },
+          {
+            "day": 30,
+            "bag": 200,
+            "mail": 3000,
+            "stage": 554,
+            "levels": [
+              54,
+              54,
+              54,
+              54,
+              54,
+              54,
+              54,
+              54,
+              54,
+              54
+            ]
+          }
+        ]
+      }
+    ],
+    "limit_observed": "No manual bag/mail cleanup or new automatic-salvage preference in this model. Both day-30 inboxes reach 3,000 attachments and online equipment rewards wait for storage. Model completion does not certify an uninterrupted unattended month."
+  },
+  "integration": {
+    "upstream_commit": "37c30282d4138e530c2b5fc9586f8f321fbd2964",
+    "source_files_unchanged": true,
+    "upstream_changes_preserved": true,
+    "suites_passed": 4,
+    "suites_total": 4,
+    "checks_repeated": 766,
+    "report": "integration/regression.json"
+  }
+}

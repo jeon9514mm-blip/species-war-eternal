@@ -204,7 +204,7 @@ static func finish_hunt_target(main: Node) -> void:
 		main.CHALLENGE_DRIVER.wave_cleared(main)
 		return
 	if main.party_hp <= 0: return
-	for receipt in main.invasion.take_finished(main.enemy_wave):
+	for receipt in main.invasion.take_finished(main.enemy_wave,preload("res://scripts/EquipmentMailService.gd").available(main)):
 		settle_corps(main, receipt.members, receipt.profile)
 
 static func settle_corps(main: Node, fallen: Array, profile: Dictionary) -> void:

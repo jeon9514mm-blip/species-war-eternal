@@ -1,0 +1,31 @@
+{
+  "commit": "0ed1eeddf0e88866e047271bd2933986650c9348",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Selected existing regression tests; headless Linux; isolated XDG per test; no Android device measurements",
+  "suites": [
+    {
+      "script": "scripts/EquipmentStashSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 47.79,
+      "errors": [],
+      "result": [
+        "equipment_stash checks=586 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/EquipmentMailSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 16.73,
+      "errors": [],
+      "result": [
+        "equipment_mail checks=35 failures=[]"
+      ]
+    }
+  ],
+  "passed": 2,
+  "total": 2
+}

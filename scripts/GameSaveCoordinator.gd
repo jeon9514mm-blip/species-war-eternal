@@ -75,6 +75,8 @@ static func snapshot(main: Node) -> Dictionary:
 		"hero_equipment_sets": main.hero_equipment_sets,
 		"hero_equipment_items": main.hero_equipment_items,
 		"equipment_overflow": main.equipment_overflow,
+		"equipment_mail_headers": main.equipment_mail_headers,
+		"pending_equipment_rolls": main.pending_equipment_rolls,
 		"raid_crystals": main.raid_crystals,
 		"gear_auto_equip": main.gear_auto_equip,
 		"gear_market_state": main.gear_market_state,
@@ -217,6 +219,8 @@ static func load_idle_state(main: Node) -> void:
 		main.loot_inventory = saved_loot_inventory
 	main.hero_equipment_items = parsed.get("hero_equipment_items", {}).duplicate(true)
 	main.equipment_overflow = parsed.get("equipment_overflow", []).duplicate(true)
+	main.equipment_mail_headers = parsed.get("equipment_mail_headers", {}).duplicate(true)
+	main.pending_equipment_rolls = parsed.get("pending_equipment_rolls", {}).duplicate(true)
 	main.raid_crystals = int(parsed.get("raid_crystals", 0))
 	main.gear_auto_equip = bool(parsed.get("gear_auto_equip", true))
 	main.gear_market_state = parsed.get("gear_market_state", {}).duplicate(true)

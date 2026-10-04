@@ -89,7 +89,7 @@ static func inventory(main) -> void:
 	_action(main.content_root, "추천 장착", Rect2(55, 188, 154, 44), Callable(main, "_recommend_equip_all"), true)
 	_action(main.content_root, "장착 장비 일괄 강화", Rect2(221, 188, 216, 44), Callable(main, "_bulk_enhance_equipped"))
 	_action(main.content_root, "거래소", Rect2(449, 188, 112, 44), Callable(main, "_build_equipment_market"))
-	_action(main.content_root, "보호 보관함", Rect2(573, 188, 142, 44), Callable(main, "_build_equipment_stash"))
+	_action(main.content_root, "장비 우편함", Rect2(573, 188, 142, 44), Callable(main, "_build_equipment_stash"))
 	_text(main.content_root, "자동 분해", Rect2(791, 189, 104, 42), 14, UI.MUTED)
 	var salvage := OptionButton.new()
 	salvage.position = Vector2(901, 188)

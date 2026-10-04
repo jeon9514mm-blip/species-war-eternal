@@ -20,7 +20,7 @@ func register(profile: Dictionary) -> int:
 	serial += 1; last_entry = clock
 	groups[serial] = profile.duplicate(true)
 	return serial
-func take_finished(enemies: Array) -> Array:
+func take_finished(enemies: Array, attachment_slots: int = -1) -> Array:
 	var finished: Array = []
 	for id in groups.keys():
 		var members: Array = []; var alive := false
@@ -29,6 +29,12 @@ func take_finished(enemies: Array) -> Array:
 				members.append(enemy)
 				alive = alive or int(enemy.get("hp", 0)) > 0
 		if not members.is_empty() and not alive:
+			var packs: Dictionary={}
+			for enemy in members:packs[int(enemy.get("habitat_pack",0))]=true
+			var budget:=clampi(packs.size(),1,4)+1
+			if attachment_slots>=0:
+				if attachment_slots<budget:continue
+				attachment_slots-=budget
 			finished.append({"id":id,"profile":groups[id],"members":members})
 			groups.erase(id) # consume before any reward/save callback can re-enter.
 	return finished

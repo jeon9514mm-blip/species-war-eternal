@@ -55,7 +55,7 @@ func _runtime_boundary() -> void:
 	gold = main.wallet_gold
 	full = main.loot_inventory.duplicate(true)
 	main._store_or_salvage_loot(salvage_item)
-	check(main.loot_inventory == full and main.equipment_overflow.is_empty() and main.wallet_gold == gold + main._inventory_salvage_value(salvage_item), "existing ordinary-loot salvage compensates the 201st item and preserves locked gear")
+	check(main.loot_inventory == full and main.equipment_overflow == [salvage_item] and main.wallet_gold == gold, "ordinary overflow equipment is delivered as mail without unsolicited salvage")
 	main.free()
 
 func _crystal_boundary() -> void:

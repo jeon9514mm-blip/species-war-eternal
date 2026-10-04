@@ -24,6 +24,8 @@ var detail_button: Button
 var tiles: Dictionary={}
 var settings_sheet: Control
 var gold_label: Label
+var capacity_label: Label
+var stash_shortcut: Button
 
 static func refresh(main: Node) -> void:
 	main.set_meta('gear_bag_page',0);main.set_meta('gear_bag_scroll',0)
@@ -100,7 +102,12 @@ func install(main: Node) -> void:
 	var bag_heading:=HBoxContainer.new();contents.add_child(bag_heading)
 	P.text(bag_heading,'장비 가방',23).size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	var capacity:=P.text(bag_heading,'%d / %d'%[game.loot_inventory.size(),game.INVENTORY_CAP],21,S.GOLD)
+	capacity_label=capacity
 	capacity.name='GearBagCapacity';capacity.autowrap_mode=TextServer.AUTOWRAP_OFF;capacity.size_flags_horizontal=Control.SIZE_SHRINK_END
+	stash_shortcut=_button(bag_heading,'우편',func():game.set_meta('gear_settings_open',false);game._build_equipment_stash())
+	stash_shortcut.name='GearStashShortcut';stash_shortcut.custom_minimum_size=Vector2(108,46)
+	stash_shortcut.add_theme_font_size_override('font_size',16);stash_shortcut.size_flags_horizontal=Control.SIZE_SHRINK_END
+	stash_shortcut.visible=not game.equipment_overflow.is_empty()
 	var categories:=P.grid(contents,5);categories.name='GearCategories';categories.add_theme_constant_override('h_separation',5)
 	var filters: Dictionary=game.get_meta('gear_bag_filters',{})
 	for entry: Array in [['all','전체'],['weapon','무기'],['armor','갑옷'],['accessory','장신구'],['crystal','결정']]:
@@ -152,6 +159,10 @@ func _process(_delta: float) -> void:
 	if is_instance_valid(game) and game.active_screen=='inventory' and is_instance_valid(gold_label):
 		gold_label.text='G  '+game._compact_hud_amount(game.wallet_gold)
 		gold_label.tooltip_text=str(game.wallet_gold)
+		if is_instance_valid(capacity_label):capacity_label.text='%d / %d'%[game.loot_inventory.size(),game.INVENTORY_CAP]
+		if is_instance_valid(stash_shortcut):
+			stash_shortcut.visible=not game.equipment_overflow.is_empty()
+			stash_shortcut.tooltip_text='우편함 · %d개 · 필터와 선택 수령'%game.equipment_overflow.size()
 
 func _category(slot: String) -> void:
 	var filters: Dictionary=game.get_meta('gear_bag_filters',{}).duplicate()
@@ -326,7 +337,7 @@ func _show_settings() -> void:
 	_button(body,'필터 · 검색 초기화',func():game.set_meta('gear_bag_filters',{});refresh(game)).name='GearResetFilters'
 	var tools_row:=P.grid(body,2)
 	_button(tools_row,'파티 추천 장착',Callable(game,'_recommend_equip_all'),true).name='GearRecommendEquip'
-	_button(tools_row,'보호 보관함 · %d'%game.equipment_overflow.size(),Callable(game,'_build_equipment_stash')).name='OpenEquipmentStash'
+	_button(tools_row,'우편함 · %d'%game.equipment_overflow.size(),Callable(game,'_build_equipment_stash')).name='OpenEquipmentStash'
 	P._inventory_settings(game,body,filters)
 	for node_name: String in ['GearRecommendEquip','OpenEquipmentStash','OpenEquipmentMarket','GearBulkEnhance']:
 		var navigation: Button=body.find_child(node_name,true,false)

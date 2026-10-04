@@ -1,0 +1,127 @@
+{
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scripts": [
+    {
+      "path": "checks/stash-improvement/StashPerformanceProbe.gd",
+      "passed": true,
+      "sha256": "f0d166bf4463346e3f7af3f300b15cfbaeeace709001df6fe22b88336c1cc1b8",
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentCommandService.gd",
+      "passed": true,
+      "sha256": "92ec6f78dea7902f5a6452f6abfc32789c8592dc068fe32aab54487ad86499e5",
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentInventoryView.gd",
+      "passed": true,
+      "sha256": "d3b5345ad4138dd2aa444c87bc551f3a196e540e8eaa0deb9c7efa1aba13fe34",
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentMailService.gd",
+      "passed": true,
+      "sha256": "50be58d8982cb2edd468f63ac2f975e66fd5c8f262ff65b4ebbfd3dfe792dbec",
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentMailSmokeTest.gd",
+      "passed": true,
+      "sha256": "c2d1c53b6d44eaa12dfef5daf2afde335eede216da3d79737fd3dfba6c4984d1",
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentScreens.gd",
+      "passed": true,
+      "sha256": "88f549bcc2fb8f34b1062149c7f7a13e788d67a280191ee266de3014c2ce0e98",
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentStashSmokeTest.gd",
+      "passed": true,
+      "sha256": "82bfda7804b983da70007d02992278f65e7c108f481aa0a7fcfa2a54ae98d044",
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentStashView.gd",
+      "passed": true,
+      "sha256": "eb9c7d1be03b651966fa915005cb3edb4d47e7fbeaff57fb389b8a226ecd00b0",
+      "errors": []
+    },
+    {
+      "path": "scripts/GameSaveCoordinator.gd",
+      "passed": true,
+      "sha256": "88150558bd9b1364774695f63ba373f874a861f6cad8449bd9d0f06c8bed45f6",
+      "errors": []
+    },
+    {
+      "path": "scripts/GrowthInventoryScreens.gd",
+      "passed": true,
+      "sha256": "f6add049a2c2ff986419a895ef6621c26c9db1cd1a009dd5a6d747bdb4f78508",
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntFieldService.gd",
+      "passed": true,
+      "sha256": "f9a60006349afa83dd3138969981d8f0ce65fe431aa88b8326e0f4e83e281f3c",
+      "errors": []
+    },
+    {
+      "path": "scripts/InvasionWaveState.gd",
+      "passed": true,
+      "sha256": "eaf4ca86318cc04e5fe83d56625210753c7291b7beeb2ad5ec7e74b73e8abbd7",
+      "errors": []
+    },
+    {
+      "path": "scripts/InventoryCapacitySmokeTest.gd",
+      "passed": true,
+      "sha256": "e709c53f3192d94983a68ee56bc17f07654e809b3e3bbd4f26168a05572dad55",
+      "errors": []
+    },
+    {
+      "path": "scripts/Main.gd",
+      "passed": true,
+      "sha256": "c93d946a3b4a53b7d2a3f38c407876f2b1a394fccfb65bdb97a75541b7bd7be6",
+      "errors": []
+    },
+    {
+      "path": "scripts/OfflineRewardService.gd",
+      "passed": true,
+      "sha256": "f97aefcdd783e1debcc208420997f8b284ae5014dd240cc83935a28d981b9e85",
+      "errors": []
+    },
+    {
+      "path": "scripts/PracticeBattleService.gd",
+      "passed": true,
+      "sha256": "89b9b714e70ffe0d84e04992a70b6a83861c005db466793ba6a2bdb0277f8462",
+      "errors": []
+    },
+    {
+      "path": "scripts/RewardDialogs.gd",
+      "passed": true,
+      "sha256": "fe724a63b2d9c2e93377c4d63be92208998080121d9dc1c1d213b1e81855d0a3",
+      "errors": []
+    },
+    {
+      "path": "scripts/SaveValidation.gd",
+      "passed": true,
+      "sha256": "bce06f6c55946e57af4921256909b7b55c286c184581100ee012b7a085b0489d",
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitPages.gd",
+      "passed": true,
+      "sha256": "db2f41b15d173fd5d29b5c34add2bb599b1e5f5f9b02f45906255ff665399274",
+      "errors": []
+    },
+    {
+      "path": "tools/capture_stash_ui.gd",
+      "passed": true,
+      "sha256": "93a16e9605e07fc26df5e2446d4888cfd47c51cd395ab34bc744d57ac1c88551",
+      "errors": []
+    }
+  ],
+  "passed": 20,
+  "total": 20
+}

@@ -1,0 +1,93 @@
+{
+  "base_commit": "0ed1eeddf0e88866e047271bd2933986650c9348",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Completed equipment mail and related runtime regressions; final successful executions only; refer to individual logs.",
+  "suites": [
+    {
+      "script": "scripts/EquipmentMailSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 16.73,
+      "errors": [],
+      "result": [
+        "equipment_mail checks=35 failures=[]"
+      ],
+      "log_sha256": "aad09885d8145fb56efe66176348924536933e9461bb175d614994499796f86a"
+    },
+    {
+      "script": "scripts/HuntAutosaveSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 11.01,
+      "errors": [],
+      "result": [
+        "HUNT_AUTOSAVE checks=10 failures=[]"
+      ],
+      "log_sha256": "de9f6c1780a71d46c17f28416c2588845702ec5933a7b85c208b60183aefb5cd"
+    },
+    {
+      "script": "scripts/V52HuntIntegrationSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 33.21,
+      "errors": [],
+      "result": [
+        "v52_hunt_integration checks=111 failures=0 rows=6 pause_recovery_reward_contracts=true"
+      ],
+      "log_sha256": "6f25d1b3ec524cb752531f9d54b1b642adbec7af64ccab40586acf2cc2d06a12"
+    },
+    {
+      "script": "scripts/GameplayReliabilitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 44.71,
+      "errors": [],
+      "result": [
+        "gameplay_reliability checks=133 failures=[]"
+      ],
+      "log_sha256": "4672efa32fdd4f9d4329d2f6a01c746f1749509b7ac1fb812073b5248a9fafe3"
+    },
+    {
+      "script": "scripts/V8362InvasionSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 19.64,
+      "errors": [],
+      "result": [
+        "v8362_invasion checks=175 failures=[]"
+      ],
+      "log_sha256": "37fc691321aeccd09253825920f3d28d356d99bb455fe075ccf7efd08af1efff"
+    },
+    {
+      "script": "scripts/V8361OfflineSaveSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 6.56,
+      "errors": [],
+      "result": [
+        "v8361_offline_save checks=436 failures=[]"
+      ],
+      "log_sha256": "10cec2dfec732ff8962969750e3ef37acd64d6b1f5b9030df891088533e339ee"
+    },
+    {
+      "script": "scripts/V83PracticeBattleSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 79.04,
+      "errors": [],
+      "result": [
+        "v83_practice_battle checks=870 failures=[]"
+      ],
+      "log_sha256": "ed43037ee09d13becfd983d8d1a5f95dd18f3eb6f0422517e8f5dab4f5e08075"
+    }
+  ],
+  "passed": 7,
+  "total": 7
+}

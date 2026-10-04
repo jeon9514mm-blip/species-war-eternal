@@ -32,7 +32,9 @@ static func offline(main) -> void:
 	_reward_cell(main, panel, Rect2(319, 232, 273, 91), "growth", "경험치", int(values["xp"]), UI.PRIMARY)
 	var extras := LAYOUT._panel(main, panel, Rect2(28, 338, 564, 76), UI.SOFT, Color.TRANSPARENT, 14)
 	_heading(main, extras, "수호신 경험치 +%d  ·  군량 +%d\n장비 탐색 %d회  ·  스테이지 +%d" % [values["pet_xp"], values["rations"], values["gear"], values["stages"]], Rect2(12, 8, 540, 60), 16, UI.MUTED)
-	_heading(main, panel, "영웅 성장·장비는 반영됐어요. 골드와 계정 경험치를 받으세요.", Rect2(28, 425, 564, 26), 15, UI.MUTED)
+	var delivery_wait: int=preload("res://scripts/EquipmentMailService.gd").pending_count(main)
+	var delivery_note: String="장비 탐색 %d회 배송 대기 · 가방·우편 공간을 확보하세요."%delivery_wait if delivery_wait>0 else "영웅 성장·장비는 반영됐어요. 골드와 계정 경험치를 받으세요."
+	_heading(main, panel, delivery_note, Rect2(28, 425, 564, 26), 15, UI.MUTED)
 	_confirm(main, modal, "오프라인 사냥 받기" if needs_claim else "보상 확인", Rect2(28, 470, 564, 48), Callable(main,'_claim_offline_rewards') if needs_claim else Callable())
 	# Preserve the original one-time presentation handoff. The accumulated
 	# reward wallet and _offline_checked are deliberately untouched.

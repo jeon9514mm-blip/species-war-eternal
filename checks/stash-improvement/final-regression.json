@@ -1,0 +1,53 @@
+{
+  "commit": "0ed1eeddf0e88866e047271bd2933986650c9348",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Selected existing regression tests; headless Linux; isolated XDG per test; no Android device measurements",
+  "suites": [
+    {
+      "script": "scripts/EquipmentStashSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 40.96,
+      "errors": [],
+      "result": [
+        "equipment_stash checks=586 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 9.92,
+      "errors": [],
+      "result": [
+        "equipment_modal_save_recovery checks=163 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/SimpleUxSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 10.21,
+      "errors": [],
+      "result": [
+        "simple_ux checks=1281 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HuntMenuStateSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 38.62,
+      "errors": [],
+      "result": [
+        "HUNT_MENU_STATE checks=94 failures=[]"
+      ]
+    }
+  ],
+  "passed": 4,
+  "total": 4
+}
