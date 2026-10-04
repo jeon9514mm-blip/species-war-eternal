@@ -1,0 +1,290 @@
+{
+  "commit": "4751bb2151fa74ed90773dd7f2ee3c581855b95f",
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Selected existing regression tests; headless Linux; isolated XDG per test; no Android device measurements",
+  "suites": [
+    {
+      "script": "scripts/SimpleUxSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 9.92,
+      "errors": [],
+      "result": [
+        "simple_ux checks=1281 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HuntingHomeSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 16.93,
+      "errors": [],
+      "result": [
+        "HUNTING_HOME_SMOKE checks=53 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HuntMenuStateSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 34.46,
+      "errors": [],
+      "result": [
+        "HUNT_MENU_STATE checks=94 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/MenuHuntReliabilitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 20.55,
+      "errors": [],
+      "result": [
+        "MENU_HUNT_RELIABILITY checks=40 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/TouchScrollSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 11.24,
+      "errors": [],
+      "result": [
+        "TOUCH_SCROLL_SMOKE checks=51 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 9.97,
+      "errors": [],
+      "result": [
+        "equipment_modal_save_recovery checks=163 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/GameplayReliabilitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 43.23,
+      "errors": [],
+      "result": [
+        "gameplay_reliability checks=133 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/FirstSessionEconomySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 15.18,
+      "errors": [],
+      "result": [
+        "first_session_economy checks=226 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/IndependentHuntSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 15.51,
+      "errors": [],
+      "result": [
+        "INDEPENDENT_HUNT checks=89 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/AutoCombatTacticsSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 0.44,
+      "errors": [],
+      "result": [
+        "auto_combat_tactics_smoke_test_ok heal=smart guard=smart elite=priority ultimate=held"
+      ]
+    },
+    {
+      "script": "scripts/CombatQualitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 5.18,
+      "errors": [],
+      "result": [
+        "combat_quality checks=669 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/RaidTouchLayoutSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 84.39,
+      "errors": [],
+      "result": [
+        "RAID_TOUCH_LAYOUT checks=852 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/RaidCatalogUiSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 10.22,
+      "errors": [],
+      "result": [
+        "raid_catalog_ui checks=805 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V83LoadoutSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 5.09,
+      "errors": [],
+      "result": [
+        "v83_loadout checks=46 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V83GameplayLedgerSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 0.41,
+      "errors": [],
+      "result": [
+        "v83_gameplay_ledger checks=56 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V83GameplayReportUiSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 6.47,
+      "errors": [],
+      "result": [
+        "v83_gameplay_report_ui checks=46 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V80DailySweepSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 0.71,
+      "errors": [],
+      "result": [
+        "v80_daily_sweep_unit checks=35 passed=35 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V80TowerBattleSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 18.77,
+      "errors": [],
+      "result": [
+        "v80_tower_actual_battle checks=42 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V80AbyssBattleSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 19.15,
+      "errors": [],
+      "result": [
+        "v80_abyss_actual_battle checks=16 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V82LifecycleSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 12.02,
+      "errors": [],
+      "result": [
+        "v82_lifecycle checks=75 failures=[] scene_rebuilds=18"
+      ]
+    },
+    {
+      "script": "scripts/V82PerformanceSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 3.67,
+      "errors": [],
+      "result": [
+        "PERFORMANCE_COUNTS {\"balanced\":{\"hud\":18,\"power\":3},\"battery\":{\"hud\":10,\"power\":2}} atlas_cache_misses_for_10001_requests=4 android_fps_measured=false",
+        "v82_performance checks=11 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V27SaveRecoverySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 4.32,
+      "errors": [],
+      "result": [
+        "v27_save_recovery_smoke_test_ok checks=80 atomic=ok backup=ok checksum=ok schema=ok migration=ok future=preserved pause=once isolation=ok"
+      ]
+    },
+    {
+      "script": "scripts/LateEconomyRewardSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 2.28,
+      "errors": [],
+      "result": [
+        "LATE_ECONOMY_REWARD checks=633 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V65GuardianSmokeTest.gd",
+      "passed": false,
+      "reason": "nonzero_exit_or_not_completed",
+      "exit": 1,
+      "seconds": 3.68,
+      "errors": [
+        "ERROR: Guardian: offline hunt pays the guardian-adjusted gold and experience once"
+      ],
+      "result": [
+        "v65_guardian 24/25 pass"
+      ],
+      "diagnosis": "Legacy expected-value calculation omits the conservative unmeasured-party throughput. Production-policy probe passes 25/25 with expected/actual gold 3559 and XP 2237. Original suite remains failed."
+    }
+  ],
+  "passed": 23,
+  "total": 24,
+  "additional_probes": [
+    {
+      "script": "checks/game-audit-2026-10-04/GuardianPolicyProbe.gd",
+      "passed": true,
+      "result": "25/25 pass; actual and expected gold 3559, XP 2237"
+    },
+    {
+      "script": "checks/game-audit-2026-10-04/AuditProbe.gd",
+      "exit": 0,
+      "kind": "observations, not pass/fail assertions",
+      "result": "1900 stash items build 17138 content nodes; existing scroll preserved at 2000 after claim; Lv10 three-person raid power 1849 versus recommended 5400"
+    }
+  ]
+}

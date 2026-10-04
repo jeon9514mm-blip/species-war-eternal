@@ -1,0 +1,35 @@
+{
+  "scope": "Official publisher store descriptions, not a hands-on comparative playtest or retention study",
+  "sources": [
+    {
+      "game": "AFK Journey",
+      "url": "https://play.google.com/store/apps/details?id=com.farlightgames.igame.gp&hl=en",
+      "retrieved_utc": "2026-10-04",
+      "official_features": [
+        "공식 소개는 6개 클래스의 배치, 궁극기 타이밍, 진영 버프와 지형 활용을 설명한다.",
+        "영웅 사이의 장비·레벨 공유로 새 편성을 바로 시험하는 흐름을 소개한다."
+      ],
+      "application": "신규 영웅 따라잡기와 편성 변경 전후 비교. 전면 공유 레벨은 현행 개별 육성과 충돌하므로 별도 설계 필요."
+    },
+    {
+      "game": "IdleOn - The Incremental MMO",
+      "url": "https://store.steampowered.com/app/1476970/",
+      "retrieved_utc": "2026-10-04",
+      "official_features": [
+        "캐릭터별 서로 다른 클래스와 계정에서 맡는 역할을 소개한다.",
+        "부재 중 얻은 자원으로 업그레이드하는 흐름과 전투 외 생산 활동을 설명한다."
+      ],
+      "application": "영웅별 사냥 행동 방침과 출전하지 않는 영웅의 경량 파견. 제작·생활 콘텐츠 전체 확대는 우선순위 낮음."
+    },
+    {
+      "game": "Melvor Idle",
+      "url": "https://store.steampowered.com/app/1267910/",
+      "retrieved_utc": "2026-10-04",
+      "official_features": [
+        "서로 도움이 되는 전투·비전투 스킬과 간단한 클릭·터치 조작을 소개한다.",
+        "통합 보관함·가방, 오프라인 성장, 플랫폼 간 클라우드 저장을 설명한다."
+      ],
+      "application": "획득처에서 목표까지 이어지는 성장 안내, 보관함 관리, 기기 변경 시 진행 복구."
+    }
+  ]
+}

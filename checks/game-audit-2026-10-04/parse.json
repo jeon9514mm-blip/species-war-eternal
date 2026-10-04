@@ -1,0 +1,2249 @@
+{
+  "engine": "Godot 4.6.3",
+  "scope": "scripts/**/*.gd and tools/**/*.gd parse checks; not gameplay coverage",
+  "total": 448,
+  "passed": 448,
+  "seconds": 148.41,
+  "results": [
+    {
+      "path": "scripts/ArtDirectionPilotSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/AureliaHeroPartsSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/AutoCombatTactics.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/AutoCombatTacticsSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/AutoHuntController.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/AutoHuntRegressionTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/BMSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/BackgroundHunt.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/BattleFormation.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/BossEncounterSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/BrightSpriteAtlasLayout.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/ChallengeBattleDirector.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/ChallengeBattleSession.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/ChallengeCombatLedger.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/ChallengePatternRules.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/ChallengePatternRuntime.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/ChallengeReportScreens.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/CombatControlsSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/CombatDecisionEngine.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/CombatDecisionEngineSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/CombatFxDirector.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/CombatPresetModel.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/CombatPresetService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/CombatQualitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/CombatSpriteSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/CombatStatusRules.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/ContentScreens.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/DailyDungeonBattleRules.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/DailyDungeonProgress.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/DirectionalHuntQualitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/DisplayOrientation.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentArtCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentCommandService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentComparison.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentInventoryView.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentMarketService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentRules.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentScreens.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentUpgradeSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentWorkshop.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/FieldArtCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/FieldEcology.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/FieldHuntVariety.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/FieldTerrainCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/FirstSessionEconomySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/FirstSessionGuide.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/FormationScreen.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GameAudioDirector.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GameSaveCoordinator.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GameUiIcon.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GameUiTheme.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GameplayReliabilitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GrowthEconomyRules.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GrowthInventoryScreens.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GuardianCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GuardianProgressionService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HapticDirector.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroAnimationAtlas.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroAnimationAtlasLayout.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroCombatRules.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroIdentityBalanceSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroIdentityCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroKitRuntime.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroMenuUxSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroMonsterPilotSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroProgressionService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroRosterCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroScreens.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroShowcaseView.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroSkeletalRigSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroSkillEffect.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroSpriteController.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroSpriteFactory.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroVisualCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntAutosave.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntAutosaveSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntFieldService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntMenuStateSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntProductivity.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntingHomeSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntingTargetDirector.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/IdleHuntEstimator.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/IdleHuntEstimatorSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/IdleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/IndependentHuntSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/InvasionHuntDirector.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/InvasionWaveState.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/InventoryCapacitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/InventorySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/LandingScreens.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/LandscapeMainMenu.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/LandscapeRosterUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/LateEconomyRewardSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/LegacyQuestService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/LevelSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/LongTermGoalCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/LongTermGoalScreens.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/LongTermGoalState.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/LongTermGoalsService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/LootSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/Main.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/MapTerrainRenderer.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/MapTerrainSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/MeadowNavigation.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/MenuHuntReliabilitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/MonsterPixelAtlasLayout.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/MonsterSpriteController.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/MonsterSpriteFactory.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/MultiDirectionHuntSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/NavigationCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/OfflineRewardService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/OnboardingScreens.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/PartyMovementDirector.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/PixelArtPipeline.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/PixelFxAtlas.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/PortraitRegressionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/PracticeBattleService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/PracticeLevelRules.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/PracticeScreens.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/PresentationRuntime.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/PresentationSettings.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/PresentationSettingsScreen.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidArenaQualitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidBalance.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidBattlefield.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidBossDesign.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidCatalogUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidCatalogView.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidCombatQualitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidContributionLedger.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidContributionScreens.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidContributionService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidRecoveryGuide.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidReportArchive.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidScreen.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidStrengthSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RaidTouchLayoutSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/ResearchAllocationScreens.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/ResearchAllocationService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RewardClaimService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RewardDialogs.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RoamingHuntDirector.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/RoamingHuntDirectorSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/SaveSafety.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/SaveStore.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/SaveValidation.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/SimpleUxSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/SkillSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/SmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/SpriteSheetSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/SummonService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/TouchScrollController.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/TouchScrollSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/TowerBattleRules.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/TowerProgressionService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/UIFontProvider.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/UiChrome.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/UnifiedInterfaceSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V10UiUxSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V11ProgressionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V12WorldWarSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V13WarSafetySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V14AsyncPvpSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V15FrontlineSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V16AuthoritySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V16ClientSessionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V17HuntProgressionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V17ResyncServerTimeSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V18CombatAISmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V18SeasonSyncSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V19HeroAIIdentitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V19ServerStabilitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V20RealtimeRoamingHuntSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V22UiUpgradeSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V23CombatReadabilitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V24MobileLandscapeSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V25CombatFxSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V26ActionSafetySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V26CombatDecisionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V26CombatSoakSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V26RoamingSafetySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V27BalanceMatrixSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V27BossLifecycleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V27CombatClockSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V27FieldLifecycleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V27GrowthEconomySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V27HeroRolesSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V27LiveGrowthSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V27PersistenceIntegrationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V27RaidIntegrationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V27SaveRecoverySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V27TerritoryLifecycleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V28BrightSpriteSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V28BrightUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V28FieldFxSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V28KitingRegressionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V28MeadowNavigationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V28MovingHuntSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V29BoundarySpawnSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V29FactionBalanceSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V29RosterKitSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V29RosterUiSaveSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V30UiFlowSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V31HeroArtSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V31HeroFxSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V32GraphicsSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V43AllHeroMotionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V46CurrentAssetsSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V46FactionIsolationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V46StabilitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V47NavigationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V47PortraitSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V48WarStabilitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V48WarUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V49PortraitLayoutSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V50CampaignSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V50CampaignUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V51CombatSafetySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V51FxLifecycleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V51PersistenceLifecycleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V51SessionIntegritySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V51UiInteractionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V51WarAuthoritySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V52HuntIntegrationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V52HuntUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V52PopulationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V52RoleCombatSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V52RoleMovementSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V53HuntEcologySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V53HuntFeedbackSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V53HuntNavigationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V53HuntSupportSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V54EquipmentCrystalUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V54EquipmentIntegrationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V54EquipmentMarketSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V54EquipmentPersistenceSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V54EquipmentRulesSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V54EquipmentUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V55EquipmentDetailUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V56DungeonRosterUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V57QualityPassSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V58ArtScrollSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V59ThreeRaidVisualSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V5FoundationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V60MeadowPresentationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V61FieldRolesMotionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V62RigFxRewardSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V63AutoFxOfflineSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V64RealtimeRaidSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V65GuardianSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V66UiFilterSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V67FieldTerrainIntegrationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V67FieldTerrainNavigationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V67FieldVisibilitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V6CombatSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V71HuntFlowSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V72CombatPresentationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V73RoleBehaviorSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V74BossRaidBehaviorSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V75RaidMechanicSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V76RaidVisualSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V77HuntVarietySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V78ConvenienceUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V79ConvenienceFlowSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V7SystemsSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80AbyssBattleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80AbyssRulesSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80AbyssSaveSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80AbyssSettlementSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80ChallengeSessionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80DailyBattleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80DailyModesBattleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80DailyModesSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80DailySweepSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80EngineRewardRegressionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80TowerBattleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80TowerRulesSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V80TowerSettlementSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V81GoalBattleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V81GoalClaimSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V81GoalRulesSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V81GoalSaveSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V81GoalUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V82AudioSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V82LifecycleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V82PerformanceSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V82PresentationUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V82SettingsSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V834GrowthUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V834MatchedBattleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V834PracticeLevelSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V834ResearchSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V835PatternBattleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V835PatternRulesSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V835WarRulesSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V835WarUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8361ArchiveIntegritySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8361FrontlineNullSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8361OfflineSaveSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8361XpSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8362FieldSafetySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8362FormationDisplaySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8362InvasionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8362LayoutSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8363IceMapSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8363IceVisualSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8363MapGallerySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8363MapLoaderSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8364CombatViewSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8364VisualSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8366MapArtSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V836FrontlineSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V836RaidBattleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V836RaidLedgerSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V836RaidObserveHost.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V836UiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V83DomainParitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V83GameplayAbyssSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V83GameplayBattleHost.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V83GameplayBattleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V83GameplayLedgerSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V83GameplayReportUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V83LoadoutSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V83NavigationSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V83PracticeBattleSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V83PracticeUiSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V83UpgradeRulesSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V83UpgradeTestBase.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8PolishSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V9MetaLoopSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WeeklyAbyssBattleRules.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WeeklyAbyssProgressionService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldAuthorityService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldBattleResolver.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldBattleResolverSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldCampaignRules.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldConflictState.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldConflictStateSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldFrontlineRules.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldMarchState.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldMarchStateSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldSeasonState.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldSeasonStateSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldServerGateway.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldSupplyNetwork.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldSupplyNetworkSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldSyncGuard.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldWarClientSession.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldWarMapView.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldWarMinimap.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldWarScreen.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldWarState.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/WorldWarStateSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/ZoneCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/actions_v37/TwoHeroActionSprite.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/ArtDirectionBattlefield.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/ArtDirectionLab.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/HeroConceptStudy.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/HeroPartsCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/HeroPartsMotion.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/HeroPartsRig3D.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/HeroPartsStudy.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/LayeredMeadowBackdrop.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/MonsterConceptStudy.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/PainterlyMeadow.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/PilotGroundContact.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/PilotHeroPresentation.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/art/PilotMonsterPresentation.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/aurelia_v41/AureliaActionSprite.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/aurelia_v41/AureliaMotionCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/maps/MapGallery.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/maps/MapLoader.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/maps3d/Battlefield3DView.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/maps3d/CavernRuntime.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/maps3d/CombatCameraFraming.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/maps3d/CombatHealthLayout.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/maps3d/CombatHealthOverlay.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/maps3d/HeroSkeletalBillboard.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/maps3d/IceCavernCapture.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/maps3d/Map3DLayout.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/maps3d/RaidArenaMood.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/noxfera_v42/NoxferaActionSprite.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/noxfera_v42/NoxferaMotionCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/CasualMonsterAtlas.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/HeroRigMotionCatalog.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/LandscapeHuntHud.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitDamageNumber.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitGroundShadow.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitGuardianSigil.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitHeroMotionRig.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitHeroSkeletalRig.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitHud.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitIcon.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitKillBurst.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitMain.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitMeadowProps.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitMenus.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitMinimap.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitPages.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitRaid.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitRewardFeed.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitScenery.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitSkillBurst.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitSkin.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitSky.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitTerrainPreview.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/RaidArenaTelegraph.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/RaidBossMotion.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/RaidMechanicVisual.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/RaidRallyMarker.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/RaidSelectionIndicator.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/sd/SDHeroSpriteController.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/sd/SDHeroVisuals.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/EconomySimulationHost.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/ForestMeshAuthor.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/LongTermEconomySimulation.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/LootEconomyAudit.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/MapArtPolish.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/RaidArenaArt.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/ReferenceMapArt.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/build_3d_maps.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/build_ice_cavern.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/build_map_wrappers.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_art_direction_pilot.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_aurelia_concepts.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_aurelia_parts.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_aurelia_pose_sheets.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_equipment_ui.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_hero_menu_ui.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_hero_monster_pilot.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_leonhardt_quality_review.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_map_art.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_raid_art.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_raid_battles.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_raid_quality_pass.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_simple_ux.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/capture_unified_ui.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/polish_3d_maps.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/polish_raid_maps.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/preview_hero_rigs.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/ui/CapturePortrait.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/ui/CaptureScreens.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/ui/PortraitLayoutAudit.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/ui/PortraitRegression.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "tools/ui/ValidateHeroArtLayout.gd",
+      "exit": 0,
+      "errors": []
+    }
+  ]
+}
