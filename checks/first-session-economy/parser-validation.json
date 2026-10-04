@@ -1,0 +1,152 @@
+[
+  {
+    "script": "scripts/EquipmentCommandService.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/GameSaveCoordinator.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/HeroProgressionService.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/HuntFieldService.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/IdleHuntEstimator.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/LegacyQuestService.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/LootSmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/Main.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/OfflineRewardService.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/PracticeBattleService.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/SaveValidation.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/UiChrome.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/V27BossLifecycleSmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/V27FieldLifecycleSmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/V27GrowthEconomySmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/V27SaveRecoverySmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/V52HuntIntegrationSmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/V8361XpSmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/portrait/LandscapeHuntHud.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/portrait/PortraitHud.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/portrait/PortraitPages.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/portrait/PortraitRaid.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/LateEconomyRewardSmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/FirstSessionGuide.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/FirstSessionEconomySmokeTest.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/GrowthEconomyRules.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "scripts/RaidRecoveryGuide.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "tools/EconomySimulationHost.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "tools/LongTermEconomySimulation.gd",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "script": "tools/LootEconomyAudit.gd",
+    "passed": true,
+    "errors": []
+  }
+]

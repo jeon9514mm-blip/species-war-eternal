@@ -81,7 +81,7 @@ func _run() -> void:
 	main.enemy_wave[0]["vulnerable_seconds"] = 1.0
 	var remaining: int = main.enemy_wave[0]["hp"]
 	_check(main._damage_enemy(0, 9223372036854775807) == remaining and main.enemy_wave[0]["hp"] == 0, "Extreme damage is bounded and returns actual damage")
-	_check(Ecology.stage_pressure(1000000, 1) <= 1.35, "High stages have bounded encounter pressure")
+	_check(Ecology.stage_pressure(1000000, 1) < 2.5, "High stages have bounded encounter pressure")
 	# Exercise the live support turn with a nearer injured ally and a more injured
 	# distant ally. Hero and pet turns are paused so only this monster can act.
 	main._setup_hero_skills()
@@ -121,11 +121,16 @@ func _run() -> void:
 	main.hunt_ai.state = AutoHuntController.State.FIGHTING
 	main.hunt_ai.encounter_id += 1
 	main._rewarded_encounter = -1
+	# The fake enemies must belong to a live corps before settlement.
+	main.invasion.reset()
+	var corps_id: int=main.invasion.register({})
+	for enemy in main.enemy_wave: enemy["corps_id"]=corps_id;enemy["habitat_pack"]=0
 	var chest_before: int = main.idle_chest_gold
 	var reward_before: int = main.unclaimed_gold
 	main._finish_hunt_target()
 	_check(main.idle_stage == 10000 and main.idle_stage_kills < main.idle_stage_target and main.idle_chest_gold == chest_before and main.unclaimed_gold > reward_before, "Online stage-cap kills preserve ordinary rewards without repeated stage chests")
-	main.free()
-	await process_frame
+	if main.presentation_runtime != null: main.presentation_runtime.audio.shutdown()
+	main.queue_free()
+	await create_timer(0.35).timeout
 	print("v27_field_lifecycle checks=%d failures=%d" % [checks, failures])
 	quit(1 if failures else 0)

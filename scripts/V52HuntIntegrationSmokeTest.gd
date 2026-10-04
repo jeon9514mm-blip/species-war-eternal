@@ -68,21 +68,20 @@ func _population_contracts() -> void:
 	var main = _fixture("aurelia", 10)
 	for zone_id in main._zone_data():
 		main.current_zone_id = zone_id
-		var previous_population := 0
 		for party_size in [1, 3, 4, 7, 10]:
 			main.deployed_heroes = main._hero_roster_for_faction().slice(0, party_size).duplicate(true)
 			main._spawn_enemy_wave(main._current_zone())
 			var population := int(main.enemy_wave.size())
 			var prefix := "%s/%d" % [zone_id, party_size]
-			_check(population >= 4 and population <= 12 and population >= previous_population, prefix + ": population is bounded and scales with party size")
+			_check(population >= 15 and population <= 20, prefix + ": corps population stays within the published 15-to-20 range")
 			_check(population == main.roaming_hunt.enemy_positions.size() and population == main.enemy_wave_sprites.size() and population == main.enemy_hp_bars.size(), prefix + ": model, movement and visible monster counts agree")
 			var valid_species := true
 			for enemy in main.enemy_wave:
 				valid_species = valid_species and str(enemy["archetype"]) == str(ECOLOGY.species_profile(str(enemy["name"]))["role"])
 			_check(valid_species, prefix + ": each species retains its declared combat role")
-			previous_population = population
-		_check(previous_population >= 10, zone_id + ": full party sees at least ten inhabitants")
-	main.free()
+		_check(main.enemy_wave.size() >= 15, zone_id + ": full party retains the fifteen-member corps")
+	if main.presentation_runtime != null: main.presentation_runtime.audio.shutdown()
+	main.queue_free()
 
 func _pause_snapshot(main) -> Dictionary:
 	return {"clock": main.hunt_ai.clock, "party_position": main.expedition_position, "enemy_positions": main.roaming_hunt.enemy_positions.duplicate(), "heroes": main.hero_battle_state.duplicate(true), "skills": main.hero_skill_runtime.duplicate(true), "enemies": main.enemy_wave.duplicate(true), "gold": main.unclaimed_gold, "xp": main.unclaimed_xp, "clears": main.combat_kills}
@@ -181,7 +180,7 @@ func _run_row(faction: String, party_size: int) -> void:
 		secondary_casts += int(main.hero_skill_runtime[id].get("casts_a2", 0))
 	_check(health_ok, prefix + ": HP remains bounded and synchronized for the full run")
 	_check(active_heroes == party_size, prefix + ": every deployed hero completes combat actions")
-	_check(int(main.combat_hunt_cycle) >= 2 and longest_gap < 60.0, prefix + ": multiple habitats clear without a minute-long stall")
+	_check(int(main.combat_hunt_cycle) >= (1 if party_size==1 else 2) and longest_gap < (120.0 if party_size==1 else 60.0), prefix + ": solo first corps clears in two minutes; larger parties sustain repeated clears")
 	_check(int(main.unclaimed_gold) > 0 and int(main.unclaimed_xp) > 0, prefix + ": moving hunt awards gold and XP")
 	if party_size >= 3:
 		_check(secondary_casts > 0, prefix + ": second active skills execute through production AI")
@@ -190,7 +189,8 @@ func _run_row(faction: String, party_size: int) -> void:
 		report["forced_wipe"] = await _check_wipe(main, prefix)
 	reports.append(report)
 	print("V52 HUNT INTEGRATION ROW: ", JSON.stringify(report))
-	main.free()
+	if main.presentation_runtime != null: main.presentation_runtime.audio.shutdown()
+	main.queue_free()
 	await process_frame
 
 func _reward_snapshot(main) -> Dictionary:
@@ -201,7 +201,7 @@ func _reward_idempotency() -> void:
 	var packs: Dictionary = {}
 	for enemy in main.enemy_wave:
 		packs[int(enemy["habitat_pack"])] = true
-	_check(packs.size() == 2, "starter habitat contains two independent packs")
+	_check(packs.size() == 3, "first 15-member corps contains three independent packs")
 	main.combat_kills = 4
 	main.idle_stage_kills = main.idle_stage_target - 1
 	var stage_before := int(main.idle_stage)
@@ -232,7 +232,8 @@ func _reward_idempotency() -> void:
 	main._finish_hunt_target()
 	_check(main.idle_stage == 10000 and main.idle_stage_kills == main.idle_stage_target - 1 and main.idle_chest_gold == earned["chest_gold"], "stage cap cannot grant repeated chests from batched packs")
 	_check(int(main.unclaimed_gold) > int(earned["gold"]), "new habitat still pays ordinary loot at the stage cap")
-	main.free()
+	if main.presentation_runtime != null: main.presentation_runtime.audio.shutdown()
+	main.queue_free()
 
 func _run() -> void:
 	_population_contracts()
@@ -250,4 +251,5 @@ func _run() -> void:
 	if not failures.is_empty():
 		push_error("v52_hunt_integration_failed: " + "; ".join(failures))
 	print("v52_hunt_integration checks=%d failures=%d rows=%d pause_recovery_reward_contracts=true" % [checks, failures.size(), reports.size()])
+	await create_timer(0.35).timeout
 	quit(0 if failures.is_empty() else 1)

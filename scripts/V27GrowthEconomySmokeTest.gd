@@ -141,7 +141,7 @@ func _run() -> void:
 	var nonfinite: Dictionary = estimator.estimate(60, 500, 3, {"power": NAN, "difficulty": INF, "gold": INF, "xp": {}}, 1, 0, 10)
 	check(nonfinite["gold"] == 0 and nonfinite["xp"] == 0 and nonfinite["kills"] > 0, "nonfinite zone metadata cannot mint resources or crash")
 	var edge: Dictionary = estimator.estimate(28800, 500, 3, zone, 9999, 9, 10)
-	check(edge["stage_clears"] == 1 and int(edge["stage_kills"]) < 10 and edge["chest_gold"] == 250 + 9999 * 50, "offline final stage and chest stay consistent")
+	check(edge["stage_clears"] == 1 and int(edge["stage_kills"]) < 10 and edge["chest_gold"] == 6493, "offline final stage and chest stay consistent")
 	check(capped["stage_clears"] == 5 and capped["chest_gold"] == 2000 and capped["chest_xp"] == 875, "offline five stage chest totals exact")
 
 	main.idle_stage = 1

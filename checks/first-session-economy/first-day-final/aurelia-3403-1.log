@@ -1,0 +1,6 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+FIRST_TEN_MINUTES aurelia 3403 {"average_gear_level":1.73333333333333,"bag":56,"day":1,"first_pack_seconds":78.0,"first_three_seconds":240.0,"first_upgrade_seconds":120.0,"gold":2370,"levels":[7,5,5,1,1],"max_level_heroes":0,"overflow":0,"packs":72,"party":5,"power":2191,"spent_gold":3950,"stage":8}
+ECONOMY_DAY_DONE aurelia 3403 day=1
+ECONOMY_CHECKPOINT aurelia 3403 {"average_gear_level":2.73333333333333,"bag":73,"day":1,"first_pack_seconds":78.0,"first_three_seconds":240.0,"first_upgrade_seconds":120.0,"gold":25923,"levels":[13,12,12,11,11],"max_level_heroes":0,"overflow":0,"packs":72,"party":5,"power":4853,"spent_gold":17187,"stage":13}
+ECONOMY_SIMULATION_COMPLETE aurelia 3403

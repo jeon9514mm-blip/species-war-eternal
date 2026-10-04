@@ -1,0 +1,87 @@
+{
+  "active_seconds_per_day": 600,
+  "assumptions": "Fixed starter guardian; fill unlocked slots, spend research, recommend gear and upgrade once/minute. No real-money/ad payouts or extra dungeon rewards. Full active combat and production offline receipts; visual nodes and disk saves omitted.",
+  "faction": "aurelia",
+  "offline_seconds_per_day": 28800,
+  "rows": [
+    {
+      "average_gear_level": 2.11111111111111,
+      "bag": 25,
+      "day": 1,
+      "first_pack_seconds": 418.0,
+      "first_three_seconds": 600.0,
+      "first_upgrade_seconds": 420.0,
+      "gold": 149670,
+      "levels": [
+        51,
+        1,
+        1
+      ],
+      "max_level_heroes": 0,
+      "overflow": 0,
+      "packs": 15,
+      "party": 3,
+      "power": 3621,
+      "spent_gold": 4600,
+      "stage": 7
+    },
+    {
+      "average_gear_level": 10.0,
+      "bag": 200,
+      "day": 7,
+      "first_pack_seconds": 418.0,
+      "first_three_seconds": 600.0,
+      "first_upgrade_seconds": 420.0,
+      "gold": 2915010,
+      "levels": [
+        85,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        67,
+        67,
+        67
+      ],
+      "max_level_heroes": 0,
+      "overflow": 205,
+      "packs": 2066,
+      "party": 10,
+      "power": 71840,
+      "spent_gold": 303900,
+      "stage": 246
+    },
+    {
+      "average_gear_level": 10.0,
+      "bag": 200,
+      "day": 30,
+      "first_pack_seconds": 418.0,
+      "first_three_seconds": 600.0,
+      "first_upgrade_seconds": 420.0,
+      "gold": 47843784,
+      "levels": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "max_level_heroes": 10,
+      "overflow": 1932,
+      "packs": 11020,
+      "party": 10,
+      "power": 110834,
+      "spent_gold": 303900,
+      "stage": 1270
+    }
+  ],
+  "schema": 1,
+  "seed": 3401
+}

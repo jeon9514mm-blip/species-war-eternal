@@ -37,42 +37,27 @@ static func legacy_tracked_quest_text(main: Node) -> String:
 
 
 static func refresh_tutorial_state(main: Node) -> void:
-	if main.tutorial_completed:
+	if main.tutorial_completed or main._save_blocked_for_newer_version or preload("res://scripts/SaveSafety.gd").pending(main) or bool(main.get_meta("practice_active", false)):
 		return
 	var old_step = main.tutorial_step
-	if main.selected_faction.is_empty():
-		main.tutorial_step = 0
-	elif main.deployed_heroes.is_empty():
-		main.tutorial_step = 1
-	elif main.idle_stage == 1 and main.idle_stage_kills == 0 and main.combat_kills == 0:
-		main.tutorial_step = 2
-	elif main.idle_stage < 2:
-		main.tutorial_step = 3
-	elif main.loot_inventory.is_empty() and int(main._get_hero_progress(str(main.deployed_heroes[0]["id"])).get("level", 1)) <= 1:
-		main.tutorial_step = 4
+	if main.selected_faction.is_empty(): main.tutorial_step = 0
+	elif main.deployed_heroes.is_empty(): main.tutorial_step = 1
+	elif main.idle_stage == 1 and main.idle_stage_kills == 0 and main.combat_kills == 0: main.tutorial_step = 2
+	elif main.idle_stage < 2: main.tutorial_step = 3
+	elif not bool(main.tutorial_actions.get("growth", false)): main.tutorial_step = 4
 	else:
 		var raid_total = 0
-		for value in main.raid_clears.values():
-			raid_total += int(value)
-		if raid_total <= 0 and main.tower_best_floor <= 0:
+		for value in main.raid_clears.values(): raid_total += int(value)
+		if not bool(main.tutorial_actions.get("raid_started", false)) and raid_total <= 0 and main.tower_best_floor <= 0:
 			main.tutorial_step = 5
 		else:
 			main.tutorial_step = 6
 			main.tutorial_completed = true
-	if old_step != main.tutorial_step:
-		main._save_idle_state()
-
+	if old_step != main.tutorial_step: main._save_idle_state()
 
 static func tutorial_text(main: Node) -> String:
 	main._refresh_tutorial_state()
-	match main.tutorial_step:
-		0: return "1/6 · 진영을 선택하세요. 두 진영은 영웅과 시작 수호신이 달라집니다."
-		1: return "2/6 · 첫 영웅 1명을 편성하세요. 사냥 진행에 따라 3→5→7→10인으로 확장됩니다."
-		2: return "3/6 · 자동사냥을 시작해 첫 몬스터 무리를 처치하세요."
-		3: return "4/6 · 사냥 보상은 자동으로 들어와요. 무리를 격파해 스테이지 2에 도달하세요."
-		4: return "5/6 · 장비 또는 스킬트리를 강화해 전투력을 올리세요."
-		5: return "6/6 · 월드맵에서 보스 레이드나 무한탑에 도전하세요."
-	return "초반 원정 가이드 완료 · 이제 자유롭게 원정대를 성장시키세요."
+	return str(preload("res://scripts/FirstSessionGuide.gd").status(main).text)
 
 
 static func claim_quest(main: Node, quest_id: String) -> bool:

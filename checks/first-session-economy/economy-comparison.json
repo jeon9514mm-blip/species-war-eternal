@@ -1,0 +1,444 @@
+{
+  "base_commit": "fa71acdfbb83d3b50ae8b5edc9134a1613ce3939",
+  "revision": "first-session-economy-2",
+  "model": "10 active minutes and one 8-hour offline receipt per day; free attendance; no ads, purchases, summons, extra dungeons or quest bonuses",
+  "long_term_seed": 3401,
+  "cases": [
+    {
+      "faction": "aurelia",
+      "seed": 3401,
+      "passed": true,
+      "checks": {
+        "first_pack_under_120_seconds": true,
+        "formation_and_growth_within_first_600_seconds_before_offline": true,
+        "wallet_and_level_bounds": true,
+        "growth_remaining_on_days_7_and_30": true
+      },
+      "before": [
+        {
+          "average_gear_level": 2.11111111111111,
+          "bag": 25,
+          "day": 1,
+          "first_pack_seconds": 418.0,
+          "first_three_seconds": 600.0,
+          "first_upgrade_seconds": 420.0,
+          "gold": 149670,
+          "levels": [
+            51,
+            1,
+            1
+          ],
+          "max_level_heroes": 0,
+          "overflow": 0,
+          "packs": 15,
+          "party": 3,
+          "power": 3621,
+          "spent_gold": 4600,
+          "stage": 7
+        },
+        {
+          "average_gear_level": 10.0,
+          "bag": 200,
+          "day": 7,
+          "first_pack_seconds": 418.0,
+          "first_three_seconds": 600.0,
+          "first_upgrade_seconds": 420.0,
+          "gold": 2915010,
+          "levels": [
+            85,
+            68,
+            68,
+            68,
+            68,
+            68,
+            68,
+            67,
+            67,
+            67
+          ],
+          "max_level_heroes": 0,
+          "overflow": 205,
+          "packs": 2066,
+          "party": 10,
+          "power": 71840,
+          "spent_gold": 303900,
+          "stage": 246
+        },
+        {
+          "average_gear_level": 10.0,
+          "bag": 200,
+          "day": 30,
+          "first_pack_seconds": 418.0,
+          "first_three_seconds": 600.0,
+          "first_upgrade_seconds": 420.0,
+          "gold": 47843784,
+          "levels": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "max_level_heroes": 10,
+          "overflow": 1932,
+          "packs": 11020,
+          "party": 10,
+          "power": 110834,
+          "spent_gold": 303900,
+          "stage": 1270
+        }
+      ],
+      "after": [
+        {
+          "average_gear_level": 2.73333333333333,
+          "bag": 68,
+          "day": 1,
+          "first_pack_seconds": 78.0,
+          "first_three_seconds": 240.0,
+          "first_upgrade_seconds": 120.0,
+          "gold": 25923,
+          "levels": [
+            13,
+            12,
+            12,
+            11,
+            11
+          ],
+          "max_level_heroes": 0,
+          "overflow": 0,
+          "packs": 72,
+          "party": 5,
+          "power": 4853,
+          "spent_gold": 17187,
+          "stage": 13
+        },
+        {
+          "average_gear_level": 7.9,
+          "bag": 200,
+          "day": 7,
+          "first_pack_seconds": 78.0,
+          "first_three_seconds": 240.0,
+          "first_upgrade_seconds": 120.0,
+          "gold": 228037,
+          "levels": [
+            37,
+            36,
+            36,
+            36,
+            36,
+            35,
+            35,
+            35,
+            35,
+            35
+          ],
+          "max_level_heroes": 0,
+          "overflow": 166,
+          "packs": 1824,
+          "party": 10,
+          "power": 41932,
+          "spent_gold": 850007,
+          "stage": 220
+        },
+        {
+          "average_gear_level": 10.0,
+          "bag": 200,
+          "day": 30,
+          "first_pack_seconds": 78.0,
+          "first_three_seconds": 240.0,
+          "first_upgrade_seconds": 120.0,
+          "gold": 5549328,
+          "levels": [
+            71,
+            71,
+            71,
+            71,
+            71,
+            71,
+            71,
+            71,
+            71,
+            71
+          ],
+          "max_level_heroes": 0,
+          "overflow": 1855,
+          "packs": 10488,
+          "party": 10,
+          "power": 87395,
+          "spent_gold": 3802560,
+          "stage": 1209
+        }
+      ],
+      "first_ten_minutes": {
+        "average_gear_level": 1.73333333333333,
+        "bag": 50,
+        "day": 1,
+        "first_pack_seconds": 78.0,
+        "first_three_seconds": 240.0,
+        "first_upgrade_seconds": 120.0,
+        "gold": 2370,
+        "levels": [
+          7,
+          5,
+          5,
+          1,
+          1
+        ],
+        "max_level_heroes": 0,
+        "overflow": 0,
+        "packs": 72,
+        "party": 5,
+        "power": 2191,
+        "spent_gold": 3950,
+        "stage": 8
+      }
+    },
+    {
+      "faction": "noxfera",
+      "seed": 3401,
+      "passed": true,
+      "checks": {
+        "first_pack_under_120_seconds": true,
+        "formation_and_growth_within_first_600_seconds_before_offline": true,
+        "wallet_and_level_bounds": true,
+        "growth_remaining_on_days_7_and_30": true
+      },
+      "before": [
+        {
+          "average_gear_level": 2.6,
+          "bag": 58,
+          "day": 1,
+          "first_pack_seconds": 166.0,
+          "first_three_seconds": 420.0,
+          "first_upgrade_seconds": 180.0,
+          "gold": 172453,
+          "levels": [
+            31,
+            31,
+            31,
+            1,
+            1
+          ],
+          "max_level_heroes": 0,
+          "overflow": 0,
+          "packs": 61,
+          "party": 5,
+          "power": 7137,
+          "spent_gold": 12175,
+          "stage": 12
+        },
+        {
+          "average_gear_level": 10.0,
+          "bag": 200,
+          "day": 7,
+          "first_pack_seconds": 166.0,
+          "first_three_seconds": 420.0,
+          "first_upgrade_seconds": 180.0,
+          "gold": 3457920,
+          "levels": [
+            77,
+            77,
+            77,
+            70,
+            70,
+            70,
+            70,
+            70,
+            70,
+            70
+          ],
+          "max_level_heroes": 0,
+          "overflow": 273,
+          "packs": 2349,
+          "party": 10,
+          "power": 74993,
+          "spent_gold": 303900,
+          "stage": 273
+        },
+        {
+          "average_gear_level": 10.0,
+          "bag": 200,
+          "day": 30,
+          "first_pack_seconds": 166.0,
+          "first_three_seconds": 420.0,
+          "first_upgrade_seconds": 180.0,
+          "gold": 54199500,
+          "levels": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "max_level_heroes": 10,
+          "overflow": 2121,
+          "packs": 11749,
+          "party": 10,
+          "power": 112425,
+          "spent_gold": 303900,
+          "stage": 1334
+        }
+      ],
+      "after": [
+        {
+          "average_gear_level": 2.28571428571429,
+          "bag": 99,
+          "day": 1,
+          "first_pack_seconds": 26.0,
+          "first_three_seconds": 120.0,
+          "first_upgrade_seconds": 60.0,
+          "gold": 26527,
+          "levels": [
+            13,
+            12,
+            12,
+            11,
+            11,
+            1,
+            1
+          ],
+          "max_level_heroes": 0,
+          "overflow": 0,
+          "packs": 118,
+          "party": 7,
+          "power": 6173,
+          "spent_gold": 24773,
+          "stage": 17
+        },
+        {
+          "average_gear_level": 8.23333333333333,
+          "bag": 200,
+          "day": 7,
+          "first_pack_seconds": 26.0,
+          "first_three_seconds": 120.0,
+          "first_upgrade_seconds": 60.0,
+          "gold": 243277,
+          "levels": [
+            39,
+            38,
+            38,
+            38,
+            38,
+            37,
+            37,
+            37,
+            37,
+            37
+          ],
+          "max_level_heroes": 0,
+          "overflow": 201,
+          "packs": 2008,
+          "party": 10,
+          "power": 44550,
+          "spent_gold": 1110448,
+          "stage": 239
+        },
+        {
+          "average_gear_level": 10.0,
+          "bag": 200,
+          "day": 30,
+          "first_pack_seconds": 26.0,
+          "first_three_seconds": 120.0,
+          "first_upgrade_seconds": 60.0,
+          "gold": 6324132,
+          "levels": [
+            71,
+            71,
+            71,
+            71,
+            71,
+            71,
+            71,
+            71,
+            71,
+            71
+          ],
+          "max_level_heroes": 0,
+          "overflow": 1938,
+          "packs": 11013,
+          "party": 10,
+          "power": 88711,
+          "spent_gold": 3802560,
+          "stage": 1265
+        }
+      ],
+      "first_ten_minutes": {
+        "average_gear_level": 2.2,
+        "bag": 86,
+        "day": 1,
+        "first_pack_seconds": 26.0,
+        "first_three_seconds": 120.0,
+        "first_upgrade_seconds": 60.0,
+        "gold": 3911,
+        "levels": [
+          8,
+          6,
+          6,
+          4,
+          4
+        ],
+        "max_level_heroes": 0,
+        "overflow": 0,
+        "packs": 118,
+        "party": 5,
+        "power": 3036,
+        "spent_gold": 8087,
+        "stage": 12
+      }
+    }
+  ],
+  "first_day_cases": [
+    {
+      "faction": "aurelia",
+      "seed": 3402,
+      "days": 1,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "faction": "aurelia",
+      "seed": 3403,
+      "days": 1,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "faction": "aurelia",
+      "seed": 3404,
+      "days": 1,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "faction": "noxfera",
+      "seed": 3402,
+      "days": 1,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "faction": "noxfera",
+      "seed": 3403,
+      "days": 1,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "faction": "noxfera",
+      "seed": 3404,
+      "days": 1,
+      "passed": true,
+      "errors": []
+    }
+  ]
+}

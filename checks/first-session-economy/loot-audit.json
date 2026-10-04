@@ -1,0 +1,421 @@
+{
+  "checks": 72,
+  "failures": [],
+  "rolls": 18000,
+  "rows": [
+    {
+      "faction": "aurelia",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 254,
+        "일반": 565,
+        "전설": 44,
+        "희귀": 137
+      },
+      "roles": {
+        "dealer": 274,
+        "defender": 236,
+        "support": 236
+      },
+      "rolls": 1000,
+      "seed": 3401,
+      "slots": {
+        "accessory": 250,
+        "armor": 276,
+        "weapon": 220
+      },
+      "zone": "gray_meadow"
+    },
+    {
+      "faction": "aurelia",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 252,
+        "일반": 570,
+        "전설": 40,
+        "희귀": 138
+      },
+      "roles": {
+        "dealer": 232,
+        "defender": 271,
+        "support": 245
+      },
+      "rolls": 1000,
+      "seed": 3402,
+      "slots": {
+        "accessory": 241,
+        "armor": 257,
+        "weapon": 250
+      },
+      "zone": "gray_meadow"
+    },
+    {
+      "faction": "aurelia",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 268,
+        "일반": 568,
+        "전설": 38,
+        "희귀": 126
+      },
+      "roles": {
+        "dealer": 233,
+        "defender": 242,
+        "support": 257
+      },
+      "rolls": 1000,
+      "seed": 3403,
+      "slots": {
+        "accessory": 243,
+        "armor": 235,
+        "weapon": 254
+      },
+      "zone": "gray_meadow"
+    },
+    {
+      "faction": "aurelia",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 213,
+        "일반": 576,
+        "전설": 61,
+        "희귀": 150
+      },
+      "roles": {
+        "dealer": 291,
+        "defender": 252,
+        "support": 244
+      },
+      "rolls": 1000,
+      "seed": 3401,
+      "slots": {
+        "accessory": 250,
+        "armor": 285,
+        "weapon": 252
+      },
+      "zone": "forgotten_mine"
+    },
+    {
+      "faction": "aurelia",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 216,
+        "일반": 585,
+        "전설": 54,
+        "희귀": 145
+      },
+      "roles": {
+        "dealer": 246,
+        "defender": 277,
+        "support": 261
+      },
+      "rolls": 1000,
+      "seed": 3402,
+      "slots": {
+        "accessory": 274,
+        "armor": 262,
+        "weapon": 248
+      },
+      "zone": "forgotten_mine"
+    },
+    {
+      "faction": "aurelia",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 233,
+        "일반": 581,
+        "전설": 42,
+        "희귀": 144
+      },
+      "roles": {
+        "dealer": 252,
+        "defender": 246,
+        "support": 269
+      },
+      "rolls": 1000,
+      "seed": 3403,
+      "slots": {
+        "accessory": 263,
+        "armor": 241,
+        "weapon": 263
+      },
+      "zone": "forgotten_mine"
+    },
+    {
+      "faction": "aurelia",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 179,
+        "일반": 606,
+        "전설": 65,
+        "희귀": 150
+      },
+      "roles": {
+        "dealer": 294,
+        "defender": 278,
+        "support": 249
+      },
+      "rolls": 1000,
+      "seed": 3401,
+      "slots": {
+        "accessory": 272,
+        "armor": 292,
+        "weapon": 257
+      },
+      "zone": "moonrest_forest"
+    },
+    {
+      "faction": "aurelia",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 186,
+        "일반": 612,
+        "전설": 68,
+        "희귀": 134
+      },
+      "roles": {
+        "dealer": 249,
+        "defender": 290,
+        "support": 275
+      },
+      "rolls": 1000,
+      "seed": 3402,
+      "slots": {
+        "accessory": 309,
+        "armor": 259,
+        "weapon": 246
+      },
+      "zone": "moonrest_forest"
+    },
+    {
+      "faction": "aurelia",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 195,
+        "일반": 602,
+        "전설": 51,
+        "희귀": 152
+      },
+      "roles": {
+        "dealer": 270,
+        "defender": 255,
+        "support": 280
+      },
+      "rolls": 1000,
+      "seed": 3403,
+      "slots": {
+        "accessory": 269,
+        "armor": 259,
+        "weapon": 277
+      },
+      "zone": "moonrest_forest"
+    },
+    {
+      "faction": "noxfera",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 254,
+        "일반": 565,
+        "전설": 44,
+        "희귀": 137
+      },
+      "roles": {
+        "dealer": 274,
+        "defender": 236,
+        "support": 236
+      },
+      "rolls": 1000,
+      "seed": 3401,
+      "slots": {
+        "accessory": 250,
+        "armor": 276,
+        "weapon": 220
+      },
+      "zone": "gray_meadow"
+    },
+    {
+      "faction": "noxfera",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 252,
+        "일반": 570,
+        "전설": 40,
+        "희귀": 138
+      },
+      "roles": {
+        "dealer": 232,
+        "defender": 271,
+        "support": 245
+      },
+      "rolls": 1000,
+      "seed": 3402,
+      "slots": {
+        "accessory": 241,
+        "armor": 257,
+        "weapon": 250
+      },
+      "zone": "gray_meadow"
+    },
+    {
+      "faction": "noxfera",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 268,
+        "일반": 568,
+        "전설": 38,
+        "희귀": 126
+      },
+      "roles": {
+        "dealer": 233,
+        "defender": 242,
+        "support": 257
+      },
+      "rolls": 1000,
+      "seed": 3403,
+      "slots": {
+        "accessory": 243,
+        "armor": 235,
+        "weapon": 254
+      },
+      "zone": "gray_meadow"
+    },
+    {
+      "faction": "noxfera",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 213,
+        "일반": 576,
+        "전설": 61,
+        "희귀": 150
+      },
+      "roles": {
+        "dealer": 291,
+        "defender": 252,
+        "support": 244
+      },
+      "rolls": 1000,
+      "seed": 3401,
+      "slots": {
+        "accessory": 250,
+        "armor": 285,
+        "weapon": 252
+      },
+      "zone": "forgotten_mine"
+    },
+    {
+      "faction": "noxfera",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 216,
+        "일반": 585,
+        "전설": 54,
+        "희귀": 145
+      },
+      "roles": {
+        "dealer": 246,
+        "defender": 277,
+        "support": 261
+      },
+      "rolls": 1000,
+      "seed": 3402,
+      "slots": {
+        "accessory": 274,
+        "armor": 262,
+        "weapon": 248
+      },
+      "zone": "forgotten_mine"
+    },
+    {
+      "faction": "noxfera",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 233,
+        "일반": 581,
+        "전설": 42,
+        "희귀": 144
+      },
+      "roles": {
+        "dealer": 252,
+        "defender": 246,
+        "support": 269
+      },
+      "rolls": 1000,
+      "seed": 3403,
+      "slots": {
+        "accessory": 263,
+        "armor": 241,
+        "weapon": 263
+      },
+      "zone": "forgotten_mine"
+    },
+    {
+      "faction": "noxfera",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 179,
+        "일반": 606,
+        "전설": 65,
+        "희귀": 150
+      },
+      "roles": {
+        "dealer": 294,
+        "defender": 278,
+        "support": 249
+      },
+      "rolls": 1000,
+      "seed": 3401,
+      "slots": {
+        "accessory": 272,
+        "armor": 292,
+        "weapon": 257
+      },
+      "zone": "moonrest_forest"
+    },
+    {
+      "faction": "noxfera",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 186,
+        "일반": 612,
+        "전설": 68,
+        "희귀": 134
+      },
+      "roles": {
+        "dealer": 249,
+        "defender": 290,
+        "support": 275
+      },
+      "rolls": 1000,
+      "seed": 3402,
+      "slots": {
+        "accessory": 309,
+        "armor": 259,
+        "weapon": 246
+      },
+      "zone": "moonrest_forest"
+    },
+    {
+      "faction": "noxfera",
+      "guardian_drop_bonus": 0.0,
+      "rarities": {
+        "없음": 195,
+        "일반": 602,
+        "전설": 51,
+        "희귀": 152
+      },
+      "roles": {
+        "dealer": 270,
+        "defender": 255,
+        "support": 280
+      },
+      "rolls": 1000,
+      "seed": 3403,
+      "slots": {
+        "accessory": 269,
+        "armor": 259,
+        "weapon": 277
+      },
+      "zone": "moonrest_forest"
+    }
+  ]
+}

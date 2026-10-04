@@ -72,9 +72,10 @@ func estimate(elapsed_seconds: int, party_power: int, party_size: int, zone: Dic
 	var ration_bonus := 0
 	for offset in clears:
 		var cleared_stage := stage + offset
-		chest_gold += 250 + cleared_stage * 50
-		chest_xp += 100 + cleared_stage * 25
-		ration_bonus += 40 + cleared_stage * 3
+		var chest: Dictionary=preload("res://scripts/GrowthEconomyRules.gd").stage_chest(cleared_stage)
+		chest_gold += int(chest.gold)
+		chest_xp += int(chest.xp)
+		ration_bonus += int(chest.rations)
 	progress -= clears * stage_target
 	if clears >= clear_limit:
 		progress = mini(progress, stage_target - 1)

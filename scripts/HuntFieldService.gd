@@ -52,6 +52,11 @@ static func generate_corps(main: Node, zone: Dictionary) -> Array:
 		elif archetype == "support" and main.current_zone_id == "forgotten_mine":
 			attack = int(attack * 0.82)
 		attack = maxi(1, int(round(float(attack) * float(main.hunt_variety_profile.get("enemy_attack_mult", 1.0)))))
+		if preload("res://scripts/GrowthEconomyRules.gd").solo_starter(main,zone):
+			var starter_role: String=str(main.deployed_heroes[0].get("role_group",""))
+			var starter_hp_scale: float=.16 if starter_role in ["탱커","서포터"] else .32
+			max_hp=maxi(12,int(round(max_hp*starter_hp_scale)))
+			attack=maxi(1,int(round(attack*.4)))
 		var prepared: Dictionary = main.FIELD_ECOLOGY.prepare_enemy({
 			"id": "%d_%d" % [main.hunt_ai.encounter_id, index], "name": monster_name,
 			"hp": max_hp, "max_hp": max_hp, "attack": attack, "row": row, "archetype": archetype,
@@ -247,13 +252,14 @@ static func settle_corps(main: Node, fallen: Array, profile: Dictionary) -> void
 			equipment_drops.append({'item':equipment_drop,'handling':main.last_drop_text})
 		if main.idle_stage_kills >= main.idle_stage_target and main.idle_stage < 10000:
 			main.idle_stage_kills = 0
-			var chest_gold = main._guardian_reward(250 + main.idle_stage * 50,"online_gold")
-			var chest_xp = main._guardian_reward(100 + main.idle_stage * 25,"online_xp")
+			var chest: Dictionary=preload("res://scripts/GrowthEconomyRules.gd").stage_chest(main.idle_stage)
+			var chest_gold = main._guardian_reward(int(chest.gold),"online_gold")
+			var chest_xp = main._guardian_reward(int(chest.xp),"online_xp")
 			stage_reward_gold += chest_gold
 			stage_reward_xp += chest_xp
 			main.idle_chest_gold += chest_gold
 			main.idle_chest_xp += chest_xp
-			main.faction_war_state.add_rations(40 + main.idle_stage * 3)
+			main.faction_war_state.add_rations(int(chest.rations))
 			main._grant_hero_xp(chest_xp)
 			main.idle_stage += 1
 			stage_cleared = true

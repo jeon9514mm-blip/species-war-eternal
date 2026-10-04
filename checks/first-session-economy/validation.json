@@ -1,0 +1,229 @@
+{
+  "base_commit": "fa71acdfbb83d3b50ae8b5edc9134a1613ce3939",
+  "engine": "Godot 4.6.3",
+  "date_utc": "2026-10-04",
+  "suites": [
+    {
+      "script": "scripts/FirstSessionEconomySmokeTest.gd",
+      "exit": 0,
+      "seconds": 18.33,
+      "errors": [],
+      "results": [
+        "first_session_economy checks=226 failures=[]"
+      ],
+      "checks": 226
+    },
+    {
+      "script": "scripts/LateEconomyRewardSmokeTest.gd",
+      "exit": 0,
+      "seconds": 3.2,
+      "errors": [],
+      "results": [
+        "LATE_ECONOMY_REWARD checks=633 failures=[]"
+      ],
+      "checks": 633
+    },
+    {
+      "script": "scripts/V8361XpSmokeTest.gd",
+      "exit": 0,
+      "seconds": 3.19,
+      "errors": [],
+      "results": [
+        "v8361_xp checks=978 failures=[]"
+      ],
+      "checks": 978
+    },
+    {
+      "script": "scripts/GameplayReliabilitySmokeTest.gd",
+      "exit": 0,
+      "seconds": 49.78,
+      "errors": [],
+      "results": [
+        "gameplay_reliability checks=133 failures=[]"
+      ],
+      "checks": 133
+    },
+    {
+      "script": "scripts/HuntMenuStateSmokeTest.gd",
+      "exit": 0,
+      "seconds": 38.39,
+      "errors": [],
+      "results": [
+        "HUNT_MENU_STATE checks=94 failures=[]"
+      ],
+      "checks": 94
+    },
+    {
+      "script": "scripts/HuntingHomeSmokeTest.gd",
+      "exit": 0,
+      "seconds": 18.91,
+      "errors": [],
+      "results": [
+        "HUNTING_HOME_SMOKE checks=53 failures=[]"
+      ],
+      "checks": 53
+    },
+    {
+      "script": "scripts/TouchScrollSmokeTest.gd",
+      "exit": 0,
+      "seconds": 11.99,
+      "errors": [],
+      "results": [
+        "TOUCH_SCROLL_SMOKE checks=51 failures=[]"
+      ],
+      "checks": 51
+    },
+    {
+      "script": "scripts/RaidTouchLayoutSmokeTest.gd",
+      "exit": 0,
+      "seconds": 110.26,
+      "errors": [],
+      "results": [
+        "RAID_TOUCH_LAYOUT checks=852 failures=[]"
+      ],
+      "checks": 852
+    },
+    {
+      "script": "scripts/RaidCombatQualitySmokeTest.gd",
+      "exit": 0,
+      "seconds": 7.69,
+      "errors": [],
+      "results": [
+        "raid_combat_quality checks=32 failures=[]"
+      ],
+      "checks": 32
+    },
+    {
+      "script": "scripts/RaidStrengthSmokeTest.gd",
+      "exit": 0,
+      "seconds": 52.37,
+      "errors": [],
+      "results": [
+        "raid_strength checks=442 failures=[]"
+      ],
+      "checks": 442
+    },
+    {
+      "script": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "exit": 0,
+      "seconds": 17.3,
+      "errors": [],
+      "results": [
+        "equipment_modal_save_recovery checks=163 failures=[]"
+      ],
+      "checks": 163
+    },
+    {
+      "script": "scripts/V8361OfflineSaveSmokeTest.gd",
+      "exit": 0,
+      "seconds": 12.19,
+      "errors": [],
+      "results": [
+        "v8361_offline_save checks=436 failures=[]"
+      ],
+      "checks": 436
+    },
+    {
+      "script": "scripts/V27SaveRecoverySmokeTest.gd",
+      "exit": 0,
+      "seconds": 6.41,
+      "errors": [],
+      "results": [
+        "v27_save_recovery_smoke_test_ok checks=80 atomic=ok backup=ok checksum=ok schema=ok migration=ok future=preserved pause=once isolation=ok"
+      ],
+      "checks": 80
+    },
+    {
+      "script": "scripts/V27BossLifecycleSmokeTest.gd",
+      "exit": 0,
+      "seconds": 5.19,
+      "errors": [],
+      "results": [
+        "v27_boss_lifecycle assertions=51 failures=0 speed=[[7854, 12, 1, 12.0, 995230], [7854, 12, 1, 12.0, 995230]] encounters=[{\"faction\":\"aurelia\",\"outcome\":\"defeat\",\"patterns\":10,\"phase\":3,\"seconds\":55.4,\"zone\":\"gray_meadow\"},{\"faction\":\"aurelia\",\"outcome\":\"defeat\",\"patterns\":1,\"phase\":1,\"seconds\":26.5,\"zone\":\"forgotten_mine\"},{\"faction\":\"aurelia\",\"outcome\":\"defeat\",\"patterns\":3,\"phase\":1,\"seconds\":24.4,\"zone\":\"moonrest_forest\"},{\"faction\":\"noxfera\",\"outcome\":\"defeat\",\"patterns\":8,\"phase\":3,\"seconds\":56.5,\"zone\":\"gray_meadow\"},{\"faction\":\"noxfera\",\"outcome\":\"defeat\",\"patterns\":2,\"phase\":1,\"seconds\":18.8,\"zone\":\"forgotten_mine\"},{\"faction\":\"noxfera\",\"outcome\":\"defeat\",\"patterns\":4,\"phase\":1,\"seconds\":24.4,\"zone\":\"moonrest_forest\"}]"
+      ],
+      "checks": 51
+    },
+    {
+      "script": "scripts/V27GrowthEconomySmokeTest.gd",
+      "exit": 0,
+      "seconds": 3.17,
+      "errors": [],
+      "results": [
+        "v27_growth_economy_smoke_test checks=40 passed=40 failures=[]"
+      ],
+      "checks": 40
+    },
+    {
+      "script": "scripts/V27FieldLifecycleSmokeTest.gd",
+      "exit": 0,
+      "seconds": 2.84,
+      "errors": [],
+      "results": [
+        "v27_field_lifecycle checks=108 failures=0"
+      ],
+      "checks": 108
+    },
+    {
+      "script": "scripts/V52HuntIntegrationSmokeTest.gd",
+      "exit": 0,
+      "seconds": 32.94,
+      "errors": [],
+      "results": [
+        "v52_hunt_integration checks=111 failures=0 rows=6 pause_recovery_reward_contracts=true"
+      ],
+      "checks": 111
+    },
+    {
+      "script": "scripts/HeroIdentityBalanceSmokeTest.gd",
+      "exit": 0,
+      "seconds": 0.49,
+      "errors": [],
+      "results": [
+        "hero_identity_balance_smoke_test_ok faction_gap=0.70% all_heroes=balanced"
+      ],
+      "checks": 0
+    },
+    {
+      "script": "scripts/V11ProgressionSmokeTest.gd",
+      "exit": 0,
+      "seconds": 5.6,
+      "errors": [],
+      "results": [
+        "v11_progression_smoke_test_ok patterns=ok ascension=ok sets=ok weekly=ok tracking=ok onboarding=ok"
+      ],
+      "checks": 0
+    },
+    {
+      "script": "scripts/IdleHuntEstimatorSmokeTest.gd",
+      "exit": 0,
+      "seconds": 0.51,
+      "errors": [],
+      "results": [
+        "idle_hunt_estimator_smoke_test_ok scaling=ok stage_cap=ok loot_cap=ok empty_party=ok"
+      ],
+      "checks": 0
+    },
+    {
+      "script": "scripts/V57QualityPassSmokeTest.gd",
+      "exit": 0,
+      "seconds": 10.47,
+      "errors": [],
+      "results": [
+        "V57 QUALITY PASS 36/36 PASS"
+      ],
+      "checks": 36
+    },
+    {
+      "script": "scripts/LootSmokeTest.gd",
+      "exit": 0,
+      "seconds": 3.76,
+      "errors": [],
+      "results": [
+        "loot_smoke_test_ok total=164 common=124 rare=29 legendary=10 inventory=164"
+      ],
+      "checks": 0
+    }
+  ],
+  "successful_suites": 22,
+  "successful_checks": 4519
+}

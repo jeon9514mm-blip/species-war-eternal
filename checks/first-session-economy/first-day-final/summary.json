@@ -1,0 +1,47 @@
+{
+  "model": "10 active minutes plus one 8-hour offline receipt per day; no purchases or ads",
+  "cases": [
+    {
+      "faction": "aurelia",
+      "seed": 3402,
+      "days": 1,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "faction": "aurelia",
+      "seed": 3403,
+      "days": 1,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "faction": "aurelia",
+      "seed": 3404,
+      "days": 1,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "faction": "noxfera",
+      "seed": 3402,
+      "days": 1,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "faction": "noxfera",
+      "seed": 3403,
+      "days": 1,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "faction": "noxfera",
+      "seed": 3404,
+      "days": 1,
+      "passed": true,
+      "errors": []
+    }
+  ]
+}

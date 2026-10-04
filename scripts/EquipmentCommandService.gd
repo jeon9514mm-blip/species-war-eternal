@@ -78,6 +78,7 @@ static func gear_enhance_item(main: Node, item_id: String, hero_id: String = "",
 		main._refresh_growth_runtime()
 		main._update_equipment_card(hero_id)
 	main.wallet_gold -= cost
+	main._record_first_session_action("growth")
 	main._save_idle_state()
 	main._presentation_event("upgrade")
 	return {"ok": true, "item": item.duplicate(true), "cost": cost, "hero_id": hero_id, "slot": str(item["slot"]), "reason": "%s을(를) +%d로 강화했습니다. 골드 -%d" % [item["name"], item["level"], cost]}
@@ -449,6 +450,7 @@ static func bulk_enhance_equipped(main: Node) -> void:
 				upgraded += 1
 		main.hero_equipment[hero_id] = equipment
 	main._refresh_growth_runtime()
+	if upgraded > 0: main._record_first_session_action("growth")
 	main._save_idle_state()
 	main._show_toast("일괄강화 · %d회 강화 · %dG 사용" % [upgraded, spent])
 	if main.active_screen not in ["combat", "raid"]:

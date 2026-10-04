@@ -1,0 +1,19 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+V29 BALANCE ROW {"a2_casts":58,"alive":10,"damage":207381,"faction":"aurelia","hp_ratio":0.941545739889915,"mode":"raid","packs":0,"rotation":0,"seconds":60,"zone":"moonrest_forest"}
+V29 BALANCE ROW {"a2_casts":62,"alive":10,"damage":216310,"faction":"noxfera","hp_ratio":0.95054018325204,"mode":"raid","packs":0,"rotation":0,"seconds":60,"zone":"moonrest_forest"}
+V29 BALANCE ROW {"a2_casts":60,"alive":10,"damage":203649,"faction":"aurelia","hp_ratio":0.988835114284345,"mode":"raid","packs":0,"rotation":1,"seconds":60,"zone":"moonrest_forest"}
+V29 BALANCE ROW {"a2_casts":62,"alive":10,"damage":206542,"faction":"noxfera","hp_ratio":0.98488360861586,"mode":"raid","packs":0,"rotation":1,"seconds":60,"zone":"moonrest_forest"}
+V29 BALANCE ROW {"a2_casts":58,"alive":10,"damage":201971,"faction":"aurelia","hp_ratio":0.982858165868505,"mode":"raid","packs":0,"rotation":2,"seconds":60,"zone":"moonrest_forest"}
+V29 BALANCE ROW {"a2_casts":57,"alive":10,"damage":201681,"faction":"noxfera","hp_ratio":0.972046725148857,"mode":"raid","packs":0,"rotation":2,"seconds":60,"zone":"moonrest_forest"}
+V29 BALANCE ROW {"a2_casts":65,"alive":10,"damage":191256,"faction":"aurelia","hp_ratio":0.949290543757737,"mode":"raid","packs":0,"rotation":3,"seconds":60,"zone":"moonrest_forest"}
+V29 BALANCE ROW {"a2_casts":58,"alive":10,"damage":212676,"faction":"noxfera","hp_ratio":0.984759785185544,"mode":"raid","packs":0,"rotation":3,"seconds":60,"zone":"moonrest_forest"}
+V29 BALANCE ROW {"a2_casts":23,"alive":10,"damage":0,"faction":"aurelia","hp_ratio":0.985807214665878,"mode":"field","packs":20,"rotation":0,"seconds":60,"zone":"gray_meadow"}
+V29 BALANCE ROW {"a2_casts":28,"alive":10,"damage":0,"faction":"noxfera","hp_ratio":0.986643570223823,"mode":"field","packs":20,"rotation":0,"seconds":60,"zone":"gray_meadow"}
+V29 BALANCE ROW {"a2_casts":41,"alive":10,"damage":0,"faction":"aurelia","hp_ratio":0.943600555848388,"mode":"field","packs":15,"rotation":1,"seconds":60,"zone":"moonrest_forest"}
+V29 BALANCE ROW {"a2_casts":39,"alive":10,"damage":0,"faction":"noxfera","hp_ratio":0.889935284458611,"mode":"field","packs":15,"rotation":1,"seconds":60,"zone":"moonrest_forest"}
+V29 BALANCE ROW {"a2_casts":32,"alive":10,"damage":0,"faction":"aurelia","hp_ratio":0.992212326008146,"mode":"field","packs":20,"rotation":2,"seconds":60,"zone":"gray_meadow"}
+V29 BALANCE ROW {"a2_casts":24,"alive":10,"damage":0,"faction":"noxfera","hp_ratio":0.995363847097859,"mode":"field","packs":20,"rotation":2,"seconds":60,"zone":"gray_meadow"}
+V29 BALANCE ROW {"a2_casts":48,"alive":10,"damage":0,"faction":"aurelia","hp_ratio":0.971336063232073,"mode":"field","packs":15,"rotation":3,"seconds":60,"zone":"moonrest_forest"}
+V29 BALANCE ROW {"a2_casts":39,"alive":10,"damage":0,"faction":"noxfera","hp_ratio":0.970100149983066,"mode":"field","packs":15,"rotation":3,"seconds":60,"zone":"moonrest_forest"}
+v29_faction_balance checks=73 failures=0 comparison={"field":{"metric":"packs","relative_gap":0.0,"totals":{"aurelia":70.0,"noxfera":70.0}},"raid":{"metric":"damage","relative_gap":0.0401494761390123,"totals":{"aurelia":804257.0,"noxfera":837209.0}}}

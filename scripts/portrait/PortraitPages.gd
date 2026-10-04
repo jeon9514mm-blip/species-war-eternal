@@ -140,12 +140,7 @@ static func lobby(main: Node) -> void:
 		var goal := card(page,'다음 목표',S.GOLD)
 		goal.get_parent().name='LobbyGuideCard'
 		text(goal,main._tutorial_text(),18,S.MUTED)
-		var action_method: String=('_build_faction_screen' if main.tutorial_step==0 else
-			'_build_hero_select_screen' if main.tutorial_step==1 else
-			'_lobby_start_hunt' if main.tutorial_step==2 else
-			'_lobby_start_hunt' if main.tutorial_step==3 else
-			'_build_growth_screen' if main.tutorial_step==4 else '_build_meta_hub_screen')
-		action(goal,'목표 화면으로 이동',Callable(main,action_method),true).name='LobbyGuideAction'
+		action(goal,str(preload("res://scripts/FirstSessionGuide.gd").status(main).caption),Callable(main,'_follow_first_session_guide'),true).name='LobbyGuideAction'
 	var metrics := grid(page)
 	var power := card(metrics,'원정대 전투력')
 	text(power,main._compact_hud_amount(main._calculate_party_power()),28,S.GOLD)

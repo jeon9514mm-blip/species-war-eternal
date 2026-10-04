@@ -5,7 +5,7 @@ extends RefCounted
 ## No cached host reference, duplicate wallet, RNG or save schema is introduced.
 
 static func hero_xp_to_next(main: Node, level: int) -> int:
-	return 100 + (clampi(level, 1, main.MAX_HERO_LEVEL) - 1) * 75
+	return preload("res://scripts/GrowthEconomyRules.gd").xp_cost(level,main.MAX_HERO_LEVEL)
 
 
 static func valid_growth_hero(main: Node, hero_id: String) -> bool:
@@ -77,6 +77,7 @@ static func upgrade_skill_tree(main: Node, hero_id: String, branch: String) -> v
 		return
 	tree[branch] = int(tree.get(branch, 0)) + 1
 	main.hero_skill_tree[hero_id] = tree
+	main._record_first_session_action("growth")
 	main._refresh_growth_runtime()
 	main._save_idle_state()
 	if main.active_screen not in ["combat", "raid"]:

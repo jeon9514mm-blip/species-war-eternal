@@ -15,6 +15,8 @@ var stage_progress: ProgressBar
 var enemy_label: Label
 var profile_xp: ProgressBar
 var quest_label: Label
+var first_session_action: Button
+var compact_guide_layout := false
 var status_label: Label
 var auto_button: Button
 var speed_button: Button
@@ -81,7 +83,10 @@ func build(main: Node) -> void:
 	reward_feed=REWARD_FEED.new();SKIN.place(self,reward_feed,Rect2(w*.5-185,command_y-100,370,94));reward_feed.build(w)
 	navigation(game,self,'combat',h-90,90)
 	_build_options(w,h)
-	hud_bounds=[Rect2(margin,top,w-margin*2,168),Rect2(margin,command_y,w-margin*2,158)]
+	first_session_action=SKIN.button('원정 가이드',Callable(game,'_follow_first_session_guide'),SKIN.GOLD)
+	first_session_action.name='FirstSessionGuideAction'
+	SKIN.place(self,first_session_action,Rect2(margin,command_y-50,w-margin*2,44))
+	hud_bounds=[Rect2(margin,top,w-margin*2,168),Rect2(margin,command_y,w-margin*2,158),Rect2()]
 	refresh()
 
 func _build_options(w: float,h: float) -> void:
@@ -233,6 +238,19 @@ func refresh() -> void:
 		stage_progress.tooltip_text='실제 전투 진행 · 남은 시간 %.1f초'%challenge.remaining_seconds()
 		quest_label.text=challenge.objective_description
 	quest_label.tooltip_text=quest_label.text
+	if is_instance_valid(first_session_action):
+		first_session_action.visible=not game.tutorial_completed and game.challenge_session==null and not bool(game.get_meta("practice_active",false))
+		if first_session_action.visible:
+			game._refresh_tutorial_state()
+			var guide: Dictionary=preload("res://scripts/FirstSessionGuide.gd").status(game)
+			quest_label.text=str(guide.short);quest_label.tooltip_text=str(guide.text)
+			first_session_action.text=str(guide.caption);first_session_action.tooltip_text=str(guide.text)
+			first_session_action.disabled=preload("res://scripts/SaveSafety.gd").pending(game) or game._save_blocked_for_newer_version
+		if not compact_guide_layout and hud_bounds.size()>2:
+			hud_bounds[2]=first_session_action.get_rect() if first_session_action.visible else Rect2()
+			if is_instance_valid(reward_feed):reward_feed.position.y=game.get_viewport_rect().size.y-302.0-(150.0 if first_session_action.visible else 100.0)
+		if compact_guide_layout:
+			quest_label.size.x=game.get_viewport_rect().size.x-334.0-(258.0 if first_session_action.visible else 44.0)
 	status_label.text='%s  ·  원정대 %d/%d'%[game._hunt_state_text(),game._alive_hero_ids().size(),game.deployed_heroes.size()]
 	speed_button.text='×%d'%int(game.battle_speed)
 	auto_button.text='영웅 편성하기' if game.deployed_heroes.is_empty() else ('Ⅱ  자동사냥 중' if game.combat_running else '▶  사냥 재개')

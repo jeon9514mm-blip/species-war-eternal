@@ -36,7 +36,10 @@ static func calculate_offline_reward(main: Node) -> void:
 		# Preserve a starter allowance for existing saves without measurements.
 		zone = main._zone_data()["gray_meadow"]
 		observed = productivity.observed(main, "gray_meadow")
-	main.offline_reward_basis = "%s · %s" % [str(zone["name"]), "최근 사냥 기록 기준" if not observed.is_empty() else "기본 사냥 기준"]
+	var has_measurement: bool=not observed.is_empty()
+	if not has_measurement:
+		observed={"seconds_per_pack":preload("res://scripts/GrowthEconomyRules.gd").unmeasured_pack_interval(main.deployed_heroes.size())}
+	main.offline_reward_basis = "%s · %s" % [str(zone["name"]), "최근 사냥 기록 기준" if has_measurement else "기록 없는 편성 · 보수적 기본 사냥 기준"]
 	var estimate = main.idle_hunt_estimator.estimate(
 		elapsed,
 		main._calculate_party_power(),

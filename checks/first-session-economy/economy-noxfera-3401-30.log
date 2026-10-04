@@ -1,0 +1,37 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+FIRST_TEN_MINUTES noxfera 3401 {"average_gear_level":2.2,"bag":86,"day":1,"first_pack_seconds":26.0,"first_three_seconds":120.0,"first_upgrade_seconds":60.0,"gold":3911,"levels":[8,6,6,4,4],"max_level_heroes":0,"overflow":0,"packs":118,"party":5,"power":3036,"spent_gold":8087,"stage":12}
+ECONOMY_DAY_DONE noxfera 3401 day=1
+ECONOMY_CHECKPOINT noxfera 3401 {"average_gear_level":2.28571428571429,"bag":99,"day":1,"first_pack_seconds":26.0,"first_three_seconds":120.0,"first_upgrade_seconds":60.0,"gold":26527,"levels":[13,12,12,11,11,1,1],"max_level_heroes":0,"overflow":0,"packs":118,"party":7,"power":6173,"spent_gold":24773,"stage":17}
+ECONOMY_DAY_DONE noxfera 3401 day=2
+ECONOMY_DAY_DONE noxfera 3401 day=3
+ECONOMY_DAY_DONE noxfera 3401 day=4
+ECONOMY_DAY_DONE noxfera 3401 day=5
+ECONOMY_DAY_DONE noxfera 3401 day=6
+ECONOMY_DAY_DONE noxfera 3401 day=7
+ECONOMY_CHECKPOINT noxfera 3401 {"average_gear_level":8.23333333333333,"bag":200,"day":7,"first_pack_seconds":26.0,"first_three_seconds":120.0,"first_upgrade_seconds":60.0,"gold":243277,"levels":[39,38,38,38,38,37,37,37,37,37],"max_level_heroes":0,"overflow":201,"packs":2008,"party":10,"power":44550,"spent_gold":1110448,"stage":239}
+ECONOMY_DAY_DONE noxfera 3401 day=8
+ECONOMY_DAY_DONE noxfera 3401 day=9
+ECONOMY_DAY_DONE noxfera 3401 day=10
+ECONOMY_DAY_DONE noxfera 3401 day=11
+ECONOMY_DAY_DONE noxfera 3401 day=12
+ECONOMY_DAY_DONE noxfera 3401 day=13
+ECONOMY_DAY_DONE noxfera 3401 day=14
+ECONOMY_DAY_DONE noxfera 3401 day=15
+ECONOMY_DAY_DONE noxfera 3401 day=16
+ECONOMY_DAY_DONE noxfera 3401 day=17
+ECONOMY_DAY_DONE noxfera 3401 day=18
+ECONOMY_DAY_DONE noxfera 3401 day=19
+ECONOMY_DAY_DONE noxfera 3401 day=20
+ECONOMY_DAY_DONE noxfera 3401 day=21
+ECONOMY_DAY_DONE noxfera 3401 day=22
+ECONOMY_DAY_DONE noxfera 3401 day=23
+ECONOMY_DAY_DONE noxfera 3401 day=24
+ECONOMY_DAY_DONE noxfera 3401 day=25
+ECONOMY_DAY_DONE noxfera 3401 day=26
+ECONOMY_DAY_DONE noxfera 3401 day=27
+ECONOMY_DAY_DONE noxfera 3401 day=28
+ECONOMY_DAY_DONE noxfera 3401 day=29
+ECONOMY_DAY_DONE noxfera 3401 day=30
+ECONOMY_CHECKPOINT noxfera 3401 {"average_gear_level":10.0,"bag":200,"day":30,"first_pack_seconds":26.0,"first_three_seconds":120.0,"first_upgrade_seconds":60.0,"gold":6324132,"levels":[71,71,71,71,71,71,71,71,71,71],"max_level_heroes":0,"overflow":1938,"packs":11013,"party":10,"power":88711,"spent_gold":3802560,"stage":1265}
+ECONOMY_SIMULATION_COMPLETE noxfera 3401

@@ -317,6 +317,7 @@ var weekly_trial_legacy_week: String = ""
 var tracked_quest_id := ""
 var tutorial_step := 0
 var tutorial_completed := false
+var tutorial_actions: Dictionary = {}
 var party_slot_legacy_cap := 0
 var faction_war_state := WorldWarState.new()
 var faction_march_state := WorldMarchState.new()
@@ -2170,12 +2171,7 @@ func _item_power(item: Dictionary) -> int:
 func _equipment_upgrade_cost(slot: String, level: int) -> int:
 	if slot not in EQUIPMENT_SLOTS:
 		return 0
-	var slot_multiplier := 1
-	if slot == "armor":
-		slot_multiplier = 2
-	elif slot == "accessory":
-		slot_multiplier = 3
-	return (100 + clampi(level, 1, MAX_EQUIPMENT_LEVEL) * 75) * slot_multiplier
+	return preload("res://scripts/GrowthEconomyRules.gd").equipment_cost(slot,level)
 
 func _equipment_summary(hero_id: String) -> String:
 	var equipment: Dictionary = _get_hero_equipment(hero_id)
@@ -3791,6 +3787,8 @@ func _start_raid() -> void:
 	raid_encounter_serial += 1
 	var zone: Dictionary = _zone_data().get(raid_encounter_zone, _current_zone())
 	raid_running = true
+	_record_first_session_action("raid_started")
+	_save_idle_state()
 	raid_outcome = "running"
 	raid_boss_name = str(zone["boss"])
 	var raid_stats: Dictionary = preload("res://scripts/RaidBalance.gd").stats(zone)
@@ -4134,6 +4132,8 @@ func _finish_raid(outcome: String) -> void:
 		elif outcome == "cancelled":
 			reason = "지역이 변경되어 레이드를 종료했습니다."
 		raid_last_result = "%s\n보스 체력 %d%% 남음 · %.1f초 · 패턴 차단 %d회\n클리어 보상 없음" % [reason, boss_remaining, raid_elapsed, raid_interrupt_count]
+		if outcome in ["defeat", "timeout"]:
+			raid_last_result += "\n다음 행동 · " + str(preload("res://scripts/RaidRecoveryGuide.gd").advice(self).text)
 		if is_instance_valid(status):
 			status.text = raid_last_result
 			status.add_theme_color_override("font_color", RED)
@@ -4998,6 +4998,12 @@ func _legacy_tracked_quest_text() -> String:
 
 func _refresh_tutorial_state() -> void:
 	_LEGACY_QUESTS.refresh_tutorial_state(self)
+
+func _record_first_session_action(action: String) -> void:
+	preload("res://scripts/FirstSessionGuide.gd").record(self, action)
+
+func _follow_first_session_guide() -> void:
+	preload("res://scripts/FirstSessionGuide.gd").follow(self)
 
 func _tutorial_text() -> String:
 	return _LEGACY_QUESTS.tutorial_text(self)

@@ -1,0 +1,89 @@
+{
+  "active_seconds_per_day": 600,
+  "assumptions": "Fixed starter guardian; fill unlocked slots, spend research, recommend gear and upgrade once/minute. No real-money/ad payouts or extra dungeon rewards. Full active combat and production offline receipts; visual nodes and disk saves omitted.",
+  "faction": "noxfera",
+  "offline_seconds_per_day": 28800,
+  "rows": [
+    {
+      "average_gear_level": 2.6,
+      "bag": 58,
+      "day": 1,
+      "first_pack_seconds": 166.0,
+      "first_three_seconds": 420.0,
+      "first_upgrade_seconds": 180.0,
+      "gold": 172453,
+      "levels": [
+        31,
+        31,
+        31,
+        1,
+        1
+      ],
+      "max_level_heroes": 0,
+      "overflow": 0,
+      "packs": 61,
+      "party": 5,
+      "power": 7137,
+      "spent_gold": 12175,
+      "stage": 12
+    },
+    {
+      "average_gear_level": 10.0,
+      "bag": 200,
+      "day": 7,
+      "first_pack_seconds": 166.0,
+      "first_three_seconds": 420.0,
+      "first_upgrade_seconds": 180.0,
+      "gold": 3457920,
+      "levels": [
+        77,
+        77,
+        77,
+        70,
+        70,
+        70,
+        70,
+        70,
+        70,
+        70
+      ],
+      "max_level_heroes": 0,
+      "overflow": 273,
+      "packs": 2349,
+      "party": 10,
+      "power": 74993,
+      "spent_gold": 303900,
+      "stage": 273
+    },
+    {
+      "average_gear_level": 10.0,
+      "bag": 200,
+      "day": 30,
+      "first_pack_seconds": 166.0,
+      "first_three_seconds": 420.0,
+      "first_upgrade_seconds": 180.0,
+      "gold": 54199500,
+      "levels": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "max_level_heroes": 10,
+      "overflow": 2121,
+      "packs": 11749,
+      "party": 10,
+      "power": 112425,
+      "spent_gold": 303900,
+      "stage": 1334
+    }
+  ],
+  "schema": 1,
+  "seed": 3401
+}

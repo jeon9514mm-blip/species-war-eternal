@@ -87,6 +87,7 @@ static func snapshot(main: Node) -> Dictionary:
 		"tracked_quest_id": main.tracked_quest_id,
 		"tutorial_step": main.tutorial_step,
 		"tutorial_completed": main.tutorial_completed,
+		"tutorial_actions": main.tutorial_actions.duplicate(true),
 		"party_slot_legacy_cap": main.party_slot_legacy_cap,
 		"faction_war": main.faction_war_state.export_state(),
 		"faction_march": main.faction_march_state.export_state(),
@@ -261,6 +262,7 @@ static func load_idle_state(main: Node) -> void:
 	main.tracked_quest_id = str(parsed.get("tracked_quest_id", ""))
 	main.tutorial_step = clampi(int(parsed.get("tutorial_step", 0)), 0, 6)
 	main.tutorial_completed = bool(parsed.get("tutorial_completed", false))
+	main.tutorial_actions = preload("res://scripts/FirstSessionGuide.gd").restore(main,result["data"])
 	var saved_faction_world = parsed.get("faction_world_snapshots", {})
 	if typeof(saved_faction_world) == TYPE_DICTIONARY and not saved_faction_world.is_empty():
 		main.faction_world_snapshots = saved_faction_world.duplicate(true)

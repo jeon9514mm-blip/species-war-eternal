@@ -168,7 +168,9 @@ func _test_main() -> void:
 	await process_frame
 	main.set_physics_process(false)
 	main._notification(Node.NOTIFICATION_APPLICATION_PAUSED)
-	main.last_idle_timestamp -= 60
+
+	# Two completed five-member packs survive the 88% receipt rounding.
+	main.last_idle_timestamp -= ceili(preload("res://scripts/GrowthEconomyRules.gd").unmeasured_pack_interval(main.deployed_heroes.size()) * 2.0) + 1
 	var pause_timestamp: int = main.last_idle_timestamp
 	main._notification(Node.NOTIFICATION_APPLICATION_PAUSED)
 	_check(main._application_suspended and main.last_idle_timestamp == pause_timestamp, "duplicate pause cannot consume pending offline time")

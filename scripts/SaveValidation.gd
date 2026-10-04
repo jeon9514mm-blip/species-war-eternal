@@ -126,6 +126,7 @@ static func sanitize(raw: Dictionary, zone_ids: Array, stage_target: int = 10) -
 	data["guardian_free_claimed"]=typeof(data.get("guardian_free_claimed"))==TYPE_BOOL and data["guardian_free_claimed"]
 	data["tower_floor"] = number(data.get("tower_floor"), 1, 1, MAX_STAGE)
 	data["tower_best_floor"] = number(data.get("tower_best_floor"), 0, 0, int(data["tower_floor"]) - 1)
+	data["tutorial_actions"] = preload("res://scripts/FirstSessionGuide.gd").sanitize(data.get("tutorial_actions", {}))
 	data["tutorial_step"] = number(data.get("tutorial_step"), 0, 0, 6)
 	data["tutorial_completed"] = typeof(data.get("tutorial_completed")) == TYPE_BOOL and data["tutorial_completed"]
 	for key in ["daily_reward_claimed_day", "rewarded_ad_day", "daily_dungeon_day"]:

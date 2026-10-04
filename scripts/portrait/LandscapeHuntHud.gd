@@ -11,7 +11,7 @@ func _button_at(value: String, action: Callable, box: Rect2, named: String) -> B
 	SKIN.place(self, button, box)
 	return button
 func build(main: Node) -> void:
-	game = main; name = "PortraitHud"; z_index = 90
+	game = main; name = "PortraitHud"; z_index = 90; compact_guide_layout = true
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var screen: Vector2 = game.get_viewport_rect().size
@@ -32,6 +32,7 @@ func build(main: Node) -> void:
 	stage_progress = SKIN.gauge(self,Rect2(24,62,side-160,8),SKIN.GOLD)
 	enemy_label = _label_at("",Rect2(side-118,48,95,30))
 	quest_label = _label_at("",Rect2(24,82,side-44,30),16)
+	first_session_action = _button_at("원정 가이드",Callable(game,"_follow_first_session_guide"),Rect2(side-218,76,194,44),"FirstSessionGuideAction")
 	status_label = _label_at("",Rect2(20,h-128,side-40,30),16)
 	_layout_rows = 2 if maxi(game._party_slot_cap(),game.deployed_heroes.size()) > 5 else 1
 	slot_row = Control.new(); slot_row.name = "PortraitPartySlots"

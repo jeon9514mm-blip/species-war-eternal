@@ -147,12 +147,18 @@ static func menu(main) -> void:
 	panel.add_child(note)
 
 static func guide(main) -> void:
-	var panel := overlay(main, "원정 가이드", 274)
+	var panel := overlay(main, "원정 가이드", 364)
 	var label := UI.label(main._tutorial_text(), 18)
 	label.position = Vector2(28, 90)
-	label.size = Vector2(564, 138)
+	label.size = Vector2(564, 174)
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	panel.add_child(label)
+	var state: Dictionary = preload("res://scripts/FirstSessionGuide.gd").status(main)
+	var action := UI.button(str(state.caption), Vector2(564, 54))
+	action.pressed.connect(Callable(main, "_follow_first_session_guide"))
+	action.name = "FirstSessionGuideContinue"
+	action.position = Vector2(28, 282); action.size = Vector2(564, 54)
+	panel.add_child(action)
 
 static func _focus_if_attached(button_ref: WeakRef) -> void:
 	var button: Button = button_ref.get_ref() as Button

@@ -40,6 +40,8 @@ func _init() -> void:
 	var main = preload("res://scenes/Main.tscn").instantiate()
 	root.add_child(main)
 	await process_frame
+	# This encounter fixture intentionally tests all ten legacy party slots.
+	main.party_slot_legacy_cap = 10
 	main.combat_effects_enabled = false
 	main.selected_faction = "aurelia"
 	main.hero_progress = {}
@@ -134,14 +136,18 @@ func _init() -> void:
 	main._advance_raid_encounter(0.05)
 	check(main.raid_enraged, "180 second enrage is independent of HP phase")
 
-	# Regional pattern shapes: front damage differs, drain is limited by actual damage.
+	# Regional footprints: the warned lane hits, safe ground avoids damage.
+	# Drain remains limited by actual HP removed.
 	fresh(main, "forgotten_mine")
 	quiet_party(main)
 	var ids: Array = main._alive_hero_ids()
+	for hero_id in ids:
+		main.hero_battle_state[hero_id]["row"] = "rear"
+		main.raid_positions[hero_id] = Vector2(780,430)
 	main.hero_battle_state[ids[0]]["row"] = "front"
-	main.hero_battle_state[ids[1]]["row"] = "back"
+	main.raid_positions[ids[0]] = Vector2(330,330)
 	main._apply_boss_pattern(main._boss_pattern_profile("forgotten_mine"))
-	check(main.hero_battle_state[ids[0]]["hp"] < main.hero_battle_state[ids[1]]["hp"], "Mine front blast hits front harder than rear")
+	check(main.hero_battle_state[ids[0]]["hp"] < main.hero_battle_state[ids[1]]["hp"], "Mine marked lane hits its target and safe ground avoids damage")
 	fresh(main, "moonrest_forest")
 	quiet_party(main)
 	main.raid_boss_hp = int(main.raid_boss_max_hp / 2)
@@ -245,5 +251,8 @@ func _init() -> void:
 			check(main.raid_boss_hp >= 0 and main.party_hp >= 0 and main.raid_elapsed <= 240.0, "Bounded HP/time for %s/%s" % [faction, zone])
 			encounter_results.append({"faction": faction, "zone": zone, "outcome": main.raid_outcome, "seconds": snappedf(main.raid_elapsed, 0.1), "phase": main.raid_phase, "patterns": main.raid_pattern_count})
 	print("v27_boss_lifecycle assertions=%d failures=%d speed=%s encounters=%s" % [assertions, failures.size(), str(snapshots), JSON.stringify(encounter_results)])
-	main.free()
+	if main.presentation_runtime != null:
+		main.presentation_runtime.audio.shutdown()
+	main.queue_free()
+	await create_timer(0.35).timeout
 	quit(0 if failures.is_empty() else 1)
