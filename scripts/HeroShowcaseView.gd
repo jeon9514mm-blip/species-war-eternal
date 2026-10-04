@@ -34,6 +34,8 @@ var art_rect: Rect2
 var detail: VBoxContainer
 var guarded_actions: Array[Dictionary]=[]
 var writes_blocked:=false
+var live_bindings: Array[Callable]=[]
+var live_signature: int=0
 
 static func build(main: Node, selected_id: String, requested_tab: String='') -> void:
 	if not main._hero_belongs_to_selected_faction(selected_id):
@@ -72,6 +74,7 @@ func install(main: Node, selected_id: String, selected_tab: String) -> void:
 	art_rect=Rect2(340,92,right_rect.position.x-360,area.y-204)
 	_background(area);_header(area);_roster(area);_tabs(area);_hero_art();_identity();_details()
 	HUD.navigation(game,game.content_root,'heroes',area.y-90,90)
+	live_signature=_live_state_signature()
 	queue_redraw()
 
 func _background(area: Vector2) -> void:
@@ -115,6 +118,11 @@ func _header(area: Vector2) -> void:
 		_text(row,str(entry[0]),15,MUTED)
 		var amount:=_text(row,game._compact_hud_amount(int(entry[1])),21,INK);amount.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
 		amount.size_flags_horizontal=Control.SIZE_EXPAND_FILL;amount.tooltip_text=str(entry[1])
+		var currency:=str(entry[0])
+		amount.name='HeroGoldValue' if currency=='G' else 'HeroCrystalsValue'
+		live_bindings.append(func():
+			var value: int=game.wallet_gold if currency=='G' else game.raid_crystals
+			amount.text=game._compact_hud_amount(value);amount.tooltip_text=str(value))
 
 func _roster(area: Vector2) -> void:
 	var scroll:=ScrollContainer.new();scroll.name='HeroRosterScroll';S.make_scroll_responsive(scroll)
@@ -135,6 +143,10 @@ func _roster(area: Vector2) -> void:
 		var state:=('잠김 · %d'%int(entry.get('unlock_stage',1))) if is_locked else ('Lv.%d'%int(game._get_hero_progress(id).level))
 		var small:=_label_at(button,state,Rect2(6,83,96,25),14,Color.WHITE if id==hero_id else INK)
 		small.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+		live_bindings.append(func():
+			var still_locked: bool=game.idle_stage<int(entry.get('unlock_stage',1))
+			small.text=('잠김 · %d'%int(entry.get('unlock_stage',1))) if still_locked else ('Lv.%d'%int(game._get_hero_progress(id).level))
+			portrait.modulate=Color(.5,.6,.63,.65) if still_locked else Color.WHITE)
 		if game._is_hero_deployed(id):
 			var active:=_label_at(button,'●',Rect2(8,4,25,24),14,Color('#2c895e'));active.tooltip_text='출전 중'
 		if id==hero_id:button.set_meta('selected_hero',true)
@@ -176,6 +188,9 @@ func _hero_art() -> void:
 	var state: String='스테이지 %d에서 합류'%int(hero.get('unlock_stage',1)) if locked else ('출전 · '+str(game._party_slot_name(party_slot)) if party_slot>=0 else '미편성')
 	var state_label:=_label_at(frame,state,Rect2(0,art_rect.size.y-30,art_rect.size.x,28),16,MUTED)
 	state_label.name='HeroDeploymentState';state_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	live_bindings.append(func():
+		actor.modulate=Color(.62,.72,.77,.70) if locked else Color.WHITE
+		state_label.text='스테이지 %d에서 합류'%int(hero.get('unlock_stage',1)) if locked else ('출전 · '+str(game._party_slot_name(party_slot)) if party_slot>=0 else '미편성'))
 
 func _identity() -> void:
 	var name_label:=_label_at(self,str(hero.name),Rect2(right_rect.position.x,94,right_rect.size.x,40),27,INK)
@@ -183,8 +198,10 @@ func _identity() -> void:
 	_label_at(self,'%s · %s · %s'%[hero.get('race',''),hero.get('class',''),game._hero_role_group(hero_id)],Rect2(right_rect.position.x,137,right_rect.size.x,28),15,MUTED)
 	var level:=_label_at(self,'LEVEL  %d / %d'%[int(progress_data.level),game.MAX_HERO_LEVEL],Rect2(right_rect.position.x,172,right_rect.size.x,33),22,INK)
 	level.name='HeroLevelValue'
+	live_bindings.append(func():level.text='LEVEL  %d / %d'%[int(progress_data.level),game.MAX_HERO_LEVEL])
 	var values:=_text(self,'현재 전투 능력치 · HP %s · 공격 %s · 방어 %s'%[game._compact_hud_amount(int(combat_stats.max_hp)),game._compact_hud_amount(int(combat_stats.attack)),game._compact_hud_amount(int(combat_stats.defense))],13,MUTED)
 	values.name='HeroCombatStats';values.visible=false;values.set_meta('combat_stats',combat_stats.duplicate(true))
+	live_bindings.append(func():values.set_meta('combat_stats',combat_stats.duplicate(true)))
 	var scroll:=ScrollContainer.new();scroll.name='PortraitContentScroll';S.make_scroll_responsive(scroll)
 	# This direct-child path is the equipment workshop's return-scroll contract.
 	game.content_root.add_child(scroll)
@@ -197,6 +214,7 @@ func _identity() -> void:
 	_guard_action(deploy,func():return locked or (party_slot<0 and game.deployed_heroes.size()>=game._party_slot_cap()))
 	if not locked and party_slot<0 and game.deployed_heroes.size()>=game._party_slot_cap():deploy.tooltip_text='원정대가 가득 찼습니다. 편성에서 자리를 선택해 교체하세요.'
 	_place(self,deploy,Rect2(right_rect.position.x,game.get_viewport_rect().size.y-160,right_rect.size.x,48))
+	live_bindings.append(func():deploy.text='스테이지 %d에서 합류'%int(hero.get('unlock_stage',1)) if locked else ('배치 해제' if party_slot>=0 else '원정대에 배치'))
 
 func _details() -> void:
 	if locked:
@@ -217,6 +235,9 @@ func _stats() -> void:
 		value.name='HeroStat_'+('hp' if key=='max_hp' else key);value.set_meta('combat_value',int(combat_stats[key]))
 		value.size_flags_horizontal=Control.SIZE_EXPAND_FILL;value.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
 		value.tooltip_text=str(combat_stats[key])
+		live_bindings.append(func():
+			value.text=game._compact_hud_amount(int(combat_stats[key]));value.tooltip_text=str(combat_stats[key])
+			value.set_meta('combat_value',int(combat_stats[key])))
 	var note:=_text(detail,'현재 장비·연구·진형'+('·원정대 시너지 반영' if party_slot>=0 else ' 반영'),13,MUTED)
 	note.name='HeroStatBasis'
 
@@ -224,23 +245,31 @@ func _growth() -> void:
 	_stats()
 	var maximum: bool=int(progress_data.level)>=game.MAX_HERO_LEVEL
 	var required: int=int(game._hero_xp_to_next(int(progress_data.level)))
-	_text(detail,'최대 레벨 달성' if maximum else 'EXP  %d / %d · 전투로 성장'%[int(progress_data.xp),required],14,MUTED).name='HeroExperienceValue'
+	var experience:=_text(detail,'최대 레벨 달성' if maximum else 'EXP  %d / %d · 전투로 성장'%[int(progress_data.xp),required],14,MUTED);experience.name='HeroExperienceValue'
 	var bar:=ProgressBar.new();bar.custom_minimum_size=Vector2(0,7);bar.show_percentage=false
 	bar.max_value=required;bar.value=required if maximum else int(progress_data.xp)
+	bar.name='HeroExperienceBar'
+	live_bindings.append(func():
+		var next_xp: int=game._hero_xp_to_next(int(progress_data.level))
+		var at_max: bool=int(progress_data.level)>=game.MAX_HERO_LEVEL
+		experience.text='최대 레벨 달성' if at_max else 'EXP  %d / %d · 전투로 성장'%[int(progress_data.xp),next_xp]
+		bar.max_value=next_xp;bar.value=next_xp if at_max else int(progress_data.xp))
 	bar.add_theme_stylebox_override('background',_style(Color(.3,.45,.5,.14),Color.TRANSPARENT,3))
 	bar.add_theme_stylebox_override('fill',_style(ACCENT,Color.TRANSPARENT,3));detail.add_child(bar)
 	var points: int=game._skill_tree_available_points(hero_id)
-	_text(detail,'성장 연구     %d P 남음'%points,18,INK).name='HeroResearchPoints'
+	var research_points:=_text(detail,'성장 연구     %d P 남음'%points,18,INK);research_points.name='HeroResearchPoints'
+	live_bindings.append(func():research_points.text='성장 연구     %d P 남음'%game._skill_tree_available_points(hero_id))
 	var tree: Dictionary=game._get_skill_tree(hero_id)
 	for entry in [['offense','공격'],['survival','생존'],['utility','기능']]:
 		var branch:=str(entry[0]);var rank:=int(tree.get(branch,0))
 		var button:=_button('%s  %d / 10     + 1 P'%[entry[1],rank],func():_research(branch))
 		button.name='HeroResearch_'+branch;button.custom_minimum_size=Vector2(0,44);button.mouse_filter=Control.MOUSE_FILTER_PASS
 		button.alignment=HORIZONTAL_ALIGNMENT_LEFT;button.tooltip_text=game._skill_tree_branch_text(branch,rank)
-		_guard_action(button,func():return locked or points<=0 or rank>=10);detail.add_child(button)
+		_guard_action(button,func():return locked or game._skill_tree_available_points(hero_id)<=0 or int(game._get_skill_tree(hero_id).get(branch,0))>=10);detail.add_child(button)
 	var reset:=_button('연구 재배분',Callable(game,'_open_research_allocation').bind(hero_id));reset.name='HeroResearchAllocation';reset.custom_minimum_size.y=44
 	_guard_action(reset,func():return locked);detail.add_child(reset)
-	if points<=0:_text(detail,'영웅 레벨이 3 오를 때마다 연구 포인트를 얻어요.',14,MUTED)
+	var hint:=_text(detail,'영웅 레벨이 3 오를 때마다 연구 포인트를 얻어요.',14,MUTED);hint.visible=points<=0
+	live_bindings.append(func():hint.visible=game._skill_tree_available_points(hero_id)<=0)
 
 func _skills() -> void:
 	for kit: Dictionary in hero.get('skills',[]):
@@ -287,7 +316,9 @@ func _ascension() -> void:
 	_guard_action(ascend,func():return locked or capped or int(progress_data.level)<int(requirement.level) or game.wallet_gold<int(requirement.gold));box.add_child(ascend)
 	var rank: int=game._hero_breakthrough_rank(hero_id);var amount: int=game._hero_shard_count(hero_id);var cost: int=game._breakthrough_cost(rank)
 	var shards:=_section();_text(shards,'조각 돌파',22,INK)
-	_text(shards,'돌파 %d / 5   ·   조각 %d개 보유'%[rank,amount],17,ACCENT)
+	var shard_balance:=_text(shards,'돌파 %d / 5   ·   조각 %d개 보유'%[rank,amount],17,ACCENT)
+	shard_balance.name='HeroShardBalance'
+	live_bindings.append(func():shard_balance.text='돌파 %d / 5   ·   조각 %d개 보유'%[game._hero_breakthrough_rank(hero_id),game._hero_shard_count(hero_id)])
 	_text(shards,'돌파를 완료하면 영웅 전투력이 증가합니다.' if rank<5 else '모든 돌파 단계를 완료했습니다.',15,MUTED)
 	var breakthrough:=_button('최대 돌파' if rank>=5 else '돌파 · 조각 %d개'%cost,func():
 		if _mutation_blocked() or locked:return
@@ -304,13 +335,23 @@ func _guard_action(button: Button, unavailable: Callable) -> void:
 	guarded_actions.append({'button':button,'unavailable':unavailable})
 	button.disabled=_mutation_blocked() or bool(unavailable.call())
 
+func _live_state_signature() -> int:
+	return hash([game.wallet_gold,game.raid_crystals,game.idle_stage,game.hero_progress,game.hero_skill_tree,game.hero_shards,game.hero_breakthrough,game.hero_ascension,game.hero_equipment_items,game._deployed_hero_ids()])
+
 func _process(_delta: float) -> void:
 	if not is_instance_valid(game) or game.active_screen!='hero_detail':return
 	var blocked:=_mutation_blocked()
-	if blocked==writes_blocked:return
-	writes_blocked=blocked
-	# Saving can recover without navigating. Update only availability so the
-	# selected hero, task, scroll positions and keyboard focus stay intact.
+	var signature:=_live_state_signature()
+	if blocked==writes_blocked and signature==live_signature:return
+	writes_blocked=blocked;live_signature=signature
+	progress_data=game._get_hero_progress(hero_id)
+	locked=game.idle_stage<int(hero.get('unlock_stage',1))
+	party_slot=game._deployed_hero_ids().find(hero_id)
+	var hp_mult: float=float(game._calculate_party_synergy().get('hp_multiplier',1.0)) if party_slot>=0 else 1.0
+	combat_stats=game._hero_combat_stats(hero_id,maxi(0,party_slot),hp_mult)
+	for refresh: Callable in live_bindings:refresh.call()
+	# Update existing controls so a hunt reward cannot interrupt a touch,
+	# change the selected tab, move a scroll, or take keyboard focus.
 	for action: Dictionary in guarded_actions:
 		var button: Button=action.button
 		if is_instance_valid(button):button.disabled=blocked or bool(action.unavailable.call())

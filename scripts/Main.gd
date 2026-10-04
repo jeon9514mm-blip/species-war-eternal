@@ -275,6 +275,7 @@ var last_idle_timestamp: int = 0
 var offline_reward_gold := 0
 var offline_reward_xp := 0
 var offline_reward_seconds := 0
+var _offline_notice_pending := false
 var offline_pet_xp := 0
 var offline_rations := 0
 var offline_gear_rolls := 0
@@ -383,9 +384,13 @@ func _open_home() -> void:
 	if deployed_heroes.is_empty():
 		_build_hero_select_screen()
 		return
-	if background_hunt.resume(self): return
+	if background_hunt.resume(self):
+		_maybe_show_offline_reward_popup()
+		return
 	# Repeated Home taps retain the encounter, HP, timers and manual pause.
-	if active_screen == "combat" and challenge_session == null: return
+	if active_screen == "combat" and challenge_session == null:
+		_maybe_show_offline_reward_popup()
+		return
 	_build_combat_screen()
 
 func _configure_mobile_display() -> void:
@@ -454,9 +459,8 @@ func _notification(what: int) -> void:
 			_offline_checked = false
 			_calculate_offline_reward()
 			_update_reward_labels()
-		if active_screen == "combat" and combat_running:
-			if offline_reward_seconds > 0:
-				_show_offline_reward_popup()
+		if active_screen == "combat":
+			_maybe_show_offline_reward_popup()
 		elif active_screen == "faction_war":
 			world_war_client_session.reconnect_and_resync()
 			_save_idle_state()
@@ -1820,8 +1824,7 @@ func _build_combat_screen() -> void:
 	_update_reward_labels()
 	_update_stage_label()
 	_update_hunt_hud()
-	if offline_reward_seconds > 0:
-		_show_offline_reward_popup()
+	_maybe_show_offline_reward_popup()
 
 func _build_hunt_details(zone: Dictionary) -> void:
 	var panel := PanelContainer.new()
@@ -4923,8 +4926,19 @@ func _format_idle_time(seconds: int) -> String:
 	var minutes := (seconds % 3600) / 60
 	return "%d시간 %d분" % [hours, minutes]
 
+func _maybe_show_offline_reward_popup() -> void:
+	if not _offline_notice_pending or active_screen != "combat" or challenge_session != null or _application_suspended or bool(get_meta("practice_active", false)):
+		return
+	if not is_instance_valid(content_root): return
+	if content_root.has_node("OfflineRewardPopup"):
+		_offline_notice_pending = false
+		return
+	_show_offline_reward_popup()
+
 func _show_offline_reward_popup() -> void:
+	if not is_instance_valid(content_root): return
 	RewardDialogs.offline(self)
+	_offline_notice_pending = false
 
 func _claim_rewards() -> void:
 	_REWARD_CLAIMS.claim_rewards(self)

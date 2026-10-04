@@ -10,6 +10,7 @@ var root: Control
 var layers: Dictionary = {}
 var identity := ""
 var party_ids: Array = []
+var benched: Dictionary = {}
 
 func active() -> bool:
 	return is_instance_valid(root) and not root.is_queued_for_deletion()
@@ -54,6 +55,7 @@ func clear_presenter(main: Node) -> void:
 func discard() -> void:
 	if active(): root.queue_free()
 	root = null; ui.clear(); layers.clear(); party_ids.clear()
+	benched.clear()
 
 func resume(main: Node) -> bool:
 	if not active(): return false
@@ -99,16 +101,37 @@ func _reconcile_party(main: Node) -> void:
 	var old_states: Dictionary = main.hero_battle_state.duplicate(true)
 	var old_runtime: Dictionary = main.hero_skill_runtime.duplicate(true)
 	var old_positions: Dictionary = main.party_movement.positions.duplicate()
+	# Keep removed hunters for this encounter, including across Home/menu visits.
+	# A new hunt discards this cache; changing formation cannot heal or recharge.
+	for id in party_ids:
+		if id not in ids and old_states.has(id):
+			benched[id] = {"state": old_states[id], "runtime": old_runtime.get(id, {}), "position": old_positions.get(id, Vector2.ZERO)}
+	for id in ids:
+		if not old_states.has(id) and benched.has(id):
+			old_states[id] = benched[id].state
+			old_runtime[id] = benched[id].runtime
+			old_positions[id] = benched[id].position
+			# An interrupted cast must not hit its former target after re-entry.
+			for key in ["cast", "cast_secondary", "cast_ultimate"]: old_runtime[id][key] = false
+			old_runtime[id]["windup"] = -1.0
+			old_runtime[id]["target_index"] = -1
+			benched.erase(id)
+	var pet_remaining: float = float(main.pet_runtime.get("remaining", 0.0))
 	var statuses: Dictionary = {}
 	for key in ["_guard_seconds", "_weaken_seconds", "_vulnerable_seconds", "_stun_seconds", "_skill_spacing"]: statuses[key] = main.get(key)
 	main._setup_hero_skills()
+	if not main.pet_runtime.is_empty(): main.pet_runtime.remaining = pet_remaining
 	for id in ids:
 		if not old_states.has(id): continue
 		var fresh: Dictionary = main.hero_battle_state[id]
 		var old: Dictionary = old_states[id]
-		var ratio := float(old.hp) / maxf(1.0, float(old.max_hp))
-		fresh.hp = maxi(1, roundi(float(fresh.max_hp) * ratio)) if int(old.hp) > 0 else 0
-		fresh.alive = int(fresh.hp) > 0
+		var ratio := clampf(float(old.hp) / maxf(1.0, float(old.max_hp)), 0.0, 1.0)
+		var merged: Dictionary = old.duplicate(true)
+		for key in ["max_hp", "attack", "defense", "role_group", "slot", "row", "range", "ai_style", "attack_interval_mult", "ult_gain_mult"]:
+			merged[key] = fresh[key]
+		merged.hp = maxi(1, roundi(float(fresh.max_hp) * ratio)) if int(old.hp) > 0 else 0
+		merged.alive = int(merged.hp) > 0
+		main.hero_battle_state[id] = merged
 		if old_runtime.has(id):
 			var profile: Dictionary = main.hero_skill_runtime[id].profile
 			main.hero_skill_runtime[id] = old_runtime[id]
@@ -119,8 +142,11 @@ func _reconcile_party(main: Node) -> void:
 	for bar in main.hero_hp_bars:
 		if is_instance_valid(bar): bar.queue_free()
 	main._create_map_hero_sprites()
-	for id in ids:
+	for index in ids.size():
+		var id: String = str(ids[index])
 		if old_positions.has(id): main.party_movement.positions[id] = old_positions[id]
+		if int(main.hero_battle_state[id].hp) <= 0 and index < main.hero_map_sprites.size():
+			main.hero_map_sprites[index].play_death()
 	main._sync_party_hp_from_heroes()
 	party_ids = ids.duplicate()
 

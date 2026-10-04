@@ -23,6 +23,7 @@ var source_button: Button
 var detail_button: Button
 var tiles: Dictionary={}
 var settings_sheet: Control
+var gold_label: Label
 
 static func refresh(main: Node) -> void:
 	main.set_meta('gear_bag_page',0);main.set_meta('gear_bag_scroll',0)
@@ -76,6 +77,7 @@ func install(main: Node) -> void:
 		hero_id=str(selector.get_item_metadata(index));game.set_meta('gear_equip_hero_id',hero_id)
 		refresh(game))
 	var money:=P.text(top,'G  '+game._compact_hud_amount(game.wallet_gold),21,S.GOLD)
+	gold_label=money;gold_label.name='GearGoldValue'
 	money.custom_minimum_size.x=135;money.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;money.size_flags_horizontal=Control.SIZE_SHRINK_END
 	var close:=_button(top,'×',Callable(game,'_build_lobby_screen'));close.name='EquipmentBagClose';close.custom_minimum_size.x=56;close.size_flags_horizontal=Control.SIZE_SHRINK_END
 	var body_y:=86.0;var body_h:=h-190.0
@@ -146,6 +148,11 @@ func install(main: Node) -> void:
 	HUD.navigation(game,game.content_root,'bag',h-90,90)
 	_render_details()
 	if bool(game.get_meta('gear_settings_open',false)):_show_settings()
+
+func _process(_delta: float) -> void:
+	if is_instance_valid(game) and game.active_screen=='inventory' and is_instance_valid(gold_label):
+		gold_label.text='G  '+game._compact_hud_amount(game.wallet_gold)
+		gold_label.tooltip_text=str(game.wallet_gold)
 
 func _category(slot: String) -> void:
 	var filters: Dictionary=game.get_meta('gear_bag_filters',{}).duplicate()

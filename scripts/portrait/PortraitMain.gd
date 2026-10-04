@@ -71,6 +71,7 @@ func _claim_offline_rewards() -> void:
 	offline_pending_gold=0;offline_pending_xp=0
 	offline_pending_chest_gold=0;offline_pending_chest_xp=0
 	offline_reward_gold=0;offline_reward_xp=0;offline_reward_seconds=0
+	_offline_notice_pending=false
 	offline_pet_xp=0;offline_rations=0;offline_gear_rolls=0
 	offline_stage_clears=0;offline_efficiency=0
 	_update_reward_labels();_save_idle_state()

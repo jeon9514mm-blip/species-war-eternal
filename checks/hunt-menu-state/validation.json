@@ -1,0 +1,145 @@
+{
+  "base_commit": "bc13841610dcfb9abe6382359dd66cef85c6c881",
+  "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+  "date_utc": "2026-10-04",
+  "successful_suites": 10,
+  "successful_checks": 3683,
+  "suites": [
+    {
+      "script": "scripts/HuntMenuStateSmokeTest.gd",
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "HUNT_MENU_STATE checks=94 failures=[]"
+      ],
+      "checks": 94
+    },
+    {
+      "script": "scripts/MenuHuntReliabilitySmokeTest.gd",
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "MENU_HUNT_RELIABILITY checks=40 failures=[]"
+      ],
+      "checks": 40
+    },
+    {
+      "script": "scripts/HuntingHomeSmokeTest.gd",
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "HUNTING_HOME_SMOKE checks=53 failures=[]"
+      ],
+      "checks": 53
+    },
+    {
+      "script": "scripts/HeroMenuUxSmokeTest.gd",
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "hero_menu_ux checks=1065 failures=[]"
+      ],
+      "checks": 1065
+    },
+    {
+      "script": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "equipment_modal_save_recovery checks=163 failures=[]"
+      ],
+      "checks": 163
+    },
+    {
+      "script": "scripts/V8361OfflineSaveSmokeTest.gd",
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "v8361_offline_save checks=436 failures=[]"
+      ],
+      "checks": 436
+    },
+    {
+      "script": "scripts/TouchScrollSmokeTest.gd",
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "TOUCH_SCROLL_SMOKE checks=51 failures=[]"
+      ],
+      "checks": 51
+    },
+    {
+      "script": "scripts/V83PracticeBattleSmokeTest.gd",
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "v83_practice_battle checks=840 failures=[]"
+      ],
+      "checks": 840
+    },
+    {
+      "script": "scripts/IndependentHuntSmokeTest.gd",
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "INDEPENDENT_HUNT checks=89 failures=[]"
+      ],
+      "checks": 89
+    },
+    {
+      "script": "scripts/RaidTouchLayoutSmokeTest.gd",
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "RAID_TOUCH_LAYOUT checks=852 failures=[]"
+      ],
+      "checks": 852
+    }
+  ],
+  "parse_checks": [
+    {
+      "script": "scripts/BackgroundHunt.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "script": "scripts/EquipmentInventoryView.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "script": "scripts/HeroShowcaseView.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "script": "scripts/Main.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "script": "scripts/OfflineRewardService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "script": "scripts/RewardDialogs.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "script": "scripts/portrait/PortraitMain.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "script": "scripts/HuntMenuStateSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    }
+  ],
+  "limitations": [
+    "Headless virtual machine; Android hardware and project-target Godot 4.7.2 were not tested."
+  ],
+  "fault_injection": "The new regression deliberately rejects one save per faction and verifies that actions stay blocked until the write succeeds; these injected warnings are expected."
+}

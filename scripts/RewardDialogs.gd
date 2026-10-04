@@ -150,10 +150,12 @@ static func _confirm(main, modal: Dictionary, caption: String, rect: Rect2, afte
 	var panel: Panel = modal["panel"]
 	var overlay: ColorRect = modal["overlay"]
 	var button: Button = LAYOUT._action(main, panel, caption, rect, func():
+		if not is_instance_valid(panel) or panel.is_queued_for_deletion(): return
 		for control: Control in [panel, overlay]:
 			if is_instance_valid(control):
-				if control.get_parent() != null:
-					control.get_parent().remove_child(control)
+				# Keep the GUI target in the tree through emulated mouse/touch
+				# release. Hiding closes immediately; deletion waits for frame end.
+				control.hide()
 				control.queue_free()
 		if after_close.is_valid():
 			after_close.call()

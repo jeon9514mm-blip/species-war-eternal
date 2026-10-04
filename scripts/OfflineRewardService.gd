@@ -84,4 +84,5 @@ static func calculate_offline_reward(main: Node) -> void:
 		main._roll_equipment_drop(zone)
 
 	main._on_offline_hunt_reward(main.offline_reward_gold,main.offline_reward_xp,chest_gold if main.offline_stage_clears>0 else 0,chest_xp if main.offline_stage_clears>0 else 0)
+	main._offline_notice_pending = true
 	main._save_idle_state()
