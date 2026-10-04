@@ -1,0 +1,445 @@
+{
+  "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+  "project_target": "Godot 4.7.2",
+  "base_commit": "15a4ff035c0de2c4f83722bd433dc505fd056035",
+  "date_utc": "2026-10-04",
+  "scope": "Menu-preserved normal hunting, serial worker autosaves, Android back notification, real emulated touch save retry, independent normal-hunt steering and target assignment",
+  "successful_suites": 17,
+  "successful_checks": 3326,
+  "suites": [
+    {
+      "script": "scripts/TouchScrollSmokeTest.gd",
+      "exit": 0,
+      "checks": 51,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/HeroMenuUxSmokeTest.gd",
+      "exit": 0,
+      "checks": 1065,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "exit": 0,
+      "checks": 163,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/GameplayReliabilitySmokeTest.gd",
+      "exit": 0,
+      "checks": 133,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/HuntingHomeSmokeTest.gd",
+      "exit": 0,
+      "checks": 53,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/MenuHuntReliabilitySmokeTest.gd",
+      "exit": 0,
+      "checks": 40,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/V51UiInteractionSmokeTest.gd",
+      "exit": 0,
+      "checks": 99,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/V8362InvasionSmokeTest.gd",
+      "exit": 0,
+      "checks": 175,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/V8362FormationDisplaySmokeTest.gd",
+      "exit": 0,
+      "checks": 90,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/DirectionalHuntQualitySmokeTest.gd",
+      "exit": 0,
+      "checks": 32,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/V53HuntEcologySmokeTest.gd",
+      "exit": 0,
+      "checks": 47,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/V52RoleCombatSmokeTest.gd",
+      "exit": 0,
+      "checks": 306,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/V26CombatDecisionSmokeTest.gd",
+      "exit": 0,
+      "checks": 14,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/V83PracticeBattleSmokeTest.gd",
+      "exit": 0,
+      "checks": 840,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/IndependentHuntSmokeTest.gd",
+      "exit": 0,
+      "checks": 89,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/HuntAutosaveSmokeTest.gd",
+      "exit": 0,
+      "checks": 10,
+      "engine_errors": [],
+      "passed": true
+    },
+    {
+      "script": "scripts/UnifiedInterfaceSmokeTest.gd",
+      "exit": 0,
+      "checks": 119,
+      "engine_errors": [],
+      "passed": true
+    }
+  ],
+  "individual_steering_fixture": [
+    {
+      "constrained": {
+        "farthest": 1.97129797935486,
+        "spread": 1.90923018124368,
+        "targets": 8
+      },
+      "faction": "aurelia",
+      "individual": {
+        "farthest": 3.83981823921204,
+        "spread": 3.93572605583403,
+        "targets": 9
+      },
+      "natural": {
+        "cycles": 2,
+        "hero_hp_removed": 16,
+        "monster_targets": 4
+      }
+    },
+    {
+      "constrained": {
+        "farthest": 1.98084592819214,
+        "spread": 2.0275086581707,
+        "targets": 8
+      },
+      "faction": "noxfera",
+      "individual": {
+        "farthest": 3.97990036010742,
+        "spread": 4.43105087942547,
+        "targets": 8
+      },
+      "natural": {
+        "cycles": 2,
+        "hero_hp_removed": 11,
+        "monster_targets": 4
+      }
+    }
+  ],
+  "autosave_timings_ms_vm": [
+    {
+      "items": 0,
+      "synchronous_median_ms": 5.088,
+      "worker_launch_main_thread_median_ms": 0.638
+    },
+    {
+      "items": 200,
+      "synchronous_median_ms": 35.019,
+      "worker_launch_main_thread_median_ms": 1.854
+    },
+    {
+      "items": 3200,
+      "synchronous_median_ms": 477.06,
+      "worker_launch_main_thread_median_ms": 9.047
+    }
+  ],
+  "starter_party_all_entrances": [
+    {
+      "entrance": "east",
+      "faction": "aurelia",
+      "hp_removed": 2546,
+      "seconds": 115.1,
+      "survivors": 3
+    },
+    {
+      "entrance": "west",
+      "faction": "aurelia",
+      "hp_removed": 1795,
+      "seconds": 71.3,
+      "survivors": 3
+    },
+    {
+      "entrance": "north",
+      "faction": "aurelia",
+      "hp_removed": 683,
+      "seconds": 31.5,
+      "survivors": 3
+    },
+    {
+      "entrance": "south",
+      "faction": "aurelia",
+      "hp_removed": 1858,
+      "seconds": 74.8,
+      "survivors": 3
+    },
+    {
+      "entrance": "northeast",
+      "faction": "aurelia",
+      "hp_removed": 811,
+      "seconds": 34.6,
+      "survivors": 3
+    },
+    {
+      "entrance": "southwest",
+      "faction": "aurelia",
+      "hp_removed": 1349,
+      "seconds": 52.3,
+      "survivors": 3
+    },
+    {
+      "entrance": "northwest",
+      "faction": "aurelia",
+      "hp_removed": 1425,
+      "seconds": 44.2,
+      "survivors": 3
+    },
+    {
+      "entrance": "southeast",
+      "faction": "aurelia",
+      "hp_removed": 1970,
+      "seconds": 96.4,
+      "survivors": 3
+    },
+    {
+      "entrance": "east",
+      "faction": "noxfera",
+      "hp_removed": 1116,
+      "seconds": 22.6,
+      "survivors": 3
+    },
+    {
+      "entrance": "west",
+      "faction": "noxfera",
+      "hp_removed": 1755,
+      "seconds": 36.6,
+      "survivors": 3
+    },
+    {
+      "entrance": "north",
+      "faction": "noxfera",
+      "hp_removed": 1094,
+      "seconds": 22.0,
+      "survivors": 3
+    },
+    {
+      "entrance": "south",
+      "faction": "noxfera",
+      "hp_removed": 1632,
+      "seconds": 33.8,
+      "survivors": 3
+    },
+    {
+      "entrance": "northeast",
+      "faction": "noxfera",
+      "hp_removed": 1009,
+      "seconds": 20.3,
+      "survivors": 3
+    },
+    {
+      "entrance": "southwest",
+      "faction": "noxfera",
+      "hp_removed": 2013,
+      "seconds": 38.0,
+      "survivors": 3
+    },
+    {
+      "entrance": "northwest",
+      "faction": "noxfera",
+      "hp_removed": 1507,
+      "seconds": 32.7,
+      "survivors": 3
+    },
+    {
+      "entrance": "southeast",
+      "faction": "noxfera",
+      "hp_removed": 1084,
+      "seconds": 20.3,
+      "survivors": 3
+    }
+  ],
+  "expected_failures_injected": [
+    "injected_menu_save_failure",
+    "injected_async_save_failure",
+    "injected_gameplay_write_failure",
+    "injected_recovery_write_failure"
+  ],
+  "preexisting_broad_suite_failures": [
+    {
+      "script": "scripts/CombatQualitySmokeTest.gd",
+      "checks": 669,
+      "failures": [
+        "large hero selection target",
+        "reachable floor stays above enlarged dodge controls"
+      ],
+      "reproduced_on_base_commit": true,
+      "scope": "Existing raid layout at 1280x720; unchanged by these normal-hunt changes."
+    }
+  ],
+  "fixture_repairs": [
+    "EquipmentModalSaveRecoverySmokeTest searches current menu first because retained hunt has a second hidden navigation dock.",
+    "V26CombatDecisionSmokeTest registers its fixture corps so compaction cannot retire/recreate the target; actual individual attack reach replaces anchor-distance assumption.",
+    "HuntingHomeSmokeTest requires manual pause to survive hero menu return.",
+    "V8362InvasionSmokeTest checks individual role leash in place of the obsolete tight formation bound."
+  ],
+  "limitations": [
+    "Headless VM measurements are not mobile performance guarantees.",
+    "No Android device execution or APK build.",
+    "No trained machine-learning model; deterministic role, range, spacing, load and failed-pursuit feedback rules."
+  ],
+  "changed_script_parse_checks": [
+    {
+      "path": "scripts/ChallengeBattleDirector.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentInventoryView.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/GameSaveCoordinator.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroKitRuntime.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HeroShowcaseView.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntFieldService.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntingHomeSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/InvasionHuntDirector.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/Main.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/PartyMovementDirector.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/SaveSafety.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V26CombatDecisionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/V8362InvasionSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitMain.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitMenus.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/portrait/PortraitPages.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/BackgroundHunt.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntAutosave.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntingTargetDirector.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/HuntAutosaveSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/IndependentHuntSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "path": "scripts/MenuHuntReliabilitySmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    }
+  ]
+}

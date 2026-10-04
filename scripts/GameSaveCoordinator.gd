@@ -4,11 +4,11 @@ extends RefCounted
 ## The injected host supplies state, virtual UI hooks and runtime refreshes.
 ## No cached host reference, duplicate wallet, RNG or save schema is introduced.
 
-static func save_idle_state(main: Node) -> void:
-	if bool(main.get_meta("practice_active", false)): return
+static func snapshot(main: Node) -> Dictionary:
+	if bool(main.get_meta("practice_active", false)): return {}
 	if main._save_blocked_for_newer_version:
 		main.last_save_status = "unsupported_version"
-		return
+		return {}
 	main.GOALS.refresh(main)
 	main._sanitize_deployed_party_for_faction()
 	main._stash_active_faction_presets()
@@ -96,12 +96,20 @@ static func save_idle_state(main: Node) -> void:
 		"world_authority": main.world_authority.export_state(),
 		"world_server_gateway": main.world_server_gateway.export_state()
 	}
+	return data
+
+static func save_idle_state(main: Node) -> void:
+	var data := snapshot(main)
+	if data.is_empty(): return
 	main.set_meta("game_save_pending", true)
 	var result = main.save_store.write_save(main.save_state_path, data)
+	accept_result(main, result, int(data["last_idle_timestamp"]))
+
+static func accept_result(main: Node, result: Dictionary, save_timestamp: int) -> void:
 	main.last_save_status = str(result.get("status", "save_failed"))
 	preload("res://scripts/SaveSafety.gd").observe(main)
 	if bool(result.get("ok", false)):
-		main.last_idle_timestamp = save_timestamp
+		main.last_idle_timestamp = maxi(main.last_idle_timestamp, save_timestamp)
 		main.goals_save_pending = false
 		if main._save_issue_notified and not main.active_screen.is_empty():
 			main._show_toast("원정대 기록이 다시 정상적으로 저장됐어요.")

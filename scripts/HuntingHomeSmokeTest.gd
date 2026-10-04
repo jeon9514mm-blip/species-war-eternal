@@ -63,7 +63,7 @@ func returning(faction: String) -> void:
 	await tap(main, "PortraitNav_home")
 	check(not main.combat_running and battle(main) == snapshot, faction + " Home preserves an intentional pause")
 	main._open_hero_menu(); await settle(); await tap(main, "HeroShowcaseBack")
-	check(main.active_screen == "combat" and main.combat_running, faction + " hero back returns to hunting home")
+	check(main.active_screen == "combat" and not main.combat_running, faction + " hero back returns home preserving the manual pause")
 	main._build_inventory_screen(); await settle(); await tap(main, "PortraitNav_home")
 	check(main.active_screen == "combat" and main.current_zone_id == zone_id, faction + " inventory Home returns to the saved hunting region")
 	main._build_login_screen(); await settle()

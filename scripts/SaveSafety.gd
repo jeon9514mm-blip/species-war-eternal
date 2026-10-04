@@ -35,7 +35,8 @@ static func refresh_banner(main: Node) -> void:
 	var old: Node = main.get_node_or_null("SaveSafetyLayer")
 	if not pending(main):
 		if old != null:
-			main.remove_child(old)
+			old.visible = false
+			old.name = "ClosingSaveSafetyLayer"
 			old.queue_free()
 		return
 	if old != null: return

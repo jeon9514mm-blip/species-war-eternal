@@ -63,7 +63,6 @@ func _run() -> void:
 		check(main.combat_hunt_cycle>0,"natural defensive AI clears corps "+faction)
 		check(main.expedition_position==anchor,"anchor never pursues monsters")
 		for id in main.party_movement.positions:
-			var station: Vector2=main.party_movement.formation_station(id,anchor)
-			check(Vector2(main.party_movement.positions[id]).distance_to(station)<2.0,"hero stays near formation "+id)
+			check(Vector2(main.party_movement.positions[id]).distance_to(anchor)<=main.party_movement.hunt_leash(id)+0.15,"hero pursues independently within role leash "+id)
 		await dispose(main)
 	done("v8362_invasion")

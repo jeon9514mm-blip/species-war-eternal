@@ -278,6 +278,7 @@ static func spawn_wave(main: Node) -> void:
 				return
 	session.combat_ledger.begin_wave(token, main.enemy_wave)
 	main.roaming_hunt.invasion_enabled = false
+	main.party_movement.independent_hunt = false
 	main.party_movement.holding_formation = false
 	main.roaming_hunt.spawn_group(main.enemy_wave)
 	PATTERN_RULES.spread_positions(session, main.roaming_hunt)

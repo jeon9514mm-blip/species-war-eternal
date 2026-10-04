@@ -175,7 +175,7 @@ static func _choose_faction(main: Node,id: String) -> void:
 		card.add_theme_stylebox_override('panel',SKIN.box(Color('#223351f4') if chosen else Color('#1c2a48ed'),SKIN.GOLD if chosen else Color(accent,.55),18,4 if chosen else 2))
 
 static func roster(main: Node) -> void:
-	main._clear_screen();main.active_screen='hero_select'
+	main._clear_screen(true);main.active_screen='hero_select'
 	main.hero_slot_labels.clear();main.hero_select_buttons.clear();main.equipment_labels.clear()
 	main.party_composition_label=null;main.hero_hint=null
 	var heroes: Array=main._hero_roster_for_faction()

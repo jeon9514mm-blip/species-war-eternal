@@ -83,11 +83,15 @@ static func advance_roaming_hunt(main: Node, delta: float, support_actors: Array
 	for enemy in main.enemy_wave:
 		immobile.append(float(enemy.get("stun_seconds", 0.0)) > 0.0)
 	var enemy_targets: Array[Vector2] = []
-	if main.roaming_hunt is INVASION:main.roaming_hunt.target_attack_reaches.clear()
+	if main.roaming_hunt is INVASION:
+		main.roaming_hunt.target_attack_reaches.clear()
+		main.roaming_hunt.target_hero_ids.clear()
 	for index in main.enemy_wave.size():
+		main.enemy_wave[index]["hunt_target_lock"] = maxf(0.0, float(main.enemy_wave[index].get("hunt_target_lock", 0.0)) - delta)
 		var hero_id = main._select_hero_target_for_enemy(index)
 		enemy_targets.append(main._hero_field_position(hero_id))
 		if main.roaming_hunt is INVASION:
+			main.roaming_hunt.target_hero_ids.append(hero_id)
 			main.roaming_hunt.target_attack_reaches.append(main.combat_decisions.spatial_range(int(main.hero_battle_state.get(hero_id,{}).get('range',1))))
 	var result = main.roaming_hunt.advance(delta, main._alive_enemy_mask(), immobile, enemy_targets)
 	for returned_index in result.get("returned_indices", []):
@@ -111,7 +115,7 @@ static func advance_roaming_hunt(main: Node, delta: float, support_actors: Array
 	else:
 		main.expedition_target = main.roaming_hunt.patrol_target
 	if bool(result.get("encounter_started", false)):
-		main.skill_event_text = "⚔ 적 부대 진입 · 진형을 유지하며 맞서 싸웁니다."
+		main.skill_event_text = "⚔ 적 부대 진입 · 각자 목표를 골라 사냥합니다."
 		if main.hunt_ai.state != AutoHuntController.State.FIGHTING:
 			main._reset_attack_windups(true)
 			main.combat_engage_settle_remaining = 1.50
@@ -188,7 +192,7 @@ static func advance_auto_hunt_step(main: Node, step: float) -> void:
 		main._update_map_tiles()
 	if main._save_elapsed >= 10.0:
 		main._save_elapsed = 0.0
-		main._save_idle_state()
+		main._queue_hunt_save()
 
 static func finish_hunt_target(main: Node) -> void:
 	if main.challenge_session != null:
@@ -304,7 +308,7 @@ static func settle_corps(main: Node, fallen: Array, profile: Dictionary) -> void
 	main._goal_record("hunt_packs", reward_units)
 	preload("res://scripts/HuntProductivity.gd").record(main, reward_units)
 	main._on_hunt_reward(kill_reward_gold, kill_reward_xp, equipment_drops, stage_cleared, stage_reward_gold, stage_reward_xp)
-	main._save_idle_state()
+	main._queue_hunt_save()
 
 static func admit(main: Node, zone: Dictionary = {}) -> void:
 	if main.challenge_session != null or main.hunt_ai.state == AutoHuntController.State.RECOVERING or main.SAVE_SAFETY.pending(main): return
@@ -316,7 +320,8 @@ static func admit(main: Node, zone: Dictionary = {}) -> void:
 	var start: int = main.enemy_wave.size()
 	main.enemy_wave.append_array(members)
 	main.roaming_hunt.invasion_enabled = true
-	main.party_movement.holding_formation = true
+	main.party_movement.independent_hunt = true
+	main.party_movement.holding_formation = false
 	main.roaming_hunt.append_corps(members, corps_id)
 	main._spawn_enemy_wave_sprites(start)
 	main._sync_enemy_wave_summary()
@@ -347,5 +352,11 @@ static func compact(main: Node) -> void:
 		runtime["target_index"] = int(mapping.get(int(runtime.get("target_index",-1)),-1))
 	for id in main.party_movement.targets:
 		main.party_movement.targets[id] = int(mapping.get(main.party_movement.targets[id],-1))
+	for id in main.party_movement.combat_goals:
+		var goal: Dictionary = main.party_movement.combat_goals[id]
+		goal["target"] = int(mapping.get(int(goal.get("target", -1)), -1))
+	for id in main.party_movement.blocked_targets:
+		var memory: Dictionary = main.party_movement.blocked_targets[id]
+		memory["target"] = int(mapping.get(int(memory.get("target", -1)), -1))
 	main.field_navigation.clear_routes()
 	main.monster_sprite = main.enemy_wave_sprites[0] if not main.enemy_wave_sprites.is_empty() else null

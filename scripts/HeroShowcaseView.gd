@@ -49,7 +49,7 @@ static func build(main: Node, selected_id: String, requested_tab: String='') -> 
 	var content_offset:=old_content.scroll_vertical if old_content!=null and same_panel else 0
 	main.set_meta('hero_showcase_id',selected_id);main.set_meta('hero_showcase_tab',selected_tab)
 	main.set_meta('hero_showcase_roster_scroll',roster_offset)
-	main._clear_screen();main.active_screen='hero_detail'
+	main._clear_screen(true);main.active_screen='hero_detail'
 	main.content_root.set_meta('portrait_ready',true);main.content_root.set_meta('portrait_tab','heroes')
 	var view=load('res://scripts/HeroShowcaseView.gd').new()
 	view.name='HeroShowcaseView';main.content_root.add_child(view)

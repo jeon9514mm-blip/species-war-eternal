@@ -71,6 +71,8 @@ static func auto_profile(main, id: String, slot: String) -> Dictionary:
 static func select_target(main, id: String, slot := "basic") -> int:
 	if main.active_screen == "raid":
 		return -1
+	if slot == "basic" and main.active_screen == "combat" and main.challenge_session == null and main.party_movement.independent_hunt:
+		return main._select_enemy_target(id)
 	var profile: Dictionary = {} if slot == "basic" else auto_profile(main, id, slot)
 	if slot == "basic" and str(CATALOG.skill(id, "passive").get("condition", "")) == "same_target":
 		profile["target_retention_bonus"] = .35

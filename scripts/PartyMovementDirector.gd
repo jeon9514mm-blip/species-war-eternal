@@ -14,7 +14,10 @@ const SUPPORT_REAR_MARGIN := 0.18
 const CONTROLLER_LATERAL_OFFSET := 0.72
 const ROSTER = preload("res://scripts/HeroRosterCatalog.gd")
 
+var independent_hunt := false
 var holding_formation := false
+var stalled_seconds: Dictionary = {}
+var blocked_targets: Dictionary = {}
 var formation_facing := Vector2.RIGHT
 var formation_threat := -1
 var formation_id := "balanced"
@@ -40,6 +43,8 @@ func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
 	target_locks.clear()
 	movement_profiles.clear()
 	combat_goals.clear()
+	stalled_seconds.clear()
+	blocked_targets.clear()
 	for index in heroes.size():
 		var id := str(heroes[index].get("id", ""))
 		var state: Dictionary = states.get(id, {})
@@ -79,8 +84,12 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 		var state: Dictionary = states.get(id, {})
 		var start: Vector2 = positions.get(id, anchor)
 		velocities[id] = Vector2.ZERO
-		if paused or int(state.get("hp", 0)) <= 0:
+		if int(state.get("hp", 0)) <= 0:
+			targets[id] = -1
+			target_locks[id] = 0.0
+			combat_goals.erase(id)
 			continue
+		if paused: continue
 		target_locks[id] = maxf(0.0, float(target_locks.get(id, 0.0)) - delta)
 		var runtime: Dictionary = runtimes.get(id, {})
 		if float(runtime.get("windup", -1.0)) >= 0.0:
@@ -93,7 +102,10 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 				goal = _combat_goal(id, start, target, state, runtime, states, before_positions, enemies, enemy_positions, returning, enemy_homes)
 		else:
 			targets[id] = -1
-		if holding_formation:
+		if independent_hunt:
+			# A role leash permits individual pursuit without abandoning the field.
+			goal = anchor + (goal - anchor).limit_length(hunt_leash(id))
+		elif holding_formation:
 			var station: Vector2 = formation_station(id,anchor)
 			var intercept: float=1.35 if bool(movement_profiles.get(id,{}).get('frontline_screen',false)) else 0.85
 			goal = station + (goal - station).limit_length(intercept)
@@ -101,6 +113,7 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 		var next := _move("hero_%s" % id, start, goal, WALK_SPEED * delta)
 		# Separation is a local steering force; global navigation always sees the full goal.
 		var separation := Vector2.ZERO
+		var spacing := 0.95 if independent_hunt else SEPARATION_RADIUS
 		for other_id in before_positions:
 			if other_id == id or int(states.get(other_id, {}).get("hp", 0)) <= 0:
 				continue
@@ -111,8 +124,8 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 				var pair := id + ':' + str(other_id) if id < str(other_id) else str(other_id) + ':' + id
 				var direction := Vector2.from_angle(float(absi(pair.hash()) % 6283) / 1000.0)
 				separation += direction if id < str(other_id) else -direction
-			elif distance < SEPARATION_RADIUS:
-				separation += away / distance * (1.0 - distance / SEPARATION_RADIUS)
+			elif distance < spacing:
+				separation += away / distance * (1.0 - distance / spacing)
 		var movement := next - start
 		var steered := movement + separation * 0.85 * delta
 		steered = steered.limit_length(WALK_SPEED * delta)
@@ -120,6 +133,8 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 			steered = Vector2.ZERO
 		if field_navigation == null or field_navigation.is_walkable(start + steered):
 			next = _move("hero_local_%s" % id, start, start + steered, WALK_SPEED * delta)
+		if independent_hunt:
+			_adapt_blocked_route(id, delta, start, next, goal, state, enemies, enemy_positions)
 		positions[id] = next
 		velocities[id] = (next - start) / delta
 		distance_walked[id] = float(distance_walked.get(id, 0.0)) + start.distance_to(next)
@@ -154,6 +169,8 @@ func _select_target(id: String, start: Vector2, enemies: Array, enemy_positions:
 		var attack_profile: Dictionary = {"target_retention_bonus":0.35} if same_target_profile else {}
 		var ranked := _decisions.rank_skill_targets(state, enemies, attack_profile, distances, attack_previous)
 		if not ranked.is_empty():
+			if independent_hunt and ranked.has(previous) and float(target_locks.get(id, 0.0)) > 0.0:
+				return previous
 			var reachable := _choose_reachable_target(id, state, enemies, ranked, attack_previous, same_target_profile)
 			return _lock_choice(reachable, previous, id)
 	if previous_valid and float(target_locks.get(id, 0.0)) > 0.0:
@@ -165,11 +182,13 @@ func _select_target(id: String, start: Vector2, enemies: Array, enemy_positions:
 		if not _eligible(index, enemies, enemy_positions, returning):
 			continue
 		var score := float(distances[index])
+		if independent_hunt:
+			score += _blocked_cost(id, index)
 		if state.has("role_group"):
 			score += _decisions.enemy_priority_score(state, enemies[index], index) * 0.9
 		for other_id in targets:
 			if other_id != id and int(targets[other_id]) == index:
-				score += 0.04 if str(state.get("ai_style", "")) in ["finisher", "sustain"] or same_target else 0.12
+				score += (0.12 if same_target or str(state.get("ai_style", "")) == "finisher" else 0.65) if independent_hunt else (0.04 if str(state.get("ai_style", "")) in ["finisher", "sustain"] or same_target else 0.12)
 		if index == previous:
 			score -= 0.60 if same_target else 0.30
 		if score < best_score:
@@ -192,9 +211,10 @@ func _choose_reachable_target(id: String, state: Dictionary, enemies: Array, ran
 		var soft_cap := _target_soft_cap(state, enemy)
 		var overload := maxi(0, load + 1 - soft_cap)
 		var score := _decisions.skill_target_score(state, enemy, index, {})
-		score += float(load) * TARGET_LOAD_PENALTY + float(overload) * TARGET_OVERLOAD_PENALTY
+		score += float(load) * (0.42 if independent_hunt else TARGET_LOAD_PENALTY) + float(overload) * (1.05 if independent_hunt else TARGET_OVERLOAD_PENALTY)
+		if independent_hunt: score += _blocked_cost(id, index)
 		if index == previous:
-			score -= 0.20
+			score -= 0.35 if independent_hunt else 0.20
 		if score < best_score:
 			best_score = score
 			best = index
@@ -269,6 +289,8 @@ func _combat_goal(id: String, start: Vector2, target: int, state: Dictionary, ru
 	var away := (start - enemy_position).normalized()
 	if away.length_squared() < 0.01:
 		away = Vector2.from_angle(float(state.get("slot", 0)) * 2.4)
+	if independent_hunt:
+		away = away.rotated((float(posmod(id.hash(), 5)) - 2.0) * 0.24)
 	var goal := enemy_position + away * preferred
 	if melee:
 		# Movement-triggered kits circle within their real attack reach rather
@@ -362,6 +384,10 @@ func _combat_goal(id: String, start: Vector2, target: int, state: Dictionary, ru
 		var distance := candidate.distance_to(enemy_position)
 		var score := maxf(0.0, distance - (maximum_range - 0.12)) * 4.0
 		score += maxf(0.0, preferred - 0.14 - distance) * 2.5
+		if independent_hunt:
+			for ally_id in before_positions:
+				if ally_id != id and int(states.get(ally_id, {}).get("hp", 0)) > 0:
+					score += maxf(0.0, 1.1 - candidate.distance_to(before_positions[ally_id])) * 1.4
 		for index in enemy_positions.size():
 			if _eligible(index, enemies, enemy_positions, returning):
 				var danger := maxf(0.0, 0.94 - candidate.distance_to(enemy_positions[index]))
@@ -486,3 +512,35 @@ func _face_threat(delta: float,anchor: Vector2,enemies: Array,enemy_positions: A
 	var turn:=formation_facing.angle_to(direction.normalized())
 	if absf(turn)<.08:return
 	formation_facing=formation_facing.rotated(clampf(turn,-delta*.55,delta*.55)).normalized()
+
+func hunt_leash(id: String) -> float:
+	var profile: Dictionary = movement_profiles.get(id, {})
+	return 4.0 if bool(profile.get("rear_support", false)) else (6.0 if bool(profile.get("flanker", false)) else 5.0)
+
+func _blocked_cost(id: String, index: int) -> float:
+	var memory: Dictionary = blocked_targets.get(id, {})
+	return 4.0 if int(memory.get("target", -1)) == index and float(memory.get("remaining", 0.0)) > 0.0 else 0.0
+
+func _adapt_blocked_route(id: String, delta: float, start: Vector2, next: Vector2, goal: Vector2, state: Dictionary, enemies: Array, enemy_positions: Array[Vector2]) -> void:
+	var memory: Dictionary = blocked_targets.get(id, {})
+	memory["remaining"] = maxf(0.0, float(memory.get("remaining", 0.0)) - delta)
+	blocked_targets[id] = memory
+	var target := int(targets.get(id, -1))
+	if target < 0 or target >= enemy_positions.size():
+		stalled_seconds[id] = 0.0; return
+	var can_hit := _decisions.can_attack_enemy(state, enemies, target, _distances_from(start, enemy_positions))
+	var approaching := next.distance_to(goal) < start.distance_to(goal) - 0.01 * delta
+	# Waiting in attack reach or during a cast is intentional; only failed pursuit adapts.
+	if can_hit or approaching or start.distance_to(goal) < 0.2:
+		stalled_seconds[id] = 0.0; return
+	stalled_seconds[id] = float(stalled_seconds.get(id, 0.0)) + delta
+	if float(stalled_seconds[id]) >= 2.5:
+		blocked_targets[id] = {"target":target, "remaining":4.0}
+		stalled_seconds[id] = 0.0
+		target_locks[id] = 0.0
+		combat_goals.erase(id)
+
+func _distances_from(start: Vector2, enemy_positions: Array[Vector2]) -> Array:
+	var distances: Array = []
+	for point in enemy_positions: distances.append(start.distance_to(point))
+	return distances

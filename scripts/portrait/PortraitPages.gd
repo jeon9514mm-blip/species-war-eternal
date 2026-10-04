@@ -112,7 +112,7 @@ static func progress(parent: Node, value: float, maximum: float) -> void:
 static func begin(main: Node, screen: String, title: String, detail: String, tab: String = '') -> VBoxContainer:
 	var previous: ScrollContainer=main.content_root.get_node_or_null('PortraitContentScroll')
 	var restore_position: int=previous.scroll_vertical if main.active_screen==screen and previous!=null else 0
-	main._clear_screen()
+	main._clear_screen(screen not in ['login', 'intro'])
 	main.active_screen=screen
 	main.content_root.set_meta('portrait_tab',tab)
 	M.header(main,title,detail)

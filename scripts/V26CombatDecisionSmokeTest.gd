@@ -32,6 +32,11 @@ func _prepare(main, hero_ids: Array, enemies: Array, positions: Array[Vector2]) 
 	main.hunt_ai.set_state(AutoHuntController.State.FIGHTING)
 	main.hunt_ai.state_time = 2.0
 	main.enemy_wave = enemies.duplicate(true)
+	# Fixtures are one registered live corps, so ordinary reinforcement cannot
+	# retire a target lacking a corps identity during the range assertion.
+	main.invasion.reset()
+	main.invasion.register({})
+	for enemy in main.enemy_wave: enemy["corps_id"] = main.invasion.serial
 	main.roaming_hunt.configure(Vector2(1.0, 2.0), 2601)
 	main.roaming_hunt.spawn_group(main.enemy_wave)
 	main.roaming_hunt.enemy_positions = positions.duplicate()
@@ -100,12 +105,18 @@ func _test_emergency_heal_starts_during_natural_chase(main) -> void:
 	main.hero_skill_runtime["elisia"]["remaining"] = 0.0
 	main.hero_skill_runtime["elisia"]["attack_remaining"] = 0.0
 	var minimum_distance := INF
+	var all_damage_reachable := true
 	for _step in 6:
+		var enemy_hp_before := int(main.enemy_wave[0]["hp"])
 		main._advance_auto_hunt(0.05)
 		minimum_distance = minf(minimum_distance, main.roaming_hunt.enemy_distance(0))
-	_check(minimum_distance > 1.75, "chase fixture stays outside every hero attack range")
+		if int(main.enemy_wave[0]["hp"]) < enemy_hp_before:
+			var reachable := false
+			for hero_id in main._alive_hero_ids(): reachable = reachable or main._can_attack_enemy(hero_id, 0)
+			all_damage_reachable = all_damage_reachable and reachable
+	_check(minimum_distance > 1.75, "chase fixture keeps enemy far from the party anchor")
 	_check(int(tank["hp"]) > before, "natural chase starts and completes emergency healing")
-	_check(int(main.enemy_wave[0]["hp"]) == 10000, "natural chase does not create out-of-range damage")
+	_check(all_damage_reachable, "natural chase only deals damage within an individual hero attack range")
 
 func _test_aoe_does_not_damage_disconnected_enemies(main) -> void:
 	_prepare(main, ["caelum"], [_enemy(), _enemy(), _enemy()], [Vector2(1.6, 2.0), Vector2(1.7, 2.15), Vector2(5.7, 3.5)])

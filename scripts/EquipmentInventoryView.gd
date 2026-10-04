@@ -33,7 +33,7 @@ static func build(main: Node) -> void:
 		var previous: ScrollContainer=main.content_root.find_child('PortraitContentScroll',true,false)
 		if previous!=null:main.set_meta('gear_bag_scroll',previous.scroll_vertical)
 	main.set_meta('gear_bag_reset_scroll',false)
-	main._clear_screen();main.active_screen='inventory'
+	main._clear_screen(true);main.active_screen='inventory'
 	main.content_root.set_meta('portrait_ready',true);main.content_root.set_meta('portrait_tab','bag')
 	var view: Control=load('res://scripts/EquipmentInventoryView.gd').new()
 	view.name='EquipmentWorkbench';main.content_root.add_child(view)

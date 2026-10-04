@@ -4,6 +4,8 @@ const _FIELD = preload("res://scripts/HuntFieldService.gd")
 const FORMATIONS = preload("res://scripts/BattleFormation.gd")
 var invasion := preload("res://scripts/InvasionWaveState.gd").new()
 var formation_id: String = "balanced"
+var hunt_autosave: Node
+var background_hunt := preload("res://scripts/BackgroundHunt.gd").new()
 
 # v83 domain services; legacy commands below remain compatible virtual entrypoints.
 const _SAVE_FLOW = preload("res://scripts/GameSaveCoordinator.gd")
@@ -341,6 +343,9 @@ var combat_field_rect := Rect2(Vector2(55, 198), Vector2(760, 350))
 var combat_side_rect := Rect2(Vector2(850, 198), Vector2(375, 310))
 
 func _ready() -> void:
+	hunt_autosave = preload("res://scripts/HuntAutosave.gd").new()
+	hunt_autosave.name = "HuntAutosave"
+	add_child(hunt_autosave)
 	var touch_scroll := preload("res://scripts/TouchScrollController.gd").new()
 	touch_scroll.name = "TouchScrollController"
 	add_child(touch_scroll)
@@ -378,6 +383,7 @@ func _open_home() -> void:
 	if deployed_heroes.is_empty():
 		_build_hero_select_screen()
 		return
+	if background_hunt.resume(self): return
 	# Repeated Home taps retain the encounter, HP, timers and manual pause.
 	if active_screen == "combat" and challenge_session == null: return
 	_build_combat_screen()
@@ -432,7 +438,9 @@ func _physics_process(delta: float) -> void:
 		_advance_auto_hunt(delta)
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_APPLICATION_PAUSED and not _application_suspended:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		_handle_android_back()
+	elif what == NOTIFICATION_APPLICATION_PAUSED and not _application_suspended:
 		_application_suspended = true
 		if is_instance_valid(presentation_runtime): presentation_runtime.sync_context()
 		_save_idle_state()
@@ -455,7 +463,31 @@ func _notification(what: int) -> void:
 	elif what == NOTIFICATION_WM_CLOSE_REQUEST:
 		_save_idle_state()
 
-func _clear_screen() -> void:
+func _handle_android_back() -> void:
+	# Share Escape's presenter-specific dialog handling with Android's back button.
+	var event := InputEventKey.new()
+	event.keycode = KEY_ESCAPE
+	event.pressed = true
+	get_viewport().push_input(event, true)
+	var consumed := get_viewport().is_input_handled()
+	var release := InputEventKey.new()
+	release.keycode = KEY_ESCAPE
+	get_viewport().push_input(release, true)
+	if not consumed and active_screen not in ["combat", "title", "login", "faction"]:
+		_open_home()
+
+func _clear_screen(keep_hunt: bool = false) -> void:
+	var retained := keep_hunt and background_hunt.retain(self)
+	if retained:
+		active_screen = ""
+		background_hunt.clear_presenter(self)
+		for child in get_children():
+			if child == background_hunt.root or child == presentation_runtime or child.name in ["SaveSafetyLayer", "TouchScrollController", "HuntAutosave"]: continue
+			child.queue_free()
+		_new_screen_root()
+		return
+	if background_hunt.active(): _save_idle_state()
+	background_hunt.discard()
 	if challenge_session != null and challenge_session.practice:
 		challenge_session.cancel("left_screen")
 		CHALLENGE_DRIVER.publish_report(self, challenge_session)
@@ -493,8 +525,11 @@ func _clear_screen() -> void:
 	open_map_boss_sprite = null
 	for child in get_children():
 		# Audio/settings, input and save recovery belong to the game root.
-		if child == presentation_runtime or child.name in ["SaveSafetyLayer", "TouchScrollController"]: continue
+		if child == presentation_runtime or child.name in ["SaveSafetyLayer", "TouchScrollController", "HuntAutosave"]: continue
 		child.queue_free()
+	_new_screen_root()
+
+func _new_screen_root() -> void:
 	content_root = Control.new()
 	content_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(content_root)
@@ -1331,9 +1366,15 @@ func _build_party_ready_screen(names: Array[String]) -> void:
 	OnboardingScreens.ready(self, names)
 
 func _save_idle_state() -> void:
+	if is_instance_valid(hunt_autosave): hunt_autosave.before_critical_save()
 	_SAVE_FLOW.save_idle_state(self)
 
+func _queue_hunt_save() -> void:
+	if is_instance_valid(hunt_autosave): hunt_autosave.request()
+	else: _save_idle_state()
+
 func _load_idle_state() -> void:
+	if is_instance_valid(hunt_autosave): hunt_autosave.before_critical_save()
 	_SAVE_FLOW.load_idle_state(self)
 
 func _calculate_offline_reward() -> void:
@@ -1685,7 +1726,8 @@ func _build_combat_screen() -> void:
 	hunt_ai.configure(zone["positions"], expedition_position)
 	roaming_hunt_seed = idle_stage * 7919 + int(zone.get("difficulty", 1)) * 131 + (17 if selected_faction == "aurelia" else 29)
 	roaming_hunt.invasion_enabled = true
-	party_movement.holding_formation = true
+	party_movement.independent_hunt = true
+	party_movement.holding_formation = false
 	roaming_hunt.configure(expedition_position, roaming_hunt_seed, current_zone_id)
 	roaming_wave_spawn_cooldown = 0.0
 	roaming_last_party_velocity = Vector2.ZERO
@@ -2839,6 +2881,9 @@ func _can_attack_enemy(hero_id: String, target_index: int) -> bool:
 	return combat_decisions.can_attack_enemy(hero_battle_state.get(hero_id, {}), enemy_wave, target_index, _combat_enemy_distances(hero_id))
 
 func _select_enemy_target(hero_id: String) -> int:
+	if active_screen == "combat" and challenge_session == null and party_movement.independent_hunt:
+		var personal_target := int(party_movement.targets.get(hero_id, -1))
+		if _can_attack_enemy(hero_id, personal_target): return personal_target
 	var runtime: Dictionary = hero_skill_runtime.get(hero_id, {})
 	return combat_decisions.select_enemy_target(
 		hero_battle_state.get(hero_id, {}), enemy_wave, _combat_enemy_distances(hero_id), int(runtime.get("target_index", -1))
@@ -2855,7 +2900,7 @@ func _select_hero_target_for_enemy(enemy_index: int, require_reachable := false)
 			if _hero_field_position(hero_id).distance_to(roaming_hunt.enemy_position(enemy_index)) <= _enemy_attack_range(enemy):
 				reachable.append(hero_id)
 		candidates = reachable
-	var target_id := combat_decisions.select_hero_target(enemy, enemy_index, hero_battle_state, candidates, str(enemy.get("target_id", "")))
+	var target_id := preload("res://scripts/HuntingTargetDirector.gd").select(self, enemy_index, candidates) if active_screen == "combat" and challenge_session == null and party_movement.independent_hunt else combat_decisions.select_hero_target(enemy, enemy_index, hero_battle_state, candidates, str(enemy.get("target_id", "")))
 	enemy["target_id"] = target_id
 	return target_id
 
@@ -4335,6 +4380,9 @@ func _advance_roaming_hunt(delta: float, support_actors: Array[String] = []) -> 
 	_FIELD.advance_roaming_hunt(self, delta, support_actors)
 
 func _advance_auto_hunt(delta: float) -> void:
+	if active_screen != "combat" and background_hunt.active():
+		background_hunt.advance(self, delta)
+		return
 	if SAVE_SAFETY.pending(self): return
 	if active_screen != "combat" or not combat_running or _application_suspended or delta <= 0.0 or not is_finite(delta):
 		return

@@ -29,6 +29,12 @@ func _save_idle_state() -> void:
 		_deposit_nonoffline_rewards()
 	super._save_idle_state()
 
+func _queue_hunt_save() -> void:
+	if bool(get_meta("practice_active", false)): return
+	if not _offline_settling and not _save_blocked_for_newer_version:
+		_deposit_nonoffline_rewards()
+	super._queue_hunt_save()
+
 func _calculate_offline_reward() -> void:
 	_offline_settling=true
 	super._calculate_offline_reward()
@@ -83,8 +89,8 @@ func _layout_width() -> float:
 	return maxf(720.0,get_viewport_rect().size.x)
 func _layout_height() -> float:
 	return maxf(720.0 if get_viewport_rect().size.x > get_viewport_rect().size.y else 1280.0,get_viewport_rect().size.y)
-func _clear_screen() -> void:
-	super._clear_screen()
+func _clear_screen(keep_hunt: bool = false) -> void:
+	super._clear_screen(keep_hunt)
 	hero_slot_labels.clear();hero_select_buttons.clear()
 	party_composition_label=null;hero_hint=null
 	_finalize_portrait_view.call_deferred(content_root.get_instance_id())
@@ -230,7 +236,7 @@ func _on_hunt_reward(gold: int, xp: int, drops: Array[Dictionary], stage_cleared
 	unclaimed_gold-=paid_gold;unclaimed_xp-=paid_xp
 	idle_chest_gold-=paid_chest_gold;idle_chest_xp-=paid_chest_xp
 	wallet_gold+=paid_gold+paid_chest_gold;wallet_xp+=paid_xp+paid_chest_xp
-	if active_screen=='combat' and is_instance_valid(portrait_hud):portrait_hud.show_hunt_reward(gold,xp,drops,stage_cleared)
+	if active_screen=='combat' and not bool(get_meta('background_hunt_tick',false)) and is_instance_valid(portrait_hud):portrait_hud.show_hunt_reward(gold,xp,drops,stage_cleared)
 
 func _claim_rewards() -> void:
 	_deposit_nonoffline_rewards()

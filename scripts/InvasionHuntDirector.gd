@@ -3,6 +3,7 @@ extends RoamingHuntDirector
 var invasion_enabled := true
 var _entry_pending := false
 var target_attack_reaches: Array[float]=[]
+var target_hero_ids: Array[String]=[]
 const ENTRY_SIDES := [
 	{"id":"east","name":"동쪽","anchor":Vector2(30.2,10)},
 	{"id":"west","name":"서쪽","anchor":Vector2(1.8,10)},
@@ -38,8 +39,9 @@ func advance(delta: float, alive_mask: Array, immobile_mask: Array = [], hero_ta
 		var preferred: float=behavior.distance
 		# A ranged enemy cannot hold a melee-only defender in permanent stalemate.
 		if i<target_attack_reaches.size():preferred=minf(preferred,maxf(.46,target_attack_reaches[i]-.08))
+		var approach := _approach_slot(i, target, preferred, alive_mask)
 		if distance > preferred:
-			pos = _move_actor("enemy_%d" % i, pos, target, minf(float(behavior.speed)*delta,distance-preferred))
+			pos = _move_actor("enemy_%d" % i, pos, approach, float(behavior.speed)*delta)
 		elif bool(behavior.retreat) and distance<.65 and distance>.01:
 			var away:=pos+(pos-target).normalized()*(preferred-distance)
 			pos=_move_actor("enemy_%d"%i,pos,_clamp_field(away),.75*delta)
@@ -71,3 +73,16 @@ func append_corps(enemies: Array, corps_id: int) -> void:
 
 func _enemy_separation_radius() -> float:
 	return 1.35 if invasion_enabled else super._enemy_separation_radius()
+
+func _approach_slot(index: int, target: Vector2, radius: float, alive_mask: Array) -> Vector2:
+	var home := enemy_home_positions[index] if index < enemy_home_positions.size() else enemy_positions[index]
+	var direction := (home - target).normalized()
+	if direction.length_squared() < 0.01: direction = Vector2.RIGHT
+	var rank := 0
+	if index < target_hero_ids.size():
+		for other in index:
+			if other < alive_mask.size() and bool(alive_mask[other]) and other < target_hero_ids.size() and target_hero_ids[other] == target_hero_ids[index]: rank += 1
+	# Reserved approach angles stop every member following the hero's exact center.
+	var point := _clamp_field(target + direction.rotated((float(rank % 5) - 2.0) * 0.38) * radius)
+	if field_navigation != null and not field_navigation.is_walkable(point): return target
+	return point

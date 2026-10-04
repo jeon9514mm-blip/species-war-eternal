@@ -12,7 +12,8 @@ func click(point: Vector2) -> void:
 		var event:=InputEventMouseButton.new();event.position=point;event.button_index=MOUSE_BUTTON_LEFT;event.pressed=down;root.push_input(event,true)
 	await settle()
 func tap(named: String, expected_enabled: bool=true) -> void:
-	var target: Button=main.find_child(named,true,false)
+	var target: Button=node(named)
+	if target==null:target=main.find_child(named,true,false)
 	check(target!=null,'control exists '+named)
 	if target==null:return
 	var ancestor: Node=target.get_parent()
