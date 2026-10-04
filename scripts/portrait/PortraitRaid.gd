@@ -629,16 +629,22 @@ func _wide_layout(body: Control, summary: Control, status: Control, actions: Con
 	skill_auto_button.position = Vector2(field_w+8,h-332); skill_auto_button.size = Vector2(toggle_w,40)
 	ultimate_auto_button.position = Vector2(field_w+16+toggle_w,h-332); ultimate_auto_button.size = Vector2(toggle_w,40)
 	actions.position = Vector2(16,h-276); actions.size = Vector2(w-32,52)
-	heading.position = Vector2(20,h-218)
-	party.position = Vector2(16,h-186); party.size = Vector2(w-32,84)
-	var cell: float = (w-32-9*6)/10.0
+	heading.hide()
+	_layout_party_strip(party,Vector2(16,h-216),w-32)
+
+func _layout_party_strip(party: Control,origin: Vector2,width: float) -> void:
+	var party_scroll:=ScrollContainer.new();party_scroll.name='RaidPartyScroll';party_scroll.scroll_deadzone=8
+	party_scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;party_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_AUTO
+	SKIN.place(self,party_scroll,Rect2(origin,Vector2(width,112)))
+	var cell:=maxf(128.0,(width-9.0*8.0)/10.0)
+	party.reparent(party_scroll,false);party.position=Vector2.ZERO;party.custom_minimum_size=Vector2(10*(cell+8)-8,108);party.size=party.custom_minimum_size
 	for i in party.get_child_count():
-		var slot: Control = party.get_child(i)
-		slot.position = Vector2(i*(cell+6),0); slot.size = Vector2(cell,84)
+		var slot: Control=party.get_child(i);slot.position=Vector2(i*(cell+8),0);slot.size=Vector2(cell,108)
+		slot.mouse_filter=Control.MOUSE_FILTER_PASS
 		for child in slot.get_children():
-			if child is TextureRect: child.size = Vector2(cell-6,46)
-			elif child is Label: child.position.y = 48; child.size = Vector2(cell-8,24); child.add_theme_font_size_override("font_size",14)
-			elif child is ProgressBar: child.position.y = 75; child.size.x = cell-12
+			if child is TextureRect:child.size=Vector2(cell-6,58)
+			elif child is Label:child.position.y=59;child.size.x=cell-8;child.add_theme_font_size_override('font_size',18)
+			elif child is ProgressBar:child.position.y=98;child.size.x=cell-12
 
 func _compact_raid_layout(body: Control,summary: Control,status: Control,actions: Control,party: Control,heading: Control,w: float,h: float) -> void:
 	# One battlefield, one command row, one horizontally scrolling party strip.
@@ -665,17 +671,7 @@ func _compact_raid_layout(body: Control,summary: Control,status: Control,actions
 		button.custom_minimum_size.y=76;button.add_theme_font_size_override('font_size',22)
 	actions.position=Vector2(20,h-302);actions.size=Vector2(w-40,76)
 	heading.hide()
-	var party_scroll:=ScrollContainer.new();party_scroll.name='RaidPartyScroll';party_scroll.scroll_deadzone=8
-	party_scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;party_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_AUTO
-	SKIN.place(self,party_scroll,Rect2(20,h-214,w-40,112))
-	party.reparent(party_scroll,false);party.position=Vector2.ZERO;party.custom_minimum_size=Vector2(10*136-8,108);party.size=party.custom_minimum_size
-	for i in party.get_child_count():
-		var slot: Control=party.get_child(i);slot.position=Vector2(i*136,0);slot.size=Vector2(128,108)
-		slot.mouse_filter=Control.MOUSE_FILTER_PASS
-		for child in slot.get_children():
-			if child is TextureRect:child.size=Vector2(122,58)
-			elif child is Label:child.size.x=120;child.add_theme_font_size_override('font_size',18)
-			elif child is ProgressBar:child.position.y=98;child.size.x=116
+	_layout_party_strip(party,Vector2(20,h-214),w-40)
 	body.position=Vector2(20,128);body.size=Vector2(w-40,h-446)
 	sheet.hide()
 

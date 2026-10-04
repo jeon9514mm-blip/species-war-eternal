@@ -365,12 +365,17 @@ func _apply_portrait_resize() -> void:
 		# Rebuild presentation only. The new view reparents the live boss and FX
 		# before freeing the old view, preserving encounter timers and HP.
 		var old_view:=content_root.get_node_or_null('PortraitRaidView')
+		var selected_id: String=str(old_view.selected_hero_id) if old_view!=null else ''
 		for node_name in ['PortraitMenuHeader','PortraitNavigation']:
 			var old_node:=content_root.get_node_or_null(node_name)
 			if old_node!=null:old_node.free()
 		if old_view!=null:old_view.name='PreviousRaidView'
 		var view:=preload('res://scripts/portrait/PortraitRaid.gd').new()
 		content_root.add_child(view);view.install(self)
+		if view.hero_slots.has(selected_id):
+			view.selected_hero_id=selected_id;view.refresh()
+			var party_scroll: ScrollContainer=view.find_child("RaidPartyScroll",true,false)
+			if party_scroll!=null:party_scroll.ensure_control_visible.call_deferred(view.hero_slots[selected_id])
 		if old_view!=null:old_view.free()
 	elif is_instance_valid(content_root) and content_root.has_meta('portrait_ready') and content_root.get_node_or_null('PortraitNavigation')!=null:
 		var nav: Control=content_root.get_node_or_null('PortraitNavigation')

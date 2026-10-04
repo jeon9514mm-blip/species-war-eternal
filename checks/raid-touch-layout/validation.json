@@ -1,0 +1,147 @@
+{
+  "base_commit": "0dea7c0a138262e7da148ace352859d5ca5c022d",
+  "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+  "date_utc": "2026-10-04",
+  "resolved_prior_failures": [
+    "large hero selection target",
+    "reachable floor stays above enlarged dodge controls"
+  ],
+  "successful_suites": 7,
+  "successful_checks": 3126,
+  "suites": [
+    {
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "RAID_TOUCH_LAYOUT checks=852 failures=[]"
+      ],
+      "script": "scripts/RaidTouchLayoutSmokeTest.gd",
+      "checks": 852
+    },
+    {
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "combat_quality checks=669 failures=[]"
+      ],
+      "script": "scripts/CombatQualitySmokeTest.gd",
+      "checks": 669
+    },
+    {
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "raid_combat_quality checks=32 failures=[]"
+      ],
+      "script": "scripts/RaidCombatQualitySmokeTest.gd",
+      "checks": 32
+    },
+    {
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "v8364_combat_view checks=1312 failures=[]"
+      ],
+      "script": "scripts/V8364CombatViewSmokeTest.gd",
+      "checks": 1312
+    },
+    {
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "v836_raid_battle checks=123 failures=[]"
+      ],
+      "script": "scripts/V836RaidBattleSmokeTest.gd",
+      "checks": 123
+    },
+    {
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "TOUCH_SCROLL_SMOKE checks=51 failures=[]"
+      ],
+      "script": "scripts/TouchScrollSmokeTest.gd",
+      "checks": 51
+    },
+    {
+      "exit": 0,
+      "errors": [],
+      "results": [
+        "raid_arena_quality checks=87 failures=[]"
+      ],
+      "script": "scripts/RaidArenaQualitySmokeTest.gd",
+      "checks": 87
+    }
+  ],
+  "parse_checks": [
+    {
+      "script": "scripts/maps3d/Battlefield3DView.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "script": "scripts/portrait/PortraitMain.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "script": "scripts/portrait/PortraitRaid.gd",
+      "exit": 0,
+      "errors": []
+    },
+    {
+      "script": "scripts/RaidTouchLayoutSmokeTest.gd",
+      "exit": 0,
+      "errors": []
+    }
+  ],
+  "phone_input": "Input.parse_input_event with real engine emulated mouse from touch",
+  "matrix": {
+    "factions": [
+      "aurelia",
+      "noxfera"
+    ],
+    "raids": [
+      "gray_meadow",
+      "forgotten_mine",
+      "moonrest_forest"
+    ],
+    "physical_window_sizes": [
+      [
+        1280,
+        720
+      ],
+      [
+        1560,
+        720
+      ],
+      [
+        1920,
+        1080
+      ],
+      [
+        720,
+        1280
+      ]
+    ],
+    "landscape_content_preserved": true
+  },
+  "geometry_1280x720": {
+    "minimum_hero_card": [
+      128,
+      108
+    ],
+    "stage_size": [
+      778,
+      284
+    ],
+    "floor_end_y_before": 222.65,
+    "floor_end_y_after": 182,
+    "dodge_top_y": 192
+  },
+  "limitations": [
+    "No Android device execution or APK build.",
+    "Project-target Godot 4.7.2 not executed.",
+    "Headless input and geometry tests; no rendered-device visual check."
+  ]
+}

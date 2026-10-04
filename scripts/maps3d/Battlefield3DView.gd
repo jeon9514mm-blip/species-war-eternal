@@ -29,6 +29,7 @@ var overview_mode:=false
 var view_button: Button
 const RAID_PIVOT:=Vector2(519,383)
 const RAID_UNITS:=26.0
+const RAID_BOTTOM_CLEARANCE:=102.0
 func _ready() -> void:
 	mouse_filter=Control.MOUSE_FILTER_IGNORE;clip_contents=true
 	var container:=SubViewportContainer.new();container.name='Live3DViewport';container.stretch=true
@@ -66,11 +67,16 @@ func _resize_world() -> void:
 	if raid_mode:
 		# Keep every reachable floor point and the boss's head inside the stage.
 		# The original combat-coordinate transform remains shared with warnings.
-		var safe_size:=Vector2(maxf(1,size.x-36),maxf(1,size.y-102))
+		var safe_size:=Vector2(maxf(1,size.x-36),maxf(1,size.y-RAID_BOTTOM_CLEARANCE))
 		raid_factor=minf(safe_size.x/674.0,safe_size.y/340.0)
 		_set_focus(Vector2(16,10))
 		camera.size=size.y/(RAID_UNITS*raid_factor)
 		camera.v_offset=(-5.0+57.0*raid_factor)/(RAID_UNITS*raid_factor)
+		# Measure the real floor projection; preserve actor/telegraph scale and
+		# leave the enlarged dodge/follow strip below every reachable point.
+		var floor_end: Vector2=preload("res://scripts/RaidBattlefield.gd").FLOOR.end
+		var excess:=project_world(raid_to_world(floor_end)).y-(size.y-RAID_BOTTOM_CLEARANCE)
+		if excess>0.0:camera.v_offset-=excess/(RAID_UNITS*raid_factor)
 	else:
 		_update_hunt_camera(0.0,true)
 
