@@ -1,0 +1,1648 @@
+{
+  "engine": "4.6.3-stable (official)",
+  "scope": "Eight controlled 120-second rule-based AI trials; fixed loot seed and simulation step; headless Linux, no device FPS or learned-model training",
+  "trials": [
+    {
+      "avg_distinct_movement_targets": 1.0,
+      "cancelled_dead_target": 10,
+      "cancelled_other": 0,
+      "cancelled_out_of_range_or_invalid": 3,
+      "cancelled_preparations": 13,
+      "corps_completed": 4,
+      "count": 1,
+      "end_stage": 3,
+      "enemy_pairs_under_0_9_share": 0.006,
+      "faction": "aurelia",
+      "hero_pairs_under_0_9_share": 0.0,
+      "heroes": {
+        "leonhardt": {
+          "dealt": 2555,
+          "healed": 207,
+          "range_world": 0.95,
+          "role": "탱커",
+          "taken": 223,
+          "walked": 176.2
+        }
+      },
+      "inactive_alive_hero_share": 0.025,
+      "live_movement_target_changes": 40,
+      "longest_seconds_without_corps_clear": 32.5,
+      "movement_target_changes": 104,
+      "non_walkable_stored_goal_samples": 0,
+      "position_samples": [
+        {
+          "heroes": {
+            "leonhardt": [
+              20.42,
+              7.65
+            ]
+          },
+          "seconds": 10.0
+        },
+        {
+          "heroes": {
+            "leonhardt": [
+              15.37,
+              14.36
+            ]
+          },
+          "seconds": 30.0
+        },
+        {
+          "heroes": {
+            "leonhardt": [
+              12.98,
+              10.85
+            ]
+          },
+          "seconds": 60.0
+        },
+        {
+          "heroes": {
+            "leonhardt": [
+              14.35,
+              12.86
+            ]
+          },
+          "seconds": 90.0
+        }
+      ],
+      "post_first_10_seconds_close_hero_pair_share": 0.0,
+      "ranged_with_enemy_inside_0_95_share": 0.0,
+      "recovery_share": 0.0,
+      "resolved_preparations": 106,
+      "samples_with_any_close_hero_pair_share": 0.0,
+      "seconds": 120,
+      "skill_target_samples": 13,
+      "skill_vs_move_target_disagreement_share": 0.077,
+      "start_level": 3,
+      "start_power": 402,
+      "start_stage": 2,
+      "stored_goal_samples": 0,
+      "target_observations": 240,
+      "vm_simulation_ms_per_step": 7.699,
+      "worst_inactive_seconds": 1.0,
+      "zone": "gray_meadow",
+      "prepared_hero_attacks_with_enemy_target": 106
+    },
+    {
+      "avg_distinct_movement_targets": 2.304,
+      "cancelled_dead_target": 18,
+      "cancelled_other": 0,
+      "cancelled_out_of_range_or_invalid": 26,
+      "cancelled_preparations": 44,
+      "corps_completed": 6,
+      "count": 3,
+      "end_stage": 7,
+      "enemy_pairs_under_0_9_share": 0.011,
+      "faction": "aurelia",
+      "hero_pairs_under_0_9_share": 0.34,
+      "heroes": {
+        "elisia": {
+          "dealt": 6905,
+          "healed": 170,
+          "range_world": 1.75,
+          "role": "서포터",
+          "taken": 170,
+          "walked": 129.1
+        },
+        "leonhardt": {
+          "dealt": 3587,
+          "healed": 275,
+          "range_world": 0.95,
+          "role": "탱커",
+          "taken": 277,
+          "walked": 142.1
+        },
+        "mira": {
+          "dealt": 14625,
+          "healed": 105,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 105,
+          "walked": 125.7
+        }
+      },
+      "inactive_alive_hero_share": 0.031,
+      "live_movement_target_changes": 171,
+      "longest_seconds_without_corps_clear": 22.1,
+      "movement_target_changes": 331,
+      "non_walkable_stored_goal_samples": 0,
+      "position_samples": [
+        {
+          "heroes": {
+            "elisia": [
+              17.76,
+              7.31
+            ],
+            "leonhardt": [
+              18.36,
+              7.72
+            ],
+            "mira": [
+              17.19,
+              6.23
+            ]
+          },
+          "seconds": 10.0
+        },
+        {
+          "heroes": {
+            "elisia": [
+              18.99,
+              8.04
+            ],
+            "leonhardt": [
+              18.11,
+              8.34
+            ],
+            "mira": [
+              17.55,
+              9.51
+            ]
+          },
+          "seconds": 30.0
+        },
+        {
+          "heroes": {
+            "elisia": [
+              19.77,
+              9.75
+            ],
+            "leonhardt": [
+              20.29,
+              9.66
+            ],
+            "mira": [
+              20.79,
+              9.23
+            ]
+          },
+          "seconds": 60.0
+        },
+        {
+          "heroes": {
+            "elisia": [
+              13.17,
+              10.01
+            ],
+            "leonhardt": [
+              13.89,
+              9.69
+            ],
+            "mira": [
+              13.47,
+              8.11
+            ]
+          },
+          "seconds": 90.0
+        }
+      ],
+      "post_first_10_seconds_close_hero_pair_share": 0.356,
+      "ranged_with_enemy_inside_0_95_share": 0.429,
+      "recovery_share": 0.0,
+      "resolved_preparations": 328,
+      "samples_with_any_close_hero_pair_share": 0.738,
+      "seconds": 120,
+      "skill_target_samples": 44,
+      "skill_vs_move_target_disagreement_share": 0.205,
+      "start_level": 10,
+      "start_power": 1872,
+      "start_stage": 5,
+      "stored_goal_samples": 480,
+      "target_observations": 720,
+      "vm_simulation_ms_per_step": 9.351,
+      "worst_inactive_seconds": 1.0,
+      "zone": "gray_meadow",
+      "prepared_hero_attacks_with_enemy_target": 330
+    },
+    {
+      "avg_distinct_movement_targets": 4.708,
+      "cancelled_dead_target": 221,
+      "cancelled_other": 11,
+      "cancelled_out_of_range_or_invalid": 31,
+      "cancelled_preparations": 263,
+      "corps_completed": 17,
+      "count": 10,
+      "end_stage": 160,
+      "enemy_pairs_under_0_9_share": 0.003,
+      "faction": "aurelia",
+      "hero_pairs_under_0_9_share": 0.173,
+      "heroes": {
+        "astel": {
+          "dealt": 10035,
+          "healed": 0,
+          "range_world": 1.75,
+          "role": "서포터",
+          "taken": 0,
+          "walked": 122.6
+        },
+        "caelum": {
+          "dealt": 23366,
+          "healed": 8,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 8,
+          "walked": 161.2
+        },
+        "darius": {
+          "dealt": 20056,
+          "healed": 0,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 7,
+          "walked": 172.2
+        },
+        "elisia": {
+          "dealt": 8640,
+          "healed": 0,
+          "range_world": 1.75,
+          "role": "서포터",
+          "taken": 0,
+          "walked": 117.4
+        },
+        "kairen": {
+          "dealt": 22520,
+          "healed": 20,
+          "range_world": 1.75,
+          "role": "컨트롤러",
+          "taken": 20,
+          "walked": 158.6
+        },
+        "leonhardt": {
+          "dealt": 6434,
+          "healed": 4,
+          "range_world": 0.95,
+          "role": "탱커",
+          "taken": 5,
+          "walked": 154.9
+        },
+        "lunea": {
+          "dealt": 16648,
+          "healed": 27,
+          "range_world": 1.75,
+          "role": "컨트롤러",
+          "taken": 27,
+          "walked": 169.0
+        },
+        "mira": {
+          "dealt": 16673,
+          "healed": 0,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 0,
+          "walked": 161.9
+        },
+        "orwin": {
+          "dealt": 10141,
+          "healed": 0,
+          "range_world": 1.32,
+          "role": "탱커",
+          "taken": 0,
+          "walked": 157.6
+        },
+        "seria": {
+          "dealt": 17643,
+          "healed": 10,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 10,
+          "walked": 153.5
+        }
+      },
+      "inactive_alive_hero_share": 0.078,
+      "live_movement_target_changes": 373,
+      "longest_seconds_without_corps_clear": 8.4,
+      "movement_target_changes": 1413,
+      "non_walkable_stored_goal_samples": 0,
+      "position_samples": [
+        {
+          "heroes": {
+            "astel": [
+              16.85,
+              9.99
+            ],
+            "caelum": [
+              17.46,
+              7.74
+            ],
+            "darius": [
+              19.01,
+              9.01
+            ],
+            "elisia": [
+              16.98,
+              9.64
+            ],
+            "kairen": [
+              18.05,
+              11.52
+            ],
+            "leonhardt": [
+              18.26,
+              9.71
+            ],
+            "lunea": [
+              17.78,
+              10.61
+            ],
+            "mira": [
+              18.74,
+              10.61
+            ],
+            "orwin": [
+              17.66,
+              8.67
+            ],
+            "seria": [
+              18.04,
+              9.05
+            ]
+          },
+          "seconds": 10.0
+        },
+        {
+          "heroes": {
+            "astel": [
+              18.44,
+              9.54
+            ],
+            "caelum": [
+              18.88,
+              10.02
+            ],
+            "darius": [
+              17.75,
+              8.5
+            ],
+            "elisia": [
+              17.87,
+              8.86
+            ],
+            "kairen": [
+              16.95,
+              9.54
+            ],
+            "leonhardt": [
+              18.21,
+              9.56
+            ],
+            "lunea": [
+              18.33,
+              7.78
+            ],
+            "mira": [
+              20.02,
+              9.95
+            ],
+            "orwin": [
+              18.88,
+              8.86
+            ],
+            "seria": [
+              19.87,
+              9.14
+            ]
+          },
+          "seconds": 30.0
+        },
+        {
+          "heroes": {
+            "astel": [
+              19.87,
+              10.57
+            ],
+            "caelum": [
+              20.6,
+              8.03
+            ],
+            "darius": [
+              21.28,
+              8.96
+            ],
+            "elisia": [
+              19.81,
+              9.37
+            ],
+            "kairen": [
+              20.05,
+              11.98
+            ],
+            "leonhardt": [
+              21.01,
+              9.6
+            ],
+            "lunea": [
+              20.96,
+              10.73
+            ],
+            "mira": [
+              20.76,
+              11.57
+            ],
+            "orwin": [
+              20.79,
+              9.82
+            ],
+            "seria": [
+              21.06,
+              10.08
+            ]
+          },
+          "seconds": 60.0
+        },
+        {
+          "heroes": {
+            "astel": [
+              16.58,
+              9.41
+            ],
+            "caelum": [
+              18.25,
+              8.44
+            ],
+            "darius": [
+              16.89,
+              8.61
+            ],
+            "elisia": [
+              16.62,
+              10.15
+            ],
+            "kairen": [
+              18.12,
+              9.65
+            ],
+            "leonhardt": [
+              17.41,
+              9.01
+            ],
+            "lunea": [
+              16.07,
+              8.43
+            ],
+            "mira": [
+              18.8,
+              9.26
+            ],
+            "orwin": [
+              17.21,
+              7.87
+            ],
+            "seria": [
+              17.09,
+              7.22
+            ]
+          },
+          "seconds": 90.0
+        }
+      ],
+      "post_first_10_seconds_close_hero_pair_share": 0.177,
+      "ranged_with_enemy_inside_0_95_share": 0.083,
+      "recovery_share": 0.0,
+      "resolved_preparations": 745,
+      "samples_with_any_close_hero_pair_share": 0.988,
+      "seconds": 120,
+      "skill_target_samples": 80,
+      "skill_vs_move_target_disagreement_share": 0.188,
+      "start_level": 60,
+      "start_power": 38196,
+      "start_stage": 154,
+      "stored_goal_samples": 1440,
+      "target_observations": 2400,
+      "vm_simulation_ms_per_step": 15.826,
+      "worst_inactive_seconds": 3.5,
+      "zone": "gray_meadow",
+      "prepared_hero_attacks_with_enemy_target": 745
+    },
+    {
+      "avg_distinct_movement_targets": 1.0,
+      "cancelled_dead_target": 7,
+      "cancelled_other": 1,
+      "cancelled_out_of_range_or_invalid": 8,
+      "cancelled_preparations": 16,
+      "corps_completed": 5,
+      "count": 1,
+      "end_stage": 3,
+      "enemy_pairs_under_0_9_share": 0.006,
+      "faction": "noxfera",
+      "hero_pairs_under_0_9_share": 0.0,
+      "heroes": {
+        "valeria": {
+          "dealt": 9730,
+          "healed": 716,
+          "range_world": 0.95,
+          "role": "딜러",
+          "taken": 752,
+          "walked": 82.4
+        }
+      },
+      "inactive_alive_hero_share": 0.021,
+      "live_movement_target_changes": 14,
+      "longest_seconds_without_corps_clear": 31.5,
+      "movement_target_changes": 97,
+      "non_walkable_stored_goal_samples": 0,
+      "position_samples": [
+        {
+          "heroes": {
+            "valeria": [
+              19.3,
+              11.52
+            ]
+          },
+          "seconds": 10.0
+        },
+        {
+          "heroes": {
+            "valeria": [
+              15.04,
+              11.64
+            ]
+          },
+          "seconds": 30.0
+        },
+        {
+          "heroes": {
+            "valeria": [
+              11.04,
+              9.41
+            ]
+          },
+          "seconds": 60.0
+        },
+        {
+          "heroes": {
+            "valeria": [
+              13.74,
+              7.23
+            ]
+          },
+          "seconds": 90.0
+        }
+      ],
+      "post_first_10_seconds_close_hero_pair_share": 0.0,
+      "ranged_with_enemy_inside_0_95_share": 0.0,
+      "recovery_share": 0.0,
+      "resolved_preparations": 121,
+      "samples_with_any_close_hero_pair_share": 0.0,
+      "seconds": 120,
+      "skill_target_samples": 29,
+      "skill_vs_move_target_disagreement_share": 0.034,
+      "start_level": 3,
+      "start_power": 408,
+      "start_stage": 2,
+      "stored_goal_samples": 0,
+      "target_observations": 240,
+      "vm_simulation_ms_per_step": 7.548,
+      "worst_inactive_seconds": 0.5,
+      "zone": "gray_meadow",
+      "prepared_hero_attacks_with_enemy_target": 121
+    },
+    {
+      "avg_distinct_movement_targets": 2.638,
+      "cancelled_dead_target": 21,
+      "cancelled_other": 1,
+      "cancelled_out_of_range_or_invalid": 14,
+      "cancelled_preparations": 36,
+      "corps_completed": 8,
+      "count": 3,
+      "end_stage": 8,
+      "enemy_pairs_under_0_9_share": 0.004,
+      "faction": "noxfera",
+      "hero_pairs_under_0_9_share": 0.108,
+      "heroes": {
+        "morgas": {
+          "dealt": 8931,
+          "healed": 480,
+          "range_world": 1.75,
+          "role": "컨트롤러",
+          "taken": 644,
+          "walked": 156.8
+        },
+        "ragna": {
+          "dealt": 13939,
+          "healed": 817,
+          "range_world": 0.95,
+          "role": "딜러",
+          "taken": 999,
+          "walked": 158.2
+        },
+        "valeria": {
+          "dealt": 14350,
+          "healed": 576,
+          "range_world": 0.95,
+          "role": "딜러",
+          "taken": 576,
+          "walked": 95.5
+        }
+      },
+      "inactive_alive_hero_share": 0.033,
+      "live_movement_target_changes": 75,
+      "longest_seconds_without_corps_clear": 16.8,
+      "movement_target_changes": 237,
+      "non_walkable_stored_goal_samples": 0,
+      "position_samples": [
+        {
+          "heroes": {
+            "morgas": [
+              19.1,
+              10.59
+            ],
+            "ragna": [
+              19.9,
+              11.83
+            ],
+            "valeria": [
+              20.02,
+              12.2
+            ]
+          },
+          "seconds": 10.0
+        },
+        {
+          "heroes": {
+            "morgas": [
+              18.74,
+              8.98
+            ],
+            "ragna": [
+              16.46,
+              8.88
+            ],
+            "valeria": [
+              15.67,
+              8.66
+            ]
+          },
+          "seconds": 30.0
+        },
+        {
+          "heroes": {
+            "morgas": [
+              17.9,
+              6.43
+            ],
+            "ragna": [
+              17.57,
+              11.27
+            ],
+            "valeria": [
+              17.94,
+              12.29
+            ]
+          },
+          "seconds": 60.0
+        },
+        {
+          "heroes": {
+            "morgas": [
+              19.23,
+              6.19
+            ],
+            "ragna": [
+              13.77,
+              9.23
+            ],
+            "valeria": [
+              12.96,
+              7.26
+            ]
+          },
+          "seconds": 90.0
+        }
+      ],
+      "post_first_10_seconds_close_hero_pair_share": 0.106,
+      "ranged_with_enemy_inside_0_95_share": 0.563,
+      "recovery_share": 0.0,
+      "resolved_preparations": 319,
+      "samples_with_any_close_hero_pair_share": 0.304,
+      "seconds": 120,
+      "skill_target_samples": 64,
+      "skill_vs_move_target_disagreement_share": 0.125,
+      "start_level": 10,
+      "start_power": 1902,
+      "start_stage": 5,
+      "stored_goal_samples": 240,
+      "target_observations": 720,
+      "vm_simulation_ms_per_step": 10.555,
+      "worst_inactive_seconds": 1.5,
+      "zone": "gray_meadow",
+      "prepared_hero_attacks_with_enemy_target": 319
+    },
+    {
+      "avg_distinct_movement_targets": 4.792,
+      "cancelled_dead_target": 254,
+      "cancelled_other": 7,
+      "cancelled_out_of_range_or_invalid": 33,
+      "cancelled_preparations": 294,
+      "corps_completed": 17,
+      "count": 10,
+      "end_stage": 160,
+      "enemy_pairs_under_0_9_share": 0.002,
+      "faction": "noxfera",
+      "hero_pairs_under_0_9_share": 0.185,
+      "heroes": {
+        "bron": {
+          "dealt": 10981,
+          "healed": 0,
+          "range_world": 1.32,
+          "role": "탱커",
+          "taken": 0,
+          "walked": 152.3
+        },
+        "fenris": {
+          "dealt": 21504,
+          "healed": 13,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 13,
+          "walked": 176.7
+        },
+        "garm": {
+          "dealt": 6691,
+          "healed": 17,
+          "range_world": 1.32,
+          "role": "탱커",
+          "taken": 17,
+          "walked": 153.8
+        },
+        "isolde": {
+          "dealt": 9205,
+          "healed": 17,
+          "range_world": 1.75,
+          "role": "서포터",
+          "taken": 17,
+          "walked": 120.0
+        },
+        "morgas": {
+          "dealt": 13910,
+          "healed": 28,
+          "range_world": 1.75,
+          "role": "컨트롤러",
+          "taken": 28,
+          "walked": 166.1
+        },
+        "nyx": {
+          "dealt": 17883,
+          "healed": 0,
+          "range_world": 1.75,
+          "role": "컨트롤러",
+          "taken": 0,
+          "walked": 170.1
+        },
+        "ragna": {
+          "dealt": 16724,
+          "healed": 32,
+          "range_world": 0.95,
+          "role": "딜러",
+          "taken": 32,
+          "walked": 172.9
+        },
+        "ulric": {
+          "dealt": 19608,
+          "healed": 30,
+          "range_world": 1.32,
+          "role": "컨트롤러",
+          "taken": 30,
+          "walked": 164.1
+        },
+        "valeria": {
+          "dealt": 15689,
+          "healed": 26,
+          "range_world": 0.95,
+          "role": "딜러",
+          "taken": 26,
+          "walked": 155.3
+        },
+        "veyra": {
+          "dealt": 19387,
+          "healed": 17,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 17,
+          "walked": 159.2
+        }
+      },
+      "inactive_alive_hero_share": 0.067,
+      "live_movement_target_changes": 318,
+      "longest_seconds_without_corps_clear": 8.0,
+      "movement_target_changes": 1336,
+      "non_walkable_stored_goal_samples": 0,
+      "position_samples": [
+        {
+          "heroes": {
+            "bron": [
+              17.03,
+              10.14
+            ],
+            "fenris": [
+              18.32,
+              10.84
+            ],
+            "garm": [
+              17.76,
+              9.54
+            ],
+            "isolde": [
+              16.18,
+              9.85
+            ],
+            "morgas": [
+              16.88,
+              7.86
+            ],
+            "nyx": [
+              17.15,
+              10.94
+            ],
+            "ragna": [
+              18.86,
+              9.75
+            ],
+            "ulric": [
+              18.02,
+              10.15
+            ],
+            "valeria": [
+              16.96,
+              8.89
+            ],
+            "veyra": [
+              17.06,
+              9.25
+            ]
+          },
+          "seconds": 10.0
+        },
+        {
+          "heroes": {
+            "bron": [
+              18.81,
+              9.24
+            ],
+            "fenris": [
+              18.1,
+              9.31
+            ],
+            "garm": [
+              18.45,
+              8.62
+            ],
+            "isolde": [
+              16.83,
+              8.82
+            ],
+            "morgas": [
+              18.3,
+              7.55
+            ],
+            "nyx": [
+              19.66,
+              9.09
+            ],
+            "ragna": [
+              17.56,
+              9.89
+            ],
+            "ulric": [
+              18.12,
+              8.48
+            ],
+            "valeria": [
+              19.04,
+              9.72
+            ],
+            "veyra": [
+              18.48,
+              10.22
+            ]
+          },
+          "seconds": 30.0
+        },
+        {
+          "heroes": {
+            "bron": [
+              20.93,
+              9.64
+            ],
+            "fenris": [
+              20.78,
+              12.78
+            ],
+            "garm": [
+              20.64,
+              10.38
+            ],
+            "isolde": [
+              19.79,
+              10.95
+            ],
+            "morgas": [
+              20.53,
+              7.86
+            ],
+            "nyx": [
+              20.58,
+              8.06
+            ],
+            "ragna": [
+              21.27,
+              12.57
+            ],
+            "ulric": [
+              20.35,
+              12.39
+            ],
+            "valeria": [
+              20.81,
+              10.33
+            ],
+            "veyra": [
+              20.92,
+              9.05
+            ]
+          },
+          "seconds": 60.0
+        },
+        {
+          "heroes": {
+            "bron": [
+              17.26,
+              9.7
+            ],
+            "fenris": [
+              16.99,
+              11.65
+            ],
+            "garm": [
+              17.38,
+              10.64
+            ],
+            "isolde": [
+              15.92,
+              10.85
+            ],
+            "morgas": [
+              16.74,
+              9.29
+            ],
+            "nyx": [
+              18.1,
+              10.26
+            ],
+            "ragna": [
+              18.06,
+              11.41
+            ],
+            "ulric": [
+              17.05,
+              11.03
+            ],
+            "valeria": [
+              16.44,
+              10.41
+            ],
+            "veyra": [
+              15.93,
+              9.58
+            ]
+          },
+          "seconds": 90.0
+        }
+      ],
+      "post_first_10_seconds_close_hero_pair_share": 0.186,
+      "ranged_with_enemy_inside_0_95_share": 0.101,
+      "recovery_share": 0.0,
+      "resolved_preparations": 779,
+      "samples_with_any_close_hero_pair_share": 0.988,
+      "seconds": 120,
+      "skill_target_samples": 98,
+      "skill_vs_move_target_disagreement_share": 0.204,
+      "start_level": 60,
+      "start_power": 38426,
+      "start_stage": 154,
+      "stored_goal_samples": 720,
+      "target_observations": 2400,
+      "vm_simulation_ms_per_step": 17.169,
+      "worst_inactive_seconds": 3.0,
+      "zone": "gray_meadow",
+      "prepared_hero_attacks_with_enemy_target": 780
+    },
+    {
+      "avg_distinct_movement_targets": 4.825,
+      "cancelled_dead_target": 160,
+      "cancelled_other": 2,
+      "cancelled_out_of_range_or_invalid": 39,
+      "cancelled_preparations": 201,
+      "corps_completed": 13,
+      "count": 10,
+      "end_stage": 158,
+      "enemy_pairs_under_0_9_share": 0.003,
+      "faction": "aurelia",
+      "hero_pairs_under_0_9_share": 0.156,
+      "heroes": {
+        "astel": {
+          "dealt": 18277,
+          "healed": 0,
+          "range_world": 1.75,
+          "role": "서포터",
+          "taken": 17,
+          "walked": 123.9
+        },
+        "caelum": {
+          "dealt": 42243,
+          "healed": 257,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 304,
+          "walked": 156.4
+        },
+        "darius": {
+          "dealt": 38894,
+          "healed": 127,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 127,
+          "walked": 164.2
+        },
+        "elisia": {
+          "dealt": 15755,
+          "healed": 79,
+          "range_world": 1.75,
+          "role": "서포터",
+          "taken": 79,
+          "walked": 120.0
+        },
+        "kairen": {
+          "dealt": 34424,
+          "healed": 332,
+          "range_world": 1.75,
+          "role": "컨트롤러",
+          "taken": 332,
+          "walked": 153.8
+        },
+        "leonhardt": {
+          "dealt": 10002,
+          "healed": 116,
+          "range_world": 0.95,
+          "role": "탱커",
+          "taken": 116,
+          "walked": 150.1
+        },
+        "lunea": {
+          "dealt": 24394,
+          "healed": 225,
+          "range_world": 1.75,
+          "role": "컨트롤러",
+          "taken": 225,
+          "walked": 148.8
+        },
+        "mira": {
+          "dealt": 32908,
+          "healed": 87,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 87,
+          "walked": 149.4
+        },
+        "orwin": {
+          "dealt": 13157,
+          "healed": 74,
+          "range_world": 1.32,
+          "role": "탱커",
+          "taken": 74,
+          "walked": 150.6
+        },
+        "seria": {
+          "dealt": 35258,
+          "healed": 216,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 216,
+          "walked": 145.9
+        }
+      },
+      "inactive_alive_hero_share": 0.062,
+      "live_movement_target_changes": 376,
+      "longest_seconds_without_corps_clear": 11.3,
+      "movement_target_changes": 1218,
+      "non_walkable_stored_goal_samples": 0,
+      "position_samples": [
+        {
+          "heroes": {
+            "astel": [
+              19.8,
+              9.31
+            ],
+            "caelum": [
+              19.61,
+              6.52
+            ],
+            "darius": [
+              19.79,
+              6.84
+            ],
+            "elisia": [
+              19.32,
+              8.31
+            ],
+            "kairen": [
+              20.4,
+              10.01
+            ],
+            "leonhardt": [
+              20.34,
+              7.41
+            ],
+            "lunea": [
+              20.99,
+              10.0
+            ],
+            "mira": [
+              19.8,
+              6.99
+            ],
+            "orwin": [
+              20.38,
+              7.59
+            ],
+            "seria": [
+              20.96,
+              9.33
+            ]
+          },
+          "seconds": 10.0
+        },
+        {
+          "heroes": {
+            "astel": [
+              16.29,
+              9.38
+            ],
+            "caelum": [
+              15.43,
+              10.02
+            ],
+            "darius": [
+              15.25,
+              10.8
+            ],
+            "elisia": [
+              16.05,
+              9.24
+            ],
+            "kairen": [
+              17.19,
+              10.28
+            ],
+            "leonhardt": [
+              15.85,
+              10.24
+            ],
+            "lunea": [
+              17.5,
+              11.08
+            ],
+            "mira": [
+              16.31,
+              10.81
+            ],
+            "orwin": [
+              16.1,
+              10.24
+            ],
+            "seria": [
+              14.29,
+              10.51
+            ]
+          },
+          "seconds": 30.0
+        },
+        {
+          "heroes": {
+            "astel": [
+              12.62,
+              8.81
+            ],
+            "caelum": [
+              11.41,
+              9.35
+            ],
+            "darius": [
+              10.55,
+              9.55
+            ],
+            "elisia": [
+              12.17,
+              9.37
+            ],
+            "kairen": [
+              12.62,
+              7.62
+            ],
+            "leonhardt": [
+              11.68,
+              7.96
+            ],
+            "lunea": [
+              12.6,
+              6.35
+            ],
+            "mira": [
+              11.17,
+              8.59
+            ],
+            "orwin": [
+              11.77,
+              8.41
+            ],
+            "seria": [
+              11.03,
+              9.34
+            ]
+          },
+          "seconds": 60.0
+        },
+        {
+          "heroes": {
+            "astel": [
+              12.98,
+              9.26
+            ],
+            "caelum": [
+              12.21,
+              10.94
+            ],
+            "darius": [
+              11.51,
+              9.31
+            ],
+            "elisia": [
+              12.34,
+              9.65
+            ],
+            "kairen": [
+              11.47,
+              10.08
+            ],
+            "leonhardt": [
+              11.84,
+              8.48
+            ],
+            "lunea": [
+              11.4,
+              7.93
+            ],
+            "mira": [
+              12.79,
+              9.97
+            ],
+            "orwin": [
+              11.94,
+              8.62
+            ],
+            "seria": [
+              11.14,
+              9.05
+            ]
+          },
+          "seconds": 90.0
+        }
+      ],
+      "post_first_10_seconds_close_hero_pair_share": 0.158,
+      "ranged_with_enemy_inside_0_95_share": 0.145,
+      "recovery_share": 0.0,
+      "resolved_preparations": 837,
+      "samples_with_any_close_hero_pair_share": 0.988,
+      "seconds": 120,
+      "skill_target_samples": 86,
+      "skill_vs_move_target_disagreement_share": 0.267,
+      "start_level": 60,
+      "start_power": 38196,
+      "start_stage": 154,
+      "stored_goal_samples": 1440,
+      "target_observations": 2400,
+      "vm_simulation_ms_per_step": 15.899,
+      "worst_inactive_seconds": 4.0,
+      "zone": "forgotten_mine",
+      "prepared_hero_attacks_with_enemy_target": 837
+    },
+    {
+      "avg_distinct_movement_targets": 5.221,
+      "cancelled_dead_target": 102,
+      "cancelled_other": 7,
+      "cancelled_out_of_range_or_invalid": 56,
+      "cancelled_preparations": 165,
+      "corps_completed": 11,
+      "count": 10,
+      "end_stage": 158,
+      "enemy_pairs_under_0_9_share": 0.007,
+      "faction": "aurelia",
+      "hero_pairs_under_0_9_share": 0.147,
+      "heroes": {
+        "astel": {
+          "dealt": 23112,
+          "healed": 410,
+          "range_world": 1.75,
+          "role": "서포터",
+          "taken": 523,
+          "walked": 134.6
+        },
+        "caelum": {
+          "dealt": 65658,
+          "healed": 1641,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 1834,
+          "walked": 159.8
+        },
+        "darius": {
+          "dealt": 45219,
+          "healed": 613,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 715,
+          "walked": 158.6
+        },
+        "elisia": {
+          "dealt": 20841,
+          "healed": 344,
+          "range_world": 1.75,
+          "role": "서포터",
+          "taken": 471,
+          "walked": 129.9
+        },
+        "kairen": {
+          "dealt": 46359,
+          "healed": 388,
+          "range_world": 1.75,
+          "role": "컨트롤러",
+          "taken": 460,
+          "walked": 133.2
+        },
+        "leonhardt": {
+          "dealt": 13415,
+          "healed": 1094,
+          "range_world": 0.95,
+          "role": "탱커",
+          "taken": 1342,
+          "walked": 142.5
+        },
+        "lunea": {
+          "dealt": 34070,
+          "healed": 1015,
+          "range_world": 1.75,
+          "role": "컨트롤러",
+          "taken": 1127,
+          "walked": 149.9
+        },
+        "mira": {
+          "dealt": 43497,
+          "healed": 534,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 550,
+          "walked": 134.4
+        },
+        "orwin": {
+          "dealt": 17110,
+          "healed": 34,
+          "range_world": 1.32,
+          "role": "탱커",
+          "taken": 224,
+          "walked": 140.4
+        },
+        "seria": {
+          "dealt": 41316,
+          "healed": 0,
+          "range_world": 1.32,
+          "role": "딜러",
+          "taken": 193,
+          "walked": 132.5
+        }
+      },
+      "inactive_alive_hero_share": 0.039,
+      "live_movement_target_changes": 479,
+      "longest_seconds_without_corps_clear": 12.0,
+      "movement_target_changes": 1124,
+      "non_walkable_stored_goal_samples": 0,
+      "position_samples": [
+        {
+          "heroes": {
+            "astel": [
+              19.69,
+              11.13
+            ],
+            "caelum": [
+              20.92,
+              9.27
+            ],
+            "darius": [
+              19.68,
+              9.1
+            ],
+            "elisia": [
+              19.51,
+              10.14
+            ],
+            "kairen": [
+              20.77,
+              11.51
+            ],
+            "leonhardt": [
+              20.57,
+              10.42
+            ],
+            "lunea": [
+              21.11,
+              9.67
+            ],
+            "mira": [
+              19.96,
+              8.54
+            ],
+            "orwin": [
+              20.68,
+              10.21
+            ],
+            "seria": [
+              20.97,
+              10.9
+            ]
+          },
+          "seconds": 10.0
+        },
+        {
+          "heroes": {
+            "astel": [
+              12.93,
+              8.66
+            ],
+            "caelum": [
+              14.23,
+              7.08
+            ],
+            "darius": [
+              12.2,
+              7.43
+            ],
+            "elisia": [
+              13.44,
+              8.13
+            ],
+            "kairen": [
+              15.71,
+              9.4
+            ],
+            "leonhardt": [
+              12.63,
+              7.18
+            ],
+            "lunea": [
+              11.88,
+              7.25
+            ],
+            "mira": [
+              12.3,
+              8.13
+            ],
+            "orwin": [
+              12.94,
+              7.58
+            ],
+            "seria": [
+              13.11,
+              6.08
+            ]
+          },
+          "seconds": 30.0
+        },
+        {
+          "heroes": {
+            "astel": [
+              13.35,
+              10.98
+            ],
+            "caelum": [
+              12.6,
+              12.97
+            ],
+            "darius": [
+              11.74,
+              12.86
+            ],
+            "elisia": [
+              13.77,
+              11.08
+            ],
+            "kairen": [
+              11.15,
+              8.8
+            ],
+            "leonhardt": [
+              12.76,
+              12.02
+            ],
+            "lunea": [
+              16.04,
+              13.07
+            ],
+            "mira": [
+              12.39,
+              9.55
+            ],
+            "orwin": [
+              12.48,
+              12.24
+            ],
+            "seria": [
+              14.65,
+              13.08
+            ]
+          },
+          "seconds": 60.0
+        },
+        {
+          "heroes": {
+            "astel": [
+              19.34,
+              10.98
+            ],
+            "caelum": [
+              20.71,
+              8.31
+            ],
+            "darius": [
+              20.12,
+              9.44
+            ],
+            "elisia": [
+              19.07,
+              9.82
+            ],
+            "kairen": [
+              20.29,
+              12.04
+            ],
+            "leonhardt": [
+              20.2,
+              9.87
+            ],
+            "lunea": [
+              20.16,
+              7.22
+            ],
+            "mira": [
+              20.75,
+              10.03
+            ],
+            "orwin": [
+              20.11,
+              10.0
+            ],
+            "seria": [
+              21.04,
+              10.35
+            ]
+          },
+          "seconds": 90.0
+        }
+      ],
+      "post_first_10_seconds_close_hero_pair_share": 0.146,
+      "ranged_with_enemy_inside_0_95_share": 0.285,
+      "recovery_share": 0.0,
+      "resolved_preparations": 927,
+      "samples_with_any_close_hero_pair_share": 0.992,
+      "seconds": 120,
+      "skill_target_samples": 104,
+      "skill_vs_move_target_disagreement_share": 0.279,
+      "start_level": 60,
+      "start_power": 38196,
+      "start_stage": 154,
+      "stored_goal_samples": 1440,
+      "target_observations": 2400,
+      "vm_simulation_ms_per_step": 15.12,
+      "worst_inactive_seconds": 1.5,
+      "zone": "moonrest_forest",
+      "prepared_hero_attacks_with_enemy_target": 928
+    }
+  ],
+  "tested_commit": "52ccd2dd94aca7bc780f7edd30959154a6586797",
+  "configuration": {
+    "loot_seed": 1004,
+    "step_seconds": 0.1,
+    "sample_interval_seconds": 0.5,
+    "effects": false,
+    "sound": false,
+    "progression": "Normal XP and stage progression are active; levels and stage may rise during each trial",
+    "roster_selection": "First 1/3/10 faction roster entries; these are diagnostic fixtures, not optimized party comparisons"
+  },
+  "metric_notes": {
+    "hero_pairs_under_0_9": "Share of unordered living-hero pair observations with distance below 0.9 world units; it is not a screen-pixel overlap measurement",
+    "ranged_with_enemy_inside_0_95": "Share of living heroes with range >=3 having any living enemy within 0.95 world units; not proof of incoming damage",
+    "cancelled_preparations": "Enemy-directed hero windups that end without a valid target. Live target validation protects against phantom damage; categories are approximate and include action/encounter changes",
+    "skill_vs_move_disagreement": "Different skill and movement targets can be intentional; this is not a failure rate",
+    "inactive": "At 0.5-second samples, no movement above 0.12 units/s, no windup, no reachable basic target, living enemies, outside recovery. It is not an exact frame-by-frame freeze duration",
+    "performance": "Headless VM step times include the ordinary simulation call, not 3D rendering or device FPS"
+  }
+}
