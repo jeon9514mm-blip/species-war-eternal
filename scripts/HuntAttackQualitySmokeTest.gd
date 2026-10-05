@@ -36,6 +36,9 @@ func run() -> void:
 	check(int(main.enemy_wave[0].hp)==980,'valid basic contact damages the aimed enemy once')
 	main._advance_hunt_attacks(.01)
 	check(int(main.enemy_wave[0].hp)==980,'follow-through does not cause a second hit')
+	# Prepare from a legal body clearance, with other bodies outside the lane.
+	main.roaming_hunt.enemy_positions[0]=Vector2(16.84,10)
+	main.roaming_hunt.enemy_positions[1]=Vector2(19,16)
 	var enemy: Dictionary=main.enemy_wave[0]
 	enemy.archetype='brute';enemy.attack_remaining=.30;enemy.target_id=id;enemy.hunt_target_lock=1
 	var hp: int=main.hero_battle_state[id].hp
@@ -45,11 +48,13 @@ func run() -> void:
 	main._advance_roaming_hunt(.01)
 	check(main.roaming_hunt.enemy_positions[0]==before,'preparing attacker holds its contact position')
 	main.party_movement.positions[id]=Vector2(22,10)
-	main.hero_battle_state[other].hp=1000;main.party_movement.positions[other]=Vector2(16.5,10)
+	main.hero_battle_state[other].hp=1000;main.party_movement.positions[other]=Vector2(16,10)
 	var result: Dictionary=ATTACK.advance_enemy(main,0,.25)
 	check(not bool(result.ready) and not enemy.has('attack_intent'),'departed target cancels enemy contact despite another hero in range')
 	enemy.attack_remaining=.30;enemy.target_id=other;enemy.hunt_target_lock=1
-	ATTACK.advance_enemy(main,0,.10);enemy.stun_seconds=.5
+	ATTACK.advance_enemy(main,0,.10)
+	check(enemy.has('attack_intent'),'separated enemy reacquires a valid contact before stun')
+	enemy.stun_seconds=.5
 	result=ATTACK.advance_enemy(main,0,.25)
 	check(not bool(result.ready) and not enemy.has('attack_intent'),'stun cancels intent and prevents a queued strike')
 	enemy.stun_seconds=0

@@ -33,6 +33,7 @@ static func advance_enemy(main, index: int, delta: float) -> Dictionary:
 		return {'ready':false}
 	var support := str(enemy.get('archetype', '')) == 'support'
 	if not enemy.has('attack_intent'):
+		if not preload('res://scripts/HuntBodyCollision.gd').can_commit(main,false,index):return {'ready':false}
 		var target: String = main._select_hero_target_for_enemy(index, true)
 		if target.is_empty() and not support: return {'ready':false}
 		enemy['attack_remaining'] = maxf(0, float(enemy.get('attack_remaining', .9)) - delta)
@@ -46,6 +47,7 @@ static func advance_enemy(main, index: int, delta: float) -> Dictionary:
 		enemy['attack_remaining'] = maxf(0, float(enemy.get('attack_remaining', .9)) - delta)
 	if float(enemy.attack_remaining) > 0: return {'ready':false}
 	var target := str(enemy.get('attack_intent', ''))
+	enemy["hunt_recovery"] = .26 if support else (.18 if str(enemy.get("archetype",""))=="assassin" else .30)
 	enemy.erase('attack_intent')
 	var valid: bool = target in main._alive_hero_ids()
 	if valid:

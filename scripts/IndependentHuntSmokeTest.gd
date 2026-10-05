@@ -55,7 +55,9 @@ func run() -> void:
 		main.hero_battle_state[ids[-1]].taunt=0.0
 		main.hero_battle_state[ids[-1]].hp=0
 		check(main._select_hero_target_for_enemy(0)!=str(ids[-1]),faction+" dead heroes never retain monster aggro")
-		main._build_combat_screen();await settle()
+		# Match the level-60 fixture with stage-154 enemies; stage 1 can now be
+		# cleared without injury, which does not establish enemy attack validity.
+		main.idle_stage=154;main._build_combat_screen();await settle()
 		var total_damage := 0; var diversity := 0
 		for step in 900:
 			var before: Dictionary = {}

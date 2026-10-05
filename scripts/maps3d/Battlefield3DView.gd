@@ -8,8 +8,8 @@ const HEALTH_LAYOUT=preload('res://scripts/maps3d/CombatHealthLayout.gd')
 const HEALTH_OVERLAY=preload('res://scripts/maps3d/CombatHealthOverlay.gd')
 const HUNT_OVERLAY=preload('res://scripts/maps3d/HuntCombatOverlay.gd')
 const CAMERA_OFFSET=Vector3(0,40,28)
-const HERO_HEIGHT=2.25
-const ENEMY_HEIGHT=1.75
+const HERO_HEIGHT=1.55
+const ENEMY_HEIGHT=1.20
 var game: Node
 var raid_view: Node
 var raid_mode:=false
@@ -35,10 +35,41 @@ var _impact_strength:=0.0
 const RAID_PIVOT:=Vector2(519,383)
 const RAID_UNITS:=26.0
 const RAID_BOTTOM_CLEARANCE:=102.0
+var presentation_visible := true
+var presentation_suspended := false
+var _render_profile := ""
+var _render_container: SubViewportContainer
+var _render_defaults: Dictionary = {}
+func apply_render_profile() -> void:
+	if not is_instance_valid(viewport_3d) or not is_instance_valid(game):return
+	var battery: bool=str(game.presentation_options.get('performance','balanced'))=='battery'
+	var key: String='battery' if battery else 'balanced'
+	if key!=_render_profile:
+		_render_profile=key
+		viewport_3d.msaa_3d=Viewport.MSAA_DISABLED if battery else Viewport.MSAA_2X
+		viewport_3d.positional_shadow_atlas_size=256 if battery else 1024
+		if is_instance_valid(_render_container):_render_container.stretch_shrink=2 if battery else 1
+		for node in map_root.find_children('*','DirectionalLight3D',true,false):
+			if not _render_defaults.has(node):_render_defaults[node]=node.shadow_enabled
+			node.shadow_enabled=false if battery else bool(_render_defaults[node])
+		for node in map_root.find_children('*','WorldEnvironment',true,false):
+			var environment: Environment=node.environment
+			if environment==null:continue
+			if not _render_defaults.has(environment):
+				_render_defaults[environment]={'ssao_enabled':environment.ssao_enabled,'ssil_enabled':environment.ssil_enabled,'volumetric_fog_enabled':environment.volumetric_fog_enabled}
+			for property in _render_defaults[environment]:environment.set(property,false if battery else _render_defaults[environment][property])
+	viewport_3d.render_target_update_mode=SubViewport.UPDATE_ALWAYS if presentation_visible and not presentation_suspended else SubViewport.UPDATE_DISABLED
+func set_presentation_visible(value: bool) -> void:
+	presentation_visible=value;apply_render_profile()
+func set_presentation_suspended(value: bool) -> void:
+	presentation_suspended=value;apply_render_profile()
+func _projection_scale() -> Vector2:
+	return size/Vector2(viewport_3d.size) if is_instance_valid(viewport_3d) else Vector2.ONE
 func _ready() -> void:
 	mouse_filter=Control.MOUSE_FILTER_IGNORE;clip_contents=true
 	var container:=SubViewportContainer.new();container.name='Live3DViewport';container.stretch=true
 	container.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(container)
+	_render_container=container
 	container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	viewport_3d=SubViewport.new();viewport_3d.name='World3D';viewport_3d.own_world_3d=true
 	viewport_3d.msaa_3d=Viewport.MSAA_2X;viewport_3d.positional_shadow_atlas_size=1024
@@ -66,6 +97,9 @@ func _ready() -> void:
 	resized.connect(_resize_world);_resize_world()
 	# Runs after the source AnimatedSprite2D controllers and HUD positions update.
 	process_priority=100
+	for environment_node in map_root.find_children("*","WorldEnvironment",true,false):
+		if environment_node.environment!=null:environment_node.environment=environment_node.environment.duplicate(false)
+	add_to_group("game_battlefields");apply_render_profile()
 func _create_map_root() -> Node3D:
 	return map_loader.load_zone(zone_id,viewport_3d,raid_mode)
 func configure(next_zone_id: String,next_zone_color: Color) -> void:
@@ -152,10 +186,11 @@ func _apply_battle_contrast() -> void:
 func _draw() -> void:pass
 func project_world(point: Vector2,height: float=0.0) -> Vector2:
 	if not is_instance_valid(camera):return size*.5
-	return camera.unproject_position(Vector3(point.x,height,point.y))
+	return camera.unproject_position(Vector3(point.x,height,point.y))*_projection_scale()
 func local_to_world(point: Vector2) -> Vector2:
 	if not is_instance_valid(camera):return Vector2(16,10)
-	var origin:=camera.project_ray_origin(point);var ray:=camera.project_ray_normal(point)
+	var render_point:=point/_projection_scale()
+	var origin:=camera.project_ray_origin(render_point);var ray:=camera.project_ray_normal(render_point)
 	if absf(ray.y)<.0001:return focus
 	var hit:=origin-ray*(origin.y/ray.y)
 	return Vector2(hit.x,hit.z)
@@ -169,6 +204,7 @@ func raid_origin() -> Vector2:
 	return project_world(Vector2(16,10))-RAID_PIVOT*raid_factor
 func _process(delta: float) -> void:
 	if not is_instance_valid(game) or not is_instance_valid(camera):return
+	apply_render_profile()
 	if not raid_mode:_update_hunt_camera(delta)
 	if not raid_mode:
 		var speed:=visual_speed() if visual_running() else 0.0

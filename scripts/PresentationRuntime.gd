@@ -58,6 +58,8 @@ func sync_context() -> void:
 		boss = boss or game.challenge_session.mode == "weekly" or game.challenge_session.variant == "boss"
 	var scene: String = ("boss" if boss else zone)
 	var ambient: String = "ambient_" + zone if str(game.active_screen) in ["combat", "raid"] and not boss else ""
+	for view in get_tree().get_nodes_in_group("game_battlefields"):
+		if view.game==game:view.set_presentation_suspended(paused);view.apply_render_profile()
 	audio.set_scene(scene, ambient)
 	_last_scene = scene
 

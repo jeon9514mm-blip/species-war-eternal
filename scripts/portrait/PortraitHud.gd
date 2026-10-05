@@ -261,6 +261,10 @@ func refresh() -> void:
 	if is_instance_valid(options_quest_label) and options_quest_label!=quest_label:
 		options_quest_label.text=quest_label.text;options_quest_label.tooltip_text=quest_label.tooltip_text
 	status_label.text='%s  ·  원정대 %d/%d'%[game._hunt_state_text(),game._alive_hero_ids().size(),game.deployed_heroes.size()]
+	var details: Control=game.combat_labels.get("details_panel")
+	if is_instance_valid(details) and details.is_visible_in_tree():
+		var efficiency: Label=details.find_child("HuntEfficiencyReadout",true,false)
+		if efficiency!=null:efficiency.text=preload("res://scripts/HuntEfficiency.gd").text(game)
 	speed_button.text='×%d'%int(game.battle_speed)
 	auto_button.text='영웅 편성하기' if game.deployed_heroes.is_empty() else ('Ⅱ  자동사냥 중' if game.combat_running else '▶  사냥 재개')
 	auto_button.tooltip_text='영웅 편성 열기' if game.deployed_heroes.is_empty() else ('자동사냥 일시정지' if game.combat_running else '자동사냥 재개')

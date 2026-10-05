@@ -282,6 +282,7 @@ func _install_portrait_hud() -> void:
 		for key in ['raid_button','boss_raid_button','boss_alert']:
 			var old_entry: Node=combat_labels.get(key)
 			if is_instance_valid(old_entry):old_entry.hide()
+		_install_hunt_efficiency(details)
 		_install_hunt_details_modal(details)
 	var danger: Label=combat_labels.get('danger_banner')
 	if is_instance_valid(danger):
@@ -553,3 +554,10 @@ func _sprite_head_offset(sprite: Node2D) -> Vector2:
 func _new_raid_view() -> Control:
 	return preload("res://scripts/art/RaidPresentationV2.gd").new()
 
+
+func _install_hunt_efficiency(details: Control) -> void:
+	var box: Node=combat_labels["details_scroll"].get_child(0)
+	var readout:=P_SKIN.label("",16);readout.name="HuntEfficiencyReadout"
+	readout.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	box.add_child(readout);box.move_child(readout,1)
+	readout.text=preload("res://scripts/HuntEfficiency.gd").text(self)

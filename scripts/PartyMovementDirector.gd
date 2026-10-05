@@ -30,6 +30,7 @@ var target_locks: Dictionary = {}
 var field_navigation: RefCounted
 var movement_profiles: Dictionary = {}
 var combat_goals: Dictionary = {}
+var hunt_slots: Dictionary = {}
 var _decisions := CombatDecisionEngine.new()
 
 func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
@@ -43,6 +44,7 @@ func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
 	target_locks.clear()
 	movement_profiles.clear()
 	combat_goals.clear()
+	hunt_slots.clear()
 	stalled_seconds.clear()
 	blocked_targets.clear()
 	for index in heroes.size():
@@ -66,6 +68,10 @@ func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
 			"lateral_control": role_group == "컨트롤러" or ai_style in ["controller", "control"]
 		}
 		var offset := Vector2((0.38 if row == "front" else (-0.38 if row == "rear" else 0.0)) - float(index / 3) * 0.16, float(index % 3 - 1) * 0.5)
+		if independent_hunt:
+			var columns:=mini(4,ceili(sqrt(float(heroes.size()))))
+			var rows:=ceili(float(heroes.size())/columns)
+			offset=Vector2(float(index%columns)-(columns-1)*.5,float(index/columns)-(rows-1)*.5)*1.3
 		travel_offsets[id] = offset
 		positions[id] = _clamp(origin + offset)
 		velocities[id] = Vector2.ZERO
@@ -79,6 +85,7 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 	if holding_formation and not paused and engaged:
 		_face_threat(delta,anchor,enemies,enemy_positions,returning)
 	var before_positions := positions.duplicate()
+	var reserved := positions.duplicate()
 	for hero in heroes:
 		var id := str(hero.get("id", ""))
 		var state: Dictionary = states.get(id, {})
@@ -88,6 +95,7 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 			targets[id] = -1
 			target_locks[id] = 0.0
 			combat_goals.erase(id)
+			hunt_slots.erase(id)
 			continue
 		if paused: continue
 		target_locks[id] = maxf(0.0, float(target_locks.get(id, 0.0)) - delta)
@@ -100,6 +108,8 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 			targets[id] = target
 			if target >= 0:
 				goal = _combat_goal(id, start, target, state, runtime, states, before_positions, enemies, enemy_positions, returning, enemy_homes)
+				if independent_hunt:
+					goal = preload("res://scripts/HuntPositionPlanner.gd").choose(self,id,start,target,goal,state,states,before_positions,reserved,enemies,enemy_positions,runtimes)
 		else:
 			targets[id] = -1
 		if independent_hunt:
@@ -110,6 +120,7 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 			var intercept: float=1.35 if bool(movement_profiles.get(id,{}).get('frontline_screen',false)) else 0.85
 			goal = station + (goal - station).limit_length(intercept)
 		goal = _clamp(goal)
+		reserved[id] = goal
 		var next := _move("hero_%s" % id, start, goal, WALK_SPEED * delta)
 		# Separation is a local steering force; global navigation always sees the full goal.
 		var separation := Vector2.ZERO
@@ -127,10 +138,12 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 			elif distance < spacing:
 				separation += away / distance * (1.0 - distance / spacing)
 		var movement := next - start
-		var steered := movement + separation * 0.85 * delta
+		var steered := movement + separation * (3.4 if independent_hunt else .85) * delta
 		steered = steered.limit_length(WALK_SPEED * delta)
 		if steered.length() < 0.08 * delta:
 			steered = Vector2.ZERO
+		if independent_hunt:
+			steered = anchor + (start + steered - anchor).limit_length(hunt_leash(id)) - start
 		if field_navigation == null or field_navigation.is_walkable(start + steered):
 			next = _move("hero_local_%s" % id, start, start + steered, WALK_SPEED * delta)
 		if independent_hunt:

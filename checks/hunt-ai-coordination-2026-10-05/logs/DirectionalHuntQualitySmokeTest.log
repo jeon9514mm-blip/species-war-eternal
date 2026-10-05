@@ -1,0 +1,19 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+DIRECTION_RESULT {"entrance":"east","faction":"aurelia","hp_removed":585,"seconds":47.1,"survivors":3}
+DIRECTION_RESULT {"entrance":"west","faction":"aurelia","hp_removed":202,"seconds":36.1,"survivors":3}
+DIRECTION_RESULT {"entrance":"north","faction":"aurelia","hp_removed":313,"seconds":35.2,"survivors":3}
+DIRECTION_RESULT {"entrance":"south","faction":"aurelia","hp_removed":306,"seconds":33.7,"survivors":3}
+DIRECTION_RESULT {"entrance":"northeast","faction":"aurelia","hp_removed":193,"seconds":33.9,"survivors":3}
+DIRECTION_RESULT {"entrance":"southwest","faction":"aurelia","hp_removed":287,"seconds":34.6,"survivors":3}
+DIRECTION_RESULT {"entrance":"northwest","faction":"aurelia","hp_removed":318,"seconds":32.6,"survivors":3}
+DIRECTION_RESULT {"entrance":"southeast","faction":"aurelia","hp_removed":274,"seconds":37.7,"survivors":3}
+DIRECTION_RESULT {"entrance":"east","faction":"noxfera","hp_removed":524,"seconds":28.1,"survivors":3}
+DIRECTION_RESULT {"entrance":"west","faction":"noxfera","hp_removed":619,"seconds":31.6,"survivors":3}
+DIRECTION_RESULT {"entrance":"north","faction":"noxfera","hp_removed":509,"seconds":27.5,"survivors":3}
+DIRECTION_RESULT {"entrance":"south","faction":"noxfera","hp_removed":943,"seconds":32.4,"survivors":3}
+DIRECTION_RESULT {"entrance":"northeast","faction":"noxfera","hp_removed":533,"seconds":24.8,"survivors":3}
+DIRECTION_RESULT {"entrance":"southwest","faction":"noxfera","hp_removed":603,"seconds":25.9,"survivors":3}
+DIRECTION_RESULT {"entrance":"northwest","faction":"noxfera","hp_removed":600,"seconds":26.1,"survivors":3}
+DIRECTION_RESULT {"entrance":"southeast","faction":"noxfera","hp_removed":412,"seconds":29.8,"survivors":3}
+directional_hunt_quality checks=32 failures=[]

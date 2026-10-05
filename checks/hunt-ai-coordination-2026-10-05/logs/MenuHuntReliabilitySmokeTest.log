@@ -1,0 +1,21 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+WARNING: 사냥 상태를 저장하지 못했습니다: injected_menu_save_failure
+     at: push_warning (core/variant/variant_utility.cpp:1034)
+     GDScript backtrace (most recent call first):
+         [0] accept_result (res://scripts/GameSaveCoordinator.gd:127)
+         [1] save_idle_state (res://scripts/GameSaveCoordinator.gd:109)
+         [2] _save_idle_state (res://scripts/Main.gd:1378)
+         [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:30)
+         [4] run (res://scripts/MenuHuntReliabilitySmokeTest.gd:62)
+         [5] settle (res://scripts/V83UpgradeTestBase.gd:13)
+WARNING: 사냥 상태를 저장하지 못했습니다: injected_menu_save_failure
+     at: push_warning (core/variant/variant_utility.cpp:1034)
+     GDScript backtrace (most recent call first):
+         [0] accept_result (res://scripts/GameSaveCoordinator.gd:127)
+         [1] save_idle_state (res://scripts/GameSaveCoordinator.gd:109)
+         [2] _save_idle_state (res://scripts/Main.gd:1378)
+         [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:30)
+         [4] run (res://scripts/MenuHuntReliabilitySmokeTest.gd:62)
+         [5] settle (res://scripts/V83UpgradeTestBase.gd:13)
+MENU_HUNT_RELIABILITY checks=40 failures=[]

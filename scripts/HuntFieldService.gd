@@ -10,6 +10,7 @@ static func spawn_enemy_wave(main: Node, zone: Dictionary) -> void:
 	main.enemy_wave.clear(); main.enemy_wave_sprites.clear(); main.enemy_hp_bars.clear()
 	main.roaming_hunt.clear_enemies(); main.invasion.reset()
 	preload("res://scripts/HuntProductivity.gd").begin_sample(main)
+	preload("res://scripts/HuntEfficiency.gd").begin(main)
 	admit(main, zone)
 
 static func generate_corps(main: Node, zone: Dictionary) -> Array:
@@ -87,8 +88,10 @@ static func advance_roaming_hunt(main: Node, delta: float, support_actors: Array
 	var immobile: Array = []
 	for index in main.enemy_wave.size():
 		var enemy: Dictionary=main.enemy_wave[index]
-		if main.challenge_session == null:preload('res://scripts/HuntAttackDirector.gd').refresh_enemy_intent(main,index)
-		immobile.append(float(enemy.get("stun_seconds", 0.0)) > 0.0 or (main.challenge_session == null and enemy.has("attack_intent")))
+		if main.challenge_session == null:
+			enemy["hunt_recovery"]=maxf(0,float(enemy.get("hunt_recovery",0))-delta)
+			preload('res://scripts/HuntAttackDirector.gd').refresh_enemy_intent(main,index)
+		immobile.append(float(enemy.get("stun_seconds", 0.0)) > 0.0 or (main.challenge_session == null and (enemy.has("attack_intent") or float(enemy.get("hunt_recovery",0))>0)))
 	var enemy_targets: Array[Vector2] = []
 	if main.roaming_hunt is INVASION:
 		main.roaming_hunt.target_attack_reaches.clear()
@@ -100,6 +103,7 @@ static func advance_roaming_hunt(main: Node, delta: float, support_actors: Array
 		if main.roaming_hunt is INVASION:
 			main.roaming_hunt.target_hero_ids.append(hero_id)
 			main.roaming_hunt.target_attack_reaches.append(main.combat_decisions.spatial_range(int(main.hero_battle_state.get(hero_id,{}).get('range',1))))
+	var bodies_before: Array[Dictionary]=preload("res://scripts/HuntBodyCollision.gd").actors(main) if main.challenge_session==null else []
 	var result = main.roaming_hunt.advance(delta, main._alive_enemy_mask(), immobile, enemy_targets)
 	for returned_index in result.get("returned_indices", []):
 		var enemy: Dictionary = main.enemy_wave[int(returned_index)]
@@ -116,6 +120,7 @@ static func advance_roaming_hunt(main: Node, delta: float, support_actors: Array
 	main.roaming_last_party_velocity = Vector2(result.get("party_velocity", Vector2.ZERO))
 	main.expedition_position = main.roaming_hunt.party_position
 	main.party_movement.advance(delta, main.deployed_heroes, main.hero_battle_state, main.hero_skill_runtime, main.expedition_position, main.enemy_wave, main.roaming_hunt.enemy_positions, main.roaming_hunt.enemy_returning, main.roaming_hunt.aggro_active, false, main.roaming_hunt.enemy_home_positions)
+	preload("res://scripts/HuntBodyCollision.gd").resolve(main,delta,bodies_before)
 	var target_index = int(result.get("target_index", -1))
 	if target_index >= 0 and target_index < main.enemy_wave.size():
 		main.expedition_target = main.roaming_hunt.enemy_position(target_index)
@@ -142,6 +147,7 @@ static func advance_auto_hunt_step(main: Node, step: float) -> void:
 	if main.challenge_session != null:
 		main.CHALLENGE_DRIVER.advance(main, step)
 		return
+	preload("res://scripts/HuntEfficiency.gd").advance(main,step)
 	main.hunt_ai.advance_time(step)
 	main.invasion.advance(step)
 	finish_hunt_target(main)
@@ -314,6 +320,7 @@ static func settle_corps(main: Node, fallen: Array, profile: Dictionary) -> void
 		main.combat_fx.loot_burst(loot_origin, kill_reward_gold + stage_reward_gold, kill_reward_xp + stage_reward_xp, equipment_drops.size(), stage_cleared)
 	if stage_cleared:
 		main._show_battle_result_popup("스테이지 돌파", "사냥 스테이지 %d-1 돌파" % (main.idle_stage - 1), "골드 +%d · 경험치 +%d\n%s" % [kill_reward_gold, kill_reward_xp, pet_event], main.GOLD)
+	preload("res://scripts/HuntEfficiency.gd").reward(main,kill_reward_gold+stage_reward_gold)
 	main.party_power = main._calculate_party_power()
 	main._update_stage_label()
 	main._update_map_tiles()
@@ -368,6 +375,9 @@ static func compact(main: Node) -> void:
 	for id in main.party_movement.combat_goals:
 		var goal: Dictionary = main.party_movement.combat_goals[id]
 		goal["target"] = int(mapping.get(int(goal.get("target", -1)), -1))
+	for id in main.party_movement.hunt_slots:
+		var slot: Dictionary=main.party_movement.hunt_slots[id]
+		slot["target"]=int(mapping.get(int(slot.get("target",-1)),-1))
 	for id in main.party_movement.blocked_targets:
 		var memory: Dictionary = main.party_movement.blocked_targets[id]
 		memory["target"] = int(mapping.get(int(memory.get("target", -1)), -1))

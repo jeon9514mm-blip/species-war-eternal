@@ -20,10 +20,10 @@ static func entry_side(corps_id: int) -> Dictionary:
 static func approach_profile(archetype: String) -> Dictionary:
 	# Standoff stays within actual attack reach; ranged enemies remain approachable.
 	match archetype:
-		'ranged':return {'distance':1.18,'speed':1.35,'retreat':true}
-		'support':return {'distance':1.35,'speed':1.20,'retreat':true}
-		'assassin':return {'distance':.60,'speed':1.85,'retreat':false}
-		_:return {'distance':.68,'speed':1.40,'retreat':false}
+		'ranged':return {'distance':1.50,'speed':1.35,'retreat':true}
+		'support':return {'distance':1.60,'speed':1.20,'retreat':true}
+		'assassin':return {'distance':.78,'speed':1.85,'retreat':false}
+		_:return {'distance':.80,'speed':1.40,'retreat':false}
 func advance(delta: float, alive_mask: Array, immobile_mask: Array = [], hero_targets: Array[Vector2] = []) -> Dictionary:
 	if not invasion_enabled: return super.advance(delta, alive_mask, immobile_mask, hero_targets)
 	var result := {"mode":mode, "engaged":false, "encounter_started":false, "party_velocity":Vector2.ZERO, "target_index":-1, "returned_indices":[]}
@@ -40,7 +40,7 @@ func advance(delta: float, alive_mask: Array, immobile_mask: Array = [], hero_ta
 		# A ranged enemy cannot hold a melee-only defender in permanent stalemate.
 		if i<target_attack_reaches.size():preferred=minf(preferred,maxf(.46,target_attack_reaches[i]-.08))
 		var approach := _approach_slot(i, target, preferred, alive_mask)
-		if bool(behavior.retreat) and distance<.65 and distance>.01:
+		if bool(behavior.retreat) and distance<minf(1.05,preferred-.12) and distance>.01:
 			var away:=pos+(pos-target).normalized()*(preferred-distance)
 			pos=_move_actor("enemy_%d"%i,pos,_clamp_field(away),.75*delta)
 		elif distance > preferred or pos.distance_to(approach) > .12:

@@ -30,6 +30,8 @@ func settle() -> void:
 	for i in 5: await process_frame
 func ratio(a: float,b: float) -> float: return snappedf(a/maxf(1,b),.001)
 func trial(faction: String,count: int,stage: int,level: int,zone: String) -> Dictionary:
+	var filter:=OS.get_environment("HUNT_AI_AUDIT_FILTER")
+	if not filter.is_empty() and not (faction+"/"+str(count)+"/"+zone) in filter.split(','):return {}
 	var main := AuditHost.new()
 	main.save_state_path="user://ai-audit-"+str(Time.get_ticks_usec())+".json"
 	main._offline_checked=true;root.add_child(main);await settle()
@@ -56,6 +58,7 @@ func trial(faction: String,count: int,stage: int,level: int,zone: String) -> Dic
 	var skill_move_disagree := 0;var skill_choices := 0;var target_count_sum := 0
 	var stalled: Dictionary = {};var worst_stall := 0.0
 	var created_attacks := 0;var completed_attacks := 0;var cancelled_attacks := 0
+	var body_overlaps: Dictionary={'hero_hero':0,'enemy_enemy':0,'hero_enemy':0,'pairs':0};var overlapping_frames:=0;var collision_details: Array=[]
 	var start_cycle: int=main.combat_hunt_cycle;var last_cycle: int=start_cycle
 	var no_progress := 0.0;var longest_no_progress := 0.0
 	var initial_power: int=main._calculate_party_power();var simulation_us := 0
@@ -84,6 +87,17 @@ func trial(faction: String,count: int,stage: int,level: int,zone: String) -> Dic
 					else:cancelled_other+=1
 		if n%5 != 0:continue
 		samples+=1
+		if n>=100:
+			var overlap: Dictionary=preload('res://scripts/HuntBodyCollision.gd').overlapping(main)
+			for key in body_overlaps:body_overlaps[key]+=int(overlap[key])
+			if overlap.hero_hero+overlap.enemy_enemy+overlap.hero_enemy>0:
+				overlapping_frames+=1
+				if collision_details.size()<10:
+					var bodies: Array=preload('res://scripts/HuntBodyCollision.gd').actors(main)
+					for a in bodies.size():
+						for b in range(a+1,bodies.size()):
+							var distance: float=Vector2(bodies[a].position).distance_to(bodies[b].position)
+							if distance<preload('res://scripts/HuntBodyCollision.gd').clearance(bodies[a],bodies[b])-.01:collision_details.append({'seconds':n*.1,'left':bodies[a],'right':bodies[b],'distance':distance})
 		var alive: Array=main._alive_hero_ids()
 		var chosen: Dictionary={}
 		for id in alive:
@@ -145,6 +159,7 @@ func trial(faction: String,count: int,stage: int,level: int,zone: String) -> Dic
 	for id in main.hero_battle_state:
 		roles[id]={"role":str(main.hero_battle_state[id].role_group),"range_world":main.combat_decisions.spatial_range(int(main.hero_battle_state[id].range)),"dealt":main.dealt.get(id,0),"taken":main.taken.get(id,0),"healed":main.healed.get(id,0),"walked":snappedf(main.party_movement.distance_walked.get(id,0),.1)}
 	var result: Dictionary={"faction":faction,"zone":zone,"count":main.deployed_heroes.size(),"start_stage":stage,"start_level":level,"start_power":initial_power,"end_stage":main.idle_stage,"seconds":120,"corps_completed":main.combat_hunt_cycle-start_cycle,"recovery_share":ratio(recovery_steps,1200),"hero_pairs_under_0_9_share":ratio(close_hero_pairs,hero_pairs),"enemy_pairs_under_0_9_share":ratio(close_enemy_pairs,enemy_pairs),"inactive_alive_hero_share":ratio(idle_steps,alive_hero_steps),"worst_inactive_seconds":worst_stall,"movement_target_changes":target_changes,"target_observations":target_checks,"avg_distinct_movement_targets":ratio(target_count_sum,samples),"skill_vs_move_target_disagreement_share":ratio(skill_move_disagree,skill_choices),"skill_target_samples":skill_choices,"prepared_hero_attacks_with_enemy_target":created_attacks,"resolved_preparations":completed_attacks,"cancelled_preparations":cancelled_attacks,"longest_seconds_without_corps_clear":snappedf(longest_no_progress,.1),"vm_simulation_ms_per_step":ratio(simulation_us/1000.0,1200),"heroes":roles,"cancelled_dead_target":cancelled_dead,"cancelled_out_of_range_or_invalid":cancelled_range,"cancelled_other":cancelled_other,"live_movement_target_changes":live_target_changes,"post_first_10_seconds_close_hero_pair_share":ratio(post_entry_close_pairs,post_entry_pairs),"samples_with_any_close_hero_pair_share":ratio(any_close_samples,samples),"ranged_with_enemy_inside_0_95_share":ratio(ranged_near_threat,ranged_observations),"non_walkable_stored_goal_samples":invalid_goal_samples,"stored_goal_samples":goal_samples,"position_samples":snapshots}
+	result['body_overlap_after_entry']=body_overlaps;result['sampled_frames_with_body_overlap']=overlapping_frames;result['body_overlap_details']=collision_details
 	main.presentation_runtime.audio.shutdown();main.free();await create_timer(.35).timeout
 	print("HUNT_AI_TRIAL ",JSON.stringify(result));return result
 func run() -> void:
@@ -155,6 +170,7 @@ func run() -> void:
 		results.append(await trial(faction,10,154,60,"gray_meadow"))
 	for zone in ["forgotten_mine","moonrest_forest"]:
 		results.append(await trial("aurelia",10,154,60,zone))
+	results=results.filter(func(row):return not row.is_empty())
 	var output:=OS.get_environment("HUNT_AI_AUDIT_OUTPUT")
 	if output.is_empty():output="/tmp/hunt-ai-audit.json"
 	var file:=FileAccess.open(output,FileAccess.WRITE)

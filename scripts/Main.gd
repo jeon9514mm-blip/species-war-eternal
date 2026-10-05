@@ -2869,11 +2869,12 @@ func _can_attack_enemy(hero_id: String, target_index: int) -> bool:
 func _select_enemy_target(hero_id: String) -> int:
 	if active_screen == "combat" and challenge_session == null and party_movement.independent_hunt:
 		var personal_target := int(party_movement.targets.get(hero_id, -1))
-		if _can_attack_enemy(hero_id, personal_target): return personal_target
+		if _can_attack_enemy(hero_id, personal_target): return preload("res://scripts/HuntDamageReservations.gd").choose(self,hero_id,personal_target)
 	var runtime: Dictionary = hero_skill_runtime.get(hero_id, {})
-	return combat_decisions.select_enemy_target(
+	var selected: int = combat_decisions.select_enemy_target(
 		hero_battle_state.get(hero_id, {}), enemy_wave, _combat_enemy_distances(hero_id), int(runtime.get("target_index", -1))
 	)
+	return preload("res://scripts/HuntDamageReservations.gd").choose(self,hero_id,selected)
 
 func _select_hero_target_for_enemy(enemy_index: int, require_reachable := false) -> String:
 	if enemy_index < 0 or enemy_index >= enemy_wave.size():
@@ -3058,6 +3059,7 @@ func _damage_enemy(enemy_index: int, damage: int, source_index := 0) -> int:
 	if critical and actual > 0: _presentation_event("critical")
 	var hp_before: int = int(enemy["hp"])
 	enemy["hp"] = maxi(0, hp_before - actual)
+	if int(enemy["hp"])<=0:preload("res://scripts/HuntEfficiency.gd").kill(self)
 	if challenge_session != null and int(enemy["hp"]) <= 0:
 		preload("res://scripts/ChallengePatternRuntime.gd").enemy_defeated(self, enemy_index)
 	if challenge_session != null:
@@ -4523,6 +4525,7 @@ func _advance_hunt_support(delta: float) -> Array[String]:
 			runtime["attack_remaining"] = maxf(0.0, float(runtime.get("attack_remaining", 0.0)) - delta)
 			if float(runtime["attack_remaining"]) > 0.0 or _skill_spacing > 0.0:
 				continue
+			if not preload("res://scripts/HuntBodyCollision.gd").can_commit(self,true,hero_id):continue
 			runtime["cast_ultimate"] = slot == "ultimate"
 			runtime["cast"] = slot == "a1"
 			runtime["cast_secondary"] = slot == "a2"
@@ -4603,6 +4606,7 @@ func _advance_hunt_attacks(delta: float, support_actors: Array[String] = []) -> 
 		else:
 			runtime["attack_remaining"] = maxf(0.0, float(runtime["attack_remaining"]) - delta)
 			if float(runtime["attack_remaining"]) <= 0.0:
+				if not preload("res://scripts/HuntBodyCollision.gd").can_commit(self,true,hero_id):continue
 				var action: String = HERO_KITS.preferred_slot(self, hero_id) if _skill_spacing <= 0.0 else "basic"
 				var use_ultimate := action == "ultimate"
 				var use_skill := action == "a1"
@@ -5271,7 +5275,7 @@ func _recommend_equip_all() -> void:
 	_EQUIPMENT_COMMANDS.recommend_equip_all(self)
 
 func _bulk_enhance_equipped() -> void:
-	_EQUIPMENT_COMMANDS.bulk_enhance_equipped(self)
+	preload("res://scripts/BulkEnhancePreview.gd").show(self)
 
 func _show_summon_reveal(result: Dictionary) -> void:
 	_presentation_event("summon")

@@ -41,6 +41,8 @@ func retain(main: Node) -> bool:
 	layers.clear()
 	_hide_layers()
 	root.hide()
+	var field: Node=ui.get("combat_labels",{}).get("terrain")
+	if is_instance_valid(field) and field.has_method("set_presentation_visible"):field.set_presentation_visible(false)
 	root.process_mode = Node.PROCESS_MODE_DISABLED
 	return true
 
@@ -68,6 +70,8 @@ func resume(main: Node) -> bool:
 	if menu_root != root: menu_root.queue_free()
 	root.process_mode = Node.PROCESS_MODE_INHERIT
 	root.show()
+	var field: Node=ui.get("combat_labels",{}).get("terrain")
+	if is_instance_valid(field) and field.has_method("set_presentation_visible"):field.set_presentation_visible(true)
 	for layer in layers:
 		if is_instance_valid(layer): layer.visible = bool(layers[layer])
 	root = null; ui.clear(); layers.clear()

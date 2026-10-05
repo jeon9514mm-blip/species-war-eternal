@@ -1,0 +1,338 @@
+{
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "scope": "Selected existing regression tests; headless Linux; isolated XDG per test; no Android device measurements",
+  "suites": [
+    {
+      "script": "scripts/HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 6.88,
+      "errors": [],
+      "result": [
+        "HUNT_COORDINATION checks=48 failures=[]"
+      ],
+      "final_blocked_frame_rerun": true,
+      "final_collision_rerun": true
+    },
+    {
+      "script": "scripts/IndependentHuntSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 18.55,
+      "errors": [],
+      "result": [
+        "INDEPENDENT_HUNT checks=89 failures=[]"
+      ],
+      "final_collision_rerun": true
+    },
+    {
+      "script": "scripts/HuntAttackQualitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 4.95,
+      "errors": [],
+      "result": [
+        "hunt_attack_quality checks=24 failures=[]"
+      ],
+      "final_collision_rerun": true
+    },
+    {
+      "script": "scripts/HuntCompactHudSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 15.73,
+      "errors": [],
+      "result": [
+        "HUNT_COMPACT_HUD checks=133 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HuntMenuStateSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 59.51,
+      "errors": [],
+      "result": [
+        "HUNT_MENU_STATE checks=94 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/TouchScrollSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 18.69,
+      "errors": [],
+      "result": [
+        "TOUCH_SCROLL_SMOKE checks=51 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/GameplayReliabilitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 81.52,
+      "errors": [],
+      "result": [
+        "gameplay_reliability checks=133 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/MenuHuntReliabilitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 35.3,
+      "errors": [],
+      "result": [
+        "MENU_HUNT_RELIABILITY checks=40 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/CombatQualitySmokeTest.gd",
+      "passed": false,
+      "reason": "nonzero_exit_or_not_completed",
+      "exit": 1,
+      "seconds": 8.19,
+      "errors": [
+        "ERROR: large dodge target"
+      ],
+      "result": [
+        "combat_quality checks=669 failures=[\"large dodge target\"]"
+      ],
+      "classification": "reproduced_on_unchanged_base",
+      "baseline_note": "Baseline also fails the old large dodge target assertion; current raid design and touch suites pass."
+    },
+    {
+      "script": "scripts/V52HuntIntegrationSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 45.17,
+      "errors": [],
+      "result": [
+        "v52_hunt_integration checks=111 failures=0 rows=6 pause_recovery_reward_contracts=true"
+      ],
+      "final_collision_rerun": true
+    },
+    {
+      "script": "scripts/MultiDirectionHuntSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 33.61,
+      "errors": [],
+      "result": [
+        "multidirection_hunt checks=4391 failures=[]"
+      ],
+      "final_collision_rerun": true
+    },
+    {
+      "script": "scripts/DirectionalHuntQualitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 88.45,
+      "errors": [],
+      "result": [
+        "directional_hunt_quality checks=32 failures=[]"
+      ],
+      "final_collision_rerun": true
+    },
+    {
+      "script": "scripts/V8364CombatViewSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 13.08,
+      "errors": [],
+      "result": [
+        "v8364_combat_view checks=1312 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V52RoleMovementSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 1.05,
+      "errors": [],
+      "result": [
+        "V52RoleMovementSmokeTest: 28 checks, 0 failures"
+      ],
+      "final_collision_rerun": true
+    },
+    {
+      "script": "scripts/V8362InvasionSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 19.73,
+      "errors": [],
+      "result": [
+        "v8362_invasion checks=175 failures=[]"
+      ],
+      "final_collision_rerun": true
+    },
+    {
+      "script": "scripts/EquipmentUpgradeSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 9.18,
+      "errors": [],
+      "result": [
+        "equipment_upgrade checks=113 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 10.03,
+      "errors": [],
+      "result": [
+        "equipment_modal_save_recovery checks=163 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V82PresentationUiSmokeTest.gd",
+      "passed": false,
+      "reason": "nonzero_exit_or_not_completed",
+      "exit": 1,
+      "seconds": 3.65,
+      "errors": [
+        "ERROR: new settings reachable without overcrowded fixed menu"
+      ],
+      "result": [
+        "v82_presentation_ui checks=22 failures=[\"new settings reachable without overcrowded fixed menu\"]"
+      ],
+      "classification": "reproduced_on_unchanged_base",
+      "baseline_note": "Baseline also fails the old PortraitMenuScroll assertion after the user-approved menu restoration."
+    },
+    {
+      "script": "scripts/RaidCombatQualitySmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 5.74,
+      "errors": [],
+      "result": [
+        "raid_combat_quality checks=35 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/RaidTouchLayoutSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 46.85,
+      "errors": [],
+      "result": [
+        "RAID_TOUCH_LAYOUT checks=1044 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/RaidDesignSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 23.49,
+      "errors": [],
+      "result": [
+        "RAID_DESIGN checks=486 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/V8361OfflineSaveSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 6.4,
+      "errors": [],
+      "result": [
+        "v8361_offline_save checks=436 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/HuntingHomeSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 16.72,
+      "errors": [],
+      "result": [
+        "HUNTING_HOME_SMOKE checks=53 failures=[]"
+      ]
+    },
+    {
+      "script": "scripts/EquipmentMailSmokeTest.gd",
+      "passed": true,
+      "reason": "passed",
+      "exit": 0,
+      "seconds": 10.86,
+      "errors": [],
+      "result": [
+        "equipment_mail checks=35 failures=[]"
+      ]
+    }
+  ],
+  "passed": 22,
+  "total": 24,
+  "base_commit": "a11df5bf734abf292fddbe55ff4c57b4ea2e5657",
+  "source_sha256": {
+    "scripts/BackgroundHunt.gd": "4bd23b910a33de40a3ca678e64e6c2d5cd1e8183ca47aced9df641c2253d1a23",
+    "scripts/BulkEnhancePreview.gd": "a2dd2fd2afc5d8321a3bace4e848d493093f38e3adb95b5433c4ae126b542bbb",
+    "scripts/HeroKitRuntime.gd": "e58737f02ddf069d9a66a5ffed3b018a27fa649b4c13d01e3918f1895d4a8260",
+    "scripts/HuntAttackDirector.gd": "42aad70ee9f3a5dd1effe267c60153f25435113e202ab8a88db9689ae8b593cb",
+    "scripts/HuntAttackQualitySmokeTest.gd": "626508bda24bfa60cfb3d3f5b90fc7038a73cce50539f769f976840c38221c56",
+    "scripts/HuntBodyCollision.gd": "e3ddbdec25b2412c86651f47201fc98bfce4eb96cdedb96bb69491864c460280",
+    "scripts/HuntCoordinationSmokeTest.gd": "cfea1f846c88f310c5762bbb373f19ab76b06964dd4bb4ea17d246b9627439cc",
+    "scripts/HuntDamageReservations.gd": "fccf00f530fc560c8ac1ae4d963dd9b47a5a8c9df812db2d26b2c67b424278ae",
+    "scripts/HuntEfficiency.gd": "91a9e603e394370da2474c6449d1ad20897b03d126344fc597bc05e7179bbb94",
+    "scripts/HuntFieldService.gd": "a49f67455011e387843417ae1340d92b4622a69d1d9ff63193a3ff337f7e2441",
+    "scripts/HuntPositionPlanner.gd": "89a07853bbceae235866f4d3b2d7c670c43d0836c3fedd69620f63d413d75429",
+    "scripts/IndependentHuntSmokeTest.gd": "f25ff23be2071f3a510c5b23bda1fdc2351feeec49ef2bd37f6438f4c69dc0fb",
+    "scripts/InvasionHuntDirector.gd": "0ba9e4295e3f130e69e3307f57c42cd1219eaf27078a58164e65a961ec9b4ed5",
+    "scripts/Main.gd": "56ea5f4498d33ad2e2cdd86f7dba450bb08f6b8fcc53b017e6db4edfe9cc45fd",
+    "scripts/PartyMovementDirector.gd": "2f2470b8b941cb5e33e3a3a207cd6622180dd3f0628b5a67a19a737695d991c8",
+    "scripts/PresentationRuntime.gd": "e830bac92a8e7e93e1c4b45665018ac0d2700c4b070f588d655f6fd2c4d8388b",
+    "scripts/maps3d/Battlefield3DView.gd": "2e31a8838a5e42690034234cdde61b60bd54a2d9a23145fb1e71d162baac11a6",
+    "scripts/portrait/PortraitHud.gd": "00fe81001715154dc5b7d5eaee7d894aae158fe20de16e78e2e67f22617173e7",
+    "scripts/portrait/PortraitMain.gd": "d900a2347bea508b9d1e1db30b0be3db69cc4e3afef6b231d161c1e6a2879f96",
+    "tools/audit_hunt_ai.gd": "fa1c8f5c4e4054d27e0eb956200ac4df2f73d08597ff2a12ada2b12109a6cbe8",
+    "tools/capture_hunt_coordination.gd": "b84e928955cf34c479a801ea452152a13e3621a1b3900f2ef77dfba49a364f29"
+  },
+  "note": "Final result consolidates the 24-suite regression run and an eight-suite collision rerun after the final side-step adjustment. Two failures are retained with base-commit reproduction logs. No blanket all-tests-pass claim.",
+  "passed_assertions": 9026,
+  "render": {
+    "backend": "OpenGL compatibility / llvmpipe / Xvfb Linux",
+    "capture_seconds": 30,
+    "fixture": "Aurelia first ten heroes, level 60, stage 154, normal XP and progression, actual simulated combat, no actor poses or HP overrides",
+    "logical_size": [
+      1280,
+      720
+    ],
+    "captured_size": [
+      1120,
+      630
+    ],
+    "battery_field_logical": [
+      1256,
+      432
+    ],
+    "battery_field_render": [
+      628,
+      216
+    ],
+    "touch_projection": "round-trip world-to-view-to-world error <0.02 world units; no Android device test",
+    "errors": []
+  }
+}

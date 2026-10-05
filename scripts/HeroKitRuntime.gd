@@ -77,7 +77,8 @@ static func select_target(main, id: String, slot := "basic") -> int:
 	if slot == "basic" and str(CATALOG.skill(id, "passive").get("condition", "")) == "same_target":
 		profile["target_retention_bonus"] = .35
 	var runtime: Dictionary = main.hero_skill_runtime.get(id, {})
-	return main.combat_decisions.select_skill_target(main.hero_battle_state.get(id, {}), main.enemy_wave, profile, main._combat_enemy_distances(id), int(runtime.get("target_index", -1)))
+	var ranked: Array[int] = main.combat_decisions.rank_skill_targets(main.hero_battle_state.get(id, {}), main.enemy_wave, profile, main._combat_enemy_distances(id), int(runtime.get("target_index", -1)))
+	return preload("res://scripts/HuntDamageReservations.gd").choose(main,id,ranked[0],profile,ranked) if not ranked.is_empty() else -1
 
 static func priority(main, id: String, slot: String) -> int:
 	if not can_use(main, id, slot):
