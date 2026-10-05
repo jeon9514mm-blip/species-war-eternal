@@ -1,0 +1,31 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.305 - Forward Mobile - Using Device #0: Unknown - llvmpipe (LLVM 19.1.7, 256 bits)
+
+WARNING: Screen-space ambient occlusion (SSAO) is only available when using the Forward+ or Compatibility renderers.
+     at: environment_set_ssao (servers/rendering/storage/environment_storage.cpp:700)
+     GDScript backtrace (most recent call first):
+         [0] load_map (res://scripts/maps/MapLoader.gd:16)
+         [1] load_zone (res://scripts/maps/MapLoader.gd:12)
+         [2] _create_map_root (res://scripts/maps3d/Battlefield3DView.gd:108)
+         [3] _ready (res://scripts/maps3d/Battlefield3DView.gd:81)
+         [4] _install_portrait_hud (res://scripts/portrait/PortraitMain.gd:272)
+         [5] _build_combat_screen (res://scripts/portrait/PortraitMain.gd:154)
+         [6] run (res://tools/capture_map_patch.gd:31)
+         [7] settle (res://tools/capture_map_patch.gd:7)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+     GDScript backtrace (most recent call first):
+         [0] load_map (res://scripts/maps/MapLoader.gd:16)
+         [1] load_zone (res://scripts/maps/MapLoader.gd:12)
+         [2] _create_map_root (res://scripts/maps3d/Battlefield3DView.gd:108)
+         [3] _ready (res://scripts/maps3d/Battlefield3DView.gd:81)
+         [4] _install_portrait_hud (res://scripts/portrait/PortraitMain.gd:272)
+         [5] _build_combat_screen (res://scripts/portrait/PortraitMain.gd:154)
+         [6] run (res://tools/capture_map_patch.gd:31)
+         [7] settle (res://tools/capture_map_patch.gd:7)
+MAP_PATCH_CAPTURE gray_meadow-combat camera=10.5
+MAP_PATCH_CAPTURE gray_meadow-overview camera=34.0
+MAP_PATCH_CAPTURE forgotten_mine-combat camera=10.5
+MAP_PATCH_CAPTURE forgotten_mine-overview camera=34.0
+MAP_PATCH_CAPTURE moonrest_forest-combat camera=10.5
+MAP_PATCH_CAPTURE moonrest_forest-overview camera=34.0

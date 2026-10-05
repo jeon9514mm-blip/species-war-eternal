@@ -7,7 +7,9 @@ const FRAMING=preload('res://scripts/maps3d/CombatCameraFraming.gd')
 const HEALTH_LAYOUT=preload('res://scripts/maps3d/CombatHealthLayout.gd')
 const HEALTH_OVERLAY=preload('res://scripts/maps3d/CombatHealthOverlay.gd')
 const HUNT_OVERLAY=preload('res://scripts/maps3d/HuntCombatOverlay.gd')
+const DIORAMA=preload('res://scripts/maps3d/HuntDioramaPresentation.gd')
 const CAMERA_OFFSET=Vector3(0,40,28)
+const HUNT_CAMERA_OFFSET=Vector3(0,14,11)
 const HERO_HEIGHT=1.55
 const ENEMY_HEIGHT=1.20
 var game: Node
@@ -40,6 +42,7 @@ var presentation_suspended := false
 var _render_profile := ""
 var _render_container: SubViewportContainer
 var _render_defaults: Dictionary = {}
+var diorama: Node3D
 func apply_render_profile() -> void:
 	if not is_instance_valid(viewport_3d) or not is_instance_valid(game):return
 	var battery: bool=str(game.presentation_options.get('performance','balanced'))=='battery'
@@ -79,6 +82,7 @@ func _ready() -> void:
 	if map_root==null:return
 	world=map_root.get_node('Arena');camera=world.get_node('BattleCamera')
 	if not raid_mode:
+		diorama=DIORAMA.new();world.add_child(diorama);diorama.setup(self)
 		hunt_overlay=HUNT_OVERLAY.new();hunt_overlay.name='HuntCombatOverlay';hunt_overlay.terrain=self
 		hunt_overlay.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(hunt_overlay)
 		hunt_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -128,7 +132,10 @@ func _resize_world() -> void:
 func _set_focus(point: Vector2) -> void:
 	focus=point
 	var target:=Vector3(point.x,0,point.y)
-	camera.position=target+CAMERA_OFFSET
+	# Orthographic framing changes angle, not distance. Preserve enough camera
+	# clearance for the overview so tall scenery cannot cross the near plane.
+	var offset: Vector3=CAMERA_OFFSET if raid_mode else HUNT_CAMERA_OFFSET.normalized()*CAMERA_OFFSET.length()
+	camera.position=target+offset
 	camera.look_at(target)
 
 func camera_points() -> Array[Vector3]:
@@ -153,7 +160,7 @@ func _update_hunt_camera(delta: float,snap:=false) -> void:
 		_set_focus(Vector2(16,10));camera.v_offset=0
 		camera.size=maxf(34,46.0/maxf(.1,size.x/size.y))
 		return
-	var sine:=CAMERA_OFFSET.normalized().y
+	var sine:=HUNT_CAMERA_OFFSET.normalized().y
 	var frame: Dictionary=FRAMING.fit(camera_points(),size,sine)
 	var next: Vector2=frame.center
 	if not snap and _camera_initialized:
@@ -260,6 +267,7 @@ func _process(delta: float) -> void:
 			actors[key].free();actors.erase(key)
 	_health_overlay.links=_health_links
 	_health_overlay.queue_redraw()
+	if is_instance_valid(diorama):diorama.update_foreground()
 
 func hunt_hit(point: Vector2,source: Vector2,tint: Color,critical: bool) -> void:
 	if is_instance_valid(hunt_overlay):hunt_overlay.hit(point,source,tint,critical)
@@ -324,7 +332,7 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 	var sprite: Sprite3D=actors.get(id)
 	if sprite==null:
 		sprite=Sprite3D.new();sprite.name='HeroBillboard' if hero else 'EnemyBillboard'
-		sprite.billboard=BaseMaterial3D.BILLBOARD_ENABLED;sprite.shaded=false
+		sprite.billboard=BaseMaterial3D.BILLBOARD_ENABLED;sprite.shaded=not raid_mode
 		sprite.alpha_cut=SpriteBase3D.ALPHA_CUT_DISCARD;sprite.alpha_scissor_threshold=.12
 		sprite.texture_filter=BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		sprite.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
@@ -367,6 +375,7 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 			var skinned=sprite.get_node_or_null('HeroSkeletalBillboard')
 			if skinned==null:
 				skinned=HERO_SKIN.new();sprite.add_child(skinned);skinned.bind(rig)
+				skinned.set_environment_lighting(not raid_mode)
 			skinned.sync(camera,sprite.pixel_size,sprite.modulate)
 			# The Sprite3D remains the positioning/shadow API, but only the skin draws.
 			sprite.texture=null
@@ -376,5 +385,8 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 		if child is CanvasItem:child.visible=false
 	var shadow: MeshInstance3D=sprite.get_node('ContactShadow');shadow.position=Vector3(0,-.02,0)-motion
 	shadow.visible=source.modulate.a>.15
+	if not raid_mode:
+		var lift_scale:=1.0-clampf(motion.y*3.0,0,.6)
+		shadow.scale=Vector3(lift_scale,1,lift_scale)
 	sprite.get_node('TeamFootRing').position=Vector3(0,.04,0)-motion
 	sprite.get_node('TeamFootRing').visible=source.modulate.a>.5 and source.state!='death'

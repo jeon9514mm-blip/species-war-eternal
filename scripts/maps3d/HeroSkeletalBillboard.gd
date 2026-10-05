@@ -4,6 +4,7 @@ extends MeshInstance3D
 var rig: Node2D
 var bones_3d: Skeleton3D
 var surface: StandardMaterial3D
+var receives_environment_light:=false
 
 func bind(source_rig: Node2D) -> void:
 	rig=source_rig;name='HeroSkeletalBillboard'
@@ -32,11 +33,21 @@ func bind(source_rig: Node2D) -> void:
 	custom_aabb=AABB(Vector3(-rig.body_height*2,-rig.body_height,-1),Vector3(rig.body_height*4,rig.body_height*3,2))
 	rig.rendered_in_3d=true
 
+func set_environment_lighting(enabled: bool) -> void:
+	# Painted faces retain a soft fill while receiving the hunting map's light.
+	# The lightless painted raid keeps its established unshaded presentation.
+	receives_environment_light=enabled
+	surface.shading_mode=BaseMaterial3D.SHADING_MODE_PER_PIXEL if enabled else BaseMaterial3D.SHADING_MODE_UNSHADED
+	surface.roughness=1.0
+	surface.emission_enabled=enabled
+	surface.emission=Color(.12,.12,.12)
+	surface.emission_texture=surface.albedo_texture if enabled else null
+
 func sync(camera: Camera3D, pixel_size: float, tint: Color) -> void:
 	if not is_instance_valid(rig):return
 	var mirror: float=-1.0 if rig.actor.flip_h else 1.0
 	basis=camera.global_basis.scaled_local(Vector3(pixel_size*mirror,pixel_size,pixel_size))
-	surface.albedo_color=tint
+	surface.albedo_color=tint*Color(.78,.78,.78,1) if receives_environment_light else tint
 	for i in rig.bone_names.size():
 		var bone: Bone2D=rig.bones[rig.bone_names[i]]
 		bones_3d.set_bone_pose_position(i,Vector3(bone.position.x,-bone.position.y,0))

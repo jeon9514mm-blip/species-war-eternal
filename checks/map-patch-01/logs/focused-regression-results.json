@@ -1,0 +1,47 @@
+[
+  {
+    "name": "V8364CombatViewSmokeTest",
+    "returncode": 0,
+    "seconds": 17.96,
+    "log": "checks/map-patch-01/logs/V8364CombatViewSmokeTest.log",
+    "lines": [
+      "v8364_combat_view checks=1312 failures=[]"
+    ]
+  },
+  {
+    "name": "HuntCoordinationSmokeTest",
+    "returncode": 0,
+    "seconds": 11.18,
+    "log": "checks/map-patch-01/logs/HuntCoordinationSmokeTest.log",
+    "lines": [
+      "HUNT_COORDINATION checks=48 failures=[]"
+    ]
+  },
+  {
+    "name": "HuntCompactHudSmokeTest",
+    "returncode": 0,
+    "seconds": 8.84,
+    "log": "checks/map-patch-01/logs/HuntCompactHudSmokeTest.log",
+    "lines": [
+      "HUNT_COMPACT_HUD checks=133 failures=[]"
+    ]
+  },
+  {
+    "name": "IndependentHuntSmokeTest",
+    "returncode": 0,
+    "seconds": 22.37,
+    "log": "checks/map-patch-01/logs/IndependentHuntSmokeTest.log",
+    "lines": [
+      "INDEPENDENT_HUNT checks=89 failures=[]"
+    ]
+  },
+  {
+    "name": "RaidDesignSmokeTest",
+    "returncode": 0,
+    "seconds": 28.75,
+    "log": "checks/map-patch-01/logs/RaidDesignSmokeTest.log",
+    "lines": [
+      "RAID_DESIGN checks=486 failures=[]"
+    ]
+  }
+]

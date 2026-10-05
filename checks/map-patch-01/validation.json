@@ -1,0 +1,70 @@
+{
+  "engine": "4.7.2",
+  "renderer": "Mobile / Vulkan software llvmpipe",
+  "default_scene": "scenes/PortraitMain.tscn",
+  "base_commit": "b00ef12882dd0766c1f660af9d41fb80ffaf842a",
+  "source_zip_sha256": "684217f86e678eb0a1632798e956a35504283b09d15599668f2ee32399a47a9e",
+  "checks": 2068,
+  "failures": 0,
+  "screenshots": [
+    {
+      "path": "checks/map-patch-01/captures/forgotten_mine-combat.png",
+      "size": [
+        1120,
+        630
+      ],
+      "sha256": "f5ca7bc51a7c738210bb919e65bcf4d797940d5c9938506f5cafc0cd370628bd"
+    },
+    {
+      "path": "checks/map-patch-01/captures/forgotten_mine-overview.png",
+      "size": [
+        1120,
+        630
+      ],
+      "sha256": "8faf49dc6adc089abfb6078d1ff48e8072b06f2b9fd196f39b85e9b65fdbc9ff"
+    },
+    {
+      "path": "checks/map-patch-01/captures/gray_meadow-combat.png",
+      "size": [
+        1120,
+        630
+      ],
+      "sha256": "ab4e27ffd9537d6db8b3b5ebb0b93c33ba1673d4c8c9674be43bbf49f763cf48"
+    },
+    {
+      "path": "checks/map-patch-01/captures/gray_meadow-overview.png",
+      "size": [
+        1120,
+        630
+      ],
+      "sha256": "1e39eec583cb94153eb55bb7b0101a05a582b990d98cc39bcebb906aa73a7086"
+    },
+    {
+      "path": "checks/map-patch-01/captures/moonrest_forest-combat.png",
+      "size": [
+        1120,
+        630
+      ],
+      "sha256": "8389e24a770272c74e22d62486badcb59f66757a974e0024094ed2a1fa2113b1"
+    },
+    {
+      "path": "checks/map-patch-01/captures/moonrest_forest-overview.png",
+      "size": [
+        1120,
+        630
+      ],
+      "sha256": "d9589d27cf583f04b991a3405f0d5030a927e837cff04f68b94b072634d8ef0e"
+    }
+  ],
+  "renderer_notes": [
+    "Existing packed scenes emit one SSAO and one volumetric-fog unsupported warning while loading on Mobile; hunt presentation disables these effects. No script or shader errors.",
+    "Android device performance not measured."
+  ],
+  "preserved": [
+    "hunt movement and formation",
+    "raid presentation and power",
+    "landscape only",
+    "equipment capacity 200",
+    "production saves (isolated capture homes)"
+  ]
+}
