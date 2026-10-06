@@ -15,7 +15,6 @@ func run() -> void:
 	main._build_combat_screen();await settle()
 	main.combat_running=false
 	var terrain=main.combat_labels.terrain
-	terrain._toggle_overview();await capture('ice-overview-portrait');terrain._toggle_overview()
 	# A labelled fixture makes densely overlapping, injured units reproducible.
 	for bar in main.hero_hp_bars.values():bar.value=25
 	for bar in main.enemy_hp_bars:bar.value=50

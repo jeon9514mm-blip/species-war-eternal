@@ -48,7 +48,6 @@ func run() -> void:
 	game._build_raid_screen();await capture('raid-landscape')
 	game.presentation_options.orientation='portrait';root.content_scale_size=Vector2i(720,1280);root.size=Vector2i(720,1280);await settle()
 	game._build_combat_screen();await settle();game.combat_running=false
-	game.combat_labels.terrain._toggle_overview()
 	for serial in range(1,9):
 		for enemy in game.enemy_wave:enemy.hp=0
 		game._finish_hunt_target();game.invasion.clock+=4;game.invasion.serial=serial-1

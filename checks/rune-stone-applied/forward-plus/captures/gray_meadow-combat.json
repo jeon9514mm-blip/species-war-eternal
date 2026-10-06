@@ -1,0 +1,12 @@
+{
+  "capture": "gray_meadow-combat",
+  "ground": "res://assets/maps/rune-stone/stone.png",
+  "map_meshes": 1,
+  "raid": false,
+  "renderer": "forward_plus",
+  "size": [
+    1120,
+    630
+  ],
+  "zone": "gray_meadow"
+}

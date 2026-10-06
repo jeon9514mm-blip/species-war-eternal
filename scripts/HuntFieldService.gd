@@ -96,12 +96,15 @@ static func advance_roaming_hunt(main: Node, delta: float, support_actors: Array
 	if main.roaming_hunt is INVASION:
 		main.roaming_hunt.target_attack_reaches.clear()
 		main.roaming_hunt.target_hero_ids.clear()
+		main.roaming_hunt.hero_presence.clear();main.roaming_hunt.boss_mask.clear()
+		for id in main._alive_hero_ids():main.roaming_hunt.hero_presence.append(main._hero_field_position(id))
 	for index in main.enemy_wave.size():
 		main.enemy_wave[index]["hunt_target_lock"] = maxf(0.0, float(main.enemy_wave[index].get("hunt_target_lock", 0.0)) - delta)
 		var hero_id = main._select_hero_target_for_enemy(index)
 		enemy_targets.append(main._hero_field_position(hero_id))
 		if main.roaming_hunt is INVASION:
 			main.roaming_hunt.target_hero_ids.append(hero_id)
+			main.roaming_hunt.boss_mask.append(bool(main.enemy_wave[index].get('is_boss',false)) or bool(main.enemy_wave[index].get('elite',false)))
 			main.roaming_hunt.target_attack_reaches.append(main.combat_decisions.spatial_range(int(main.hero_battle_state.get(hero_id,{}).get('range',1))))
 	var bodies_before: Array[Dictionary]=preload("res://scripts/HuntBodyCollision.gd").actors(main) if main.challenge_session==null else []
 	var result = main.roaming_hunt.advance(delta, main._alive_enemy_mask(), immobile, enemy_targets)
@@ -365,6 +368,7 @@ static func compact(main: Node) -> void:
 	for key: String in ["enemy_positions","enemy_pack_ids","enemy_wander_targets","enemy_archetypes","enemy_home_positions","enemy_sight_ranges","enemy_leash_ranges","enemy_returning","enemy_alerted"]:
 		var values: Array = main.roaming_hunt.get(key); var copy: Array = values.duplicate(); values.clear()
 		for i in keep: values.append(copy[i])
+	if main.roaming_hunt.has_method('remap_temporary_states'):main.roaming_hunt.remap_temporary_states(mapping)
 	main.roaming_hunt.current_target = int(mapping.get(main.roaming_hunt.current_target,-1))
 	main.party_movement.formation_threat=int(mapping.get(main.party_movement.formation_threat,-1))
 	for id in main.hero_skill_runtime:

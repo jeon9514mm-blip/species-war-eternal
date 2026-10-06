@@ -37,11 +37,11 @@ func run() -> void:
 	root.add_child(main);await settle()
 	main.set_physics_process(false);main.set_process(false);main._offline_checked=true;main.tutorial_completed=true
 	main.selected_faction='aurelia';main.combat_effects_enabled=false
-	for zone: String in SCENERY.CASUAL_ART:
+	for zone: String in ['gray_meadow','forgotten_mine','moonrest_forest']:
 		var field:=SCENERY.new();field.configure(zone,Color.WHITE)
 		root.add_child(field);await settle()
-		check(field.field_texture==SCENERY.CASUAL_ART[zone],zone+' uses painted field')
-		check(field.texture_filter==CanvasItem.TEXTURE_FILTER_LINEAR,zone+' uses smooth texture filtering')
+		check(field.field_texture==preload('res://scripts/FieldArtCatalog.gd').texture_for(zone),zone+' uses painted field')
+		check(field.mouse_filter==Control.MOUSE_FILTER_IGNORE,zone+' terrain does not intercept scroll')
 		field.queue_free();await process_frame
 	for monster_name: String in MonsterSpriteFactory.MONSTER_SPRITES:
 		var sprite:=MonsterSpriteFactory.create_monster(monster_name)

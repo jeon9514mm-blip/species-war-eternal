@@ -13,12 +13,14 @@ const P_GROUND_SHADOW := preload('res://scripts/portrait/PortraitGroundShadow.gd
 const P_HERO_RIG := preload('res://scripts/portrait/PortraitHeroSkeletalRig.gd')
 const P_KILL_BURST := preload('res://scripts/portrait/PortraitKillBurst.gd')
 const P_DAMAGE := preload('res://scripts/portrait/PortraitDamageNumber.gd')
+const DAMAGE_POOL := preload('res://scripts/DamageNumberManager.gd')
 const P_SKILL_BURST := preload('res://scripts/portrait/PortraitSkillBurst.gd')
 var portrait_hud: Control
 var _resize_pending := false
 var _hunt_details_layer: CanvasLayer
 var _hunt_details_shade: ColorRect
 var _number_lane := 0
+var _damage_pool: Node
 var _offline_settling := false
 
 func _save_idle_state() -> void:
@@ -221,10 +223,13 @@ func _spawn_floating_combat_text(message: String, color: Color, origin: Vector2)
 	var center:=Vector2(clampf(origin.x+90.0,combat_field_rect.position.x+48.0,combat_field_rect.end.x-48.0),clampf(origin.y+45.0,field_top,maxf(field_top+42,field_bottom)))
 	var floats:=get_tree().get_nodes_in_group('floating_combat_text')
 	while floats.size()>=int(_presentation_profile()['float_limit']):
-		var oldest: Node=floats.pop_front();oldest.remove_from_group('floating_combat_text');oldest.queue_free()
+		var oldest: Node=floats.pop_front()
+		if oldest.has_method('retire'):oldest.retire()
+		else:oldest.remove_from_group('floating_combat_text');oldest.queue_free()
 	_number_lane+=1
-	var label:=P_DAMAGE.new();content_root.add_child(label)
-	label.show_value(displayed,tint,center,critical,_number_lane)
+	if not is_instance_valid(_damage_pool):
+		_damage_pool=DAMAGE_POOL.new();_damage_pool.name='DamageNumberPool';content_root.add_child(_damage_pool)
+	_damage_pool.spawn_damage(displayed,tint,center,critical,_number_lane)
 
 func _on_hunt_reward(gold: int, xp: int, drops: Array[Dictionary], stage_cleared: bool, chest_gold := 0, chest_xp := 0) -> void:
 	# Hero XP was granted by the hunt. Move its account XP and gold directly to

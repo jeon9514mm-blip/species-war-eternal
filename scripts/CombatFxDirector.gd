@@ -295,7 +295,7 @@ func death_burst(position: Vector2, color: Color, elite := false) -> void:
 		return
 	death_burst_sequence += 1
 	impact(position, color, 34.0 if elite else 25.0)
-	var shard_count := 12 if elite else 8
+	var shard_count := 12 if elite else 7
 	for index in shard_count:
 		var angle := TAU * float(index) / float(shard_count) - PI * 0.5
 		var direction := Vector2.from_angle(angle)
@@ -414,6 +414,8 @@ func camera_impact(intensity := 5.0, duration := 0.16, zoom := 0.012) -> void:
 func hero_skill(game: Control, hero_id: String, slot: String, start: Vector2, points: Array[Dictionary], profile: Dictionary, bounds: Rect2) -> void:
 	if not _fx_budget_available() or not bool(game.combat_effects_enabled):
 		return
+	var battlefield: Control=game.combat_labels.get('terrain')
+	if is_instance_valid(battlefield) and battlefield.has_method('skill_trail'):battlefield.skill_trail(hero_id)
 	var clip := layer.get_node_or_null("HeroSkillClip") as Control
 	if clip == null:
 		clip = Control.new()

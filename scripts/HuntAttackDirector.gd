@@ -4,6 +4,7 @@ const ENEMY_WINDUP := .22
 
 static func refresh_enemy_intent(main, index: int) -> void:
 	var enemy: Dictionary = main.enemy_wave[index]
+	if main.roaming_hunt.has_method('is_fearing') and main.roaming_hunt.is_fearing(index):enemy.erase('attack_intent');return
 	if not enemy.has('attack_intent'): return
 	var id := str(enemy.attack_intent)
 	var valid: bool = float(enemy.get('stun_seconds',0)) <= 0
@@ -27,6 +28,7 @@ static func committed_target(main, id: String, action: String, prepared: String)
 
 static func advance_enemy(main, index: int, delta: float) -> Dictionary:
 	var enemy: Dictionary = main.enemy_wave[index]
+	if main.roaming_hunt.has_method('is_fearing') and main.roaming_hunt.is_fearing(index):return {'ready':false}
 	if float(enemy.get('stun_seconds', 0)) > 0:
 		enemy.erase('attack_intent')
 		enemy['attack_remaining'] = maxf(ENEMY_WINDUP, float(enemy.get('attack_remaining', .9)))

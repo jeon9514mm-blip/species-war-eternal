@@ -69,9 +69,10 @@ func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
 		}
 		var offset := Vector2((0.38 if row == "front" else (-0.38 if row == "rear" else 0.0)) - float(index / 3) * 0.16, float(index % 3 - 1) * 0.5)
 		if independent_hunt:
-			var columns:=mini(4,ceili(sqrt(float(heroes.size()))))
-			var rows:=ceili(float(heroes.size())/columns)
-			offset=Vector2(float(index%columns)-(columns-1)*.5,float(index/columns)-(rows-1)*.5)*1.3
+			var count:=heroes.size()
+			var radius:=maxf(1.3,1.30/(2.0*sin(PI/maxf(2,count))*.62))
+			var angle:=TAU*float(index)/maxf(1,count)
+			offset=Vector2(cos(angle),sin(angle)*.62)*radius if count>1 else Vector2.ZERO
 		travel_offsets[id] = offset
 		positions[id] = _clamp(origin + offset)
 		velocities[id] = Vector2.ZERO
@@ -90,6 +91,7 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 		var id := str(hero.get("id", ""))
 		var state: Dictionary = states.get(id, {})
 		var start: Vector2 = positions.get(id, anchor)
+		var prior_velocity: Vector2=velocities.get(id,Vector2.ZERO)
 		velocities[id] = Vector2.ZERO
 		if int(state.get("hp", 0)) <= 0:
 			targets[id] = -1
@@ -120,8 +122,14 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 			var intercept: float=1.35 if bool(movement_profiles.get(id,{}).get('frontline_screen',false)) else 0.85
 			goal = station + (goal - station).limit_length(intercept)
 		goal = _clamp(goal)
+		if independent_hunt and not engaged and start.distance_to(goal)<.114:continue
 		reserved[id] = goal
-		var next := _move("hero_%s" % id, start, goal, WALK_SPEED * delta)
+		var step_speed:=WALK_SPEED
+		if independent_hunt:
+			step_speed*=.45+.55*smoothstep(0,.72,start.distance_to(goal))
+			var heading: Vector2=goal-start
+			if prior_velocity.length()>.1 and heading.length()>.01 and prior_velocity.normalized().dot(heading.normalized())<.3:step_speed*=.65
+		var next := _move("hero_%s" % id, start, goal, step_speed * delta)
 		# Separation is a local steering force; global navigation always sees the full goal.
 		var separation := Vector2.ZERO
 		var spacing := 1.15 if independent_hunt else SEPARATION_RADIUS

@@ -1,0 +1,12 @@
+{
+  "capture": "forgotten_mine-combat",
+  "ground": "res://assets/maps/rune-stone/stone.png",
+  "map_meshes": 1,
+  "raid": false,
+  "renderer": "mobile",
+  "size": [
+    1120,
+    630
+  ],
+  "zone": "forgotten_mine"
+}

@@ -8,7 +8,7 @@ var options_sheet: Control
 var arena_body: Control
 var header_title: Label
 func _new_battlefield() -> Control:
-	return preload("res://scripts/art/RaidArtBattlefield.gd").new()
+	return preload("res://scripts/art/RaidArenaBattlefield.gd").new()
 
 func _wide_layout(body: Control,summary: Control,status: Control,actions: Control,party: Control,heading: Control,w: float,h: float) -> void:
 	for node_name in ["PortraitMenuHeader","PortraitNavigation"]:

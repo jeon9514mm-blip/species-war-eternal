@@ -4,6 +4,22 @@ var invasion_enabled := true
 var _entry_pending := false
 var target_attack_reaches: Array[float]=[]
 var target_hero_ids: Array[String]=[]
+var hero_presence: Array[Vector2]=[]
+var boss_mask: Array[bool]=[]
+var fear_remaining: Dictionary={}
+var fear_cooldowns: Dictionary={}
+var fear_rng:=RandomNumberGenerator.new()
+func configure(start: Vector2, seed: int, next_zone_id: String = 'gray_meadow') -> void:
+	super.configure(start,seed,next_zone_id);fear_rng.seed=seed^0x165A1
+	fear_remaining.clear();fear_cooldowns.clear()
+func clear_enemies() -> void:
+	super.clear_enemies();fear_remaining.clear();fear_cooldowns.clear()
+func remap_temporary_states(mapping: Dictionary) -> void:
+	for states in [fear_remaining,fear_cooldowns]:
+		var previous: Dictionary=states.duplicate();states.clear()
+		for old_index in previous:
+			if mapping.has(old_index):states[mapping[old_index]]=previous[old_index]
+func is_fearing(index: int) -> bool:return float(fear_remaining.get(index,0))>0
 const ENTRY_SIDES := [
 	{"id":"east","name":"동쪽","anchor":Vector2(30.2,10)},
 	{"id":"west","name":"서쪽","anchor":Vector2(1.8,10)},
@@ -32,6 +48,20 @@ func advance(delta: float, alive_mask: Array, immobile_mask: Array = [], hero_ta
 	for i in enemy_positions.size():
 		if i >= alive_mask.size() or not bool(alive_mask[i]): continue
 		if i < immobile_mask.size() and bool(immobile_mask[i]): continue
+		fear_cooldowns[i]=maxf(0,float(fear_cooldowns.get(i,0))-delta)
+		var nearby:=0;var presence_center:=Vector2.ZERO
+		for hero_point in hero_presence:
+			if enemy_positions[i].distance_to(hero_point)<1.40:nearby+=1;presence_center+=hero_point
+		if nearby>=3 and not (i<boss_mask.size() and boss_mask[i]) and float(fear_cooldowns[i])<=0 and fear_rng.randf()<1.0-exp(-.48*delta):
+			fear_remaining[i]=.70;fear_cooldowns[i]=4.0
+		if is_fearing(i):
+			fear_remaining[i]=maxf(0,float(fear_remaining[i])-delta)
+			var threat: Vector2=presence_center/float(nearby) if nearby>0 else party_position
+			var away: Vector2=enemy_positions[i]-threat
+			if away.length()<.001:away=Vector2.from_angle(i*2.4)
+			var escape: Vector2=_clamp_field(enemy_positions[i]+away.normalized()*2.24)
+			enemy_positions[i]=_clamp_field(_move_actor('enemy_%d'%i,enemy_positions[i],escape,1.75*delta))
+			continue
 		var target: Vector2 = hero_targets[i] if i < hero_targets.size() else party_position
 		var pos: Vector2 = enemy_positions[i]
 		var distance: float = pos.distance_to(target)

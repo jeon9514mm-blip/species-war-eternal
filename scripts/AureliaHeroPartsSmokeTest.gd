@@ -1,4 +1,4 @@
-extends "res://scripts/ArtDirectionPilotSmokeTest.gd"
+extends "res://scripts/AureliaStudyTestBase.gd"
 ## Headless resource, multipart geometry and unchanged-controller integration.
 ## Final painted composition and motion readability require the separate GPU review.
 const PARTS_CATALOG_PATH := "res://scripts/art/HeroPartsCatalog.gd"

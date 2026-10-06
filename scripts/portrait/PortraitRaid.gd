@@ -10,11 +10,6 @@ const KITS := preload('res://scripts/HeroKitRuntime.gd')
 const TELEGRAPH := preload('res://scripts/portrait/RaidArenaTelegraph.gd')
 const BOSS_MOTION := preload('res://scripts/portrait/RaidBossMotion.gd')
 const FIELD := preload('res://scripts/RaidBattlefield.gd')
-const BACKGROUNDS := {
-	'gray_meadow': 'res://assets/backgrounds/raid-v59/stone-circle.png',
-	'forgotten_mine': 'res://assets/backgrounds/raid-v59/crystal-forge.png',
-	'moonrest_forest': 'res://assets/backgrounds/raid-v59/eclipse-grove.png',
-}
 var game: Node
 var hp: ProgressBar
 var information: Label

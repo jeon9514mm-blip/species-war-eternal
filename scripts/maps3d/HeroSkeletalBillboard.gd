@@ -1,10 +1,12 @@
 extends MeshInstance3D
+const TOON=preload('res://shaders/ToonRimLight.gdshader')
 ## GPU-skinned camera-facing artwork. Shares the 2D rig's joints, bind pose and weights.
 ## No per-hero viewport or per-frame vertex uploads are required.
 var rig: Node2D
 var bones_3d: Skeleton3D
 var surface: StandardMaterial3D
 var receives_environment_light:=false
+var toon_surface: ShaderMaterial
 
 func bind(source_rig: Node2D) -> void:
 	rig=source_rig;name='HeroSkeletalBillboard'
@@ -42,12 +44,19 @@ func set_environment_lighting(enabled: bool) -> void:
 	surface.emission_enabled=enabled
 	surface.emission=Color(.12,.12,.12)
 	surface.emission_texture=surface.albedo_texture if enabled else null
+	if enabled:
+		toon_surface=ShaderMaterial.new();toon_surface.shader=TOON
+		toon_surface.set_shader_parameter('albedo_texture',surface.albedo_texture)
+		material_override=toon_surface
+	else:
+		toon_surface=null;material_override=surface
 
 func sync(camera: Camera3D, pixel_size: float, tint: Color) -> void:
 	if not is_instance_valid(rig):return
 	var mirror: float=-1.0 if rig.actor.flip_h else 1.0
 	basis=camera.global_basis.scaled_local(Vector3(pixel_size*mirror,pixel_size,pixel_size))
 	surface.albedo_color=tint*Color(.78,.78,.78,1) if receives_environment_light else tint
+	if toon_surface!=null:toon_surface.set_shader_parameter('tint',tint)
 	for i in rig.bone_names.size():
 		var bone: Bone2D=rig.bones[rig.bone_names[i]]
 		bones_3d.set_bone_pose_position(i,Vector3(bone.position.x,-bone.position.y,0))

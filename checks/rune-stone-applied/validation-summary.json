@@ -1,0 +1,28 @@
+{
+  "date_kst": "2026-10-06",
+  "engine": "Godot 4.7.2",
+  "focused_suites_passed": 7,
+  "focused_suites_total": 7,
+  "assertion_count": 1586,
+  "additional_roaming_scenarios": [
+    "patrol",
+    "wander",
+    "aggro",
+    "chase",
+    "engage"
+  ],
+  "renderer": "Actual Mobile plus Forward+",
+  "mobile_captures": [
+    "forgotten_mine-combat.png",
+    "forgotten_mine-ready.png",
+    "gray_meadow-combat.png",
+    "gray_meadow-ready.png",
+    "moonrest_forest-combat.png",
+    "moonrest_forest-ready.png"
+  ],
+  "renderer_error_count": 0,
+  "physical_mobile_device_tested": false,
+  "final_gameplay": "multidirectional hunt with bounded retreat, target preference and existing damage/reward math",
+  "preview_is_actual_game": true,
+  "rune_shader_sha256": "e2377505666455b844f699e903263565d32fd0a4f269e363c1b02651f3570f0d"
+}

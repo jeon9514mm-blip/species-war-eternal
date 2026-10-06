@@ -7,7 +7,7 @@ const MOOD_BRIGHTNESS := 0.90
 const MOOD_SATURATION := 0.88
 const AMBIENT_REDRAW_INTERVAL := 0.08
 const FIELD_ART := preload("res://scripts/FieldArtCatalog.gd")
-const MEADOW_PATH := "res://assets/terrain-v70/evergreen-meadow.png"
+const MEADOW_PATH := ""
 var zone_id := "gray_meadow"
 var zone_color := Color("#75b98a")
 var elapsed := 0.0
@@ -75,41 +75,4 @@ func source_rect_for_world(world_rect: Rect2) -> Rect2:
 	return Rect2(texture_size * uv.position + world_rect.position * ratio, world_rect.size * ratio)
 
 func _draw() -> void:
-	if is_instance_valid(field_texture):
-		draw_rect(Rect2(Vector2.ZERO, size), FIELD_ART.base_color(zone_id))
-		# The inner UV still maps exactly onto the original navigable field.
-		# The remaining image lies outside that field as non-interactive scenery.
-		var visible := visible_world_rect().intersection(art_world_rect())
-		if visible.has_area():
-			var source := source_rect_for_world(visible)
-			var destination := Rect2(_map_point(visible.position), visible.size * pixels_per_unit)
-			draw_texture_rect_region(field_texture, destination, source)
-		return
-	_draw_procedural_world()
-
-func _draw_procedural_world() -> void:
-	var base := Color("#92b58a") if zone_id == "moonrest_forest" else Color("#b6ac94")
-	draw_rect(Rect2(Vector2.ZERO, size), base)
-	for y in range(20):
-		for x in range(32):
-			var point := _map_point(Vector2(x, y))
-			if not Rect2(Vector2(-100, -100), size + Vector2(200, 200)).has_point(point):
-				continue
-			var shade := base.lightened(0.035) if (x * 13 + y * 7) % 3 == 0 else base.darkened(0.025)
-			draw_rect(Rect2(point, Vector2.ONE * pixels_per_unit), shade)
-			if (x * 7 + y * 19) % 11 == 0:
-				draw_rect(Rect2(point + Vector2(12, 24), Vector2(5, 3)), base.lightened(0.18))
-	var route := PackedVector2Array()
-	for point in [Vector2(0, 13), Vector2(5, 12), Vector2(11, 8), Vector2(17, 10), Vector2(23, 7), Vector2(32, 8)]:
-		route.append(_map_point(point))
-	draw_polyline(route, Color("#ccbd91"), pixels_per_unit * 0.7, false)
-	for index in range(40):
-		var cell := Vector2(fmod(index * 7.3 + 1.8, 31.0), fmod(index * 4.6 + 1.4, 19.0))
-		var point := _map_point(cell)
-		if zone_id == "forgotten_mine":
-			draw_circle(point, pixels_per_unit * 0.25, Color("#9a849d"))
-			draw_rect(Rect2(point - Vector2(4, 12), Vector2(7, 8)), Color("#d6b0cf"))
-		else:
-			draw_rect(Rect2(point - Vector2(4, 5), Vector2(8, 20)), Color("#977455"))
-			draw_circle(point - Vector2(0, 14), pixels_per_unit * 0.43, Color("#527e69"))
-			draw_circle(point - Vector2(5, 21), pixels_per_unit * 0.31, Color("#75a77b"))
+	draw_rect(Rect2(Vector2.ZERO,size),Color("#29313a"))

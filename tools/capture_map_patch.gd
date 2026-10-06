@@ -36,7 +36,6 @@ func run() -> void:
 		var field: Control=game.combat_labels.terrain
 		field._resize_world();field._process(0)
 		await capture(zone+'-combat')
-		field._toggle_overview();await capture(zone+'-overview')
 		game.presentation_runtime.audio.shutdown();game.background_hunt.discard()
 		game.queue_free();await settle()
 	quit()

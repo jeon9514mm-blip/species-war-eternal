@@ -105,7 +105,7 @@ func run() -> void:
 	main._open_home();await settle()
 	check(field.viewport_3d.render_target_update_mode==SubViewport.UPDATE_ALWAYS,'returning to hunt restores rendering')
 	main.presentation_options.performance='balanced';main.presentation_runtime.apply();await settle()
-	check(field.viewport_3d.msaa_3d==Viewport.MSAA_2X and field.viewport_3d.positional_shadow_atlas_size==1024,'balanced mode restores 3D quality')
+	check(field.viewport_3d.msaa_3d==Viewport.MSAA_4X and field.viewport_3d.positional_shadow_atlas_size==2048,'balanced mode restores ultra hunting quality')
 	for light in lights:check(light.shadow_enabled==bool(field._render_defaults[light]),'balanced restores authored directional shadows')
 	for environment in environments:
 		for property in field._render_defaults[environment.environment]:check(environment.environment.get(property)==field._render_defaults[environment.environment][property],'balanced restores authored environment '+property)

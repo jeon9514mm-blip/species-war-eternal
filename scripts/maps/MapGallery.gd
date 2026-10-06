@@ -8,7 +8,7 @@ var camera: Camera3D
 var yaw:=.18
 var pitch:=.79
 var distance:=70.0
-var labels: Array[String]=['달빛 엘프 유적','붉은 협곡 광산','숲속 초원','빙하 심연 전장']
+var labels: Array[String]=['보랏빛 룬 · 사냥터 3','호박 룬 · 사냥터 2','레이드 · 디자인 대기','청록 룬 · 사냥터 1']
 var raid_variant:=false
 var selected_map:=3
 var title: Label
@@ -28,7 +28,7 @@ func select_map(id: int) -> void:
 	selected_map=id
 	map_root=loader.load_map(id,viewport_3d,raid_variant);camera=map_root.get_node('Arena/BattleCamera')
 	camera.size=44 if id==3 else 32;camera.current=true
-	title.text=labels[id]+(' · 레이드' if raid_variant else ' · 사냥')+'  |  드래그: 시점 회전 · 마우스 휠: 확대/축소'
+	title.text=labels[id]+(' · 레이드' if raid_variant or id==2 else ' · 사냥')+'  |  드래그: 시점 회전 · 마우스 휠: 확대/축소'
 	pose()
 func pose() -> void:
 	var target:=Vector3(16,1,5)

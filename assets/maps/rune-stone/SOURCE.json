@@ -1,0 +1,14 @@
+{
+  "generated_art": "new stone floor with no baked runes or characters",
+  "sha256": "d8c224cfdd84c663f1beaa53bc957850b97926d61990958e4c45362bad71ae89",
+  "reference_url": "https://www.meta.ai/share/a/16f6033d-8075-4977-8f59-f3e1a629eceb",
+  "user_confirmed": "stone floor + glowing runes",
+  "date_kst": "2026-10-06",
+  "rendering": "Godot 4 MODEL_MATRIX world-space spatial material; TIME replaced by pause-aware cosmetic clock",
+  "asset_origin": "/workspace/generated_images/exec-bfe33a64-a044-4dc4-9991-9adff14f8cff.png",
+  "resolution": [
+    1254,
+    1254
+  ],
+  "art_guide": "https://www.meta.ai/share/a/0bdb4245-ec84-4367-a1a0-61caac948e63"
+}

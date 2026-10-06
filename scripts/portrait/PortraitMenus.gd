@@ -80,7 +80,7 @@ static func landing(main: Node) -> void:
 	main.content_root.set_meta('portrait_ready',true)
 	var size: Vector2=main.get_viewport_rect().size
 	var tex:=TextureRect.new()
-	tex.texture=preload('res://assets/terrain-v70/evergreen-overview.png')
+	tex.texture=null
 	tex.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
 	tex.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	tex.mouse_filter=Control.MOUSE_FILTER_IGNORE

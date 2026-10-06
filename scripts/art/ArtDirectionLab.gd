@@ -1,7 +1,7 @@
 extends "res://scripts/portrait/PortraitMain.gd"
 ## F6 developer preview. Production progression and local settings are never read
 ## or written. Combat, invasion, formation and damage are the production methods.
-const LAB_FIELD = preload("res://scripts/art/ArtDirectionBattlefield.gd")
+const LAB_FIELD = preload("res://scripts/maps3d/Battlefield3DView.gd")
 const LAB_SAVE_PATH := "user://art-direction-lab/progress.json"
 const LAB_SETTINGS_PATH := "user://art-direction-lab/preferences.cfg"
 @export_enum("gray_meadow","forgotten_mine","moonrest_forest") var preview_zone_id := "gray_meadow"
@@ -11,7 +11,7 @@ class PilotHud extends "res://scripts/portrait/LandscapeHuntHud.gd":
 		super.refresh()
 		if is_instance_valid(stage_label):
 			var field = game.combat_labels.get("terrain")
-			var title := str(preload("res://scripts/art/HuntingSceneryCatalog.gd").profile(field.art_theme).title) if is_instance_valid(field) and field is LAB_FIELD else "사냥터"
+			var title := "빈 전장 · 맵 디자인 제거됨"
 			stage_label.text = "%s · 시범  |  %d 스테이지" % [title,game.idle_stage]
 			stage_label.tooltip_text = stage_label.text
 
@@ -111,7 +111,7 @@ func _install_portrait_hud() -> void:
 	field.add_child(monsters)
 	var note := Label.new()
 	note.name = "ArtDirectionLabNotice"
-	note.text = "3개 사냥터 시범 · 그래픽 검토  |  진행·설정 저장 안 함"
+	note.text = "맵 디자인 제거 · 영웅 동작 검토  |  진행·설정 저장 안 함"
 	note.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	note.position = Vector2(18, 114)
 	note.size = Vector2(combat_field_rect.size.x - 12, 20)

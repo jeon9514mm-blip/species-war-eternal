@@ -750,5 +750,18 @@
     ]
   },
   "new_artwork_files_added_note": "15 current concepts and Leonhardt separated-art candidates; historical drafts preserved; see art source records rather than a bulk completion count.",
-  "publication_base_commit": "4751bb2151fa74ed90773dd7f2ee3c581855b95f"
+  "publication_base_commit": "4751bb2151fa74ed90773dd7f2ee3c581855b95f",
+  "map_presentation": {
+    "date_kst": "2026-10-06",
+    "type": "artist stone texture with world-space rune material",
+    "hunt_palettes": [
+      "cyan neutral stone",
+      "amber warm stone",
+      "violet cool stone"
+    ],
+    "battle_overview_removed": true,
+    "old_scenery_deleted": true,
+    "raid_new_design_applied": false,
+    "real_device_performance_tested": false
+  }
 }

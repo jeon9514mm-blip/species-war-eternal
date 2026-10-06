@@ -66,12 +66,12 @@ func install(main: Node) -> void:
 	var routes: Dictionary={}
 	for entry: Dictionary in NAV.menu_entries():routes[str(entry.id)]=str(entry.method)
 	var definitions: Array=[
-		['war','종의 전쟁','진영 전투','res://assets/terrain-v70/crimson-canyon.png'],
+		['war','종의 전쟁','진영 전투',''],
 		['camp','원정 캠프','모험의 시작','res://assets/ui/v30/expedition-key-art.png'],
-		['world','사냥터','지역과 보상','res://assets/terrain-v70/evergreen-header.png'],
-		['summon','소환','영웅과 수호령','res://assets/terrain-v70/arcane-header.png'],
-		['raid','레이드','보스 토벌','res://assets/backgrounds/raid-v59/eclipse-grove.png'],
-		['growth','성장 · 던전','도전과 성장','res://assets/backgrounds/raid-v59/crystal-forge.png']]
+		['world','사냥터','지역과 보상',''],
+		['summon','소환','영웅과 수호령',''],
+		['raid','레이드','보스 토벌',''],
+		['growth','성장 · 던전','도전과 성장','']]
 	for entry: Array in definitions:
 		var route: String=routes.get(str(entry[0]),'_build_boss_select_screen')
 		features.append(_feature(str(entry[0]),str(entry[1]),str(entry[2]),str(entry[3]),route))
@@ -110,7 +110,7 @@ func install(main: Node) -> void:
 func _feature(id: String, title: String, subtitle: String, image_path: String, route: String) -> Button:
 	var button:=_button(cards,_dispatch.bind(route),'PortraitMenu_'+id);button.clip_contents=true;button.tooltip_text=title+' · '+subtitle
 	button.add_theme_stylebox_override('normal',S.box(S.SURFACE,S.EDGE_SOFT,4,1))
-	var art:=TextureRect.new();art.texture=load(image_path);art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	var art:=TextureRect.new();art.texture=load(image_path) if not image_path.is_empty() else null;art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	art.mouse_filter=Control.MOUSE_FILTER_IGNORE;button.add_child(art);art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	art.offset_left=2;art.offset_top=2;art.offset_right=-2;art.offset_bottom=-2
 	_gradient(art,PackedColorArray([Color('#06101b00'),Color('#06101b10'),Color('#06101bf2')]),false)

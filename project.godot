@@ -21,6 +21,7 @@ stretch/aspect="expand"
 handheld/orientation=0
 
 [rendering]
+anti_aliasing/quality/msaa_3d=2
 textures/default_filters/anisotropic_filtering_level=3
 lights_and_shadows/directional_shadow/size=4096
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=2

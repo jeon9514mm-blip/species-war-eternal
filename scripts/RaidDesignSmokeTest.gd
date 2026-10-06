@@ -52,7 +52,7 @@ func run() -> void:
 			check(scroll.get_global_rect().position.y>view.start.get_global_rect().end.y,"party dock clears commands")
 			check(game.content_root.get_node_or_null("PortraitNavigation")==null,"raid replaces the crowded bottom navigation with a back button")
 			check(not view.options_sheet.visible,"guide is initially collapsed")
-			check(view.battlefield_3d.environment_plate.texture!=null,"theme painting loads")
+			check(not is_instance_valid(view.battlefield_3d.ultimate_details),"raid map design is removed")
 			for id: String in view.hero_slots:
 				check(view.hero_slots[id].size.x>=128 and view.hero_slots[id].size.y>=108,"all hero targets remain reachable and large")
 			for point: Vector2 in [FIELD.FLOOR.position,FIELD.FLOOR.end,Vector2(214,486),Vector2(824,280),FIELD.ENTRY]:

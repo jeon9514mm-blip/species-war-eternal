@@ -1,0 +1,49 @@
+{
+  "engine": "Godot 4.7.2",
+  "results": [
+    {
+      "test": "MeadowAppliedSmokeTest.gd",
+      "passed": true,
+      "seconds": 6.98,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRUNE_STONE_APPLIED checks=105 failures=[]\n"
+    },
+    {
+      "test": "V8364CombatViewSmokeTest.gd",
+      "passed": true,
+      "seconds": 14.54,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8364_combat_view checks=1304 failures=[]\n"
+    },
+    {
+      "test": "HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "seconds": 9.24,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=48 failures=[]\n"
+    },
+    {
+      "test": "V16PresentationIntegrationSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.11,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV16_INTEGRATION checks=77 failures=[]\n"
+    },
+    {
+      "test": "HuntAttackQualitySmokeTest.gd",
+      "passed": true,
+      "seconds": 6.47,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_attack_quality checks=24 failures=[]\n"
+    },
+    {
+      "test": "V52RoleMovementSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.74,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV52RoleMovementSmokeTest: 28 checks, 0 failures\n"
+    },
+    {
+      "test": "RoamingHuntDirectorSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.26,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nroaming_hunt_director_smoke_test_ok patrol=ok wander=ok aggro=ok chase=ok engage=ok\n"
+    }
+  ],
+  "passed": 7,
+  "total": 7
+}

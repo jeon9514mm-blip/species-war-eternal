@@ -27,12 +27,8 @@ func run() -> void:
 				var actor: Sprite3D=terrain.actors[sprite.get_instance_id()]
 				check(is_equal_approx(actor.pixel_size*sprite.native_visual_height,terrain.HERO_HEIGHT),'consistent hero height')
 			for bar in main.hero_hp_bars.values():check(not bar.visible,'full health hero bar leaves screen clear')
-			var combat_size: float=terrain.camera.size
-			terrain._toggle_overview()
-			check(terrain.overview_mode and terrain.camera.size>combat_size,'overview zooms out')
-			check(main.hero_battle_state==hp and main.enemy_wave==wave,'overview preserves battle')
-			terrain._toggle_overview()
-			check(not terrain.overview_mode and is_equal_approx(terrain.camera.size,combat_size),'return to combat framing')
+			check(terrain.find_child('CombatViewToggle',true,false)==null,'only combat camera remains')
+			check(not terrain.has_method('_toggle_overview'),'overview switching removed')
 		# A sudden wave on opposite edges must stay visible during smooth follow.
 		var corners: Array[Vector3]=[Vector3(0,3,0),Vector3(32,0,20)]
 		var sine: float=terrain.CAMERA_OFFSET.normalized().y

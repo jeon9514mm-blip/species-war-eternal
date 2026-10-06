@@ -15,11 +15,6 @@ const DAILY_RULES = preload('res://scripts/DailyDungeonBattleRules.gd')
 const TOWER_RULES = preload('res://scripts/TowerBattleRules.gd')
 const ABYSS_RULES = preload('res://scripts/WeeklyAbyssBattleRules.gd')
 const ZONES = ['gray_meadow','forgotten_mine','moonrest_forest']
-const RAID_ART = {
-	'gray_meadow': 'res://assets/backgrounds/raid-v59/stone-circle.png',
-	'forgotten_mine': 'res://assets/backgrounds/raid-v59/crystal-forge.png',
-	'moonrest_forest': 'res://assets/backgrounds/raid-v59/eclipse-grove.png',
-}
 
 static func stack(parent: Node, gap: int = 12) -> VBoxContainer:
 	var box := VBoxContainer.new()

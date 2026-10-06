@@ -1,13 +1,13 @@
 extends RefCounted
 ## Canonical zone names and gameplay data; stable IDs remain save keys.
-const MINE_NAME := "붉은 황혼 협곡"
-const FOREST_NAME := "고대 마력 성역"
-const MEADOW_NAME := "빙하 심연 전장"
+const MINE_NAME := "사냥터 2"
+const FOREST_NAME := "사냥터 3"
+const MEADOW_NAME := "사냥터 1"
 static func all() -> Dictionary:
 	return {
 		"gray_meadow": {
 			"name": MEADOW_NAME,
-			"description": "빙하 아래 갈라진 심연 위, 고대 마법진을 지키는 자동사냥 전장입니다.",
+			"description": "청록 룬이 빛나는 돌바닥에서 여러 방향의 몬스터를 사냥합니다.",
 				"monsters": ["초원 고블린", "들개 무리", "가시 멧돼지", "바람 까마귀"],
 				"boss": "초원왕 그룬",
 				"boss_title": "초원의 포식자",
@@ -25,7 +25,7 @@ static func all() -> Dictionary:
 		},
 		"forgotten_mine": {
 			"name": MINE_NAME,
-			"description": "붉은 수정과 폐허 사이로 강한 몬스터 무리가 배회합니다.",
+			"description": "호박색 룬과 흙빛 돌바닥에서 몬스터 무리와 전투합니다.",
 				"monsters": ["광산 오크", "철갑 두더지", "용암 박쥐", "수정 거미"],
 				"boss": "광맥의 거인 모르굴",
 				"boss_title": "검은 광산의 수호자",
@@ -43,7 +43,7 @@ static func all() -> Dictionary:
 		},
 		"moonrest_forest": {
 			"name": FOREST_NAME,
-			"description": "고대 수정과 마력 유적이 깨어난 고레벨 자동사냥 지역입니다.",
+			"description": "차가운 돌바닥과 보랏빛 룬 위에서 몬스터 무리를 사냥합니다.",
 				"monsters": ["달빛 늑대", "숲의 망령", "독버섯 정령", "밤까마귀", "서리 사슴"],
 				"boss": "월식의 여왕 셀레네",
 				"boss_title": "달잠 숲의 지배자",
