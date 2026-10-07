@@ -1,0 +1,2417 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "syntax": {
+    "requested": true,
+    "passed": 477,
+    "total": 477,
+    "results": [
+      {
+        "script": "assets/heroes/pixel-v32/hero-visual-data.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "assets/sprites/pixel-v32/animation-layout.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/actions_v37/TwoHeroActionSprite.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/app/DisplayOrientation.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/app/FirstSessionGuide.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/app/Main.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/ArtDirectionLab.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/AureliaGripConstraint.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/AureliaPartsMotion.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/BrightSpriteAtlasLayout.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/HeroConceptStudy.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/HeroPartsCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/HeroPartsMotion.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/HeroPartsRig3D.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/HeroPartsStudy.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/HuntFrameCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/HuntFramePilot.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/HuntFrameTimeline.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/MonsterConceptStudy.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/PilotGroundContact.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/PilotHeroPresentation.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/PilotMonsterPresentation.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/PixelArtPipeline.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/PixelFxAtlas.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/RaidArenaBattlefield.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/RaidDesignLab.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/RaidPresentationV2.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/art/RaidSceneryCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/aurelia_v41/AureliaActionSprite.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/aurelia_v41/AureliaMotionCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/AutoCombatTactics.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/BattleFormation.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/ChallengeBattleDirector.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/ChallengeBattleSession.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/ChallengeCombatLedger.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/ChallengePatternRules.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/ChallengePatternRuntime.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/CombatDecisionEngine.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/CombatFxDirector.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/CombatNumberStyle.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/CombatPresetModel.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/CombatPresetService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/CombatStatusRules.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/combat/DamageNumberManager.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/equipment/BulkEnhancePreview.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/equipment/EquipmentArtCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/equipment/EquipmentCommandService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/equipment/EquipmentComparison.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/equipment/EquipmentInventoryView.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/equipment/EquipmentMailService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/equipment/EquipmentMarketService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/equipment/EquipmentRules.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/equipment/EquipmentScreens.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/equipment/EquipmentStashView.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/equipment/EquipmentWorkshop.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/GuardianCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/GuardianProgressionService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroAnimationAtlas.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroAnimationAtlasLayout.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroCombatRules.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroIdentityCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroKitRuntime.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroProgressionService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroRosterCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroScreens.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroShowcaseView.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroSkillEffect.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroSpriteController.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroSpriteFactory.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/heroes/HeroVisualCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/AutoHuntController.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/FieldEcology.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/FieldHuntVariety.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/HuntAttackDirector.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/HuntBodyCollision.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/HuntDamageReservations.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/HuntEfficiency.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/HuntFieldService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/HuntingTargetDirector.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/HuntPositionPlanner.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/HuntProductivity.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/IdleHuntEstimator.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/InvasionHuntDirector.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/InvasionWaveState.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/MeadowNavigation.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/PartyMovementDirector.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/hunting/RoamingHuntDirector.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps/FieldArtCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps/FieldTerrainCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps/GeneratedMapScene.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps/MapGallery.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps/MapLoader.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps/MapPreviewContext.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps/MapTerrainRenderer.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps/RuneStoneGround.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps/ZoneCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps3d/Battlefield3DView.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps3d/CombatCameraFraming.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps3d/CombatHealthLayout.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps3d/CombatHealthOverlay.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps3d/HeroSkeletalBillboard.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps3d/HuntCombatOverlay.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps3d/HuntMotionPresentation.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/maps3d/Map3DLayout.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/monsters/MonsterPixelAtlasLayout.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/monsters/MonsterSpriteController.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/monsters/MonsterSpriteFactory.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/noxfera_v42/NoxferaActionSprite.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/noxfera_v42/NoxferaMotionCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/persistence/BackgroundHunt.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/persistence/GameSaveCoordinator.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/persistence/HuntAutosave.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/persistence/OfflineRewardService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/persistence/SaveSafety.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/persistence/SaveStore.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/persistence/SaveValidation.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/CasualMonsterAtlas.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/HeroRigMotionCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/LandscapeHuntHud.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/LandscapeHuntLayout.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitDamageNumber.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitGroundShadow.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitGuardianSigil.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitHeroMotionRig.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitHeroSkeletalRig.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitHud.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitIcon.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitKillBurst.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitMain.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitMeadowProps.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitMenus.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitMinimap.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitPages.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitRaid.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitRewardFeed.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitScenery.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitSkillBurst.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitSkin.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitSky.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/PortraitTerrainPreview.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/RaidArenaTelegraph.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/RaidBossMotion.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/RaidMechanicVisual.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/RaidRallyMarker.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/portrait/RaidSelectionIndicator.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/presentation/CombatTextPresenter.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/presentation/GameAudioDirector.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/presentation/HapticDirector.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/presentation/PresentationRuntime.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/presentation/PresentationSettings.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/presentation/PresentationSettingsScreen.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/DailyDungeonBattleRules.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/DailyDungeonProgress.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/GrowthEconomyRules.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/GrowthInventoryScreens.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/LegacyQuestService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/LongTermGoalCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/LongTermGoalScreens.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/LongTermGoalsService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/LongTermGoalState.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/PracticeBattleService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/PracticeLevelRules.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/PracticeScreens.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/ResearchAllocationScreens.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/ResearchAllocationService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/RewardClaimService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/SummonService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/TowerBattleRules.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/TowerProgressionService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/WeeklyAbyssBattleRules.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/progression/WeeklyAbyssProgressionService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/raid/RaidBalance.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/raid/RaidBattlefield.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/raid/RaidBossDesign.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/raid/RaidCatalogView.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/raid/RaidContributionLedger.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/raid/RaidContributionScreens.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/raid/RaidContributionService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/raid/RaidRecoveryGuide.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/raid/RaidReportArchive.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/raid/RaidScreen.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/sd/SDHeroSpriteController.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/sd/SDHeroVisuals.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/ChallengeReportScreens.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/ContentScreens.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/FormationScreen.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/GameUiIcon.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/GameUiTheme.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/LandingScreens.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/LandscapeMainMenu.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/NavigationCatalog.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/OnboardingScreens.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/RewardDialogs.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/TouchScrollController.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/UiChrome.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/ui/UIFontProvider.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldAuthorityService.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldBattleResolver.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldCampaignRules.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldConflictState.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldFrontlineRules.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldMarchState.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldSeasonState.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldServerGateway.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldSupplyNetwork.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldSyncGuard.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldWarClientSession.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldWarMapView.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldWarMinimap.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldWarScreen.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "scripts/world/WorldWarState.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/AureliaHeroPartsSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/AutoCombatTacticsSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/AutoHuntRegressionTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/BMSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/BossEncounterSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/CombatControlsSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/CombatDecisionEngineSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/CombatQualitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/CombatReadabilitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/CombatSpriteSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/DirectionalHuntQualitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/EquipmentMailSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/EquipmentModalSaveRecoverySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/EquipmentSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/EquipmentStashSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/EquipmentUpgradeSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/EquipmentV28UxSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/FirstSessionEconomySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/GameplayReliabilitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/HeroIdentityBalanceSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/HeroMenuUxSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/HeroSkeletalRigSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/HuntAttackQualitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/HuntAutosaveSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/HuntCompactHudSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/HuntCoordinationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/HuntFramePilotSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/HuntingHomeSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/HuntMenuStateSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/IdleHuntEstimatorSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/IdleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/IndependentHuntSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/InventoryCapacitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/InventorySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/LandscapeRosterUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/LateEconomyRewardSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/LevelSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/LootSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/MapTerrainSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/MeadowAppliedSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/MenuHuntReliabilitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/MultiDirectionHuntSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/PortraitRegressionSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/RaidCatalogUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/RaidCombatQualitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/RaidDesignSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/RaidSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/RaidStrengthSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/RaidTouchLayoutSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/RoamingHuntDirectorSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/SimpleUxSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/SkillSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/SmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/SpriteSheetSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/TouchScrollSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/UnifiedInterfaceSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V10UiUxSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V11ProgressionSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V12WorldWarSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V13WarSafetySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V14AsyncPvpSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V15FrontlineSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V16AuthoritySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V16ClientSessionSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V16PresentationIntegrationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V17HuntProgressionSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V17ResyncServerTimeSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V18CombatAISmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V18SeasonSyncSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V19HeroAIIdentitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V19ServerStabilitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V20RealtimeRoamingHuntSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V22UiUpgradeSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V23CombatReadabilitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V24MobileLandscapeSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V25CombatFxSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V26ActionSafetySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V26CombatDecisionSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V26CombatSoakSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V26RoamingSafetySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V27BalanceMatrixSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V27BossLifecycleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V27CombatClockSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V27FieldLifecycleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V27GrowthEconomySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V27HeroRolesSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V27LiveGrowthSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V27PersistenceIntegrationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V27RaidIntegrationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V27SaveRecoverySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V27TerritoryLifecycleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V28BrightSpriteSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V28BrightUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V28FieldFxSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V28KitingRegressionSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V28MeadowNavigationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V28MovingHuntSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V29BoundarySpawnSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V29FactionBalanceSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V29RosterKitSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V29RosterUiSaveSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V30UiFlowSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V31HeroArtSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V31HeroFxSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V32GraphicsSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V43AllHeroMotionSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V46CurrentAssetsSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V46FactionIsolationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V46StabilitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V47NavigationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V47PortraitSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V48WarStabilitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V48WarUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V49PortraitLayoutSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V50CampaignSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V50CampaignUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V51CombatSafetySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V51FxLifecycleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V51PersistenceLifecycleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V51SessionIntegritySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V51UiInteractionSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V51WarAuthoritySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V52HuntIntegrationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V52HuntUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V52PopulationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V52RoleCombatSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V52RoleMovementSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V53HuntEcologySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V53HuntFeedbackSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V53HuntNavigationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V53HuntSupportSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V54EquipmentCrystalUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V54EquipmentIntegrationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V54EquipmentMarketSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V54EquipmentPersistenceSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V54EquipmentRulesSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V54EquipmentUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V55EquipmentDetailUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V56DungeonRosterUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V57QualityPassSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V58ArtScrollSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V59ThreeRaidVisualSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V5FoundationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V61FieldRolesMotionSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V62RigFxRewardSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V63AutoFxOfflineSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V64RealtimeRaidSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V65GuardianSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V66UiFilterSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V67FieldTerrainNavigationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V6CombatSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V71HuntFlowSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V72CombatPresentationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V73RoleBehaviorSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V74BossRaidBehaviorSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V75RaidMechanicSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V76RaidVisualSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V77HuntVarietySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V78ConvenienceUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V79ConvenienceFlowSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V7SystemsSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80AbyssBattleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80AbyssRulesSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80AbyssSaveSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80AbyssSettlementSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80ChallengeSessionSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80DailyBattleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80DailyModesBattleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80DailyModesSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80DailySweepSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80EngineRewardRegressionSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80TowerBattleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80TowerRulesSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V80TowerSettlementSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V81GoalBattleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V81GoalClaimSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V81GoalRulesSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V81GoalSaveSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V81GoalUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V82AudioSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V82LifecycleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V82PerformanceSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V82PresentationUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V82SettingsSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V834GrowthUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V834MatchedBattleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V834PracticeLevelSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V834ResearchSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V835PatternBattleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V835PatternRulesSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V835WarRulesSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V835WarUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8361ArchiveIntegritySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8361FrontlineNullSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8361OfflineSaveSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8361XpSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8362FieldSafetySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8362FormationDisplaySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8362InvasionSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8362LayoutSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8363IceVisualSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8363MapGallerySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8363MapLoaderSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8364CombatViewSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8364VisualSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V836FrontlineSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V836RaidBattleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V836RaidLedgerSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V836UiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V83DomainParitySmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V83GameplayAbyssSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V83GameplayBattleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V83GameplayLedgerSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V83GameplayReportUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V83LoadoutSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V83NavigationSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V83PracticeBattleSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V83PracticeUiSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V83UpgradeRulesSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V8PolishSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/V9MetaLoopSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/WorldBattleResolverSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/WorldConflictStateSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/WorldMarchStateSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/WorldSeasonStateSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/WorldSupplyNetworkSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/WorldWarStateSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/support/AureliaStudyTestBase.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/support/V836RaidObserveHost.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/support/V83GameplayBattleHost.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/support/V83UpgradeTestBase.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/audit_hunt_ai.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_aurelia_concepts.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_aurelia_parts.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_aurelia_pose_sheets.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_aurelia_quality_review.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_combat_quality.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_equipment_ui.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_hero_menu_ui.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_hunt_compact_hud.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_hunt_coordination.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_hunt_frames.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_hunt_quality.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_leonhardt_quality_review.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_map_patch.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_raid_battles.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_raid_design.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_raid_quality_pass.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_rune_stone.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_simple_ux.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_stash_ui.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/capture_unified_ui.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/diagnostics/game-audit-2026-10-04/AuditProbe.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/diagnostics/game-audit-2026-10-04/GuardianPolicyProbe.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/diagnostics/stash-improvement/StashPerformanceProbe.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/EconomySimulationHost.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/ForestMeshAuthor.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/LongTermEconomySimulation.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/LootEconomyAudit.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/preview_hero_rigs.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/review_hunt_frames.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/ui/CapturePortrait.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/ui/CaptureScreens.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/ui/PortraitLayoutAudit.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/ui/PortraitRegression.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tools/ui/ValidateHeroArtLayout.gd",
+        "passed": true,
+        "output": ""
+      }
+    ]
+  },
+  "passed": 3,
+  "total": 3,
+  "results": [
+    {
+      "test": "HuntAttackQualitySmokeTest.gd",
+      "passed": true,
+      "seconds": 8.05,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_attack_quality checks=24 failures=[]\n"
+    },
+    {
+      "test": "HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "seconds": 9.72,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=48 failures=[]\n"
+    },
+    {
+      "test": "HuntFramePilotSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.23,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_frame_pilot checks=178 failures=[]\n"
+    }
+  ]
+}

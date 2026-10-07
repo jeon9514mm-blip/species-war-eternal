@@ -1,0 +1,62 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "platform": "Windows",
+  "gpu": "NVIDIA GeForce GTX 1050",
+  "renderer": "mobile",
+  "scene": "scenes/PortraitMain.tscn",
+  "natural_hunting": true,
+  "stat_overrides": false,
+  "movie_seconds": 12.0,
+  "fps": 30,
+  "normal_camera_frames": 240,
+  "inspection_camera_frames": 120,
+  "actors": {
+    "leonhardt": {
+      "actions": {
+        "idle": 3,
+        "skill": 33,
+        "walk": 265,
+        "attack_1": 55,
+        "hit": 4
+      },
+      "attack_frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "walk_frames": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "max_sequence": 8
+    },
+    "goblin": {
+      "actions": {
+        "walk": 911,
+        "death": 165,
+        "idle": 4
+      },
+      "attack_frames": [],
+      "walk_frames": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "max_sequence": 0
+    }
+  },
+  "capture_count": 9,
+  "image_size": [
+    1120,
+    630
+  ],
+  "render_log_errors": false
+}

@@ -1,0 +1,39 @@
+[
+  {
+    "command": [
+      "-X",
+      "utf8",
+      "tools/static_validate.py"
+    ],
+    "passed": true,
+    "exit_code": 0,
+    "output": "STATIC VALIDATION OK | gd=478 smoke=227 resources=ok links=ok\n"
+  },
+  {
+    "command": [
+      "-X",
+      "utf8",
+      "tools/validate_v83_architecture.py"
+    ],
+    "passed": true,
+    "exit_code": 0,
+    "output": "{\n  \"ok\": true,\n  \"errors\": [],\n  \"service_modules\": 9,\n  \"current_contract_source_commit\": \"7a93befb04a6041bcca9ec3d10b8f74ef2cab30a\",\n  \"current_facade_adjustments\": [\n    \"_save_idle_state\",\n    \"_load_idle_state\",\n    \"_bulk_enhance_equipped\"\n  ],\n  \"main_line_budget\": 5684,\n  \"scope\": \"current facade, state ownership, field extraction and canonical naming; runtime suite validates behavior\",\n  \"historical_check\": \"--historical-v82 checks original v82 fingerprints and is expected to differ after feature changes\"\n}\n"
+  },
+  {
+    "command": [
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py",
+      "-q"
+    ],
+    "passed": true,
+    "exit_code": 0,
+    "output": "----------------------------------------------------------------------\nRan 50 tests in 4.326s\n\nOK\n"
+  }
+]

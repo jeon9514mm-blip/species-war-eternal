@@ -1,0 +1,16 @@
+[
+  {
+    "animation": "hit",
+    "path": "/root/Main/@Control@13/FieldActorClip/FieldActors/leonhardtSprite",
+    "processing": false,
+    "self_alpha": 0.0,
+    "visible": true
+  },
+  {
+    "animation": "idle_left",
+    "path": "/root/Main/@Control@13/FieldActorClip/FieldActors/@AnimatedSprite2D@227",
+    "processing": false,
+    "self_alpha": 0.0,
+    "visible": true
+  }
+]

@@ -7,6 +7,15 @@ func run() -> void:
 	var sample: Dictionary=clock.sample({'windup':.075,'attack_windup_duration':.15,'visual_action':'attack_1'},false,false,.033,true)
 	check(is_equal_approx(float(sample.time)/float(sample.duration),.22),'preparation follows remaining simulation windup')
 	check(CATALOG.attack_frame(.4399)==2 and CATALOG.attack_frame(.44)==3,'painted impact cannot appear before the actual release phase')
+	var clock30=CLOCK.new();var frames30: Dictionary={}
+	for tick in 5:
+		var prepare30: Dictionary=clock30.sample({'windup':.15-float(tick)/30.0,'attack_windup_duration':.15},false,false,0,true)
+		frames30[CATALOG.attack_frame(float(prepare30.time)/float(prepare30.duration))]=true
+	clock30.release('attack_1',.15)
+	for tick in 6:
+		var recovery30: Dictionary=clock30.sample({},false,false,0.0 if tick==0 else 1.0/30.0,true)
+		frames30[CATALOG.attack_frame(float(recovery30.time)/float(recovery30.duration))]=true
+	check(frames30.size()==8,'30 FPS playback includes all eight poses, including final recovery')
 	clock.release('attack_1',.15);sample=clock.sample({},false,false,.1,false)
 	check(is_equal_approx(float(sample.time),.15),'real hero release reconciles even during critical hit-stop')
 	var held:=sample.duplicate(true)

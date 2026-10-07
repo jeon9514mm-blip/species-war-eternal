@@ -52,5 +52,9 @@ func run() -> void:
 		records.append(record)
 	var file:=FileAccess.open(output.path_join('actual-hunt.json'),FileAccess.WRITE)
 	file.store_string(JSON.stringify({'scene':'scenes/PortraitMain.tscn','natural_hunting':true,'stat_overrides':false,'fps':30,'frames':records,'captures':captures},'  '));file.close()
-	game.combat_running=false;game.presentation_runtime.audio.shutdown();game.background_hunt.discard();game.queue_free();await settle()
+	game.combat_running=false;game.presentation_runtime.audio.shutdown();game.background_hunt.discard()
+	# Let in-flight hit flashes and combat-effect callbacks release their
+	# resources before tearing down the manually stepped inspection scene.
+	await create_timer(1.0).timeout
+	game.queue_free();await settle()
 	print('HUNT_FRAME_CAPTURE_OK');quit.call_deferred()

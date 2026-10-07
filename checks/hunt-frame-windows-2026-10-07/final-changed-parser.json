@@ -1,0 +1,26 @@
+[
+  {
+    "script": "scripts/art/HuntFrameCatalog.gd",
+    "passed": true,
+    "return_code": 0,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "tests/regression/HuntFramePilotSmokeTest.gd",
+    "passed": true,
+    "return_code": 0,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "tools/capture_hunt_frames.gd",
+    "passed": true,
+    "return_code": 0,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  },
+  {
+    "script": "tools/capture_hunt_duel.gd",
+    "passed": true,
+    "return_code": 0,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+  }
+]

@@ -2,7 +2,9 @@ extends RefCounted
 ## One complete painting per pose. No anatomical fragmentation or bone weights.
 const ROOT := 'res://assets/art-direction/hunt-frame-pilot/'
 const RELEASE_PHASE := .44
-const ATTACK_PHASES := [0.0,.12,.28,.44,.56,.70,.84,.95]
+# Leave the final recovery pose enough time to appear at 30 FPS. The impact
+# boundary remains .44, the phase owned by the actual simulation release.
+const ATTACK_PHASES := [0.0,.12,.28,.44,.56,.68,.80,.90]
 var _entries: Dictionary = {}
 
 static func identity(source: AnimatedSprite2D,hero: bool) -> String:

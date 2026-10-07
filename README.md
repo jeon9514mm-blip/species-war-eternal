@@ -20,6 +20,8 @@ Godot **4.7.2** 기반 가로형 자동사냥 RPG입니다. `project.godot`를 �
 
 아우렐리아 15명의 원화·부위 조립은 [영웅 제작 문서](docs/AURELIA_HERO_ART_KO.md)와 `scenes/art/HeroPartsStudy.tscn`에서 검토합니다. 목표 비율은 긴 다리의 4.5~5등신이며 최종 시각 검수 상태는 영웅별 자산에 기록합니다.
 
+레온하르트와 초원 고블린의 실제 사냥은 전신 그림 프레임 방식으로 전환했습니다. [이전 작업 인수인계](docs/HANDOFF_HUNT_FRAMES_2026-10-07_KO.md)와 [Windows 사냥·1대1 동작 검수](checks/hunt-frame-windows-2026-10-07/README.md)에서 적용 범위와 영상을 확인할 수 있습니다.
+
 ## 저장소 구성
 
 `scenes/`는 실행 장면, `scripts/`는 기능별 게임 코드, `tests/`는 회귀 검사, `tools/`는 제작·검사 도구, `assets/`·`audio/`·`shaders/`는 게임 리소스입니다. `checks/`에는 선별한 검증 결과, `docs/`에는 개발 문서를 보관합니다.

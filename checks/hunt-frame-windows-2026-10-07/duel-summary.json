@@ -1,0 +1,126 @@
+{
+  "movie_seconds": 6.0,
+  "natural_hunting": false,
+  "stat_overrides": false,
+  "fixture_overrides": [
+    "single goblin encounter",
+    "starting positions",
+    "initial attack cooldowns",
+    "basic attacks only",
+    "encounter reset at 3 seconds",
+    "inspection camera"
+  ],
+  "attack_frames": {
+    "normal:leonhardt": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "normal:goblin": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "mirrored:leonhardt": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "mirrored:goblin": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "damage_events": [
+    {
+      "frame": 6,
+      "victim": "leonhardt",
+      "hp_lost": 1,
+      "attacker_frame": 3,
+      "attacker_phase": 0.44,
+      "matches_release": true
+    },
+    {
+      "frame": 29,
+      "victim": "goblin",
+      "hp_lost": 31,
+      "attacker_frame": 3,
+      "attacker_phase": 0.44,
+      "matches_release": true
+    },
+    {
+      "frame": 34,
+      "victim": "leonhardt",
+      "hp_lost": 1,
+      "attacker_frame": 3,
+      "attacker_phase": 0.44,
+      "matches_release": true
+    },
+    {
+      "frame": 59,
+      "victim": "goblin",
+      "hp_lost": 21,
+      "attacker_frame": 3,
+      "attacker_phase": 0.44,
+      "matches_release": true
+    },
+    {
+      "frame": 96,
+      "victim": "leonhardt",
+      "hp_lost": 1,
+      "attacker_frame": 3,
+      "attacker_phase": 0.44,
+      "matches_release": true
+    },
+    {
+      "frame": 119,
+      "victim": "goblin",
+      "hp_lost": 31,
+      "attacker_frame": 3,
+      "attacker_phase": 0.44,
+      "matches_release": true
+    },
+    {
+      "frame": 124,
+      "victim": "leonhardt",
+      "hp_lost": 1,
+      "attacker_frame": 3,
+      "attacker_phase": 0.44,
+      "matches_release": true
+    },
+    {
+      "frame": 149,
+      "victim": "goblin",
+      "hp_lost": 21,
+      "attacker_frame": 3,
+      "attacker_phase": 0.44,
+      "matches_release": true
+    }
+  ],
+  "legacy_2d_sources_hidden": true,
+  "render_errors": {
+    "live-render.log": false,
+    "duel-render.log": false
+  }
+}
