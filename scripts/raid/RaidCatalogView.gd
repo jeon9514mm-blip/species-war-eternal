@@ -3,6 +3,7 @@ extends RefCounted
 const S=preload('res://scripts/portrait/PortraitSkin.gd')
 const BALANCE=preload('res://scripts/raid/RaidBalance.gd')
 const DESIGN=preload('res://scripts/raid/RaidBossDesign.gd')
+const SCENERY=preload('res://scripts/art/RaidSceneryCatalog.gd')
 const ZONES=['gray_meadow','forgotten_mine','moonrest_forest']
 const COUNTERS={
 	'gray_meadow':'갑주 파괴 후 약점에 집중 공격',
@@ -33,8 +34,13 @@ static func build(main: Node, page: VBoxContainer, ui: Script) -> void:
 		var style:=S.elevated(S.DARK_2,Color(design.accent,.7),12);style.set_content_margin_all(12);panel.add_theme_stylebox_override('panel',style);columns.add_child(panel)
 		var box: VBoxContainer=ui.stack(panel,6)
 		var scene:=Control.new();scene.name='RaidCatalogScene_'+zone_id;scene.custom_minimum_size=Vector2(0,106);scene.clip_contents=true;box.add_child(scene)
-		var scenery:=ColorRect.new();scenery.color=Color('#29313a');scenery.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		var scenery:=TextureRect.new();scenery.texture=load(str(SCENERY.profile(zone_id).texture))
+		scenery.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;scenery.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED;scenery.mouse_filter=Control.MOUSE_FILTER_IGNORE
 		scene.add_child(scenery);scenery.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		var location:=S.label(str(SCENERY.profile(zone_id).title),15,S.GOLD)
+		scene.add_child(location);location.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+		location.offset_left=8;location.offset_right=-124;location.offset_top=8;location.offset_bottom=30
+		location.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS;location.clip_text=true
 		var painting:=TextureRect.new();painting.texture=main._boss_texture(str(zone.boss));painting.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;painting.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;painting.mouse_filter=Control.MOUSE_FILTER_IGNORE
 		scene.add_child(painting);painting.set_anchors_and_offsets_preset(Control.PRESET_RIGHT_WIDE);painting.offset_left=-120;painting.offset_right=-8;painting.offset_bottom=-6
 		var shade:=ColorRect.new();shade.color=Color('#0b1525db');shade.mouse_filter=Control.MOUSE_FILTER_IGNORE

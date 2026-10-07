@@ -83,7 +83,8 @@ func _build_bones() -> void:
 	var pelvis:=_bone(root_bone,'Pelvis',Vector2(0,-h*.22),h*.18)
 	var torso:=_bone(pelvis,'Torso',Vector2(0,-h*.15),h*.13)
 	var chest:=_bone(torso,'Chest',Vector2(0,-h*.13),h*.12)
-	var head:=_bone(chest,'Head',Vector2(0,h*(profile.head+.50)),h*.23)
+	# Pivot at the collar rather than inside the painted face. Keep the same 21-joint skin.
+	var head:=_bone(chest,'Head',Vector2(0,h*(profile.head+.11+.50)),h*.23)
 	_bone(head,'Hair',Vector2(0,-h*.19),h*.12)
 	_bone(chest,'Cape',Vector2(-h*.07,h*.05),h*.36)
 	for side in [-1,1]:
@@ -107,7 +108,7 @@ func _influence(point: Vector2) -> Dictionary:
 	var weapon_side: bool=p.x*float(profile.side)>0
 	var outer:=smoothstep(.28,.43,lateral)
 	# Head/face stays almost rigid. Only the hair tips receive secondary sway.
-	var head:=smoothstep(.51,.66,-p.y)
+	var head:=smoothstep(.52,.66,-p.y)
 	var hair:=smoothstep(.82,1.0,-p.y)*.42
 	var leg:=smoothstep(-.31,-.20,p.y)
 	var arm:=smoothstep(.12,.27,lateral)*(1.0-head)*(1.0-leg)
@@ -185,7 +186,13 @@ func action_duration(action: String) -> float:
 	return duration/maxf(.001,actor.sprite_frames.get_animation_speed(action))
 
 func apply_pose(value: Dictionary) -> void:
-	pose=value
+	pose=value.duplicate()
+	# Connected artwork cannot tolerate extreme independent neck/wrist twists.
+	pose['Head']=clampf(float(pose.get('Head',0)),-.075,.075)
+	for key in ['LeftHand','RightHand']:
+		pose[key]=clampf(float(pose.get(key,0)),-.065,.065)
+	for key in ['Weapon','Offhand']:
+		pose[key]=clampf(float(pose.get(key,0)),-.028,.028)
 	for key in bones:
 		var bone: Bone2D=bones[key]
 		bone.transform=bone.rest

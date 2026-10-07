@@ -1,44 +1,57 @@
 extends Label
-## Combat numbers use a short impact beat, distinct colors and fixed-width lanes.
-const SKIN := preload('res://scripts/portrait/PortraitSkin.gd')
-var pooled:=false
+## Small impact -> legible hold -> short release. Shared hunt/raid numeral style.
+const STYLE = preload('res://scripts/combat/CombatNumberStyle.gd')
+const INK = preload('res://shaders/CombatNumberInk.gdshader')
+var pooled := false
 var _life_tween: Tween
-
-func show_value(message: String, tint: Color, origin: Vector2, large: bool, lane: int) -> void:
-	if is_instance_valid(_life_tween):_life_tween.kill()
-	modulate=Color.WHITE;rotation=0;show()
-	name='PortraitDamageNumber'
-	text=message
+var kind := 'damage'
+var reserved_rect := Rect2()
+var anchor_key := ''
+var issued_at := 0
+var burst_started_at := 0
+var amount := 0
+var burst_hits := 1
+func show_value(message: String, _tint: Color, origin: Vector2, large: bool, lane: int) -> void:
+	kind = 'critical' if large else kind
+	if is_instance_valid(_life_tween): _life_tween.kill()
+	modulate = Color.WHITE; rotation = 0; show()
+	name = 'PortraitDamageNumber'; text = message
 	add_to_group('floating_combat_text')
-	mouse_filter=Control.MOUSE_FILTER_IGNORE
-	z_index=85
-	horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	vertical_alignment=VERTICAL_ALIGNMENT_CENTER
-	size=Vector2(156,42)
-	position=origin+Vector2(-78.0+float(lane%3-1)*9.0,-13.0-float(lane%3)*6.0)
-	add_theme_font_override('font',SKIN.bold_font())
-	add_theme_font_size_override('font_size',25 if large else 18)
-	add_theme_color_override('font_color',tint)
-	add_theme_color_override('font_shadow_color',Color('#06161dcc'))
-	add_theme_constant_override('shadow_offset_x',2)
-	add_theme_constant_override('shadow_offset_y',3)
-	add_theme_color_override('font_outline_color',Color('#132024'))
-	add_theme_constant_override('outline_size',3)
-	pivot_offset=size*.5
-	scale=Vector2(.56,.56)
-	var base: Vector2=position
-	var motion:=create_tween().set_parallel(true)
-	_life_tween=motion
-	motion.tween_property(self,'scale',Vector2.ONE*(1.17 if large else 1.05),.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	motion.tween_property(self,'position',base+Vector2(float(lane%3-1)*12,-48 if large else -38),.66 if large else .54).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	motion.chain().tween_property(self,'scale',Vector2.ONE,.16)
-	motion.parallel().tween_property(self,'modulate:a',0.0,.25).set_delay(.16)
+	mouse_filter = Control.MOUSE_FILTER_IGNORE; z_index = 85
+	horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+	size = STYLE.extent(message, kind); position = origin - size * .5
+	add_theme_font_override('font', STYLE.FONT)
+	add_theme_font_size_override('font_size', STYLE.font_size(kind))
+	add_theme_color_override('font_color', Color.WHITE)
+	add_theme_color_override('font_shadow_color', Color('#08101be0'))
+	add_theme_constant_override('shadow_offset_x', 1)
+	add_theme_constant_override('shadow_offset_y', 3)
+	add_theme_color_override('font_outline_color', Color('#162231'))
+	add_theme_constant_override('outline_size', 3)
+	var ink := ShaderMaterial.new(); ink.shader = INK
+	var colors: Array = STYLE.PALETTES.get(kind, STYLE.PALETTES.damage)
+	ink.set_shader_parameter('ink_top', colors[0]); ink.set_shader_parameter('ink_bottom', colors[1])
+	ink.set_shader_parameter('label_height', size.y); material = ink
+	pivot_offset = size * .5; scale = Vector2.ONE * (.82 if large else .94)
+	issued_at = Time.get_ticks_msec(); queue_redraw()
+	var base := position
+	var drift := Vector2(float(lane % 2 * 2 - 1) * 3, -16 if kind == 'heal' else -10)
+	var motion := create_tween(); _life_tween = motion
+	motion.tween_property(self, 'scale', Vector2.ONE, .09).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	motion.tween_interval(.28 if large else .20)
+	motion.set_parallel(true)
+	motion.tween_property(self, 'position', base + drift, .28).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	motion.tween_property(self, 'modulate:a', 0.0, .24).set_delay(.04)
 	motion.chain().tween_callback(retire)
-
+func _draw() -> void:
+	if kind != 'critical' or not visible: return
+	var width := STYLE.FONT.get_string_size('CRITICAL', HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x
+	draw_string_outline(STYLE.FONT, Vector2((size.x-width)*.5, 12), 'CRITICAL', HORIZONTAL_ALIGNMENT_LEFT, -1, 12, 3, Color('#162231'))
+	draw_string(STYLE.FONT, Vector2((size.x-width)*.5, 12), 'CRITICAL', HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color('#ffcf64'))
 func retire() -> void:
-	if is_instance_valid(_life_tween):_life_tween.kill()
-	_life_tween=null
+	if is_instance_valid(_life_tween): _life_tween.kill()
+	_life_tween = null; reserved_rect = Rect2(); anchor_key = ''; amount = 0; burst_hits = 1
 	remove_from_group('floating_combat_text')
-	if pooled:
-		hide();text=''
-	else:queue_free()
+	if pooled: hide(); text = ''
+	else: queue_free()

@@ -340,6 +340,7 @@ static func _inventory_rows(main: Node, filters: Dictionary) -> Array:
 	rows.sort_custom(func(a: Dictionary,b: Dictionary)->bool:
 		if mode=='recent':return int(a['index'])>int(b['index'])
 		var first: Dictionary=a['item'];var second: Dictionary=b['item']
+		if mode=='set' and str(first.get('set',''))!=str(second.get('set','')):return str(first.get('set',''))<str(second.get('set',''))
 		if mode=='power' and int(first.get('power',0))!=int(second.get('power',0)):return int(first.get('power',0))>int(second.get('power',0))
 		if mode=='quality' and option_quality(first)!=option_quality(second):return option_quality(first)>option_quality(second)
 		var grades: Dictionary={'일반':0,'희귀':1,'전설':2}

@@ -1,7 +1,7 @@
 {
   "project": "Species War: Eternal",
   "development_step": "v83-6.5",
-  "workstream": "source_cleanup_and_runtime_reliability",
+  "workstream": "combat_readability_raid_art_and_v28_ui_ux",
   "status": "implemented_and_validated",
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "save_version": 37,
@@ -11,7 +11,7 @@
     720
   ],
   "inventory_capacity": 200,
-  "inventory_grid_columns": 4,
+  "inventory_grid_columns": 5,
   "inventory_page_size": 40,
   "inventory_pages_at_capacity": 5,
   "comparison_panels": 2,
@@ -94,11 +94,11 @@
     "pending_save_manual_and_bulk_equipment_policy": "followup_required"
   },
   "equipment_modal_background_blocks_input": true,
-  "global_ui_redesign_in_scope": false,
+  "global_ui_redesign_in_scope": true,
   "new_game_server_in_scope": false,
   "all_historical_tests_executed": false,
   "android_tests": 0,
-  "artwork_source_files_changed": false,
+  "artwork_source_files_changed": true,
   "balance_data_changed": false,
   "combat_movement_rules_changed": false,
   "combat_damage_rules_changed": false,
@@ -761,8 +761,9 @@
     ],
     "battle_overview_removed": true,
     "old_scenery_deleted": true,
-    "raid_new_design_applied": false,
-    "real_device_performance_tested": false
+    "raid_new_design_applied": true,
+    "real_device_performance_tested": false,
+    "raid_design": "three original painted 2.5D environments with runtime actors and warning overlays"
   },
   "source_cleanup": {
     "status": "validated",
@@ -785,5 +786,56 @@
     ],
     "actual_game_capture": "checks/source-cleanup/actual-game.png",
     "explicit_assertions_passed": 14733
+  },
+  "combat_ui_quality": {
+    "date_kst": "2026-10-07",
+    "base_commit": "ab0d8017680efcb364d7dc3eb095e93edd0971ab",
+    "documentation": "docs/COMBAT_READABILITY_RAID_ART_KO.md",
+    "validation": "checks/combat-readability-2026-10-07/validation.json",
+    "font": "Barlow Condensed Black Italic, bundled OFL",
+    "burst_window_ms": 120,
+    "max_number_pool": 40,
+    "number_types": [
+      "damage",
+      "critical",
+      "incoming",
+      "heal"
+    ],
+    "rig_scope": "30 existing heroes; neck, wrist and grip constraints; no new authored attack poses",
+    "hero_actions": 16,
+    "new_raid_assets": 3,
+    "raid_environment_is_painted_2_5d": true,
+    "full_modelled_raid_architecture": false,
+    "main_lines": 5661,
+    "all_historical_tests_executed": false,
+    "syntax_scripts_passed": 471,
+    "focused_engine_tests_passed": 23,
+    "followup_ui_tests_passed": 4,
+    "python_tests_passed": 50,
+    "actual_ui_captures": 12,
+    "hero_render_review_characters": 6,
+    "hero_render_review_poses": 3,
+    "android_device_tests": 0,
+    "ui_reference_final": "https://www.meta.ai/share/a/eb52ac8c-c25d-48db-bf3c-f1144edf65df",
+    "ui_changes": [
+      "charcoal-bronze-moss theme",
+      "five-column 200-slot bag",
+      "200ms live search preserving focus",
+      "set-name sort",
+      "ten-hero equipment quick switch",
+      "accurate deltas and percentage points",
+      "summed repeated affixes",
+      "actual set progress",
+      "party power and existing recommended equip",
+      "hunting portraits and HP gauges",
+      "illustrated menu and raid catalog"
+    ],
+    "ui_not_implemented": [
+      "three alternative inventory view modes",
+      "set presets",
+      "optimal party/set solver",
+      "full-screen blur"
+    ],
+    "next_animation_work": "one Leonhardt and one monster: articulated limbs, authored attack keyposes and synchronized real hit response"
   }
 }

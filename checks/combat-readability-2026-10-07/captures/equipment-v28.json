@@ -1,0 +1,16 @@
+{
+  "capture": "equipment-v28",
+  "capture_holds_existing_text_for_readback": true,
+  "damage_font": "Barlow Condensed Black Italic",
+  "fixture_inventory": true,
+  "purpose": "actual equipment interface with representative inspection items, no player save",
+  "raid_elapsed": 0.0,
+  "raid_hp": 0,
+  "renderer": "mobile",
+  "scene": "scenes/PortraitMain.tscn",
+  "screen": "inventory",
+  "size": [
+    1280,
+    720
+  ]
+}

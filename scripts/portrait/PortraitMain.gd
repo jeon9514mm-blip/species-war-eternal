@@ -201,35 +201,23 @@ func _emit_skill_cast_fx(hero_id: String, target_index: int, aoe: bool, profile:
 		skill_fx_layer.add_child(flare)
 
 func _spawn_floating_combat_text(message: String, color: Color, origin: Vector2) -> void:
-	if active_screen!='combat':
-		super._spawn_floating_combat_text(message,color,origin)
+	var data: Dictionary=preload('res://scripts/combat/CombatNumberStyle.gd').parse(message)
+	if data.is_empty():
+		if message!='무리 격파':super._spawn_floating_combat_text(message,color,origin)
 		return
-	if not combat_effects_enabled or not is_instance_valid(content_root):return
-	if message=='무리 격파':return
-	var amount:=message.replace(' HP','').strip_edges()
-	var critical:=amount.begins_with('치명! ')
-	if critical:amount=amount.trim_prefix('치명! ')
-	var is_number:=amount.begins_with('-') or amount.begins_with('+')
-	if not is_number:
-		super._spawn_floating_combat_text(message,color,origin)
-		return
-	var number:=absi(int(amount))
-	var is_heal:=amount.begins_with('+')
-	var near_hero:=message.ends_with(' HP')
-	var tint:=P_SKIN.SUCCESS if is_heal else (Color('#ff777a') if near_hero else Color('#ffe19a'))
-	var displayed:=('치명 ' if critical else '')+('+' if is_heal else '−')+str(number)
-	var field_top:=combat_field_rect.position.y+32.0
-	var field_bottom:=combat_field_rect.end.y-30.0
-	var center:=Vector2(clampf(origin.x+90.0,combat_field_rect.position.x+48.0,combat_field_rect.end.x-48.0),clampf(origin.y+45.0,field_top,maxf(field_top+42,field_bottom)))
-	var floats:=get_tree().get_nodes_in_group('floating_combat_text')
-	while floats.size()>=int(_presentation_profile()['float_limit']):
-		var oldest: Node=floats.pop_front()
-		if oldest.has_method('retire'):oldest.retire()
-		else:oldest.remove_from_group('floating_combat_text');oldest.queue_free()
-	_number_lane+=1
-	if not is_instance_valid(_damage_pool):
-		_damage_pool=DAMAGE_POOL.new();_damage_pool.name='DamageNumberPool';content_root.add_child(_damage_pool)
-	_damage_pool.spawn_damage(displayed,tint,center,critical,_number_lane)
+	if active_screen=='combat':preload('res://scripts/presentation/CombatTextPresenter.gd').hunt(self,data,origin)
+	elif active_screen=='raid' and data.kind not in ['incoming','heal']:
+		preload('res://scripts/presentation/CombatTextPresenter.gd').raid(self,int(data.amount),str(data.kind))
+
+func _incoming_damage_to_hero(hero_id: String, base_damage: int, enemy_index: int=-1) -> int:
+	var received: int=super._incoming_damage_to_hero(hero_id,base_damage,enemy_index)
+	if active_screen=='raid':preload('res://scripts/presentation/CombatTextPresenter.gd').raid(self,received,'incoming',hero_id)
+	return received
+
+func _heal_hero(target_id: String, amount: int) -> int:
+	var healed: int=super._heal_hero(target_id,amount)
+	if active_screen=='raid':preload('res://scripts/presentation/CombatTextPresenter.gd').raid(self,healed,'heal',target_id)
+	return healed
 
 func _on_hunt_reward(gold: int, xp: int, drops: Array[Dictionary], stage_cleared: bool, chest_gold := 0, chest_xp := 0) -> void:
 	# Hero XP was granted by the hunt. Move its account XP and gold directly to

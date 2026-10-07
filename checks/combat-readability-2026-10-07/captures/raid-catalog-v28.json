@@ -1,0 +1,15 @@
+{
+  "capture": "raid-catalog-v28",
+  "capture_holds_existing_text_for_readback": true,
+  "damage_font": "Barlow Condensed Black Italic",
+  "purpose": "three raid destinations with actual arena art and unchanged stats",
+  "raid_elapsed": 0.0,
+  "raid_hp": 0,
+  "renderer": "mobile",
+  "scene": "scenes/PortraitMain.tscn",
+  "screen": "meta_hub",
+  "size": [
+    1280,
+    720
+  ]
+}

@@ -2,7 +2,7 @@ extends Control
 ## A single clipped, camera-projected canvas replaces per-hit decorative nodes.
 ## Reading intents never consumes RNG or causes damage/rewards.
 const ATTACK = preload('res://scripts/hunting/HuntAttackDirector.gd')
-const MAX_HITS := 32
+const MAX_HITS := 12
 var dust: Array[Dictionary]=[]
 var echoes: Array[Dictionary]=[]
 var souls: Array[Dictionary]=[]

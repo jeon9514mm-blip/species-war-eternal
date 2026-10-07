@@ -1,0 +1,16 @@
+{
+  "capture": "damage-style-sample",
+  "capture_holds_existing_text_for_readback": true,
+  "damage_font": "Barlow Condensed Black Italic",
+  "not_live_damage": true,
+  "purpose": "numeral face and damage/critical/incoming/heal comparison",
+  "raid_elapsed": 0.0,
+  "raid_hp": 0,
+  "renderer": "mobile",
+  "scene": "scenes/PortraitMain.tscn",
+  "screen": "combat",
+  "size": [
+    1280,
+    720
+  ]
+}

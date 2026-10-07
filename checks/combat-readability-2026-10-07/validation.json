@@ -1,0 +1,259 @@
+{
+  "date_kst": "2026-10-07",
+  "base_commit": "ab0d8017680efcb364d7dc3eb095e93edd0971ab",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "default_scene": "scenes/PortraitMain.tscn",
+  "orientation": "landscape_only",
+  "syntax": {
+    "passed": 471,
+    "total": 471,
+    "final_adjustment_scripts": [
+      {
+        "script": "scripts/equipment/EquipmentInventoryView.gd",
+        "passed": true,
+        "output": ""
+      },
+      {
+        "script": "tests/regression/EquipmentV28UxSmokeTest.gd",
+        "passed": true,
+        "output": ""
+      }
+    ]
+  },
+  "python_tests": {
+    "passed": 50,
+    "total": 50
+  },
+  "selected_regressions": {
+    "passed": 23,
+    "total": 23,
+    "results": [
+      {
+        "test": "CombatReadabilitySmokeTest.gd",
+        "passed": true,
+        "seconds": 9.42,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nCOMBAT_READABILITY checks=134 failures=[]\n"
+      },
+      {
+        "test": "EquipmentMailSmokeTest.gd",
+        "passed": true,
+        "seconds": 20.12,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nWARNING: 사냥 상태를 저장하지 못했습니다: mail_injected_failure\n     at: push_warning (core/variant/variant_utility.cpp:1033)\n     GDScript backtrace (most recent call first):\n         [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n         [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n         [2] _save_idle_state (res://scripts/app/Main.gd:1378)\n         [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:32)\n         [4] deliver_pending (res://scripts/equipment/EquipmentMailService.gd:51)\n         [5] pending_rewards (res://tests/regression/EquipmentMailSmokeTest.gd:73)\n         [6] run (res://tests/regression/EquipmentMailSmokeTest.gd:105)\n         [7] make_main (res://tests/support/V83UpgradeTestBase.gd:35)\n         [8] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nequipment_mail checks=37 failures=[]\n"
+      },
+      {
+        "test": "EquipmentModalSaveRecoverySmokeTest.gd",
+        "passed": true,
+        "seconds": 16.48,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nWARNING: 사냥 상태를 저장하지 못했습니다: injected_recovery_write_failure\n     at: push_warning (core/variant/variant_utility.cpp:1033)\n     GDScript backtrace (most recent call first):\n         [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n         [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n         [2] _save_idle_state (res://scripts/app/Main.gd:1378)\n         [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:32)\n         [4] try_ascend_hero (res://scripts/heroes/HeroProgressionService.gd:239)\n         [5] _try_ascend_hero (res://scripts/app/Main.gd:5055)\n         [6] <anonymous lambda> (res://scripts/heroes/HeroShowcaseView.gd:314)\n         [7] click (res://tests/regression/EquipmentModalSaveRecoverySmokeTest.gd:12)\n         [8] tap (res://tests/regression/EquipmentModalSaveRecoverySmokeTest.gd:27)\n         [9] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nWARNING: 사냥 상태를 저장하지 못했습니다: injected_recovery_write_failure\n     at: push_warning (core/variant/variant_utility.cpp:1033)\n     GDScript backtrace (most recent call first):\n         [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n         [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n         [2] _save_idle_state (res://scripts/app/Main.gd:1378)\n         [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:32)\n         [4] try_ascend_hero (res://scripts/heroes/HeroProgressionService.gd:239)\n         [5] _try_ascend_hero (res://scripts/app/Main.gd:5055)\n         [6] <anonymous lambda> (res://scripts/heroes/HeroShowcaseView.gd:314)\n         [7] click (res://tests/regression/EquipmentModalSaveRecoverySmokeTest.gd:12)\n         [8] tap (res://tests/regression/EquipmentModalSaveRecoverySmokeTest.gd:27)\n         [9] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nWARNING: 사냥 상태를 저장하지 못했습니다: injected_recovery_write_failure\n     at: push_warning (core/variant/variant_utility.cpp:1033)\n     GDScript backtrace (most recent call first):\n         [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n         [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n         [2] _save_idle_state (res://scripts/app/Main.gd:1378)\n         [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:32)\n         [4] save_recovery (res://tests/regression/EquipmentModalSaveRecoverySmokeTest.gd:94)\n         [5] tap (res://tests/regression/EquipmentModalSaveRecoverySmokeTest.gd:27)\n         [6] click (res://tests/regression/EquipmentModalSaveRecoverySmokeTest.gd:13)\n         [7] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nequipment_modal_save_recovery checks=163 failures=[]\n"
+      },
+      {
+        "test": "EquipmentUpgradeSmokeTest.gd",
+        "passed": true,
+        "seconds": 12.69,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nequipment_upgrade checks=113 failures=[]\n"
+      },
+      {
+        "test": "EquipmentV28UxSmokeTest.gd",
+        "passed": true,
+        "seconds": 16.74,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nequipment_v28_ux checks=322 failures=[]\n"
+      },
+      {
+        "test": "HeroMenuUxSmokeTest.gd",
+        "passed": true,
+        "seconds": 24.02,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhero_menu_ux checks=1065 failures=[]\n"
+      },
+      {
+        "test": "HeroSkeletalRigSmokeTest.gd",
+        "passed": true,
+        "seconds": 9.88,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhero_skeletal_rig 3722/3722 pass\n"
+      },
+      {
+        "test": "HuntAttackQualitySmokeTest.gd",
+        "passed": true,
+        "seconds": 7.06,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_attack_quality checks=24 failures=[]\n"
+      },
+      {
+        "test": "HuntCoordinationSmokeTest.gd",
+        "passed": true,
+        "seconds": 10.54,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=48 failures=[]\n"
+      },
+      {
+        "test": "MeadowAppliedSmokeTest.gd",
+        "passed": true,
+        "seconds": 7.87,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRUNE_STONE_APPLIED checks=105 failures=[]\n"
+      },
+      {
+        "test": "MenuHuntReliabilitySmokeTest.gd",
+        "passed": true,
+        "seconds": 35.47,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nWARNING: 사냥 상태를 저장하지 못했습니다: injected_menu_save_failure\n     at: push_warning (core/variant/variant_utility.cpp:1033)\n     GDScript backtrace (most recent call first):\n         [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n         [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n         [2] _save_idle_state (res://scripts/app/Main.gd:1378)\n         [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:32)\n         [4] run (res://tests/regression/MenuHuntReliabilitySmokeTest.gd:62)\n         [5] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nWARNING: 사냥 상태를 저장하지 못했습니다: injected_menu_save_failure\n     at: push_warning (core/variant/variant_utility.cpp:1033)\n     GDScript backtrace (most recent call first):\n         [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n         [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n         [2] _save_idle_state (res://scripts/app/Main.gd:1378)\n         [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:32)\n         [4] run (res://tests/regression/MenuHuntReliabilitySmokeTest.gd:62)\n         [5] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nMENU_HUNT_RELIABILITY checks=40 failures=[]\n"
+      },
+      {
+        "test": "RaidCombatQualitySmokeTest.gd",
+        "passed": true,
+        "seconds": 8.04,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nraid_combat_quality checks=35 failures=[]\n"
+      },
+      {
+        "test": "RaidDesignSmokeTest.gd",
+        "passed": true,
+        "reason": "passed",
+        "seconds": 42.1,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_DESIGN checks=486 failures=[]\n"
+      },
+      {
+        "test": "RaidStrengthSmokeTest.gd",
+        "passed": true,
+        "seconds": 29.51,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nraid_strength_battle {\"attack\":60,\"damage_dealt\":4464,\"damage_taken\":40,\"elapsed\":5.39999999999999,\"heroes\":10,\"hp\":3600,\"level\":1,\"outcome\":\"victory\",\"patterns\":0,\"strength\":1,\"survivors\":10,\"zone\":\"gray_meadow\"}\nraid_strength_battle {\"attack\":600,\"damage_dealt\":43265,\"damage_taken\":19304,\"elapsed\":69.3999999999982,\"heroes\":10,\"hp\":36000,\"level\":1,\"outcome\":\"defeat\",\"patterns\":14,\"strength\":10,\"survivors\":0,\"zone\":\"gray_meadow\"}\nraid_strength_battle {\"attack\":120,\"damage_dealt\":8568,\"damage_taken\":203,\"elapsed\":10.05,\"heroes\":10,\"hp\":7200,\"level\":1,\"outcome\":\"victory\",\"patterns\":0,\"strength\":1,\"survivors\":10,\"zone\":\"forgotten_mine\"}\nraid_strength_battle {\"attack\":1200,\"damage_dealt\":17193,\"damage_taken\":8382,\"elapsed\":26.5000000000002,\"heroes\":10,\"hp\":72000,\"level\":1,\"outcome\":\"defeat\",\"patterns\":1,\"strength\":10,\"survivors\":0,\"zone\":\"forgotten_mine\"}\nraid_strength_battle {\"attack\":206,\"damage_dealt\":12840,\"damage_taken\":1662,\"elapsed\":14.2500000000001,\"heroes\":10,\"hp\":12400,\"level\":1,\"outcome\":\"victory\",\"patterns\":2,\"strength\":1,\"survivors\":10,\"zone\":\"moonrest_forest\"}\nraid_strength_battle {\"attack\":2060,\"damage_dealt\":16635,\"damage_taken\":7780,\"elapsed\":24.3500000000002,\"heroes\":10,\"hp\":124000,\"level\":1,\"outcome\":\"defeat\",\"patterns\":3,\"strength\":10,\"survivors\":0,\"zone\":\"moonrest_forest\"}\nraid_strength_battle {\"attack\":60,\"damage_dealt\":4464,\"damage_taken\":0,\"elapsed\":0.9,\"heroes\":10,\"hp\":3600,\"level\":60,\"outcome\":\"victory\",\"patterns\":0,\"strength\":1,\"survivors\":10,\"zone\":\"gray_meadow\"}\nraid_strength_battle {\"attack\":600,\"damage_dealt\":44640,\"damage_taken\":1202,\"elapsed\":6.44999999999999,\"heroes\":10,\"hp\":36000,\"level\":60,\"outcome\":\"victory\",\"patterns\":1,\"strength\":10,\"survivors\":10,\"zone\":\"gray_meadow\"}\nraid_strength_battle {\"attack\":120,\"damage_dealt\":7992,\"damage_taken\":49,\"elapsed\":1.1,\"heroes\":10,\"hp\":7200,\"level\":60,\"outcome\":\"victory\",\"patterns\":0,\"strength\":1,\"survivors\":10,\"zone\":\"forgotten_mine\"}\nraid_strength_battle {\"attack\":1200,\"damage_dealt\":85680,\"damage_taken\":6856,\"elapsed\":11.35,\"heroes\":10,\"hp\":72000,\"level\":60,\"outcome\":\"victory\",\"patterns\":1,\"strength\":10,\"survivors\":10,\"zone\":\"forgotten_mine\"}\nraid_strength_battle {\"attack\":206,\"damage_dealt\":12400,\"damage_taken\":90,\"elapsed\":1.9,\"heroes\":10,\"hp\":12400,\"level\":60,\"outcome\":\"victory\",\"patterns\":0,\"strength\":1,\"survivors\":10,\"zone\":\"moonrest_forest\"}\nraid_strength_battle {\"attack\":2060,\"damage_dealt\":133055,\"damage_taken\":32340,\"elapsed\":17.3500000000001,\"heroes\":10,\"hp\":124000,\"level\":60,\"outcome\":\"victory\",\"patterns\":3,\"strength\":10,\"survivors\":10,\"zone\":\"moonrest_forest\"}\nraid_strength checks=442 failures=[]\n"
+      },
+      {
+        "test": "RaidTouchLayoutSmokeTest.gd",
+        "passed": true,
+        "seconds": 71.81,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_TOUCH_LAYOUT checks=1044 failures=[]\n"
+      },
+      {
+        "test": "V16PresentationIntegrationSmokeTest.gd",
+        "passed": true,
+        "seconds": 5.69,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV16_INTEGRATION checks=77 failures=[]\n"
+      },
+      {
+        "test": "V28FieldFxSmokeTest.gd",
+        "passed": true,
+        "seconds": 5.31,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv28_field_fx_smoke_test_ok compact_skill=ok targeted_fx=ok ultimate=ok bounded_damage=ok\n"
+      },
+      {
+        "test": "V54EquipmentPersistenceSmokeTest.gd",
+        "passed": true,
+        "seconds": 17.63,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nWARNING: 사냥 상태를 저장하지 못했습니다: too_large\n     at: push_warning (core/variant/variant_utility.cpp:1033)\n     GDScript backtrace (most recent call first):\n         [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n         [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n         [2] _save_idle_state (res://scripts/app/Main.gd:1378)\n         [3] _main_overflow_roundtrip (res://tests/regression/V54EquipmentPersistenceSmokeTest.gd:352)\n         [4] _new_main (res://tests/regression/V54EquipmentPersistenceSmokeTest.gd:200)\nv54_equipment_persistence_smoke_test checks=98 passed=98 failures=[]\n"
+      },
+      {
+        "test": "V55EquipmentDetailUiSmokeTest.gd",
+        "passed": true,
+        "seconds": 36.22,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV55 EQUIPMENT DETAIL UI 6443/6443 PASS\n"
+      },
+      {
+        "test": "V64RealtimeRaidSmokeTest.gd",
+        "passed": true,
+        "seconds": 6.33,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv64_realtime_raid 33/33 pass\n"
+      },
+      {
+        "test": "V75RaidMechanicSmokeTest.gd",
+        "passed": true,
+        "seconds": 22.58,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV75RaidMechanicSmokeTest: 18 checks, 0 failures\n"
+      },
+      {
+        "test": "V80DailyBattleSmokeTest.gd",
+        "passed": true,
+        "seconds": 15.58,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv80_daily_battle_smoke_test_ok checks=18\n"
+      },
+      {
+        "test": "V8364CombatViewSmokeTest.gd",
+        "passed": true,
+        "seconds": 17.08,
+        "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8364_combat_view checks=1304 failures=[]\n"
+      }
+    ]
+  },
+  "final_ui_followup": {
+    "passed": 4,
+    "total": 4,
+    "scope": "selected hero auto reveal and final input/transaction regression"
+  },
+  "static_validation": {
+    "passed": true,
+    "gd_scripts": 471,
+    "regression_scripts_discovered": 226,
+    "resource_links": true
+  },
+  "architecture": {
+    "current_contract_passed": true,
+    "service_modules": 9,
+    "main_lines": 5661,
+    "main_line_budget": 5684
+  },
+  "render": {
+    "method": "mobile",
+    "gpu": "llvmpipe software Vulkan",
+    "captures": [
+      "hunt-combat",
+      "damage-style-sample",
+      "landscape-menu",
+      "equipment-v28",
+      "equipment-v28-filtered",
+      "raid-catalog-v28",
+      "gray_meadow-raid-ready",
+      "gray_meadow-raid-warning",
+      "forgotten_mine-raid-ready",
+      "forgotten_mine-raid-warning",
+      "moonrest_forest-raid-ready",
+      "moonrest_forest-raid-warning"
+    ],
+    "engine_errors": 0,
+    "resolution": [
+      1280,
+      720
+    ],
+    "isolated_user_saves": true,
+    "damage_tweens_held_at_capture_readback": true,
+    "inventory_capture_uses_representative_test_items": true,
+    "style_board_is_synthetic_typography_sample": true
+  },
+  "hero_visual_review": {
+    "renderer": "mobile",
+    "characters": [
+      "Leonhardt",
+      "Mira",
+      "Elisia",
+      "Valeria",
+      "Bron",
+      "Tessa"
+    ],
+    "poses": [
+      "idle",
+      "attack_1",
+      "hit"
+    ],
+    "source_art_changed": false,
+    "new_authored_attack_animation_complete": false
+  },
+  "references": [
+    {
+      "url": "https://www.meta.ai/share/a/673e2940-44f0-4c0d-be4a-9faedcd1106a",
+      "archive_bytes": 9572,
+      "sha256": "cd01eadfe6922f1d8e2cc9a58e3d2d4a4fc2fbd707c896c7bf3ba8c40c16d8d4",
+      "contents_read": true,
+      "role": "v27 supporting reference",
+      "imported_directly": false
+    },
+    {
+      "url": "https://www.meta.ai/share/a/eb52ac8c-c25d-48db-bf3c-f1144edf65df",
+      "archive_bytes": 10955,
+      "sha256": "11c96d5aebe0a9973620e9480fc92c09e3ae5c6a797179c56c205e86c3e8163a",
+      "contents_read": true,
+      "role": "final v28 reference",
+      "imported_directly": false
+    }
+  ],
+  "limits": [
+    "23 selected regression suites, not all 226 historical scripts",
+    "No physical Android performance/touch assessment",
+    "Painted static raid backplates, not fully modelled architecture",
+    "Existing single-art hero mesh remains; independent limb/action authoring is next",
+    "No optimal party/set solver, set presets or three-mode inventory view"
+  ]
+}

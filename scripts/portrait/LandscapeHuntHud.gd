@@ -72,20 +72,24 @@ func _build_slots() -> void:
 	for i in count:
 		var hero: Dictionary = game.deployed_heroes[i]; var id: String = str(hero.id)
 		var width := cell_width-4
+		var face_width:=44.0 if width>=110 else 32.0
+		var text_x:=face_width+10
 		var slot := SKIN.button("",Callable(game,"_build_hero_detail_screen").bind(id))
 		slot.name = "HuntHero_"+id
 		SKIN.place(slot_row,slot,Rect2(i*cell_width+2,2,width,60))
+		_add_portrait(slot,id,Rect2(5,6,face_width,44))
 		var title := SKIN.label(game._hero_short_name(id),14)
-		SKIN.place(slot,title,Rect2(6,1,width-12,18))
+		SKIN.place(slot,title,Rect2(text_x,1,width-text_x-4,18))
 		title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		var level := SKIN.label("",11); SKIN.place(slot,level,Rect2(6,19,width-52,17))
-		var skill := SKIN.label("",11); SKIN.place(slot,skill,Rect2(width-48,19,42,17))
+		var level := SKIN.label("",11); SKIN.place(slot,level,Rect2(text_x,19,width-text_x-4,17))
+		var skill := SKIN.label("",11); SKIN.place(slot,skill,Rect2(text_x,34,width-text_x-4,15))
+		skill.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 		var hp_label := SKIN.label("HP",10,SKIN.MUTED)
-		SKIN.place(slot,hp_label,Rect2(6,34,24,14))
+		hp_label.hide();slot.add_child(hp_label)
 		var ult_label := SKIN.label("각성",10,SKIN.GOLD)
-		SKIN.place(slot,ult_label,Rect2(6,47,24,14))
-		var hp := SKIN.gauge(slot,Rect2(32,38,width-38,7),SKIN.SUCCESS)
-		var ult := SKIN.gauge(slot,Rect2(32,51,width-38,5),SKIN.GOLD)
+		ult_label.hide();slot.add_child(ult_label)
+		var hp := SKIN.gauge(slot,Rect2(6,51,width-12,5),SKIN.SUCCESS)
+		var ult := SKIN.gauge(slot,Rect2(6,57,width-12,2),SKIN.GOLD)
 		bars[id] = {"hp":hp,"ultimate":ult,"slot":slot,"level":level,"skill":skill,"hp_band":-1}
 	if count == 0:
 		var edit := SKIN.button("영웅을 편성해 사냥 시작",Callable(game,"_build_hero_select_screen"))

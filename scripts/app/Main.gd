@@ -3861,6 +3861,7 @@ func _apply_raid_damage(raw_damage: int, source_id: String = "") -> int:
 				combat_fx.death_burst(raid_boss_position - Vector2(36, 40), Color("#f0a15c"), true)
 				combat_fx.death_burst(raid_boss_position + Vector2(36, -40), Color("#f0a15c"), true)
 		if remaining_damage <= 0:
+			_spawn_floating_combat_text(("치명! " if critical else "")+"-%d"%mechanic_damage,GOLD,raid_boss_position)
 			return mechanic_damage
 	# Gray Meadow: guard HP must be removed before boss HP. Overflow is allowed,
 	# but the vulnerability begins after the breaking hit rather than amplifying it.
@@ -3883,6 +3884,7 @@ func _apply_raid_damage(raw_damage: int, source_id: String = "") -> int:
 				combat_fx.impact(raid_boss_position - Vector2(0, 58), Color("#e8ba6b"), 60.0)
 				combat_fx.camera_impact(4.8, 0.18, 0.012)
 		if remaining_damage <= 0:
+			_spawn_floating_combat_text(("치명! " if critical else "")+"-%d"%mechanic_damage,GOLD,raid_boss_position)
 			return mechanic_damage
 	var damage_multiplier: float = 1.25 if vulnerable_before_break else 1.0
 	var actual: int = mini(raid_boss_hp, int(float(remaining_damage) * damage_multiplier))
@@ -3905,6 +3907,7 @@ func _apply_raid_damage(raw_damage: int, source_id: String = "") -> int:
 			if actual >= maxi(30, int(raid_boss_max_hp * .018)):
 				combat_fx.camera_impact(3.2, 0.11, 0.007)
 			raid_hit_fx_remaining = 0.14
+	_spawn_floating_combat_text(("치명! " if critical else "")+"-%d"%(actual+mechanic_damage),GOLD,raid_boss_position)
 	return actual + mechanic_damage
 
 func _advance_raid_encounter(delta: float) -> void:
@@ -5423,33 +5426,7 @@ func _display_toast(message: String) -> void:
 	tween.tween_callback(toast.queue_free)
 
 func _spawn_floating_combat_text(message: String, color: Color, origin: Vector2) -> void:
-	if not combat_effects_enabled or not is_instance_valid(content_root):
-		return
-	var visible_floats := get_tree().get_nodes_in_group("floating_combat_text")
-	while visible_floats.size() >= 10:
-		var oldest: Node = visible_floats.pop_front()
-		oldest.remove_from_group("floating_combat_text")
-		oldest.queue_free()
-	var critical_text := message.begins_with("치명!")
-	var font_size := 24 if critical_text else (18 if message.length() < 14 else 16)
-	var label := _label(message.replace(" HP", ""), font_size, color)
-	label.add_to_group("floating_combat_text")
-	label.position = origin
-	label.size = Vector2(190, 34 if critical_text else 28)
-	label.pivot_offset = label.size * 0.5
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	label.z_index = 83 if critical_text else 23
-	label.add_theme_color_override("font_outline_color", Color("#171b22"))
-	label.add_theme_constant_override("outline_size", 5 if critical_text else 3)
-	label.scale = Vector2(1.22, 1.22) if critical_text else Vector2.ONE
-	content_root.add_child(label)
-	var tween := content_root.create_tween().set_parallel(true)
-	tween.tween_property(label, "position", origin + Vector2(0, -38 if critical_text else -28), 0.40 if critical_text else 0.34).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	if critical_text:
-		tween.tween_property(label, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(label, "modulate:a", 0.0, 0.28 if critical_text else 0.26).set_delay(0.14 if critical_text else 0.08)
-	tween.chain().tween_callback(label.queue_free)
+	preload('res://scripts/presentation/CombatTextPresenter.gd').legacy(self,message,color,origin)
 
 func _load_ui_preferences() -> void:
 	var saved: Dictionary = PresentationSettings.load_preferences(presentation_preferences_path)

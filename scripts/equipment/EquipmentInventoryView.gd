@@ -7,7 +7,7 @@ const HUD=preload('res://scripts/portrait/PortraitHud.gd')
 const C=preload('res://scripts/equipment/EquipmentComparison.gd')
 const GEAR=preload('res://scripts/equipment/EquipmentRules.gd')
 const ART=preload('res://scripts/equipment/EquipmentArtCatalog.gd')
-const LIME=Color('#b8e86c')
+const LIME=S.GOLD
 const PAGE_SIZE=40
 var game: Node
 var selected_id:=''
@@ -26,6 +26,11 @@ var settings_sheet: Control
 var gold_label: Label
 var capacity_label: Label
 var stash_shortcut: Button
+var search_timer: Timer
+var bag_contents: VBoxContainer
+var bag_width: float
+var hero_buttons: Dictionary={}
+var team_label: Label
 
 static func refresh(main: Node) -> void:
 	main.set_meta('gear_bag_page',0);main.set_meta('gear_bag_scroll',0)
@@ -81,24 +86,29 @@ func install(main: Node) -> void:
 	var money:=P.text(top,'G  '+game._compact_hud_amount(game.wallet_gold),21,S.GOLD)
 	gold_label=money;gold_label.name='GearGoldValue'
 	money.custom_minimum_size.x=135;money.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;money.size_flags_horizontal=Control.SIZE_SHRINK_END
-	var body_y:=86.0;var body_h:=h-190.0
+	_build_hero_switcher(w)
+	var body_y:=164.0;var body_h:=h-268.0
 	var bag_w:=clampf(w*.35,430.0,530.0);var action_w:=120.0
+	bag_width=bag_w
 	var compare_w:=w-64-bag_w-action_w
 	comparison=HBoxContainer.new();comparison.name='EquipmentComparisons';comparison.add_theme_constant_override('separation',12)
 	add_child(comparison);comparison.position=Vector2(16,body_y);comparison.size=Vector2(compare_w,body_h)
-	action_column=P.stack(self,10);action_column.name='EquipmentActions'
+	action_column=P.stack(self,6);action_column.name='EquipmentActions'
 	action_column.position=Vector2(28+compare_w,body_y);action_column.size=Vector2(action_w,body_h)
 	equip_button=_button(action_column,'교체',_equip,true);equip_button.name='EquipmentEquip'
 	upgrade_button=_button(action_column,'강화',func():_open_detail('enhance'));upgrade_button.name='GearWorkshop'
 	source_button=_button(action_column,'획득처',_show_source);source_button.name='GearSource'
 	detail_button=_button(action_column,'상세 정보',func():_open_detail('info'));detail_button.name='GearOpenDetails'
 	lock_button=_button(action_column,'잠금',_toggle_lock);lock_button.name='GearQuickLock'
-	P.text(action_column,'장착 부위',17,S.MUTED).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	for action: Button in [equip_button,upgrade_button,source_button,detail_button,lock_button]:
+		action.custom_minimum_size.y=44;action.add_theme_font_size_override('font_size',18)
+	P.text(action_column,'장착 부위',15,S.MUTED).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	for slot: String in game.EQUIPMENT_SLOTS:
 		var button:=_button(action_column,game._equipment_slot_name(slot),func():_category(slot))
-		button.name='GearLoadout_'+slot;button.custom_minimum_size.y=46;button.add_theme_font_size_override('font_size',18)
+		button.name='GearLoadout_'+slot;button.custom_minimum_size.y=44;button.add_theme_font_size_override('font_size',16)
 	var bag:=_panel(self,Rect2(w-16-bag_w,body_y,bag_w,body_h));bag.name='EquipmentBagPanel'
 	var contents:=P.stack(bag,8)
+	bag_contents=contents
 	var bag_heading:=HBoxContainer.new();contents.add_child(bag_heading)
 	P.text(bag_heading,'장비 가방',23).size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	var capacity:=P.text(bag_heading,'%d / %d'%[game.loot_inventory.size(),game.INVENTORY_CAP],21,S.GOLD)
@@ -122,20 +132,40 @@ func install(main: Node) -> void:
 		var updated: Dictionary=game.get_meta('gear_bag_filters',{}).duplicate();updated['query']=search.text.strip_edges()
 		game.set_meta('gear_bag_filters',updated);refresh(game)
 	search.text_submitted.connect(func(_value: String):submit.call())
+	search_timer=Timer.new();search_timer.one_shot=true;search_timer.wait_time=.2;add_child(search_timer)
+	search.text_changed.connect(func(_value: String):search_timer.start())
+	search_timer.timeout.connect(func():
+		if not is_instance_valid(game) or game.active_screen!='inventory':return
+		var updated: Dictionary=game.get_meta('gear_bag_filters',{}).duplicate()
+		updated['query']=search.text.strip_edges();game.set_meta('gear_bag_filters',updated)
+		game.set_meta('gear_bag_page',0);game.set_meta('gear_bag_scroll',0)
+		_populate_inventory())
 	var find:=_button(tools_row,'검색',submit);find.name='GearSearchApply';find.custom_minimum_size=Vector2(64,46);find.add_theme_font_size_override('font_size',16);find.size_flags_horizontal=Control.SIZE_SHRINK_END
 	var sort:=OptionButton.new();sort.name='GearFilter_sort';sort.custom_minimum_size=Vector2(130,46);sort.clip_text=true;sort.size_flags_horizontal=Control.SIZE_SHRINK_END
-	for entry: Array in [['rarity','등급순'],['power','장비력순'],['quality','옵션순'],['recent','최근순']]:
+	for entry: Array in [['rarity','등급순'],['power','장비력순'],['set','세트순'],['quality','옵션순'],['recent','최근순']]:
 		sort.add_item(entry[1]);sort.set_item_metadata(sort.item_count-1,entry[0])
 		if str(filters.get('sort','rarity'))==entry[0]:sort.select(sort.item_count-1)
 	tools_row.add_child(sort);M.retint(sort)
 	sort.item_selected.connect(func(index: int):var updated: Dictionary=game.get_meta('gear_bag_filters',{}).duplicate();updated['sort']=sort.get_item_metadata(index);game.set_meta('gear_bag_filters',updated);refresh(game))
+	selected_id=str(game.get_meta('gear_bag_selected_id',''))
+	_populate_inventory()
+	HUD.navigation(game,game.content_root,'bag',h-90,90)
+	if bool(game.get_meta('gear_settings_open',false)):_show_settings()
+
+func _populate_inventory() -> void:
+	for node_name in ['GearInventoryCount','PortraitContentScroll','GearInventoryPager']:
+		var old: Node=bag_contents.get_node_or_null(node_name)
+		if old!=null:bag_contents.remove_child(old);old.queue_free()
+	tiles.clear()
+	var contents:=bag_contents;var bag_w:=bag_width
+	var filters: Dictionary=game.get_meta('gear_bag_filters',{})
 	var rows:=P._inventory_rows(game,filters)
 	var page_count:=maxi(1,ceili(float(rows.size())/PAGE_SIZE))
 	var page_index:=clampi(int(game.get_meta('gear_bag_page',0)),0,page_count-1);game.set_meta('gear_bag_page',page_index)
 	var status:=P.text(contents,'선택해서 비교 · %d개 표시'%rows.size(),15,S.MUTED);status.name='GearInventoryCount'
 	item_scroll=ScrollContainer.new();item_scroll.name='PortraitContentScroll';S.make_scroll_responsive(item_scroll)
 	item_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;item_scroll.custom_minimum_size.y=100;contents.add_child(item_scroll)
-	item_grid=P.grid(item_scroll,4);item_grid.name='GearInventoryGrid';item_grid.add_theme_constant_override('h_separation',8);item_grid.add_theme_constant_override('v_separation',8)
+	item_grid=P.grid(item_scroll,5);item_grid.name='GearInventoryGrid';item_grid.add_theme_constant_override('h_separation',8);item_grid.add_theme_constant_override('v_separation',8)
 	item_grid.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN;item_grid.custom_minimum_size.x=bag_w-44
 	selected_id=str(game.get_meta('gear_bag_selected_id',''))
 	var ids: Array=[]
@@ -151,9 +181,56 @@ func install(main: Node) -> void:
 	var counter:=P.text(footer,'%d / %d'%[page_index+1,page_count],18);counter.name='GearPageLabel';counter.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	var next:=_button(footer,'›',func():_page(page_index+1));next.name='GearPageNext';next.disabled=page_index==page_count-1;next.custom_minimum_size=Vector2(52,46);next.size_flags_horizontal=Control.SIZE_SHRINK_END
 	var settings:=_button(footer,'필터 · 관리',_show_settings);settings.name='GearSettingsToggle';settings.custom_minimum_size=Vector2(130,46);settings.add_theme_font_size_override('font_size',16);settings.size_flags_horizontal=Control.SIZE_SHRINK_END
-	HUD.navigation(game,game.content_root,'bag',h-90,90)
 	_render_details()
-	if bool(game.get_meta('gear_settings_open',false)):_show_settings()
+
+func _build_hero_switcher(w: float) -> void:
+	var row:=HBoxContainer.new();row.name='EquipmentHeroSwitcher';row.add_theme_constant_override('separation',12)
+	add_child(row);row.position=Vector2(16,78);row.size=Vector2(w-32,74)
+	var scroll:=ScrollContainer.new();scroll.name='EquipmentHeroScroll'
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_SHOW_NEVER;scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(scroll)
+	var heroes:=HBoxContainer.new();heroes.add_theme_constant_override('separation',8);scroll.add_child(heroes)
+	var roster: Array=game.deployed_heroes.duplicate()
+	# The regular selector still allows browsing any unlocked reserve hero.
+	if roster.is_empty():roster=game._hero_roster_for_faction()
+	for hero: Dictionary in roster:
+		var id:=str(hero.id)
+		if not game._valid_growth_hero(id):continue
+		var button:=S.button('',_switch_hero.bind(id));button.name='GearQuickHero_'+id
+		button.custom_minimum_size=Vector2(112,70);button.mouse_filter=Control.MOUSE_FILTER_PASS
+		button.tooltip_text=str(hero.name)+' · 장비력 %d'%game._equipment_power(id)
+		heroes.add_child(button);hero_buttons[id]=button
+		var face:=TextureRect.new();face.texture=game._combat_portrait_texture(id)
+		face.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;face.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;face.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		S.place(button,face,Rect2(6,4,44,44))
+		var name_label:=S.label(game._hero_short_name(id),14)
+		name_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+		S.place(button,name_label,Rect2(4,49,104,18))
+		var role:=S.label(str(hero.get('role','')),12,S.MUTED);role.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+		S.place(button,role,Rect2(53,4,55,18))
+		var level:=S.label('Lv.%d'%int(game._get_hero_progress(id).level),13)
+		S.place(button,level,Rect2(53,26,55,18))
+	var summary:=P.stack(row,3);summary.custom_minimum_size.x=174;summary.size_flags_horizontal=Control.SIZE_SHRINK_END
+	team_label=P.text(summary,'파티 전투력 %s'%game._compact_hud_amount(game._calculate_party_power()),16,S.GOLD)
+	team_label.name='GearPartyPower';team_label.autowrap_mode=TextServer.AUTOWRAP_OFF
+	var recommend:=_button(summary,'파티 추천 장착',Callable(game,'_recommend_equip_all'),true)
+	recommend.name='GearPartyRecommend';recommend.add_theme_font_size_override('font_size',16);recommend.custom_minimum_size.y=44
+	recommend.tooltip_text='현재 파티에 장비력 상승 장비를 추천 장착 · 세트 완성 최적화를 보장하지 않습니다.'
+	_reveal_selected_hero.call_deferred()
+
+func _reveal_selected_hero() -> void:
+	if hero_buttons.has(hero_id):
+		var scroll: ScrollContainer=find_child('EquipmentHeroScroll',true,false)
+		scroll.ensure_control_visible(hero_buttons[hero_id])
+
+func _switch_hero(id: String) -> void:
+	if not game._valid_growth_hero(id):return
+	hero_id=id;game.set_meta('gear_equip_hero_id',id)
+	var selector: OptionButton=find_child('GearBagHero',true,false)
+	for index in selector.item_count:
+		if str(selector.get_item_metadata(index))==id:selector.select(index);break
+	_populate_inventory()
+	_reveal_selected_hero()
 
 func _process(_delta: float) -> void:
 	if is_instance_valid(game) and game.active_screen=='inventory' and is_instance_valid(gold_label):
@@ -174,19 +251,19 @@ func _page(index: int) -> void:
 	game.set_meta('gear_bag_page',index);game.set_meta('gear_bag_scroll',0);game.set_meta('gear_bag_reset_scroll',true);game._build_inventory_screen()
 
 func _accent(item: Dictionary) -> Color:
-	return {'일반':S.MUTED,'희귀':Color('#74c7ed'),'전설':Color('#d99ae7')}.get(str(item.get('rarity','일반')),S.MUTED)
+	return {'일반':S.MUTED,'희귀':Color('#7a8fa0'),'전설':S.GOLD}.get(str(item.get('rarity','일반')),S.MUTED)
 
 func _tile(item: Dictionary) -> void:
 	var item_id:=str(item.id);var button:=S.button('',func():_select_item(item_id))
 	button.name='GearTile_'+item_id;button.set_meta('equipment_id',item_id);button.mouse_filter=Control.MOUSE_FILTER_PASS
-	button.custom_minimum_size=Vector2(0,88);button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	button.custom_minimum_size=Vector2(0,82);button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	button.tooltip_text=P.item_title(item)+'\n'+GEAR.affix_text(item);item_grid.add_child(button);tiles[item_id]=button
 	var crystal:=str(item.get('item_type','equipment'))=='option_crystal'
 	if crystal:
 		var symbol:=S.label('◆',40,Color('#9decdf'));S.place(button,symbol,Rect2(8,5,60,58));symbol.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	else:
 		var art:=TextureRect.new();art.texture=ART.texture_for(item);art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;art.mouse_filter=Control.MOUSE_FILTER_IGNORE
-		button.add_child(art);art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);art.offset_left=12;art.offset_top=8;art.offset_right=-12;art.offset_bottom=-19
+		button.add_child(art);art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);art.offset_left=5;art.offset_top=5;art.offset_right=-5;art.offset_bottom=-19
 	var level:=S.label('결정' if crystal else '+%d'%int(item.get('level',1)),15,S.INK);level.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
 	button.add_child(level);level.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE);level.offset_left=4;level.offset_right=-7;level.offset_top=-24;level.offset_bottom=-3
 	var locked:=S.label('잠금',12,LIME);locked.name='GearTileLock';locked.visible=bool(item.get('locked',false));S.place(button,locked,Rect2(5,3,42,20))
@@ -197,6 +274,8 @@ func _select_item(item_id: String) -> void:
 
 func _render_details() -> void:
 	game.set_meta('gear_bag_selected_id',selected_id)
+	for id: String in hero_buttons:
+		hero_buttons[id].add_theme_stylebox_override('normal',S.box(S.SURFACE_2,S.GOLD if id==hero_id else S.EDGE_SOFT,10,1))
 	for child in comparison.get_children():comparison.remove_child(child);child.queue_free()
 	var item: Dictionary=game._gear_item(selected_id)
 	var preview:=C.preview(game,item,hero_id) if not item.is_empty() else {}
@@ -228,7 +307,7 @@ func _item_card(caption: String, item: Dictionary, candidate: bool, preview: Dic
 		P.text(body,'오른쪽 가방에서 장비를 누르면 현재 장비와 바로 비교할 수 있어요.' if candidate else '영웅과 장비를 선택하면 같은 부위의 장착 상태를 표시합니다.',18,S.MUTED)
 		return
 	var identity:=HBoxContainer.new();identity.add_theme_constant_override('separation',10);body.add_child(identity)
-	P.picture(identity,ART.texture_for(item),Vector2(56,60)).size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+	P.picture(identity,ART.texture_for(item),Vector2(76,76)).size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
 	var identity_text:=P.stack(identity,3)
 	var name_label:=P.text(identity_text,P.item_title(item),21,_accent(item));name_label.max_lines_visible=2;name_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS;name_label.tooltip_text=name_label.text
 	var crystal:=str(item.get('item_type','equipment'))=='option_crystal'
@@ -240,13 +319,11 @@ func _item_card(caption: String, item: Dictionary, candidate: bool, preview: Dic
 	if not crystal:_stat_row(attributes,'장비력',int(game._item_power(item)),false,int(preview.get('before',0)) if candidate else int(game._item_power(item)),candidate)
 	var affixes: Array=[item.get('stored_option',{})] if crystal else item.get('affixes',[])
 	if affixes.is_empty():P.text(attributes,'추가 옵션 없음',17,S.MUTED)
-	for option: Dictionary in affixes:
-		var previous:=0
-		if candidate:
-			for old_option: Dictionary in (preview.get('old',{}) as Dictionary).get('affixes',[]):
-				if old_option.get('stat')==option.get('stat'):previous=int(old_option.get('value',0))
-		else:previous=int(option.get('value',0))
-		_stat_row(attributes,str(GEAR.STAT_NAMES.get(str(option.get('stat','')),'옵션')),int(option.get('value',0)),str(option.get('stat',''))!='defense',previous,candidate)
+	var totals:=C.affix_totals(affixes)
+	var prior_totals:=C.affix_totals((preview.get('old',{}) as Dictionary).get('affixes',[])) if candidate else totals
+	for stat: String in totals:
+		_stat_row(attributes,str(GEAR.STAT_NAMES.get(stat,'옵션')),int(totals[stat]),stat!='defense',int(prior_totals.get(stat,0)),candidate)
+	if not affixes.is_empty():P.text(attributes,'옵션 합계 · 적용 상한은 아래 변화에 반영',13,S.MUTED)
 	if crystal:
 		P.text(body,'결정의 옵션을 다른 장비에 이식할 수 있습니다.',18,S.MUTED)
 		return
@@ -256,6 +333,9 @@ func _item_card(caption: String, item: Dictionary, candidate: bool, preview: Dic
 	for value in sets.values():
 		if str(value)==set_name:count+=1
 	var set_box:=P.card(body,'세트 효과 없음' if set_name=='초보자' else set_name+' 세트 · %d / 3'%count)
+	if set_name!='초보자':
+		var progress:=ProgressBar.new();progress.name='EquipmentSetProgress';progress.max_value=3;progress.value=count
+		progress.show_percentage=false;progress.custom_minimum_size=Vector2(0,6);progress.mouse_filter=Control.MOUSE_FILTER_IGNORE;set_box.add_child(progress)
 	for threshold in ([] if set_name=='초보자' else [2,3]):
 		var sample: Dictionary={'weapon':set_name,'armor':set_name,'accessory':set_name if threshold==3 else '초보자'}
 		var summary: String=GEAR.set_profile(sample).summary
@@ -263,7 +343,7 @@ func _item_card(caption: String, item: Dictionary, candidate: bool, preview: Dic
 		if threshold==3 and summary.begins_with(prior+' · '):summary=summary.trim_prefix(prior+' · ')
 		elif threshold==3 and summary==prior:summary='추가 효과 없음'
 		var active: bool=count>=int(threshold) and set_name!='초보자'
-		P.text(set_box,('● ' if active else '○ ')+'%d세트 · '%threshold+summary,16,LIME if active else S.MUTED)
+		P.text(set_box,('● ' if active else '○ ')+'%d세트 · '%threshold+summary,16,S.SUCCESS if active else S.MUTED)
 	if candidate and not preview.is_empty():
 		for change: Dictionary in preview.changes:
 			P.text(body,C.change_text(change),16,S.SUCCESS if int(change.after)>int(change.before) else S.UI.RED)
@@ -277,6 +357,9 @@ func _stat_row(parent: Node, label: String, value: int, percent: bool, previous:
 	var direction:=' ↑' if value>previous else (' ↓' if value<previous else '')
 	var amount:=P.text(row,'+%d%s%s'%[value,suffix,direction if compare else ''],19,S.SUCCESS if compare and value>previous else (S.UI.RED if compare and value<previous else S.INK))
 	amount.autowrap_mode=TextServer.AUTOWRAP_OFF;amount.size_flags_horizontal=Control.SIZE_SHRINK_END
+	if compare:
+		var delta:=P.text(parent,C.delta_text(previous,value,percent),15,S.SUCCESS if value>previous else (S.UI.RED if value<previous else S.MUTED))
+		delta.name='EquipmentDelta_'+label;delta.tooltip_text='옵션 수치는 퍼센트포인트 차이 · 장비력은 기존 값 대비 증감률'
 
 func _equip() -> void:
 	var item: Dictionary=game._gear_item(selected_id)

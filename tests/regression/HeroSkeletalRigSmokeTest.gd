@@ -40,6 +40,9 @@ func run() -> void:
 			var duration:=rig.action_duration(action)
 			var time:=duration*.46 if action not in MOTIONS.LOOPS else .23
 			rig._process(time)
+			check(absf(rig.bones['Head'].rotation)<=.0751,id+' '+action+' limits neck bend')
+			check(absf(rig.bones['LeftHand'].rotation)<=.0651 and absf(rig.bones['RightHand'].rotation)<=.0651,id+' '+action+' keeps painted wrists connected')
+			check(absf(rig.bones['Weapon'].rotation)<=.0281 and absf(rig.bones['Offhand'].rotation)<=.0281,id+' '+action+' limits weapon grip twist')
 			billboard.sync(camera,.03,Color.WHITE)
 			var shape:=rig.deformed_points()
 			var displacement:=0.0;var local_deformation:=0.0

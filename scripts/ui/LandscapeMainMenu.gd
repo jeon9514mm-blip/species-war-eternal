@@ -68,9 +68,9 @@ func install(main: Node) -> void:
 	var definitions: Array=[
 		['war','종의 전쟁','진영 전투',''],
 		['camp','원정 캠프','모험의 시작','res://assets/ui/v30/expedition-key-art.png'],
-		['world','사냥터','지역과 보상',''],
+		['world','사냥터','지역과 보상','res://assets/maps/raid-painted/sky-court.png'],
 		['summon','소환','영웅과 수호령',''],
-		['raid','레이드','보스 토벌',''],
+		['raid','레이드','보스 토벌','res://assets/maps/raid-painted/lunar-sanctum.png'],
 		['growth','성장 · 던전','도전과 성장','']]
 	for entry: Array in definitions:
 		var route: String=routes.get(str(entry[0]),'_build_boss_select_screen')
@@ -113,6 +113,10 @@ func _feature(id: String, title: String, subtitle: String, image_path: String, r
 	var art:=TextureRect.new();art.texture=load(image_path) if not image_path.is_empty() else null;art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	art.mouse_filter=Control.MOUSE_FILTER_IGNORE;button.add_child(art);art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	art.offset_left=2;art.offset_top=2;art.offset_right=-2;art.offset_bottom=-2
+	if image_path.is_empty():
+		var emblem:=ICON.new();emblem.icon_name={'war':'war','summon':'summon','growth':'growth'}.get(id,'compass');emblem.ink=S.GOLD
+		button.add_child(emblem);emblem.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
+		emblem.offset_left=-27;emblem.offset_right=27;emblem.offset_top=8;emblem.offset_bottom=62
 	_gradient(art,PackedColorArray([Color('#06101b00'),Color('#06101b10'),Color('#06101bf2')]),false)
 	var caption:=S.label(title,22);caption.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;caption.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	button.add_child(caption);caption.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE);caption.offset_left=6;caption.offset_right=-6;caption.offset_top=-62;caption.offset_bottom=-26

@@ -107,7 +107,7 @@ func run() -> void:
 	main._build_inventory_screen();await settle()
 	check(tiles().size()==40,'eighty-five items render forty tiles on the first page')
 	check(main.INVENTORY_CAP==200 and node('GearBagCapacity').text=='85 / 200','bag exposes the 200-slot capacity')
-	check(node('GearInventoryGrid').columns==4,'landscape inventory has four icon columns')
+	check(node('GearInventoryGrid').columns==5,'landscape inventory has five icon columns from the final v28 design')
 	check(node('GearPagePrevious').disabled and not node('GearPageNext').disabled,'first page boundaries are accurate')
 	geometry('first inventory page',true)
 	var first_page_scroll: ScrollContainer=node('PortraitContentScroll')

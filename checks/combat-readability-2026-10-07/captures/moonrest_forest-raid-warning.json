@@ -1,0 +1,18 @@
+{
+  "art": "res://assets/maps/raid-painted/lunar-sanctum.png",
+  "capture": "moonrest_forest-raid-warning",
+  "capture_holds_existing_text_for_readback": true,
+  "damage_font": "Barlow Condensed Black Italic",
+  "natural_warning": true,
+  "raid_elapsed": 3.5,
+  "raid_hp": 101320,
+  "renderer": "mobile",
+  "scene": "scenes/PortraitMain.tscn",
+  "screen": "raid",
+  "size": [
+    1280,
+    720
+  ],
+  "warning": "월식의 저주",
+  "zone": "moonrest_forest"
+}

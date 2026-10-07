@@ -1,0 +1,16 @@
+{
+  "art": "res://assets/maps/raid-painted/lunar-sanctum.png",
+  "capture": "moonrest_forest-raid-ready",
+  "capture_holds_existing_text_for_readback": true,
+  "damage_font": "Barlow Condensed Black Italic",
+  "raid_elapsed": 0.0,
+  "raid_hp": 0,
+  "renderer": "mobile",
+  "scene": "scenes/PortraitMain.tscn",
+  "screen": "raid",
+  "size": [
+    1280,
+    720
+  ],
+  "zone": "moonrest_forest"
+}

@@ -42,3 +42,19 @@ static func preview(main: Node, item: Dictionary, hero_id: String) -> Dictionary
 static func change_text(change: Dictionary) -> String:
 	var unit:='%' if bool(change.percent) else ''
 	return '%s  %d%s → %d%s'%[change.label,int(change.before),unit,int(change.after),unit]
+
+static func delta_text(before: int, after: int, percentage_points: bool=false) -> String:
+	var delta:=after-before
+	if delta==0:return '변화 없음'
+	var arrow:='↑' if delta>0 else '↓'
+	var sign:='+' if delta>0 else ''
+	if percentage_points:return '%s %s%d%%p'%[arrow,sign,delta]
+	if before==0:return '신규 +%d'%after if after>0 else '%s %d'%[arrow,delta]
+	return '%s %s%d (%s%.1f%%)'%[arrow,sign,delta,sign,100.0*delta/absf(float(before))]
+
+static func affix_totals(options: Array) -> Dictionary:
+	var result: Dictionary={}
+	for option: Dictionary in options:
+		var stat:=str(option.get('stat',''))
+		result[stat]=int(result.get(stat,0))+int(option.get('value',0))
+	return result

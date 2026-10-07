@@ -1,0 +1,18 @@
+{
+  "art": "res://assets/maps/raid-painted/sky-court.png",
+  "capture": "gray_meadow-raid-warning",
+  "capture_holds_existing_text_for_readback": true,
+  "damage_font": "Barlow Condensed Black Italic",
+  "natural_warning": true,
+  "raid_elapsed": 3.65,
+  "raid_hp": 14365,
+  "renderer": "mobile",
+  "scene": "scenes/PortraitMain.tscn",
+  "screen": "raid",
+  "size": [
+    1280,
+    720
+  ],
+  "warning": "갈라지는 대지",
+  "zone": "gray_meadow"
+}

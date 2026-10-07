@@ -56,7 +56,13 @@ func _wide_layout(body: Control,summary: Control,status: Control,actions: Contro
 	cue.add_theme_font_size_override("font_size",22)
 	cue.offset_top=8;cue.offset_bottom=46;cue.offset_left=w*.20;cue.offset_right=-w*.20
 	cast_bar.offset_top=49;cast_bar.offset_bottom=54;cast_bar.offset_left=w*.25;cast_bar.offset_right=-w*.25
-	phase_banner.offset_top=62;phase_banner.offset_bottom=136
+	# Keep transient phase hints away from the party and the central warning strip.
+	phase_banner.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	phase_banner.offset_left=18;phase_banner.offset_right=408
+	phase_banner.offset_top=64;phase_banner.offset_bottom=148
+	phase_banner.horizontal_alignment=HORIZONTAL_ALIGNMENT_LEFT
+	phase_banner.add_theme_font_size_override('font_size',18)
+	phase_banner.add_theme_stylebox_override('normal',SKIN.box(Color('#142231e0'),Color(accent,.55),10,1))
 	battle_hint=_text("",16,Color("#eee9d9"))
 	battle_hint.name="RaidBattleHint";battle_hint.autowrap_mode=TextServer.AUTOWRAP_OFF
 	battle_hint.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS

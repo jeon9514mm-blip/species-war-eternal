@@ -1,0 +1,23 @@
+{
+  "date_kst": "2026-10-07",
+  "source": "OpenAI image generation; original new environments for this project",
+  "scope": "Three static hand-painted-style 2.5D arena backplates, independent actor billboards, layered atmosphere shader; not fully modeled 3D scenery",
+  "gameplay_geometry": "Unchanged RaidBattlefield floor and warning projection",
+  "assets": [
+    {
+      "file": "sky-court.png",
+      "sha256": "4df6fa1e69f258e995aee4b09fc60b439861bffe9a98c725b5b729724c0c3e1f",
+      "bytes": 3218021
+    },
+    {
+      "file": "amber-quarry.png",
+      "sha256": "ee89eb11c0285988afece74fff379d6ae7f5776521480efe52316861b5c457f6",
+      "bytes": 2828458
+    },
+    {
+      "file": "lunar-sanctum.png",
+      "sha256": "913d704738958ff99762c4d480c6151c20fc790ca762a782b979f4dd4764b820",
+      "bytes": 3039685
+    }
+  ]
+}

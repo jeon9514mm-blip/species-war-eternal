@@ -1,0 +1,18 @@
+{
+  "art": "res://assets/maps/raid-painted/amber-quarry.png",
+  "capture": "forgotten_mine-raid-warning",
+  "capture_holds_existing_text_for_readback": true,
+  "damage_font": "Barlow Condensed Black Italic",
+  "natural_warning": true,
+  "raid_elapsed": 4.39999999999999,
+  "raid_hp": 43326,
+  "renderer": "mobile",
+  "scene": "scenes/PortraitMain.tscn",
+  "screen": "raid",
+  "size": [
+    1280,
+    720
+  ],
+  "warning": "광석 낙하",
+  "zone": "forgotten_mine"
+}

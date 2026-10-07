@@ -3,18 +3,18 @@ class_name GameUiTheme
 
 ## Shared visual language for menus, onboarding and the field HUD.
 ## Canonical palette used by both portrait pages and compatibility screens.
-const BG := Color("#0d141f")
-const SURFACE := Color("#172331")
-const SOFT := Color("#213246")
-const INK := Color("#eff3f5")
-const MUTED := Color("#9caebb")
-const PRIMARY := Color("#e3bf7c")
-const GOLD := Color("#e3bf7c")
+const BG := Color("#0d1013")
+const SURFACE := Color("#151a1e")
+const SOFT := Color("#1e262d")
+const INK := Color("#e9e5dc")
+const MUTED := Color("#9aa8b0")
+const PRIMARY := Color("#c4a484")
+const GOLD := Color("#c4a484")
 const LAVENDER := Color("#b39bce")
-const BORDER := Color("#334659")
+const BORDER := Color("#384047")
 const BLUE := Color("#76bfc1")
 const RED := Color("#ef8490")
-const GREEN := Color("#7fb996")
+const GREEN := Color("#a8b89e")
 const FONT_PROVIDER = preload("res://scripts/ui/UIFontProvider.gd")
 const ICON_SCRIPT := preload("res://scripts/ui/GameUiIcon.gd")
 
