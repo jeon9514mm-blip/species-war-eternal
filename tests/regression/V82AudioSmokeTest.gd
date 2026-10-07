@@ -7,7 +7,7 @@ func check(ok: bool, label: String) -> void:
 	if not ok: failures.append(label); push_error(label)
 func _run() -> void:
 	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://audio/v82/manifest.json"))
-	check(manifest["tracks"].size() == 24, "24 supplied audio files")
+	check(manifest["tracks"].size() == 28, "28 supplied audio files including four creature cues")
 	for key in manifest["tracks"]:
 		var entry: Dictionary = manifest["tracks"][key]
 		var stream: AudioStream = load("res://" + entry["file"])
@@ -36,7 +36,7 @@ func _run() -> void:
 		# Let the real audio mixer drain queued playback removals between bursts.
 		if index % 25 == 24: await process_frame
 	check(audio.max_active_voices <= 8 and audio.get_child_count() == 11, "500 bursts remain within fixed pool")
-	check(audio.suppressed > 0 and audio._cue_cache.size() <= 17, "throttle and sample cache bounded")
+	check(audio.suppressed > 0 and audio._cue_cache.size() <= GameAudioDirector.CUES.size(), "throttle and sample cache bounded by registered cues")
 	var count: int = audio.accepted
 	audio.set_suspended(true); var clock: float = audio._clock; audio._process(10.0)
 	check(audio._clock == clock and not audio.play_cue("victory") and audio.accepted == count, "background no playback or catch-up")

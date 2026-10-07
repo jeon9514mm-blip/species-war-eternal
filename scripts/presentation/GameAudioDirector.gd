@@ -10,7 +10,9 @@ const CUES := {"ui_click": ["ui_click", "ui", 3, 0.055], "equip": ["equip", "ui"
 	"guard": ["guard", "effects", 2, 0.22], "heal": ["heal", "effects", 2, 0.22],
 	"control": ["control", "effects", 2, 0.22], "ultimate": ["ultimate", "effects", 5, 0.5],
 	"critical": ["critical", "effects", 3, 0.18], "boss_warning": ["boss_warning", "effects", 7, 0.65],
-	"shield_break": ["shield_break", "effects", 5, 0.45]}
+	"shield_break": ["shield_break", "effects", 5, 0.45],
+	"monster_bold":["monster_bold","effects",1,.5],"monster_pack":["monster_pack","effects",1,.5],
+	"monster_cautious":["monster_cautious","effects",1,.5],"monster_flanker":["monster_flanker","effects",1,.5]}
 const VOICE_LIMIT := 8
 var options: Dictionary = PresentationSettings.DEFAULTS.duplicate(true)
 var sound_enabled: bool = true

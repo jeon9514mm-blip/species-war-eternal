@@ -6,17 +6,18 @@ class_name HeroVisualCatalog
 ## final generated PNGs byte-for-byte intact; metadata contains measured tiles.
 const DATA = preload("res://assets/heroes/pixel-v32/hero-visual-data.gd")
 const BOARDS := {
-	"a01": preload("res://assets/heroes/pixel-v32/a01-board.png"),
-	"a06": preload("res://assets/heroes/pixel-v32/a06-board.png"),
-	"a11": preload("res://assets/heroes/pixel-v32/a11-board.png"),
-	"n01": preload("res://assets/heroes/pixel-v32/n01-board.png"),
-	"n06": preload("res://assets/heroes/pixel-v32/n06-board.png"),
-	"n11": preload("res://assets/heroes/pixel-v32/n11-board.png")
+	"a01": "res://assets/heroes/pixel-v32/a01-board.png",
+	"a06": "res://assets/heroes/pixel-v32/a06-board.png",
+	"a11": "res://assets/heroes/pixel-v32/a11-board.png",
+	"n01": "res://assets/heroes/pixel-v32/n01-board.png",
+	"n06": "res://assets/heroes/pixel-v32/n06-board.png",
+	"n11": "res://assets/heroes/pixel-v32/n11-board.png"
 }
 const SKILL_SLOTS: Array[String] = ["a1", "a2", "passive", "ultimate"]
 
 static var _portraits: Dictionary = {}
 static var _skills: Dictionary = {}
+static var _boards: Dictionary = {}
 
 static func has_hero(hero_id: String) -> bool:
 	return DATA.HEROES.has(hero_id)
@@ -25,7 +26,8 @@ static func _atlas(board: String, bounds: Array) -> Texture2D:
 	if not BOARDS.has(board) or bounds.size() != 4:
 		return null
 	var texture := AtlasTexture.new()
-	texture.atlas = BOARDS[board] as Texture2D
+	if not _boards.has(board):_boards[board]=load(BOARDS[board])
+	texture.atlas = _boards[board] as Texture2D
 	texture.region = Rect2(float(bounds[0]), float(bounds[1]), float(bounds[2]), float(bounds[3]))
 	texture.filter_clip = true
 	return texture

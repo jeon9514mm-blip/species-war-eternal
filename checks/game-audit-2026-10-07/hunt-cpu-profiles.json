@@ -1,0 +1,47 @@
+{
+  "fixture": "360 natural 1/60-second simulation steps, Aurelia10 level60 stage154; presentation separately timed. Diagnostic code stored in tools/diagnostics/game-audit-2026-10-07/HuntCpuProfile.gd. These are CPU step times, not GPU frame rates.",
+  "runs": [
+    {
+      "component_total_us": {
+        "attacks": 3419090,
+        "collision": 1633959,
+        "flocking": 208014,
+        "party": 4834106,
+        "target_and_roam": 2012784
+      },
+      "presentation_ms_mean": 5.13178611111111,
+      "step_ms_max": 47.284,
+      "step_ms_mean": 35.0995555555556,
+      "steps": 360,
+      "source": "hunt-cpu-profile.log"
+    },
+    {
+      "component_total_us": {
+        "attacks": 3401716,
+        "collision": 1713945,
+        "flocking": 217616,
+        "party": 1118341,
+        "target_and_roam": 2081409
+      },
+      "presentation_ms_mean": 5.06054166666667,
+      "step_ms_max": 46.358,
+      "step_ms_mean": 25.1430361111111,
+      "steps": 360,
+      "source": "hunt-cpu-profile-optimized.log"
+    },
+    {
+      "component_total_us": {
+        "attacks": 1586989,
+        "collision": 1700106,
+        "flocking": 214430,
+        "party": 1112637,
+        "target_and_roam": 2060878
+      },
+      "presentation_ms_mean": 4.99975833333333,
+      "step_ms_max": 38.188,
+      "step_ms_mean": 19.9376055555556,
+      "steps": 360,
+      "source": "hunt-cpu-profile-optimized2.log"
+    }
+  ]
+}

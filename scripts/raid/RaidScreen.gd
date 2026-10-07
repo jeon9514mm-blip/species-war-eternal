@@ -89,7 +89,7 @@ static func build(main) -> void:
 	shadow.add_theme_stylebox_override("panel", UI.panel(Color(UI.PRIMARY, 0.11), Color.TRANSPARENT, 10, 0))
 	shadow.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(shadow)
-	main.raid_boss_sprite = MonsterSpriteFactory.create_monster(str(zone["boss"]), Vector2(0.105, 0.105))
+	main.raid_boss_sprite = main._new_monster_actor(str(zone["boss"]), Vector2(0.105, 0.105))
 	main.raid_boss_sprite.position = BOSS_FEET
 	root.add_child(main.raid_boss_sprite)
 	main._update_boss_portrait(str(zone["boss"]))

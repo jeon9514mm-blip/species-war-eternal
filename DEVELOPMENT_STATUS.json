@@ -1,8 +1,8 @@
 {
   "project": "Species War: Eternal",
   "development_step": "v83-6.5",
-  "workstream": "combat_readability_raid_art_and_v28_ui_ux",
-  "status": "implemented_and_validated",
+  "workstream": "user_spec_mobile25d_and_whole_game_audit",
+  "status": "implemented_with_documented_quality_and_performance_limits",
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "save_version": 37,
   "orientation": "landscape_only",
@@ -96,11 +96,11 @@
   "equipment_modal_background_blocks_input": true,
   "global_ui_redesign_in_scope": true,
   "new_game_server_in_scope": false,
-  "all_historical_tests_executed": false,
+  "all_historical_tests_executed": true,
   "android_tests": 0,
   "artwork_source_files_changed": true,
   "balance_data_changed": false,
-  "combat_movement_rules_changed": false,
+  "combat_movement_rules_changed": true,
   "combat_damage_rules_changed": false,
   "game_zip_created": false,
   "working_branch": "jeon9514mm-blip/species-war-eternal",
@@ -837,5 +837,57 @@
       "full-screen blur"
     ],
     "next_animation_work": "one Leonhardt and one monster: articulated limbs, authored attack keyposes and synchronized real hit response"
+  },
+  "latest_mobile25d": {
+    "date": "2026-10-08",
+    "heroes": 30,
+    "ordinary_monsters": 13,
+    "raid_bosses": 3,
+    "hero_display_pixels": 86.4,
+    "circle_radius_pixels": 120,
+    "circle_step_degrees": 36,
+    "hero_triangles": 6600,
+    "hero_hair_cards": 300,
+    "monster_body_triangles": 3000,
+    "monster_fur_layers": 4,
+    "shared_texture_size": 1024,
+    "renderer": "mobile",
+    "fully_skinned_anatomical_3d": false,
+    "contact_global_time_scale": 0.1,
+    "contact_seconds": 0.06,
+    "foreground_hunt_simulation_hz": 20,
+    "sixty_fps_verified": false,
+    "android_measured": false,
+    "graphics_reference_quality_approved": false,
+    "focused_reruns": [
+      {
+        "file": "final-focused-regressions.json",
+        "passed": 11,
+        "total": 11
+      },
+      {
+        "file": "final-raid-floor-regressions.json",
+        "passed": 5,
+        "total": 5
+      },
+      {
+        "file": "final-feedback-regressions.json",
+        "passed": 3,
+        "total": 3
+      }
+    ],
+    "whole_sweep": {
+      "passed": 152,
+      "total": 234,
+      "note": "Whole sweep ran during implementation; subsequent focused reruns supersede their matching rows only."
+    },
+    "latest_known_results": {
+      "passed": 157,
+      "total": 234,
+      "all_green": false
+    },
+    "actual_measurements": "checks/mobile25d-spec-2026-10-07/review-mobile/performance.json",
+    "review": "checks/mobile25d-spec-2026-10-07/README.md",
+    "audit": "checks/game-audit-2026-10-07/README.md"
   }
 }

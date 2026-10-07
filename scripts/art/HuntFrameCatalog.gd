@@ -17,6 +17,8 @@ func load_entry(id: String) -> Dictionary:
 	if _entries.has(id):return _entries[id]
 	if id.is_empty() or id.contains('/') or id.contains('..'):return {}
 	var path: String=ORIGINAL_ROOT+id+'/frames.json'
+	var mobile: String='res://assets/mobile25d/'+id+'/frames.json'
+	if FileAccess.file_exists(mobile):path=mobile
 	if not FileAccess.file_exists(path) and id in ['leonhardt','goblin']:path=ROOT+id+'/frames.json'
 	if not FileAccess.file_exists(path):return {}
 	var parsed=JSON.parse_string(FileAccess.get_file_as_string(path))

@@ -6,6 +6,7 @@ var audit_lowest_hp: Dictionary = {}
 var audit_sources: Dictionary = {}
 var audit_taken: Dictionary = {}
 var audit_healing: Dictionary = {}
+var audit_enemy_contacts: int = 0
 func auditing() -> bool:
 	return challenge_session != null and challenge_session.is_running() and challenge_session.elapsed < challenge_session.limit_seconds and combat_running and not _application_suspended and hunt_ai.encounter_id == challenge_session.active_wave_token
 func _damage_enemy(index: int, damage: int, source_index := 0) -> int:
@@ -23,6 +24,7 @@ func _damage_enemy(index: int, damage: int, source_index := 0) -> int:
 		audit_sources[source_index]=int(audit_sources.get(source_index,0))+delta
 	return actual
 func _incoming_damage_to_hero(id: String, amount: int, index: int = -1) -> int:
+	if challenge_session==null and active_screen=='combat' and amount>0:audit_enemy_contacts+=1
 	var watch: bool=auditing() and hero_battle_state.has(id)
 	var state: Dictionary=hero_battle_state.get(id,{})
 	var before: int=int(state.get("hp",0))

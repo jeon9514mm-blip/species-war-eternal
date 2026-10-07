@@ -1,0 +1,512 @@
+{
+  "android_measured": false,
+  "assets": [
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179336.0,
+      "hero": true,
+      "id": "adrien",
+      "png_bytes": 1181166.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179332.0,
+      "hero": true,
+      "id": "astel",
+      "png_bytes": 1465425.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179328.0,
+      "hero": true,
+      "id": "bora",
+      "png_bytes": 903862.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69568.0,
+      "hero": false,
+      "id": "bristle_boar",
+      "png_bytes": 1157958.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179332.0,
+      "hero": true,
+      "id": "bron",
+      "png_bytes": 746514.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179336.0,
+      "hero": true,
+      "id": "caelum",
+      "png_bytes": 1499100.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179336.0,
+      "hero": true,
+      "id": "corvin",
+      "png_bytes": 697719.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69572.0,
+      "hero": false,
+      "id": "crystal_spider",
+      "png_bytes": 1065248.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179336.0,
+      "hero": true,
+      "id": "darius",
+      "png_bytes": 1284056.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179340.0,
+      "hero": true,
+      "id": "elisia",
+      "png_bytes": 1575021.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179340.0,
+      "hero": true,
+      "id": "fenris",
+      "png_bytes": 825746.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69568.0,
+      "hero": false,
+      "id": "forest_wraith",
+      "png_bytes": 1193440.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69564.0,
+      "hero": false,
+      "id": "frost_deer",
+      "png_bytes": 952028.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179332.0,
+      "hero": true,
+      "id": "garm",
+      "png_bytes": 685931.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69552.0,
+      "hero": false,
+      "id": "grun",
+      "png_bytes": 1409259.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69560.0,
+      "hero": false,
+      "id": "iron_mole",
+      "png_bytes": 1000559.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179336.0,
+      "hero": true,
+      "id": "isolde",
+      "png_bytes": 1039640.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179336.0,
+      "hero": true,
+      "id": "kairen",
+      "png_bytes": 1282803.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69560.0,
+      "hero": false,
+      "id": "lava_bat",
+      "png_bytes": 1155968.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179348.0,
+      "hero": true,
+      "id": "leonhardt",
+      "png_bytes": 1230181.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179336.0,
+      "hero": true,
+      "id": "lucien",
+      "png_bytes": 799393.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179332.0,
+      "hero": true,
+      "id": "lunea",
+      "png_bytes": 1353607.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69560.0,
+      "hero": false,
+      "id": "mine_orc",
+      "png_bytes": 1017597.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179328.0,
+      "hero": true,
+      "id": "mira",
+      "png_bytes": 1615518.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69560.0,
+      "hero": false,
+      "id": "moon_wolf",
+      "png_bytes": 1122886.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179336.0,
+      "hero": true,
+      "id": "morgas",
+      "png_bytes": 822571.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69556.0,
+      "hero": false,
+      "id": "morgul",
+      "png_bytes": 1291833.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69560.0,
+      "hero": false,
+      "id": "mushroom",
+      "png_bytes": 1147905.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179328.0,
+      "hero": true,
+      "id": "naia",
+      "png_bytes": 1055996.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69564.0,
+      "hero": false,
+      "id": "night_raven",
+      "png_bytes": 1078489.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179328.0,
+      "hero": true,
+      "id": "nyx",
+      "png_bytes": 790028.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179336.0,
+      "hero": true,
+      "id": "odelia",
+      "png_bytes": 1102824.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179332.0,
+      "hero": true,
+      "id": "orwin",
+      "png_bytes": 917564.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179332.0,
+      "hero": true,
+      "id": "ragna",
+      "png_bytes": 712211.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179332.0,
+      "hero": true,
+      "id": "rokan",
+      "png_bytes": 616325.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179328.0,
+      "hero": true,
+      "id": "sael",
+      "png_bytes": 1220377.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179336.0,
+      "hero": true,
+      "id": "selene",
+      "png_bytes": 730430.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69564.0,
+      "hero": false,
+      "id": "selene_boss",
+      "png_bytes": 1707332.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179328.0,
+      "hero": true,
+      "id": "seria",
+      "png_bytes": 1723751.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179336.0,
+      "hero": true,
+      "id": "tessa",
+      "png_bytes": 700374.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179332.0,
+      "hero": true,
+      "id": "ulric",
+      "png_bytes": 710217.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179340.0,
+      "hero": true,
+      "id": "valeria",
+      "png_bytes": 635462.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 286208,
+      "glb_bytes": 179332.0,
+      "hero": true,
+      "id": "veyra",
+      "png_bytes": 847336.0,
+      "texture_format": 22,
+      "triangles": 6600
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69560.0,
+      "hero": false,
+      "id": "wild_dog",
+      "png_bytes": 1120176.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69560.0,
+      "hero": false,
+      "id": "wind_crow",
+      "png_bytes": 961428.0,
+      "texture_format": 22,
+      "triangles": 3000
+    },
+    {
+      "compressed_texture_bytes_with_mips": 1398128,
+      "decoded_mesh_array_bytes": 111928,
+      "glb_bytes": 69556.0,
+      "hero": false,
+      "id": "goblin",
+      "png_bytes": 1082927.0,
+      "texture_format": 22,
+      "triangles": 3000
+    }
+  ],
+  "device": "NVIDIA GeForce GTX 1050",
+  "engine": "4.7.2-stable (official)",
+  "profiles": [
+    {
+      "buffer_bytes": 13994446,
+      "draw_calls": 517.0,
+      "enemy_alive": 19,
+      "frames": 286,
+      "hero_alive": 10,
+      "label": "hunt-balanced",
+      "mean_fps": 35.4497494843053,
+      "mean_frame_ms": 28.2089440559441,
+      "objects": 883.0,
+      "p95_frame_ms": 54.875,
+      "seconds": 8.067758,
+      "texture_bytes": 111939584
+    },
+    {
+      "buffer_bytes": 13849818,
+      "draw_calls": 490.0,
+      "enemy_alive": 18,
+      "frames": 214,
+      "hero_alive": 10,
+      "label": "hunt-battery",
+      "mean_fps": 26.5607546233089,
+      "mean_frame_ms": 37.6495327102804,
+      "objects": 840.0,
+      "p95_frame_ms": 60.658,
+      "seconds": 8.057,
+      "texture_bytes": 95850496
+    },
+    {
+      "buffer_bytes": 12745668,
+      "draw_calls": 234.0,
+      "enemy_alive": 0,
+      "frames": 219,
+      "hero_alive": 10,
+      "label": "raid-balanced",
+      "mean_fps": 54.6855121098445,
+      "mean_frame_ms": 18.2863789954338,
+      "objects": 821.0,
+      "p95_frame_ms": 47.205,
+      "seconds": 4.004717,
+      "texture_bytes": 105295360
+    }
+  ],
+  "renderer": "mobile"
+}

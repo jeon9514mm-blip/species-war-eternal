@@ -5,7 +5,7 @@ var active := false
 var kind := ''
 var shape: Dictionary = {}
 var progress := 0.0
-var accent := Color('#ffd78b')
+var accent := Color('#c4a484')
 var targets: Array[Vector2] = []
 var clock := 0.0
 
@@ -19,10 +19,11 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	if not active or shape.is_empty():return
-	var glow := .10 + .07 * progress
-	var warning:=Color('#ffba69').lerp(Color('#ff626f'),smoothstep(.65,1.0,progress))
-	var edge := Color(warning,.9 + .1 * sin(clock * 8.0))
-	var fill := Color(accent,glow)
+	var pulse:=1.0+.2*sin(clock*TAU/1.2)
+	var glow := (.10 + .07 * progress)*pulse
+	var warning:=Color('#a8b89e').lerp(Color('#c4a484'),smoothstep(.35,1.0,progress))
+	var edge := Color(warning,.80 + .1 * sin(clock * 8.0))
+	var fill := Color(Color('#c4a484'),glow)
 	match str(shape.get('shape','')):
 		'lane':
 			_draw_warning_rect(shape['rect'],fill,edge)
@@ -67,6 +68,14 @@ func _draw() -> void:
 			draw_circle(center,radius,fill)
 			draw_arc(center,radius,0,TAU,100,Color('#101823'),12.0,true)
 			draw_arc(center,radius,0,TAU,100,edge,6.0)
+	if str(shape.get('shape','')) in ['ring','circle']:
+		var center: Vector2=shape.center;var radius: float=float(shape.outer if shape.shape=='ring' else shape.radius)
+		# Pulse changes brightness only; displayed hazard bounds remain exact.
+		for width in [12.,7.]:draw_arc(center,radius,0,TAU,100,Color(warning,.5*.12*pulse),width,true)
+		draw_arc(center,radius-5,0,TAU,100,Color('#a8b89e',.25),2,true)
+		for i in 8:
+			var angle:=float(i)*TAU/8+clock*.15;var point:=center+Vector2.from_angle(angle)*radius
+			draw_circle(point,1.5,Color(Color('#c4a484'),.5*pulse))
 	if progress>0.0 and str(shape.get('shape','')) in ['ring','circle']:
 		var center: Vector2=shape['center']
 		var radius: float=float(shape['outer'] if shape['shape']=='ring' else shape['radius'])

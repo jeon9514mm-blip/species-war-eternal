@@ -1,0 +1,62 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 5,
+  "total": 8,
+  "results": [
+    {
+      "test": "AureliaHeroPartsSmokeTest.gd",
+      "passed": false,
+      "seconds": 180.03,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nSCRIPT ERROR: Invalid assignment of property or key 'observe_game' with value of type 'bool' on a base object of type 'AnimatedSprite2D (MobilePaintActor.gd)'.\n   at: run (res://tests/regression/AureliaHeroPartsSmokeTest.gd:57)\n   GDScript backtrace (most recent call first):\n       [0] run (res://tests/regression/AureliaHeroPartsSmokeTest.gd:57)\n\nTest timed out after 180 seconds."
+    },
+    {
+      "test": "BMSmokeTest.gd",
+      "passed": false,
+      "seconds": 6.89,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nbm_smoke_test_ok gems=45 unclaimed_gold=250 ad_count=3\nWARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).\n   at: cleanup (core/object/object.cpp:2536)\nERROR: 1 resources still in use at exit (run with --verbose for details).\n   at: clear (core/io/resource.cpp:822)\n"
+    },
+    {
+      "test": "HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.91,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=48 failures=[]\n"
+    },
+    {
+      "test": "Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.19,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nMOBILE25D_SPEC checks=334 failures=[]\n"
+    },
+    {
+      "test": "RaidDesignSmokeTest.gd",
+      "passed": true,
+      "seconds": 23.08,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_DESIGN checks=486 failures=[]\n"
+    },
+    {
+      "test": "RaidTouchLayoutSmokeTest.gd",
+      "passed": true,
+      "seconds": 39.62,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_TOUCH_LAYOUT checks=1044 failures=[]\n"
+    },
+    {
+      "test": "StableFacing25DSmokeTest.gd",
+      "passed": false,
+      "seconds": 20.78,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: compact pursuit keeps living hero paintings inside the fixed-height hunt view\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] run (res://tests/regression/StableFacing25DSmokeTest.gd:85)\n       [2] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nSTABLE_FACING_25D checks=610 failures=[\"compact pursuit keeps living hero paintings inside the fixed-height hunt view\"]\n"
+    },
+    {
+      "test": "V82PerformanceSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.3,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nPERFORMANCE_COUNTS {\"balanced\":{\"hud\":18,\"power\":3},\"battery\":{\"hud\":10,\"power\":2}} atlas_cache_misses_for_10001_requests=4 android_fps_measured=false\nv82_performance checks=11 failures=[]\n"
+    }
+  ]
+}

@@ -4,6 +4,7 @@ const _FIELD = preload("res://scripts/hunting/HuntFieldService.gd")
 const FORMATIONS = preload("res://scripts/combat/BattleFormation.gd")
 var invasion := preload("res://scripts/hunting/InvasionWaveState.gd").new()
 var formation_id: String = "balanced"
+var _ordinary_hunt_accumulator:=0.0
 var hunt_autosave: Node
 var background_hunt := preload("res://scripts/persistence/BackgroundHunt.gd").new()
 
@@ -444,7 +445,16 @@ func _combat_layout_for_width(layout_w: float, safe: Vector4) -> Dictionary:
 func _physics_process(delta: float) -> void:
 	# A stall or resuming a backgrounded app must not burst overdue attacks.
 	if not _application_suspended:
-		_advance_auto_hunt(delta)
+		if DisplayServer.get_name()!='headless' and active_screen=='combat' and challenge_session==null and combat_running:
+			# Ordinary flock/slot decisions run at 20Hz; rendering and controls
+			# retain 60Hz. Pass elapsed game time, never drop or multiply rewards.
+			_ordinary_hunt_accumulator+=delta
+			if _ordinary_hunt_accumulator>=.05:
+				var elapsed:=_ordinary_hunt_accumulator;_ordinary_hunt_accumulator=0
+				_advance_auto_hunt(elapsed)
+		else:
+			_ordinary_hunt_accumulator=0
+			_advance_auto_hunt(delta)
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
@@ -1828,6 +1838,9 @@ func _sprite_head_offset(sprite: Node2D) -> Vector2:
 func _sprite_foot_offset(sprite: Node2D) -> Vector2:
 	return sprite.get_foot_offset() if sprite.has_method("get_foot_offset") else Vector2.ZERO
 
+func _new_hero_actor(hero_id: String, display_scale: Vector2) -> HeroSpriteController:
+	return HeroSpriteFactory.create_hero(hero_id, display_scale)
+
 func _create_map_hero_sprites() -> void:
 	hero_map_sprites.clear()
 	hero_map_offsets.clear()
@@ -1846,7 +1859,7 @@ func _create_map_hero_sprites() -> void:
 		var hero: Dictionary = deployed_heroes[index]
 		var hero_id := str(hero["id"])
 		var actor_scale := _combat_actor_scale()
-		var sprite := HeroSpriteFactory.create_hero(hero_id, Vector2(actor_scale, actor_scale))
+		var sprite := _new_hero_actor(hero_id, Vector2(actor_scale, actor_scale))
 		sprite.position = _map_world_position(_hero_field_position(hero_id))
 		_field_actor_parent().add_child(sprite)
 		sprite.play_idle("down")
@@ -2740,6 +2753,11 @@ func _combat_enemy_distances(hero_id: String = "") -> Array:
 	return distances
 
 func _can_attack_enemy(hero_id: String, target_index: int) -> bool:
+	if active_screen=='combat' and roaming_hunt.enemy_positions.size()==enemy_wave.size():
+		if target_index<0 or target_index>=enemy_wave.size() or roaming_hunt.is_returning(target_index):return false
+		var enemy: Dictionary=enemy_wave[target_index];var state: Dictionary=hero_battle_state.get(hero_id,{})
+		if int(enemy.get('hp',0))<=0 or not bool(enemy.get('alive',true)) or int(state.get('hp',0))<=0 or not bool(state.get('alive',true)):return false
+		return _hero_field_position(hero_id).distance_to(roaming_hunt.enemy_position(target_index))<=combat_decisions.spatial_range(maxi(1,int(state.get('range',2))))
 	return combat_decisions.can_attack_enemy(hero_battle_state.get(hero_id, {}), enemy_wave, target_index, _combat_enemy_distances(hero_id))
 
 func _select_enemy_target(hero_id: String) -> int:
@@ -4079,11 +4097,13 @@ func _acquire_hunt_target() -> void:
 func _spawn_enemy_wave(zone: Dictionary) -> void:
 	_FIELD.spawn_enemy_wave(self, zone)
 
+func _new_monster_actor(monster_name: String,display_scale: Vector2) -> MonsterSpriteController:
+	return MonsterSpriteFactory.create_monster(monster_name,display_scale)
 func _spawn_enemy_wave_sprites(start_index: int = 0) -> void:
 	for index in range(start_index, enemy_wave.size()):
 		var enemy: Dictionary = enemy_wave[index]
 		var monster_scale := _combat_actor_scale() * 1.38
-		var sprite := MonsterSpriteFactory.create_monster(str(enemy["name"]), Vector2(monster_scale, monster_scale))
+		var sprite := _new_monster_actor(str(enemy["name"]), Vector2(monster_scale, monster_scale))
 		var field_pos := roaming_hunt.enemy_position(index)
 		sprite.set_meta("field_position", field_pos)
 		sprite.position = _map_world_position(field_pos)

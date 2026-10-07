@@ -1,0 +1,32 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 3,
+  "total": 3,
+  "results": [
+    {
+      "test": "HuntFramePilotSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.16,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_frame_pilot checks=179 failures=[]\n"
+    },
+    {
+      "test": "IndependentHuntSmokeTest.gd",
+      "passed": true,
+      "seconds": 32.89,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nINDEPENDENT_HUNT_METRICS [{\"constrained\":{\"farthest\":1.97129797935486,\"spread\":1.90923018124368,\"targets\":8},\"faction\":\"aurelia\",\"individual\":{\"farthest\":4.00000047683716,\"spread\":4.11724780400594,\"targets\":9},\"natural\":{\"cycles\":2,\"enemy_contacts\":2,\"hero_hp_removed\":13,\"monster_targets\":3}},{\"constrained\":{\"farthest\":1.98084592819214,\"spread\":2.0275086581707,\"targets\":8},\"faction\":\"noxfera\",\"individual\":{\"farthest\":3.99999928474426,\"spread\":4.21072812080383,\"targets\":9},\"natural\":{\"cycles\":2,\"enemy_contacts\":3,\"hero_hp_removed\":28,\"monster_targets\":4}}]\nINDEPENDENT_HUNT checks=100 failures=[]\n"
+    },
+    {
+      "test": "Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "seconds": 9.73,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nMOBILE25D_SPEC checks=254 failures=[]\n"
+    }
+  ]
+}

@@ -88,7 +88,7 @@ def main():
         def run_one(script):
             # RaidDesign's production-path canaries require an explicitly named
             # disposable home; retain its guard instead of disabling the test.
-            test_dir = Path(tmp) / ('art-pilot-raid-validation' if script.stem == 'RaidDesignSmokeTest' else script.stem)
+            test_dir = Path(tmp) / ('art-pilot-raid-validation' if script.stem == 'RaidDesignSmokeTest' else 'art-pilot-' + script.stem)
             test_dir.mkdir()
             test_env = dict(env, XDG_DATA_HOME=str(test_dir), APPDATA=str(test_dir))
             started = time.monotonic()

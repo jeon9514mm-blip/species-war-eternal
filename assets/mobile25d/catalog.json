@@ -1,0 +1,624 @@
+{
+  "schema": 1,
+  "representation": "painted 2.5D relief billboards with separate hair geometry",
+  "entries": [
+    {
+      "id": "adrien",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1181166,
+      "glb_bytes": 179336,
+      "mesh": "res://assets/mobile25d/adrien/billboard.glb"
+    },
+    {
+      "id": "astel",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1465425,
+      "glb_bytes": 179332,
+      "mesh": "res://assets/mobile25d/astel/billboard.glb"
+    },
+    {
+      "id": "bora",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 903862,
+      "glb_bytes": 179328,
+      "mesh": "res://assets/mobile25d/bora/billboard.glb"
+    },
+    {
+      "id": "bristle_boar",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1157958,
+      "glb_bytes": 69568,
+      "mesh": "res://assets/mobile25d/bristle_boar/billboard.glb"
+    },
+    {
+      "id": "bron",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 746514,
+      "glb_bytes": 179332,
+      "mesh": "res://assets/mobile25d/bron/billboard.glb"
+    },
+    {
+      "id": "caelum",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1499100,
+      "glb_bytes": 179336,
+      "mesh": "res://assets/mobile25d/caelum/billboard.glb"
+    },
+    {
+      "id": "corvin",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 697719,
+      "glb_bytes": 179336,
+      "mesh": "res://assets/mobile25d/corvin/billboard.glb"
+    },
+    {
+      "id": "crystal_spider",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1065248,
+      "glb_bytes": 69572,
+      "mesh": "res://assets/mobile25d/crystal_spider/billboard.glb"
+    },
+    {
+      "id": "darius",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1284056,
+      "glb_bytes": 179336,
+      "mesh": "res://assets/mobile25d/darius/billboard.glb"
+    },
+    {
+      "id": "elisia",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1575021,
+      "glb_bytes": 179340,
+      "mesh": "res://assets/mobile25d/elisia/billboard.glb"
+    },
+    {
+      "id": "fenris",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 825746,
+      "glb_bytes": 179340,
+      "mesh": "res://assets/mobile25d/fenris/billboard.glb"
+    },
+    {
+      "id": "forest_wraith",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1193440,
+      "glb_bytes": 69568,
+      "mesh": "res://assets/mobile25d/forest_wraith/billboard.glb"
+    },
+    {
+      "id": "frost_deer",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 952028,
+      "glb_bytes": 69564,
+      "mesh": "res://assets/mobile25d/frost_deer/billboard.glb"
+    },
+    {
+      "id": "garm",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 685931,
+      "glb_bytes": 179332,
+      "mesh": "res://assets/mobile25d/garm/billboard.glb"
+    },
+    {
+      "id": "grun",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1409259,
+      "glb_bytes": 69552,
+      "mesh": "res://assets/mobile25d/grun/billboard.glb"
+    },
+    {
+      "id": "iron_mole",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1000559,
+      "glb_bytes": 69560,
+      "mesh": "res://assets/mobile25d/iron_mole/billboard.glb"
+    },
+    {
+      "id": "isolde",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1039640,
+      "glb_bytes": 179336,
+      "mesh": "res://assets/mobile25d/isolde/billboard.glb"
+    },
+    {
+      "id": "kairen",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1282803,
+      "glb_bytes": 179336,
+      "mesh": "res://assets/mobile25d/kairen/billboard.glb"
+    },
+    {
+      "id": "lava_bat",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1155968,
+      "glb_bytes": 69560,
+      "mesh": "res://assets/mobile25d/lava_bat/billboard.glb"
+    },
+    {
+      "id": "leonhardt",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1230181,
+      "glb_bytes": 179348,
+      "mesh": "res://assets/mobile25d/leonhardt/billboard.glb"
+    },
+    {
+      "id": "lucien",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 799393,
+      "glb_bytes": 179336,
+      "mesh": "res://assets/mobile25d/lucien/billboard.glb"
+    },
+    {
+      "id": "lunea",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1353607,
+      "glb_bytes": 179332,
+      "mesh": "res://assets/mobile25d/lunea/billboard.glb"
+    },
+    {
+      "id": "mine_orc",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1017597,
+      "glb_bytes": 69560,
+      "mesh": "res://assets/mobile25d/mine_orc/billboard.glb"
+    },
+    {
+      "id": "mira",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1615518,
+      "glb_bytes": 179328,
+      "mesh": "res://assets/mobile25d/mira/billboard.glb"
+    },
+    {
+      "id": "moon_wolf",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1122886,
+      "glb_bytes": 69560,
+      "mesh": "res://assets/mobile25d/moon_wolf/billboard.glb"
+    },
+    {
+      "id": "morgas",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 822571,
+      "glb_bytes": 179336,
+      "mesh": "res://assets/mobile25d/morgas/billboard.glb"
+    },
+    {
+      "id": "morgul",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1291833,
+      "glb_bytes": 69556,
+      "mesh": "res://assets/mobile25d/morgul/billboard.glb"
+    },
+    {
+      "id": "mushroom",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1147905,
+      "glb_bytes": 69560,
+      "mesh": "res://assets/mobile25d/mushroom/billboard.glb"
+    },
+    {
+      "id": "naia",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1055996,
+      "glb_bytes": 179328,
+      "mesh": "res://assets/mobile25d/naia/billboard.glb"
+    },
+    {
+      "id": "night_raven",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1078489,
+      "glb_bytes": 69564,
+      "mesh": "res://assets/mobile25d/night_raven/billboard.glb"
+    },
+    {
+      "id": "nyx",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 790028,
+      "glb_bytes": 179328,
+      "mesh": "res://assets/mobile25d/nyx/billboard.glb"
+    },
+    {
+      "id": "odelia",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1102824,
+      "glb_bytes": 179336,
+      "mesh": "res://assets/mobile25d/odelia/billboard.glb"
+    },
+    {
+      "id": "orwin",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 917564,
+      "glb_bytes": 179332,
+      "mesh": "res://assets/mobile25d/orwin/billboard.glb"
+    },
+    {
+      "id": "ragna",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 712211,
+      "glb_bytes": 179332,
+      "mesh": "res://assets/mobile25d/ragna/billboard.glb"
+    },
+    {
+      "id": "rokan",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 616325,
+      "glb_bytes": 179332,
+      "mesh": "res://assets/mobile25d/rokan/billboard.glb"
+    },
+    {
+      "id": "sael",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1220377,
+      "glb_bytes": 179328,
+      "mesh": "res://assets/mobile25d/sael/billboard.glb"
+    },
+    {
+      "id": "selene",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 730430,
+      "glb_bytes": 179336,
+      "mesh": "res://assets/mobile25d/selene/billboard.glb"
+    },
+    {
+      "id": "selene_boss",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1707332,
+      "glb_bytes": 69564,
+      "mesh": "res://assets/mobile25d/selene_boss/billboard.glb"
+    },
+    {
+      "id": "seria",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1723751,
+      "glb_bytes": 179328,
+      "mesh": "res://assets/mobile25d/seria/billboard.glb"
+    },
+    {
+      "id": "tessa",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 700374,
+      "glb_bytes": 179336,
+      "mesh": "res://assets/mobile25d/tessa/billboard.glb"
+    },
+    {
+      "id": "ulric",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 710217,
+      "glb_bytes": 179332,
+      "mesh": "res://assets/mobile25d/ulric/billboard.glb"
+    },
+    {
+      "id": "valeria",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 635462,
+      "glb_bytes": 179340,
+      "mesh": "res://assets/mobile25d/valeria/billboard.glb"
+    },
+    {
+      "id": "veyra",
+      "hero": true,
+      "triangles": 6600,
+      "hair_cards": 300,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 847336,
+      "glb_bytes": 179332,
+      "mesh": "res://assets/mobile25d/veyra/billboard.glb"
+    },
+    {
+      "id": "wild_dog",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1120176,
+      "glb_bytes": 69560,
+      "mesh": "res://assets/mobile25d/wild_dog/billboard.glb"
+    },
+    {
+      "id": "wind_crow",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 961428,
+      "glb_bytes": 69560,
+      "mesh": "res://assets/mobile25d/wind_crow/billboard.glb"
+    },
+    {
+      "id": "goblin",
+      "hero": false,
+      "triangles": 3000,
+      "hair_cards": 0,
+      "texture_size": [
+        1024,
+        1024
+      ],
+      "png_bytes": 1082927,
+      "glb_bytes": 69556,
+      "mesh": "res://assets/mobile25d/goblin/billboard.glb"
+    }
+  ],
+  "floor": {
+    "texture_size": [
+      1024,
+      1024
+    ],
+    "roughness": 0.58,
+    "metallic": 0.32,
+    "patina_fraction_in_cracks": 0.17999973732252852,
+    "moss_fraction": 0.11999988555908203,
+    "moss_outside_crack_band": 0,
+    "moss_color": "#A8B89E",
+    "patina_color": "#6B8A7A",
+    "edge_wear": 0.5,
+    "dust": 0.15,
+    "ao_strength": 0.4,
+    "runtime_ao_channel": "albedo alpha",
+    "runtime_textures": 2,
+    "runtime_bc7_bc5_bytes_with_mipmaps": 2796202,
+    "ao_separate_image": "authoring reference; packed in albedo alpha at runtime"
+  }
+}

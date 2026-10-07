@@ -4,6 +4,8 @@ extends "res://scripts/maps/MapTerrainRenderer.gd"
 const HERO_SKIN=preload('res://scripts/maps3d/HeroSkeletalBillboard.gd')
 const FRAME_PILOT=preload('res://scripts/art/HuntFramePilot.gd')
 const MODEL_PILOT=preload('res://scripts/art/Model3DPilot.gd')
+const MOBILE_PILOT=preload('res://scripts/art/MobileReliefPilot.gd')
+const CAMERA_MOTION=preload('res://scripts/maps3d/MobileCameraMotion.gd')
 const MAP_LOADER=preload('res://scripts/maps/MapLoader.gd')
 const FRAMING=preload('res://scripts/maps3d/CombatCameraFraming.gd')
 const HEALTH_LAYOUT=preload('res://scripts/maps3d/CombatHealthLayout.gd')
@@ -15,7 +17,7 @@ const CONTACT_SHADOW=preload('res://shaders/PaintedContactShadow.gdshader')
 const FIELD_PALETTE=preload('res://scripts/maps/FieldArtCatalog.gd')
 const STONE_GROUND=preload('res://scripts/maps/RuneStoneGround.gd')
 const CAMERA_OFFSET=Vector3(0,40,28)
-const HUNT_CAMERA_OFFSET=Vector3(0,.6691306,.7431448) # 42 degree hunting camera.
+const HUNT_CAMERA_OFFSET=Vector3(0,.7071068,.7071068) # Requested 45 degree view.
 const HERO_HEIGHT=2.05
 const RAID_HERO_HEIGHT=4.20
 const RAID_BOSS_HEIGHT=5.10
@@ -65,16 +67,21 @@ var _frame_catalog:=FRAME_PILOT.CATALOG.new()
 var _body_scales: Dictionary={}
 var _source_attacks: Dictionary={}
 var _paint_rects: Dictionary={}
+var mobile_camera:=CAMERA_MOTION.new()
+var _camera_base_v:=0.0
+var _rest_camera_size:=0.0
+var _hitstop_wall_deadline:=0
+var _hitstop_cooldown:=0.0
 func apply_render_profile() -> void:
 	if not is_instance_valid(viewport_3d) or not is_instance_valid(game):return
 	var battery: bool=str(game.presentation_options.get('performance','balanced'))=='battery'
 	var key: String='battery' if battery else 'balanced'
 	if key!=_render_profile:
 		_render_profile=key
-		viewport_3d.msaa_3d=Viewport.MSAA_DISABLED if battery else (Viewport.MSAA_2X if raid_mode else Viewport.MSAA_4X)
+		viewport_3d.msaa_3d=Viewport.MSAA_DISABLED if battery else Viewport.MSAA_2X
 		viewport_3d.positional_shadow_atlas_size=256 if battery else (1024 if raid_mode else 2048)
 		viewport_3d.scaling_3d_mode=Viewport.SCALING_3D_MODE_BILINEAR
-		viewport_3d.scaling_3d_scale=1.0 if battery else 1.5
+		viewport_3d.scaling_3d_scale=1.0
 		viewport_3d.anisotropic_filtering_level=Viewport.ANISOTROPY_4X if battery else Viewport.ANISOTROPY_16X
 		if is_instance_valid(_render_container):_render_container.stretch_shrink=2 if battery else 1
 		for node in map_root.find_children('*','DirectionalLight3D',true,false):
@@ -99,6 +106,7 @@ func _ready() -> void:
 	var container:=SubViewportContainer.new();container.name='Live3DViewport';container.stretch=true
 	container.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(container)
 	_render_container=container
+	var post:=ShaderMaterial.new();post.shader=preload('res://shaders/MobileBattlePost.gdshader');container.material=post
 	container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	viewport_3d=SubViewport.new();viewport_3d.name='World3D';viewport_3d.own_world_3d=true
 	viewport_3d.msaa_3d=Viewport.MSAA_2X;viewport_3d.positional_shadow_atlas_size=1024
@@ -109,9 +117,11 @@ func _ready() -> void:
 	world=map_root.get_node('Arena');camera=world.get_node('BattleCamera')
 	if not raid_mode:
 		rune_ground=STONE_GROUND.new();rune_ground.field=self;world.add_child(rune_ground)
-		hunt_overlay=HUNT_OVERLAY.new();hunt_overlay.name='HuntCombatOverlay';hunt_overlay.terrain=self
-		hunt_overlay.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(hunt_overlay)
-		hunt_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	hunt_overlay=HUNT_OVERLAY.new();hunt_overlay.name='HuntCombatOverlay';hunt_overlay.terrain=self
+	hunt_overlay.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(hunt_overlay)
+	hunt_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var ambient_dust:=preload('res://scripts/maps3d/MobileAmbientDust.gd').new();ambient_dust.field=self;ambient_dust.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	add_child(ambient_dust);ambient_dust.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_health_overlay=HEALTH_OVERLAY.new();_health_overlay.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	add_child(_health_overlay);_health_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	camera.keep_aspect=Camera3D.KEEP_HEIGHT
@@ -124,11 +134,10 @@ func _ready() -> void:
 	preload('res://scripts/maps3d/MythicDetailProfile.gd').configure(map_root)
 	add_to_group("game_battlefields");apply_render_profile()
 func _create_map_root() -> Node3D:
-	if raid_mode:return map_loader.load_zone(zone_id,viewport_3d,true)
 	return _create_generated_map_root()
 func _create_generated_map_root() -> Node3D:
 	# AutoMap Fix: start from a fresh arena; old hunting PackedScenes are not loaded.
-	var root:=Node3D.new();root.name='AutoHuntMap';root.set_meta('auto_map_rebuilt',true)
+	var root:=Node3D.new();root.name='AutoRaidMap' if raid_mode else 'AutoHuntMap';root.set_meta('auto_map_rebuilt',true);root.set_meta('map_design_removed',false)
 	var arena_root:=Node3D.new();arena_root.name='Arena';root.add_child(arena_root)
 	var next_camera:=Camera3D.new();next_camera.name='BattleCamera'
 	next_camera.projection=Camera3D.PROJECTION_ORTHOGONAL;next_camera.near=.05;next_camera.far=220;next_camera.current=true
@@ -145,7 +154,9 @@ func _create_generated_map_root() -> Node3D:
 	reflection_sky.sky_material=sky_paint;environment.sky=reflection_sky
 	environment.tonemap_mode=Environment.TONE_MAPPER_ACES;environment.tonemap_exposure=1.02
 	environment.glow_enabled=RenderingServer.get_current_rendering_method()=='forward_plus'
-	environment.glow_intensity=.35;environment.glow_bloom=.06
+	environment.glow_intensity=.35;environment.glow_strength=.8;environment.glow_bloom=.06
+	if RenderingServer.get_current_rendering_method()=='forward_plus':
+		environment.sdfgi_enabled=true;environment.sdfgi_cascades=4;environment.sdfgi_min_cell_size=.8;environment.sdfgi_bounce_feedback=0.0
 	environment_node.environment=environment;arena_root.add_child(environment_node)
 	var sun:=DirectionalLight3D.new();sun.name='AutoMapSun';sun.rotation_degrees=Vector3(-55,-28,0)
 	sun.light_energy=.85;sun.light_color=palette.sun
@@ -155,20 +166,31 @@ func _create_generated_map_root() -> Node3D:
 	var model_scene=load(model_path) as PackedScene
 	assert(model_scene!=null,'Missing real 3D environment: '+model_path)
 	var environment_model=model_scene.instantiate();environment_model.name='EnvironmentModel';arena_root.add_child(environment_model)
+	var floor_material: StandardMaterial3D
 	for mesh: MeshInstance3D in environment_model.find_children('*','MeshInstance3D',true,false):
+		mesh.gi_mode=GeometryInstance3D.GI_MODE_STATIC
+		var floor_only:=true
 		for index in mesh.mesh.get_surface_count():
 			var original=mesh.get_active_material(index) as StandardMaterial3D
-			if original==null or not original.resource_name.ends_with(' floor'):continue
+			if original==null or not original.resource_name.ends_with(' floor'):floor_only=false;continue
 			var stone=original.duplicate() as StandardMaterial3D
-			stone.albedo_color*=Color(.65,.65,.65,1)
-			stone.albedo_texture=preload('res://assets/models3d-v1/materials/eternal_stone_albedo.png')
+			stone.albedo_color=Color.WHITE
+			stone.albedo_texture=load('res://assets/mobile25d/floor/stone_1024_albedo_ao.png')
 			stone.normal_enabled=true;stone.normal_scale=.28
-			stone.normal_texture=preload('res://assets/models3d-v1/materials/eternal_stone_normal.png')
-			stone.roughness_texture=preload('res://assets/models3d-v1/materials/eternal_stone_orm.png')
-			stone.roughness_texture_channel=BaseMaterial3D.TEXTURE_CHANNEL_GREEN
-			stone.ao_enabled=true;stone.ao_texture=stone.roughness_texture
+			stone.normal_texture=load('res://assets/mobile25d/floor/stone_1024_normal.png')
+			stone.roughness=.58;stone.metallic=.32;stone.roughness_texture=null
+			stone.uv1_scale=Vector3(10,7,1)
+			stone.ao_enabled=true;stone.ao_texture=stone.albedo_texture;stone.ao_texture_channel=BaseMaterial3D.TEXTURE_CHANNEL_ALPHA
 			stone.texture_filter=BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
-			mesh.set_surface_override_material(index,stone)
+			floor_material=stone
+			var hidden_floor:=StandardMaterial3D.new();hidden_floor.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR;hidden_floor.albedo_color=Color(0,0,0,0)
+			mesh.set_surface_override_material(index,hidden_floor)
+		if floor_only:mesh.hide()
+	if floor_material!=null:
+		var slabs:=MeshInstance3D.new();slabs.name='PBRStoneSlabs1024'
+		var plane:=PlaneMesh.new();plane.size=Vector2(80,60);slabs.mesh=plane;slabs.position=Vector3(16,0,10)
+		floor_material.uv1_scale=Vector3(80.0/36.0*10,60.0/24.0*7,1)
+		slabs.material_override=floor_material;slabs.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;arena_root.add_child(slabs)
 	root.set_meta('environment_model',model_path)
 	viewport_3d.add_child(root)
 	return root
@@ -183,7 +205,7 @@ func _resize_world() -> void:
 		# Keep every reachable floor point and the boss's head inside the stage.
 		# The original combat-coordinate transform remains shared with warnings.
 		var safe_size:=Vector2(maxf(1,size.x-36),maxf(1,size.y-RAID_BOTTOM_CLEARANCE))
-		raid_factor=minf(safe_size.x/674.0,safe_size.y/340.0)
+		raid_factor=minf(safe_size.x/674.0,safe_size.y/340.0)*CAMERA_MOTION.ZOOM
 		_set_focus(Vector2(16,10))
 		camera.size=size.y/(RAID_UNITS*raid_factor)
 		camera.v_offset=(-5.0+57.0*raid_factor)/(RAID_UNITS*raid_factor)
@@ -192,15 +214,20 @@ func _resize_world() -> void:
 		var floor_end: Vector2=preload("res://scripts/raid/RaidBattlefield.gd").FLOOR.end
 		var excess:=project_world(raid_to_world(floor_end)).y-(size.y-RAID_BOTTOM_CLEARANCE)
 		if excess>0.0:camera.v_offset-=excess/(RAID_UNITS*raid_factor)
+		var boss: Vector2=raid_to_world(game.raid_boss_position) if is_instance_valid(game) else raid_to_world(Vector2(650,383))
+		camera.v_offset+=maxf(0,166.4+2-project_world(boss).y)*camera.size/size.y
+		_camera_base_v=camera.v_offset
 	else:
 		_update_hunt_camera(0.0,true)
+		_camera_base_v=0.0
+	_rest_camera_size=camera.size
 
 func _set_focus(point: Vector2) -> void:
 	focus=point
 	var target:=Vector3(point.x,0,point.y)
 	# Orthographic framing changes angle, not distance. Preserve enough camera
 	# clearance so actor billboards cannot cross the near plane.
-	var offset: Vector3=CAMERA_OFFSET if raid_mode else HUNT_CAMERA_OFFSET.normalized()*CAMERA_OFFSET.length()
+	var offset: Vector3=HUNT_CAMERA_OFFSET.normalized()*CAMERA_OFFSET.length()
 	camera.position=target+offset
 	camera.look_at(target)
 
@@ -230,7 +257,7 @@ func camera_points() -> Array[Vector3]:
 		if float(FRAMING.fit(candidate,size,HUNT_CAMERA_OFFSET.normalized().y).size)<=_hunt_zoom():points=candidate
 	return points
 
-func _hunt_zoom() -> float:return maxf(4.8,6.0/maxf(.1,size.x/maxf(1,size.y)))
+func _hunt_zoom() -> float:return maxf(4.8,6.0/maxf(.1,size.x/maxf(1,size.y)))/CAMERA_MOTION.ZOOM
 
 func _update_hunt_camera(delta: float,snap:=false) -> void:
 	if not is_instance_valid(camera) or size.x<1 or size.y<1:return
@@ -276,15 +303,23 @@ func visible_world_rect() -> Rect2:
 func raid_to_world(point: Vector2) -> Vector2:
 	var sin_pitch: float=absf(camera.global_basis.z.y)
 	return Vector2(16,10)+(point-RAID_PIVOT)/Vector2(RAID_UNITS,RAID_UNITS*sin_pitch)
+func world_to_raid(point: Vector2) -> Vector2:
+	return RAID_PIVOT+(point-Vector2(16,10))*Vector2(RAID_UNITS,RAID_UNITS*absf(camera.global_basis.z.y))
+func raid_projection_factor() -> float:return size.y/maxf(.001,camera.size*RAID_UNITS)
 func raid_origin() -> Vector2:
-	return project_world(Vector2(16,10))-RAID_PIVOT*raid_factor
+	return project_world(Vector2(16,10))-RAID_PIVOT*raid_projection_factor()
 func _process(delta: float) -> void:
 	# A deferred resize can briefly leave the replacement viewport at zero size.
 	# Wait for layout before projection/crowd fitting can produce 0/0 transforms.
 	if not is_instance_valid(game) or not is_instance_valid(camera) or size.x<1 or size.y<1:return
 	_actor_delta=maxf(0.0,delta)
 	apply_render_profile()
-	_visual_hitstop_remaining=maxf(0,_visual_hitstop_remaining-maxf(0,delta))
+	if battle_clock_running():
+		_visual_hitstop_remaining=maxf(0,_visual_hitstop_remaining-maxf(0,delta))
+		_hitstop_cooldown=maxf(0,_hitstop_cooldown-maxf(0,delta))
+		if _hitstop_wall_deadline>0:
+			_visual_hitstop_remaining=maxf(0,float(_hitstop_wall_deadline-Time.get_ticks_usec())/1000000.)
+			if _visual_hitstop_remaining<=0:_hitstop_wall_deadline=0
 	if visual_running():_presentation_clock+=maxf(0,delta)*visual_speed()
 	if not raid_mode:_update_hunt_camera(delta)
 	var speed:=visual_speed() if visual_running() else 0.0
@@ -295,14 +330,48 @@ func _process(delta: float) -> void:
 			if actor is MonsterSpriteController:actor.set_process(speed>0)
 	if not raid_mode:
 		if speed>0:_impact_age+=maxf(0,delta)*speed
-	if not raid_mode and _impact_age<_impact_duration:
-		var beat:=sin(_impact_age/_impact_duration*TAU*1.5)*(1-clampf(_impact_age/_impact_duration,0,1))
-		camera.h_offset=beat*_impact_strength;camera.v_offset=beat*_impact_strength*.35
-	elif not raid_mode:camera.h_offset=0
+	var camera_active: bool=battle_clock_running()
+	var offsets:=mobile_camera.advance(delta/maxf(.001,Engine.time_scale),camera_active,game.combat_effects_enabled)
+	if _rest_camera_size<=0:_rest_camera_size=camera.size
+	if not raid_mode:_rest_camera_size=camera.size
+	elif is_instance_valid(game.raid_boss_sprite):
+		camera.size=_rest_camera_size
+		var boss_point: Vector2=raid_to_world(game.raid_boss_sprite.position)
+		var floor_point: Vector2=raid_to_world(preload('res://scripts/raid/RaidBattlefield.gd').FLOOR.end)
+		var below_boss: float=project_world(floor_point).y-project_world(boss_point).y
+		var available: float=maxf(1,size.y-RAID_BOTTOM_CLEARANCE-12-168.4)
+		if below_boss>available:
+			var fit: float=below_boss/available
+			_rest_camera_size*=fit;raid_factor/=fit
+	camera.size=_rest_camera_size/mobile_camera.zoom_punch(game.combat_effects_enabled)
+	var units: float=camera.size/size.y
+	camera.h_offset=offsets.x*units;camera.v_offset=_camera_base_v-offsets.y*units
+	if raid_mode and is_instance_valid(game.raid_boss_sprite):
+		# The boss is positioned after initial layout; guard its actual head too.
+		var head: float=project_world(raid_to_world(game.raid_boss_sprite.position)).y-166.4-2.0
+		var padding: float=maxf(0,12.0-head)*units
+		_camera_base_v+=padding;camera.v_offset+=padding
+		var end: float=project_world(raid_to_world(preload('res://scripts/raid/RaidBattlefield.gd').FLOOR.end)).y
+		var lift: float=minf(maxf(0,end-(size.y-RAID_BOTTOM_CLEARANCE)),maxf(0,head+padding/units-12))
+		_camera_base_v-=lift*units;camera.v_offset-=lift*units
+	if raid_mode and is_instance_valid(raid_view) and is_instance_valid(raid_view.arena):
+		raid_view.arena.scale=Vector2.ONE*raid_projection_factor()
+		raid_view.arena.position=raid_origin()
 	var live: Dictionary={}
 	_health_entries.clear()
 	_health_links.clear()
 	_update_body_layout(delta)
+	if not raid_mode:
+		var top:=INF;var bottom:=-INF
+		for source in game.hero_map_sprites:
+			if not is_instance_valid(source) or source.state=='death':continue
+			var rect: Rect2=_paint_rects.get(source.get_instance_id(),Rect2())
+			if not rect.has_area():continue
+			top=minf(top,rect.position.y-position.y);bottom=maxf(bottom,rect.end.y-position.y)
+		if top<INF:
+			var correction: float=maxf(0,8-top)-maxf(0,bottom-(size.y-8))
+			camera.v_offset+=correction*units
+			for id in _paint_rects:_paint_rects[id].position.y+=correction
 	if raid_mode:
 		if not is_instance_valid(raid_view):return
 		var mood:=world.get_node_or_null('RaidDesign')
@@ -356,8 +425,13 @@ func hunt_hit(point: Vector2,source: Vector2,tint: Color,critical: bool) -> void
 			if game.roaming_hunt.enemy_position(index).distance_squared_to(point)<.36:
 				height=_actor_height(game.enemy_wave_sprites[index],false);break
 		hunt_overlay.hit(point,source,tint,critical,height)
+		if game.combat_effects_enabled:
+			if _hitstop_cooldown<=0:
+				_visual_hitstop_remaining=.06;_hitstop_cooldown=.16
+				if is_instance_valid(game.presentation_runtime):game.presentation_runtime.contact_time.request()
+				if DisplayServer.get_name()!='headless':_hitstop_wall_deadline=Time.get_ticks_usec()+60000
+			mobile_camera.impact(critical)
 		if critical and game.combat_effects_enabled:
-			_visual_hitstop_remaining=.06
 			for actor in game.hero_map_sprites:
 				if is_instance_valid(actor) and actor.position.distance_to(position+project_world(source))<30:
 					if not _uses_frame_pilot(actor,true):hunt_overlay.afterimage(actor,source,(point-source).normalized())
@@ -397,7 +471,9 @@ func _frame_dead(source: AnimatedSprite2D,hero: bool) -> bool:
 	return int(game.enemy_wave[index].get('hp',0))<=0 if index>=0 and index<game.enemy_wave.size() else source.state=='death'
 
 func visual_running() -> bool:
-	return presentation_visible and not presentation_suspended and is_instance_valid(game) and ((game.active_screen=='raid' and game.raid_running) if raid_mode else (game.active_screen=='combat' and game.combat_running)) and not game._application_suspended and _visual_hitstop_remaining<=0 and not bool(game.get_meta('equipment_mail_paused',false)) and not preload('res://scripts/persistence/SaveSafety.gd').pending(game)
+	return battle_clock_running() and _visual_hitstop_remaining<=0
+func battle_clock_running() -> bool:
+	return presentation_visible and not presentation_suspended and is_instance_valid(game) and ((game.active_screen=='raid' and game.raid_running) if raid_mode else (game.active_screen=='combat' and game.combat_running)) and not game._application_suspended and not bool(game.get_meta('equipment_mail_paused',false)) and not preload('res://scripts/persistence/SaveSafety.gd').pending(game)
 
 func visual_speed() -> float:
 	return clampf(game.battle_speed,1,2) if is_finite(game.battle_speed) else 1.0
@@ -405,6 +481,7 @@ func visual_speed() -> float:
 func camera_impact(intensity: float,duration: float,_zoom: float) -> void:
 	# Only the world moves. Menus, touch coordinates and the party dock stay fixed.
 	if not is_instance_valid(camera) or _impact_age<.18:return
+	mobile_camera.impact(intensity>3.0)
 	_impact_age=0;_impact_duration=clampf(duration,.10,.20)
 	_impact_strength=minf(.085,maxf(0,intensity)*.015)
 
@@ -436,6 +513,10 @@ func _layout_health() -> void:
 			_health_links.append(PackedVector2Array([entry.anchor-position,tip-position]))
 
 func _base_actor_height(source: AnimatedSprite2D,hero: bool) -> float:
+	if is_instance_valid(camera) and size.y>1:
+		if hero:return 86.4*camera.size/size.y/(RAID_BODY_SCALE if raid_mode else HUNT_BODY_SCALE)
+		if not raid_mode:return 40.0*camera.size/size.y/HUNT_BODY_SCALE
+		return 166.4*camera.size/size.y/RAID_BODY_SCALE
 	if raid_mode:
 		# All hero originals share one height, independent of old sprite margins.
 		return RAID_HERO_HEIGHT if hero else RAID_BOSS_HEIGHT
@@ -545,6 +626,7 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 		var shadow:=MeshInstance3D.new();shadow.name='ContactShadow'
 		var footprint:=PlaneMesh.new();footprint.size=Vector2(1.08,.84);shadow.mesh=footprint
 		var m:=ShaderMaterial.new();m.shader=CONTACT_SHADOW
+		m.set_shader_parameter('baked_mask',load('res://assets/mobile25d/floor/contact_shadow_128.png'))
 		shadow.material_override=m;shadow.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;sprite.add_child(shadow)
 		var ring:=MeshInstance3D.new();ring.name='TeamFootRing'
 		var torus:=TorusMesh.new();torus.inner_radius=.40;torus.outer_radius=.46;torus.rings=20;torus.ring_segments=6
@@ -590,7 +672,8 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 		if pilot!=null and str(pilot.entry.id)!=expected:
 			sprite.remove_child(pilot);pilot.free();pilot=null;_source_attacks.erase(id)
 		if pilot==null:
-			pilot=(MODEL_PILOT.new() if real_models_enabled else FRAME_PILOT.new());sprite.add_child(pilot)
+			var optimized: bool=_frame_catalog.load_entry(expected).get('optimized_mobile25d',false)
+			pilot=(MODEL_PILOT.new() if real_models_enabled else (MOBILE_PILOT.new() if optimized else FRAME_PILOT.new()));sprite.add_child(pilot)
 			if not pilot.bind(source,hero,MODEL_PILOT.CATALOG.new() if real_models_enabled else _frame_catalog):sprite.remove_child(pilot);pilot.free();pilot=null
 		if pilot!=null:
 			var source_rig=source.get_node_or_null('PortraitHeroSkeletalRig')
@@ -609,11 +692,11 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 			if pending.has('release'):pilot.timeline.release(str(pending.release.action),float(pending.release.windup))
 			if pending.has('hit'):pilot.timeline.hit(pending.hit)
 			_frame_events.erase(id);pilot.show()
-			pilot.fur_layers=0 if str(game.presentation_options.get('performance','balanced'))=='battery' else (8 if RenderingServer.get_current_rendering_method()=='forward_plus' else 4)
-			if not real_models_enabled:pilot.echo_layers=2 if RenderingServer.get_current_rendering_method()=='forward_plus' else 1
+			pilot.fur_layers=0 if str(game.presentation_options.get('performance','balanced'))=='battery' else 4
+			if not real_models_enabled:pilot.echo_layers=1
 			pilot.effects_enabled=game.combat_effects_enabled and str(game.presentation_options.get('performance','balanced'))!='battery'
 			# The complete original painting casts into the modeled battle floor.
-			pilot.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_ON if pilot.effects_enabled else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			pilot.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF # Baked contact footprint; avoid a second dense billboard shadow pass.
 			var runtime:=_frame_runtime(source,hero)
 			runtime.merge(_paint_facing_target(source,point,hero))
 			pilot.present(camera,height,sprite.modulate,_actor_delta,visual_running(),point,runtime,_frame_dead(source,hero))
@@ -640,12 +723,11 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 	source.self_modulate.a=0
 	for child in source.get_children():
 		if child is CanvasItem:child.visible=false
-	var shadow: MeshInstance3D=sprite.get_node('ContactShadow');shadow.position=Vector3(0,-.02,0)-motion
+	var shadow: MeshInstance3D=sprite.get_node('ContactShadow');shadow.position=Vector3(0,-.02,12*camera.size/size.y/absf(camera.global_basis.z.y))-motion
 	shadow.visible=source.modulate.a>.15
-	if not raid_mode:
-		var breathing_lift: float=pilot.position.length() if frame_active and pilot!=null else motion.y
-		var lift_scale:=1.0-clampf(breathing_lift*3.0,0,.6)
-		shadow.scale=Vector3(lift_scale/presentation_shape.x,1/presentation_shape.y,lift_scale)
+	var breathing_lift: float=pilot.position.length() if frame_active and pilot!=null else motion.y
+	var lift_scale:=1.0-clampf(breathing_lift*3.0,0,.6)
+	shadow.scale=Vector3(lift_scale/presentation_shape.x,1/presentation_shape.y,lift_scale)
 	var crowd: float=_body_scales.get(id,1.0)
 	sprite.get_node('TeamFootRing').scale=Vector3(crowd/presentation_shape.x,crowd/presentation_shape.y,crowd)
 	sprite.get_node('TeamFootRing').position=Vector3(0,.04,0)-motion

@@ -81,6 +81,7 @@ static func generate_corps(main: Node, zone: Dictionary) -> Array:
 	return result
 
 static func advance_roaming_hunt(main: Node, delta: float, support_actors: Array[String] = []) -> void:
+	var profiling: bool=main.has_meta('hunt_component_times');var stamp:=Time.get_ticks_usec() if profiling else 0
 	main.roaming_wave_spawn_cooldown = maxf(0.0, main.roaming_wave_spawn_cooldown - delta)
 	main._ensure_roaming_wave()
 	if main.enemy_wave.is_empty():
@@ -110,6 +111,9 @@ static func advance_roaming_hunt(main: Node, delta: float, support_actors: Array
 	if main.challenge_session==null:
 		bodies_before=preload("res://scripts/hunting/HuntBodyCollision.gd").actors(main)
 	var result = main.roaming_hunt.advance(delta, main._alive_enemy_mask(), immobile, enemy_targets)
+	if profiling:stamp=_profile_time(main,'target_and_roam',stamp)
+	preload('res://scripts/hunting/MonsterFlocking.gd').advance(main,delta)
+	if profiling:stamp=_profile_time(main,'flocking',stamp)
 	for returned_index in result.get("returned_indices", []):
 		var enemy: Dictionary = main.enemy_wave[int(returned_index)]
 		enemy["hp"] = enemy["max_hp"]
@@ -125,7 +129,9 @@ static func advance_roaming_hunt(main: Node, delta: float, support_actors: Array
 	main.roaming_last_party_velocity = Vector2(result.get("party_velocity", Vector2.ZERO))
 	main.expedition_position = main.roaming_hunt.party_position
 	main.party_movement.advance(delta, main.deployed_heroes, main.hero_battle_state, main.hero_skill_runtime, main.expedition_position, main.enemy_wave, main.roaming_hunt.enemy_positions, main.roaming_hunt.enemy_returning, main.roaming_hunt.aggro_active, false, main.roaming_hunt.enemy_home_positions)
+	if profiling:stamp=_profile_time(main,'party',stamp)
 	preload("res://scripts/hunting/HuntBodyCollision.gd").resolve(main,delta,bodies_before)
+	if profiling:stamp=_profile_time(main,'collision',stamp)
 	var target_index = int(result.get("target_index", -1))
 	if target_index >= 0 and target_index < main.enemy_wave.size():
 		main.expedition_target = main.roaming_hunt.enemy_position(target_index)
@@ -147,6 +153,12 @@ static func advance_roaming_hunt(main: Node, delta: float, support_actors: Array
 			main._reset_attack_windups(true)
 			main.hunt_ai.set_state(AutoHuntController.State.MOVING)
 		main.combat_progress = clampf(100.0 * (1.0 - main.roaming_hunt.party_position.distance_to(main.expedition_target) / RoamingHuntDirector.DETECTION_RADIUS), 0.0, 95.0)
+	if profiling:_profile_time(main,'attacks',stamp)
+
+static func _profile_time(main,key: String,stamp: int) -> int:
+	var now:=Time.get_ticks_usec();var times: Dictionary=main.get_meta('hunt_component_times')
+	times[key]=int(times.get(key,0))+now-stamp
+	return now
 
 static func advance_auto_hunt_step(main: Node, step: float) -> void:
 	if main.challenge_session != null:

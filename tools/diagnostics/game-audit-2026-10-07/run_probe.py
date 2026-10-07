@@ -1,0 +1,22 @@
+"""Run read-only GPU observations in an isolated Windows player profile."""
+import os
+from pathlib import Path
+import subprocess
+import tempfile
+import argparse
+
+repo=Path(__file__).resolve().parents[3]
+binary=repo.parent/'validation/godot-4.7.2/Godot_v4.7.2-stable_win64_console.exe'
+parser=argparse.ArgumentParser()
+parser.add_argument('--output',default='checks/game-audit-2026-10-07/captures')
+args=parser.parse_args()
+output=repo/args.output
+output.mkdir(parents=True,exist_ok=True)
+with tempfile.TemporaryDirectory(prefix='current-game-audit-',ignore_cleanup_errors=True) as temp:
+    env=dict(os.environ,GAME_AUDIT_OUTPUT=str(output),APPDATA=temp,XDG_DATA_HOME=temp,XDG_CONFIG_HOME=temp,XDG_CACHE_HOME=temp)
+    startup=subprocess.STARTUPINFO();startup.dwFlags|=subprocess.STARTF_USESHOWWINDOW;startup.wShowWindow=0
+    proc=subprocess.run([str(binary),'--path',str(repo),'--rendering-method','mobile','--audio-driver','Dummy','--disable-vsync','--script','res://tools/diagnostics/game-audit-2026-10-07/GameAuditProbe.gd'],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,encoding='utf-8',timeout=480,startupinfo=startup)
+    (output.parent/'capture.log').write_text(proc.stdout,encoding='utf-8')
+    if proc.returncode or 'GAME_AUDIT_CAPTURE_OK' not in proc.stdout or any(x in proc.stdout for x in ['ERROR:','SCRIPT ERROR','leaked at exit']):
+        print(proc.stdout[-10000:]);raise SystemExit(1)
+print('ACTUAL_GAME_AUDIT_CAPTURE_OK')

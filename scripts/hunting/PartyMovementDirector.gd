@@ -32,6 +32,7 @@ var movement_profiles: Dictionary = {}
 var combat_goals: Dictionary = {}
 var hunt_slots: Dictionary = {}
 var _decisions := CombatDecisionEngine.new()
+var _planning_time: Dictionary={}
 
 func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
 	formation_facing=Vector2.RIGHT
@@ -47,6 +48,7 @@ func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
 	hunt_slots.clear()
 	stalled_seconds.clear()
 	blocked_targets.clear()
+	_planning_time.clear()
 	for index in heroes.size():
 		var id := str(heroes[index].get("id", ""))
 		var state: Dictionary = states.get(id, {})
@@ -108,11 +110,16 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 			continue
 		var goal: Vector2 = formation_station(id,anchor)
 		if engaged:
-			var target := _select_target(id, start, enemies, enemy_positions, returning, state, states, before_positions, runtime)
+			var previous_target: int=int(targets.get(id,-1))
+			var remaining: float=maxf(0,float(_planning_time.get(id,0))-delta)
+			var plan: bool=not independent_hunt or remaining<=0 or not _eligible(previous_target,enemies,enemy_positions,returning)
+			var target := _select_target(id, start, enemies, enemy_positions, returning, state, states, before_positions, runtime) if plan else previous_target
+			_planning_time[id]=.10+float(posmod(id.hash(),3))*.01 if plan else remaining
 			targets[id] = target
 			if target >= 0:
-				goal = _combat_goal(id, start, target, state, runtime, states, before_positions, enemies, enemy_positions, returning, enemy_homes)
-				if independent_hunt:
+				if plan:goal = _combat_goal(id, start, target, state, runtime, states, before_positions, enemies, enemy_positions, returning, enemy_homes)
+				else:goal=enemy_positions[target]+Vector2(hunt_slots.get(id,{}).get('offset',start-enemy_positions[target]))
+				if independent_hunt and plan:
 					goal = preload("res://scripts/hunting/HuntPositionPlanner.gd").choose(self,id,start,target,goal,state,states,before_positions,reserved,enemies,enemy_positions,runtimes)
 		else:
 			targets[id] = -1
@@ -553,7 +560,7 @@ func clamp_hunt_position(id: String, point: Vector2, anchor: Vector2) -> Vector2
 	var offset: Vector2=(point-anchor).limit_length(hunt_leash(id))
 	# Keep the compact party within a fixed-height landscape combat viewport.
 	# Horizontal pursuit remains independent; depth no longer spreads off screen.
-	offset.y=clampf(offset.y,-2.5,2.5)
+	offset.y=clampf(offset.y,-1.85,1.85)
 	return anchor+offset
 
 func _blocked_cost(id: String, index: int) -> float:

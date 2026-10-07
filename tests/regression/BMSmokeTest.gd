@@ -36,5 +36,8 @@ func _init() -> void:
 	daily_status.free()
 	ad_button.free()
 	ad_status.free()
+	main.presentation_runtime.audio.shutdown()
+	await create_timer(.1).timeout
 	main.free()
+	await create_timer(.1).timeout
 	quit(0)

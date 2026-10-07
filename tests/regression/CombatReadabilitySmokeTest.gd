@@ -34,6 +34,10 @@ func run() -> void:
 	number.retire();check(not number.visible and number.anchor_key.is_empty() and not number.is_in_group('floating_combat_text'),'retire clears reused target and group')
 	var reused: Label=pool.spawn_damage('',Color.WHITE,Vector2(100,200),false,2,bounds,'incoming','hero-1',32)
 	check(reused.modulate==Color.WHITE and reused.text=='-32','reuse clears faded opacity and text')
+	var life=reused._life_tween;life.pause();life.custom_step(.39)
+	check(reused.visible and is_equal_approx(reused.modulate.a,1),'number stays fully readable through .39 seconds')
+	life.custom_step(.20);check(reused.visible and reused.modulate.a>0,'number remains visible before .60 seconds')
+	life.custom_step(.02);check(not reused.visible,'number retires after the full .60 second lifetime')
 	pool.free()
 	var main=await make_main('aurelia',3)
 	main.combat_effects_enabled=true;main._build_combat_screen();await settle();main.combat_running=false
