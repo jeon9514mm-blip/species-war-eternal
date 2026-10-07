@@ -147,12 +147,13 @@ func install(main: Node) -> void:
 			actor=previous_actor
 			actor.reparent(arena,false)
 		else:
-			actor=HeroSpriteFactory.create_hero(hero_id,Vector2(.13,.13))
+			actor=game._new_hero_actor(hero_id,Vector2(.13,.13))
 			actor.name='RaidHeroActor_'+hero_id
 			arena.add_child(actor);actor.play_idle('right')
-			var rig:=preload('res://scripts/portrait/PortraitHeroSkeletalRig.gd').new()
-			if not rig.install(actor):rig.queue_free()
-			elif not down and actor.has_method('play_visual'):actor.play_visual('spawn')
+			if not actor.has_meta('mobile25d'):
+				var rig:=preload('res://scripts/portrait/PortraitHeroSkeletalRig.gd').new()
+				if not rig.install(actor):rig.queue_free()
+			if not down and actor.has_method('play_visual'):actor.play_visual('spawn')
 			if down:actor.play_death('right')
 		actor.position=game.raid_positions.get(hero_id,FIELD.hero_entry(i))
 		hero_actors[hero_id]=actor
@@ -170,10 +171,11 @@ func install(main: Node) -> void:
 	stage.add_child(phase_flash);phase_flash.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	phase_banner=_text('',27,SKIN.GOLD);phase_banner.name='PortraitRaidPhaseBanner'
 	phase_banner.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;phase_banner.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
+	phase_banner.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;phase_banner.add_theme_font_size_override('font_size',18)
 	phase_banner.mouse_filter=Control.MOUSE_FILTER_IGNORE;phase_banner.visible=false
 	SKIN.place(stage,phase_banner,Rect2(40,stage.size.y*.34,w-120,72))
 	phase_banner.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
-	phase_banner.offset_left=-260;phase_banner.offset_right=260;phase_banner.offset_top=72;phase_banner.offset_bottom=142
+	phase_banner.offset_left=-240;phase_banner.offset_right=240;phase_banner.offset_top=72;phase_banner.offset_bottom=156
 	information=_text('',22)
 	information.name='PortraitRaidBossHealth'
 	SKIN.place(stage,information,Rect2(14,8,w-68,42))
@@ -311,7 +313,7 @@ func _layout_arena() -> void:
 	# Keep the original combat coordinates; all sprite and FX transforms share
 	# this one arena so their hits remain aligned at every viewport height.
 	battlefield_3d._resize_world()
-	arena.scale=Vector2.ONE*battlefield_3d.raid_factor
+	arena.scale=Vector2.ONE*battlefield_3d.raid_projection_factor()
 	arena.position=battlefield_3d.raid_origin()
 
 func _on_stage_input(event: InputEvent) -> void:
@@ -343,7 +345,7 @@ func _notification(what: int) -> void:
 		_slot_pointer=-2;_stage_pointer=-2;_dragging=false
 
 func _on_move_input(local_point: Vector2) -> void:
-	var world: Vector2=(local_point-arena.position)/maxf(.01,arena.scale.x)
+	var world: Vector2=battlefield_3d.world_to_raid(battlefield_3d.local_to_world(local_point))
 	game._raid_order_move(world)
 	rally_marker.position=game.raid_rally_position
 	rally_marker.visible=true
@@ -384,6 +386,7 @@ func _on_follow_pressed() -> void:
 func start_entry() -> void:
 	if not is_instance_valid(stage):return
 	last_phase=1;last_enraged=false
+	preload('res://scripts/maps3d/HeroCircleFormation.gd').raid(game,self)
 	# Retrying reuses this view: revive its actors as soon as combat HP resets.
 	for id in hero_actors:
 		var actor: Node2D=hero_actors[id]

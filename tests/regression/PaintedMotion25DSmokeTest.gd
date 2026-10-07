@@ -20,7 +20,7 @@ func run() -> void:
 		check(pilot._visual_time==clock and pilot._locomotion_weight==locomotion,str(id)+' pause freezes secondary motion')
 		pilot.timeline.release('skill',.15);pilot.present(camera,1.55,Color.WHITE,0,true,Vector2(.66,0),{},false)
 		check(is_equal_approx(pilot.debug_snapshot().phase,.44),str(id)+' contact remains on the real release')
-		check(pilot._echoes.layers[0].visible and not pilot._echoes.layers[1].visible,str(id)+' mobile uses one bounded contact afterimage')
+		check(pilot._echoes.layers.size()==1 and pilot._echoes.layers[0].visible,str(id)+' mobile uses one bounded contact afterimage')
 		check(is_equal_approx(pilot.basis.x.length(),pilot.basis.y.length()),str(id)+' body proportions remain uniform')
 		pilot.effects_enabled=false;pilot.present(camera,1.55,Color.WHITE,0,true,Vector2(.66,0),{},false)
 		check(pilot.material_override.get_shader_parameter('secondary_amount')==0 and not pilot._echoes.layers[0].visible,str(id)+' effects-off disables cloth and afterimages')

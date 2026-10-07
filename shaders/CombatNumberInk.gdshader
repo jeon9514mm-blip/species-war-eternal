@@ -4,6 +4,7 @@ uniform vec4 ink_top : source_color = vec4(1.0);
 uniform vec4 ink_bottom : source_color = vec4(1.0,0.75,0.25,1.0);
 uniform float label_height = 40.0;
 uniform float holographic_strength = 0.10;
+uniform float chromatic_strength=0.0;
 varying float local_y;
 void vertex() { local_y = VERTEX.y; }
 void fragment() {
@@ -17,5 +18,7 @@ void fragment() {
     float sheen=pow(1.0-gradient,3.0)*holographic_strength;
     ink*=1.0-holographic_strength*.18*scan;
     ink+=mix(vec3(.16,.52,.65),vec3(.36,.18,.5),gradient)*sheen;
+    float fringe=texture(TEXTURE,UV+vec2(TEXTURE_PIXEL_SIZE.x,0)).a-texture(TEXTURE,UV-vec2(TEXTURE_PIXEL_SIZE.x,0)).a;
+    ink+=vec3(fringe,0,-fringe)*chromatic_strength;
     COLOR = vec4(mix(paint.rgb,ink,face),paint.a);
 }

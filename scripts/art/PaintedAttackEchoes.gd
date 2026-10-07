@@ -1,13 +1,13 @@
 extends Node3D
-## Two short silhouettes of the actual painted contact pose, never old SD art.
+## One short silhouette of the actual painted contact pose.
 const SHADER=preload('res://shaders/PaintedAttackEcho.gdshader')
 const DURATION:=.15
 var layers: Array[MeshInstance3D]=[]
 var sequence:=-1
 var started:=-1.0
-var layer_limit:=2
+var layer_limit:=1
 func configure() -> void:
-	for i in 2:
+	for i in 1:
 		var layer:=MeshInstance3D.new();layer.name='PaintedEcho'+str(i)
 		layer.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		var material:=ShaderMaterial.new();material.shader=SHADER
@@ -17,6 +17,11 @@ func present(paint: MeshInstance3D,action: String,phase: float,serial: int,clock
 		sequence=serial;started=clock
 		for layer in layers:
 			layer.mesh=paint.mesh
+			layer.custom_aabb=paint.custom_aabb
+			var mobile: bool=bool(paint.get('entry').get('optimized_mobile25d',false))
+			layer.material_override.set_shader_parameter('unit_mesh',mobile)
+			if mobile:
+				for key in ['paint_size','paint_anchor']:layer.material_override.set_shader_parameter(key,paint.material_override.get_shader_parameter(key))
 			for key in ['source_texture','atlas_rect','atlas_texel']:
 				layer.material_override.set_shader_parameter(key,paint.material_override.get_shader_parameter(key))
 	var age:=clock-started

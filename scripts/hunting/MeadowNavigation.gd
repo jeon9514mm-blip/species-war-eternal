@@ -25,6 +25,7 @@ var _query_count := 0
 var _move_count := 0
 var _distance_cache: Dictionary = {}
 var _distance_queries := 0
+var _segment_cache: Dictionary={}
 
 func configure_zone(next_zone_id: String,next_3d_layout: bool=false) -> void:
 	var next_enabled: bool = TERRAIN.supports_zone(next_zone_id)
@@ -49,6 +50,7 @@ func set_enabled(value: bool) -> void:
 func clear_routes() -> void:
 	_routes.clear()
 	_distance_cache.clear()
+	_segment_cache.clear()
 
 func forget_actor(key: Variant) -> void:
 	_routes.erase(key)
@@ -158,6 +160,13 @@ func clamp_to_walkable(point: Vector2) -> Vector2:
 	return _cell_world(_nearest_free_cell(bounded))
 
 func _segment_clear(from: Vector2, target: Vector2) -> bool:
+	var key:=Vector4(from.x,from.y,target.x,target.y)
+	if _segment_cache.has(key):return _segment_cache[key]
+	var result:=_segment_clear_uncached(from,target)
+	if _segment_cache.size()>=2048:_segment_cache.clear()
+	_segment_cache[key]=result
+	return result
+func _segment_clear_uncached(from: Vector2, target: Vector2) -> bool:
 	if not _inside_bounds(from) or not _inside_bounds(target):
 		return false
 	if not enabled:
@@ -165,6 +174,8 @@ func _segment_clear(from: Vector2, target: Vector2) -> bool:
 	# Exact segment/ellipse clearance also catches thin intersections between samples.
 	for obstacle in _active_obstacles:
 		var radius: Vector2 = obstacle[1] + Vector2.ONE * OBSTACLE_MARGIN
+		var center: Vector2=obstacle[0]
+		if maxf(from.x,target.x)<center.x-radius.x or minf(from.x,target.x)>center.x+radius.x or maxf(from.y,target.y)<center.y-radius.y or minf(from.y,target.y)>center.y+radius.y:continue
 		var a: Vector2 = (from - obstacle[0]) / radius
 		var b: Vector2 = (target - obstacle[0]) / radius
 		var direction := b - a

@@ -11,7 +11,13 @@ static func body_vector(vector: Vector2) -> Vector2:
 static func body_distance(left: Vector2,right: Vector2) -> float:
 	return body_vector(left-right).length()
 static func clearance(left: Dictionary,right: Dictionary) -> float:
+	var scale: float=maxf(float(left.get('pixel_scale',0)),float(right.get('pixel_scale',0)))
+	if scale>0:return (38.4 if left.hero!=right.hero else (66.0 if left.hero else 20.0))*scale
 	return CONTACT_CLEARANCE if left.hero!=right.hero else (HERO_CLEARANCE if left.hero else ENEMY_CLEARANCE)
+static func pixel_scale(main) -> float:
+	var field: Control=main.combat_labels.get('terrain')
+	if is_instance_valid(field) and field.has_method('actor_world_height') and field.size.y>0:return (field._rest_camera_size if field._rest_camera_size>0 else field.camera.size)/field.size.y
+	return 0.0
 static func actors(main) -> Array[Dictionary]:
 	var result: Array[Dictionary]=[]
 	for id in main._alive_hero_ids():
@@ -20,13 +26,22 @@ static func actors(main) -> Array[Dictionary]:
 		var enemy: Dictionary=main.enemy_wave[index]
 		if int(enemy.get('hp',0))<=0:continue
 		result.append({'hero':false,'id':index,'position':main.roaming_hunt.enemy_position(index),'fixed':enemy.has('attack_intent') or float(enemy.get('stun_seconds',0))>0 or float(enemy.get('hunt_recovery',0))>0})
+	var units:=pixel_scale(main)
+	for body in result:body.pixel_scale=units
 	return result
 static func can_commit(main,hero: bool,id) -> bool:
 	if main.challenge_session!=null or not main.party_movement.independent_hunt:return true
-	var body: Dictionary={'hero':hero,'id':id,'position':main._hero_field_position(str(id)) if hero else main.roaming_hunt.enemy_position(int(id))}
-	for other in actors(main):
-		if other.hero==hero and other.id==id:continue
-		if body_distance(body.position,other.position)<clearance(body,other)-EPSILON:return false
+	# The same clearance rule without allocating every actor record per caster.
+	var point: Vector2=main._hero_field_position(str(id)) if hero else main.roaming_hunt.enemy_position(int(id))
+	var units:=pixel_scale(main)
+	var hero_radius:=((66. if hero else 38.4)*units if units>0 else (HERO_CLEARANCE if hero else CONTACT_CLEARANCE))-EPSILON
+	var enemy_radius:=((38.4 if hero else 20.)*units if units>0 else (CONTACT_CLEARANCE if hero else ENEMY_CLEARANCE))-EPSILON
+	for other_id in main._alive_hero_ids():
+		if (hero and str(id)==str(other_id)) or int(main.hero_battle_state[other_id].get('hp',0))<=0:continue
+		if body_vector(point-main._hero_field_position(str(other_id))).length_squared()<hero_radius*hero_radius:return false
+	for i in main.enemy_wave.size():
+		if (not hero and i==int(id)) or int(main.enemy_wave[i].get('hp',0))<=0:continue
+		if body_vector(point-main.roaming_hunt.enemy_position(i)).length_squared()<enemy_radius*enemy_radius:return false
 	return true
 static func move(main,actor: Dictionary,push: Vector2) -> bool:
 	if actor.fixed:return false
@@ -49,7 +64,7 @@ static func resolve(main,delta: float,previous_bodies: Array[Dictionary]=[]) -> 
 	if main.challenge_session!=null or not main.party_movement.independent_hunt or delta<=0:return
 	var bodies:=actors(main)
 	# Small frame-to-frame corrections converge before any new attack is committed.
-	for iteration in 24:
+	for iteration in 8:
 		var changed:=false
 		for a in bodies.size():
 			for b in range(a+1,bodies.size()):

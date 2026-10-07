@@ -265,6 +265,54 @@
       "rms": 0.07094,
       "bytes": 19888,
       "sha256": "5e6983832e566f764ca506504c6b6f6b082019030c3c3875205dd9707a846d9b"
+    },
+    "monster_bold": {
+      "file": "audio/v82/monster_bold.wav",
+      "loop": false,
+      "seconds": 0.26,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.2336497085482345,
+      "rms": 0.05207238399279123,
+      "bytes": 11510,
+      "sha256": "7c4d17df9c2c68a238a271f827e64ad58344cbbae2851a4a57aea79d66835dcd",
+      "generator": "tools/build_mobile25d_support.py"
+    },
+    "monster_pack": {
+      "file": "audio/v82/monster_pack.wav",
+      "loop": false,
+      "seconds": 0.2849886621315193,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.19153416547135838,
+      "rms": 0.04916186004321798,
+      "bytes": 12612,
+      "sha256": "dfe62a50b8a9c1b0fc60197e160bec9df3b343ff60e772162821d9ba579e16a6",
+      "generator": "tools/build_mobile25d_support.py"
+    },
+    "monster_cautious": {
+      "file": "audio/v82/monster_cautious.wav",
+      "loop": false,
+      "seconds": 0.31002267573696146,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.19779045991393782,
+      "rms": 0.05036609603179963,
+      "bytes": 13716,
+      "sha256": "77c4e6ad384214b5b1cc6814fa60db851a51cb6fe724287e25cbba9c4f00f742",
+      "generator": "tools/build_mobile25d_support.py"
+    },
+    "monster_flanker": {
+      "file": "audio/v82/monster_flanker.wav",
+      "loop": false,
+      "seconds": 0.33501133786848075,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.19052705465865047,
+      "rms": 0.047879110670416884,
+      "bytes": 14818,
+      "sha256": "4f6c0c05c9bb381fec5c652e7f76b8139b7712d6e3648bd652cf5601a4127a78",
+      "generator": "tools/build_mobile25d_support.py"
     }
   }
 }

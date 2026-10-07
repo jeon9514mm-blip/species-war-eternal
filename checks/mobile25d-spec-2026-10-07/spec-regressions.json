@@ -1,0 +1,38 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 4,
+  "total": 4,
+  "results": [
+    {
+      "test": "HuntAttackQualitySmokeTest.gd",
+      "passed": true,
+      "seconds": 8.38,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_attack_quality checks=24 failures=[]\n"
+    },
+    {
+      "test": "HuntFramePilotSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.44,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_frame_pilot checks=179 failures=[]\n"
+    },
+    {
+      "test": "Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.23,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nMOBILE25D_SPEC checks=248 failures=[]\n"
+    },
+    {
+      "test": "V82AudioSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.67,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nAUDIO_DIAGNOSTICS {\"accepted\":106,\"active_voices\":1,\"ambient\":\"\",\"cached_sfx\":21,\"max_voices\":8,\"music\":\"meadow\",\"sample_loads\":28,\"suppressed\":398,\"suspended\":false,\"voice_nodes\":8}\nv82_audio checks=71 failures=[] audible_device_test=false\n"
+    }
+  ]
+}

@@ -6,7 +6,7 @@ config_version=5
 [application]
 config/name="종의전쟁: 이터널"
 run/main_scene="res://scenes/PortraitMain.tscn"
-config/features=PackedStringArray("4.7", "Forward Plus")
+config/features=PackedStringArray("4.7", "Mobile")
 
 [display]
 
@@ -24,8 +24,8 @@ handheld/orientation=0
 anti_aliasing/quality/msaa_3d=2
 textures/default_filters/anisotropic_filtering_level=3
 lights_and_shadows/directional_shadow/size=4096
-lights_and_shadows/directional_shadow/soft_shadow_filter_quality=2
-renderer/rendering_method="forward_plus"
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
+renderer/rendering_method="mobile"
 renderer/rendering_method.mobile="mobile"
 environment/defaults/default_clear_color=Color(0.027, 0.054, 0.09, 1)
 

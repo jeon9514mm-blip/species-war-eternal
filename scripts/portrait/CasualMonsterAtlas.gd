@@ -3,15 +3,16 @@ extends RefCounted
 ## monster identities remain shared with the landscape renderer.
 const SOURCE := preload('res://scripts/monsters/MonsterPixelAtlasLayout.gd')
 const V60_MEADOW_MONSTERS := {
-	'초원 고블린': preload('res://assets/monsters/meadow-v60/goblin-four.png'),
-	'들개 무리': preload('res://assets/monsters/meadow-v60/wild-dog-four.png'),
-	'가시 멧돼지': preload('res://assets/monsters/meadow-v60/bristle-boar-four.png'),
+	'초원 고블린': 'res://assets/monsters/meadow-v60/goblin-four.png',
+	'들개 무리': 'res://assets/monsters/meadow-v60/wild-dog-four.png',
+	'가시 멧돼지': 'res://assets/monsters/meadow-v60/bristle-boar-four.png',
 }
 const SHEETS := {
-	'meadow': preload('res://assets/monsters/casual-v58/meadow-six-atlas.png'),
-	'depths': preload('res://assets/monsters/casual-v58/depths-seven-atlas.png'),
-	'boss': preload('res://assets/monsters/casual-v58/boss-three-atlas.png'),
+	'meadow': 'res://assets/monsters/casual-v58/meadow-six-atlas.png',
+	'depths': 'res://assets/monsters/casual-v58/depths-seven-atlas.png',
+	'boss': 'res://assets/monsters/casual-v58/boss-three-atlas.png',
 }
+static var _textures: Dictionary = {}
 static var _frame_cache: Dictionary = {}
 static var cache_misses: int = 0
 static func has_monster(name: String) -> bool:
@@ -19,8 +20,10 @@ static func has_monster(name: String) -> bool:
 static func uses_four_pose_sheet(name: String) -> bool:
 	return V60_MEADOW_MONSTERS.has(name)
 static func texture(name: String) -> Texture2D:
-	if uses_four_pose_sheet(name):return V60_MEADOW_MONSTERS[name]
-	return SHEETS[SOURCE.PROFILES[name]['sheet']] if has_monster(name) else null
+	if not has_monster(name):return null
+	var path: String=V60_MEADOW_MONSTERS[name] if uses_four_pose_sheet(name) else SHEETS[SOURCE.PROFILES[name]['sheet']]
+	if not _textures.has(path):_textures[path]=load(path)
+	return _textures[path]
 static func frame(name: String, pose: int) -> AtlasTexture:
 	var key: String = name + ":" + str(clampi(pose, 0, 3))
 	if _frame_cache.has(key): return _frame_cache[key]

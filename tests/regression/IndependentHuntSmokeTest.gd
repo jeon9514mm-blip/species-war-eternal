@@ -59,6 +59,7 @@ func run() -> void:
 		# cleared without injury, which does not establish enemy attack validity.
 		main.idle_stage=154;main._build_combat_screen();await settle()
 		var total_damage := 0; var diversity := 0
+		var contacts: int=main.audit_enemy_contacts
 		for step in 900:
 			var before: Dictionary = {}
 			for id in main.hero_battle_state: before[id]=int(main.hero_battle_state[id].hp)
@@ -75,8 +76,8 @@ func run() -> void:
 			if main.combat_hunt_cycle>=2: break
 		check(main.combat_hunt_cycle>=2,faction+" natural combat clears multiple corps without forced kills")
 		check(diversity>=3,faction+" monsters pursue several heroes")
-		check(total_damage>0,faction+" separated monsters still reach and damage heroes")
-		metrics[-1]["natural"]={"cycles":main.combat_hunt_cycle,"monster_targets":diversity,"hero_hp_removed":total_damage}
+		check(main.audit_enemy_contacts>contacts,faction+" separated monsters still land real attacks, including shield absorption")
+		metrics[-1]["natural"]={"cycles":main.combat_hunt_cycle,"monster_targets":diversity,"hero_hp_removed":total_damage,"enemy_contacts":main.audit_enemy_contacts-contacts}
 		await dispose(main)
 	# Identical hero destinations get different physical approach slots.
 	var invasion = INVASION.new()

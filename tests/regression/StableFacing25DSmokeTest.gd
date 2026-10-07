@@ -66,22 +66,22 @@ func run() -> void:
 	var field=main.combat_labels.terrain;field.set_process(false);field._process(0)
 	var zoom: float=field.camera.size
 	var heights: Dictionary={}
-	for actor in main.hero_map_sprites:heights[actor.get_instance_id()]=field._actor_height(actor,true)
+	for actor in main.hero_map_sprites:heights[actor.get_instance_id()]=field._actor_height(actor,true)*field.size.y/field.camera.size
 	var stable:=true;var camera_stable:=true
 	var party_visible:=true
 	for tick in 180:
 		main._advance_auto_hunt(1.0/30)
 		for actor in main.hero_map_sprites+main.enemy_wave_sprites:actor.set_process(false)
 		field._process(1.0/30)
-		camera_stable=camera_stable and is_equal_approx(field.camera.size,zoom)
+		camera_stable=camera_stable and is_equal_approx(field._rest_camera_size,zoom)
 		for actor in main.hero_map_sprites:
 			if actor.state=='death':continue
 			# Use the actual painted rectangles so camera smoothing cannot clip heads.
 			var rect: Rect2=field._paint_rects.get(actor.get_instance_id(),Rect2())
 			party_visible=party_visible and (not rect.has_area() or (rect.position.y>=field.position.y-.02 and rect.end.y<=field.position.y+field.size.y+.02))
-		for actor in main.hero_map_sprites:stable=stable and is_equal_approx(field._actor_height(actor,true),heights[actor.get_instance_id()])
-	check(stable,'ten hero world heights stay fixed across crowd movement, hits and deaths')
-	check(camera_stable,'target motion cannot zoom the hunt or change projected heights')
+		for actor in main.hero_map_sprites:stable=stable and is_equal_approx(field._actor_height(actor,true)*field.size.y/field.camera.size,heights[actor.get_instance_id()])
+	check(stable,'ten hero displayed heights stay fixed across camera punches, crowd movement, hits and deaths')
+	check(camera_stable,'target motion cannot change the rest hunt zoom')
 	check(party_visible,'compact pursuit keeps living hero paintings inside the fixed-height hunt view')
 	if not main.enemy_wave_sprites.is_empty():
 		var enemy=main.enemy_wave_sprites[0];var height: float=field._actor_height(enemy,false)
@@ -91,10 +91,10 @@ func run() -> void:
 	var view=main.content_root.get_node('PortraitRaidView');field=view.battlefield_3d
 	field.set_process(false);view.set_process(false);field._process(0)
 	var hero=view.hero_actors.values()[0]
-	var height: float=field._actor_height(hero,true);zoom=field.camera.size
+	var height: float=field._actor_height(hero,true)*field.size.y/field.camera.size;zoom=field.camera.size
 	for tick in 120:
 		main._advance_raid_encounter(1.0/30);view._process(1.0/30)
 		for actor in view.hero_actors.values():actor.set_process(false)
 		main.raid_boss_sprite.set_process(false);field._process(1.0/30)
-	check(is_equal_approx(field._actor_height(hero,true),height) and is_equal_approx(field.camera.size,zoom),'raid movement retains world and projected hero height')
+	check(is_equal_approx(field._actor_height(hero,true)*field.size.y/field.camera.size,height),'raid movement and camera fitting retain projected hero height')
 	main.raid_running=false;await dispose(main);done('STABLE_FACING_25D')

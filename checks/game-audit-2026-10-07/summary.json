@@ -1,0 +1,788 @@
+{
+  "date": "2026-10-08",
+  "baseline_commit": "0b559b37c7bf95da2a17897227b2ddb7867a9202",
+  "whole_sweep": {
+    "passed": 152,
+    "total": 234,
+    "note": "Whole sweep ran during implementation; subsequent focused reruns supersede their matching rows only."
+  },
+  "focused_reruns": [
+    {
+      "file": "final-focused-regressions.json",
+      "passed": 11,
+      "total": 11
+    },
+    {
+      "file": "final-raid-floor-regressions.json",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "file": "final-feedback-regressions.json",
+      "passed": 3,
+      "total": 3
+    }
+  ],
+  "latest_known_results": {
+    "passed": 157,
+    "total": 234,
+    "all_green": false
+  },
+  "failures": [
+    {
+      "test": "AureliaHeroPartsSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: diagnostic requires an isolated art-pilot XDG_DATA_HOME"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "AutoHuntRegressionTest.gd",
+      "also_failed_original_commit": true,
+      "first_errors": [
+        "ERROR: Roaming party did not move",
+        "ERROR: Lethal hit allowed retaliation or did not credit each defeated pack once",
+        "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "BossEncounterSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 3 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "CombatQualitySmokeTest.gd",
+      "also_failed_original_commit": true,
+      "first_errors": [
+        "ERROR: initial heroes spaced",
+        "ERROR: initial heroes spaced",
+        "ERROR: initial heroes spaced"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "FirstSessionEconomySmokeTest.gd",
+      "also_failed_original_commit": true,
+      "first_errors": [
+        "SCRIPT ERROR: Invalid call. Nonexistent function 'get_global_rect' in base 'Nil'."
+      ],
+      "timeout": true
+    },
+    {
+      "test": "HeroSkeletalRigSmokeTest.gd",
+      "also_failed_original_commit": true,
+      "first_errors": [
+        "ERROR: actual hunt renderer skins every deployed hero",
+        "ERROR: actual raid renderer skins every deployed hero"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "IdleSmokeTest.gd",
+      "also_failed_original_commit": true,
+      "first_errors": [
+        "ERROR: Offline idle reward did not arrive",
+        "ERROR: Idle stage chest did not unlock",
+        "ERROR: Idle reward claim failed"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "LandscapeRosterUiSmokeTest.gd",
+      "also_failed_original_commit": true,
+      "first_errors": [
+        "ERROR: V56 dungeon/roster UI: empty first-run formation PortraitMenuBack ‹ full button caption",
+        "ERROR: V56 dungeon/roster UI: one hero with locked slots PortraitMenuBack ‹ full button caption",
+        "ERROR: V56 dungeon/roster UI: aurelia ten hero roster PortraitMenuBack ‹ full button caption"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "LevelSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "MapTerrainSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 3 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "MeadowAppliedSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: only new artist floor; no old props gray_meadow",
+        "SCRIPT ERROR: Invalid access to property or key 'resource_path' on a base object of type 'Nil'."
+      ],
+      "timeout": true
+    },
+    {
+      "test": "PortraitRegressionSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: project locks portrait orientation",
+        "ERROR: combat field truly portrait, not a letterboxed landscape canvas",
+        "ERROR: ten visible hero/locked slots"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "QualityV40SmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: ground uses the supplied moss and bronze colors",
+        "ERROR: real painted shadows follow performance profile balanced",
+        "ERROR: supersampling follows performance profile balanced"
+      ],
+      "timeout": true
+    },
+    {
+      "test": "RaidCatalogUiSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: raid UI control exists PortraitMenuBack",
+        "ERROR: return from gray_meadow retains the raid content tab",
+        "ERROR: return from gray_meadow shows three bosses in one row"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "RaidSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: Raid clear was not recorded",
+        "ERROR: Raid reward or stop state failed",
+        "SCRIPT ERROR: Invalid access to property or key 'forgotten_mine' on a base object of type 'Dictionary'."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "SmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 3 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "UnifiedInterfaceSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: raid exposes its information in the landscape sidebar",
+        "SCRIPT ERROR: Cannot call method 'get_global_rect' on a null value."
+      ],
+      "timeout": true
+    },
+    {
+      "test": "V10UiUxSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V10: 장착장비 일괄강화 실패",
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V12WorldWarSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V17HuntProgressionSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V19HeroAIIdentitySmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V20RealtimeRoamingHuntSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V20: 자동사냥 중 원정대가 이동하지 않음",
+        "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V22UiUpgradeSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V25CombatFxSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V25: 범위공격 인디케이터 생성 실패"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V26ActionSafetySmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "V26 ACTION FAIL: basic windup retargets a living reachable enemy",
+        "V26 ACTION FAIL: skill windup retargets a living reachable enemy",
+        "V26 ACTION FAIL: retargeted skill consumes cooldown only after landing"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V26CombatDecisionSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "V26 FAIL: out-of-range front hero does not starve ready ranged ally",
+        "V26 FAIL: melee damages adjacent enemy despite distant front row",
+        "ERROR: v26_combat_decision_smoke_test_failed checks=14 failures=2: out-of-range front hero does not starve ready ranged ally; melee damages adjacent enemy despite distant front row"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V27BalanceMatrixSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "V27 BALANCE FAIL: aurelia/moonrest_forest/3/Lv10/seed2701: at least one full encounter completes",
+        "V27 BALANCE FAIL: noxfera/forgotten_mine/10/Lv10/seed2701: at least one full encounter completes",
+        "V27 BALANCE FAIL: noxfera/moonrest_forest/3/Lv10/seed2701: at least one full encounter completes"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V27BossLifecycleSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: Later heroes do not spend ultimate on dead boss"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V27CombatClockSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V27FieldLifecycleSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: Spawned ecology reaches combat data",
+        "ERROR: Spawned ecology reaches combat data",
+        "ERROR: Spawned ecology reaches combat data"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V27GrowthEconomySmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V27 growth: full bag preserves stronger enhanced gear and salvages weaker arrival"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V27HeroRolesSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V27PersistenceIntegrationSmokeTest.gd",
+      "also_failed_original_commit": true,
+      "first_errors": [
+        "V27 PERSISTENCE FAIL: offline estimate grants resources and commits the consumed time interval",
+        "ERROR: v27_persistence_integration_smoke_test_failed checks=18 failures=1: offline estimate grants resources and commits the consumed time interval"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V27RaidIntegrationSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "SCRIPT ERROR: Invalid access to property or key 'lunea' on a base object of type 'Dictionary'."
+      ],
+      "timeout": true
+    },
+    {
+      "test": "V28BrightUiSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V28KitingRegressionSmokeTest.gd",
+      "also_failed_original_commit": true,
+      "first_errors": [
+        "V27 BALANCE FAIL: aurelia/moonrest_forest/3/Lv10/seed2701: at least one full encounter completes",
+        "V27 BALANCE FAIL: noxfera/moonrest_forest/3/Lv10/seed2701: at least one full encounter completes",
+        "V27 BALANCE FAIL: Forest party does not stall by repeatedly pulling the last assassin out of its habitat"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V28MeadowNavigationSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: Sealed northeast corner cannot trap a new spawn",
+        "ERROR: Observed combat position inside the eastern tree is blocked",
+        "ERROR: Eastern canopy center from the captured world position is blocked"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V28MovingHuntSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: No hero teleports between packs",
+        "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V29BoundarySpawnSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: Sealed eastern tree pocket is not connected to the hunting field"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V29FactionBalanceSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [],
+      "timeout": true
+    },
+    {
+      "test": "V30UiFlowSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: device login callback opens the lobby",
+        "ERROR: new player's lobby exposes party creation",
+        "ERROR: navigation action exists: 장비"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V32GraphicsSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: gray_meadow loads its upgraded world texture",
+        "ERROR: forgotten_mine loads its upgraded world texture",
+        "ERROR: forgotten_mine has unique environment artwork"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V46FactionIsolationSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V46StabilitySmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: all seven portrait navigation buttons are constructed",
+        "ERROR: Node not found: \"PortraitNav_growth\" (relative to \"/root/Main/@Control@1589/PortraitHud/PortraitNavigation\").",
+        "SCRIPT ERROR: Invalid access to property or key 'pressed' on a base object of type 'null instance'."
+      ],
+      "timeout": true
+    },
+    {
+      "test": "V47NavigationSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: target ranking accounts for the pond detour",
+        "ERROR: hero prefers the reachable target",
+        "ERROR: party anchor uses the same terrain-aware choice"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V47PortraitSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: party camera clears bottom controls (720, 1280)",
+        "ERROR: Node not found: \"PortraitSlot0\" (relative to \"/root/Main/@Control@13/PortraitHud/PortraitPartySlots\").",
+        "SCRIPT ERROR: Cannot call method 'get_rect' on a null value."
+      ],
+      "timeout": true
+    },
+    {
+      "test": "V48WarUiSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V48 UI: panel fits portrait WarCommandPanel (720, 1280)",
+        "ERROR: V48 UI: commands clear the navigation (720, 1280)",
+        "ERROR: V48 UI: territory details retain readable scroll area (720, 1280)"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V49PortraitLayoutSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V49 layout: aurelia (720, 1280) _build_login_screen · ‹ button caption visible",
+        "ERROR: V49 layout: aurelia (720, 1280) _build_faction_screen · ‹ button caption visible",
+        "ERROR: V49 layout: aurelia (720, 1280) _build_intro_screen · ‹ button caption visible"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V50CampaignUiSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V50 UI: text fits viewport: 현재 주둔 위치",
+        "ERROR: V50 UI: text fits viewport: 영토 정찰",
+        "ERROR: V50 UI: text fits viewport: 부대 지휘 ▴"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V51CombatSafetySmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: aoe fixture triggers lethal Bron counter",
+        "ERROR: aoe counter-killed boss remains dead",
+        "ERROR: aoe counter damage settles once without overkill credit"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V51PersistenceLifecycleSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V51 persistence: startup settlement keeps the title screen"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V51SessionIntegritySmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V52HuntIntegrationSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "V52 HUNT INTEGRATION FAIL: aurelia/moonrest_forest/10: solo first corps clears in two minutes; larger parties sustain repeated clears",
+        "V52 HUNT INTEGRATION FAIL: noxfera/moonrest_forest/10: solo first corps clears in two minutes; larger parties sustain repeated clears",
+        "V52 HUNT INTEGRATION FAIL: noxfera/moonrest_forest/10: hunt clears another habitat after recovery"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V52HuntUiSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V52 hunt UI: party strip remains one row for every party size",
+        "ERROR: V52 hunt UI: party camera remains clear of bottom controls",
+        "ERROR: V52 hunt UI: at least 700 logical pixels of clear battle height"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V52PopulationSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: Live habitat uses expanded population aurelia/1",
+        "ERROR: Live habitat uses expanded population aurelia/10",
+        "ERROR: Live habitat uses expanded population noxfera/1"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V53HuntFeedbackSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V53 hunt feedback: PortraitSkillAuto caption does not clip",
+        "ERROR: V53 hunt feedback: PortraitUltimateAuto caption does not clip",
+        "ERROR: V53 hunt feedback: PortraitOfflineRewards caption does not clip"
+      ],
+      "timeout": true
+    },
+    {
+      "test": "V53HuntSupportSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "SCRIPT ERROR: Invalid access to property or key 'elisia' on a base object of type 'Dictionary'.",
+        "SCRIPT ERROR: Invalid access to property or key 'elisia' on a base object of type 'Dictionary'.",
+        "SCRIPT ERROR: Invalid access to property or key 'elisia' on a base object of type 'Dictionary'."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V55EquipmentDetailUiSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V55 equipment detail: selected equipment information button caption visible EquipmentDetailBack",
+        "ERROR: V55 equipment detail: detail info (568, 320) button caption visible EquipmentDetailBack",
+        "ERROR: V55 equipment detail: detail enhance (568, 320) button caption visible EquipmentDetailBack"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V56DungeonRosterUiSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V56 dungeon/roster UI: empty first-run formation PortraitMenuBack ‹ full button caption",
+        "ERROR: V56 dungeon/roster UI: one hero with locked slots PortraitMenuBack ‹ full button caption",
+        "ERROR: V56 dungeon/roster UI: aurelia ten hero roster PortraitMenuBack ‹ full button caption"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V58ArtScrollSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V58 art/scroll: portrait hunt uses painted monster atlas",
+        "ERROR: V58 art/scroll: painted monster preserves action poses",
+        "ERROR: V58 art/scroll: portrait hunt uses painted monster atlas"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V59ThreeRaidVisualSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: Node not found: \"PortraitRaidStageArt\" (relative to \"/root/Main/@Control@160/PortraitRaidView/PortraitRaidDetails/PortraitRaidArena\").",
+        "SCRIPT ERROR: Invalid access to property or key 'texture' on a base object of type 'null instance'."
+      ],
+      "timeout": true
+    },
+    {
+      "test": "V5FoundationSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: Inventory overflow protection failed",
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V61FieldRolesMotionSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V61 field roles motion: gray_meadow heroes have weighted full body skeleton",
+        "SCRIPT ERROR: Invalid access to property or key 'mesh' on a base object of type 'null instance'."
+      ],
+      "timeout": true
+    },
+    {
+      "test": "V62RigFxRewardSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V62 reward feed sits above combat buttons"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V63AutoFxOfflineSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V63 separate auto buttons fit above hunt controls",
+        "ERROR: V63 reward feed leaves auto buttons unobstructed",
+        "ERROR: V63 online hunt credits currency and account XP without a claim"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V65GuardianSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: Guardian: offline hunt pays the guardian-adjusted gold and experience once"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V66UiFilterSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V67FieldTerrainNavigationSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: Meadow retains all seventeen legacy obstacles",
+        "ERROR: Zone-switch fixture populates all navigation caches",
+        "ERROR: Mine uses its own underground water collision"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V6CombatSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: A full 10-person party should populate the denser v70 field"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V78ConvenienceUiSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: V78 convenience UI: bag exposes at-a-glance capacity summary",
+        "ERROR: V78 convenience UI: recommend equip is a primary bag action",
+        "ERROR: V78 convenience UI: bag exposes grouped quick filters"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V82PresentationUiSmokeTest.gd",
+      "also_failed_original_commit": true,
+      "first_errors": [
+        "ERROR: new settings reachable without overcrowded fixed menu"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V8362FieldSafetySmokeTest.gd",
+      "also_failed_original_commit": true,
+      "first_errors": [
+        "ERROR: corps reward save failure activates write barrier",
+        "ERROR: failed-save reward is not repeated and battle freezes",
+        "ERROR: reward snapshot retry succeeds"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V8363IceVisualSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [],
+      "timeout": true
+    },
+    {
+      "test": "V8364CombatViewSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: consistent original hero body height after crowd fitting",
+        "ERROR: consistent original hero body height after crowd fitting",
+        "ERROR: consistent original hero body height after crowd fitting"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V8364VisualSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [],
+      "timeout": true
+    },
+    {
+      "test": "V83NavigationSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: catalog reads cannot corrupt canonical dock",
+        "ERROR: menu data independent",
+        "ERROR: active tab lobby"
+      ],
+      "timeout": false
+    },
+    {
+      "test": "V8PolishSmokeTest.gd",
+      "also_failed_original_commit": false,
+      "first_errors": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "timeout": false
+    }
+  ],
+  "gpu": {
+    "device": "NVIDIA GeForce GTX 1050",
+    "renderer": "mobile",
+    "engine": "4.7.2-stable (official)",
+    "android_measured": false,
+    "profiles": [
+      {
+        "buffer_bytes": 13994446,
+        "draw_calls": 517.0,
+        "enemy_alive": 19,
+        "frames": 286,
+        "hero_alive": 10,
+        "label": "hunt-balanced",
+        "mean_fps": 35.4497494843053,
+        "mean_frame_ms": 28.2089440559441,
+        "objects": 883.0,
+        "p95_frame_ms": 54.875,
+        "seconds": 8.067758,
+        "texture_bytes": 111939584
+      },
+      {
+        "buffer_bytes": 13849818,
+        "draw_calls": 490.0,
+        "enemy_alive": 18,
+        "frames": 214,
+        "hero_alive": 10,
+        "label": "hunt-battery",
+        "mean_fps": 26.5607546233089,
+        "mean_frame_ms": 37.6495327102804,
+        "objects": 840.0,
+        "p95_frame_ms": 60.658,
+        "seconds": 8.057,
+        "texture_bytes": 95850496
+      },
+      {
+        "buffer_bytes": 12745668,
+        "draw_calls": 234.0,
+        "enemy_alive": 0,
+        "frames": 219,
+        "hero_alive": 10,
+        "label": "raid-balanced",
+        "mean_fps": 54.6855121098445,
+        "mean_frame_ms": 18.2863789954338,
+        "objects": 821.0,
+        "p95_frame_ms": 47.205,
+        "seconds": 4.004717,
+        "texture_bytes": 105295360
+      }
+    ]
+  },
+  "observations": {
+    "ui_captures": 25,
+    "hunt_samples": 600,
+    "raid_samples": 59,
+    "hero_overlap_samples": 0
+  },
+  "python_tests": {
+    "passed": 50,
+    "total": 50
+  },
+  "static_and_architecture": "passed; see validation-final.json"
+}

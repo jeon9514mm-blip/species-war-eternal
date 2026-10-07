@@ -1,0 +1,80 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 11,
+  "total": 11,
+  "results": [
+    {
+      "test": "BMSmokeTest.gd",
+      "passed": true,
+      "seconds": 6.81,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nbm_smoke_test_ok gems=45 unclaimed_gold=250 ad_count=3\n"
+    },
+    {
+      "test": "HuntAttackQualitySmokeTest.gd",
+      "passed": true,
+      "seconds": 9.05,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_attack_quality checks=24 failures=[]\n"
+    },
+    {
+      "test": "HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.91,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=48 failures=[]\n"
+    },
+    {
+      "test": "IndependentHuntSmokeTest.gd",
+      "passed": true,
+      "seconds": 36.66,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nINDEPENDENT_HUNT_METRICS [{\"constrained\":{\"farthest\":1.97129797935486,\"spread\":1.90923018124368,\"targets\":8},\"faction\":\"aurelia\",\"individual\":{\"farthest\":4.00000047683716,\"spread\":3.82759063773685,\"targets\":9},\"natural\":{\"cycles\":2,\"enemy_contacts\":3,\"hero_hp_removed\":34,\"monster_targets\":4}},{\"constrained\":{\"farthest\":1.98084592819214,\"spread\":2.0275086581707,\"targets\":8},\"faction\":\"noxfera\",\"individual\":{\"farthest\":4.0,\"spread\":4.08682530456119,\"targets\":9},\"natural\":{\"cycles\":2,\"enemy_contacts\":5,\"hero_hp_removed\":74,\"monster_targets\":4}}]\nINDEPENDENT_HUNT checks=111 failures=[]\n"
+    },
+    {
+      "test": "Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "seconds": 12.39,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nMOBILE25D_SPEC checks=338 failures=[]\n"
+    },
+    {
+      "test": "NoHeroSkillVfxSmokeTest.gd",
+      "passed": true,
+      "seconds": 9.22,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nNO_HERO_SKILL_VFX checks=250 failures=[]\n"
+    },
+    {
+      "test": "RaidDesignSmokeTest.gd",
+      "passed": true,
+      "seconds": 23.56,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_DESIGN checks=486 failures=[]\n"
+    },
+    {
+      "test": "RaidTouchLayoutSmokeTest.gd",
+      "passed": true,
+      "seconds": 40.11,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_TOUCH_LAYOUT checks=1044 failures=[]\n"
+    },
+    {
+      "test": "StableFacing25DSmokeTest.gd",
+      "passed": true,
+      "seconds": 21.52,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nSTABLE_FACING_25D checks=610 failures=[]\n"
+    },
+    {
+      "test": "V82AudioSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.31,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nAUDIO_DIAGNOSTICS {\"accepted\":106,\"active_voices\":1,\"ambient\":\"\",\"cached_sfx\":21,\"max_voices\":8,\"music\":\"meadow\",\"sample_loads\":28,\"suppressed\":398,\"suspended\":false,\"voice_nodes\":8}\nv82_audio checks=79 failures=[] audible_device_test=false\n"
+    },
+    {
+      "test": "V82PerformanceSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.72,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nPERFORMANCE_COUNTS {\"balanced\":{\"hud\":18,\"power\":3},\"battery\":{\"hud\":10,\"power\":2}} atlas_cache_misses_for_10001_requests=4 android_fps_measured=false\nv82_performance checks=11 failures=[]\n"
+    }
+  ]
+}

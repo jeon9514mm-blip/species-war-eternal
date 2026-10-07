@@ -1,0 +1,301 @@
+{
+  "scope": "Every modified/new GDScript plus the one initial whole-parser process failure. Original whole-parser evidence remains preserved.",
+  "passed": 49,
+  "total": 49,
+  "results": [
+    {
+      "script": "scripts/app/Main.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/CapeThreePointMotion.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/HuntFrameCatalog.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/MobileMonsterActor.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/MobilePaintActor.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/MobileReliefPilot.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/PaintedAttackEchoes.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/PaintedFurLayers.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/combat/BattleFormation.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/combat/CombatNumberStyle.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/heroes/HeroVisualCatalog.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/HuntBodyCollision.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/HuntFieldService.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/MeadowNavigation.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/MonsterFlocking.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/PartyMovementDirector.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps/RuneStoneGround.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/Battlefield3DView.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/HeroCircleFormation.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/HuntCombatOverlay.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/MobileAmbientDust.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/MobileCameraMotion.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/CasualMonsterAtlas.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitDamageNumber.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitMain.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitRaid.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/RaidArenaTelegraph.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/CombatTextPresenter.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/ContactTimeDilation.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/GameAudioDirector.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/LootRewardFeedback.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/PresentationRuntime.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/raid/RaidScreen.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/ui/LandingScreens.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/BMSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HuntAttackQualitySmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HuntFramePilotSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/IndependentHuntSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/PaintedMotion25DSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/StableFacing25DSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/V82AudioSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/support/V83GameplayBattleHost.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/CameraBoundsProbe.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/GameAuditProbe.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/HuntCpuProfile.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/Mobile25dBenchmark.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    }
+  ]
+}

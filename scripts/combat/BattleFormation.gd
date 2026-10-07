@@ -48,5 +48,7 @@ static func select(main: Node, id: String) -> bool:
 	main._sync_party_hp_from_heroes()
 	if main.active_screen == "combat":
 		main.party_movement.apply_formation(main.deployed_heroes, id)
+		var field: Control=main.combat_labels.get('terrain')
+		if is_instance_valid(field) and field.has_method('actor_world_height'):preload('res://scripts/maps3d/HeroCircleFormation.gd').hunt(main,field,false)
 	main._save_idle_state()
 	return not preload("res://scripts/persistence/SaveSafety.gd").pending(main)

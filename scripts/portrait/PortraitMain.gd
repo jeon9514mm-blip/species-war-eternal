@@ -159,9 +159,21 @@ func _create_map_hero_sprites() -> void:
 	for index in hero_map_sprites.size():
 		var sprite: HeroSpriteController=hero_map_sprites[index]
 		_attach_hunt_shadow(sprite,18.0)
+		if sprite.has_meta('mobile25d'):continue
 		var rig:=P_HERO_RIG.new()
 		if not rig.install(sprite):rig.queue_free()
 		elif sprite.has_method('play_visual'):sprite.play_visual('spawn')
+func _new_hero_actor(hero_id: String,display_scale: Vector2) -> HeroSpriteController:
+	if FileAccess.file_exists('res://assets/mobile25d/'+hero_id+'/frames.json'):
+		var actor=preload('res://scripts/art/MobilePaintActor.gd').new();actor.configure_mobile(hero_id);actor.name=hero_id+'Sprite'
+		actor.scale=display_scale*(HeroSpriteFactory.BRIGHT_HERO_HEIGHT/HeroSpriteFactory.BATTLEFIELD_SCALE/maxf(1,actor.native_visual_height))
+		actor.set_meta('mobile25d',true);return actor
+	return super._new_hero_actor(hero_id,display_scale)
+func _new_monster_actor(monster_name: String,display_scale: Vector2) -> MonsterSpriteController:
+	var id: String=str(preload('res://scripts/art/HuntFrameCatalog.gd').MONSTERS.get(monster_name,''))
+	if FileAccess.file_exists('res://assets/mobile25d/'+id+'/frames.json'):
+		var actor=preload('res://scripts/art/MobileMonsterActor.gd').new();actor.configure_mobile(monster_name,display_scale);actor.name=id+'Sprite';return actor
+	return super._new_monster_actor(monster_name,display_scale)
 func _attach_hunt_shadow(sprite: Node2D, radius: float) -> void:
 	if not is_instance_valid(sprite) or sprite.get_node_or_null('PortraitGroundShadow')!=null:return
 	var shadow:=P_GROUND_SHADOW.new()
@@ -173,10 +185,13 @@ func _spawn_enemy_wave_sprites(start_index: int = 0) -> void:
 	super._spawn_enemy_wave_sprites(start_index)
 	for index in range(start_index, enemy_wave_sprites.size()):
 		var sprite: MonsterSpriteController=enemy_wave_sprites[index]
-		MonsterSpriteFactory.apply_casual(sprite,str(enemy_wave[index]['name']),sprite.presentation_scale)
+		if not sprite.has_meta('mobile25d'):MonsterSpriteFactory.apply_casual(sprite,str(enemy_wave[index]['name']),sprite.presentation_scale)
 		_attach_hunt_shadow(sprite,17.0)
 func _damage_enemy(enemy_index: int, damage: int, source_index := 0) -> int:
 	var actual: int=super._damage_enemy(enemy_index,damage,source_index)
+	if actual>0 and enemy_index>=0 and enemy_index<enemy_wave.size() and int(enemy_wave[enemy_index].get('hp',1))<=0:
+		var field: Control=combat_labels.get('terrain')
+		if is_instance_valid(field):field.set_meta('last_loot_point',roaming_hunt.enemy_position(enemy_index))
 	if actual>0 and active_screen=='combat' and enemy_index>=0 and enemy_index<enemy_wave.size() and (bool(enemy_wave[enemy_index].get('elite',false)) or bool(enemy_wave[enemy_index].get('treasure',false))) and int(enemy_wave[enemy_index].get('hp',1))<=0 and enemy_index<enemy_wave_sprites.size() and is_instance_valid(skill_fx_layer) and combat_fx._fx_budget_available() and combat_effects_enabled:
 		var sprite: MonsterSpriteController=enemy_wave_sprites[enemy_index]
 		if is_instance_valid(sprite):
@@ -205,6 +220,9 @@ func _heal_hero(target_id: String, amount: int) -> int:
 	return healed
 
 func _on_hunt_reward(gold: int, xp: int, drops: Array[Dictionary], stage_cleared: bool, chest_gold := 0, chest_xp := 0) -> void:
+	var terrain: Control=combat_labels.get('terrain')
+	if not drops.is_empty() and active_screen=='combat' and not bool(get_meta('background_hunt_tick',false)) and combat_effects_enabled and is_instance_valid(terrain) and terrain.has_method('actor_world_height'):
+		terrain.hunt_overlay.loot(terrain.get_meta('last_loot_point',expedition_position))
 	# Hero XP was granted by the hunt. Move its account XP and gold directly to
 	# the wallet before Main writes the encounter save.
 	var paid_gold:=mini(maxi(0,unclaimed_gold-offline_pending_gold),gold)
@@ -272,6 +290,7 @@ func _install_portrait_hud() -> void:
 	content_root.add_child(portrait_hud)
 	portrait_hud.build(self)
 	_update_combat_camera(0.0)
+	preload('res://scripts/maps3d/HeroCircleFormation.gd').hunt(self,terrain,true)
 func _install_hunt_details_modal(details: Control) -> void:
 	# A higher z_index only changes paint order. A CanvasLayer also gives the
 	# visible information panel input priority over the later HUD buttons.
@@ -324,6 +343,7 @@ func _apply_portrait_resize() -> void:
 		if is_instance_valid(portrait_hud):portrait_hud.free()
 		portrait_hud=_new_hunt_hud();content_root.add_child(portrait_hud);portrait_hud.build(self)
 		_update_combat_camera(0.0)
+		if is_instance_valid(terrain) and terrain.has_method('actor_world_height'):preload('res://scripts/maps3d/HeroCircleFormation.gd').hunt(self,terrain,false)
 	elif active_screen=='title':_build_title_screen()
 	elif active_screen=='faction':_build_faction_screen()
 	elif active_screen=='hero_select':_build_hero_select_screen()

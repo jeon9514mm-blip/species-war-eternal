@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-08",
+  "static": {"passed": true, "gd_scripts": 510, "regressions": 234, "resources": "ok", "links": "ok"},
+  "architecture": {"passed": true, "service_modules": 9, "main_line_budget": 5684},
+  "python": {"passed": 50, "total": 50, "command": "python -m unittest discover -s tools -p test_*.py"},
+  "changed_gdscript_parser": "final-changed-source-parser.json",
+  "whole_runtime": "all-runtime-regressions-final.json",
+  "focused_runtime": "../mobile25d-spec-2026-10-07/final-focused-regressions.json",
+  "raid_floor_runtime": "../mobile25d-spec-2026-10-07/final-raid-floor-regressions.json",
+  "final_feedback_runtime": "../mobile25d-spec-2026-10-07/final-feedback-regressions.json",
+  "runtime_all_green": false,
+  "runtime_summary": "summary.json",
+  "gpu_capture_logs_clean": true,
+  "user_save_used": false,
+  "android_measured": false,
+  "sixty_fps_verified": false
+}

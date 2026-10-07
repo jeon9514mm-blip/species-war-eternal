@@ -8,6 +8,10 @@ var echoes: Array[Dictionary]=[]
 var souls: Array[Dictionary]=[]
 var terrain: Control
 var hits: Array[Dictionary] = []
+var loot_beams: Array[Dictionary]=[]
+func loot(point: Vector2) -> void:
+	if loot_beams.size()>=4:loot_beams.pop_front()
+	loot_beams.append({'point':point,'age':0.0})
 
 func footstep(point: Vector2) -> void:
 	if dust.size()>=48:dust.pop_front()
@@ -31,23 +35,35 @@ func _process(delta: float) -> void:
 	if not is_instance_valid(terrain) or not is_instance_valid(terrain.game): return
 	var game = terrain.game
 	if not game.combat_effects_enabled:
-		hits.clear();dust.clear();echoes.clear();souls.clear();queue_redraw();return
+		hits.clear();dust.clear();echoes.clear();souls.clear();loot_beams.clear();queue_redraw();return
 	if terrain.visual_running():
 		for item in hits: item.age += maxf(0,delta) * terrain.visual_speed()
 		for i in range(hits.size()-1,-1,-1):
 			if float(hits[i].age) >= .20: hits.remove_at(i)
 	if terrain.visual_running():
-		for collection in [dust,echoes,souls]:
+		for collection in [dust,echoes,souls,loot_beams]:
 			for item in collection:item.age+=maxf(0,delta)*terrain.visual_speed()
 			for i in range(collection.size()-1,-1,-1):
-				if float(collection[i].age)>.55:collection.remove_at(i)
+				if float(collection[i].age)>(.8 if collection==loot_beams else .55):collection.remove_at(i)
 	queue_redraw()
 
 func _draw() -> void:
 	if not is_instance_valid(terrain) or not is_instance_valid(terrain.game): return
 	var game = terrain.game
 	if not game.combat_effects_enabled or game.challenge_session != null: return
-	if game.hunt_ai.state==AutoHuntController.State.RECOVERING:return
+	if not terrain.raid_mode and game.hunt_ai.state==AutoHuntController.State.RECOVERING:return
+	for item in loot_beams:
+		var point: Vector2=terrain.project_world(item.point);var alpha: float=(1-float(item.age)/.8)*.85
+		var top:=point-Vector2(0,minf(220,terrain.size.y))
+		draw_line(point,top,Color(Color('#c4a484'),alpha*.10),28,true)
+		draw_line(point,top,Color(Color('#c4a484'),alpha*.30),12,true)
+		draw_line(point,top,Color(Color('#fff0b8'),alpha),3,true)
+		draw_arc(point,10,0,TAU,24,Color(Color('#c4a484'),alpha),1.5,true)
+		for i in 6:
+			var angle:=float(i)*TAU/6;var age: float=item.age
+			draw_circle(point+Vector2.from_angle(angle)*age*22-Vector2(0,age*16),1.4*(1-age/.8),Color(Color('#c4a484'),alpha))
+	_draw_hits()
+	if terrain.raid_mode:return
 	for item in echoes:
 		var age: float=item.age
 		if age<0 or age>.24:continue
@@ -114,6 +130,7 @@ func _draw() -> void:
 		var tip := start+direction*clampf(start.distance_to(finish),12,32)
 		draw_colored_polygon(PackedVector2Array([start+side,start-side,tip]),Color(tint,.12+phase*.25))
 		draw_line(start,tip,Color(tint,.35+phase*.5),1.5,true)
+func _draw_hits() -> void:
 	for item in hits:
 		var point: Vector2 = terrain.project_world(item.point,float(item.height)*.5)
 		var source: Vector2 = terrain.project_world(item.source,terrain.HERO_HEIGHT*.5)
@@ -121,8 +138,8 @@ func _draw() -> void:
 		var tint := Color(Color(item.tint),1-age)
 		var angle := (point-source).angle()
 		var radius := (16 if bool(item.critical) else 10)*(1+age*.65)
-		var count:=12 if bool(item.critical) else 6
+		var count:=10
 		for i in count:
 			var ray := Vector2.from_angle(angle+float(i)*TAU/count)
 			draw_line(point+ray*radius*.35,point+ray*radius,tint,2 if bool(item.critical) else 1.5,true)
-		draw_circle(point,3*(1-age),Color(Color('#fff2cb'),1-age))
+		draw_circle(point,2*(1-age),Color(Color('#d8d5cc'),(1-age)*.6))

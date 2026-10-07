@@ -5,6 +5,12 @@ uniform vec4 atlas_rect = vec4(0.0,0.0,1.0,1.0);
 uniform vec2 atlas_texel = vec2(.001);
 uniform vec4 echo_tint : source_color = vec4(.78,.83,.70,1.0);
 uniform float opacity = 0.0;
+uniform bool unit_mesh=false;
+uniform vec2 paint_size;
+uniform vec2 paint_anchor;
+void vertex(){
+    if(unit_mesh){VERTEX=vec3(UV.x*paint_size.x-paint_anchor.x,paint_anchor.y-UV.y*paint_size.y,0.0);UV=atlas_rect.xy+UV*atlas_rect.zw;}
+}
 void fragment() {
     vec2 lo=atlas_rect.xy+atlas_texel*.5;
     vec2 hi=atlas_rect.xy+atlas_rect.zw-atlas_texel*.5;

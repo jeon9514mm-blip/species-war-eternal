@@ -1,0 +1,50 @@
+uniform sampler2D source_texture : source_color, filter_linear_mipmap, repeat_disable;
+uniform vec4 atlas_rect;
+uniform vec2 atlas_texel;
+uniform vec2 paint_size;
+uniform vec2 paint_anchor;
+uniform vec4 actor_tint : source_color=vec4(1.0);
+uniform float visual_time=0.0;
+uniform float facing_sign=1.0;
+uniform float hit_flash=0.0;
+uniform float movement_heat=0.0;
+uniform float outline_px=.8;
+uniform float rim_strength=.18;
+uniform float alpha_cutoff=.12;
+uniform float secondary_amount=.018;
+uniform float secondary_seed=0.0;
+uniform float locomotion_weight=0.0;
+uniform float action_energy=0.0;
+uniform vec2 cape_0;
+uniform vec2 cape_1;
+uniform vec2 cape_2;
+varying vec2 local_uv;
+void vertex(){
+    local_uv=UV;
+    vec2 uv=atlas_rect.xy+UV*atlas_rect.zw;
+    vec4 ink=textureLod(source_texture,clamp(uv,atlas_rect.xy+atlas_texel*.5,atlas_rect.xy+atlas_rect.zw-atlas_texel*.5),0.0);
+    float warm=step(ink.g*1.08,ink.r)*step(ink.b*1.3,ink.g);
+    float outer=smoothstep(.20,.36,abs(UV.x-.5));
+    float cape=outer*smoothstep(.28,.40,UV.y)*(1.0-smoothstep(.86,.98,UV.y))*(1.0-warm)*ink.a;
+    vec2 drift=UV.y<.6?mix(cape_0,cape_1,clamp((UV.y-.3)/.3,0.0,1.0)):mix(cape_1,cape_2,clamp((UV.y-.6)/.3,0.0,1.0));
+    VERTEX=vec3(UV.x*paint_size.x-paint_anchor.x,paint_anchor.y-UV.y*paint_size.y,VERTEX.z*paint_size.y*.06);
+    VERTEX.xy+=drift*cape;
+    UV=uv;
+}
+void fragment(){
+    vec2 lo=atlas_rect.xy+atlas_texel*.5;vec2 hi=atlas_rect.xy+atlas_rect.zw-atlas_texel*.5;
+    vec4 ink=texture(source_texture,clamp(UV,lo,hi));
+    float warm=smoothstep(.05,.20,ink.r-ink.b)*smoothstep(.4,.7,ink.g);
+    float armor=warm*smoothstep(.25,.38,local_uv.y)*(1.0-smoothstep(.8,.96,local_uv.y));
+    ALBEDO=mix(ink.rgb*actor_tint.rgb*.82,vec3(1.0,.98,.9),hit_flash);
+    ROUGHNESS=mix(.82,.58,armor);METALLIC=armor*.32;
+    EMISSION=ALBEDO*.08;
+    RIM=.18;RIM_TINT=.35;
+#ifdef TRUE_SSS
+    SSS_STRENGTH=.15;
+#else
+    // Mobile supports native PBR and rim; warm transmission is approximated.
+    EMISSION+=ALBEDO*warm*.15*.15;
+#endif
+    ALPHA=ink.a*actor_tint.a;ALPHA_SCISSOR_THRESHOLD=alpha_cutoff;
+}
