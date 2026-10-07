@@ -40,3 +40,4 @@ export_credentials.cfg
 /checks/**/github-publish-manifest.json
 /docs/**/*.log
 /docs/**/*.import
+/.venv-ai/

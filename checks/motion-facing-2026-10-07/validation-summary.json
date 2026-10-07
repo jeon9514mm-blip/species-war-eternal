@@ -1,0 +1,32 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "Mobile / GTX 1050",
+  "runtime_passed": 11,
+  "runtime_total": 11,
+  "explicit_checks_reported": 3752,
+  "changed_gdscript_parser_passed": 13,
+  "changed_gdscript_parser_total": 13,
+  "python_tests": 50,
+  "static_validation": {
+    "gd": 496,
+    "smoke": 232,
+    "resources": "ok",
+    "links": "ok"
+  },
+  "capture_scenes": 7,
+  "body_rectangle_overlaps": 0,
+  "hunt_capture_clipped_hero_bodies": 0,
+  "movie_frames": 360,
+  "movie_fps": 30,
+  "movie_hero_pixel_height_min": 51.6599979472161,
+  "movie_hero_pixel_height_max": 51.6599979472161,
+  "movie_left_and_right_facing": true,
+  "ai_training_steps": 128,
+  "ai_saved_policy_reload": "passed",
+  "ai_production_policy_replaced": false,
+  "android_device_benchmark": false,
+  "limitations": [
+    "Overlap and clipping counts refer to the recorded scenes, not every possible encounter.",
+    "AI training is an integration smoke check, not evidence of performance improvement."
+  ]
+}

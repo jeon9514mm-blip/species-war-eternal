@@ -6,7 +6,7 @@ const FLOOR := Rect2(214.0, 280.0, 610.0, 206.0)
 const ENTRY := Vector2(635.0, 397.0)
 
 static func hero_entry(slot: int) -> Vector2:
-	return Vector2(330.0 + float(slot % 5) * 52.0, 330.0 + float(slot / 5) * 104.0)
+	return Vector2(340.0 + float(slot % 5) * 48.0, 338.0 + float(slot / 5) * 88.0)
 
 static func spread_destinations(goals: Dictionary, danger: Dictionary = {}, fixed: Dictionary = {}) -> Dictionary:
 	# Resolve role/rally crowding in simulation coordinates, never visual offsets.
@@ -17,17 +17,45 @@ static func spread_destinations(goals: Dictionary, danger: Dictionary = {}, fixe
 			for j in range(i+1,ids.size()):
 				var a: Vector2=result[ids[i]];var b: Vector2=result[ids[j]]
 				var away:=(a-b)*Vector2(1,.65);var distance:=away.length()
-				var clearance:=110.0 if fixed.has(ids[i]) or fixed.has(ids[j]) else 85.0
+				var clearance:=110.0 if fixed.has(ids[i]) or fixed.has(ids[j]) else 80.0
 				if distance>=clearance:continue
 				if distance<.01:away=Vector2.from_angle(float(absi((str(ids[i])+str(ids[j])).hash())%6283)/1000.0)
 				else:away/=distance
 				var shift:=away*(clearance-distance)/Vector2(1,.65)
 				if not fixed.has(ids[i]) and not fixed.has(ids[j]):shift*=.5
-				for pair in [[ids[i],a,a+shift],[ids[j],b,b-shift]]:
+				var left:=clamp_to_floor(a+shift);var right:=clamp_to_floor(b-shift)
+				# A floor boundary must not swallow half the separation impulse.
+				# Give the remaining motion to the free neighbor, retaining warnings.
+				if not fixed.has(ids[i]) and not fixed.has(ids[j]):
+					right=clamp_to_floor(right-((a+shift)-left))
+					left=clamp_to_floor(left-((b-shift)-clamp_to_floor(b-shift)))
+				for pair in [[ids[i],a,left],[ids[j],b,right]]:
 					if fixed.has(pair[0]):continue
 					var candidate:=clamp_to_floor(pair[2])
 					# A chosen safe escape must stay outside the damage footprint.
 					if danger.is_empty() or contains(danger,pair[1]) or not contains(danger,candidate):result[pair[0]]=candidate
+	# Resolve rare boundary jams by finding the nearest clear floor spot. This
+	# moves actual combat feet, so warnings and touch targeting remain aligned.
+	for id in ids:
+		if fixed.has(id):continue
+		var current: Vector2=result[id];var crowded:=false
+		for other in ids:
+			if other==id:continue
+			var required:=110.0 if fixed.has(other) else 80.0
+			if ((current-Vector2(result[other]))*Vector2(1,.65)).length()<required-.05:crowded=true;break
+		if not crowded:continue
+		var found:=false
+		for radius in [12.0,24.0,40.0,60.0,80.0,110.0,150.0]:
+			for angle in 24:
+				var candidate:=clamp_to_floor(current+Vector2.from_angle(TAU*float(angle)/24.0)*radius)
+				if not danger.is_empty() and not contains(danger,current) and contains(danger,candidate):continue
+				var clear:=true
+				for other in ids:
+					if other==id:continue
+					var required:=110.0 if fixed.has(other) else 80.0
+					if ((candidate-Vector2(result[other]))*Vector2(1,.65)).length()<required-.05:clear=false;break
+				if clear:result[id]=candidate;found=true;break
+			if found:break
 	return result
 
 static func advance_positions(positions: Dictionary, goals: Dictionary, speeds: Dictionary, boss_position: Vector2, delta: float, danger: Dictionary = {}) -> void:

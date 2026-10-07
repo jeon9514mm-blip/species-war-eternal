@@ -20,6 +20,8 @@ const HERO_HEIGHT=2.05
 const RAID_HERO_HEIGHT=4.20
 const RAID_BOSS_HEIGHT=5.10
 const ENEMY_HEIGHT=1.20
+const HUNT_BODY_SCALE=.28
+const RAID_BODY_SCALE=.46
 var game: Node
 var raid_view: Node
 var raid_mode:=false
@@ -217,14 +219,18 @@ func camera_points() -> Array[Vector3]:
 	# Follow the party and its target. Distant arriving waves must not zoom
 	# every hero out; their simulation keeps running beyond the camera.
 	for i in game.enemy_wave.size():
+		if not game.roaming_hunt.aggro_active:continue
 		if i!=game.roaming_hunt.current_target:continue
 		if float(game.enemy_wave[i].get('hp',0))<=0:continue
 		var point: Vector2=game.roaming_hunt.enemy_position(i)
-		points.append(Vector3(point.x,0,point.y))
 		var height:=ENEMY_HEIGHT
 		if i<game.enemy_wave_sprites.size():height=_actor_height(game.enemy_wave_sprites[i],false)
-		points.append(Vector3(point.x,height*1.35+.25,point.y))
+		var candidate: Array[Vector3]=points.duplicate()
+		candidate.append(Vector3(point.x,0,point.y));candidate.append(Vector3(point.x,height*1.35+.25,point.y))
+		if float(FRAMING.fit(candidate,size,HUNT_CAMERA_OFFSET.normalized().y).size)<=_hunt_zoom():points=candidate
 	return points
+
+func _hunt_zoom() -> float:return maxf(4.8,6.0/maxf(.1,size.x/maxf(1,size.y)))
 
 func _update_hunt_camera(delta: float,snap:=false) -> void:
 	if not is_instance_valid(camera) or size.x<1 or size.y<1:return
@@ -235,13 +241,20 @@ func _update_hunt_camera(delta: float,snap:=false) -> void:
 		# A small dead zone prevents idle/attack animation from steering the view.
 		if focus.distance_to(next)<.18:next=focus
 		else:next=focus.lerp(next,1.0-exp(-maxf(delta,0)*3.0))
+	# Pan enough to keep party heads/feet inside the fixed zoom. A remote target
+	# cannot drag the party off screen or force the old breathing zoom behavior.
+	var half:=Vector2(_hunt_zoom()*size.x/size.y,_hunt_zoom())*.5
+	var bounds: Rect2=frame.bounds
+	var low:=bounds.end-half;var high:=bounds.position+half
+	var plane:=Vector2(next.x,next.y*sine)
+	if low.x<=high.x:plane.x=clampf(plane.x,low.x,high.x)
+	if low.y<=high.y:plane.y=clampf(plane.y,low.y,high.y)
+	next=Vector2(plane.x,plane.y/sine)
 	_set_focus(next)
 	camera.v_offset=0
-	var required: float=FRAMING.size_at_center(frame.bounds,focus,size,sine)
-	if snap or not _camera_initialized or required>camera.size:
-		camera.size=required
-	else:
-		camera.size=lerpf(camera.size,required,1.0-exp(-maxf(delta,0)*1.8))
+	# Follow combat without changing the pixel height whenever a target arrives,
+	# dies or crosses the party. Only a viewport resize changes this zoom.
+	camera.size=_hunt_zoom()
 	_camera_initialized=true
 
 func _apply_battle_contrast() -> void:pass
@@ -319,7 +332,8 @@ func _process(delta: float) -> void:
 					var selected: bool=game.roaming_hunt.aggro_active and game.roaming_hunt.current_target==i
 					var anchor: Vector2=source.position-Vector2(0,_actor_height(source,false)*size.y/camera.size+9)
 					if _paint_rects.has(source.get_instance_id()):anchor.y=_paint_rects[source.get_instance_id()].position.y-9
-					_queue_health(game.enemy_hp_bars[i],anchor,source.visible,float(game.enemy_wave[i].get('hp',0)),false,selected)
+					if selected:anchor=anchor.clamp(position+Vector2(24,18),position+size-Vector2(24,18))
+					_queue_health(game.enemy_hp_bars[i],anchor,source.visible or selected,float(game.enemy_wave[i].get('hp',0)),false,selected)
 		game._update_combat_target_marker()
 		_layout_health()
 		var marker: Label=game.combat_labels.get('target_marker')
@@ -437,17 +451,17 @@ func _base_actor_height(source: AnimatedSprite2D,hero: bool) -> float:
 		# All hero originals share one height, independent of old sprite margins.
 		return RAID_HERO_HEIGHT if hero else RAID_BOSS_HEIGHT
 	if hero:return HERO_HEIGHT
-	# Atlas normalization is not a gameplay size bonus. Compare against the
-	# normalized rest scale, then apply only spawn/hit/death presentation changes.
-	return ENEMY_HEIGHT*clampf(absf(source.scale.y)/maxf(.001,source._base_scale.y),.15,1.35)
+	# Legacy spawn/hit tweens change the 2D source scale. The painted 3D actor
+	# uses its rest height; fades and fallen poses express these states.
+	return ENEMY_HEIGHT
 
 func _actor_height(source: AnimatedSprite2D,hero: bool) -> float:
-	return _base_actor_height(source,hero)*float(_body_scales.get(source.get_instance_id(),1.0))
+	return _base_actor_height(source,hero)*float(_body_scales.get(source.get_instance_id(),RAID_BODY_SCALE if raid_mode else HUNT_BODY_SCALE))
 
 func actor_world_height(source: AnimatedSprite2D,hero: bool) -> float:
 	return _actor_height(source,hero)/maxf(.5,camera.global_basis.y.y)
 
-func _update_body_layout(delta: float) -> void:
+func _update_body_layout(_delta: float) -> void:
 	if size.x<1 or size.y<1 or not is_instance_valid(camera) or camera.size<=0:return
 	var items: Array[Dictionary]=[]
 	# Existing renderers supply bounds on subsequent frames; bootstrap bounds
@@ -465,30 +479,23 @@ func _update_body_layout(delta: float) -> void:
 		var id:=source.get_instance_id();var height:=_base_actor_height(source,heroes[i])
 		var bounds:=Rect2(-height*.55,-height,height*1.1,height)
 		var sprite: Sprite3D=actors.get(id)
+		var left:=source.flip_h
 		if sprite!=null:
 			var pilot=sprite.get_node_or_null('Model3DPilot' if real_models_enabled else 'HuntFramePilot')
-			if pilot!=null:bounds=pilot.footprint(height)
-		if source.flip_h:bounds.position.x=-bounds.end.x
+			if pilot!=null:
+				bounds=pilot.footprint(height)
+				if not real_models_enabled and pilot._facing_override:left=pilot._facing_left
+		if left:bounds.position.x=-bounds.end.x
 		var projection:=project_world(points[i])
 		# Camera-aligned drawings have identical x/y scale in orthographic view.
 		items.append({'id':id,'hero':heroes[i],'point':projection*camera.size/size.y,'bounds':bounds})
-	var desired:=BODY_LAYOUT.fit(items)
 	var next: Dictionary={}
-	for id in desired:
-		var previous: float=_body_scales.get(id,1.0)
-		var limit: float=desired[id]
-		next[id]=limit if limit<previous else minf(limit,lerpf(previous,limit,1.0-exp(-maxf(delta,0)*4.0)))
-	var hero_scale:=1.0
-	for item in items:
-		if item.hero:hero_scale=minf(hero_scale,next[item.id])
-	for item in items:
-		if item.hero:next[item.id]=hero_scale
+	var hero_scale:=RAID_BODY_SCALE if raid_mode else HUNT_BODY_SCALE
 	for i in sources.size():
 		var source: AnimatedSprite2D=sources[i]
 		if not is_instance_valid(source):continue
 		var id:=source.get_instance_id()
-		if heroes[i]:next[id]=hero_scale
-		elif source.state=='death':next[id]=_body_scales.get(id,1.0)
+		next[id]=hero_scale
 	_body_scales=next
 	_paint_rects.clear()
 	for item in items:
@@ -499,6 +506,37 @@ func _update_body_layout(delta: float) -> void:
 func actor_head_offset(source: AnimatedSprite2D) -> Vector2:
 	if not is_instance_valid(camera):return Vector2.ZERO
 	return Vector2(0,-_actor_height(source,source is HeroSpriteController)*size.y/camera.size)
+
+func _paint_facing_target(source: AnimatedSprite2D,point: Vector2,hero: bool) -> Dictionary:
+	if raid_mode:
+		if hero and is_instance_valid(game.raid_boss_sprite):return {'facing_target':raid_to_world(game.raid_boss_position)}
+		var nearest:=INF;var result: Dictionary={}
+		if is_instance_valid(raid_view):
+			for id in raid_view.hero_actors:
+				if float(game.hero_battle_state.get(id,{}).get('hp',0))<=0:continue
+				var candidate:=raid_to_world(game.raid_positions.get(id,raid_view.hero_actors[id].position))
+				if point.distance_squared_to(candidate)<nearest:
+					nearest=point.distance_squared_to(candidate);result={'facing_target':candidate}
+		return result
+	if hero:
+		var id:=str(source.atlas_key)
+		var runtime: Dictionary=game.hero_skill_runtime.get(id,{})
+		var index:=int(runtime.get('target_index',game.party_movement.targets.get(id,-1)))
+		if index>=0 and index<game.enemy_wave.size() and float(game.enemy_wave[index].get('hp',0))>0:
+			return {'facing_target':game.roaming_hunt.enemy_position(index)}
+	else:
+		var index: int=game.enemy_wave_sprites.find(source)
+		if index>=0 and index<game.enemy_wave.size():
+			var target:=str(game.enemy_wave[index].get('attack_intent',''))
+			if target.is_empty():target=str(game.enemy_wave[index].get('target_id',''))
+			if target in game._alive_hero_ids():return {'facing_target':game._hero_field_position(target)}
+			var nearest:=INF;var result: Dictionary={}
+			for id in game._alive_hero_ids():
+				var candidate: Vector2=game._hero_field_position(id)
+				if point.distance_squared_to(candidate)<nearest:
+					nearest=point.distance_squared_to(candidate);result={'facing_target':candidate}
+			return result
+	return {}
 
 func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Dictionary) -> void:
 	if not is_instance_valid(source) or source.sprite_frames==null:return
@@ -587,7 +625,9 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 			pilot.effects_enabled=game.combat_effects_enabled and str(game.presentation_options.get('performance','balanced'))!='battery'
 			# The complete original painting casts into the modeled battle floor.
 			pilot.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_ON if pilot.effects_enabled else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-			pilot.present(camera,height,sprite.modulate,_actor_delta,visual_running(),point,_frame_runtime(source,hero),_frame_dead(source,hero))
+			var runtime:=_frame_runtime(source,hero)
+			runtime.merge(_paint_facing_target(source,point,hero))
+			pilot.present(camera,height,sprite.modulate,_actor_delta,visual_running(),point,runtime,_frame_dead(source,hero))
 			var old_skin=sprite.get_node_or_null('HeroSkeletalBillboard')
 			if old_skin!=null:old_skin.hide()
 			sprite.texture=null

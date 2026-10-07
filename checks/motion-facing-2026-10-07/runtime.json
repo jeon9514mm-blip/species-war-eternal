@@ -1,0 +1,81 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 11,
+  "total": 11,
+  "results": [
+    {
+      "test": "CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "seconds": 11.69,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nCOMBAT_READABILITY checks=148 failures=[]\n"
+    },
+    {
+      "test": "FullBodyRolloutSmokeTest.gd",
+      "passed": true,
+      "seconds": 21.28,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nfull_body_rollout checks=1143 failures=[]\n"
+    },
+    {
+      "test": "HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.83,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=48 failures=[]\n"
+    },
+    {
+      "test": "HuntFramePilotSmokeTest.gd",
+      "passed": true,
+      "seconds": 9.92,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_frame_pilot checks=179 failures=[]\n"
+    },
+    {
+      "test": "IndependentHuntSmokeTest.gd",
+      "passed": true,
+      "seconds": 49.66,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nINDEPENDENT_HUNT_METRICS [{\"constrained\":{\"farthest\":1.97129797935486,\"spread\":1.90923018124368,\"targets\":8},\"faction\":\"aurelia\",\"individual\":{\"farthest\":4.00000047683716,\"spread\":4.11724780400594,\"targets\":9},\"natural\":{\"cycles\":2,\"hero_hp_removed\":7,\"monster_targets\":3}},{\"constrained\":{\"farthest\":1.98084592819214,\"spread\":2.0275086581707,\"targets\":8},\"faction\":\"noxfera\",\"individual\":{\"farthest\":3.99999928474426,\"spread\":4.21072812080383,\"targets\":9},\"natural\":{\"cycles\":2,\"hero_hp_removed\":38,\"monster_targets\":3}}]\nINDEPENDENT_HUNT checks=122 failures=[]\n"
+    },
+    {
+      "test": "PaintedMotion25DSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.78,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\npainted_25d_motion checks=270 failures=[]\n"
+    },
+    {
+      "test": "QualityV40SmokeTest.gd",
+      "passed": true,
+      "seconds": 11.23,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nquality_v40 checks=30 failures=[]\n"
+    },
+    {
+      "test": "RaidDesignSmokeTest.gd",
+      "passed": true,
+      "seconds": 30.44,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_DESIGN checks=486 failures=[]\n"
+    },
+    {
+      "test": "StableFacing25DSmokeTest.gd",
+      "passed": true,
+      "seconds": 28.08,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nSTABLE_FACING_25D checks=610 failures=[]\n"
+    },
+    {
+      "test": "V8362FormationDisplaySmokeTest.gd",
+      "passed": true,
+      "seconds": 19.03,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8362_formation_display checks=90 failures=[]\n"
+    },
+    {
+      "test": "V8364CombatViewSmokeTest.gd",
+      "passed": true,
+      "seconds": 20.47,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8364_combat_view checks=626 failures=[]\n"
+    }
+  ],
+  "verification_note": "Latest four hunt regressions rerun after the final depth limit; unaffected presentation/raid regressions retained from the preceding 11-test pass."
+}

@@ -34,7 +34,7 @@ static func move(main,actor: Dictionary,push: Vector2) -> bool:
 	for angle in [0.0,.45,-.45,.9,-.9,1.35,-1.35,1.8,-1.8]:
 		var goal: Vector2=start+push.rotated(angle)
 		if actor.hero:
-			goal=main.expedition_position+(goal-main.expedition_position).limit_length(main.party_movement.hunt_leash(str(actor.id)))
+			goal=main.party_movement.clamp_hunt_position(str(actor.id),goal,main.expedition_position)
 		if not main.field_navigation.is_walkable(goal) or not main.field_navigation.has_clear_path(start,goal):continue
 		if goal.distance_to(start)<.00001:continue
 		actor.position=goal
@@ -83,27 +83,36 @@ static func resolve(main,delta: float,previous_bodies: Array[Dictionary]=[]) -> 
 		for radius in [.06,.12,maxf(.18,delta*1.95),.30,.45]:
 			for i in 24:
 				var goal: Vector2=start+Vector2.from_angle(i*TAU/24)*radius
-				if actor.hero:goal=main.expedition_position+(goal-main.expedition_position).limit_length(main.party_movement.hunt_leash(str(actor.id)))
+				if actor.hero:goal=main.party_movement.clamp_hunt_position(str(actor.id),goal,main.expedition_position)
 				if not main.field_navigation.is_walkable(goal) or not main.field_navigation.has_clear_path(start,goal):continue
 				var clear:=true
 				for other in bodies:
 					if actor!=other and body_distance(goal,other.position)<clearance(actor,other)-EPSILON:clear=false;break
 				if clear:actor.position=goal;found=true;break
 			if found:break
-	# If a dense pocket has no legal side step, block this frame's movement.
-	# The pre-move snapshot has the same living actors and fixed casts, so it
-	# cannot move a caster, cross a rock, or let actors pass through one another.
-	var blocked_frame:=false
+	# A crowded pocket must not cancel every actor's pursuit across the field.
+	# Begin from the clear snapshot and accept each legal local move separately.
+	var blocked_ids: Dictionary={}
 	if not clear(bodies) and previous_bodies.size()==bodies.size() and clear(previous_bodies):
 		var compatible:=true
 		for i in bodies.size():
 			if bodies[i].hero!=previous_bodies[i].hero or bodies[i].id!=previous_bodies[i].id or (bodies[i].fixed and bodies[i].position!=previous_bodies[i].position):compatible=false;break
 		if compatible:
-			blocked_frame=true
-			for i in bodies.size():bodies[i].position=previous_bodies[i].position
+			var proposed: Array[Vector2]=[]
+			for i in bodies.size():
+				proposed.append(bodies[i].position)
+				bodies[i].position=previous_bodies[i].position
+			for offset in bodies.size():
+				var i:=posmod(offset+main.combat_tick_count,bodies.size())
+				var legal:=true
+				for j in bodies.size():
+					if i!=j and body_distance(proposed[i],bodies[j].position)<clearance(bodies[i],bodies[j])-EPSILON:legal=false;break
+				if legal:bodies[i].position=proposed[i]
+				else:blocked_ids[str(bodies[i].hero)+':'+str(bodies[i].id)]=true
 	for actor in bodies:
 		if actor.hero:
 			var id:=str(actor.id)
+			var blocked_frame:=blocked_ids.has('true:'+id)
 			var before: Vector2=main.party_movement.positions[id]
 			main.party_movement.positions[id]=actor.position
 			if blocked_frame:main.party_movement.velocities[id]=Vector2.ZERO

@@ -9,8 +9,23 @@ static func choose(director, id: String, start: Vector2, target: int, desired: V
 	var melee: bool=profile.get('melee',true)
 	var reach: float=director._decisions.spatial_range(int(state.get('range',1)))
 	# Leave travel room for a moving enemy during the committed attack windup.
-	var safe_reach: float=maxf(.12,reach-.24)
-	var radius: float=minf(safe_reach,maxf(.68,desired.distance_to(enemy))) if melee else safe_reach
+	var safe_reach: float=maxf(.12,reach-(.08 if melee else .24))
+	# A melee destination inside body clearance cannot become an attack stance.
+	var radius: float=minf(safe_reach,maxf(BODY.CONTACT_CLEARANCE+.06,desired.distance_to(enemy))) if melee else safe_reach
+	var settled: bool=start.distance_to(enemy)<=safe_reach and BODY.body_distance(start,enemy)>=BODY.CONTACT_CLEARANCE
+	var movement_proc: bool=bool(profile.get('moving',false)) and start.distance_to(desired)>.15
+	for other in bodies:
+		if other!=id and int(states.get(other,{}).get('hp',0))>0 and BODY.body_distance(start,bodies[other])<BODY.HERO_CLEARANCE:settled=false
+	for i in points.size():
+		if i>=enemies.size() or int(enemies[i].get('hp',0))<=0:continue
+		if BODY.body_distance(start,points[i])<BODY.CONTACT_CLEARANCE:settled=false
+		if not melee and start.distance_to(points[i])<1.10:settled=false
+	# Hold a legal firing position instead of continually chasing a rotating slot.
+	# Movement-triggered kits and threatened back-line heroes still reposition.
+	if settled and not movement_proc:
+		director.hunt_slots[id]={'target':target,'offset':start-enemy}
+		director.combat_goals[id]={'target':target,'goal':start}
+		return start
 	var axis: Vector2=(desired-enemy).normalized()
 	if axis.length_squared()<.01:axis=Vector2.from_angle(float(posmod(id.hash(),6283))*.001)
 	var candidates: Array[Vector2]=[]

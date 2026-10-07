@@ -29,6 +29,10 @@ var _echoes: Node3D
 var effects_enabled:=true
 var echo_layers:=2
 var _locomotion_weight:=0.0
+var _facing_left:=false
+var _facing_override:=false
+var _turn_distance:=0.0
+var _step_distance:=0.0
 
 func bind(actor: AnimatedSprite2D,hero: bool,catalog: RefCounted=null) -> bool:
 	_catalog=catalog if catalog!=null else CATALOG.new()
@@ -58,18 +62,35 @@ func bind(actor: AnimatedSprite2D,hero: bool,catalog: RefCounted=null) -> bool:
 
 func present(camera: Camera3D,height: float,tint: Color,delta: float,active: bool,point: Vector2,runtime: Dictionary,dead: bool) -> void:
 	var running:=active and source.speed_scale>0.0
+	var movement:=point-_last_point if _has_point else Vector2.ZERO
+	_step_distance=movement.length() if running and _was_active and movement.length()<1.0 else 0.0
+	var walking: bool=not dead and (source.state=='walk' or (source.state=='idle' and _step_distance>.0001))
 	if running:
 		_visual_time+=maxf(0,delta)*source.speed_scale
-		_movement_heat=move_toward(_movement_heat,1.0 if _hero and source.state=='walk' and not dead else 0.0,maxf(0,delta)*.5)
-		_locomotion_weight=move_toward(_locomotion_weight,1.0 if source.state=='walk' and not dead else 0.0,maxf(0,delta)*source.speed_scale*6.0)
+		_movement_heat=move_toward(_movement_heat,1.0 if _hero and walking else 0.0,maxf(0,delta)*.5)
+		_locomotion_weight=move_toward(_locomotion_weight,1.0 if walking else 0.0,maxf(0,delta)*source.speed_scale*6.0)
 	_material.set_shader_parameter('visual_time',_visual_time)
 	_material.set_shader_parameter('movement_heat',_movement_heat)
 	if _has_point and running and _was_active:
 		var travelled:=point.distance_to(_last_point)
 		if travelled<1.0:_distance+=travelled
 	_last_point=point;_has_point=true;_was_active=running
-	var pose:=timeline.sample(runtime,source.state=='walk',dead,delta*source.speed_scale,running)
+	var pose:=timeline.sample(runtime,walking,dead,delta*source.speed_scale,running)
 	var action:=str(pose.action)
+	if running and not dead:
+		var direction:=Vector2.ZERO
+		# Actual movement wins during walking; a cast faces its committed target.
+		if action in ['walk','run'] and _step_distance>.00001:direction=movement.normalized()
+		elif runtime.has('facing_target'):direction=Vector2(runtime.facing_target)-point
+		if absf(direction.x)>.0001 and (action not in ['walk','run'] or absf(direction.x)>.08):
+			var left:=direction.x<0
+			if not _facing_override:_facing_left=source.flip_h
+			_facing_override=true
+			if left!=_facing_left:
+				_turn_distance+=_step_distance
+				if action not in ['walk','run'] and absf(direction.x)>.05 or _turn_distance>=.035:
+					_facing_left=left;_turn_distance=0.0
+			else:_turn_distance=0.0
 	var kind:='motion'
 	var frame:=0
 	if _existing:
@@ -107,6 +128,10 @@ func present(camera: Camera3D,height: float,tint: Color,delta: float,active: boo
 	_echoes.layer_limit=echo_layers
 	_echoes.present(self,action,float(pose.time)/float(pose.duration),timeline.sequence,_visual_time,effects_enabled and action!='death')
 	position=Vector3.ZERO
+	if action in ['walk','run'] and effects_enabled:
+		# Two planted-foot beats per stride, distance driven and frozen at pause.
+		var stride:=float(entry.get('stride_distance',1.4))
+		position=camera.global_basis.y*absf(sin(_distance/stride*TAU))*height*.018*_locomotion_weight
 	if action=='idle' and effects_enabled:
 		var period:=2.0 if _hero else float({'wild_dog':2.2,'bristle_boar':1.2,'wind_crow':1.5,'night_raven':1.5}.get(str(entry.id),2.4))
 		var phase:=float(posmod(str(entry.id).hash(),1000))*.006283
@@ -119,12 +144,15 @@ func present(camera: Camera3D,height: float,tint: Color,delta: float,active: boo
 		# Tiny directional reaction of the complete drawing; never move the
 		# simulation body, stretch a limb, or rotate an unattached head.
 		position=camera.global_basis.x*direction.x*amount*.015
-	_snapshot={'id':str(entry.id),'action':action,'phase':float(pose.time)/float(pose.duration),'time':float(pose.time),'duration':float(pose.duration),'frame':frame,'sheet':kind,'sequence':timeline.sequence,'distance':_distance,'paused':not running,'renderer':'one_complete_painted_pose','bones':0,'body_parts':1,'native_height':float(entry[kind].native_height),'anchor':entry[kind].frames[frame].anchor,'atlas':entry[kind].atlas,'flip':source.flip_h}
+	_snapshot={'id':str(entry.id),'action':action,'phase':float(pose.time)/float(pose.duration),'time':float(pose.time),'duration':float(pose.duration),'frame':frame,'sheet':kind,'sequence':timeline.sequence,'distance':_distance,'paused':not running,'renderer':'one_complete_painted_pose','bones':0,'body_parts':1,'native_height':float(entry[kind].native_height),'anchor':entry[kind].frames[frame].anchor,'atlas':entry[kind].atlas,'flip':_facing_left if _facing_override else source.flip_h,'height':height}
 
 func _apply_frame(camera: Camera3D,height: float,tint: Color,kind: String,frame: int) -> void:
 	var sheet: Dictionary=entry[kind]
-	var mirror:=-1.0 if source.flip_h else 1.0
-	var pixel_size:=height/float(sheet.native_height)
+	var mirror:=-1.0 if (_facing_left if _facing_override else source.flip_h) else 1.0
+	# Idle/walk drawings were exported at slightly different heights. Normalize
+	# each complete locomotion pose uniformly, keeping its foot pivot and aspect.
+	var reference: float=sheet.frames[frame].region[3] if not _existing and kind=='motion' and frame<6 else float(sheet.native_height)
+	var pixel_size:=height/reference
 	basis=camera.global_basis.scaled_local(Vector3(pixel_size*mirror,pixel_size,pixel_size))
 	if kind!=_kind or frame!=_frame:
 		mesh=_meshes[kind][frame];_kind=kind;_frame=frame
@@ -219,7 +247,8 @@ func _measure_footprint(height: float) -> Rect2:
 			if not _existing and kind=='motion' and index>=6:continue
 			var item: Dictionary=sheet.frames[index]
 			var region: Array=item.region;var anchor: Array=item.anchor
-			var scale:=height/float(sheet.native_height)
+			var reference: float=region[3] if not _existing and kind=='motion' and index<6 else float(sheet.native_height)
+			var scale:=height/reference
 			var rect:=Rect2(Vector2(-anchor[0],-anchor[1])*scale,Vector2(region[2],region[3])*scale)
 			bounds=rect if not bounds.has_area() else bounds.merge(rect)
 	return bounds

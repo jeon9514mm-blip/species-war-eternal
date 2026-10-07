@@ -70,9 +70,11 @@ func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
 		var offset := Vector2((0.38 if row == "front" else (-0.38 if row == "rear" else 0.0)) - float(index / 3) * 0.16, float(index % 3 - 1) * 0.5)
 		if independent_hunt:
 			var count:=heroes.size()
-			var radius:=maxf(1.3,1.30/(2.0*sin(PI/maxf(2,count))*.52))
-			var angle:=TAU*float(index)/maxf(1,count)
-			offset=Vector2(cos(angle),sin(angle))*radius if count>1 else Vector2.ZERO
+			# A compact two-row party replaces the oversized circumference. Depth
+			# spacing accounts for the camera while keeping body clearance intact.
+			var columns:=mini(count,5)
+			var rows:=ceili(float(count)/maxi(1,columns))
+			offset=Vector2((index%columns-(columns-1)*.5)*1.22,(int(index/columns)-(rows-1)*.5)*2.30) if count>1 else Vector2.ZERO
 		travel_offsets[id] = offset
 		positions[id] = _clamp(origin + offset)
 		velocities[id] = Vector2.ZERO
@@ -116,7 +118,7 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 			targets[id] = -1
 		if independent_hunt:
 			# A role leash permits individual pursuit without abandoning the field.
-			goal = anchor + (goal - anchor).limit_length(hunt_leash(id))
+			goal = clamp_hunt_position(id,goal,anchor)
 		elif holding_formation:
 			var station: Vector2 = formation_station(id,anchor)
 			var intercept: float=1.35 if bool(movement_profiles.get(id,{}).get('frontline_screen',false)) else 0.85
@@ -151,7 +153,7 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 		if steered.length() < 0.08 * delta:
 			steered = Vector2.ZERO
 		if independent_hunt:
-			steered = anchor + (start + steered - anchor).limit_length(hunt_leash(id)) - start
+			steered = clamp_hunt_position(id,start+steered,anchor) - start
 		if field_navigation == null or field_navigation.is_walkable(start + steered):
 			next = _move("hero_local_%s" % id, start, start + steered, WALK_SPEED * delta)
 		if independent_hunt:
@@ -505,6 +507,15 @@ func _move(key: String, start: Vector2, target: Vector2, distance: float) -> Vec
 func apply_formation(heroes: Array, id: String) -> void:
 	formation_id = preload("res://scripts/combat/BattleFormation.gd").sanitize(id)
 	travel_offsets = preload("res://scripts/combat/BattleFormation.gd").offsets(heroes, formation_id)
+	if independent_hunt:
+		# Applying a saved formation must not restore the old wide four-lane grid.
+		# Keep its role order and stat bonuses, using the compact hunting stations.
+		var ordered: Array=heroes.duplicate()
+		ordered.sort_custom(func(a: Dictionary,b: Dictionary) -> bool:return preload('res://scripts/combat/BattleFormation.gd')._rank(a)<preload('res://scripts/combat/BattleFormation.gd')._rank(b))
+		var columns:=mini(ordered.size(),5)
+		var rows:=ceili(float(ordered.size())/maxi(1,columns))
+		for index in ordered.size():
+			travel_offsets[str(ordered[index].id)]=Vector2((index%columns-(columns-1)*.5)*1.22,(int(index/columns)-(rows-1)*.5)*2.30)
 
 func place_formation(origin: Vector2) -> void:
 	# Only used when creating a battlefield; live changes keep gradual movement.
@@ -536,7 +547,14 @@ func _face_threat(delta: float,anchor: Vector2,enemies: Array,enemy_positions: A
 
 func hunt_leash(id: String) -> float:
 	var profile: Dictionary = movement_profiles.get(id, {})
-	return 4.0 if bool(profile.get("rear_support", false)) else (6.0 if bool(profile.get("flanker", false)) else 5.0)
+	return 3.4 if bool(profile.get("rear_support", false)) else (4.6 if bool(profile.get("flanker", false)) else 4.0)
+
+func clamp_hunt_position(id: String, point: Vector2, anchor: Vector2) -> Vector2:
+	var offset: Vector2=(point-anchor).limit_length(hunt_leash(id))
+	# Keep the compact party within a fixed-height landscape combat viewport.
+	# Horizontal pursuit remains independent; depth no longer spreads off screen.
+	offset.y=clampf(offset.y,-2.5,2.5)
+	return anchor+offset
 
 func _blocked_cost(id: String, index: int) -> float:
 	var memory: Dictionary = blocked_targets.get(id, {})

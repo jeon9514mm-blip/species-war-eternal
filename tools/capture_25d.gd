@@ -27,7 +27,7 @@ func capture(label: String,terrain) -> void:
 		if pilot!=null:display_heights.append({'id':str(pilot.entry.id),'hero':pilot._hero,'nominal_height':terrain._actor_height(pilot.source,pilot._hero),'pixels':terrain._actor_height(pilot.source,pilot._hero)*terrain.size.y/terrain.camera.size})
 		if pilot!=null and pilot.source.state!='death':
 			var rect: Rect2=pilot.footprint(terrain._base_actor_height(pilot.source,pilot._hero))
-			if pilot.source.flip_h:rect.position.x=-rect.end.x
+			if bool(pilot.debug_snapshot().get('flip',pilot.source.flip_h)):rect.position.x=-rect.end.x
 			var foot: Vector2=terrain.project_world(Vector2(actor.position.x,actor.position.z))*terrain.camera.size/terrain.size.y
 			layout_items.append({'id':str(pilot.entry.id),'point':[foot.x,foot.y],'bounds':[rect.position.x,rect.position.y,rect.size.x,rect.size.y]})
 	records.append({'capture':label,'bodies':bodies,'projected_paint_overlaps':overlap,'hero_scales':hero_scales,'scales':terrain._body_scales.values(),'display_heights':display_heights,'layout_items':layout_items,'camera_size':terrain.camera.size,'stat_overrides':false})

@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "id": "species-war-combat-ppo",
+  "name": "Species War actual-combat tactic training",
+  "framework": "Stable-Baselines3 PPO + Gymnasium + PyTorch CPU",
+  "requirements": "tools/combat_ai/requirements.txt",
+  "setup": "tools/combat_ai/setup.ps1",
+  "entrypoint": "tools/combat_ai/train.py",
+  "bridge": "tools/combat_ai/CombatTrainingBridge.gd",
+  "transport": "localhost JSON lines",
+  "observation_dimensions": 28,
+  "actions": ["existing_ai", "finish_wounded", "highest_threat", "enemy_support", "elite_focus"],
+  "enabled_in_production": false,
+  "supported_training_mode": "three-hero ordinary hunt",
+  "evidence": "checks/motion-facing-2026-10-07/ai-training/training-report.json",
+  "references": [
+    "https://stable-baselines3.readthedocs.io/en/master/guide/custom_env.html",
+    "https://github.com/edbeeching/godot_rl_agents"
+  ]
+}

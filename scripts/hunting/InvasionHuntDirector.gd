@@ -73,7 +73,9 @@ func advance(delta: float, alive_mask: Array, immobile_mask: Array = [], hero_ta
 		if bool(behavior.retreat) and distance<minf(1.05,preferred-.12) and distance>.01:
 			var away:=pos+(pos-target).normalized()*(preferred-distance)
 			pos=_move_actor("enemy_%d"%i,pos,_clamp_field(away),.75*delta)
-		elif distance > preferred or pos.distance_to(approach) > .12:
+		# Keep a legal contact stance while the target remains in attack range.
+		# Do not orbit to a new side merely because another monster changed ranks.
+		elif distance > preferred+.08 or preload('res://scripts/hunting/HuntBodyCollision.gd').body_distance(pos,target)<.76:
 			pos = _move_actor("enemy_%d" % i, pos, approach, float(behavior.speed)*delta)
 		enemy_positions[i] = _clamp_field(pos)
 	_separate_enemies(delta, alive_mask, immobile_mask)

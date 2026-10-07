@@ -1,6 +1,6 @@
 extends SceneTree
 ## Real default game and actual combat steps, one hero, unchanged production
-## stats. End of the movie uses an explicitly recorded inspection camera.
+## stats. No inspection zoom: visible height is checked throughout the movie.
 var game: Node
 var output: String
 var frames: String
@@ -31,24 +31,24 @@ func run() -> void:
 		for source in game.enemy_wave_sprites:source.set_process(false)
 		terrain._process(1.0/30.0);terrain.hunt_overlay._process(1.0/30.0)
 		for source in game.enemy_wave_sprites:source.set_process(false)
-		var close: bool=n>=240
-		if close:
-			terrain._set_focus(game._hero_field_position('leonhardt')+Vector2(.35,-.35));terrain.camera.size=4.8
-		var record: Dictionary={'frame':n,'inspection_camera':close,'pilots':[],'enemy_hp':game.enemy_hp,'hero_hp':game.hero_battle_state.get('leonhardt',{}).get('hp',0)}
+		var close: bool=false
+		var record: Dictionary={'frame':n,'inspection_camera':close,'camera_size':terrain.camera.size,'pilots':[],'enemy_hp':game.enemy_hp,'hero_hp':game.hero_battle_state.get('leonhardt',{}).get('hp',0)}
 		for actor in terrain.actors.values():
 			var pilot=actor.get_node_or_null('HuntFramePilot')
-			if pilot!=null:record.pilots.append(pilot.debug_snapshot())
+			if pilot!=null:
+				var state: Dictionary=pilot.debug_snapshot()
+				state.pixel_height=terrain._actor_height(pilot.source,pilot._hero)*terrain.size.y/terrain.camera.size
+				record.pilots.append(state)
 		await process_frame;await RenderingServer.frame_post_draw
 		var image:=root.get_texture().get_image();assert(image.save_png(frames.path_join('frame-%04d.png'%n))==OK)
 		if n==180:assert(image.save_png(output.path_join('actual-hunt.png'))==OK)
-		if close:
-			for state: Dictionary in record.pilots:
-				if state.id!='leonhardt':continue
-				var name: String=''
-				if state.action=='attack_1':name='actual-attack-%d'%state.frame
-				elif state.action=='walk':name='actual-walk'
-				if not name.is_empty() and not captures.has(name):
-					assert(image.save_png(output.path_join(name+'.png'))==OK);captures[name]=n
+		for state: Dictionary in record.pilots:
+			if state.id!='leonhardt':continue
+			var name: String=''
+			if state.action=='attack_1':name='actual-attack-%d'%state.frame
+			elif state.action=='walk':name='actual-walk'
+			if not name.is_empty() and not captures.has(name):
+				assert(image.save_png(output.path_join(name+'.png'))==OK);captures[name]=n
 		records.append(record)
 	var file:=FileAccess.open(output.path_join('actual-hunt.json'),FileAccess.WRITE)
 	file.store_string(JSON.stringify({'scene':'scenes/PortraitMain.tscn','natural_hunting':true,'stat_overrides':false,'fps':30,'frames':records,'captures':captures},'  '));file.close()

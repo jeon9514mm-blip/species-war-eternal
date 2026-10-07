@@ -1,0 +1,85 @@
+{
+  "scope": "Every changed or new GDScript in this commit",
+  "passed": 13,
+  "total": 13,
+  "results": [
+    {
+      "script": "scripts/art/HuntFramePilot.gd",
+      "passed": true,
+      "sha256": "1f2349357e9cea8559751d76095f23a48c2ed418fc6ba5215956b436ed6d073a",
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/HuntBodyCollision.gd",
+      "passed": true,
+      "sha256": "132fb118c24384a19aee458fdf2a2a798f85774635685f13db45b1132627a20c",
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/HuntPositionPlanner.gd",
+      "passed": true,
+      "sha256": "f72b736cb006de1ffbd7e9b82fcb8de31edea092d288fb4a6d3813da1587c58c",
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/InvasionHuntDirector.gd",
+      "passed": true,
+      "sha256": "9626c811fb695bc39eea03081fd85c4dc04e3b8bd05e995ff3b9623a250f4a7d",
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/PartyMovementDirector.gd",
+      "passed": true,
+      "sha256": "89e6b2cf5dcf2409f84f0e2032bc04d1550cdad0444c037ea12a50986801003d",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/Battlefield3DView.gd",
+      "passed": true,
+      "sha256": "3f15c64f2194700c389cc0cc81c6d8838fb7dbe7a5c52ba3ce0c34fac3e9911a",
+      "output": ""
+    },
+    {
+      "script": "scripts/raid/RaidBattlefield.gd",
+      "passed": true,
+      "sha256": "5abbd4d968b70f42d43cee1e2ff4e3782fd75f13b61a8889522cfcf03e981ca4",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/StableFacing25DSmokeTest.gd",
+      "passed": true,
+      "sha256": "a177d79c9631322e1ec3b333a2e7c5b933ce3f8d935fda7d7046ecf7b0ffbc5a",
+      "output": ""
+    },
+    {
+      "script": "tools/capture_25d.gd",
+      "passed": true,
+      "sha256": "bbd8c088344ddb2814bb7cbc234fde5cb25d384becdb93f1e6fcf4048b9dfb03",
+      "output": ""
+    },
+    {
+      "script": "tools/capture_hunt_frames.gd",
+      "passed": true,
+      "sha256": "93d3d33238ed921b0b10bfefd3be60976b2606fb6d2246e3ac2a6eb832fe864b",
+      "output": ""
+    },
+    {
+      "script": "tools/combat_ai/CombatTrainingBridge.gd",
+      "passed": true,
+      "sha256": "dbcb6f8dd7f2de82bc28842218c62938e26f4b071c87e36fbb16b2032c222bd5",
+      "output": ""
+    },
+    {
+      "script": "tools/combat_ai/TrainingDecision.gd",
+      "passed": true,
+      "sha256": "c7571192bf7778b3ad26be2494de782689f61462be979744b3de2e5e34312d53",
+      "output": ""
+    },
+    {
+      "script": "tools/combat_ai/TrainingHost.gd",
+      "passed": true,
+      "sha256": "631cc365d93538204ae6b55e9c97dffa2f2c606f22a9f89b48cc73b289cd209f",
+      "output": ""
+    }
+  ]
+}
