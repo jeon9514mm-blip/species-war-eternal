@@ -1,0 +1,76 @@
+extends SceneTree
+## Actual default scene and real hunting steps. Temporary save and movie frames
+## are supplied by the runner. No player file or production stats are altered.
+var game: Node
+var output := ""
+var frames := ""
+var records: Array[Dictionary] = []
+var captured: Dictionary = {}
+func _init() -> void: run.call_deferred()
+func settle(count:=3) -> void:
+	for i in count: await process_frame
+func run() -> void:
+	if DisplayServer.get_name()=="headless":push_error("GPU display required");quit(1);return
+	output=OS.get_environment("MAP_CAPTURE_OUTPUT");frames=OS.get_environment("PILOT_MOVIE_FRAMES")
+	assert(not output.is_empty() and not frames.is_empty())
+	DirAccess.make_dir_recursive_absolute(output);DirAccess.make_dir_recursive_absolute(frames)
+	root.content_scale_size=Vector2i(1280,720);root.size=Vector2i(1280,720)
+	game=load("res://scenes/PortraitMain.tscn").instantiate()
+	game.save_state_path=OS.get_environment("MAP_CAPTURE_USER_DATA").path_join("hunt-pilot.json")
+	game._offline_checked=true;root.add_child(game);await settle(8)
+	game.set_process(false);game.set_physics_process(false)
+	game.sound_effects_enabled=false;game.combat_effects_enabled=true
+	game.tutorial_completed=true;game.selected_faction="aurelia";game.current_zone_id="gray_meadow"
+	game.idle_stage=1;game.party_slot_legacy_cap=10;game.loot_rng.seed=20261007
+	game.hero_progress.leonhardt={"level":1,"xp":0}
+	var ids: Array[String]=["leonhardt"];game._restore_deployed_heroes(ids)
+	game._build_combat_screen();await settle(8)
+	game.combat_running=true;game.battle_speed=1.0
+	var terrain=game.combat_labels.terrain
+	terrain.set_process(false);terrain.hunt_overlay.set_process(false)
+	# Source animation playback is not our inspection clock. Real simulation
+	# intent/release is sampled each 1/30 s; GPU readback cannot age the pose.
+	for n in 450:
+		game._advance_auto_hunt(1.0/30.0)
+		for source in game.hero_map_sprites:
+			source.set_process(false)
+		for source in game.enemy_wave_sprites:source.set_process(false)
+		terrain._process(1.0/30.0)
+		terrain.hunt_overlay._process(1.0/30.0)
+		for source in game.enemy_wave_sprites:source.set_process(false)
+		var closeup: bool=n>=270
+		if closeup:
+			# Inspection camera only; same actor rigs and same actual battle.
+			var point: Vector2=game._hero_field_position("leonhardt")
+			terrain._set_focus(point+Vector2(.35,-.35));terrain.camera.size=4.3
+		var record: Dictionary={"frame":n,"simulation_step":1.0/30.0,"inspection_camera":closeup,"renderer":RenderingServer.get_current_rendering_method(),"hero_hp":game.hero_battle_state.get("leonhardt",{}).get("hp",0),"pilots":[]}
+		for actor in terrain.actors.values():
+			var pilot=actor.get_node_or_null("HuntActionPilot")
+			if pilot==null:continue
+			var snapshot: Dictionary=pilot.debug_snapshot()
+			record.pilots.append({"id":snapshot.hero_id,"action":snapshot.applied_action,"time":snapshot.action_time,"duration":snapshot.action_duration,"joints":snapshot.joint_count,"parts":snapshot.part_count,"grip":snapshot.weapon_parent,"phase":snapshot.action_time/maxf(.001,float(snapshot.action_duration))})
+		await process_frame;await RenderingServer.frame_post_draw
+		var image:=root.get_texture().get_image()
+		assert(image.save_png(frames.path_join("frame-%04d.png"%n))==OK)
+		if n in [180,310,370]:
+			assert(image.save_png(output.path_join("hunt-%04d.png"%n))==OK)
+		if closeup:
+			for state: Dictionary in record.pilots:
+				if state.id!="leonhardt":continue
+				var phase: float=state.phase
+				var label: String=""
+				if state.action=="idle":label="idle"
+				elif state.action=="walk":label="walk"
+				elif state.action=="attack_1":
+					if phase>.16 and phase<.28:label="windup"
+					elif phase>=.44 and phase<.52:label="impact"
+					elif phase>.70 and phase<.85:label="recovery"
+				if not label.is_empty() and not captured.has(label):
+					assert(image.save_png(output.path_join("closeup-"+label+".png"))==OK);captured[label]=n
+		records.append(record)
+	var file:=FileAccess.open(output.path_join("live-motion.json"),FileAccess.WRITE)
+	file.store_string(JSON.stringify({"scene":"scenes/PortraitMain.tscn","fps":30,"frames":records,"closeups":captured,"no_stat_override":true,"natural_hunting":true},"  "));file.close()
+	game.combat_running=false;game.presentation_runtime.audio.shutdown();game.background_hunt.discard()
+	game.queue_free();await settle(5)
+	print("HUNT_ACTION_PILOT_CAPTURE_OK frames=450 closeups=",captured)
+	quit.call_deferred()

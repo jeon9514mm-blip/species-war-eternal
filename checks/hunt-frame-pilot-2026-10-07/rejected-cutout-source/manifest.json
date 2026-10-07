@@ -1,0 +1,70 @@
+{
+  "status": "rejected; reference only; not executable",
+  "files": [
+    {
+      "original_path": "HuntActionPilotSmokeTest.gd",
+      "archived_path": "HuntActionPilotSmokeTest.gd.source",
+      "sha256": "8074a46387a1abc41387ba322901843f97483ba2ae1c6965155b0aa76b60ad20"
+    },
+    {
+      "original_path": "HuntActionPilotSmokeTest.gd.uid",
+      "archived_path": "HuntActionPilotSmokeTest.gd.uid.source",
+      "sha256": "8cf437c09f7c0903dc2a8366569001921a38fda581d825c1a025a3a2b1382c88"
+    },
+    {
+      "original_path": "HuntPilotRig3D.gd",
+      "archived_path": "HuntPilotRig3D.gd.source",
+      "sha256": "4d30ab4b951416f3c28f546934bcf34bccdb7abb26904aabcfc3c6c1b55ad811"
+    },
+    {
+      "original_path": "HuntPilotRig3D.gd.uid",
+      "archived_path": "HuntPilotRig3D.gd.uid.source",
+      "sha256": "7c8bef7c77250d4c6b1bf31e02ee7e189bc597b17cc60567a7755e21f3004127"
+    },
+    {
+      "original_path": "art/goblin/parts.json",
+      "archived_path": "art/goblin/parts.json",
+      "sha256": "5cfe7e78bf4dc87dd8787949c443201605072fd6c6649a48ed706af77754fb42"
+    },
+    {
+      "original_path": "art/goblin/parts.png",
+      "archived_path": "art/goblin/parts.png",
+      "sha256": "d5e2de58bc8caad84e4647962b83af4867abaf83f1ce983d2f877d2a2c7bc449"
+    },
+    {
+      "original_path": "art/leonhardt/front-head.json",
+      "archived_path": "art/leonhardt/front-head.json",
+      "sha256": "9bcfb07c6ed055b68ec07a85b1eb1d06fb35ea92828eeff433f6d3ecbc79619f"
+    },
+    {
+      "original_path": "art/leonhardt/front-head.png",
+      "archived_path": "art/leonhardt/front-head.png",
+      "sha256": "dad5fa2be8a8deab513b73fb25035ce3c378c18abd2642aa20281b3400a9d018"
+    },
+    {
+      "original_path": "capture_hunt_action_pilot.gd",
+      "archived_path": "capture_hunt_action_pilot.gd.source",
+      "sha256": "70739001676a5183350456f1b196f43a479d6a27df6e8959ffa000172b68f5a5"
+    },
+    {
+      "original_path": "capture_hunt_action_pilot.gd.uid",
+      "archived_path": "capture_hunt_action_pilot.gd.uid.source",
+      "sha256": "4899b29caa2d1e2475d1d112ed279a971a893386c6eceb9eebba645915c653de"
+    },
+    {
+      "original_path": "render_hunt_action_pilot.py",
+      "archived_path": "render_hunt_action_pilot.py.source",
+      "sha256": "1e46c438b7b78d9678b746bc93d2437efc7fc48b58e1d2d3cd1e68e7d75b22bc"
+    },
+    {
+      "original_path": "review_hunt_pilot.gd",
+      "archived_path": "review_hunt_pilot.gd.source",
+      "sha256": "8465bf18f05a7628b1dfed3f16cf21fcd65626693bb674eecf4bcbb2f78e9751"
+    },
+    {
+      "original_path": "review_hunt_pilot.gd.uid",
+      "archived_path": "review_hunt_pilot.gd.uid.source",
+      "sha256": "57aa4f8d6118bd91795a6e912556c6c66aba6f9ea23cdf9e65f56290e5af375f"
+    }
+  ]
+}

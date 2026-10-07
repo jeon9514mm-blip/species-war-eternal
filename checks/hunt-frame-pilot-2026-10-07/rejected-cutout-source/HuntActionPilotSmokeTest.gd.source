@@ -1,0 +1,115 @@
+extends "res://tests/support/V83UpgradeTestBase.gd"
+const CLOCK=preload("res://scripts/art/HuntPilotTimeline.gd")
+func _init() -> void:run.call_deferred()
+func run() -> void:
+	var clock=CLOCK.new()
+	var pose: Dictionary=clock.sample({'windup':.075,'attack_windup_duration':.15,'visual_action':'attack_1'},false,false,.033,true)
+	check(is_equal_approx(float(pose.time)/float(pose.duration),.22),'hero halfway preparation is before contact')
+	clock.release('attack_1',.15)
+	pose=clock.sample({},false,false,.1,false)
+	check(is_equal_approx(float(pose.time)/float(pose.duration),.44),'committed contact reconciles exactly during hit-stop')
+	var held:=pose.duplicate(true)
+	for i in 20:pose=clock.sample({},false,false,.1,false)
+	check(pose.action==held.action and pose.time==held.time,'hit-stop and pause cannot age release recovery')
+	pose=clock.sample({},false,false,.05,true)
+	check(float(pose.time)>float(held.time),'recovery resumes after pause')
+	var enemy_clock=CLOCK.new()
+	pose=enemy_clock.sample({'windup':.11,'attack_windup_duration':.22,'visual_action':'attack_1'},false,false,0,true)
+	check(is_equal_approx(float(pose.time)/float(pose.duration),.22),'goblin samples the actual 220 ms anticipation')
+	enemy_clock.release('attack_1',.22);pose=enemy_clock.sample({},false,false,0,true)
+	check(is_equal_approx(float(pose.time),.22),'goblin contact is at 220 ms, not the legacy 98 ms')
+	var main=await make_main('aurelia',2)
+	root.content_scale_size=Vector2i(1280,720);root.size=Vector2i(1280,720)
+	main.current_zone_id='gray_meadow';main.idle_stage=1;main._build_combat_screen();await settle()
+	main.skill_auto=false;main.ultimate_auto=false;main.pet_runtime={}
+	if is_instance_valid(main.combat_timer):main.combat_timer.stop()
+	var terrain=main.combat_labels.terrain;terrain.set_process(false);terrain.hunt_overlay.set_process(false)
+	for source in main.hero_map_sprites:source.set_process(false);source.hold_demo=true;source.observe_game=false
+	for source in main.enemy_wave_sprites:source.set_process(false)
+	var hero=main.hero_map_sprites[0]
+	var goblin=main.enemy_wave_sprites[0]
+	MonsterSpriteFactory.apply_casual(goblin,'초원 고블린',goblin.presentation_scale)
+	var id: String=main.deployed_heroes[0].id
+	check(id=='leonhardt','fixture selects the real Leonhardt hero')
+	main.combat_running=true;terrain._process(0)
+	var rig=terrain.actors[hero.get_instance_id()].get_node_or_null('HuntActionPilot')
+	var enemy_rig=terrain.actors[goblin.get_instance_id()].get_node_or_null('HuntActionPilot')
+	check(rig!=null and enemy_rig!=null,'actual default battlefield selects both articulated pilots')
+	if rig==null or enemy_rig==null:await dispose(main);done('hunt_action_pilot');return
+	check(rig.parts.size()==18 and rig.joints.size()==21,'Leonhardt renders independent anatomy, sword and shield')
+	check(enemy_rig.parts.size()==16 and enemy_rig.joints.size()==21,'goblin renders separate head, core, twelve limbs and club')
+	check(terrain.actors[main.hero_map_sprites[1].get_instance_id()].get_node_or_null('HuntActionPilot')==null,'other heroes retain their renderer')
+	check(rig.joints.Weapon.get_parent()==rig.joints.RightHand and enemy_rig.joints.Weapon.get_parent()==enemy_rig.joints.RightHand,'both weapons stay parented to their actual carrying hand')
+	var before:=economic(main);var rng: int=main.loot_rng.state
+	var positions: Dictionary=main.party_movement.positions.duplicate(true)
+	var enemy_positions: Array=main.roaming_hunt.enemy_positions.duplicate(true)
+	var lengths: Dictionary={}
+	for joint in rig.joints:
+		if joint!='Root':lengths[joint]=rig.joints[joint].position.length()
+	var mount: Vector3=rig.joints.Weapon.position
+	var enemy_mount: Vector3=enemy_rig.joints.Weapon.position
+	for flip in [false,true]:
+		hero.flip_h=flip;goblin.flip_h=flip
+		terrain.pilot_release(hero,true,'attack_1',.15);terrain.pilot_release(goblin,false,'attack_1',.22)
+		for i in 24:
+			terrain._process(1.0/60.0)
+			check(rig.joints.Weapon.position.is_equal_approx(mount) and enemy_rig.joints.Weapon.position.is_equal_approx(enemy_mount),'weapon grip mount remains fixed throughout the mirrored action')
+			for joint in lengths:
+				if joint=='Chest':continue # breathing uses a tiny authored lift.
+				check(is_equal_approx(rig.joints[joint].position.length(),float(lengths[joint])),'hinge motion does not stretch anatomical bone '+joint)
+			check(absf(rig.joints.Head.rotation.z)<=.10501 and absf(enemy_rig.joints.Head.rotation.z)<=.07001,'neck bend stays inside the collar overlap')
+			var head_frame: Basis=terrain.camera.global_basis.inverse()*rig.joints.Head.global_basis
+			check(absf(atan2(head_frame.x.y,absf(head_frame.x.x)))<.002,'front-facing face remains level during the swing')
+	check(main.loot_rng.state==rng and economic(main)==before,'animation and effects consume no RNG or economy changes')
+	check(main.party_movement.positions==positions and main.roaming_hunt.enemy_positions==enemy_positions,'articulation cannot move combat bodies or alter reach')
+	main.combat_running=false;terrain._process(0)
+	var snapshot: Dictionary=rig.debug_snapshot();var enemy_snapshot: Dictionary=enemy_rig.debug_snapshot()
+	for i in 20:terrain._process(.1)
+	check(rig.debug_snapshot().pose==snapshot.pose and rig.debug_snapshot().motion_clock==snapshot.motion_clock,'pause retains hero pose, cloth and gait')
+	check(enemy_rig.debug_snapshot().pose==enemy_snapshot.pose and enemy_rig.debug_snapshot().motion_clock==enemy_snapshot.motion_clock,'pause retains goblin pose and gait')
+	main.combat_running=true;terrain.set_presentation_suspended(true)
+	terrain._process(.1)
+	check(not terrain.visual_running() and rig.debug_snapshot().pose==snapshot.pose,'background suspension freezes pilot presentation')
+	terrain.set_presentation_suspended(false)
+	# Use the existing actual committed attack path, not an animation callback.
+	for key in main.hero_battle_state:
+		main.hero_battle_state[key].hp=1000 if key==id else 0
+		main.hero_battle_state[key].max_hp=1000
+		main.hero_skill_runtime[key].windup=-1;main.hero_skill_runtime[key].attack_remaining=99
+	for enemy in main.enemy_wave:enemy.hp=1000;enemy.max_hp=1000;enemy.attack_remaining=99;enemy.erase('attack_intent')
+	main.hero_battle_state[id].attack=20;main.hero_battle_state[id].range=1
+	main.party_movement.positions[id]=Vector2(16,10)
+	for i in main.enemy_wave.size():main.roaming_hunt.enemy_positions[i]=Vector2(25,18)
+	main.roaming_hunt.enemy_positions[0]=Vector2(16.84,10)
+	var runtime: Dictionary=main.hero_skill_runtime[id]
+	runtime.prepared_action='basic';runtime.target_index=0;runtime.windup=.05;runtime.attack_windup_duration=.15
+	runtime.cast=false;runtime.cast_secondary=false;runtime.cast_ultimate=false
+	main._advance_hunt_attacks(.06);terrain._process(0)
+	check(int(main.enemy_wave[0].hp)==980,'real attack still applies its original single damage')
+	snapshot=rig.debug_snapshot()
+	check(snapshot.applied_action=='attack_1' and is_equal_approx(float(snapshot.action_time)/float(snapshot.action_duration),.44),'real damage and sword contact use the same release frame')
+	check(enemy_rig.timeline.hit_age==0.0 and enemy_rig.timeline.recoil.x>0,'actual victim recoil uses the incoming direction')
+	var sequence: int=rig.timeline.sequence
+	main._advance_hunt_attacks(.01);terrain._process(0)
+	check(int(main.enemy_wave[0].hp)==980 and rig.timeline.sequence==sequence,'follow-through never reapplies damage or release')
+	runtime.target_index=0;runtime.windup=.01
+	main.roaming_hunt.enemy_positions[0]=Vector2(25,10)
+	main._advance_hunt_attacks(.02);terrain._process(0)
+	check(int(main.enemy_wave[0].hp)==980 and rig.timeline.sequence==sequence,'departed targets do not emit a false contact')
+	main.roaming_hunt.enemy_positions[0]=Vector2(16.84,10)
+	var enemy: Dictionary=main.enemy_wave[0]
+	enemy.attack_intent=id;enemy.attack_remaining=.01;enemy.attack=35;enemy.archetype='brute';enemy.stun_seconds=0
+	runtime.windup=-1;runtime.attack_remaining=99
+	var hp: int=main.hero_battle_state[id].hp
+	main._advance_hunt_attacks(.02);terrain._process(0)
+	check(int(main.hero_battle_state[id].hp)<hp,'goblin still uses the original incoming damage path')
+	enemy_snapshot=enemy_rig.debug_snapshot()
+	check(enemy_snapshot.applied_action=='attack_1' and is_equal_approx(float(enemy_snapshot.action_time)/float(enemy_snapshot.action_duration),.44),'real goblin contact matches the club release pose')
+	terrain.pilot_hit(goblin,false,Vector2.LEFT);terrain._process(0)
+	check(enemy_rig.timeline.recoil.x<0,'recoil can come from the opposite side without turning the victim')
+	var economy:=economic(main)
+	terrain.action_pilot_enabled=false;terrain._process(0)
+	check(not rig.visible and not enemy_rig.visible,'pilot has a reversible renderer fallback')
+	check(economic(main)==economy,'fallback is presentation only')
+	main.combat_running=false
+	await dispose(main);done('hunt_action_pilot')

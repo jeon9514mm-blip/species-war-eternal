@@ -2,6 +2,7 @@ extends "res://scripts/maps/MapTerrainRenderer.gd"
 ## Real 3D world embedded beneath the existing battle UI. Battle simulation owns
 ## the coordinates; both sprite billboards and 2D effects use this camera.
 const HERO_SKIN=preload('res://scripts/maps3d/HeroSkeletalBillboard.gd')
+const FRAME_PILOT=preload('res://scripts/art/HuntFramePilot.gd')
 const MAP_LOADER=preload('res://scripts/maps/MapLoader.gd')
 const FRAMING=preload('res://scripts/maps3d/CombatCameraFraming.gd')
 const HEALTH_LAYOUT=preload('res://scripts/maps3d/CombatHealthLayout.gd')
@@ -50,6 +51,10 @@ var _render_defaults: Dictionary = {}
 var diorama: Node3D
 var ultimate_details: Node3D
 var rune_ground: Node3D
+var frame_pilot_enabled := true
+var _actor_delta := 0.0
+var _frame_events: Dictionary = {}
+var _frame_catalog:=FRAME_PILOT.CATALOG.new()
 func apply_render_profile() -> void:
 	if not is_instance_valid(viewport_3d) or not is_instance_valid(game):return
 	var battery: bool=str(game.presentation_options.get('performance','balanced'))=='battery'
@@ -222,6 +227,7 @@ func raid_origin() -> Vector2:
 	return project_world(Vector2(16,10))-RAID_PIVOT*raid_factor
 func _process(delta: float) -> void:
 	if not is_instance_valid(game) or not is_instance_valid(camera):return
+	_actor_delta=maxf(0.0,delta)
 	apply_render_profile()
 	_visual_hitstop_remaining=maxf(0,_visual_hitstop_remaining-maxf(0,delta))
 	if visual_running():_presentation_clock+=maxf(0,delta)*visual_speed()
@@ -277,7 +283,7 @@ func _process(delta: float) -> void:
 			marker.position=source.position-Vector2(39,_actor_height(source,false)*size.y/camera.size+32)
 	for key in actors.keys():
 		if not live.has(key):
-			actors[key].free();actors.erase(key);_last_footstep.erase(key);_last_death.erase(key)
+			actors[key].free();actors.erase(key);_last_footstep.erase(key);_last_death.erase(key);_frame_events.erase(key)
 	_health_overlay.links=_health_links
 	_health_overlay.queue_redraw()
 	if is_instance_valid(diorama):diorama.update_foreground()
@@ -290,7 +296,37 @@ func hunt_hit(point: Vector2,source: Vector2,tint: Color,critical: bool) -> void
 			_visual_hitstop_remaining=.045
 			for actor in game.hero_map_sprites:
 				if is_instance_valid(actor) and actor.position.distance_to(position+project_world(source))<30:
-					hunt_overlay.afterimage(actor,source,(point-source).normalized());break
+					if not _uses_frame_pilot(actor,true):hunt_overlay.afterimage(actor,source,(point-source).normalized())
+					break
+
+func _uses_frame_pilot(source: AnimatedSprite2D,hero: bool) -> bool:
+	return not raid_mode and frame_pilot_enabled and not FRAME_PILOT.CATALOG.identity(source,hero).is_empty()
+
+func frame_release(actor: AnimatedSprite2D,hero: bool,action: String,windup: float) -> void:
+	if not is_instance_valid(actor) or not _uses_frame_pilot(actor,hero):return
+	var id:=actor.get_instance_id();var pending: Dictionary=_frame_events.get(id,{})
+	pending.release={'action':action,'windup':windup};_frame_events[id]=pending
+
+func frame_hit(actor: AnimatedSprite2D,hero: bool,incoming: Vector2) -> void:
+	if not is_instance_valid(actor) or not _uses_frame_pilot(actor,hero):return
+	var id:=actor.get_instance_id();var pending: Dictionary=_frame_events.get(id,{})
+	pending.hit=project_world(incoming)-project_world(Vector2.ZERO);_frame_events[id]=pending
+
+func _frame_runtime(source: AnimatedSprite2D,hero: bool) -> Dictionary:
+	if hero:
+		var runtime: Dictionary=game.hero_skill_runtime.get('leonhardt',{}).duplicate()
+		var prepared:=str(runtime.get('prepared_action','basic'))
+		runtime.visual_action='ultimate' if prepared=='ultimate' else ('skill' if prepared in ['a1','a2'] else 'attack_1')
+		return runtime
+	var index: int=game.enemy_wave_sprites.find(source)
+	if index<0 or index>=game.enemy_wave.size():return {}
+	var enemy: Dictionary=game.enemy_wave[index]
+	return {'windup':float(enemy.get('attack_remaining',0.0)) if enemy.has('attack_intent') else -1.0,'attack_windup_duration':.22,'visual_action':'attack_1'}
+
+func _frame_dead(source: AnimatedSprite2D,hero: bool) -> bool:
+	if hero:return int(game.hero_battle_state.get('leonhardt',{}).get('hp',0))<=0
+	var index: int=game.enemy_wave_sprites.find(source)
+	return int(game.enemy_wave[index].get('hp',0))<=0 if index>=0 and index<game.enemy_wave.size() else source.state=='death'
 
 func skill_trail(hero_id: String) -> void:
 	if raid_mode or not is_instance_valid(hunt_overlay) or not game.combat_effects_enabled:return
@@ -300,10 +336,11 @@ func skill_trail(hero_id: String) -> void:
 		var point: Vector2=game._hero_field_position(hero_id)
 		var facing: Vector2={'left':Vector2.LEFT,'right':Vector2.RIGHT,'up':Vector2.UP,'down':Vector2.DOWN}.get(source.direction,Vector2.RIGHT)
 		source.set_meta('v16_skill_motion',true);source.set_meta('v16_skill_until',_presentation_clock+.45)
-		hunt_overlay.afterimage(source,point,facing);break
+		if not _uses_frame_pilot(source,true):hunt_overlay.afterimage(source,point,facing)
+		break
 
 func visual_running() -> bool:
-	return is_instance_valid(game) and game.active_screen=='combat' and game.combat_running and not game._application_suspended and _visual_hitstop_remaining<=0 and not bool(game.get_meta('equipment_mail_paused',false)) and not preload('res://scripts/persistence/SaveSafety.gd').pending(game)
+	return presentation_visible and not presentation_suspended and is_instance_valid(game) and game.active_screen=='combat' and game.combat_running and not game._application_suspended and _visual_hitstop_remaining<=0 and not bool(game.get_meta('equipment_mail_paused',false)) and not preload('res://scripts/persistence/SaveSafety.gd').pending(game)
 
 func visual_speed() -> float:
 	return clampf(game.battle_speed,1,2) if is_finite(game.battle_speed) else 1.0
@@ -386,11 +423,13 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 	var canvas_offset: Vector2=source.offset if not source.centered else source.offset-texture.get_size()*.5
 	sprite.offset=Vector2(canvas_offset.x+texture.get_width()*.5,-canvas_offset.y-texture.get_height()*.5)
 	var motion:=Vector3.ZERO;var presentation_shape:=Vector2.ONE;var presentation_roll:=0.0
+	var frame_active: bool=_uses_frame_pilot(source,hero)
 	if not raid_mode:
 		var facing: Vector2={'left':Vector2.LEFT,'right':Vector2.RIGHT,'up':Vector2.UP,'down':Vector2.DOWN}.get(source.direction,Vector2.RIGHT)
 		if source.get_meta('v16_skill_until',-1.)<_presentation_clock:source.set_meta('v16_skill_motion',false)
-		var pose: Dictionary=MOTION.pose(source,hero,facing,_presentation_clock)
-		motion=pose.offset;presentation_shape=pose.shape;presentation_roll=pose.roll
+		if not frame_active:
+			var pose: Dictionary=MOTION.pose(source,hero,facing,_presentation_clock)
+			motion=pose.offset;presentation_shape=pose.shape;presentation_roll=pose.roll
 		if is_instance_valid(hunt_overlay) and game.combat_effects_enabled and visual_running():
 			var step:=int(source.visual_state_time/.22)
 			if source.state=='walk' and _last_footstep.get(id,-1)!=step:
@@ -402,13 +441,30 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 	sprite.modulate=source.modulate*Color(source.self_modulate.r,source.self_modulate.g,source.self_modulate.b,1)
 	sprite.visible=source.visible
 	sprite.scale=Vector3(presentation_shape.x,presentation_shape.y,1)
-	if hero:
+	var pilot=sprite.get_node_or_null('HuntFramePilot')
+	if frame_active:
+		if pilot==null:
+			pilot=FRAME_PILOT.new();sprite.add_child(pilot)
+			if not pilot.bind(source,hero,_frame_catalog):sprite.remove_child(pilot);pilot.free();pilot=null
+		if pilot!=null:
+			var pending: Dictionary=_frame_events.get(id,{})
+			if pending.has('release'):pilot.timeline.release(str(pending.release.action),float(pending.release.windup))
+			if pending.has('hit'):pilot.timeline.hit(pending.hit)
+			_frame_events.erase(id);pilot.show()
+			pilot.present(camera,height,sprite.modulate,_actor_delta,visual_running(),point,_frame_runtime(source,hero),_frame_dead(source,hero))
+			var old_skin=sprite.get_node_or_null('HeroSkeletalBillboard')
+			if old_skin!=null:old_skin.hide()
+			sprite.texture=null
+		else:frame_active=false
+	elif pilot!=null:pilot.hide()
+	if hero and not frame_active:
 		var rig: Node2D=source.get_node_or_null('PortraitHeroSkeletalRig')
 		if rig!=null:
 			var skinned=sprite.get_node_or_null('HeroSkeletalBillboard')
 			if skinned==null:
 				skinned=HERO_SKIN.new();sprite.add_child(skinned);skinned.bind(rig)
 				skinned.set_environment_lighting(not raid_mode)
+			skinned.show()
 			skinned.sync(camera,sprite.pixel_size,sprite.modulate)
 			if not raid_mode:skinned.basis=skinned.basis.rotated(camera.global_basis.z,presentation_roll)
 			# The Sprite3D remains the positioning/shadow API, but only the skin draws.

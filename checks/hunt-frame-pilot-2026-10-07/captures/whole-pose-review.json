@@ -1,0 +1,145 @@
+{
+  "captures": [
+    {
+      "bones": 0,
+      "frame": 0,
+      "full_painted_bodies": 2,
+      "name": "attack-00",
+      "not_live_combat": true,
+      "sheet": "attack"
+    },
+    {
+      "bones": 0,
+      "frame": 1,
+      "full_painted_bodies": 2,
+      "name": "attack-01",
+      "not_live_combat": true,
+      "sheet": "attack"
+    },
+    {
+      "bones": 0,
+      "frame": 2,
+      "full_painted_bodies": 2,
+      "name": "attack-02",
+      "not_live_combat": true,
+      "sheet": "attack"
+    },
+    {
+      "bones": 0,
+      "frame": 3,
+      "full_painted_bodies": 2,
+      "name": "attack-03",
+      "not_live_combat": true,
+      "sheet": "attack"
+    },
+    {
+      "bones": 0,
+      "frame": 4,
+      "full_painted_bodies": 2,
+      "name": "attack-04",
+      "not_live_combat": true,
+      "sheet": "attack"
+    },
+    {
+      "bones": 0,
+      "frame": 5,
+      "full_painted_bodies": 2,
+      "name": "attack-05",
+      "not_live_combat": true,
+      "sheet": "attack"
+    },
+    {
+      "bones": 0,
+      "frame": 6,
+      "full_painted_bodies": 2,
+      "name": "attack-06",
+      "not_live_combat": true,
+      "sheet": "attack"
+    },
+    {
+      "bones": 0,
+      "frame": 7,
+      "full_painted_bodies": 2,
+      "name": "attack-07",
+      "not_live_combat": true,
+      "sheet": "attack"
+    },
+    {
+      "bones": 0,
+      "frame": 0,
+      "full_painted_bodies": 2,
+      "name": "motion-00",
+      "not_live_combat": true,
+      "sheet": "motion"
+    },
+    {
+      "bones": 0,
+      "frame": 1,
+      "full_painted_bodies": 2,
+      "name": "motion-01",
+      "not_live_combat": true,
+      "sheet": "motion"
+    },
+    {
+      "bones": 0,
+      "frame": 2,
+      "full_painted_bodies": 2,
+      "name": "motion-02",
+      "not_live_combat": true,
+      "sheet": "motion"
+    },
+    {
+      "bones": 0,
+      "frame": 3,
+      "full_painted_bodies": 2,
+      "name": "motion-03",
+      "not_live_combat": true,
+      "sheet": "motion"
+    },
+    {
+      "bones": 0,
+      "frame": 4,
+      "full_painted_bodies": 2,
+      "name": "motion-04",
+      "not_live_combat": true,
+      "sheet": "motion"
+    },
+    {
+      "bones": 0,
+      "frame": 5,
+      "full_painted_bodies": 2,
+      "name": "motion-05",
+      "not_live_combat": true,
+      "sheet": "motion"
+    },
+    {
+      "bones": 0,
+      "frame": 6,
+      "full_painted_bodies": 2,
+      "name": "motion-06",
+      "not_live_combat": true,
+      "sheet": "motion"
+    },
+    {
+      "bones": 0,
+      "frame": 7,
+      "full_painted_bodies": 2,
+      "name": "motion-07",
+      "not_live_combat": true,
+      "sheet": "motion"
+    },
+    {
+      "bones": 0,
+      "frame": 3,
+      "full_painted_bodies": 2,
+      "name": "attack-mirrored",
+      "not_live_combat": true,
+      "sheet": "attack"
+    }
+  ],
+  "fps": 24,
+  "no_skeletal_articulation": true,
+  "renderer": "mobile",
+  "scene": "full-pose inspection",
+  "slow_preview": true
+}

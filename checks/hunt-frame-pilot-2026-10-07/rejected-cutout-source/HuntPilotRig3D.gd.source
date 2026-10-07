@@ -1,0 +1,197 @@
+extends "res://scripts/art/HeroPartsRig3D.gd"
+## Scoped live pilot: Leonhardt's fitted independent paintings and one original
+## goblin cutout. Other heroes and raid renderers keep their existing path.
+const TIMELINE = preload("res://scripts/art/HuntPilotTimeline.gd")
+const GOBLIN_DEFINITION := "res://assets/art-direction/hunt-action-pilot/goblin/parts.json"
+var timeline := TIMELINE.new()
+var pilot_sample: Dictionary = {"action":"idle", "time":0.0, "duration":.6, "sequence":0}
+var _distance := 0.0
+var _previous_point := Vector2.ZERO
+var _has_point := false
+var _blade_samples: Array[Dictionary] = []
+
+static func supports(actor: AnimatedSprite2D, hero: bool) -> bool:
+	return str(actor.get("atlas_key")) == "leonhardt" if hero else str(actor.get("pixel_monster_name")) == "초원 고블린"
+
+func bind_pilot(actor: AnimatedSprite2D, hero: bool) -> bool:
+	if not supports(actor, hero): return false
+	if hero:
+		# Explicit one-hero pilot. Never opens the catalog's review gate globally.
+		var fitted := CATALOG.load_definition("leonhardt", true)
+		if fitted.is_empty() or not bind(actor, fitted, true): return false
+		if not _replace_front_head(): return false
+	else:
+		if not _bind_goblin(actor): return false
+	name = "HuntActionPilot"
+	motion_profile.motion_provenance = "Independent cutout hinges, simulation anticipation and explicit committed-release events"
+	return true
+
+func _replace_front_head() -> bool:
+	var parsed=JSON.parse_string(FileAccess.get_file_as_string('res://assets/art-direction/hunt-action-pilot/leonhardt/front-head.json'))
+	if not parsed is Dictionary:return false
+	var texture=load(str(parsed.atlas)) as Texture2D
+	if texture==null:return false
+	var image:=texture.get_image()
+	if image==null:return false
+	if image.is_compressed():image.decompress()
+	if image.detect_alpha()==Image.ALPHA_NONE:return false
+	var old: MeshInstance3D=parts.head
+	_materials.erase(old.material_override);old.get_parent().remove_child(old);old.free()
+	var head:=_make_part(parsed,texture);joints.Head.add_child(head);parts.head=head
+	_support_points.head=_silhouette_support(parsed,image);_authored_part_depths.head=head.position.z
+	for i in definition.parts.size():
+		if str(definition.parts[i].id)=='head':definition.parts[i]=parsed;break
+	# Complete new hair/neck are painted together. The old tiny rear hair would
+	# create a second neck edge beneath the straight frontal replacement.
+	parts.hair_back.hide()
+	return true
+
+func _bind_goblin(actor: AnimatedSprite2D) -> bool:
+	_clear()
+	var parsed = JSON.parse_string(FileAccess.get_file_as_string(GOBLIN_DEFINITION))
+	if not parsed is Dictionary or str(parsed.get("hero_id", "")) != "goblin": return false
+	definition = parsed
+	if not CATALOG._validate_joint_rest(definition.get('joint_rest',{})).is_empty():return false
+	var texture := load(str(definition.atlas)) as Texture2D
+	if texture == null or definition.parts.size() != 16: return false
+	var image := texture.get_image()
+	if image == null: return false
+	if image.is_compressed(): image.decompress()
+	if image.detect_alpha() == Image.ALPHA_NONE: return false
+	source = actor
+	validation = {"valid":true, "reviewed":false, "independent_texture_regions":16}
+	motion_profile = {"hero_id":"goblin", "side":-1, "cadence":1.0, "cloth":0.0, "power":1.0, "stride_distance":.95, "motion_provenance":""}
+	var rest := CATALOG.joint_positions("goblin", definition)
+	for key in CATALOG.BONE_NAMES:
+		var joint := Node3D.new(); joint.name = "Joint" + key; joint.set_meta("bone_key", key)
+		var parent: String = rest[key].parent
+		var point: Vector2 = rest[key].position
+		var relative: Vector2 = point - rest[parent].position if not parent.is_empty() else point
+		joint.position = Vector3(relative.x, -relative.y, 0.0)
+		_rest_positions[key] = joint.position
+		if parent.is_empty(): add_child(joint)
+		else: joints[parent].add_child(joint)
+		joints[key] = joint
+	for entry: Dictionary in definition.parts:
+		var rect := Rect2i(entry.region[0], entry.region[1], entry.region[2], entry.region[3])
+		if not Rect2i(Vector2i.ZERO, image.get_size()).encloses(rect): _clear(); return false
+		if str(entry.id) == "weapon":
+			var mount := _equipment_mount(entry)
+			joints.Weapon.position += mount
+			joints.Weapon.set_meta("grip_mount_local", mount)
+			_rest_positions.Weapon = joints.Weapon.position
+		var part := _make_part(entry, texture)
+		joints[str(entry.bone)].add_child(part); parts[str(entry.id)] = part
+		_authored_part_depths[str(entry.id)] = part.position.z
+		_support_points[str(entry.id)] = _silhouette_support(entry, image)
+	_ready_parts = true
+	return true
+
+func present(camera: Camera3D, height: float, tint: Color, delta: float, active: bool, point: Vector2, runtime: Dictionary, dead: bool) -> void:
+	var dt := maxf(delta, 0.0) * source.speed_scale if active else 0.0
+	if _has_point and active:
+		var movement := point - _previous_point
+		if movement.length() < 1.0: _distance += movement.length()
+	_previous_point = point; _has_point = true
+	pilot_sample = timeline.sample(runtime, source.state == "walk", dead, dt, active)
+	# Reconcile a newly committed release even on the first critical hit-stop
+	# frame. Subsequent paused frames freeze the exact assembled pose.
+	if bool(pilot_sample.get("event", false)): _current_pose.clear()
+	sync(camera, height, tint, delta, active, Vector2.ZERO, _distance)
+	if active:
+		for item in _blade_samples: item.age += dt
+		while not _blade_samples.is_empty() and float(_blade_samples[0].age) > .08: _blade_samples.pop_front()
+	if active or bool(pilot_sample.get("event", false)):
+		var u := action_time / maxf(float(pilot_sample.duration), .001)
+		if _current_action in ["attack_1", "attack_2"] and u >= .28 and u <= .70:
+			var endpoints := blade_endpoints()
+			if _blade_samples.is_empty() or (_blade_samples[-1].tip as Vector3).distance_to(endpoints.tip) > .006:
+				_blade_samples.append({"tip":endpoints.tip, "base":endpoints.base, "age":0.0})
+				if _blade_samples.size() > 6: _blade_samples.pop_front()
+
+func _source_sample() -> Dictionary: return pilot_sample
+
+func _adapt_pose(action: String, time: float, action_duration: float, velocity: Vector2, real_distance: float) -> Dictionary:
+	var q: Dictionary
+	if str(definition.hero_id) == "leonhardt":
+		q = super._adapt_pose(action, time, action_duration, velocity, real_distance)
+		if action in ["attack_1", "attack_2", "skill", "ultimate"]:
+			# The leading arm supplies the arc, not a whole-body squash/lunge.
+			q.root_x = 0.0; q.root_y = 0.0
+			for side in ["Left", "Right"]:
+				q[side + "Foot"] = -float(q.get("Pelvis", 0.0)) - float(q.get(side+"Thigh", 0.0)) - float(q.get(side+"Shin", 0.0))
+			q.Torso = float(q.get("Torso",0.0))*.40
+			q.Chest = float(q.get("Chest",0.0))*.40
+			q.Pelvis = float(q.get("Pelvis",0.0))*.50
+			q._weapon_angle = _pose_art_angle("Weapon",q,-float(parts.weapon.rotation.z))
+			q._offhand_angle = _pose_art_angle("Offhand",q,-float(parts.offhand.rotation.z))
+	else:
+		q = _goblin_pose(action, time, action_duration)
+	var age := float(pilot_sample.get("hit_age", -1.0))
+	if action != "death" and age >= 0.0 and age < .22:
+		# Actual incoming direction, projected into the camera-facing drawing.
+		var response := (1.0 - smoothstep(.025, .22, age)) * smoothstep(0.0, .025, age + .012)
+		var direction: Vector2 = pilot_sample.get("recoil", Vector2.ZERO)
+		var facing := -1.0 if source.flip_h else 1.0
+		q.root_x = float(q.get("root_x", 0.0)) + direction.x * facing * response * .028
+		q.Torso = float(q.get("Torso", 0.0)) - direction.x * facing * response * .07
+		q.Head = clampf(float(q.get("Head", 0.0)) + direction.x * facing * response * .04, -.07, .07)
+	if str(definition.hero_id)=="leonhardt" and action!="death":
+		# Keep the front-facing portrait level. The short neck turns about its
+		# collar seat, compensating the small torso lean instead of tilting the face.
+		var parent_angle:=float(q.get("Root",0.0))+float(q.get("Pelvis",0.0))+float(q.get("Torso",0.0))+float(q.get("Chest",0.0))
+		# A simultaneous recoil must not exceed the short neck's compensation.
+		var safe_angle:=clampf(parent_angle,-.095,.095)
+		q.Torso=float(q.get('Torso',0.0))-(parent_angle-safe_angle)
+		q.Head=-safe_angle
+		q._weapon_angle=_pose_art_angle('Weapon',q,-float(parts.weapon.rotation.z))
+		q._offhand_angle=_pose_art_angle('Offhand',q,-float(parts.offhand.rotation.z))
+	return q
+
+func _goblin_pose(action: String, time: float, action_duration: float) -> Dictionary:
+	var q: Dictionary = {}
+	var u := clampf(time / maxf(.001, action_duration), 0.0, 1.0)
+	var breathe := sin(_breath_phase)
+	if action == "idle":
+		q.Torso = breathe * .009; q.Head = -breathe * .009; q.chest_lift = breathe * .0015
+	elif action in ["walk", "run"]:
+		var step := sin(gait_phase)
+		q.LeftThigh = step * .26; q.RightThigh = -step * .26
+		q.LeftShin = -maxf(-step,0.0) * .32; q.RightShin = maxf(step,0.0) * .32
+		q.LeftFoot = -float(q.LeftThigh)-float(q.LeftShin)
+		q.RightFoot = -float(q.RightThigh)-float(q.RightShin)
+		q.LeftUpperArm = -step * .12; q.RightUpperArm = step * .08
+		q.Torso = -step * .025; q.Head = step * .015
+	elif action in ["attack_1", "attack_2"]:
+		var wind := smoothstep(0.0,.22,u) * (1.0-smoothstep(.26,.44,u))
+		var cut := smoothstep(.26,.44,u) * (1.0-smoothstep(.60,1.0,u))
+		q.RightUpperArm = -1.20 * wind + .62 * cut
+		q.RightForearm = -.45 * wind + .16 * cut
+		q.RightHand = -.06 * wind + .08 * cut
+		q.LeftUpperArm = .12 * wind - .22 * cut; q.LeftForearm = -.10 * cut
+		q.Torso = -.05 * wind + .08 * cut; q.Chest = -.015 * wind + .03 * cut
+		q.Head = -float(q.Torso)-float(q.Chest)
+	elif action == "death":
+		var fall := smoothstep(0.0,.65,time)
+		q.Root = -.90 * fall; q.Torso = .15 * fall; q.Head = -.05 * fall
+		q.RightUpperArm = -.30 * fall; q.RightForearm = -.20 * fall
+		q.LeftUpperArm = .25 * fall; q.LeftShin = -.35 * fall
+	# A single hand hierarchy carries the painted handle and club together.
+	q._weapon_angle = _pose_art_angle("Weapon", q, -float(parts.weapon.rotation.z))
+	q.Head = clampf(float(q.get("Head",0.0)), -.07,.07)
+	return q
+
+func blade_endpoints() -> Dictionary:
+	var weapon: MeshInstance3D = parts.weapon
+	var points: Array = definition.get("blade_endpoints", [[.70,.22],[.12,.93]])
+	if str(definition.hero_id) == "leonhardt": points = [[.76,.26],[.19,.97]]
+	var entry: Dictionary = {}
+	for component: Dictionary in definition.parts:
+		if str(component.id) == "weapon": entry = component; break
+	var size := Vector2(entry.display_size[0],entry.display_size[1])
+	var anchor := Vector2(entry.anchor[0],entry.anchor[1])
+	var base := (Vector2(points[0][0],points[0][1])-anchor)*size
+	var tip := (Vector2(points[1][0],points[1][1])-anchor)*size
+	return {"base":weapon.global_transform*Vector3(base.x,-base.y,0), "tip":weapon.global_transform*Vector3(tip.x,-tip.y,0)}
+
+func trail_samples() -> Array[Dictionary]: return _blade_samples

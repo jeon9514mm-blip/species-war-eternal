@@ -2962,6 +2962,13 @@ func _emit_basic_attack_fx(hero_id: String, target_index: int) -> void:
 		return
 	combat_fx.projectile(start, finish, color, "•", 0.18, false)
 
+func _notify_hunt_frame_release(index: int, hero: bool, action: String, windup: float) -> void:
+	if active_screen != "combat" or challenge_session != null: return
+	var terrain: Control = combat_labels.get("terrain")
+	var sources: Array = hero_map_sprites if hero else enemy_wave_sprites
+	if index >= 0 and index < sources.size() and is_instance_valid(terrain) and terrain.has_method("frame_release"):
+		terrain.frame_release(sources[index], hero, action, windup)
+
 func _hero_skill_fx_position(hero_id: String) -> Vector2:
 	if active_screen == "raid":
 		var view := content_root.get_node_or_null("PortraitRaidView") if is_instance_valid(content_root) else null
@@ -3079,6 +3086,8 @@ func _damage_enemy(enemy_index: int, damage: int, source_index := 0) -> int:
 		if active_screen == "combat" and challenge_session == null and is_instance_valid(terrain) and terrain.has_method("hunt_hit"):
 			var source_id := str(deployed_heroes[source_index].get("id", "")) if source_index >= 0 and source_index < deployed_heroes.size() else ""
 			terrain.hunt_hit(roaming_hunt.enemy_position(enemy_index), _hero_field_position(source_id), GOLD if critical else _hero_accent_color(source_id), critical)
+			if actual > 0 and terrain.has_method("frame_hit"):
+				terrain.frame_hit(sprite, false, roaming_hunt.enemy_position(enemy_index) - _hero_field_position(source_id))
 		else:
 			combat_fx.impact(sprite.position - Vector2(0, 12), GOLD if critical else RED, 24.0 if critical else 16.0)
 		if critical:
@@ -3173,6 +3182,10 @@ func _incoming_damage_to_hero(hero_id: String, base_damage: int, enemy_index: in
 			sprite.play_death()
 		elif received>0:
 			sprite.play_hit()
+		if received > 0 and active_screen == "combat" and challenge_session == null and enemy_index >= 0 and enemy_index < enemy_wave.size():
+			var terrain: Control = combat_labels.get("terrain")
+			if is_instance_valid(terrain) and terrain.has_method("frame_hit"):
+				terrain.frame_hit(sprite, true, _hero_field_position(hero_id) - roaming_hunt.enemy_position(enemy_index))
 	_sync_party_hp_from_heroes()
 	if received > 0:
 		var counter := HERO_KITS.event(self, hero_id, "hit", enemy_index)
@@ -4588,6 +4601,7 @@ func _advance_hunt_attacks(delta: float, support_actors: Array[String] = []) -> 
 					# Out of range is an actor waiting for movement, not a finished wave.
 					runtime["attack_remaining"] = 0.0
 					continue
+				_notify_hunt_frame_release(index, true, "ultimate" if use_ultimate else ("skill" if use_skill or use_secondary else "attack_1"), float(runtime.get("attack_windup_duration", .15)))
 				if use_ultimate:
 					_cast_combat_ultimate(hero_id, target_index)
 				elif use_secondary:
@@ -4656,6 +4670,7 @@ func _advance_hunt_attacks(delta: float, support_actors: Array[String] = []) -> 
 			var intent: Dictionary = preload("res://scripts/hunting/HuntAttackDirector.gd").advance_enemy(self, enemy_index, delta)
 			if not bool(intent.get("ready", false)): continue
 			attack_target = str(intent.get("target", ""))
+			_notify_hunt_frame_release(enemy_index, false, "attack_1", .22)
 		else:
 			attack_target = _select_hero_target_for_enemy(enemy_index, true)
 			if attack_target.is_empty() and enemy_archetype != "support": continue

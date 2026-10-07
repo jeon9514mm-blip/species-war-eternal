@@ -1,0 +1,32 @@
+{
+  "id": "head",
+  "bone": "Head",
+  "region": [
+    224,
+    45,
+    912,
+    1005
+  ],
+  "anchor": [
+    0.5,
+    0.99
+  ],
+  "display_size": [
+    0.2177910447761194,
+    0.24
+  ],
+  "rotation": 0,
+  "offset": [
+    0,
+    0.01
+  ],
+  "z_order": 14,
+  "neck_seam": [
+    0.28,
+    0.975,
+    0.72,
+    1.0
+  ],
+  "atlas": "res://assets/art-direction/hunt-action-pilot/leonhardt/front-head.png",
+  "provenance": "Original front-facing head replacement generated against Leonhardt identity, 2026-10-07; image pixel data unchanged; short neck seated under collar."
+}
