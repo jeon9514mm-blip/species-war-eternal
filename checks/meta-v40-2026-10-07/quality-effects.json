@@ -1,0 +1,19 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 1,
+  "total": 1,
+  "results": [
+    {
+      "test": "QualityV40SmokeTest.gd",
+      "passed": true,
+      "seconds": 10.48,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nquality_v40 checks=26 failures=[]\n"
+    }
+  ]
+}

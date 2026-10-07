@@ -1,0 +1,55 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 6,
+  "total": 7,
+  "results": [
+    {
+      "test": "CombatReadabilitySmokeTest.gd",
+      "passed": false,
+      "seconds": 10.64,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: dense hits still show several independent targets\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] run (res://tests/regression/CombatReadabilitySmokeTest.gd:33)\nCOMBAT_READABILITY checks=71 failures=[\"dense hits still show several independent targets\"]\n"
+    },
+    {
+      "test": "FullBodyRolloutSmokeTest.gd",
+      "passed": true,
+      "seconds": 19.11,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nfull_body_rollout checks=1143 failures=[]\n"
+    },
+    {
+      "test": "HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.28,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=48 failures=[]\n"
+    },
+    {
+      "test": "HuntFramePilotSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.7,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_frame_pilot checks=179 failures=[]\n"
+    },
+    {
+      "test": "QualityV40SmokeTest.gd",
+      "passed": true,
+      "seconds": 10.09,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nquality_v40 checks=26 failures=[]\n"
+    },
+    {
+      "test": "V16PresentationIntegrationSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.88,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV16_INTEGRATION checks=77 failures=[]\n"
+    },
+    {
+      "test": "V8364CombatViewSmokeTest.gd",
+      "passed": true,
+      "seconds": 18.56,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8364_combat_view checks=836 failures=[]\n"
+    }
+  ]
+}

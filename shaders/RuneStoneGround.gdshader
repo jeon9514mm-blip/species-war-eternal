@@ -1,24 +1,27 @@
 shader_type spatial;
 render_mode cull_disabled, diffuse_burley, specular_schlick_ggx;
-uniform sampler2D stone_art : source_color, filter_linear_mipmap, repeat_enable;
-uniform sampler2D stone_detail : filter_linear_mipmap, repeat_enable;
+uniform sampler2D stone_art : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D stone_detail : filter_linear_mipmap_anisotropic, repeat_enable;
 uniform float detail_strength = 0.14;
 uniform vec4 stone_tint : source_color = vec4(1.0);
 uniform vec4 rune_color : source_color = vec4(0.18, 0.75, 1.0, 1.0);
 uniform float tiling = 5.5;
 uniform float macro_variation = 0.015;
 uniform float crack_depth = 0.65;
-uniform float moss_amount = 0.64;
-uniform float puddle_coverage = 0.52;
-uniform float wetness = 0.74;
-uniform float rune_power = 5.2;
+uniform float moss_amount = 0.18;
+uniform float puddle_coverage = 0.25;
+uniform float wetness = 0.28;
+uniform float rune_power = 1.25;
 uniform float edge_wear = 0.48;
 uniform float visual_time = 0.0;
+uniform vec4 moss_rune : source_color = vec4(.658,.721,.619,1.0);
+uniform vec4 bronze_rune : source_color = vec4(.768,.643,.517,1.0);
+uniform float rune_rotation_speed = .15;
 // Meta v33 detail adapted to the real stone painting. Screen derivatives stop
 // microscopic grain from aliasing; no fabricated 32K maps or virtual geometry.
 uniform float micro_detail = 0.014;
 uniform vec2 rune_center = vec2(16.0, 10.0);
-uniform float rune_radius = 6.2;
+uniform float rune_radius = 3.8;
 varying vec3 world_position;
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453); }
 float noise(vec2 p) {
@@ -42,11 +45,12 @@ void fragment() {
     vec2 offset_b=vec2(hash(vec2(stone_variant+1.0,3.0)),hash(vec2(stone_variant+1.0,11.0)));
     vec3 paint=mix(texture(stone_art,uv+offset_a).rgb,texture(stone_art,uv+offset_b).rgb,smoothstep(0.2,0.8,fract(variation)));
     float painted_luma=dot(paint,vec3(0.2126,0.7152,0.0722));
-    paint=mix(vec3(painted_luma),paint,0.85)*1.10;
+    paint=mix(vec3(painted_luma),paint,0.95)*1.10;
     float value=dot(paint,vec3(0.2126,0.7152,0.0722));
     float crack=1.0-smoothstep(0.07,0.22,value);
     float macro=noise(world*macro_variation);
-    vec3 stone=paint*stone_tint.rgb*mix(0.46,0.56,macro);
+    // Lower floor values separate the bright original paintings from the stone.
+    vec3 stone=paint*stone_tint.rgb*mix(0.26,0.40,macro);
     stone*=mix(1.0,0.45,crack*crack_depth);
     float low=1.0-smoothstep(-0.02,0.015,world_position.y);
     float moss=crack*low*(0.4+noise(world*0.6)*0.6)*moss_amount;
@@ -69,8 +73,8 @@ void fragment() {
     stone*=1.0+detail*detail_strength*detail_lod;
     float radius=distance_to_center/rune_radius;
     float rings=band(radius,0.90,0.009)+band(radius,0.70,0.007);
-    float angle=atan(world.y-rune_center.y,world.x-rune_center.x);
-    float sector=(angle+3.14159265)*24.0/6.2831853;
+    float angle=atan(world.y-rune_center.y,world.x-rune_center.x)+visual_time*rune_rotation_speed;
+    float sector=(angle+3.14159265)*8.0/6.2831853;
     float column=fract(sector)-0.5;
     float variant=hash(vec2(floor(sector),8.0));
     float stem=(1.0-smoothstep(0.030,0.055,abs(column)))*band(radius,0.80,0.036);
@@ -80,12 +84,17 @@ void fragment() {
     float halo=(1.0-smoothstep(0.008,0.055,abs(radius-0.9)))+(1.0-smoothstep(0.006,0.04,abs(radius-0.7)));
     float pulse=sin(visual_time*1.65+world.x*0.07)*0.22+0.78;
     float flicker=0.97+0.03*sin(visual_time*7.3+sector);
-    ALBEDO=stone+rune_color.rgb*halo*0.055;
-    ROUGHNESS=mix(mix(0.88,0.96,crack),0.12,clamp(puddle/0.74,0.0,1.0));
-    METALLIC=puddle*0.18;
+    vec3 ring_color=mix(moss_rune.rgb,bronze_rune.rgb,.5+.5*sin(angle*8.0));
+    ring_color=mix(ring_color,rune_color.rgb,.12);
+    // Colored inlay carries the design; restrained emission avoids white bloom.
+    ALBEDO=mix(stone,ring_color*.60,clamp(rings+glyph,0.0,1.0))+ring_color*halo*.015;
+    ROUGHNESS=mix(mix(.58,.82,crack),.28,clamp(puddle/.40,0.0,1.0));
+    METALLIC=clamp(puddle*.12+rings*.32,0.0,.40);
     AO=clamp(1.0-crack*crack_depth*.25,0.65,1.0);
-    float flow=fract(sector/24.0*1.6+visual_time*0.14);
+    float flow=fract(sector/8.0*1.6+visual_time*.08);
     float sweep=smoothstep(0.0,0.07,flow)*(1.0-smoothstep(0.93,1.0,flow));
-    EMISSION=rune_color.rgb*(rings+glyph*0.72+halo*0.045)*rune_power*pulse*flicker;
-    EMISSION+=rune_color.rgb*rings*sweep*0.35+rune_color.rgb*puddle*rings*0.12;
+    float spark_angle=fract(sector+visual_time*.11)-.5;
+    float spark=(1.0-smoothstep(.012,.045,abs(spark_angle)))*band(radius,.90+.028*sin(sector+visual_time),.009);
+    EMISSION=ring_color*(rings*.22+glyph*.30+halo*.018+spark*.35)*rune_power*pulse*flicker;
+    EMISSION+=bronze_rune.rgb*rings*sweep*.12;
 }

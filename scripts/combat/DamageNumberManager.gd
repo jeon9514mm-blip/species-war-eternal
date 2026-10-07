@@ -5,9 +5,10 @@ const STYLE = preload('res://scripts/combat/CombatNumberStyle.gd')
 const CAPACITY = 40
 var pool: Array[Label] = []
 static func placement(origin: Vector2, extent: Vector2, occupied: Array[Rect2], bounds: Rect2, lane: int) -> Rect2:
-	var reserve_size := extent + Vector2(12, 32)
+	var reserve_size := extent * 1.12 + Vector2(12, 32)
 	for row in 6:
-		for offset in [0, -1, 1, -2, 2]:
+		# Wider fallback lanes keep simultaneous targets visible with the new face.
+		for offset in [0, -1, 1, -2, 2, -3, 3, -4, 4]:
 			var column: int = int(offset) * (-1 if lane % 2 == 0 else 1)
 			var center := origin + Vector2(column * (reserve_size.x + 6), -row * (reserve_size.y + 4))
 			var rect := Rect2(center - reserve_size * .5, reserve_size)

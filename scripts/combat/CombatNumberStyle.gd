@@ -1,9 +1,9 @@
 extends RefCounted
 ## Exact amounts and a bundled numeral face shared by hunt and raid.
-const FONT = preload('res://assets/fonts/combat/BarlowCondensed-BlackItalic.ttf')
+const FONT = preload('res://assets/fonts/combat/outfit/Outfit-ExtraBold.ttf')
 const PALETTES := {
-	'damage': [Color('#fff9e9'), Color('#dbdec8')],
-	'critical': [Color('#fffbdc'), Color('#ffb638')],
+	'damage': [Color('#f4eee0'), Color('#d8d5cc')],
+	'critical': [Color('#ffe9bc'), Color('#c4a484')],
 	'incoming': [Color('#fff1ea'), Color('#ff777b')],
 	'heal': [Color('#effff5'), Color('#72eac3')],
 }
@@ -27,8 +27,8 @@ static func parse(message: String) -> Dictionary:
 static func caption(amount: int, kind: String) -> String:
 	return ('+' if kind == 'heal' else '-' if kind == 'incoming' else '') + digits(amount)
 static func font_size(kind: String) -> int:
-	return 36 if kind == 'critical' else 28 if kind == 'heal' else 26
+	return 32 if kind == 'critical' else 28
 static func extent(message: String, kind: String) -> Vector2:
-	return Vector2(maxf(48, FONT.get_string_size(message, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size(kind)).x + 18), 54 if kind == 'critical' else 40)
+	return Vector2(maxf(48, FONT.get_string_size(message, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size(kind)).x + 18), 58 if kind == 'critical' else 44)
 static func priority(kind: String) -> int:
 	return 3 if kind == 'critical' else 2 if kind == 'heal' else 1 if kind == 'incoming' else 0

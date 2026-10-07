@@ -69,6 +69,9 @@ func apply_render_profile() -> void:
 		_render_profile=key
 		viewport_3d.msaa_3d=Viewport.MSAA_DISABLED if battery else (Viewport.MSAA_2X if raid_mode else Viewport.MSAA_4X)
 		viewport_3d.positional_shadow_atlas_size=256 if battery else (1024 if raid_mode else 2048)
+		viewport_3d.scaling_3d_mode=Viewport.SCALING_3D_MODE_BILINEAR
+		viewport_3d.scaling_3d_scale=1.0 if battery else 1.5
+		viewport_3d.anisotropic_filtering_level=Viewport.ANISOTROPY_4X if battery else Viewport.ANISOTROPY_16X
 		if is_instance_valid(_render_container):_render_container.stretch_shrink=2 if battery else 1
 		for node in map_root.find_children('*','DirectionalLight3D',true,false):
 			if not _render_defaults.has(node):_render_defaults[node]=node.shadow_enabled
@@ -131,17 +134,17 @@ func _create_generated_map_root() -> Node3D:
 	environment.background_color=Color('#29313a');environment.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR
 	var palette: Dictionary=FIELD_PALETTE.lighting(zone_id)
 	environment.ambient_light_color=palette.ambient
-	environment.ambient_light_energy=.65;environment.reflected_light_source=Environment.REFLECTION_SOURCE_SKY
+	environment.ambient_light_energy=.48;environment.reflected_light_source=Environment.REFLECTION_SOURCE_SKY
 	var reflection_sky:=Sky.new();var sky_paint:=ProceduralSkyMaterial.new()
 	sky_paint.sky_top_color=Color('#7894ae');sky_paint.sky_horizon_color=Color('#d1dae1')
 	sky_paint.ground_bottom_color=Color('#323c43');sky_paint.ground_horizon_color=Color('#a6b6bb')
 	reflection_sky.sky_material=sky_paint;environment.sky=reflection_sky
-	environment.tonemap_mode=Environment.TONE_MAPPER_ACES;environment.tonemap_exposure=1.12
+	environment.tonemap_mode=Environment.TONE_MAPPER_ACES;environment.tonemap_exposure=1.02
 	environment.glow_enabled=RenderingServer.get_current_rendering_method()=='forward_plus'
-	environment.glow_intensity=.65;environment.glow_bloom=.10
+	environment.glow_intensity=.35;environment.glow_bloom=.06
 	environment_node.environment=environment;arena_root.add_child(environment_node)
 	var sun:=DirectionalLight3D.new();sun.name='AutoMapSun';sun.rotation_degrees=Vector3(-55,-28,0)
-	sun.light_energy=1.10;sun.light_color=palette.sun
+	sun.light_energy=.85;sun.light_color=palette.sun
 	sun.shadow_enabled=true;sun.directional_shadow_mode=DirectionalLight3D.SHADOW_PARALLEL_2_SPLITS
 	arena_root.add_child(sun);viewport_3d.add_child(root)
 	return root
@@ -310,9 +313,13 @@ func _process(delta: float) -> void:
 
 func hunt_hit(point: Vector2,source: Vector2,tint: Color,critical: bool) -> void:
 	if is_instance_valid(hunt_overlay):
-		hunt_overlay.hit(point,source,tint,critical)
+		var height:=ENEMY_HEIGHT
+		for index in mini(game.enemy_wave.size(),game.enemy_wave_sprites.size()):
+			if game.roaming_hunt.enemy_position(index).distance_squared_to(point)<.36:
+				height=_actor_height(game.enemy_wave_sprites[index],false);break
+		hunt_overlay.hit(point,source,tint,critical,height)
 		if critical and game.combat_effects_enabled:
-			_visual_hitstop_remaining=.045
+			_visual_hitstop_remaining=.06
 			for actor in game.hero_map_sprites:
 				if is_instance_valid(actor) and actor.position.distance_to(position+project_world(source))<30:
 					if not _uses_frame_pilot(actor,true):hunt_overlay.afterimage(actor,source,(point-source).normalized())
@@ -544,6 +551,10 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 			if pending.has('hit'):pilot.timeline.hit(pending.hit)
 			_frame_events.erase(id);pilot.show()
 			pilot.fur_layers=0 if str(game.presentation_options.get('performance','balanced'))=='battery' else (8 if RenderingServer.get_current_rendering_method()=='forward_plus' else 4)
+			pilot.effects_enabled=game.combat_effects_enabled and str(game.presentation_options.get('performance','balanced'))!='battery'
+			# The alpha-clipped whole painting casts into the real hunting floor.
+			# Raid backdrops are 2D paintings; battery retains only contact shadows.
+			pilot.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_ON if pilot.effects_enabled and not raid_mode else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			pilot.present(camera,height,sprite.modulate,_actor_delta,visual_running(),point,_frame_runtime(source,hero),_frame_dead(source,hero))
 			var old_skin=sprite.get_node_or_null('HeroSkeletalBillboard')
 			if old_skin!=null:old_skin.hide()
@@ -571,7 +582,8 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 	var shadow: MeshInstance3D=sprite.get_node('ContactShadow');shadow.position=Vector3(0,-.02,0)-motion
 	shadow.visible=source.modulate.a>.15
 	if not raid_mode:
-		var lift_scale:=1.0-clampf(motion.y*3.0,0,.6)
+		var breathing_lift: float=pilot.position.length() if frame_active and pilot!=null else motion.y
+		var lift_scale:=1.0-clampf(breathing_lift*3.0,0,.6)
 		shadow.scale=Vector3(lift_scale/presentation_shape.x,1/presentation_shape.y,lift_scale)
 	var crowd: float=_body_scales.get(id,1.0)
 	sprite.get_node('TeamFootRing').scale=Vector3(crowd/presentation_shape.x,crowd/presentation_shape.y,crowd)

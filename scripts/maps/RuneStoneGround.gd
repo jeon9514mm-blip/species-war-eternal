@@ -20,6 +20,9 @@ func _ready() -> void:
 	var palette: Dictionary=ART.stone_palette(selected_zone)
 	stone_material.set_shader_parameter('stone_tint',palette.stone)
 	stone_material.set_shader_parameter('rune_color',palette.rune)
+	# Color parameters perform the sRGB-to-linear conversion for lit 3D ink.
+	stone_material.set_shader_parameter('moss_rune',Color('#a8b89e'))
+	stone_material.set_shader_parameter('bronze_rune',Color('#c4a484'))
 	surface.material_override=stone_material;add_child(surface)
 	surface.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	process_priority=101

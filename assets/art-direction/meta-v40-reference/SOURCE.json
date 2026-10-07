@@ -1,0 +1,19 @@
+{
+  "analysis": "https://www.meta.ai/share/a/4b623bd9-a889-4edf-8ab2-fd76a2dcde5c",
+  "code": "https://www.meta.ai/share/a/ad4912aa-13aa-495c-953b-9f2716e23580",
+  "date": "2026-10-07",
+  "zip_sha256": "75f0d640cb0a29730db8731d6003e534fedea3b6a539061c5f73c31c52e45455",
+  "contents": [
+    "scripts/Quality_Fix_Godot_v40.gd",
+    "scripts/Circle_Moss_Bronze.gdshader"
+  ],
+  "missing_assets": [
+    "PBR_Stone_Moss_Bronze.gdshader",
+    "Trail.tscn",
+    "HitParticles.tscn",
+    "Outfit-ExtraBold.ttf",
+    "rune textures",
+    "Breathing_Commercial.gd"
+  ],
+  "approach": "Adapt intentions to the real 3D battle; do not execute missing-resource sample"
+}

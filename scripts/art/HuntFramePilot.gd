@@ -25,6 +25,8 @@ var _visual_time:=0.0
 var _movement_heat:=0.0
 var fur_layers:=4
 var _fur: Node3D
+var _echoes: Node3D
+var effects_enabled:=true
 
 func bind(actor: AnimatedSprite2D,hero: bool,catalog: RefCounted=null) -> bool:
 	_catalog=catalog if catalog!=null else CATALOG.new()
@@ -38,7 +40,7 @@ func bind(actor: AnimatedSprite2D,hero: bool,catalog: RefCounted=null) -> bool:
 		for kind in ['attack','motion']:entry[kind].native_height=float(entry[kind].frames[0].region[3])
 	source=actor;name='HuntFramePilot';cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	_material=ShaderMaterial.new();_material.shader=PAINT
-	_material.set_shader_parameter('outline_px',.35);_material.set_shader_parameter('rim_strength',.04)
+	_material.set_shader_parameter('outline_px',.80);_material.set_shader_parameter('rim_strength',.025)
 	_material.set_shader_parameter('alpha_cutoff',.12);material_override=_material
 	for kind in entry.sheets if _existing else ['attack','motion']:
 		var sheet: Dictionary=entry[kind]
@@ -48,6 +50,7 @@ func bind(actor: AnimatedSprite2D,hero: bool,catalog: RefCounted=null) -> bool:
 		_meshes[kind]=meshes
 	_footprint=_measure_footprint(1.0)
 	_fur=preload('res://scripts/art/PaintedFurLayers.gd').new();add_child(_fur);_fur.configure(hero,str(entry.id))
+	_echoes=preload('res://scripts/art/PaintedAttackEchoes.gd').new();add_child(_echoes);_echoes.configure()
 	return true
 
 func present(camera: Camera3D,height: float,tint: Color,delta: float,active: bool,point: Vector2,runtime: Dictionary,dead: bool) -> void:
@@ -93,8 +96,14 @@ func present(camera: Camera3D,height: float,tint: Color,delta: float,active: boo
 	else:frame=int(floor(float(pose.time)*1.8))%2
 	_apply_frame(camera,height,tint,kind,frame)
 	_fur.present(entry[kind],frame,_textures[kind],_visual_time,fur_layers if action!='death' else 0)
+	_echoes.present(self,action,float(pose.time)/float(pose.duration),timeline.sequence,_visual_time,effects_enabled and action!='death')
 	position=Vector3.ZERO
+	if action=='idle' and effects_enabled:
+		var period:=2.0 if _hero else float({'wild_dog':2.2,'bristle_boar':1.2,'wind_crow':1.5,'night_raven':1.5}.get(str(entry.id),2.4))
+		var phase:=float(posmod(str(entry.id).hash(),1000))*.006283
+		position=camera.global_basis.y*sin(_visual_time*TAU/period+phase)*minf(.012,height*.015)
 	var hit_age:=float(pose.get('hit_age',-1.0))
+	_material.set_shader_parameter('hit_flash',(1.0-clampf(hit_age/.04,0,1))*.60 if effects_enabled and hit_age>=0 and action!='death' else 0.0)
 	if action!='death' and hit_age>=0.0 and hit_age<.22:
 		var amount:=(1.0-smoothstep(.025,.22,hit_age))*smoothstep(0.0,.025,hit_age+.012)
 		var direction: Vector2=pose.get('recoil',Vector2.ZERO)

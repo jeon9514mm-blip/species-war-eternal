@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-07",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "platform": "Windows",
+  "gpu": "NVIDIA GeForce GTX 1050",
+  "syntax": {
+    "passed": 485,
+    "total": 485,
+    "rechecks": 1,
+    "report": "full-parser.json"
+  },
+  "regressions": {
+    "passed": 7,
+    "total": 7,
+    "explicit_checks": 2461,
+    "report": "tests.json",
+    "readability_fix": "Wider fallback lanes retain distinct simultaneous targets with Outfit font; full motion bounds still cannot overlap."
+  },
+  "python": {
+    "passed": 50,
+    "total": 50,
+    "command": "python -m unittest discover -s tools -p 'test_*.py'"
+  },
+  "static": {
+    "gd": 485,
+    "smoke": 229,
+    "resources": "ok",
+    "links": "ok"
+  },
+  "gpu_captures": {
+    "mobile": {
+      "scenes": 5,
+      "body_overlaps": 0,
+      "all_ten_heroes_share_scale": true,
+      "stat_overrides": false,
+      "report": "captures-mobile/captures.json"
+    },
+    "forward-plus": {
+      "scenes": 5,
+      "body_overlaps": 0,
+      "all_ten_heroes_share_scale": true,
+      "stat_overrides": false,
+      "report": "captures-forward-plus/captures.json"
+    }
+  },
+  "quality_effect_checks": {
+    "passed": 30,
+    "report": "visual-final.json"
+  },
+  "render_profile": {
+    "balanced_scaling_3d_scale": 1.5,
+    "battery_scaling_3d_scale": 1.0,
+    "battery_viewport_shrink": 2,
+    "logical_ui": [
+      1280,
+      720
+    ],
+    "hunt_painted_directional_shadows": true,
+    "battery_painted_directional_shadows": false
+  },
+  "limits": [
+    "Mobile screenshots were rendered on a Windows GPU, not an Android device.",
+    "No NeRF model or 8K/32K image reconstruction.",
+    "No measured 60fps or AAA quality score."
+  ]
+}

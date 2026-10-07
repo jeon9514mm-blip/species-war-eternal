@@ -1,0 +1,10 @@
+{
+  "family": "Outfit",
+  "face": "ExtraBold",
+  "weight": 800,
+  "source": "https://github.com/Outfitio/Outfit-Fonts/blob/main/fonts/ttf/Outfit-ExtraBold.ttf",
+  "license": "SIL Open Font License 1.1; OFL.txt",
+  "sha256": "0f028cbdc61a588bc44fef911e8d2bcfc0bc05b241a9b797686024d269d964b6",
+  "date": "2026-10-07",
+  "use": "Combat numerals; existing Korean UI font retained"
+}

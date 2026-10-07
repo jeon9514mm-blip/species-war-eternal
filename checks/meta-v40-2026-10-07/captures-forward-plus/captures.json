@@ -1,0 +1,3618 @@
+[
+  {
+    "bodies": [
+      {
+        "action": "idle",
+        "anchor": [
+          108.5,
+          296.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/leonhardt/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 4.92598701117822,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 1,
+        "id": "leonhardt",
+        "native_height": 298.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 3,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          150.5,
+          302.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/mira/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 5.87949982052305,
+        "duration": 0.6,
+        "flip": true,
+        "frame": 2,
+        "id": "mira",
+        "native_height": 307.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          168.5,
+          288.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/elisia/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 6.6586112647783,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 5,
+        "id": "elisia",
+        "native_height": 310.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          114.0,
+          234.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/kairen/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 5.88418894057395,
+        "duration": 0.6,
+        "flip": true,
+        "frame": 2,
+        "id": "kairen",
+        "native_height": 232.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "skill",
+        "anchor": [
+          102.5,
+          194.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/orwin/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 5.69098885322455,
+        "duration": 0.340909090909091,
+        "flip": false,
+        "frame": 2,
+        "id": "orwin",
+        "native_height": 221.0,
+        "paused": false,
+        "phase": 0.293333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 2,
+        "sheet": "attack",
+        "time": 0.1
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          150.0,
+          301.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/seria/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 5.73534102400299,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 2,
+        "id": "seria",
+        "native_height": 313.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          165.0,
+          295.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/astel/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 6.2656216120813,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 3,
+        "id": "astel",
+        "native_height": 280.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 1,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          145.5,
+          286.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/darius/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.97827070322819,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 1,
+        "id": "darius",
+        "native_height": 289.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 3,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          116.5,
+          271.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/lunea/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 5.74790607276373,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 1,
+        "id": "lunea",
+        "native_height": 272.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          165.5,
+          295.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/caelum/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 4.56937821205065,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 3,
+        "id": "caelum",
+        "native_height": 313.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          125.0,
+          210.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wild_dog/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.91556402482092,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 4,
+        "id": "wild_dog",
+        "native_height": 227.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          94.5,
+          223.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/bristle_boar/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 6.92877160571516,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 5,
+        "id": "bristle_boar",
+        "native_height": 224.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          147.5,
+          179.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wind_crow/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 5.88739386107773,
+        "duration": 0.6,
+        "flip": true,
+        "frame": 2,
+        "id": "wind_crow",
+        "native_height": 191.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          108.0,
+          340.0
+        ],
+        "atlas": "res://assets/art-direction/pilot-01/monsters/meadow-goblin.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.08560306299478,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 3,
+        "id": "goblin",
+        "native_height": 340.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          192.5,
+          191.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wild_dog/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 8.30194349121302,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 5,
+        "id": "wild_dog",
+        "native_height": 227.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          94.5,
+          223.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/bristle_boar/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 8.14808711782098,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 5,
+        "id": "bristle_boar",
+        "native_height": 224.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          147.5,
+          179.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wind_crow/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.18728322163224,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 2,
+        "id": "wind_crow",
+        "native_height": 191.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          114.0,
+          340.0
+        ],
+        "atlas": "res://assets/art-direction/pilot-01/monsters/meadow-goblin.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 6.59239044226706,
+        "duration": 0.6,
+        "flip": true,
+        "frame": 5,
+        "id": "goblin",
+        "native_height": 340.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          210.5,
+          191.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wild_dog/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.6888733911328,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 3,
+        "id": "wild_dog",
+        "native_height": 227.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          125.0,
+          224.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/bristle_boar/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 8.9651052840054,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 3,
+        "id": "bristle_boar",
+        "native_height": 224.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          157.0,
+          174.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wind_crow/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 8.34233270213008,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 5,
+        "id": "wind_crow",
+        "native_height": 191.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          114.0,
+          340.0
+        ],
+        "atlas": "res://assets/art-direction/pilot-01/monsters/meadow-goblin.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.10806162515655,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 1,
+        "id": "goblin",
+        "native_height": 340.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          192.5,
+          191.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wild_dog/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 9.55152748711407,
+        "duration": 0.6,
+        "flip": true,
+        "frame": 5,
+        "id": "wild_dog",
+        "native_height": 227.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          94.5,
+          223.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/bristle_boar/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 8.15355093311518,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 5,
+        "id": "bristle_boar",
+        "native_height": 224.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          144.0,
+          183.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wind_crow/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.35166876879521,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 3,
+        "id": "wind_crow",
+        "native_height": 191.0,
+        "paused": false,
+        "phase": 10.3611111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.21666666666666
+      }
+    ],
+    "camera_size": 7.20377111434937,
+    "capture": "aurelia-ten-hero-hunt",
+    "display_heights": [
+      {
+        "hero": true,
+        "id": "leonhardt",
+        "nominal_height": 0.727196446889628,
+        "pixels": 43.6089459353531
+      },
+      {
+        "hero": true,
+        "id": "mira",
+        "nominal_height": 0.727196446889628,
+        "pixels": 43.6089459353531
+      },
+      {
+        "hero": true,
+        "id": "elisia",
+        "nominal_height": 0.727196446889628,
+        "pixels": 43.6089459353531
+      },
+      {
+        "hero": true,
+        "id": "kairen",
+        "nominal_height": 0.727196446889628,
+        "pixels": 43.6089459353531
+      },
+      {
+        "hero": true,
+        "id": "orwin",
+        "nominal_height": 0.727196446889628,
+        "pixels": 43.6089459353531
+      },
+      {
+        "hero": true,
+        "id": "seria",
+        "nominal_height": 0.727196446889628,
+        "pixels": 43.6089459353531
+      },
+      {
+        "hero": true,
+        "id": "astel",
+        "nominal_height": 0.727196446889628,
+        "pixels": 43.6089459353531
+      },
+      {
+        "hero": true,
+        "id": "darius",
+        "nominal_height": 0.727196446889628,
+        "pixels": 43.6089459353531
+      },
+      {
+        "hero": true,
+        "id": "lunea",
+        "nominal_height": 0.727196446889628,
+        "pixels": 43.6089459353531
+      },
+      {
+        "hero": true,
+        "id": "caelum",
+        "nominal_height": 0.727196446889628,
+        "pixels": 43.6089459353531
+      },
+      {
+        "hero": false,
+        "id": "wild_dog",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "bristle_boar",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "wind_crow",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "goblin",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "wild_dog",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "bristle_boar",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "wind_crow",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "goblin",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "wild_dog",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "bristle_boar",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "wind_crow",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "goblin",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "wild_dog",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "bristle_boar",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      },
+      {
+        "hero": false,
+        "id": "wind_crow",
+        "nominal_height": 0.425675968911002,
+        "pixels": 25.5271878645969
+      }
+    ],
+    "hero_scales": [
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502
+    ],
+    "layout_items": [
+      {
+        "bounds": [
+          -1.19697988033295,
+          -2.05687928199768,
+          2.21854043006897,
+          2.0637583732605
+        ],
+        "id": "leonhardt",
+        "point": [
+          10.4238176345825,
+          2.68765354156494
+        ]
+      },
+      {
+        "bounds": [
+          -0.964902281761169,
+          -2.06335496902466,
+          2.04999995231628,
+          2.07003259658813
+        ],
+        "id": "mira",
+        "point": [
+          9.38912773132324,
+          1.44002616405487
+        ]
+      },
+      {
+        "bounds": [
+          -1.12750005722046,
+          -2.04338717460632,
+          1.92766141891479,
+          2.04999995231628
+        ],
+        "id": "elisia",
+        "point": [
+          9.29710578918457,
+          2.90158534049988
+        ]
+      },
+      {
+        "bounds": [
+          -0.892456769943237,
+          -2.06767249107361,
+          2.00581884384155,
+          2.07650876045227
+        ],
+        "id": "kairen",
+        "point": [
+          10.3552055358887,
+          4.15471124649048
+        ]
+      },
+      {
+        "bounds": [
+          -1.1734162569046,
+          -2.04999995231628,
+          2.46278285980225,
+          2.05927610397339
+        ],
+        "id": "orwin",
+        "point": [
+          11.4533252716064,
+          3.72753000259399
+        ]
+      },
+      {
+        "bounds": [
+          -1.11341845989227,
+          -2.04345035552979,
+          1.87643766403198,
+          2.04999995231628
+        ],
+        "id": "seria",
+        "point": [
+          10.057788848877,
+          5.57225465774536
+        ]
+      },
+      {
+        "bounds": [
+          -1.20803570747375,
+          -2.18178582191467,
+          2.19642853736877,
+          2.18910717964172
+        ],
+        "id": "astel",
+        "point": [
+          9.22683715820313,
+          4.36353206634521
+        ]
+      },
+      {
+        "bounds": [
+          -1.19169557094574,
+          -2.04290652275085,
+          2.16349506378174,
+          2.04999995231628
+        ],
+        "id": "darius",
+        "point": [
+          11.3542337417603,
+          1.84293639659882
+        ]
+      },
+      {
+        "bounds": [
+          -1.14558815956116,
+          -2.04246306419373,
+          1.97840082645416,
+          2.04999995231628
+        ],
+        "id": "lunea",
+        "point": [
+          9.49511814117432,
+          6.84675073623657
+        ]
+      },
+      {
+        "bounds": [
+          -1.14944088459015,
+          -2.04345035552979,
+          1.98123002052307,
+          2.04999995231628
+        ],
+        "id": "caelum",
+        "point": [
+          11.1820945739746,
+          5.33797121047974
+        ]
+      },
+      {
+        "bounds": [
+          -1.11277532577515,
+          -1.21057271957397,
+          2.11189413070679,
+          1.21585893630981
+        ],
+        "id": "wild_dog",
+        "point": [
+          13.8650379180908,
+          0.841225564479828
+        ]
+      },
+      {
+        "bounds": [
+          -0.675000011920929,
+          -1.22142863273621,
+          1.73303580284119,
+          1.22678589820862
+        ],
+        "id": "bristle_boar",
+        "point": [
+          14.6015243530273,
+          1.93168151378632
+        ]
+      },
+      {
+        "bounds": [
+          -0.81675398349762,
+          -1.19371736049652,
+          1.82513105869293,
+          1.20000004768372
+        ],
+        "id": "wind_crow",
+        "point": [
+          14.8936967849731,
+          3.89141130447388
+        ]
+      },
+      {
+        "bounds": [
+          -0.402352958917618,
+          -1.20000004768372,
+          0.960000097751617,
+          1.20000004768372
+        ],
+        "id": "goblin",
+        "point": [
+          14.2558155059814,
+          5.25823450088501
+        ]
+      },
+      {
+        "bounds": [
+          -1.11277532577515,
+          -1.21057271957397,
+          2.11189413070679,
+          1.21585893630981
+        ],
+        "id": "wild_dog",
+        "point": [
+          13.8108882904053,
+          6.59084177017212
+        ]
+      },
+      {
+        "bounds": [
+          -0.675000011920929,
+          -1.22142863273621,
+          1.73303580284119,
+          1.22678589820862
+        ],
+        "id": "bristle_boar",
+        "point": [
+          12.5428943634033,
+          0.678553462028503
+        ]
+      },
+      {
+        "bounds": [
+          -1.00837707519531,
+          -1.19371736049652,
+          1.82513105869293,
+          1.20000004768372
+        ],
+        "id": "wind_crow",
+        "point": [
+          13.2225608825684,
+          2.02003741264343
+        ]
+      },
+      {
+        "bounds": [
+          -0.557647109031677,
+          -1.20000004768372,
+          0.960000097751617,
+          1.20000004768372
+        ],
+        "id": "goblin",
+        "point": [
+          13.9543323516846,
+          3.10985612869263
+        ]
+      },
+      {
+        "bounds": [
+          -1.11277532577515,
+          -1.21057271957397,
+          2.11189413070679,
+          1.21585893630981
+        ],
+        "id": "wild_dog",
+        "point": [
+          13.3838977813721,
+          4.34900522232056
+        ]
+      },
+      {
+        "bounds": [
+          -0.675000011920929,
+          -1.22142863273621,
+          1.73303580284119,
+          1.22678589820862
+        ],
+        "id": "bristle_boar",
+        "point": [
+          11.6893177032471,
+          7.16913843154907
+        ]
+      },
+      {
+        "bounds": [
+          -1.00837707519531,
+          -1.19371736049652,
+          1.82513105869293,
+          1.20000004768372
+        ],
+        "id": "wind_crow",
+        "point": [
+          11.2182331085205,
+          0.880986034870148
+        ]
+      },
+      {
+        "bounds": [
+          -0.402352958917618,
+          -1.20000004768372,
+          0.960000097751617,
+          1.20000004768372
+        ],
+        "id": "goblin",
+        "point": [
+          12.1041507720947,
+          2.00597095489502
+        ]
+      },
+      {
+        "bounds": [
+          -0.999118804931641,
+          -1.21057271957397,
+          2.11189413070679,
+          1.21585893630981
+        ],
+        "id": "wild_dog",
+        "point": [
+          11.1784019470215,
+          2.81453585624695
+        ]
+      },
+      {
+        "bounds": [
+          -0.675000011920929,
+          -1.22142863273621,
+          1.73303580284119,
+          1.22678589820862
+        ],
+        "id": "bristle_boar",
+        "point": [
+          12.64013671875,
+          3.27330470085144
+        ]
+      },
+      {
+        "bounds": [
+          -1.00837707519531,
+          -1.19371736049652,
+          1.82513105869293,
+          1.20000004768372
+        ],
+        "id": "wind_crow",
+        "point": [
+          12.9476871490479,
+          5.67426776885986
+        ]
+      }
+    ],
+    "projected_paint_overlaps": 0,
+    "scales": [
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502,
+      0.354729974092502
+    ],
+    "stat_overrides": false
+  },
+  {
+    "bodies": [
+      {
+        "action": "skill",
+        "anchor": [
+          151.5,
+          202.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/valeria/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 5.11483950028196,
+        "duration": 0.340909090909091,
+        "flip": false,
+        "frame": 0,
+        "id": "valeria",
+        "native_height": 236.0,
+        "paused": false,
+        "phase": 0.0,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "attack",
+        "time": 0.0
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          179.5,
+          214.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/morgas/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 5.58237850142177,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 5,
+        "id": "morgas",
+        "native_height": 240.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          173.0,
+          231.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/ragna/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 5.51304258126765,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 5,
+        "id": "ragna",
+        "native_height": 242.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          180.5,
+          256.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/bron/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 5.19315352122067,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 1,
+        "id": "bron",
+        "native_height": 256.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 1,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          152.0,
+          213.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/nyx/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 6.96756439260207,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 5,
+        "id": "nyx",
+        "native_height": 228.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          176.0,
+          238.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/fenris/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 6.75638698786497,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 1,
+        "id": "fenris",
+        "native_height": 239.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 1,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          141.5,
+          204.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/isolde/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.37305037677288,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 3,
+        "id": "isolde",
+        "native_height": 212.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          126.5,
+          216.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/garm/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 4.86824591139157,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 1,
+        "id": "garm",
+        "native_height": 223.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 2,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          161.5,
+          214.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/veyra/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 4.74249572056578,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 3,
+        "id": "veyra",
+        "native_height": 242.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          163.0,
+          213.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/ulric/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 5.40498131437926,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 5,
+        "id": "ulric",
+        "native_height": 244.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          192.5,
+          191.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wild_dog/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 8.06625124439597,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 5,
+        "id": "wild_dog",
+        "native_height": 227.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          122.5,
+          228.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/bristle_boar/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.295316061005,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 2,
+        "id": "bristle_boar",
+        "native_height": 224.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          157.0,
+          174.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wind_crow/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 6.78981040231884,
+        "duration": 0.6,
+        "flip": true,
+        "frame": 5,
+        "id": "wind_crow",
+        "native_height": 191.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          108.0,
+          340.0
+        ],
+        "atlas": "res://assets/art-direction/pilot-01/monsters/meadow-goblin.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 6.95494765974581,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 3,
+        "id": "goblin",
+        "native_height": 340.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          125.0,
+          210.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wild_dog/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.82807582803071,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 4,
+        "id": "wild_dog",
+        "native_height": 227.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          122.5,
+          228.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/bristle_boar/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 8.49646356701851,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 2,
+        "id": "bristle_boar",
+        "native_height": 224.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          144.0,
+          183.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wind_crow/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.69974272698164,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 3,
+        "id": "wind_crow",
+        "native_height": 191.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          108.0,
+          340.0
+        ],
+        "atlas": "res://assets/art-direction/pilot-01/monsters/meadow-goblin.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 6.97121872194111,
+        "duration": 0.6,
+        "flip": true,
+        "frame": 3,
+        "id": "goblin",
+        "native_height": 340.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          144.5,
+          206.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wild_dog/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.12729932367802,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 2,
+        "id": "wild_dog",
+        "native_height": 227.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          94.5,
+          223.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/bristle_boar/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 9.52135195583105,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 5,
+        "id": "bristle_boar",
+        "native_height": 224.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          160.5,
+          176.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wind_crow/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 8.00481974892318,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 4,
+        "id": "wind_crow",
+        "native_height": 191.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          114.0,
+          340.0
+        ],
+        "atlas": "res://assets/art-direction/pilot-01/monsters/meadow-goblin.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.14428728632629,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 1,
+        "id": "goblin",
+        "native_height": 340.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "hit",
+        "anchor": [
+          165.5,
+          204.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wild_dog/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 11.2162110805511,
+        "duration": 0.22,
+        "flip": true,
+        "frame": 6,
+        "id": "wild_dog",
+        "native_height": 227.0,
+        "paused": false,
+        "phase": 0.909090909090909,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 0.2
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          125.0,
+          224.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/bristle_boar/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.50961914286017,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 3,
+        "id": "bristle_boar",
+        "native_height": 224.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      },
+      {
+        "action": "walk",
+        "anchor": [
+          160.5,
+          176.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/wind_crow/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 6.58423471171409,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 4,
+        "id": "wind_crow",
+        "native_height": 191.0,
+        "paused": false,
+        "phase": 10.3333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 0,
+        "sheet": "motion",
+        "time": 6.19999999999999
+      }
+    ],
+    "camera_size": 6.89437246322632,
+    "capture": "noxfera-ten-hero-hunt",
+    "display_heights": [
+      {
+        "hero": true,
+        "id": "valeria",
+        "nominal_height": 0.724022420910932,
+        "pixels": 45.3671001243171
+      },
+      {
+        "hero": true,
+        "id": "morgas",
+        "nominal_height": 0.724022420910932,
+        "pixels": 45.3671001243171
+      },
+      {
+        "hero": true,
+        "id": "ragna",
+        "nominal_height": 0.724022420910932,
+        "pixels": 45.3671001243171
+      },
+      {
+        "hero": true,
+        "id": "bron",
+        "nominal_height": 0.724022420910932,
+        "pixels": 45.3671001243171
+      },
+      {
+        "hero": true,
+        "id": "nyx",
+        "nominal_height": 0.724022420910932,
+        "pixels": 45.3671001243171
+      },
+      {
+        "hero": true,
+        "id": "fenris",
+        "nominal_height": 0.724022420910932,
+        "pixels": 45.3671001243171
+      },
+      {
+        "hero": true,
+        "id": "isolde",
+        "nominal_height": 0.724022420910932,
+        "pixels": 45.3671001243171
+      },
+      {
+        "hero": true,
+        "id": "garm",
+        "nominal_height": 0.724022420910932,
+        "pixels": 45.3671001243171
+      },
+      {
+        "hero": true,
+        "id": "veyra",
+        "nominal_height": 0.724022420910932,
+        "pixels": 45.3671001243171
+      },
+      {
+        "hero": true,
+        "id": "ulric",
+        "nominal_height": 0.724022420910932,
+        "pixels": 45.3671001243171
+      },
+      {
+        "hero": false,
+        "id": "wild_dog",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "bristle_boar",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "wind_crow",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "goblin",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "wild_dog",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "bristle_boar",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "wind_crow",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "goblin",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "wild_dog",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "bristle_boar",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "wind_crow",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "goblin",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "wild_dog",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "bristle_boar",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      },
+      {
+        "hero": false,
+        "id": "wind_crow",
+        "nominal_height": 0.423818002484448,
+        "pixels": 26.5563512922832
+      }
+    ],
+    "hero_scales": [
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704
+    ],
+    "layout_items": [
+      {
+        "bounds": [
+          -1.20741522312164,
+          -2.0413134098053,
+          2.51038146018982,
+          2.04999995231628
+        ],
+        "id": "valeria",
+        "point": [
+          10.9983406066895,
+          5.01240110397339
+        ]
+      },
+      {
+        "bounds": [
+          -1.65708339214325,
+          -2.04145836830139,
+          3.02802109718323,
+          2.04999995231628
+        ],
+        "id": "morgas",
+        "point": [
+          10.3651475906372,
+          6.22982120513916
+        ]
+      },
+      {
+        "bounds": [
+          -1.60103285312653,
+          -2.09235525131226,
+          2.44814038276672,
+          2.10082650184631
+        ],
+        "id": "ragna",
+        "point": [
+          11.4745349884033,
+          6.58557033538818
+        ]
+      },
+      {
+        "bounds": [
+          -1.66962885856628,
+          -2.04999995231628,
+          2.6826171875,
+          2.05800771713257
+        ],
+        "id": "bron",
+        "point": [
+          9.71605396270752,
+          2.70673990249634
+        ]
+      },
+      {
+        "bounds": [
+          -1.68585526943207,
+          -2.07697343826294,
+          3.12445139884949,
+          2.0859649181366
+        ],
+        "id": "nyx",
+        "point": [
+          8.33162021636963,
+          2.60594820976257
+        ]
+      },
+      {
+        "bounds": [
+          -1.58253133296967,
+          -2.04142260551453,
+          2.24299168586731,
+          2.04999995231628
+        ],
+        "id": "fenris",
+        "point": [
+          9.07512474060059,
+          1.49625849723816
+        ]
+      },
+      {
+        "bounds": [
+          -1.36827826499939,
+          -2.04999995231628,
+          2.63502359390259,
+          2.05966973304749
+        ],
+        "id": "isolde",
+        "point": [
+          9.19068717956543,
+          6.07607507705688
+        ]
+      },
+      {
+        "bounds": [
+          -1.82477581501007,
+          -2.04080724716187,
+          2.88195085525513,
+          2.04999995231628
+        ],
+        "id": "garm",
+        "point": [
+          10.5950002670288,
+          3.64294481277466
+        ]
+      },
+      {
+        "bounds": [
+          -1.58832633495331,
+          -2.04152870178223,
+          2.5497932434082,
+          2.04999971389771
+        ],
+        "id": "veyra",
+        "point": [
+          8.99756050109863,
+          3.84623599052429
+        ]
+      },
+      {
+        "bounds": [
+          -1.36946713924408,
+          -2.0668032169342,
+          2.43227481842041,
+          2.07520461082459
+        ],
+        "id": "ulric",
+        "point": [
+          9.87357807159424,
+          4.78295230865479
+        ]
+      },
+      {
+        "bounds": [
+          -1.11277532577515,
+          -1.21057271957397,
+          2.11189413070679,
+          1.21585893630981
+        ],
+        "id": "wild_dog",
+        "point": [
+          13.0189018249512,
+          1.71803939342499
+        ]
+      },
+      {
+        "bounds": [
+          -0.675000011920929,
+          -1.22142863273621,
+          1.73303580284119,
+          1.22678589820862
+        ],
+        "id": "bristle_boar",
+        "point": [
+          13.5999984741211,
+          2.94980120658875
+        ]
+      },
+      {
+        "bounds": [
+          -0.81675398349762,
+          -1.19371736049652,
+          1.82513105869293,
+          1.20000004768372
+        ],
+        "id": "wind_crow",
+        "point": [
+          13.8758888244629,
+          4.34694194793701
+        ]
+      },
+      {
+        "bounds": [
+          -0.402352958917618,
+          -1.20000004768372,
+          0.960000097751617,
+          1.20000004768372
+        ],
+        "id": "goblin",
+        "point": [
+          13.9352073669434,
+          6.06704187393188
+        ]
+      },
+      {
+        "bounds": [
+          -1.11277532577515,
+          -1.21057271957397,
+          2.11189413070679,
+          1.21585893630981
+        ],
+        "id": "wild_dog",
+        "point": [
+          13.553936958313,
+          7.87334299087524
+        ]
+      },
+      {
+        "bounds": [
+          -0.675000011920929,
+          -1.22142863273621,
+          1.73303580284119,
+          1.22678589820862
+        ],
+        "id": "bristle_boar",
+        "point": [
+          11.6283369064331,
+          1.34974372386932
+        ]
+      },
+      {
+        "bounds": [
+          -1.00837707519531,
+          -1.19371736049652,
+          1.82513105869293,
+          1.20000004768372
+        ],
+        "id": "wind_crow",
+        "point": [
+          12.150336265564,
+          2.62629580497742
+        ]
+      },
+      {
+        "bounds": [
+          -0.557647109031677,
+          -1.20000004768372,
+          0.960000097751617,
+          1.20000004768372
+        ],
+        "id": "goblin",
+        "point": [
+          12.7297897338867,
+          3.8567111492157
+        ]
+      },
+      {
+        "bounds": [
+          -1.11277532577515,
+          -1.21057271957397,
+          2.11189413070679,
+          1.21585893630981
+        ],
+        "id": "wild_dog",
+        "point": [
+          13.0052795410156,
+          5.25564050674438
+        ]
+      },
+      {
+        "bounds": [
+          -0.675000011920929,
+          -1.22142863273621,
+          1.73303580284119,
+          1.22678589820862
+        ],
+        "id": "bristle_boar",
+        "point": [
+          11.4551677703857,
+          7.81533288955688
+        ]
+      },
+      {
+        "bounds": [
+          -1.00837707519531,
+          -1.19371736049652,
+          1.82513105869293,
+          1.20000004768372
+        ],
+        "id": "wind_crow",
+        "point": [
+          10.8333806991577,
+          2.36344408988953
+        ]
+      },
+      {
+        "bounds": [
+          -0.402352958917618,
+          -1.20000004768372,
+          0.960000097751617,
+          1.20000004768372
+        ],
+        "id": "goblin",
+        "point": [
+          11.3538494110107,
+          3.6374363899231
+        ]
+      },
+      {
+        "bounds": [
+          -0.999118804931641,
+          -1.21057271957397,
+          2.11189413070679,
+          1.21585893630981
+        ],
+        "id": "wild_dog",
+        "point": [
+          9.98516273498535,
+          0.808815777301788
+        ]
+      },
+      {
+        "bounds": [
+          -0.675000011920929,
+          -1.22142863273621,
+          1.73303580284119,
+          1.22678589820862
+        ],
+        "id": "bristle_boar",
+        "point": [
+          11.9253520965576,
+          4.87626123428345
+        ]
+      },
+      {
+        "bounds": [
+          -1.00837707519531,
+          -1.19371736049652,
+          1.82513105869293,
+          1.20000004768372
+        ],
+        "id": "wind_crow",
+        "point": [
+          12.9135360717773,
+          6.69137477874756
+        ]
+      }
+    ],
+    "projected_paint_overlaps": 0,
+    "scales": [
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704,
+      0.35318166873704
+    ],
+    "stat_overrides": false
+  },
+  {
+    "bodies": [
+      {
+        "action": "attack_2",
+        "anchor": [
+          138.5,
+          242.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/leonhardt/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 3.07330075651407,
+        "duration": 0.340909090909091,
+        "flip": false,
+        "frame": 6,
+        "id": "leonhardt",
+        "native_height": 298.0,
+        "paused": false,
+        "phase": 0.831111111111111,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "attack",
+        "time": 0.283333333333333
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          131.0,
+          306.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/mira/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 9.73906167875975,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "mira",
+        "native_height": 307.0,
+        "paused": false,
+        "phase": 8.10292833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 5,
+        "sheet": "motion",
+        "time": 4.86175699999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          112.0,
+          309.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/elisia/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 9.42848519980907,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "elisia",
+        "native_height": 310.0,
+        "paused": false,
+        "phase": 8.10292833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.86175699999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          91.5,
+          231.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/kairen/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 9.47669696807861,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "kairen",
+        "native_height": 232.0,
+        "paused": false,
+        "phase": 8.10292833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 5,
+        "sheet": "motion",
+        "time": 4.86175699999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          88.5,
+          220.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/orwin/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 11.5086278915405,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "orwin",
+        "native_height": 221.0,
+        "paused": false,
+        "phase": 8.10292833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.86175699999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          139.5,
+          312.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/seria/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 2.40444630384445,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "seria",
+        "native_height": 313.0,
+        "paused": false,
+        "phase": 8.10292833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 3,
+        "sheet": "motion",
+        "time": 4.86175699999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          112.5,
+          279.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/astel/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 4.03726291656494,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "astel",
+        "native_height": 280.0,
+        "paused": false,
+        "phase": 8.10292833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.86175699999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          168.0,
+          288.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/darius/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 10.319834404625,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "darius",
+        "native_height": 289.0,
+        "paused": false,
+        "phase": 8.10292833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.86175699999999
+      },
+      {
+        "action": "skill",
+        "anchor": [
+          147.0,
+          258.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/lunea/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 11.043624676764,
+        "duration": 0.340909090909091,
+        "flip": false,
+        "frame": 5,
+        "id": "lunea",
+        "native_height": 272.0,
+        "paused": false,
+        "phase": 0.733333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "attack",
+        "time": 0.25
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          109.0,
+          312.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/caelum/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 11.2653224617243,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "caelum",
+        "native_height": 313.0,
+        "paused": false,
+        "phase": 8.10292833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.86175699999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          153.0,
+          259.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/grun/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 10.4131335169077,
+        "duration": 0.6,
+        "flip": true,
+        "frame": 0,
+        "id": "grun",
+        "native_height": 260.0,
+        "paused": false,
+        "phase": 8.10292833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.86175699999999
+      }
+    ],
+    "camera_size": 17.046703338623,
+    "capture": "gray_meadow-raid",
+    "display_heights": [
+      {
+        "hero": true,
+        "id": "leonhardt",
+        "nominal_height": 2.30796158283316,
+        "pixels": 59.3010362883795
+      },
+      {
+        "hero": true,
+        "id": "mira",
+        "nominal_height": 2.30796158283316,
+        "pixels": 59.3010362883795
+      },
+      {
+        "hero": true,
+        "id": "elisia",
+        "nominal_height": 2.30796158283316,
+        "pixels": 59.3010362883795
+      },
+      {
+        "hero": true,
+        "id": "kairen",
+        "nominal_height": 2.30796158283316,
+        "pixels": 59.3010362883795
+      },
+      {
+        "hero": true,
+        "id": "orwin",
+        "nominal_height": 2.30796158283316,
+        "pixels": 59.3010362883795
+      },
+      {
+        "hero": true,
+        "id": "seria",
+        "nominal_height": 2.30796158283316,
+        "pixels": 59.3010362883795
+      },
+      {
+        "hero": true,
+        "id": "astel",
+        "nominal_height": 2.30796158283316,
+        "pixels": 59.3010362883795
+      },
+      {
+        "hero": true,
+        "id": "darius",
+        "nominal_height": 2.30796158283316,
+        "pixels": 59.3010362883795
+      },
+      {
+        "hero": true,
+        "id": "lunea",
+        "nominal_height": 2.30796158283316,
+        "pixels": 59.3010362883795
+      },
+      {
+        "hero": true,
+        "id": "caelum",
+        "nominal_height": 2.30796158283316,
+        "pixels": 59.3010362883795
+      },
+      {
+        "hero": false,
+        "id": "grun",
+        "nominal_height": 2.80252477915455,
+        "pixels": 72.0084012073179
+      }
+    ],
+    "hero_scales": [
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324
+    ],
+    "layout_items": [
+      {
+        "bounds": [
+          -2.45234894752502,
+          -4.21409368515015,
+          4.54530191421509,
+          4.22818803787231
+        ],
+        "id": "leonhardt",
+        "point": [
+          15.7432088851929,
+          8.13890647888184
+        ]
+      },
+      {
+        "bounds": [
+          -2.22312688827515,
+          -4.22736120223999,
+          4.19999980926514,
+          4.24104261398315
+        ],
+        "id": "mira",
+        "point": [
+          21.4909210205078,
+          12.692307472229
+        ]
+      },
+      {
+        "bounds": [
+          -2.30999994277954,
+          -4.18645143508911,
+          3.94935488700867,
+          4.19999980926514
+        ],
+        "id": "elisia",
+        "point": [
+          18.8198280334473,
+          10.2598991394043
+        ]
+      },
+      {
+        "bounds": [
+          -2.28103446960449,
+          -4.23620700836182,
+          4.10948276519775,
+          4.25431060791016
+        ],
+        "id": "kairen",
+        "point": [
+          13.1721601486206,
+          5.53845930099487
+        ]
+      },
+      {
+        "bounds": [
+          -2.40407228469849,
+          -4.19999980926514,
+          5.0457010269165,
+          4.21900463104248
+        ],
+        "id": "orwin",
+        "point": [
+          18.5018577575684,
+          5.53845930099487
+        ]
+      },
+      {
+        "bounds": [
+          -2.28115010261536,
+          -4.18658113479614,
+          3.84440875053406,
+          4.19999980926514
+        ],
+        "id": "seria",
+        "point": [
+          13.1721601486206,
+          12.692307472229
+        ]
+      },
+      {
+        "bounds": [
+          -2.47499990463257,
+          -4.46999979019165,
+          4.49999952316284,
+          4.48499965667725
+        ],
+        "id": "astel",
+        "point": [
+          16.3184242248535,
+          12.692307472229
+        ]
+      },
+      {
+        "bounds": [
+          -2.4415225982666,
+          -4.18546724319458,
+          4.43252611160278,
+          4.19999980926514
+        ],
+        "id": "darius",
+        "point": [
+          27.7008724212646,
+          10.5003490447998
+        ]
+      },
+      {
+        "bounds": [
+          -2.34705877304077,
+          -4.18455839157104,
+          4.05330896377563,
+          4.19999980926514
+        ],
+        "id": "lunea",
+        "point": [
+          24.7601490020752,
+          12.692307472229
+        ]
+      },
+      {
+        "bounds": [
+          -2.35495185852051,
+          -4.18658113479614,
+          4.05910539627075,
+          4.19999980926514
+        ],
+        "id": "caelum",
+        "point": [
+          26.6398372650146,
+          5.74318075180054
+        ]
+      },
+      {
+        "bounds": [
+          -3.92307686805725,
+          -5.6100001335144,
+          7.32634592056274,
+          5.62961530685425
+        ],
+        "id": "grun",
+        "point": [
+          22.512809753418,
+          7.17567873001099
+        ]
+      }
+    ],
+    "projected_paint_overlaps": 0,
+    "scales": [
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324,
+      0.549514662579324
+    ],
+    "stat_overrides": false
+  },
+  {
+    "bodies": [
+      {
+        "action": "idle",
+        "anchor": [
+          150.5,
+          297.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/leonhardt/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 1.66808605194092,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "leonhardt",
+        "native_height": 298.0,
+        "paused": false,
+        "phase": 8.09855944444443,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85913566666666
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          131.0,
+          306.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/mira/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 9.1801900267601,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "mira",
+        "native_height": 307.0,
+        "paused": false,
+        "phase": 8.09855944444443,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 5,
+        "sheet": "motion",
+        "time": 4.85913566666666
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          112.0,
+          309.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/elisia/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 4.07798385620117,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "elisia",
+        "native_height": 310.0,
+        "paused": false,
+        "phase": 8.09855944444443,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85913566666666
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          91.5,
+          231.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/kairen/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 9.20076084136963,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "kairen",
+        "native_height": 232.0,
+        "paused": false,
+        "phase": 8.09855944444443,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 5,
+        "sheet": "motion",
+        "time": 4.85913566666666
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          88.5,
+          220.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/orwin/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 9.4462773874402,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "orwin",
+        "native_height": 221.0,
+        "paused": false,
+        "phase": 8.09855944444443,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85913566666666
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          139.5,
+          312.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/seria/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 3.49146535992622,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "seria",
+        "native_height": 313.0,
+        "paused": false,
+        "phase": 8.09855944444443,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 3,
+        "sheet": "motion",
+        "time": 4.85913566666666
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          112.5,
+          279.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/astel/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 6.3475923538208,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "astel",
+        "native_height": 280.0,
+        "paused": false,
+        "phase": 8.09855944444443,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85913566666666
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          168.0,
+          288.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/darius/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 8.46577040478587,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "darius",
+        "native_height": 289.0,
+        "paused": false,
+        "phase": 8.09855944444443,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85913566666666
+      },
+      {
+        "action": "skill",
+        "anchor": [
+          147.0,
+          258.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/lunea/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 8.80828042700887,
+        "duration": 0.340909090909091,
+        "flip": false,
+        "frame": 5,
+        "id": "lunea",
+        "native_height": 272.0,
+        "paused": false,
+        "phase": 0.733333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "attack",
+        "time": 0.25
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          109.0,
+          312.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/caelum/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 10.9023931249976,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "caelum",
+        "native_height": 313.0,
+        "paused": false,
+        "phase": 8.09855944444443,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85913566666666
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          118.5,
+          259.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/morgul/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 14.176718018949,
+        "duration": 0.6,
+        "flip": true,
+        "frame": 0,
+        "id": "morgul",
+        "native_height": 260.0,
+        "paused": false,
+        "phase": 8.09855944444443,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85913566666666
+      }
+    ],
+    "camera_size": 17.046703338623,
+    "capture": "forgotten_mine-raid",
+    "display_heights": [
+      {
+        "hero": true,
+        "id": "leonhardt",
+        "nominal_height": 2.12953995272935,
+        "pixels": 54.7166499449857
+      },
+      {
+        "hero": true,
+        "id": "mira",
+        "nominal_height": 2.12953995272935,
+        "pixels": 54.7166499449857
+      },
+      {
+        "hero": true,
+        "id": "elisia",
+        "nominal_height": 2.12953995272935,
+        "pixels": 54.7166499449857
+      },
+      {
+        "hero": true,
+        "id": "kairen",
+        "nominal_height": 2.12953995272935,
+        "pixels": 54.7166499449857
+      },
+      {
+        "hero": true,
+        "id": "orwin",
+        "nominal_height": 2.12953995272935,
+        "pixels": 54.7166499449857
+      },
+      {
+        "hero": true,
+        "id": "seria",
+        "nominal_height": 2.12953995272935,
+        "pixels": 54.7166499449857
+      },
+      {
+        "hero": true,
+        "id": "astel",
+        "nominal_height": 2.12953995272935,
+        "pixels": 54.7166499449857
+      },
+      {
+        "hero": true,
+        "id": "darius",
+        "nominal_height": 2.12953995272935,
+        "pixels": 54.7166499449857
+      },
+      {
+        "hero": true,
+        "id": "lunea",
+        "nominal_height": 2.12953995272935,
+        "pixels": 54.7166499449857
+      },
+      {
+        "hero": true,
+        "id": "caelum",
+        "nominal_height": 2.12953995272935,
+        "pixels": 54.7166499449857
+      },
+      {
+        "hero": false,
+        "id": "morgul",
+        "nominal_height": 2.58586994259993,
+        "pixels": 66.4416463617684
+      }
+    ],
+    "hero_scales": [
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417
+    ],
+    "layout_items": [
+      {
+        "bounds": [
+          -2.45234894752502,
+          -4.21409368515015,
+          4.54530191421509,
+          4.22818803787231
+        ],
+        "id": "leonhardt",
+        "point": [
+          13.1721601486206,
+          8.72546768188477
+        ]
+      },
+      {
+        "bounds": [
+          -2.22312688827515,
+          -4.22736120223999,
+          4.19999980926514,
+          4.24104261398315
+        ],
+        "id": "mira",
+        "point": [
+          15.5583953857422,
+          9.25595092773438
+        ]
+      },
+      {
+        "bounds": [
+          -2.30999994277954,
+          -4.18645143508911,
+          3.94935488700867,
+          4.19999980926514
+        ],
+        "id": "elisia",
+        "point": [
+          13.1721601486206,
+          5.53845930099487
+        ]
+      },
+      {
+        "bounds": [
+          -2.28103446960449,
+          -4.23620700836182,
+          4.10948276519775,
+          4.25431060791016
+        ],
+        "id": "kairen",
+        "point": [
+          16.4431095123291,
+          5.53845930099487
+        ]
+      },
+      {
+        "bounds": [
+          -2.40407228469849,
+          -4.19999980926514,
+          5.0457010269165,
+          4.21900463104248
+        ],
+        "id": "orwin",
+        "point": [
+          22.016056060791,
+          5.53866243362427
+        ]
+      },
+      {
+        "bounds": [
+          -2.28115010261536,
+          -4.18658113479614,
+          3.84440875053406,
+          4.19999980926514
+        ],
+        "id": "seria",
+        "point": [
+          13.1721601486206,
+          12.692307472229
+        ]
+      },
+      {
+        "bounds": [
+          -2.47499990463257,
+          -4.46999979019165,
+          4.49999952316284,
+          4.48499965667725
+        ],
+        "id": "astel",
+        "point": [
+          15.9048776626587,
+          12.692307472229
+        ]
+      },
+      {
+        "bounds": [
+          -2.4415225982666,
+          -4.18546724319458,
+          4.43252611160278,
+          4.19999980926514
+        ],
+        "id": "darius",
+        "point": [
+          25.9429187774658,
+          12.009295463562
+        ]
+      },
+      {
+        "bounds": [
+          -2.34705877304077,
+          -4.18455839157104,
+          4.05330896377563,
+          4.19999980926514
+        ],
+        "id": "lunea",
+        "point": [
+          22.703971862793,
+          12.692307472229
+        ]
+      },
+      {
+        "bounds": [
+          -2.35495185852051,
+          -4.18658113479614,
+          4.05910539627075,
+          4.19999980926514
+        ],
+        "id": "caelum",
+        "point": [
+          25.5802612304688,
+          6.629638671875
+        ]
+      },
+      {
+        "bounds": [
+          -2.5205762386322,
+          -5.39423036575317,
+          5.46288394927979,
+          5.41384601593018
+        ],
+        "id": "morgul",
+        "point": [
+          18.8799705505371,
+          9.90756130218506
+        ]
+      }
+    ],
+    "projected_paint_overlaps": 0,
+    "scales": [
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417,
+      0.507033322078417
+    ],
+    "stat_overrides": false
+  },
+  {
+    "bodies": [
+      {
+        "action": "idle",
+        "anchor": [
+          150.5,
+          297.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/leonhardt/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 3.26121366396546,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "leonhardt",
+        "native_height": 298.0,
+        "paused": false,
+        "phase": 8.09708833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85825299999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          131.0,
+          306.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/mira/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 9.52020084299147,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "mira",
+        "native_height": 307.0,
+        "paused": false,
+        "phase": 8.09708833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 5,
+        "sheet": "motion",
+        "time": 4.85825299999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          112.0,
+          309.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/elisia/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 8.4338772892952,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "elisia",
+        "native_height": 310.0,
+        "paused": false,
+        "phase": 8.09708833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85825299999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          91.5,
+          231.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/kairen/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 10.4448175430298,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "kairen",
+        "native_height": 232.0,
+        "paused": false,
+        "phase": 8.09708833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 5,
+        "sheet": "motion",
+        "time": 4.85825299999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          88.5,
+          220.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/orwin/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 10.4172161798924,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "orwin",
+        "native_height": 221.0,
+        "paused": false,
+        "phase": 8.09708833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85825299999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          139.5,
+          312.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/seria/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 5.8372055888176,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "seria",
+        "native_height": 313.0,
+        "paused": false,
+        "phase": 8.09708833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85825299999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          112.5,
+          279.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/astel/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 7.73789978027344,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "astel",
+        "native_height": 280.0,
+        "paused": false,
+        "phase": 8.09708833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85825299999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          168.0,
+          288.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/darius/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 11.6505009829998,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "darius",
+        "native_height": 289.0,
+        "paused": false,
+        "phase": 8.09708833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85825299999999
+      },
+      {
+        "action": "skill",
+        "anchor": [
+          147.0,
+          258.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/lunea/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 11.2631286103278,
+        "duration": 0.340909090909091,
+        "flip": false,
+        "frame": 5,
+        "id": "lunea",
+        "native_height": 272.0,
+        "paused": false,
+        "phase": 0.733333333333333,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "attack",
+        "time": 0.25
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          109.0,
+          312.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/caelum/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 12.8524636179209,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "caelum",
+        "native_height": 313.0,
+        "paused": false,
+        "phase": 8.09708833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 4,
+        "sheet": "motion",
+        "time": 4.85825299999999
+      },
+      {
+        "action": "idle",
+        "anchor": [
+          138.5,
+          293.0
+        ],
+        "atlas": "res://assets/art-direction/full-body-v2/selene_boss/poses.png",
+        "body_parts": 1,
+        "bones": 0,
+        "distance": 10.7797546312213,
+        "duration": 0.6,
+        "flip": false,
+        "frame": 0,
+        "id": "selene_boss",
+        "native_height": 294.0,
+        "paused": false,
+        "phase": 8.09708833333332,
+        "renderer": "one_complete_painted_pose",
+        "sequence": 3,
+        "sheet": "motion",
+        "time": 4.85825299999999
+      }
+    ],
+    "camera_size": 17.046703338623,
+    "capture": "moonrest_forest-raid",
+    "display_heights": [
+      {
+        "hero": true,
+        "id": "leonhardt",
+        "nominal_height": 2.37885503238344,
+        "pixels": 61.1225809170509
+      },
+      {
+        "hero": true,
+        "id": "mira",
+        "nominal_height": 2.37885503238344,
+        "pixels": 61.1225809170509
+      },
+      {
+        "hero": true,
+        "id": "elisia",
+        "nominal_height": 2.37885503238344,
+        "pixels": 61.1225809170509
+      },
+      {
+        "hero": true,
+        "id": "kairen",
+        "nominal_height": 2.37885503238344,
+        "pixels": 61.1225809170509
+      },
+      {
+        "hero": true,
+        "id": "orwin",
+        "nominal_height": 2.37885503238344,
+        "pixels": 61.1225809170509
+      },
+      {
+        "hero": true,
+        "id": "seria",
+        "nominal_height": 2.37885503238344,
+        "pixels": 61.1225809170509
+      },
+      {
+        "hero": true,
+        "id": "astel",
+        "nominal_height": 2.37885503238344,
+        "pixels": 61.1225809170509
+      },
+      {
+        "hero": true,
+        "id": "darius",
+        "nominal_height": 2.37885503238344,
+        "pixels": 61.1225809170509
+      },
+      {
+        "hero": true,
+        "id": "lunea",
+        "nominal_height": 2.37885503238344,
+        "pixels": 61.1225809170509
+      },
+      {
+        "hero": true,
+        "id": "caelum",
+        "nominal_height": 2.37885503238344,
+        "pixels": 61.1225809170509
+      },
+      {
+        "hero": false,
+        "id": "selene_boss",
+        "nominal_height": 2.8886096821799,
+        "pixels": 74.2202768278475
+      }
+    ],
+    "hero_scales": [
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391
+    ],
+    "layout_items": [
+      {
+        "bounds": [
+          -2.45234894752502,
+          -4.21409368515015,
+          4.54530191421509,
+          4.22818803787231
+        ],
+        "id": "leonhardt",
+        "point": [
+          13.528564453125,
+          10.5639028549194
+        ]
+      },
+      {
+        "bounds": [
+          -2.22312688827515,
+          -4.22736120223999,
+          4.19999980926514,
+          4.24104261398315
+        ],
+        "id": "mira",
+        "point": [
+          26.5595970153809,
+          12.692307472229
+        ]
+      },
+      {
+        "bounds": [
+          -2.30999994277954,
+          -4.18645143508911,
+          3.94935488700867,
+          4.19999980926514
+        ],
+        "id": "elisia",
+        "point": [
+          16.4779586791992,
+          12.692307472229
+        ]
+      },
+      {
+        "bounds": [
+          -2.28103446960449,
+          -4.23620700836182,
+          4.10948276519775,
+          4.25431060791016
+        ],
+        "id": "kairen",
+        "point": [
+          13.5608282089233,
+          5.53845930099487
+        ]
+      },
+      {
+        "bounds": [
+          -2.40407228469849,
+          -4.19999980926514,
+          5.0457010269165,
+          4.21900463104248
+        ],
+        "id": "orwin",
+        "point": [
+          16.8300666809082,
+          5.53845930099487
+        ]
+      },
+      {
+        "bounds": [
+          -2.28115010261536,
+          -4.18658113479614,
+          3.84440875053406,
+          4.19999980926514
+        ],
+        "id": "seria",
+        "point": [
+          19.7471904754639,
+          12.692307472229
+        ]
+      },
+      {
+        "bounds": [
+          -2.47499990463257,
+          -4.46999979019165,
+          4.49999952316284,
+          4.48499965667725
+        ],
+        "id": "astel",
+        "point": [
+          23.2899875640869,
+          12.692307472229
+        ]
+      },
+      {
+        "bounds": [
+          -2.4415225982666,
+          -4.18546724319458,
+          4.43252611160278,
+          4.19999980926514
+        ],
+        "id": "darius",
+        "point": [
+          32.3555107116699,
+          9.50069522857666
+        ]
+      },
+      {
+        "bounds": [
+          -2.34705877304077,
+          -4.18455839157104,
+          4.05330896377563,
+          4.19999980926514
+        ],
+        "id": "lunea",
+        "point": [
+          29.8288269042969,
+          12.692307472229
+        ]
+      },
+      {
+        "bounds": [
+          -2.35495185852051,
+          -4.18658113479614,
+          4.05910539627075,
+          4.19999980926514
+        ],
+        "id": "caelum",
+        "point": [
+          25.1045989990234,
+          8.18831253051758
+        ]
+      },
+      {
+        "bounds": [
+          -2.61938762664795,
+          -5.09999990463257,
+          4.84846925735474,
+          5.117347240448
+        ],
+        "id": "selene_boss",
+        "point": [
+          21.0084686279297,
+          6.5593638420105
+        ]
+      }
+    ],
+    "projected_paint_overlaps": 0,
+    "scales": [
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391,
+      0.566394055329391
+    ],
+    "stat_overrides": false
+  }
+]

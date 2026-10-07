@@ -11,6 +11,7 @@ uniform float alpha_cutoff = 0.12;
 uniform float facing_sign = 1.0;
 uniform float movement_heat = 0.0;
 uniform float visual_time = 0.0;
+uniform float hit_flash = 0.0;
 vec4 sample_paint(vec2 uv) {
     vec2 lo=atlas_rect.xy+atlas_texel*.5;
     vec2 hi=atlas_rect.xy+atlas_rect.zw-atlas_texel*.5;
@@ -32,5 +33,6 @@ void fragment() {
     color=mix(color,color*vec3(1.02,.97,.97),face*movement_heat*pulse);
     float opacity=base.a+contour*(1.0-base.a);
     ALBEDO=mix(vec3(.08,.12,.15),min(color,vec3(1)),base.a/max(opacity,.0001))*actor_tint.rgb;
+    ALBEDO=mix(ALBEDO,vec3(1.0,.98,.90),hit_flash);
     ALPHA=opacity*actor_tint.a;ALPHA_SCISSOR_THRESHOLD=alpha_cutoff;
 }

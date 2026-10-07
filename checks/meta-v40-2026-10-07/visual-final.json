@@ -1,0 +1,25 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 2,
+  "total": 2,
+  "results": [
+    {
+      "test": "HuntFramePilotSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.8,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_frame_pilot checks=179 failures=[]\n"
+    },
+    {
+      "test": "QualityV40SmokeTest.gd",
+      "passed": true,
+      "seconds": 10.2,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nquality_v40 checks=30 failures=[]\n"
+    }
+  ]
+}

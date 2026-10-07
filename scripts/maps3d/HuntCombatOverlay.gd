@@ -21,10 +21,10 @@ func afterimage(source: AnimatedSprite2D,point: Vector2,direction: Vector2) -> v
 	for i in 3:
 		if echoes.size()>=24:echoes.pop_front()
 		echoes.append({'texture':texture,'point':point-direction*float(i+1)*.13,'height':terrain.HERO_HEIGHT,'flip':source.flip_h,'age':-float(i)*.035})
-func hit(point: Vector2, source: Vector2, tint: Color, critical: bool) -> void:
+func hit(point: Vector2, source: Vector2, tint: Color, critical: bool,height: float=.6) -> void:
 	if not is_instance_valid(terrain.game) or not terrain.game.combat_effects_enabled: return
 	if hits.size() >= MAX_HITS: hits.pop_front()
-	hits.append({'point':point, 'source':source, 'tint':tint, 'critical':critical, 'age':0.0})
+	hits.append({'point':point, 'source':source, 'tint':tint, 'critical':critical, 'height':height,'age':0.0})
 	queue_redraw()
 
 func _process(delta: float) -> void:
@@ -79,8 +79,12 @@ func _draw() -> void:
 		var index := int(runtime.get('target_index',-1))
 		if remaining < 0 or str(runtime.get('prepared_action','')) != 'basic' or not game._can_attack_enemy(id,index): continue
 		var phase := clampf(1.0 - remaining/maxf(.01,float(runtime.get('attack_windup_duration',.15))),0,1)
-		var start: Vector2 = terrain.project_world(game._hero_field_position(id),terrain.HERO_HEIGHT*.52)
-		var finish: Vector2 = terrain.project_world(game.roaming_hunt.enemy_position(index),terrain.ENEMY_HEIGHT*.5)
+		var hero_index: int=game._deployed_hero_ids().find(id)
+		if hero_index<0 or hero_index>=game.hero_map_sprites.size() or index>=game.enemy_wave_sprites.size():continue
+		var hero_source: AnimatedSprite2D=game.hero_map_sprites[hero_index]
+		var enemy_source: AnimatedSprite2D=game.enemy_wave_sprites[index]
+		var start: Vector2 = terrain.project_world(game._hero_field_position(id),terrain._actor_height(hero_source,true)*.52)
+		var finish: Vector2 = terrain.project_world(game.roaming_hunt.enemy_position(index),terrain._actor_height(enemy_source,false)*.5)
 		var tint: Color = game._hero_accent_color(id)
 		if int(game.hero_battle_state[id].get('range',1)) > 1:
 			# Release late in anticipation, arrive exactly when the simulation hits.
@@ -111,13 +115,14 @@ func _draw() -> void:
 		draw_colored_polygon(PackedVector2Array([start+side,start-side,tip]),Color(tint,.12+phase*.25))
 		draw_line(start,tip,Color(tint,.35+phase*.5),1.5,true)
 	for item in hits:
-		var point: Vector2 = terrain.project_world(item.point,terrain.ENEMY_HEIGHT*.5)
+		var point: Vector2 = terrain.project_world(item.point,float(item.height)*.5)
 		var source: Vector2 = terrain.project_world(item.source,terrain.HERO_HEIGHT*.5)
 		var age := float(item.age)/.20
 		var tint := Color(Color(item.tint),1-age)
 		var angle := (point-source).angle()
-		var radius := (14 if bool(item.critical) else 9)*(1+age*.65)
-		for i in 4:
-			var ray := Vector2.from_angle(angle+PI*.25+i*PI*.5)
+		var radius := (16 if bool(item.critical) else 10)*(1+age*.65)
+		var count:=12 if bool(item.critical) else 6
+		for i in count:
+			var ray := Vector2.from_angle(angle+float(i)*TAU/count)
 			draw_line(point+ray*radius*.35,point+ray*radius,tint,2 if bool(item.critical) else 1.5,true)
 		draw_circle(point,3*(1-age),Color(Color('#fff2cb'),1-age))
