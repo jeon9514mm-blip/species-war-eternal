@@ -27,6 +27,8 @@ var fur_layers:=4
 var _fur: Node3D
 var _echoes: Node3D
 var effects_enabled:=true
+var echo_layers:=2
+var _locomotion_weight:=0.0
 
 func bind(actor: AnimatedSprite2D,hero: bool,catalog: RefCounted=null) -> bool:
 	_catalog=catalog if catalog!=null else CATALOG.new()
@@ -42,6 +44,7 @@ func bind(actor: AnimatedSprite2D,hero: bool,catalog: RefCounted=null) -> bool:
 	_material=ShaderMaterial.new();_material.shader=PAINT
 	_material.set_shader_parameter('outline_px',.80);_material.set_shader_parameter('rim_strength',.025)
 	_material.set_shader_parameter('alpha_cutoff',.12);material_override=_material
+	_material.set_shader_parameter('secondary_seed',float(posmod(str(entry.id).hash(),1000))*.006283)
 	for kind in entry.sheets if _existing else ['attack','motion']:
 		var sheet: Dictionary=entry[kind]
 		_textures[kind]=sheet.texture if _existing else load(str(sheet.atlas))
@@ -58,6 +61,7 @@ func present(camera: Camera3D,height: float,tint: Color,delta: float,active: boo
 	if running:
 		_visual_time+=maxf(0,delta)*source.speed_scale
 		_movement_heat=move_toward(_movement_heat,1.0 if _hero and source.state=='walk' and not dead else 0.0,maxf(0,delta)*.5)
+		_locomotion_weight=move_toward(_locomotion_weight,1.0 if source.state=='walk' and not dead else 0.0,maxf(0,delta)*source.speed_scale*6.0)
 	_material.set_shader_parameter('visual_time',_visual_time)
 	_material.set_shader_parameter('movement_heat',_movement_heat)
 	if _has_point and running and _was_active:
@@ -95,7 +99,12 @@ func present(camera: Camera3D,height: float,tint: Color,delta: float,active: boo
 	elif action=='guard':frame=0
 	else:frame=int(floor(float(pose.time)*1.8))%2
 	_apply_frame(camera,height,tint,kind,frame)
+	_material.set_shader_parameter('secondary_amount',.018 if _hero and effects_enabled and action!='death' else 0.0)
+	_material.set_shader_parameter('locomotion_weight',_locomotion_weight)
+	var action_phase:=clampf(float(pose.time)/float(pose.duration),0,1)
+	_material.set_shader_parameter('action_energy',sin(action_phase*PI) if action in ['attack_1','attack_2','skill','ultimate'] else 0.0)
 	_fur.present(entry[kind],frame,_textures[kind],_visual_time,fur_layers if action!='death' else 0)
+	_echoes.layer_limit=echo_layers
 	_echoes.present(self,action,float(pose.time)/float(pose.duration),timeline.sequence,_visual_time,effects_enabled and action!='death')
 	position=Vector3.ZERO
 	if action=='idle' and effects_enabled:
@@ -125,19 +134,29 @@ func _apply_frame(camera: Camera3D,height: float,tint: Color,kind: String,frame:
 		_material.set_shader_parameter('source_texture',texture)
 		_material.set_shader_parameter('atlas_rect',Vector4(region[0]/atlas_size.x,region[1]/atlas_size.y,region[2]/atlas_size.x,region[3]/atlas_size.y))
 		_material.set_shader_parameter('atlas_texel',Vector2.ONE/atlas_size)
+		_material.set_shader_parameter('paint_size',Vector2(region[2],region[3]))
 	_material.set_shader_parameter('actor_tint',tint)
 	_material.set_shader_parameter('facing_sign',mirror)
 
 func _make_frame(frame: Dictionary,atlas_size: Vector2) -> ArrayMesh:
 	var region: Array=frame.region
 	var size:=Vector2(region[2],region[3]);var anchor:=Vector2(frame.anchor[0],frame.anchor[1])
-	var polygon:=PackedVector2Array();var vertices:=PackedVector3Array();var normals:=PackedVector3Array();var uvs:=PackedVector2Array()
-	for point: Array in frame.silhouette_uv:
-		var pixel:=Vector2(point[0],point[1])*size
-		polygon.append(pixel);vertices.append(Vector3(pixel.x-anchor.x,anchor.y-pixel.y,0.0));normals.append(Vector3.BACK)
-		uvs.append((Vector2(region[0],region[1])+pixel)/atlas_size)
+	var vertices:=PackedVector3Array();var normals:=PackedVector3Array();var uvs:=PackedVector2Array();var indices:=PackedInt32Array()
+	# One undistorted UV surface with enough interior vertices for cloth sway.
+	# Alpha discard still defines the exact original silhouette and shadow.
+	const COLUMNS=10
+	const ROWS=16
+	for row in ROWS+1:
+		for column in COLUMNS+1:
+			var pixel:=Vector2(float(column)/COLUMNS,float(row)/ROWS)*size
+			vertices.append(Vector3(pixel.x-anchor.x,anchor.y-pixel.y,0));normals.append(Vector3.BACK)
+			uvs.append((Vector2(region[0],region[1])+pixel)/atlas_size)
+	for row in ROWS:
+		for column in COLUMNS:
+			var a:=row*(COLUMNS+1)+column;var b:=a+1;var c:=a+COLUMNS+1;var d:=c+1
+			indices.append_array(PackedInt32Array([a,c,b,b,c,d]))
 	var arrays: Array=[];arrays.resize(Mesh.ARRAY_MAX)
-	arrays[Mesh.ARRAY_VERTEX]=vertices;arrays[Mesh.ARRAY_NORMAL]=normals;arrays[Mesh.ARRAY_TEX_UV]=uvs;arrays[Mesh.ARRAY_INDEX]=Geometry2D.triangulate_polygon(polygon)
+	arrays[Mesh.ARRAY_VERTEX]=vertices;arrays[Mesh.ARRAY_NORMAL]=normals;arrays[Mesh.ARRAY_TEX_UV]=uvs;arrays[Mesh.ARRAY_INDEX]=indices
 	var result:=ArrayMesh.new();result.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays);return result
 
 func debug_snapshot() -> Dictionary:return _snapshot.duplicate(true)

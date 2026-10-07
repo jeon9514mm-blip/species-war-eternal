@@ -1,0 +1,25 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 1,
+  "total": 2,
+  "results": [
+    {
+      "test": "FullBodyRolloutSmokeTest.gd",
+      "passed": false,
+      "seconds": 19.11,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: Parameter \"material\" is null.\n   at: material_get_instance_shader_parameters (servers/rendering/dummy/storage/material_storage.cpp:264)\nfull_body_rollout checks=1143 failures=[]\n"
+    },
+    {
+      "test": "RaidDesignSmokeTest.gd",
+      "passed": true,
+      "seconds": 37.47,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_DESIGN checks=486 failures=[]\n"
+    }
+  ]
+}

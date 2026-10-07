@@ -1,0 +1,913 @@
+{
+  "version": 1,
+  "renderer": "real skinned GLB geometry",
+  "blender": "5.2.2 LTS",
+  "entries": {
+    "leonhardt": {
+      "id": "leonhardt",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/leonhardt.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.7221664768740865,
+      "bones": 17,
+      "triangles": 8228,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "mira": {
+      "id": "mira",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/mira.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.7012105996806395,
+      "bones": 17,
+      "triangles": 8292,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "elisia": {
+      "id": "elisia",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/elisia.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6764928266404596,
+      "bones": 17,
+      "triangles": 8368,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "kairen": {
+      "id": "kairen",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/kairen.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6764928266404596,
+      "bones": 17,
+      "triangles": 8368,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "orwin": {
+      "id": "orwin",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/orwin.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.7221017496421133,
+      "bones": 17,
+      "triangles": 8228,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "seria": {
+      "id": "seria",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/seria.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6764928266404596,
+      "bones": 17,
+      "triangles": 8368,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "astel": {
+      "id": "astel",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/astel.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6764928266404596,
+      "bones": 17,
+      "triangles": 8368,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "darius": {
+      "id": "darius",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/darius.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6475589344243803,
+      "bones": 17,
+      "triangles": 7940,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "lunea": {
+      "id": "lunea",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/lunea.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6764928266404596,
+      "bones": 17,
+      "triangles": 8368,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "caelum": {
+      "id": "caelum",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/caelum.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6474867489519068,
+      "bones": 17,
+      "triangles": 7940,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "valeria": {
+      "id": "valeria",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/valeria.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6686600386523259,
+      "bones": 17,
+      "triangles": 8196,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "morgas": {
+      "id": "morgas",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/morgas.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6764928266404596,
+      "bones": 17,
+      "triangles": 8512,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "ragna": {
+      "id": "ragna",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/ragna.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.7233331435631162,
+      "bones": 17,
+      "triangles": 7868,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "bron": {
+      "id": "bron",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/bron.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6762233454362595,
+      "bones": 17,
+      "triangles": 7920,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "nyx": {
+      "id": "nyx",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/nyx.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6764928266404596,
+      "bones": 17,
+      "triangles": 8512,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "fenris": {
+      "id": "fenris",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/fenris.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.7291836028179046,
+      "bones": 17,
+      "triangles": 8656,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "isolde": {
+      "id": "isolde",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/isolde.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6764928266404596,
+      "bones": 17,
+      "triangles": 8512,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "garm": {
+      "id": "garm",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/garm.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.8229896082828334,
+      "bones": 17,
+      "triangles": 8532,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "veyra": {
+      "id": "veyra",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/veyra.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.7012105996806395,
+      "bones": 17,
+      "triangles": 8628,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "ulric": {
+      "id": "ulric",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/ulric.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6475589344243803,
+      "bones": 17,
+      "triangles": 7940,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "adrien": {
+      "id": "adrien",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/adrien.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.7221664768740865,
+      "bones": 17,
+      "triangles": 8228,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "tessa": {
+      "id": "tessa",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/tessa.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6965236321441126,
+      "bones": 17,
+      "triangles": 8176,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "naia": {
+      "id": "naia",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/naia.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.7012105996806395,
+      "bones": 17,
+      "triangles": 8148,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "sael": {
+      "id": "sael",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/sael.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6475589344243803,
+      "bones": 17,
+      "triangles": 7796,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "odelia": {
+      "id": "odelia",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/odelia.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6764928266404596,
+      "bones": 17,
+      "triangles": 8512,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "lucien": {
+      "id": "lucien",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/lucien.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6475589344243803,
+      "bones": 17,
+      "triangles": 7940,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "corvin": {
+      "id": "corvin",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/corvin.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6475589344243803,
+      "bones": 17,
+      "triangles": 7940,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "rokan": {
+      "id": "rokan",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/rokan.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.8052982814218064,
+      "bones": 17,
+      "triangles": 7956,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "bora": {
+      "id": "bora",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/bora.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.7370353136767573,
+      "bones": 17,
+      "triangles": 8336,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "selene": {
+      "id": "selene",
+      "hero": true,
+      "path": "res://assets/models3d-v1/characters/selene.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6764928266404596,
+      "bones": 17,
+      "triangles": 8512,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "goblin": {
+      "id": "goblin",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/goblin.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.7233331435631162,
+      "bones": 17,
+      "triangles": 7724,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "wild_dog": {
+      "id": "wild_dog",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/wild_dog.glb",
+      "native_height": 0.86,
+      "body_ratio": 1.45,
+      "bones": 12,
+      "triangles": 3000,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "bristle_boar": {
+      "id": "bristle_boar",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/bristle_boar.glb",
+      "native_height": 0.86,
+      "body_ratio": 1.45,
+      "bones": 12,
+      "triangles": 3192,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "iron_mole": {
+      "id": "iron_mole",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/iron_mole.glb",
+      "native_height": 0.86,
+      "body_ratio": 1.45,
+      "bones": 12,
+      "triangles": 3672,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "mushroom": {
+      "id": "mushroom",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/mushroom.glb",
+      "native_height": 0.89,
+      "body_ratio": 1.4315150002790893,
+      "bones": 4,
+      "triangles": 2552,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "moon_wolf": {
+      "id": "moon_wolf",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/moon_wolf.glb",
+      "native_height": 0.86,
+      "body_ratio": 1.45,
+      "bones": 12,
+      "triangles": 3000,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "wind_crow": {
+      "id": "wind_crow",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/wind_crow.glb",
+      "native_height": 0.7,
+      "body_ratio": 1.45,
+      "bones": 6,
+      "triangles": 1276,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "mine_orc": {
+      "id": "mine_orc",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/mine_orc.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.7233331435631162,
+      "bones": 17,
+      "triangles": 7724,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "lava_bat": {
+      "id": "lava_bat",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/lava_bat.glb",
+      "native_height": 0.9,
+      "body_ratio": 1.45,
+      "bones": 6,
+      "triangles": 1324,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "crystal_spider": {
+      "id": "crystal_spider",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/crystal_spider.glb",
+      "native_height": 0.86,
+      "body_ratio": 1.45,
+      "bones": 12,
+      "triangles": 1248,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "forest_wraith": {
+      "id": "forest_wraith",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/forest_wraith.glb",
+      "native_height": 1.17,
+      "body_ratio": 0.7524743360855396,
+      "bones": 4,
+      "triangles": 848,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "night_raven": {
+      "id": "night_raven",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/night_raven.glb",
+      "native_height": 0.7,
+      "body_ratio": 1.45,
+      "bones": 6,
+      "triangles": 1276,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "frost_deer": {
+      "id": "frost_deer",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/frost_deer.glb",
+      "native_height": 1.31,
+      "body_ratio": 1.3586200008994427,
+      "bones": 12,
+      "triangles": 3144,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "grun": {
+      "id": "grun",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/grun.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6762233454362595,
+      "bones": 17,
+      "triangles": 7956,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "morgul": {
+      "id": "morgul",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/morgul.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6762233454362595,
+      "bones": 17,
+      "triangles": 8100,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    },
+    "selene_boss": {
+      "id": "selene_boss",
+      "hero": false,
+      "path": "res://assets/models3d-v1/characters/selene_boss.glb",
+      "native_height": 1.82,
+      "body_ratio": 0.6764928266404596,
+      "bones": 17,
+      "triangles": 8692,
+      "animations": [
+        "idle",
+        "walk",
+        "attack_1",
+        "attack_2",
+        "skill",
+        "ultimate",
+        "hit",
+        "death"
+      ]
+    }
+  },
+  "environments": [
+    {
+      "id": "gray_meadow_hunt",
+      "path": "res://assets/models3d-v1/environments/gray_meadow_hunt.glb",
+      "triangles": 27300
+    },
+    {
+      "id": "gray_meadow_raid",
+      "path": "res://assets/models3d-v1/environments/gray_meadow_raid.glb",
+      "triangles": 38100
+    },
+    {
+      "id": "forgotten_mine_hunt",
+      "path": "res://assets/models3d-v1/environments/forgotten_mine_hunt.glb",
+      "triangles": 25020
+    },
+    {
+      "id": "forgotten_mine_raid",
+      "path": "res://assets/models3d-v1/environments/forgotten_mine_raid.glb",
+      "triangles": 35820
+    },
+    {
+      "id": "moonrest_forest_hunt",
+      "path": "res://assets/models3d-v1/environments/moonrest_forest_hunt.glb",
+      "triangles": 25380
+    },
+    {
+      "id": "moonrest_forest_raid",
+      "path": "res://assets/models3d-v1/environments/moonrest_forest_raid.glb",
+      "triangles": 36180
+    }
+  ]
+}

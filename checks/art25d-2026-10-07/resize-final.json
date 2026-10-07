@@ -1,0 +1,32 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 3,
+  "total": 3,
+  "results": [
+    {
+      "test": "FullBodyRolloutSmokeTest.gd",
+      "passed": true,
+      "seconds": 20.22,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nfull_body_rollout checks=1143 failures=[]\n"
+    },
+    {
+      "test": "RaidDesignSmokeTest.gd",
+      "passed": true,
+      "seconds": 29.55,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_DESIGN checks=486 failures=[]\n"
+    },
+    {
+      "test": "V8364CombatViewSmokeTest.gd",
+      "passed": true,
+      "seconds": 20.23,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8364_combat_view checks=836 failures=[]\n"
+    }
+  ]
+}

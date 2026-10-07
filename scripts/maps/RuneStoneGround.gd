@@ -12,8 +12,10 @@ func _ready() -> void:
 	surface=MeshInstance3D.new();surface.name='ArtistStoneSurface'
 	var plane:=PlaneMesh.new();plane.size=Vector2(70,60)
 	plane.subdivide_width=48;plane.subdivide_depth=40;surface.mesh=plane
-	surface.position=Vector3(16,0,10)
+	surface.position=Vector3(16,.016,10)
 	stone_material=ShaderMaterial.new();stone_material.shader=SURFACE_SHADER
+	stone_material.set_shader_parameter('rune_only',true)
+	stone_material.set_shader_parameter('rune_sectors',8.0 if RenderingServer.get_current_rendering_method()=='forward_plus' else 4.0)
 	var selected_zone: String=str(field.zone_id) if is_instance_valid(field) else zone_id
 	stone_material.set_shader_parameter('stone_art',ART.texture_for(selected_zone))
 	stone_material.set_shader_parameter('stone_detail',preload('res://assets/maps/detail-v33/stone-detail.png'))

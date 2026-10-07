@@ -1,0 +1,74 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 10,
+  "total": 10,
+  "results": [
+    {
+      "test": "CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "seconds": 11.22,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nCOMBAT_READABILITY checks=148 failures=[]\n"
+    },
+    {
+      "test": "FullBodyRolloutSmokeTest.gd",
+      "passed": true,
+      "seconds": 20.31,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nfull_body_rollout checks=1143 failures=[]\n"
+    },
+    {
+      "test": "HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.67,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=48 failures=[]\n"
+    },
+    {
+      "test": "HuntFramePilotSmokeTest.gd",
+      "passed": true,
+      "seconds": 9.34,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_frame_pilot checks=179 failures=[]\n"
+    },
+    {
+      "test": "PaintedMotion25DSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.62,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\npainted_25d_motion checks=270 failures=[]\n"
+    },
+    {
+      "test": "QualityV40SmokeTest.gd",
+      "passed": true,
+      "seconds": 10.84,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nquality_v40 checks=30 failures=[]\n"
+    },
+    {
+      "test": "RaidDesignSmokeTest.gd",
+      "passed": true,
+      "seconds": 29.83,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_DESIGN checks=486 failures=[]\n"
+    },
+    {
+      "test": "Real3DModelSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.99,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nreal_3d_models checks=595 failures=[]\n"
+    },
+    {
+      "test": "V16PresentationIntegrationSmokeTest.gd",
+      "passed": true,
+      "seconds": 9.36,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV16_INTEGRATION checks=77 failures=[]\n"
+    },
+    {
+      "test": "V8364CombatViewSmokeTest.gd",
+      "passed": true,
+      "seconds": 20.23,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8364_combat_view checks=836 failures=[]\n"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 0,
+  "total": 1,
+  "results": [
+    {
+      "test": "FullBodyRolloutSmokeTest.gd",
+      "passed": false,
+      "seconds": 18.94,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: Parameter \"material\" is null.\n   at: material_get_instance_shader_parameters (servers/rendering/dummy/storage/material_storage.cpp:264)\nfull_body_rollout checks=1143 failures=[]\n"
+    }
+  ]
+}

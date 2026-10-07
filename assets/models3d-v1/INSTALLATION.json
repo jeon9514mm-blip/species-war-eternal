@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-07",
+  "blender": {
+    "version": "5.2.2 LTS",
+    "verified": "background model generation succeeded",
+    "source": "https://download.blender.org/release/Blender5.2/",
+    "sha256": "8dac2751ebe8e3867327eec52f1ef9b344c0a27499bb6221a301b4b35f2828d1"
+  },
+  "krita": {
+    "version": "5.3.4",
+    "verified": "installed executable product/file version 5.3.4 (git c5b23e3)",
+    "source": "https://krita.org/en/download/",
+    "sha256": "0dd4d6f86878d42b058aa33bb2fded01c888768e6f1daa0319e5f5b5cc49e465",
+    "used_for_asset_generation": false
+  },
+  "material_maker": {
+    "version": "1.7",
+    "verified": "actual Vulkan albedo, normal, ORM, emission and heightmap export succeeded",
+    "source": "https://github.com/RodZill4/material-maker/releases/tag/1.7",
+    "sha256": "deb4416bc939861d48097a866a8b2bf0363c29ff64874f2e04478658ff900808",
+    "graph_source": "material_maker/examples/medieval_wall.ptex at 4c6cea67b659e1eb472f91590e06b2b1c5245916",
+    "license": "materials/MATERIAL_MAKER_LICENSE.md"
+  },
+  "default_presentation": "2.5D original painted cast on modeled environments",
+  "model_status": "46 real skinned GLB drafts preserved; not the approved final character style"
+}

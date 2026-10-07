@@ -1,0 +1,67 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 7,
+  "total": 9,
+  "results": [
+    {
+      "test": "CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "seconds": 10.75,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nCOMBAT_READABILITY checks=148 failures=[]\n"
+    },
+    {
+      "test": "FullBodyRolloutSmokeTest.gd",
+      "passed": false,
+      "seconds": 19.09,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: Parameter \"material\" is null.\n   at: material_get_instance_shader_parameters (servers/rendering/dummy/storage/material_storage.cpp:264)\n   GDScript backtrace (most recent call first):\n       [0] _apply_portrait_resize (res://scripts/portrait/PortraitMain.gd:374)\nfull_body_rollout checks=1143 failures=[]\n"
+    },
+    {
+      "test": "HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.55,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=48 failures=[]\n"
+    },
+    {
+      "test": "HuntFramePilotSmokeTest.gd",
+      "passed": true,
+      "seconds": 9.06,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_frame_pilot checks=179 failures=[]\n"
+    },
+    {
+      "test": "QualityV40SmokeTest.gd",
+      "passed": true,
+      "seconds": 10.17,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nquality_v40 checks=30 failures=[]\n"
+    },
+    {
+      "test": "RaidDesignSmokeTest.gd",
+      "passed": false,
+      "seconds": 6.19,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: Run with fresh XDG_DATA_HOME containing art-pilot-raid-validation\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] run (res://tests/regression/RaidDesignSmokeTest.gd:28)\n"
+    },
+    {
+      "test": "Real3DModelSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.92,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nreal_3d_models checks=595 failures=[]\n"
+    },
+    {
+      "test": "V16PresentationIntegrationSmokeTest.gd",
+      "passed": true,
+      "seconds": 9.16,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV16_INTEGRATION checks=77 failures=[]\n"
+    },
+    {
+      "test": "V8364CombatViewSmokeTest.gd",
+      "passed": true,
+      "seconds": 18.73,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8364_combat_view checks=836 failures=[]\n"
+    }
+  ]
+}

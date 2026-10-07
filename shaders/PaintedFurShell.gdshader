@@ -1,6 +1,6 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled, depth_draw_never, blend_mix;
-uniform sampler2D source_texture : source_color, filter_linear, repeat_disable;
+uniform sampler2D source_texture : source_color, filter_linear_mipmap, repeat_disable;
 uniform vec4 atlas_rect;
 uniform vec2 atlas_texel;
 uniform float shell_layer = 0.5;

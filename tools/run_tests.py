@@ -22,6 +22,7 @@ def main():
     parser.add_argument('--tests', nargs='+', help='Optional explicit script filenames for a targeted regression suite')
     parser.add_argument('--list', action='store_true', help='List discovered tests without requiring Godot')
     parser.add_argument('--skip-syntax', action='store_true', help='Explicitly skip the full parser pass after a separate syntax check')
+    parser.add_argument('--gpu', action='store_true', help='Run selected regressions on the real Mobile GPU renderer instead of the headless dummy backend')
     args = parser.parse_args()
     project = Path(__file__).resolve().parents[1]
     try:
@@ -37,7 +38,8 @@ def main():
         parser.error('This save-isolating runner currently supports Linux and Windows.')
     binary = str(Path(args.godot).resolve())
     results = []
-    with tempfile.TemporaryDirectory(prefix='pixel-rpg-tests-') as tmp:
+    # GPU drivers may write shader cache briefly after Godot exits on Windows.
+    with tempfile.TemporaryDirectory(prefix='pixel-rpg-tests-', ignore_cleanup_errors=True) as tmp:
         # The editor also writes preferences and font/import caches. Keep all
         # three XDG locations writable and isolated from the developer profile.
         locations = {name: str(Path(tmp) / folder) for name, folder in (
@@ -84,7 +86,9 @@ def main():
                                                        ensure_ascii=False, indent=2), encoding='utf-8')
             return 1
         def run_one(script):
-            test_dir = Path(tmp) / script.stem
+            # RaidDesign's production-path canaries require an explicitly named
+            # disposable home; retain its guard instead of disabling the test.
+            test_dir = Path(tmp) / ('art-pilot-raid-validation' if script.stem == 'RaidDesignSmokeTest' else script.stem)
             test_dir.mkdir()
             test_env = dict(env, XDG_DATA_HOME=str(test_dir), APPDATA=str(test_dir))
             started = time.monotonic()
@@ -92,13 +96,18 @@ def main():
             # The pattern audit runs twelve natural battles, including six full
             # 90-second weekly rotations; keep their complete simulation steps.
             timeout_seconds = 600 if script.stem in {"V26CombatSoakSmokeTest", "V27BalanceMatrixSmokeTest", "V27BossLifecycleSmokeTest", "V835PatternBattleSmokeTest"} else 180
-            command = [binary, '--headless', '--path', str(project), '--script', resource_path(project, script)]
+            command = [binary] + (['--rendering-method', 'mobile', '--audio-driver', 'Dummy'] if args.gpu else ['--headless']) + ['--path', str(project), '--script', resource_path(project, script)]
+            startup = None
+            if args.gpu and sys.platform == 'win32':
+                startup = subprocess.STARTUPINFO()
+                startup.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+                startup.wShowWindow = 0
             measurement_path = test_dir / 'balance-results.json'
             if script.stem in {'V27BalanceMatrixSmokeTest', 'V29RosterKitSmokeTest', 'V31HeroArtSmokeTest', 'PortraitRegressionSmokeTest'}:
                 command += ['--', '--report=' + str(measurement_path)]
             try:
                 proc = subprocess.run(command,
-                                      env=test_env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=timeout_seconds)
+                                      env=test_env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=timeout_seconds, startupinfo=startup)
                 output = proc.stdout
                 ok, _reason = evaluate_output(proc.returncode, output)
             except subprocess.TimeoutExpired as error:
@@ -130,6 +139,7 @@ def main():
         results.sort(key=lambda x: x['test'])
         engine_version = subprocess.check_output([binary, '--version'], text=True, env=env).strip()
     report = {'engine': engine_version,
+              'renderer': 'gpu_mobile' if args.gpu else 'headless_dummy',
               'syntax': syntax_report,
               'passed': sum(x['passed'] for x in results), 'total': len(results), 'results': results}
     if args.output:

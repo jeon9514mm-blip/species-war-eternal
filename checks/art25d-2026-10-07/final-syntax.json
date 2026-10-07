@@ -1,0 +1,157 @@
+{
+  "engine": "4.7.2",
+  "baseline": {
+    "passed": 490,
+    "total": 491,
+    "report": "repair-and-syntax.json"
+  },
+  "coverage_method": "Full parser pass plus sequential rechecks for the single process failure and every updated/new script",
+  "passed": 492,
+  "total": 492,
+  "rechecks": [
+    {
+      "script": "scripts/art/HuntFramePilot.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "008fe256999572a4c7b1630b2e20c87981f925a46d9139c83109ffc85d425451",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "scripts/art/Model3DCatalog.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "e07eaaf60076b3fbaa531eff30b3bdd58fe2cbbc6aa77f35de6f70dc74b5652d",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "scripts/art/Model3DPilot.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "f2a4116d4314a507d6512e9e200185327c51092703ba33059a00ae16f513751c",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "scripts/art/PaintedAttackEchoes.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "bc8e4d05a25fbd3e922e3fcaa2b6e47ce2246041519f83be467e8f456808a2c9",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "scripts/art/RaidArenaBattlefield.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "f87f4a775e727061c9e45a266e81495d408bc103c2c06add3b167b0d46417703",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "scripts/maps/RuneStoneGround.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "c12571ac885a82d1896b0417259f8ae864eb6cecf0140128447203a6e4757540",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "scripts/maps3d/Battlefield3DView.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "2cf48c711489226236709c5d10a66586cf30039e477f16adfe3b81b5c7d0530f",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "scripts/portrait/PortraitMain.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "6adbf7f2547ae4302f05bf8d229530f1bfce61d6f2c3de78951bb2ba5df02cdd",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "scripts/portrait/PortraitRaid.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "eb47c83d79eb26bcaee3ea91d978a59ee53c0c830c3b0a195b130eb4e3cb496b",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "scripts/presentation/CombatTextPresenter.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "c572ba354ff007e2b5be4e34df94e251a2c7f45a83115b3f3e933f94eed22b43",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "tests/regression/CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "d9a073066caf646aedd8199a441f555388ee30992f71fa962daa9f1fe3b739f9",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "tests/regression/PaintedMotion25DSmokeTest.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "ab74fc9a34333338e34466991abdcde367d5f5ed93478f4ae8b40772030f78d3",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "tests/regression/RaidDesignSmokeTest.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "0d31e09a4c979aeb0d869e8fd78204c4615c03c99bb06a2030eba029cc4318a6",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "tests/regression/Real3DModelSmokeTest.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "4dbb8fe75ad4e117cf8f148f71eba522e7594978c5be623342319722ef385541",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "tests/regression/V43AllHeroMotionSmokeTest.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "5d87f597582e4ab0bb4eb73d76a62837186f25af241c33be8eca6598d405cb97",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "tools/capture_25d.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "5b98da511414902fb11cab72b554c16f99ddbb00f0cd5456949f3b03733d39ee",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "tools/capture_model_turntable.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "77c7f73b9f5307662e33951cec6a7562cd1b298e36741229edf71b90b8579a23",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    },
+    {
+      "script": "tools/capture_real3d.gd",
+      "passed": true,
+      "first_exit_code": 0,
+      "exit_code": 0,
+      "sha256": "b5295af4e89c5a803c6339c95770c5bb273f43546c164b72913aebced5391692",
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\n"
+    }
+  ]
+}

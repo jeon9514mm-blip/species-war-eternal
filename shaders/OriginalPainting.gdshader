@@ -1,7 +1,7 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled, depth_prepass_alpha;
 // Complete painted poses remain intact. Lighting never moves separate limbs.
-uniform sampler2D source_texture : source_color, filter_linear, repeat_disable;
+uniform sampler2D source_texture : source_color, filter_linear_mipmap, repeat_disable;
 uniform vec4 atlas_rect = vec4(0.0,0.0,1.0,1.0);
 uniform vec2 atlas_texel = vec2(0.001);
 uniform vec4 actor_tint : source_color = vec4(1.0);
@@ -12,6 +12,31 @@ uniform float facing_sign = 1.0;
 uniform float movement_heat = 0.0;
 uniform float visual_time = 0.0;
 uniform float hit_flash = 0.0;
+uniform vec2 paint_size = vec2(1.0);
+uniform float secondary_amount = 0.0;
+uniform float secondary_seed = 0.0;
+uniform float locomotion_weight = 0.0;
+uniform float action_energy = 0.0;
+void vertex() {
+    // A single dense painting surface. Faces, hands and planted feet remain
+    // fixed; only colored outer cloth and hair tips receive a small local sway.
+    // visual_time is the paused battle clock, never the engine's global TIME.
+    vec2 local=(UV-atlas_rect.xy)/atlas_rect.zw;
+    vec2 bounded=clamp(UV,atlas_rect.xy+atlas_texel*.5,atlas_rect.xy+atlas_rect.zw-atlas_texel*.5);
+    vec4 ink=textureLod(source_texture,bounded,0.0);
+    float hi=max(ink.r,max(ink.g,ink.b));
+    float lo=min(ink.r,min(ink.g,ink.b));
+    float color=smoothstep(.08,.24,hi-lo)*(1.0-smoothstep(.85,.98,hi));
+    float warm=step(ink.g*1.08,ink.r)*step(ink.b*1.3,ink.g);
+    float outer=smoothstep(.19,.34,abs(local.x-.5));
+    float cape=outer*smoothstep(.22,.40,local.y)*(1.0-smoothstep(.86,.98,local.y))*color*(1.0-warm);
+    float hair=smoothstep(.07,.13,abs(local.x-.5))*(1.0-smoothstep(.21,.28,abs(local.x-.5)));
+    hair*=smoothstep(.025,.10,local.y)*(1.0-smoothstep(.21,.29,local.y))*.24;
+    float swing=sin(visual_time*2.6+local.y*6.0+secondary_seed);
+    float momentum=.55+locomotion_weight*.45+action_energy*.25;
+    VERTEX.x+=swing*paint_size.x*secondary_amount*(cape+hair)*momentum*ink.a;
+    VERTEX.y+=cos(visual_time*2.6+local.x*5.0+secondary_seed)*paint_size.y*secondary_amount*.12*cape*ink.a;
+}
 vec4 sample_paint(vec2 uv) {
     vec2 lo=atlas_rect.xy+atlas_texel*.5;
     vec2 hi=atlas_rect.xy+atlas_rect.zw-atlas_texel*.5;

@@ -79,6 +79,7 @@ func install(main: Node) -> void:
 	game=main;name='PortraitRaidView';mouse_filter=Control.MOUSE_FILTER_IGNORE
 	var w: float=game.get_viewport_rect().size.x
 	var h: float=game.get_viewport_rect().size.y
+	set_meta('installed_viewport_size',Vector2(w,h))
 	size=Vector2(w,h)
 	for item: Node in game.content_root.get_children():
 		if item is CanvasItem and item!=self and item.z_index<100:item.visible=false

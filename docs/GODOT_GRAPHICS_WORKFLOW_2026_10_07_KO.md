@@ -1,5 +1,6 @@
 # Godot 그래픽 제작 흐름 조사
 
+**설치·제작 후 갱신:** Blender 5.2.2 LTS·Material Maker 1.7·Krita 5.3.4 설치를 확인했습니다. 실제 6개 GLB 맵·1024 PBR 출력과 46종 캐릭터 초안을 생성했고, 사용자 검수에 따라 기본 화면은 원화 기반 2.5D로 맞췄습니다. [현재 제작 범위](../assets/models3d-v1/README.md), [현재 검수](../checks/art25d-2026-10-07/README.md). 아래 튜토리얼 조사와 초기 구조 설명은 설치 이전의 기록입니다.
 2026-10-07, 사용자 요청으로 YouTube의 캐릭터·맵·조명 튜토리얼을 찾아 KiriSoft 캐릭터 영상의 공개 자동 자막 원문, 다른 영상의 설명·목차·작성자 자료를 현재 Godot 공식 문서와 게임 소스에 대조했습니다. 영상 전체를 시각적으로 시청했다는 기록은 아닙니다. GameFromScratch 조명 영상은 자막이 제공되지 않아 작성자 목차·공개 코드와 공식 문서를 참고했습니다. 오래된 영상의 옵션을 그대로 가져오지 않고 Godot 4 문서와 구분했습니다.
 
 ## 지금 변화가 제한적인 이유
@@ -44,4 +45,4 @@ Material Maker는 [출력 속성을 PNG로 내보내고 AO·roughness·metallic�
 
 [Godot 환경·후처리 문서](https://docs.godotengine.org/en/stable/tutorials/3d/environment_and_post_processing.html)에 따르면 여러 GI·화면 공간 효과에는 렌더러 제한이 있습니다. SSIL 하나를 켜는 것은 전체 간접광 구현과 다르며, 그림 한 장을 실제 3D 지형으로 바꾸지도 않습니다. 현재 수치 변경과 새 자산 제작을 구분해서 검수합니다.
 
-이번에 실제로 수정한 그래픽은 [Meta v40 반영 내역](../assets/art-direction/meta-v40-reference/README.md)과 [전후 화면·실행 검사](../checks/meta-v40-2026-10-07/README.md)에 있습니다. 프로그램 설치·추가 메시 제작을 완료했다고 표시하지 않습니다.
+이번에 실제로 수정한 그래픽은 [Meta v40 반영 내역](../assets/art-direction/meta-v40-reference/README.md)과 [전후 화면·실행 검사](../checks/meta-v40-2026-10-07/README.md)에 있습니다. 추가 프로그램과 메시 제작의 갱신 내용은 위의 현재 제작 범위를 참고하세요.

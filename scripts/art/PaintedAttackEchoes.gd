@@ -5,6 +5,7 @@ const DURATION:=.15
 var layers: Array[MeshInstance3D]=[]
 var sequence:=-1
 var started:=-1.0
+var layer_limit:=2
 func configure() -> void:
 	for i in 2:
 		var layer:=MeshInstance3D.new();layer.name='PaintedEcho'+str(i)
@@ -20,7 +21,7 @@ func present(paint: MeshInstance3D,action: String,phase: float,serial: int,clock
 				layer.material_override.set_shader_parameter(key,paint.material_override.get_shader_parameter(key))
 	var age:=clock-started
 	for i in layers.size():
-		var visible_now:=enabled and started>=0 and age>=0 and age<DURATION
+		var visible_now:=i<layer_limit and enabled and started>=0 and age>=0 and age<DURATION
 		layers[i].visible=visible_now
 		if not visible_now:continue
 		layers[i].position=Vector3(-float(i+1)*(8+age*30),0,-.03*float(i+1))

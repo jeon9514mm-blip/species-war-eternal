@@ -1,7 +1,8 @@
 shader_type spatial;
-render_mode cull_disabled, diffuse_burley, specular_schlick_ggx;
+render_mode cull_disabled, diffuse_burley, specular_schlick_ggx, blend_mix, depth_draw_never;
 uniform sampler2D stone_art : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D stone_detail : filter_linear_mipmap_anisotropic, repeat_enable;
+uniform bool rune_only = false;
 uniform float detail_strength = 0.14;
 uniform vec4 stone_tint : source_color = vec4(1.0);
 uniform vec4 rune_color : source_color = vec4(0.18, 0.75, 1.0, 1.0);
@@ -22,6 +23,7 @@ uniform float rune_rotation_speed = .15;
 uniform float micro_detail = 0.014;
 uniform vec2 rune_center = vec2(16.0, 10.0);
 uniform float rune_radius = 3.8;
+uniform float rune_sectors = 8.0;
 varying vec3 world_position;
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453); }
 float noise(vec2 p) {
@@ -32,7 +34,7 @@ float band(float r, float at, float width) { return 1.0-smoothstep(width,width+0
 void vertex() {
     vec3 p=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz;
     // Subtle visual relief, safely below the actor feet. No gameplay collisions.
-    VERTEX.y += (noise(p.xz*0.12)-0.5)*0.055+(noise(p.xz*0.35)-0.5)*0.020;
+    if (!rune_only) VERTEX.y += (noise(p.xz*0.12)-0.5)*0.055+(noise(p.xz*0.35)-0.5)*0.020;
     world_position=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz;
 }
 void fragment() {
@@ -74,7 +76,7 @@ void fragment() {
     float radius=distance_to_center/rune_radius;
     float rings=band(radius,0.90,0.009)+band(radius,0.70,0.007);
     float angle=atan(world.y-rune_center.y,world.x-rune_center.x)+visual_time*rune_rotation_speed;
-    float sector=(angle+3.14159265)*8.0/6.2831853;
+    float sector=(angle+3.14159265)*rune_sectors/6.2831853;
     float column=fract(sector)-0.5;
     float variant=hash(vec2(floor(sector),8.0));
     float stem=(1.0-smoothstep(0.030,0.055,abs(column)))*band(radius,0.80,0.036);
@@ -84,17 +86,18 @@ void fragment() {
     float halo=(1.0-smoothstep(0.008,0.055,abs(radius-0.9)))+(1.0-smoothstep(0.006,0.04,abs(radius-0.7)));
     float pulse=sin(visual_time*1.65+world.x*0.07)*0.22+0.78;
     float flicker=0.97+0.03*sin(visual_time*7.3+sector);
-    vec3 ring_color=mix(moss_rune.rgb,bronze_rune.rgb,.5+.5*sin(angle*8.0));
+    vec3 ring_color=mix(moss_rune.rgb,bronze_rune.rgb,.5+.5*sin(angle*rune_sectors));
     ring_color=mix(ring_color,rune_color.rgb,.12);
     // Colored inlay carries the design; restrained emission avoids white bloom.
     ALBEDO=mix(stone,ring_color*.60,clamp(rings+glyph,0.0,1.0))+ring_color*halo*.015;
     ROUGHNESS=mix(mix(.58,.82,crack),.28,clamp(puddle/.40,0.0,1.0));
     METALLIC=clamp(puddle*.12+rings*.32,0.0,.40);
     AO=clamp(1.0-crack*crack_depth*.25,0.65,1.0);
-    float flow=fract(sector/8.0*1.6+visual_time*.08);
+    float flow=fract(sector/rune_sectors*1.6+visual_time*.08);
     float sweep=smoothstep(0.0,0.07,flow)*(1.0-smoothstep(0.93,1.0,flow));
     float spark_angle=fract(sector+visual_time*.11)-.5;
     float spark=(1.0-smoothstep(.012,.045,abs(spark_angle)))*band(radius,.90+.028*sin(sector+visual_time),.009);
     EMISSION=ring_color*(rings*.22+glyph*.30+halo*.018+spark*.35)*rune_power*pulse*flicker;
     EMISSION+=bronze_rune.rgb*rings*sweep*.12;
+    ALPHA=rune_only ? clamp(rings+glyph+halo*.12,0.0,1.0)*.55 : 1.0;
 }

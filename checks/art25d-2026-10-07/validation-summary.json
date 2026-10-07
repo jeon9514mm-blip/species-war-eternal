@@ -1,0 +1,13 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "runtime_passed": 10,
+  "runtime_total": 10,
+  "explicit_checks_reported": 3812,
+  "syntax_passed": 492,
+  "syntax_total": 492,
+  "python_tests": 50,
+  "static": "resources and links passed",
+  "capture_scenes": 7,
+  "body_overlaps": 0,
+  "android_device_benchmark": false
+}

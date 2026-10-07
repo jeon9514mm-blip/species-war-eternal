@@ -360,6 +360,10 @@ func _apply_portrait_resize() -> void:
 		# Rebuild presentation only. The new view reparents the live boss and FX
 		# before freeing the old view, preserving encounter timers and HP.
 		var old_view:=content_root.get_node_or_null('PortraitRaidView')
+		if old_view!=null and Vector2(old_view.get_meta('installed_viewport_size',Vector2.ZERO)).is_equal_approx(get_viewport_rect().size):
+			# A queued window resize may arrive after a new raid view has already
+			# installed at that size. Keep its freshly created render resources.
+			return
 		var selected_id: String=str(old_view.selected_hero_id) if old_view!=null else ''
 		for node_name in ['PortraitMenuHeader','PortraitNavigation']:
 			var old_node:=content_root.get_node_or_null(node_name)
@@ -371,7 +375,10 @@ func _apply_portrait_resize() -> void:
 			view.selected_hero_id=selected_id;view.refresh()
 			var party_scroll: ScrollContainer=view.find_child("RaidPartyScroll",true,false)
 			if party_scroll!=null:party_scroll.ensure_control_visible.call_deferred(view.hero_slots[selected_id])
-		if old_view!=null:old_view.free()
+		if old_view!=null:
+			if is_instance_valid(old_view.battlefield_3d):
+				old_view.battlefield_3d.set_process(false);old_view.battlefield_3d.set_presentation_visible(false)
+			old_view.hide();old_view.set_process(false);old_view.queue_free()
 	elif is_instance_valid(content_root) and content_root.has_meta('portrait_ready') and content_root.get_node_or_null('PortraitNavigation')!=null:
 		var nav: Control=content_root.get_node_or_null('PortraitNavigation')
 		if nav!=null: nav.free()

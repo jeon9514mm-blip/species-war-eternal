@@ -3,6 +3,7 @@ extends "res://scripts/maps/MapTerrainRenderer.gd"
 ## the coordinates; both sprite billboards and 2D effects use this camera.
 const HERO_SKIN=preload('res://scripts/maps3d/HeroSkeletalBillboard.gd')
 const FRAME_PILOT=preload('res://scripts/art/HuntFramePilot.gd')
+const MODEL_PILOT=preload('res://scripts/art/Model3DPilot.gd')
 const MAP_LOADER=preload('res://scripts/maps/MapLoader.gd')
 const FRAMING=preload('res://scripts/maps3d/CombatCameraFraming.gd')
 const HEALTH_LAYOUT=preload('res://scripts/maps3d/CombatHealthLayout.gd')
@@ -55,6 +56,7 @@ var diorama: Node3D
 var ultimate_details: Node3D
 var rune_ground: Node3D
 var frame_pilot_enabled := true
+var real_models_enabled := false # Art review: original paintings are the default 2.5D cast.
 var _actor_delta := 0.0
 var _frame_events: Dictionary = {}
 var _frame_catalog:=FRAME_PILOT.CATALOG.new()
@@ -146,7 +148,27 @@ func _create_generated_map_root() -> Node3D:
 	var sun:=DirectionalLight3D.new();sun.name='AutoMapSun';sun.rotation_degrees=Vector3(-55,-28,0)
 	sun.light_energy=.85;sun.light_color=palette.sun
 	sun.shadow_enabled=true;sun.directional_shadow_mode=DirectionalLight3D.SHADOW_PARALLEL_2_SPLITS
-	arena_root.add_child(sun);viewport_3d.add_child(root)
+	arena_root.add_child(sun)
+	var model_path: String='res://assets/models3d-v1/environments/'+zone_id+('_raid' if raid_mode else '_hunt')+'.glb'
+	var model_scene=load(model_path) as PackedScene
+	assert(model_scene!=null,'Missing real 3D environment: '+model_path)
+	var environment_model=model_scene.instantiate();environment_model.name='EnvironmentModel';arena_root.add_child(environment_model)
+	for mesh: MeshInstance3D in environment_model.find_children('*','MeshInstance3D',true,false):
+		for index in mesh.mesh.get_surface_count():
+			var original=mesh.get_active_material(index) as StandardMaterial3D
+			if original==null or not original.resource_name.ends_with(' floor'):continue
+			var stone=original.duplicate() as StandardMaterial3D
+			stone.albedo_color*=Color(.65,.65,.65,1)
+			stone.albedo_texture=preload('res://assets/models3d-v1/materials/eternal_stone_albedo.png')
+			stone.normal_enabled=true;stone.normal_scale=.28
+			stone.normal_texture=preload('res://assets/models3d-v1/materials/eternal_stone_normal.png')
+			stone.roughness_texture=preload('res://assets/models3d-v1/materials/eternal_stone_orm.png')
+			stone.roughness_texture_channel=BaseMaterial3D.TEXTURE_CHANNEL_GREEN
+			stone.ao_enabled=true;stone.ao_texture=stone.roughness_texture
+			stone.texture_filter=BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+			mesh.set_surface_override_material(index,stone)
+	root.set_meta('environment_model',model_path)
+	viewport_3d.add_child(root)
 	return root
 func configure(next_zone_id: String,next_zone_color: Color) -> void:
 	zone_id=next_zone_id;zone_color=next_zone_color
@@ -244,7 +266,9 @@ func raid_to_world(point: Vector2) -> Vector2:
 func raid_origin() -> Vector2:
 	return project_world(Vector2(16,10))-RAID_PIVOT*raid_factor
 func _process(delta: float) -> void:
-	if not is_instance_valid(game) or not is_instance_valid(camera):return
+	# A deferred resize can briefly leave the replacement viewport at zero size.
+	# Wait for layout before projection/crowd fitting can produce 0/0 transforms.
+	if not is_instance_valid(game) or not is_instance_valid(camera) or size.x<1 or size.y<1:return
 	_actor_delta=maxf(0.0,delta)
 	apply_render_profile()
 	_visual_hitstop_remaining=maxf(0,_visual_hitstop_remaining-maxf(0,delta))
@@ -327,7 +351,7 @@ func hunt_hit(point: Vector2,source: Vector2,tint: Color,critical: bool) -> void
 
 func _uses_frame_pilot(source: AnimatedSprite2D,hero: bool) -> bool:
 	if not frame_pilot_enabled:return false
-	return preload('res://scripts/sd/SDHeroVisuals.gd').has_hero(str(source.atlas_key)) if hero else preload('res://scripts/portrait/CasualMonsterAtlas.gd').has_monster(str(source.pixel_monster_name))
+	return not _frame_catalog.load_entry(FRAME_PILOT.CATALOG.identity(source,hero)).is_empty()
 
 func frame_release(actor: AnimatedSprite2D,hero: bool,action: String,windup: float) -> void:
 	if not is_instance_valid(actor) or not _uses_frame_pilot(actor,hero):return
@@ -420,7 +444,11 @@ func _base_actor_height(source: AnimatedSprite2D,hero: bool) -> float:
 func _actor_height(source: AnimatedSprite2D,hero: bool) -> float:
 	return _base_actor_height(source,hero)*float(_body_scales.get(source.get_instance_id(),1.0))
 
+func actor_world_height(source: AnimatedSprite2D,hero: bool) -> float:
+	return _actor_height(source,hero)/maxf(.5,camera.global_basis.y.y)
+
 func _update_body_layout(delta: float) -> void:
+	if size.x<1 or size.y<1 or not is_instance_valid(camera) or camera.size<=0:return
 	var items: Array[Dictionary]=[]
 	# Existing renderers supply bounds on subsequent frames; bootstrap bounds
 	# below are replaced by actual atlas margins/paint extents after binding.
@@ -438,7 +466,7 @@ func _update_body_layout(delta: float) -> void:
 		var bounds:=Rect2(-height*.55,-height,height*1.1,height)
 		var sprite: Sprite3D=actors.get(id)
 		if sprite!=null:
-			var pilot=sprite.get_node_or_null('HuntFramePilot')
+			var pilot=sprite.get_node_or_null('Model3DPilot' if real_models_enabled else 'HuntFramePilot')
 			if pilot!=null:bounds=pilot.footprint(height)
 		if source.flip_h:bounds.position.x=-bounds.end.x
 		var projection:=project_world(points[i])
@@ -499,14 +527,16 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 		ring.material_override=ring_material;ring.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		ring.position.y=.04;sprite.add_child(ring)
 	var texture: Texture2D=source.sprite_frames.get_frame_texture(source.animation,source.frame)
-	sprite.texture=texture
+	var frame_active: bool=_uses_frame_pilot(source,hero)
+	# The container never draws an atlas when a whole-paint/model pilot owns it.
+	# Avoid queuing a Sprite3D material update only to remove it in the same frame.
+	sprite.texture=null if frame_active else texture
 	var native: float=maxf(1,source.native_visual_height)
 	var height: float=_actor_height(source,hero)
 	sprite.pixel_size=height/native
 	var canvas_offset: Vector2=source.offset if not source.centered else source.offset-texture.get_size()*.5
 	sprite.offset=Vector2(canvas_offset.x+texture.get_width()*.5,-canvas_offset.y-texture.get_height()*.5)
 	var motion:=Vector3.ZERO;var presentation_shape:=Vector2.ONE;var presentation_roll:=0.0
-	var frame_active: bool=_uses_frame_pilot(source,hero)
 	if not raid_mode:
 		var facing: Vector2={'left':Vector2.LEFT,'right':Vector2.RIGHT,'up':Vector2.UP,'down':Vector2.DOWN}.get(source.direction,Vector2.RIGHT)
 		if source.get_meta('v16_skill_until',-1.)<_presentation_clock:source.set_meta('v16_skill_motion',false)
@@ -524,15 +554,17 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 	sprite.modulate=source.modulate*Color(source.self_modulate.r,source.self_modulate.g,source.self_modulate.b,1)
 	sprite.visible=source.visible
 	sprite.scale=Vector3(presentation_shape.x,presentation_shape.y,1)
-	var pilot=sprite.get_node_or_null('HuntFramePilot')
+	var inactive=sprite.get_node_or_null('HuntFramePilot' if real_models_enabled else 'Model3DPilot')
+	if inactive!=null:inactive.hide()
+	var pilot=sprite.get_node_or_null('Model3DPilot' if real_models_enabled else 'HuntFramePilot')
 	if frame_active:
 		var expected: String=FRAME_PILOT.CATALOG.identity(source,hero)
 		if expected.is_empty():expected=str(source.atlas_key) if hero else str(source.pixel_monster_name)
 		if pilot!=null and str(pilot.entry.id)!=expected:
 			sprite.remove_child(pilot);pilot.free();pilot=null;_source_attacks.erase(id)
 		if pilot==null:
-			pilot=FRAME_PILOT.new();sprite.add_child(pilot)
-			if not pilot.bind(source,hero,_frame_catalog):sprite.remove_child(pilot);pilot.free();pilot=null
+			pilot=(MODEL_PILOT.new() if real_models_enabled else FRAME_PILOT.new());sprite.add_child(pilot)
+			if not pilot.bind(source,hero,MODEL_PILOT.CATALOG.new() if real_models_enabled else _frame_catalog):sprite.remove_child(pilot);pilot.free();pilot=null
 		if pilot!=null:
 			var source_rig=source.get_node_or_null('PortraitHeroSkeletalRig')
 			if source_rig!=null:source_rig.set_process(false)
@@ -551,10 +583,10 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 			if pending.has('hit'):pilot.timeline.hit(pending.hit)
 			_frame_events.erase(id);pilot.show()
 			pilot.fur_layers=0 if str(game.presentation_options.get('performance','balanced'))=='battery' else (8 if RenderingServer.get_current_rendering_method()=='forward_plus' else 4)
+			if not real_models_enabled:pilot.echo_layers=2 if RenderingServer.get_current_rendering_method()=='forward_plus' else 1
 			pilot.effects_enabled=game.combat_effects_enabled and str(game.presentation_options.get('performance','balanced'))!='battery'
-			# The alpha-clipped whole painting casts into the real hunting floor.
-			# Raid backdrops are 2D paintings; battery retains only contact shadows.
-			pilot.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_ON if pilot.effects_enabled and not raid_mode else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			# The complete original painting casts into the modeled battle floor.
+			pilot.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_ON if pilot.effects_enabled else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			pilot.present(camera,height,sprite.modulate,_actor_delta,visual_running(),point,_frame_runtime(source,hero),_frame_dead(source,hero))
 			var old_skin=sprite.get_node_or_null('HeroSkeletalBillboard')
 			if old_skin!=null:old_skin.hide()

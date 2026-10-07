@@ -51,24 +51,24 @@ func run() -> void:
 	for zone: String in ['gray_meadow','forgotten_mine','moonrest_forest']:
 		main.selected_raid_id=zone;main._build_raid_screen();await settle();await settle()
 		var view=main.content_root.get_node('PortraitRaidView');var field=view.battlefield_3d
-		var path: String=str(SCENERY.profile(zone).texture);paths[path]=true
-		check(field.painted_backdrop.texture.resource_path==path,'correct painted raid asset '+zone)
+		var path: String='res://assets/models3d-v1/environments/'+zone+'_raid.glb';paths[path]=true
+		check(str(field.map_root.get_meta('environment_model',''))==path and field.world.get_node_or_null('EnvironmentModel')!=null,'correct painted raid asset '+zone)
 		check(not bool(field.map_root.get_meta('map_design_removed',true)),'raid no longer has an empty backdrop '+zone)
-		check(field.viewport_3d.transparent_bg and field.painted_backdrop.mouse_filter==Control.MOUSE_FILTER_IGNORE,'backdrop cannot cover actors or steal floor touches')
+		check(not field.viewport_3d.transparent_bg and field.mouse_filter==Control.MOUSE_FILTER_IGNORE,'backdrop cannot cover actors or steal floor touches')
 		before=economic(main);rng=main.loot_rng.state;hp=main.hero_battle_state.duplicate(true)
 		var positions: Dictionary=main.raid_positions.duplicate()
 		PRESENTER.raid(main,450,'critical');field._process(.1)
 		check(economic(main)==before and main.loot_rng.state==rng and main.hero_battle_state==hp and main.raid_positions==positions,'raid art and projected numbers preserve state '+zone)
-		var clock: float=field.atmosphere_clock
-		field._process(.2);check(field.atmosphere_clock==clock,'ready raid atmosphere is still '+zone)
+		var clock: float=field._presentation_clock
+		field._process(.2);check(field._presentation_clock==clock,'ready raid atmosphere is still '+zone)
 		main._start_raid();main.combat_timer.stop()
 		var damage_before: int=main.raid_damage_dealt
 		var stored_before: int=main.raid_boss_hp+main.raid_guard_hp+main.raid_add_hp
 		var actual: int=main._apply_raid_damage(1000,main._deployed_hero_ids()[0])
 		check(actual==main.raid_damage_dealt-damage_before and actual==stored_before-main.raid_boss_hp-main.raid_guard_hp-main.raid_add_hp,'display observer conserves boss guard/add damage '+zone)
 		check(main._damage_pool!=null and main._damage_pool.pool.size()>0,'actual raid hits create projected damage numbers '+zone)
-		main.presentation_options.performance='battery';clock=field.atmosphere_clock;field._process(.2)
-		check(field.atmosphere_clock==clock,'battery profile stops atmospheric animation '+zone)
+		main.presentation_options.performance='battery';clock=field._presentation_clock;field._process(.2)
+		check(not field.world.get_node('AutoMapSun').shadow_enabled,'battery profile disables expensive shadows '+zone)
 		main.presentation_options.performance='balanced';main.raid_running=false
 	check(paths.size()==3,'all three raids have independently authored art')
 	await dispose(main);done('COMBAT_READABILITY')
