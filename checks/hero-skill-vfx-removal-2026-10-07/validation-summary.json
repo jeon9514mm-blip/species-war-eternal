@@ -1,0 +1,60 @@
+{
+  "request": "Remove all hero skill VFX, including the rejected new pass and existing effects",
+  "engine": "Godot 4.7.2",
+  "baseline_commit": "bfbf1dda4bd380ca2a1fdb313e07daaed8b8f492",
+  "remaining_changed_gdscript": {
+    "passed": 10,
+    "total": 10,
+    "source_hashes_verified_after_baseline_audit": true
+  },
+  "focused_headless_runtime": {
+    "passed": 7,
+    "total": 7,
+    "report": "runtime.json"
+  },
+  "actual_mobile_gpu": {
+    "passed": 1,
+    "total": 1,
+    "checks": 250,
+    "report": "gpu.json"
+  },
+  "actual_cast_comparisons": {
+    "all_hero_kit_active_ultimate_cases": 180,
+    "legacy_main_a1_cases": 60,
+    "confirmed_passive_cases": 30,
+    "cosmetic_on_off_combat_state_equal": true
+  },
+  "static_validation": "STATIC VALIDATION OK | gd=495 smoke=233 resources=ok links=ok",
+  "legacy_tests": {
+    "passed": 0,
+    "total": 2,
+    "new_failures": 0,
+    "baseline_failures_unchanged": true,
+    "reports": [
+      "legacy.json",
+      "legacy-baseline.json"
+    ],
+    "failures": {
+      "V62RigFxRewardSmokeTest.gd": [
+        "ERROR: V62 reward feed sits above combat buttons"
+      ],
+      "V63AutoFxOfflineSmokeTest.gd": [
+        "ERROR: V63 online hunt credits currency and account XP without a claim",
+        "ERROR: V63 online stage chest pays immediately without a hidden claim",
+        "ERROR: V63 reward feed leaves auto buttons unobstructed",
+        "ERROR: V63 separate auto buttons fit above hunt controls"
+      ]
+    }
+  },
+  "limitations": [
+    "This is a focused suite, not every historical regression.",
+    "No Android device FPS or touch performance claim."
+  ],
+  "preserved": [
+    "skill combat formulas and AI",
+    "painted attack animation and movement",
+    "basic hit feedback and damage numbers",
+    "boss danger areas and warnings",
+    "skill audio and standard HUD"
+  ]
+}

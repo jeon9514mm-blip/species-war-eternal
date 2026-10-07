@@ -1,0 +1,26 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 0,
+  "total": 2,
+  "results": [
+    {
+      "test": "V62RigFxRewardSmokeTest.gd",
+      "passed": false,
+      "seconds": 10.94,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: V62 reward feed sits above combat buttons\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/regression/V62RigFxRewardSmokeTest.gd:10)\n       [1] run (res://tests/regression/V62RigFxRewardSmokeTest.gd:36)\nv62_rig_fx_reward 154/155 pass\n"
+    },
+    {
+      "test": "V63AutoFxOfflineSmokeTest.gd",
+      "passed": false,
+      "seconds": 8.44,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: V63 separate auto buttons fit above hunt controls\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/regression/V63AutoFxOfflineSmokeTest.gd:7)\n       [1] run (res://tests/regression/V63AutoFxOfflineSmokeTest.gd:22)\n       [2] settle (res://tests/regression/V63AutoFxOfflineSmokeTest.gd:10)\nERROR: V63 reward feed leaves auto buttons unobstructed\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/regression/V63AutoFxOfflineSmokeTest.gd:7)\n       [1] run (res://tests/regression/V63AutoFxOfflineSmokeTest.gd:23)\n       [2] settle (res://tests/regression/V63AutoFxOfflineSmokeTest.gd:10)\nERROR: V63 online hunt credits currency and account XP without a claim\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/regression/V63AutoFxOfflineSmokeTest.gd:7)\n       [1] run (res://tests/regression/V63AutoFxOfflineSmokeTest.gd:46)\n       [2] settle (res://tests/regression/V63AutoFxOfflineSmokeTest.gd:10)\nERROR: V63 online stage chest pays immediately without a hidden claim\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/regression/V63AutoFxOfflineSmokeTest.gd:7)\n       [1] run (res://tests/regression/V63AutoFxOfflineSmokeTest.gd:78)\n       [2] settle (res://tests/regression/V63AutoFxOfflineSmokeTest.gd:10)\nv63_auto_fx_offline 16/20 pass\n"
+    }
+  ]
+}

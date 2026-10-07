@@ -32,11 +32,10 @@ func run() -> void:
 	var fx_profile: Dictionary={'slot':'a1','fx_targets':[]}
 	main._emit_skill_cast_fx('mira',-1,false,fx_profile)
 	var clip: Control=main.skill_fx_layer.get_node_or_null('HeroSkillClip')
-	check(clip!=null and clip.get_child_count()>0,'skill effect uses bounded combat clip')
-	if clip!=null:
-		var signature: Control=clip.get_child(0)
-		check(signature.position==Vector2.ZERO and signature.source==main._hero_skill_fx_position('mira')-clip.position,'skill art uses one field origin, never a doubled offset')
-		check(clip.get_node_or_null('PortraitSkillBurst')!=null,'cast accent is clipped together with skill art')
+	check(clip==null,'removed hero skill creates no combat clip')
+	check(main.skill_fx_layer.find_child('PortraitSkillBurst',true,false)==null,'removed cast accent cannot reappear')
+	main._emit_ultimate_cutin('mira','테스트 궁극기')
+	check(main.content_root.get_node_or_null('FieldUltimateNotice')==null,'removed ultimate creates no notice')
 	# Online settlement is a real killed pack; the same encounter cannot pay twice.
 	main.enemy_wave=[{'hp':0,'max_hp':10,'habitat_pack':0}]
 	main.hunt_ai.encounter_id+=1;main.hunt_ai.set_state(AutoHuntController.State.FIGHTING)

@@ -396,17 +396,6 @@ func _frame_dead(source: AnimatedSprite2D,hero: bool) -> bool:
 	var index: int=game.enemy_wave_sprites.find(source)
 	return int(game.enemy_wave[index].get('hp',0))<=0 if index>=0 and index<game.enemy_wave.size() else source.state=='death'
 
-func skill_trail(hero_id: String) -> void:
-	if raid_mode or not is_instance_valid(hunt_overlay) or not game.combat_effects_enabled:return
-	for i in mini(game.hero_map_sprites.size(),game.deployed_heroes.size()):
-		if str(game.deployed_heroes[i].id)!=hero_id:continue
-		var source: AnimatedSprite2D=game.hero_map_sprites[i]
-		var point: Vector2=game._hero_field_position(hero_id)
-		var facing: Vector2={'left':Vector2.LEFT,'right':Vector2.RIGHT,'up':Vector2.UP,'down':Vector2.DOWN}.get(source.direction,Vector2.RIGHT)
-		source.set_meta('v16_skill_motion',true);source.set_meta('v16_skill_until',_presentation_clock+.45)
-		if not _uses_frame_pilot(source,true):hunt_overlay.afterimage(source,point,facing)
-		break
-
 func visual_running() -> bool:
 	return presentation_visible and not presentation_suspended and is_instance_valid(game) and ((game.active_screen=='raid' and game.raid_running) if raid_mode else (game.active_screen=='combat' and game.combat_running)) and not game._application_suspended and _visual_hitstop_remaining<=0 and not bool(game.get_meta('equipment_mail_paused',false)) and not preload('res://scripts/persistence/SaveSafety.gd').pending(game)
 

@@ -562,139 +562,15 @@ func _skill_visual_profile(role_group: String) -> Dictionary:
 		"컨트롤러": {"color": Color("#c28cff"), "symbol": "◇", "sound": 260.0}
 	}.get(role_group, {"color": GOLD, "symbol": "★", "sound": 300.0})
 
-func _emit_skill_fx(hero: Dictionary, profile: Dictionary, dealt: int) -> void:
-	if not is_instance_valid(skill_fx_layer):
-		return
-	var visual: Dictionary = _skill_visual_profile(str(profile["role_group"]))
-	# Record the event even when the battle field supplies its own positioned FX.
+func _emit_skill_fx(_hero: Dictionary, profile: Dictionary, _dealt: int) -> void:
+	# Keep the real skill event and audio; hero skill VFX have been removed.
 	skill_fx_sequence += 1
-	# Sound is independent of optional cosmetic effects.
-	if active_screen in ["combat", "raid"]:
-		_play_skill_sound(float(visual["sound"]), str(profile["role_group"]))
-		return
-	if not combat_effects_enabled:
-		return
-	var fx_color: Color = visual["color"]
-	var impact_center := Vector2(535, 365) if active_screen == "raid" else Vector2(695, 335)
-	if str(profile.get("kind", "damage")) == "heal" and active_screen == "combat":
-		impact_center = _map_world_position(expedition_position)
-	var flash := ColorRect.new()
-	flash.color = Color(fx_color, 0.10)
-	flash.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	skill_fx_layer.add_child(flash)
-	var flash_tween := content_root.create_tween()
-	flash_tween.tween_property(flash, "color", Color(fx_color, 0.0), 0.24)
-	flash_tween.tween_callback(flash.queue_free)
-	_emit_fx_ring(impact_center, 42.0, fx_color, 0.32)
-	_emit_fx_ring(impact_center, 92.0, Color(fx_color, 0.62), 0.48)
-	for ray_index in range(8):
-		var ray := ColorRect.new()
-		ray.color = Color(fx_color, 0.88)
-		ray.size = Vector2(5, 72 if ray_index % 2 == 0 else 48)
-		ray.position = impact_center - Vector2(2.5, ray.size.y)
-		ray.pivot_offset = Vector2(2.5, ray.size.y)
-		ray.rotation = TAU * float(ray_index) / 8.0
-		ray.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		ray.modulate = Color(1, 1, 1, 0)
-		skill_fx_layer.add_child(ray)
-		var ray_tween := content_root.create_tween().set_parallel(true)
-		ray_tween.tween_property(ray, "modulate", Color.WHITE, 0.06)
-		ray_tween.tween_property(ray, "scale", Vector2(1.0, 1.35), 0.12)
-		ray_tween.chain().tween_property(ray, "modulate", Color(1, 1, 1, 0), 0.28)
-		ray_tween.chain().tween_callback(ray.queue_free)
-	for particle_index in range(6):
-		var particle := _label(str(visual["symbol"]), 18, fx_color)
-		particle.position = impact_center + Vector2(-70 + particle_index * 23, -12)
-		particle.size = Vector2(24, 24)
-		particle.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		particle.modulate = Color(1, 1, 1, 0)
-		skill_fx_layer.add_child(particle)
-		var particle_target := impact_center + Vector2(cos(TAU * particle_index / 6.0), sin(TAU * particle_index / 6.0)) * 105.0
-		var particle_tween := content_root.create_tween().set_parallel(true)
-		particle_tween.tween_property(particle, "modulate", Color.WHITE, 0.08)
-		particle_tween.tween_property(particle, "position", particle_target, 0.42)
-		particle_tween.tween_property(particle, "scale", Vector2(1.35, 1.35), 0.28)
-		particle_tween.chain().tween_property(particle, "modulate", Color(1, 1, 1, 0), 0.18)
-		particle_tween.chain().tween_callback(particle.queue_free)
-	var banner := Label.new()
-	banner.text = "%s  %s\n%s" % [visual["symbol"], profile["skill"], ("피해 %d" % dealt) if dealt > 0 else str(profile["effect"])]
-	banner.position = Vector2(470, 255)
-	banner.size = Vector2(340, 100)
-	banner.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	banner.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	banner.add_theme_font_size_override("font_size", 25)
-	banner.add_theme_color_override("font_color", fx_color)
-	banner.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.85))
-	banner.add_theme_constant_override("shadow_offset_x", 3)
-	banner.add_theme_constant_override("shadow_offset_y", 3)
-	banner.modulate = Color(1, 1, 1, 0)
-	banner.scale = Vector2(0.72, 0.72)
-	banner.pivot_offset = Vector2(170, 50)
-	banner.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	skill_fx_layer.add_child(banner)
-	var banner_tween := content_root.create_tween().set_parallel(true)
-	banner_tween.tween_property(banner, "modulate", Color.WHITE, 0.10)
-	banner_tween.tween_property(banner, "scale", Vector2.ONE, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	banner_tween.chain().tween_property(banner, "position", Vector2(470, 215), 0.42)
-	banner_tween.parallel().tween_property(banner, "modulate", Color(1, 1, 1, 0), 0.42)
-	banner_tween.chain().tween_callback(banner.queue_free)
-	_emit_v11_skill_signature(impact_center, profile, fx_color)
+	var visual: Dictionary = _skill_visual_profile(str(profile["role_group"]))
 	_play_skill_sound(float(visual["sound"]), str(profile["role_group"]))
 
-func _emit_v11_skill_signature(center: Vector2, profile: Dictionary, color: Color) -> void:
-	var kind := str(profile.get("kind", "damage"))
-	if kind == "heal":
-		for index in range(4):
-			var cross := _label("✚", 24, color)
-			cross.position = center + Vector2(-72 + index * 48, 30 + (index % 2) * 18)
-			cross.size = Vector2(32, 32)
-			cross.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			skill_fx_layer.add_child(cross)
-			var tween := content_root.create_tween().set_parallel(true)
-			tween.tween_property(cross, "position", cross.position + Vector2(0, -88), 0.55)
-			tween.tween_property(cross, "modulate:a", 0.0, 0.55)
-			tween.chain().tween_callback(cross.queue_free)
-		return
-	if kind in ["guard", "taunt"]:
-		var shield := Panel.new()
-		shield.position = center - Vector2(50, 58)
-		shield.size = Vector2(100, 116)
-		shield.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		shield.add_theme_stylebox_override("panel", _panel_style(Color(color, 0.08), Color(color, 0.9), 22, 4))
-		shield.scale = Vector2(0.65, 0.65)
-		shield.pivot_offset = Vector2(50, 58)
-		skill_fx_layer.add_child(shield)
-		var shield_tween := content_root.create_tween().set_parallel(true)
-		shield_tween.tween_property(shield, "scale", Vector2(1.15, 1.15), 0.28).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		shield_tween.tween_property(shield, "modulate:a", 0.0, 0.48).set_delay(0.18)
-		shield_tween.chain().tween_callback(shield.queue_free)
-		return
-	if kind in ["stun", "vulnerable", "weaken"]:
-		var break_text := _label("BREAK", 20, color)
-		break_text.position = center - Vector2(70, 70)
-		break_text.size = Vector2(140, 34)
-		break_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		skill_fx_layer.add_child(break_text)
-		var break_tween := content_root.create_tween().set_parallel(true)
-		break_tween.tween_property(break_text, "scale", Vector2(1.5, 1.5), 0.28)
-		break_tween.tween_property(break_text, "modulate:a", 0.0, 0.42).set_delay(0.12)
-		break_tween.chain().tween_callback(break_text.queue_free)
-		return
-	for index in range(3):
-		var slash := ColorRect.new()
-		slash.color = Color(color, 0.85)
-		slash.size = Vector2(150, 5)
-		slash.position = center + Vector2(-95, -38 + index * 34)
-		slash.rotation = -0.45 + index * 0.10
-		slash.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		slash.scale = Vector2(0.2, 1.0)
-		slash.pivot_offset = Vector2(75, 2.5)
-		skill_fx_layer.add_child(slash)
-		var slash_tween := content_root.create_tween().set_parallel(true)
-		slash_tween.tween_property(slash, "scale", Vector2(1.2, 1.0), 0.14 + index * 0.025)
-		slash_tween.tween_property(slash, "modulate:a", 0.0, 0.30).set_delay(0.12)
-		slash_tween.chain().tween_callback(slash.queue_free)
+func _emit_v11_skill_signature(_center: Vector2, _profile: Dictionary, _color: Color) -> void:
+	# Compatibility entry point for older callers; no skill graphics are created.
+	pass
 
 func _emit_fx_ring(center: Vector2, diameter: float, color: Color, duration: float) -> void:
 	var ring := Panel.new()
@@ -2969,72 +2845,13 @@ func _notify_hunt_frame_release(index: int, hero: bool, action: String, windup: 
 	if index >= 0 and index < sources.size() and is_instance_valid(terrain) and terrain.has_method("frame_release"):
 		terrain.frame_release(sources[index], hero, action, windup)
 
-func _hero_skill_fx_position(hero_id: String) -> Vector2:
-	if active_screen == "raid":
-		var view := content_root.get_node_or_null("PortraitRaidView") if is_instance_valid(content_root) else null
-		if is_instance_valid(view) and view.hero_actors.has(hero_id):
-			return view.hero_actors[hero_id].position + Vector2(0, -42)
-		var label = combat_labels.get("raid_hero_%s" % hero_id)
-		if is_instance_valid(label):
-			# Raid heroes live in party cards; anchor the effect to their portrait.
-			return content_root.get_global_transform().affine_inverse() * (label.get_global_transform() * Vector2(-17, 28))
-	return _combat_hero_screen_position(hero_id) + Vector2(0, -18)
-
-func _hero_skill_fx_bounds() -> Rect2:
-	if active_screen == "combat":
-		return combat_field_rect
-	if active_screen == "raid" and is_instance_valid(content_root) and is_instance_valid(content_root.get_node_or_null("PortraitRaidView")):
-		return Rect2(Vector2(205, 190), Vector2(630, 310))
-	return Rect2(Vector2(32, 174), Vector2(maxf(1.0, _layout_width() - 64.0), 496))
-
-func _emit_skill_cast_fx(hero_id: String, target_index: int, _aoe: bool, profile: Dictionary, ultimate := false) -> void:
+func _emit_skill_cast_fx(_hero_id: String, _target_index: int, _aoe: bool, _profile: Dictionary, ultimate := false) -> void:
+	# Retain ultimate audio without beams, rings, flashes or camera effects.
 	if ultimate: _presentation_event("ultimate")
-	if not combat_effects_enabled or _application_suspended or active_screen not in ["combat", "raid"] or not is_instance_valid(skill_fx_layer):
-		return
-	# Legacy callers without a catalog slot retain the compact generic indicator.
-	if not profile.has("slot") and not profile.has("id"):
-		var target_point := _combat_enemy_screen_position(target_index)
-		var accent := _hero_accent_color(hero_id)
-		if _aoe: combat_fx.aoe_indicator(target_point, 36.0, accent, .42, false)
-		combat_fx.projectile(_hero_skill_fx_position(hero_id), target_point, accent, "◆", .2, ultimate)
-		return
-	var points: Array[Dictionary] = []
-	var enemy_targets: Array = profile.get("fx_targets", [target_index] if target_index >= 0 or active_screen == "raid" else [])
-	for index in enemy_targets:
-		var point := _combat_enemy_screen_position(int(index)) + Vector2(0, -18)
-		points.append({"point":point, "mode":"enemy", "hits":int(profile.get("fx_target_hits", {}).get(int(index), profile.get("hits", 1)))})
-	for item in profile.get("fx_allies", []):
-		points.append({"point":_hero_skill_fx_position(str(item["hero_id"])), "mode":str(item["mode"])})
-	var slot := str(profile.get("slot", "ultimate" if ultimate else "a1"))
-	combat_fx.hero_skill(self, hero_id, slot, _hero_skill_fx_position(hero_id), points, profile, _hero_skill_fx_bounds())
-	var accent := _hero_accent_color(hero_id)
-	for item in points:
-		if str(item.get("mode", "")) == "enemy":
-			combat_fx.hit_spark(Vector2(item["point"]), accent, false, ultimate)
-	if ultimate:
-		combat_fx.camera_impact(3.6, 0.16, 0.008)
-	skill_fx_sequence += 1
 
-func _emit_passive_proc_fx(hero_id: String, target_index: int, profile: Dictionary, lowest_id: String) -> void:
-	if not combat_effects_enabled or _application_suspended or active_screen not in ["combat", "raid"] or not is_instance_valid(skill_fx_layer):
-		return
-	var action := str(profile.get("action", "energy"))
-	var target_id := lowest_id if action.begins_with("ally_") else hero_id
-	var point := _hero_skill_fx_position(target_id)
-	var mode := action.trim_prefix("ally_")
-	if action == "damage":
-		# The proc counter can advance after a finishing blow: never invent a hit on a dead target.
-		if active_screen != "raid" and not _can_attack_enemy(hero_id, target_index): return
-		point = _combat_enemy_screen_position(target_index) + Vector2(0, -18)
-		mode = "enemy"
-	elif action in ["heal", "ally_heal"]:
-		if not hero_battle_state.has(target_id) or int(hero_battle_state[target_id]["hp"]) >= int(hero_battle_state[target_id]["max_hp"]): return
-	elif action == "energy" and float(hero_battle_state[hero_id].get("ultimate", 0.0)) >= 100.0:
-		return
-	elif action == "cooldown" and float(hero_skill_runtime[hero_id].get("secondary_remaining", 0.0)) <= 0.0:
-		return
-	var points: Array[Dictionary] = [{"point":point, "mode":mode}]
-	combat_fx.hero_skill(self, hero_id, "passive", _hero_skill_fx_position(hero_id), points, profile, _hero_skill_fx_bounds())
+func _emit_passive_proc_fx(_hero_id: String, _target_index: int, _profile: Dictionary, _lowest_id: String) -> void:
+	# Passive gameplay is applied by HeroKitRuntime; no visual badge is emitted.
+	pass
 
 func _should_dodge_hit(hero_id: String, base_damage: int) -> bool:
 	if not hero_battle_state.has(hero_id):
@@ -5314,63 +5131,9 @@ func _hero_accent_color(hero_id: String) -> Color:
 			return Color(hero.get("color", GOLD))
 	return GOLD
 
-func _emit_ultimate_cutin(hero_id: String, detail: String) -> void:
-	if not combat_effects_enabled or not is_instance_valid(content_root):
-		return
-	if active_screen == "combat":
-		var existing := content_root.get_node_or_null("FieldUltimateNotice")
-		if is_instance_valid(existing):
-			content_root.remove_child(existing)
-			existing.queue_free()
-		var notice := PanelContainer.new()
-		notice.name = "FieldUltimateNotice"
-		notice.position = combat_field_rect.position + Vector2(12, 64)
-		notice.size = Vector2(240, 34)
-		notice.z_index = 25
-		notice.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		notice.add_theme_stylebox_override("panel", _panel_style(Color("#ede8dce8"), _hero_accent_color(hero_id), 10, 1))
-		content_root.add_child(notice)
-		var text := _label("%s 궁극기" % _hero_short_name(hero_id), 16, Color("#203858"))
-		text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		notice.add_child(text)
-		var fade := content_root.create_tween()
-		fade.tween_interval(0.55)
-		fade.tween_property(notice, "modulate:a", 0.0, 0.18)
-		fade.tween_callback(notice.queue_free)
-		return
-	var accent := _hero_accent_color(hero_id)
-	var banner := PanelContainer.new()
-	banner.position = Vector2(230, 86)
-	banner.size = Vector2(820, 94)
-	banner.z_index = 45
-	banner.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	banner.modulate = Color(1, 1, 1, 0)
-	banner.scale = Vector2(0.88, 1.0)
-	banner.pivot_offset = Vector2(410, 47)
-	banner.add_theme_stylebox_override("panel", _panel_style(Color("#111827dd"), accent, 12, 2))
-	content_root.add_child(banner)
-	var box := VBoxContainer.new()
-	box.add_theme_constant_override("separation", 0)
-	banner.add_child(box)
-	var title := _label("ULTIMATE  ·  %s" % _hero_short_name(hero_id), 25, accent)
-	box.add_child(title)
-	var subtitle := _label(detail, 14, TEXT)
-	subtitle.custom_minimum_size = Vector2(0, 32)
-	box.add_child(subtitle)
-	var flash := ColorRect.new()
-	flash.color = Color(accent, 0.12)
-	flash.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	flash.z_index = 44
-	content_root.add_child(flash)
-	var tween := content_root.create_tween().set_parallel(true)
-	tween.tween_property(banner, "modulate", Color.WHITE, 0.08)
-	tween.tween_property(banner, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(flash, "color", Color(accent, 0.0), 0.28)
-	tween.chain().tween_interval(0.38)
-	tween.chain().tween_property(banner, "modulate:a", 0.0, 0.18)
-	tween.chain().tween_callback(banner.queue_free)
-	tween.chain().tween_callback(flash.queue_free)
+func _emit_ultimate_cutin(_hero_id: String, _detail: String) -> void:
+	# Ultimate gameplay and the normal HUD remain; the cut-in is removed.
+	pass
 
 func _emit_boss_telegraph(skill_name: String, seconds: float) -> void:
 	_presentation_event("boss_warning")

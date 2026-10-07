@@ -14,7 +14,6 @@ const P_HERO_RIG := preload('res://scripts/portrait/PortraitHeroSkeletalRig.gd')
 const P_KILL_BURST := preload('res://scripts/portrait/PortraitKillBurst.gd')
 const P_DAMAGE := preload('res://scripts/portrait/PortraitDamageNumber.gd')
 const DAMAGE_POOL := preload('res://scripts/combat/DamageNumberManager.gd')
-const P_SKILL_BURST := preload('res://scripts/portrait/PortraitSkillBurst.gd')
 var portrait_hud: Control
 var _resize_pending := false
 var _hunt_details_layer: CanvasLayer
@@ -185,20 +184,6 @@ func _damage_enemy(enemy_index: int, damage: int, source_index := 0) -> int:
 			burst.position=sprite.position-Vector2(0,14)
 			skill_fx_layer.add_child(burst)
 	return actual
-
-func _emit_skill_cast_fx(hero_id: String, target_index: int, aoe: bool, profile: Dictionary, ultimate := false) -> void:
-	super._emit_skill_cast_fx(hero_id,target_index,aoe,profile,ultimate)
-	if not combat_effects_enabled or active_screen!='combat' or not combat_fx._fx_budget_available() or not is_instance_valid(skill_fx_layer):return
-	var accent: Color=_skill_visual_profile(_hero_role_group(hero_id)).get('color',P_SKIN.GOLD)
-	var flare:=P_SKILL_BURST.new()
-	flare.configure(_hero_role_group(hero_id),accent,ultimate,skill_fx_sequence)
-	var clip: Control=skill_fx_layer.get_node_or_null('HeroSkillClip')
-	if is_instance_valid(clip):
-		flare.position=_hero_skill_fx_position(hero_id)-clip.position
-		clip.add_child(flare)
-	else:
-		flare.position=_hero_skill_fx_position(hero_id)
-		skill_fx_layer.add_child(flare)
 
 func _spawn_floating_combat_text(message: String, color: Color, origin: Vector2) -> void:
 	var data: Dictionary=preload('res://scripts/combat/CombatNumberStyle.gd').parse(message)
@@ -514,26 +499,6 @@ func _display_toast(message: String) -> void:
 		toast.add_theme_stylebox_override('normal',style)
 		toast.position=Vector2(22,get_viewport_rect().size.y-230)
 		toast.size=Vector2(get_viewport_rect().size.x-44,70)
-
-func _emit_ultimate_cutin(hero_id: String, detail: String) -> void:
-	if active_screen!='raid':
-		super._emit_ultimate_cutin(hero_id,detail)
-		return
-	if not combat_effects_enabled or not is_instance_valid(content_root):return
-	var old:=content_root.get_node_or_null('PortraitUltimateNotice')
-	if old!=null:old.free()
-	var panel:=PanelContainer.new()
-	panel.name='PortraitUltimateNotice';panel.z_index=100
-	panel.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	panel.add_theme_stylebox_override('panel',P_SKIN.box(P_SKIN.DARK_2,P_SKIN.GOLD,12,2))
-	content_root.add_child(panel)
-	panel.position=Vector2(24,340)
-	panel.size=Vector2(get_viewport_rect().size.x-48,96)
-	var box:=P_PAGES.stack(panel,6)
-	P_PAGES.text(box,_hero_short_name(hero_id)+' · 궁극기',22,P_SKIN.GOLD)
-	P_PAGES.text(box,detail,17)
-	var fade:=panel.create_tween()
-	fade.tween_interval(.8);fade.tween_property(panel,'modulate:a',0.0,.2);fade.tween_callback(panel.queue_free)
 
 func _new_hunt_hud() -> Control:
 	if get_viewport_rect().size.x > get_viewport_rect().size.y:

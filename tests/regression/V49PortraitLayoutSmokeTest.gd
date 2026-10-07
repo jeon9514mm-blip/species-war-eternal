@@ -128,7 +128,7 @@ func run() -> void:
 	main._advance_raid_encounter(.3)
 	var raid_hp: float=main.raid_boss_hp;var raid_elapsed: float=main.raid_elapsed
 	main._emit_ultimate_cutin('leonhardt','원정대 10명 보호막 · 공격력과 방어력을 강화합니다.')
-	await settle();audit('raid ultimate',main.content_root.get_node('PortraitUltimateNotice'))
+	await settle();check(main.content_root.get_node_or_null('PortraitUltimateNotice')==null,'removed raid ultimate has no cut-in panel');audit('raid after ultimate')
 	for dims in [Vector2i(720,1560),Vector2i(720,1280)]:
 		root.size=dims;await settle();audit('live raid resize '+str(dims))
 		check(main.raid_boss_hp==raid_hp and main.raid_elapsed==raid_elapsed and main.raid_running,'raid resize preserves encounter')

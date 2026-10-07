@@ -1,0 +1,67 @@
+{
+  "scope": "Every changed or new remaining GDScript; deleted scripts are absent",
+  "passed": 10,
+  "total": 10,
+  "results": [
+    {
+      "script": "scripts/app/Main.gd",
+      "passed": true,
+      "sha256": "7c4354f7f9edcb4b5de3acffaa823ad96664372ecd5f3fa8f192c5d7248c1b70",
+      "output": ""
+    },
+    {
+      "script": "scripts/combat/CombatFxDirector.gd",
+      "passed": true,
+      "sha256": "39ed2053842fa603b2527d6dde67603f1717a556495b7204bcc7f9a63db8d8e2",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/Battlefield3DView.gd",
+      "passed": true,
+      "sha256": "ffa03029e2c1218e9aa77e2e974fe3ff11f5fb3c0a64d33c5a808738b080c06d",
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitMain.gd",
+      "passed": true,
+      "sha256": "fdc6b150d88dc2f5198db7a3d5a1747c3dc4458c9e8987d971e01899ba31309e",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/NoHeroSkillVfxSmokeTest.gd",
+      "passed": true,
+      "sha256": "2fdd22c9497992d990cfb2fdbafda9f485c26bc8d8165e517a2321a05a13ceaa",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/V28FieldFxSmokeTest.gd",
+      "passed": true,
+      "sha256": "5c79943ec72b44fdc3bb0dab23749ea6aab64bcaaa74f2202b1e2f90fbc3efbd",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/V31HeroFxSmokeTest.gd",
+      "passed": true,
+      "sha256": "930a47b3ccd0c58fc821913a3be1b36d1e3ad88c2838641adfbd3a44bf0ec72e",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/V49PortraitLayoutSmokeTest.gd",
+      "passed": true,
+      "sha256": "de629461f67bcc7fccd8fe0f352e28d4dc5b4ab9fa141eb4bcfa39232290e5cc",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/V62RigFxRewardSmokeTest.gd",
+      "passed": true,
+      "sha256": "e384e255ad19b846920793e65834c052187c094b43a3a0ecfd65023392f08583",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/V63AutoFxOfflineSmokeTest.gd",
+      "passed": true,
+      "sha256": "53459f5cd1aaeba41904a3bdfa464bf721e198bbc00d72ff43e753993e9f7597",
+      "output": ""
+    }
+  ]
+}

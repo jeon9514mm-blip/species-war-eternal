@@ -409,27 +409,3 @@ func camera_impact(intensity := 5.0, duration := 0.16, zoom := 0.012) -> void:
 			current_host.pivot_offset = original_pivot
 			current_host.remove_meta(CAMERA_META)
 	)
-
-# Hero-specific short signatures share the existing effect layer and settings.
-func hero_skill(game: Control, hero_id: String, slot: String, start: Vector2, points: Array[Dictionary], profile: Dictionary, bounds: Rect2) -> void:
-	if not _fx_budget_available() or not bool(game.combat_effects_enabled):
-		return
-	var battlefield: Control=game.combat_labels.get('terrain')
-	if is_instance_valid(battlefield) and battlefield.has_method('skill_trail'):battlefield.skill_trail(hero_id)
-	var clip := layer.get_node_or_null("HeroSkillClip") as Control
-	if clip == null:
-		clip = Control.new()
-		clip.name = "HeroSkillClip"
-		clip.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		clip.clip_contents = true
-		clip.z_index = 73
-		layer.add_child(clip)
-	clip.position = bounds.position
-	clip.size = bounds.size
-	if clip.get_child_count() >= 32:
-		return
-	var signature := preload("res://scripts/heroes/HeroSkillEffect.gd").new()
-	signature.name = "HeroSkill_%s_%s" % [hero_id, slot]
-	signature.configure(game, hero_id, slot, start, points, profile, bounds)
-	signature.position = Vector2.ZERO
-	clip.add_child(signature)

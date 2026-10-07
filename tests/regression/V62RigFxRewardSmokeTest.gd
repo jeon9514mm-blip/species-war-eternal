@@ -43,7 +43,7 @@ func run() -> void:
 	main._spawn_floating_combat_text('-128',Color.RED,Vector2(360,580))
 	check(get_nodes_in_group('floating_combat_text').size()>0,'combat numbers animate in dedicated layer')
 	main._emit_skill_cast_fx('mira',-1,false,{'slot':'a1','fx_targets':[]},false)
-	check(main.skill_fx_layer.find_child('PortraitSkillBurst',true,false)!=null,'skill cast drives dedicated role flare inside the combat clip')
+	check(main.skill_fx_layer.find_child('PortraitSkillBurst',true,false)==null and main.skill_fx_layer.get_node_or_null('HeroSkillClip')==null,'hero skill cast creates no removed flare or signature')
 	if main.presentation_runtime!=null:main.presentation_runtime.audio.shutdown()
 	await create_timer(.35).timeout
 	main.free()
