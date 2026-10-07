@@ -34,5 +34,5 @@ v6는 v5의 자동사냥·10인 편성·저장·성장 시스템을 유지하면
 실행 명령:
 
 ```bash
-godot --headless --path . --script res://scripts/V6CombatSmokeTest.gd
+godot --headless --path . --script res://tests/regression/V6CombatSmokeTest.gd
 ```

@@ -1,6 +1,6 @@
 extends SceneTree
 ## Run with temporary XDG directories; fixtures never use a live player save.
-const GEAR=preload('res://scripts/EquipmentRules.gd')
+const GEAR=preload('res://scripts/equipment/EquipmentRules.gd')
 var game: Node
 var output: String
 func _init() -> void:run.call_deferred()

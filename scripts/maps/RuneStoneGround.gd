@@ -1,6 +1,6 @@
 extends Node3D
 ## Asset-based stone surface; all geometry, light and clock changes are visual only.
-const ART=preload('res://scripts/FieldArtCatalog.gd')
+const ART=preload('res://scripts/maps/FieldArtCatalog.gd')
 const SURFACE_SHADER=preload('res://shaders/RuneStoneGround.gdshader')
 var zone_id:='gray_meadow'
 var field: Control

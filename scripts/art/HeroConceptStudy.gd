@@ -1,6 +1,6 @@
 extends Control
 ## Art review only: this scene never creates Main, a save store, or a combat rig.
-const UI = preload("res://scripts/GameUiTheme.gd")
+const UI = preload("res://scripts/ui/GameUiTheme.gd")
 const SKIN = preload("res://scripts/portrait/PortraitSkin.gd")
 const OLD_ART = preload("res://assets/heroes/sd-v36/sheets/leonhardt-pose.png")
 const CONCEPT = preload("res://assets/art-direction/pilot-01/leonhardt-concept.png")

@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
+from project_paths import regression_tests, source_scripts
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -66,8 +67,8 @@ def extends_scene_tree(path: Path, seen: set[Path] | None = None) -> bool:
     text = path.read_text(encoding='utf-8')
     if re.search(r'^extends\s+SceneTree\s*$', text, re.MULTILINE):
         return True
-    parent = re.search(r'^extends\s+"res://([^"\n]+)"\s*$', text, re.MULTILINE)
-    return bool(parent) and extends_scene_tree(ROOT / parent.group(1), seen)
+    parent = re.search(r'''^extends\s+(["'])res://([^"'\n]+)\1\s*$''', text, re.MULTILINE)
+    return bool(parent) and extends_scene_tree(ROOT / parent.group(2), seen)
 
 
 def local_private_calls(text: str) -> set[str]:
@@ -84,7 +85,7 @@ def local_private_calls(text: str) -> set[str]:
 
 def main() -> int:
     errors: list[str] = []
-    gd_files = sorted(ROOT.rglob('*.gd'))
+    gd_files = source_scripts(ROOT)
     for path in gd_files:
         text = path.read_text(encoding='utf-8')
         funcs = re.findall(r'^func\s+([A-Za-z0-9_]+)\s*\(', text, re.MULTILINE)
@@ -96,18 +97,33 @@ def main() -> int:
                 errors.append(f'{path.relative_to(ROOT)}:{lineno}: literal \\t used as indentation')
         errors.extend(bracket_errors(path, text))
 
-    resource_pattern = re.compile(r'"res://([^"\n]+)"')
+    resource_pattern = re.compile(r'''(["'])res://([^"'\n]+)\1''')
+    for path in (ROOT / 'scripts').glob('*.gd'):
+        errors.append(f'{path.relative_to(ROOT)}: runtime scripts belong in a domain directory')
     for path in [*gd_files, *ROOT.rglob('*.tscn'), *ROOT.rglob('*.tres')]:
         text = path.read_text(encoding='utf-8', errors='ignore')
-        for rel in resource_pattern.findall(text):
+        for _quote, rel in resource_pattern.findall(text):
             rel = rel.split('::', 1)[0]
+            if path.is_relative_to(ROOT / 'scripts') and rel.startswith('tests/'):
+                errors.append(f'{path.relative_to(ROOT)}: runtime resource depends on test code: {rel}')
             # Format/template resource paths are resolved at runtime, not literal files.
             if '%' in rel or '{' in rel or '}' in rel:
+                continue
+            # Capture tools create these report destinations at runtime; they
+            # are not packaged resources or a prerequisite to launching Godot.
+            if rel.startswith('checks/'):
+                continue
+            # A directory/prefix literal is assembled with its filename at
+            # runtime. The resulting resources are checked by the engine.
+            if not Path(rel).suffix:
                 continue
             if not (ROOT / rel).exists():
                 errors.append(f'{path.relative_to(ROOT)}: missing res://{rel}')
 
-    for path in sorted((ROOT / 'scripts').glob('*SmokeTest.gd')):
+    tests = regression_tests(ROOT)
+    if not tests:
+        errors.append('tests/regression: no executable regression scripts found')
+    for path in tests:
         if not extends_scene_tree(path):
             errors.append(f'{path.relative_to(ROOT)}: smoke test must extend SceneTree')
 
@@ -118,11 +134,11 @@ def main() -> int:
         if not (ROOT / rel).exists():
             errors.append(f'README.md: missing linked file {rel}')
 
-    main_script = (ROOT / 'scripts' / 'Main.gd').read_text(encoding='utf-8')
+    main_script = (ROOT / 'scripts/app/Main.gd').read_text(encoding='utf-8')
     definitions = set(re.findall(r'^func\s+(_[A-Za-z0-9_]+)\s*\(', main_script, re.MULTILINE))
     calls = local_private_calls(main_script)
     for name in sorted(calls - definitions):
-        errors.append(f'scripts/Main.gd: private function call has no definition: {name}')
+        errors.append(f'scripts/app/Main.gd: private function call has no definition: {name}')
 
     if errors:
         print(f'STATIC VALIDATION FAILED ({len(errors)} issue(s))')
@@ -130,7 +146,7 @@ def main() -> int:
             print(' -', error)
         return 1
 
-    smoke_count = len(list((ROOT / 'scripts').glob('*SmokeTest.gd')))
+    smoke_count = len(tests)
     print(f'STATIC VALIDATION OK | gd={len(gd_files)} smoke={smoke_count} resources=ok links=ok')
     return 0
 

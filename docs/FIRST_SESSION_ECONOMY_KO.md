@@ -59,7 +59,7 @@ python tools/run_economy_audit.py --days 30 --seeds 3401 --jobs 2 --output check
 python tools/run_economy_audit.py --days 1 --seeds 3402 3403 3404 --jobs 2 --output checks/first-session-economy/first-day-replay
 # 아래 Godot 명령은 별도의 XDG_DATA_HOME/CONFIG_HOME/CACHE_HOME 또는 별도 사용자 저장 경로에서 실행한다.
 godot --headless --path . --script tools/LootEconomyAudit.gd -- --report=checks/first-session-economy/loot-audit.json
-godot --headless --path . --script scripts/FirstSessionEconomySmokeTest.gd
+godot --headless --path . --script tests/regression/FirstSessionEconomySmokeTest.gd
 ```
 
 성장 모델 원본과 검사 결과는 `checks/first-session-economy/`에 저장했다. `validation.json`, `parser-validation.json`, `economy-comparison.json`, `loot-audit.json`, `faction-balance.json`에서 확인할 수 있다. 22개 테스트 묶음 모두 오류 없이 통과했고, 개수를 집계하는 18개 묶음에서 4,519개 항목을 확인했다. 변경된 GDScript 30개도 파싱을 통과했다. 드롭 감사는 72개 항목을 통과했다. 검사 실패를 수정한 뒤 재검사한 최종 결과를 기록한다. 이전 레이드 테스트의 10인 편성은 유효한 편성 한도를 명시했고, 낙석 검사는 현재 공간 판정에 맞게 위험 통로 안/밖 좌표를 사용한다. 드롭 테스트는 옵션이 있는 역할 장비의 보호와 수동 장착, 순수 장비의 자동 장착을 각각 확인한다.

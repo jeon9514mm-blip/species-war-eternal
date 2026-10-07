@@ -1,4 +1,4 @@
-extends "res://scripts/HeroSpriteController.gd"
+extends "res://scripts/heroes/HeroSpriteController.gd"
 ## Presentation-only. Read state; never write HP, world position, damage, RNG, cooldowns,
 ## force IDs, roster, skills, currency or save files. 16 presentation tracks; skeletal rendering supplies joint movement.
 const CATALOG = preload("res://scripts/aurelia_v41/AureliaMotionCatalog.gd")

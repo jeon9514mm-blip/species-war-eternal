@@ -3,8 +3,8 @@ extends RefCounted
 const SKIN := preload('res://scripts/portrait/PortraitSkin.gd')
 const HUD := preload('res://scripts/portrait/PortraitHud.gd')
 const ICON := preload('res://scripts/portrait/PortraitIcon.gd')
-const HERO_VIEW := preload('res://scripts/HeroScreens.gd')
-const ROSTER := preload('res://scripts/HeroRosterCatalog.gd')
+const HERO_VIEW := preload('res://scripts/heroes/HeroScreens.gd')
+const ROSTER := preload('res://scripts/heroes/HeroRosterCatalog.gd')
 const SKY := preload('res://scripts/portrait/PortraitSky.gd')
 
 static func _faction_accent(main: Node) -> Color:
@@ -105,7 +105,7 @@ static func landing(main: Node) -> void:
 	start.disabled=main._save_blocked_for_newer_version
 	start.add_theme_font_size_override('font_size',27)
 	SKIN.place(main.content_root,start,Rect2(68,size.y-242,size.x-136,68))
-	var save_notice: String=str(preload('res://scripts/LandingScreens.gd')._save_notice(main))
+	var save_notice: String=str(preload('res://scripts/ui/LandingScreens.gd')._save_notice(main))
 	var guide:=SKIN.label(save_notice if not save_notice.is_empty() else '작은 영웅들과 떠나는 끝없는 모험',16,Color('#f1f4ff'))
 	guide.name='PortraitSaveNotice'
 	guide.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER

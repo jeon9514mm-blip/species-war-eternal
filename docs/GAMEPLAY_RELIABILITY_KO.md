@@ -34,5 +34,5 @@
 XDG_DATA_HOME=/tmp/species-gameplay-check \
 XDG_CACHE_HOME=/tmp/species-gameplay-cache \
 XDG_CONFIG_HOME=/tmp/species-gameplay-config \
-godot --headless --path . --script scripts/GameplayReliabilitySmokeTest.gd
+godot --headless --path . --script tests/regression/GameplayReliabilitySmokeTest.gd
 ```

@@ -134,7 +134,7 @@ func run() -> void:
 		check(command.position.y+command.size.y<1560-114,'war commands above bottom menu')
 		check(war.client_session==main.world_war_client_session,'original authoritative war session unchanged')
 	# Direct original HeroScreens detail callbacks still receive portrait chrome.
-	preload('res://scripts/HeroScreens.gd').detail(main,'leonhardt')
+	preload('res://scripts/heroes/HeroScreens.gd').detail(main,'leonhardt')
 	for f in 4:await process_frame
 	check(main.content_root.has_meta('portrait_ready'),'direct original detail rebuilds stay portrait')
 	# Portrait-native replacement for the legacy landscape camera boundary check.

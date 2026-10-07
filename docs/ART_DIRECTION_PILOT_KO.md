@@ -50,7 +50,7 @@ Godot 4.7.2에서 두 장면 중 하나를 열고 **F6**로 실행한다. 초원
 
 ## 기존 자산과 리깅 조사
 
-현재 레온하르트는 밝은 금발, 푸른 눈, 은색 판금과 금색 장식, 청색 망토, 한손검, 큰 청색 문장 방패가 특징이다. 게임 데이터상 성벽기사·전열 수호자이며 방어·아군 보호 기술을 사용한다. [HeroRosterCatalog](../scripts/HeroRosterCatalog.gd)와 [기존 SD 원화](../assets/heroes/sd-v36/bodies/leonhardt.png)를 정체성 기준으로 삼는다.
+현재 레온하르트는 밝은 금발, 푸른 눈, 은색 판금과 금색 장식, 청색 망토, 한손검, 큰 청색 문장 방패가 특징이다. 게임 데이터상 성벽기사·전열 수호자이며 방어·아군 보호 기술을 사용한다. [HeroRosterCatalog](../scripts/heroes/HeroRosterCatalog.gd)와 [기존 SD 원화](../assets/heroes/sd-v36/bodies/leonhardt.png)를 정체성 기준으로 삼는다.
 
 | 항목 | 확인한 현재 상태 | 새 표현을 위한 의미 |
 | --- | --- | --- |
@@ -62,7 +62,7 @@ Godot 4.7.2에서 두 장면 중 하나를 열고 **F6**로 실행한다. 초원
 | 3D 맵의 영웅 | 동일한 그림과 골격을 카메라 방향 평면에 GPU 스키닝 | 입체 지형과 2D 캐릭터를 결합할 기반은 있다. 전 방향 3D 캐릭터 모델은 아니다. |
 | 방향 | 현재 대표 3/4 그림과 좌우 반전, 상하 이동은 같은 시점 재사용 | 월드의 이동·등장 방향을 유지하면서 추가 방향 원화를 별도로 제작해야 한다. |
 
-근거: [PortraitHeroSkeletalRig](../scripts/portrait/PortraitHeroSkeletalRig.gd), [HeroRigMotionCatalog](../scripts/portrait/HeroRigMotionCatalog.gd), [HeroSkeletalBillboard](../scripts/maps3d/HeroSkeletalBillboard.gd), [TwoHeroActionSprite](../scripts/actions_v37/TwoHeroActionSprite.gd), [HeroShowcaseView](../scripts/HeroShowcaseView.gd).
+근거: [PortraitHeroSkeletalRig](../scripts/portrait/PortraitHeroSkeletalRig.gd), [HeroRigMotionCatalog](../scripts/portrait/HeroRigMotionCatalog.gd), [HeroSkeletalBillboard](../scripts/maps3d/HeroSkeletalBillboard.gd), [TwoHeroActionSprite](../scripts/actions_v37/TwoHeroActionSprite.gd), [HeroShowcaseView](../scripts/heroes/HeroShowcaseView.gd).
 
 현재 경로에서 사용되는 것은 합쳐진 원화·동작 프레임이다. 검·방패·팔·다리·얼굴이 완성된 독립 그림으로 나뉜 제작용 파트 세트는 확인되지 않았다. 얼굴을 거의 강체로 유지하거나 무기 부위의 가중치를 개선할 수는 있어도, 그 작업만으로 가려진 팔과 관절, 자연스러운 팔 교차, 후면 그림을 얻을 수 없다.
 

@@ -1,8 +1,8 @@
-extends "res://scripts/Main.gd"
+extends "res://scripts/app/Main.gd"
 ## Portrait presentation subclass. All v32 AI, heroes, skills, combat math,
 ## persistence, growth and territorial commands remain inherited unchanged.
 const P_PAGES := preload('res://scripts/portrait/PortraitPages.gd')
-const NAV = preload("res://scripts/NavigationCatalog.gd")
+const NAV = preload("res://scripts/ui/NavigationCatalog.gd")
 const P_HUD := preload('res://scripts/portrait/PortraitHud.gd')
 const P_MENUS := preload('res://scripts/portrait/PortraitMenus.gd')
 const P_TERRAIN := preload('res://scripts/maps3d/Battlefield3DView.gd')
@@ -13,7 +13,7 @@ const P_GROUND_SHADOW := preload('res://scripts/portrait/PortraitGroundShadow.gd
 const P_HERO_RIG := preload('res://scripts/portrait/PortraitHeroSkeletalRig.gd')
 const P_KILL_BURST := preload('res://scripts/portrait/PortraitKillBurst.gd')
 const P_DAMAGE := preload('res://scripts/portrait/PortraitDamageNumber.gd')
-const DAMAGE_POOL := preload('res://scripts/DamageNumberManager.gd')
+const DAMAGE_POOL := preload('res://scripts/combat/DamageNumberManager.gd')
 const P_SKILL_BURST := preload('res://scripts/portrait/PortraitSkillBurst.gd')
 var portrait_hud: Control
 var _resize_pending := false
@@ -107,7 +107,7 @@ func _ready() -> void:
 	super._ready()
 	get_viewport().size_changed.connect(_portrait_resize)
 func _configure_mobile_display() -> void:
-	preload('res://scripts/DisplayOrientation.gd').apply(self)
+	preload('res://scripts/app/DisplayOrientation.gd').apply(self)
 	if OS.has_feature('mobile'):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 func _build_background() -> void:
@@ -329,7 +329,7 @@ func _portrait_resize() -> void:
 func _apply_portrait_resize() -> void:
 	_resize_pending=false
 	var menu_was_open: bool=is_instance_valid(content_root) and content_root.get_node_or_null('PortraitActionSheet')!=null
-	preload("res://scripts/DisplayOrientation.gd").apply(self, false)
+	preload("res://scripts/app/DisplayOrientation.gd").apply(self, false)
 	if active_screen=='combat':
 		# No screen reconstruction: do not reset the encounter, RNG, HP or movement.
 		var layout:=_combat_layout_for_width(0,_safe_margins())
@@ -415,7 +415,7 @@ func _open_hero_menu() -> void:
 func _build_hero_detail_screen(hero_id: String) -> void:
 	if not _hero_belongs_to_selected_faction(hero_id):
 		_show_toast('선택한 진영의 영웅만 확인할 수 있습니다.');_build_hero_select_screen();return
-	load('res://scripts/HeroShowcaseView.gd').build(self,hero_id)
+	load('res://scripts/heroes/HeroShowcaseView.gd').build(self,hero_id)
 func _build_party_ready_screen(names: Array[String]) -> void:
 	P_PAGES.onboarding(self,'party_ready',names)
 func _build_growth_screen() -> void:
@@ -460,7 +460,7 @@ func _build_raid_screen() -> void:
 func _build_faction_war_screen() -> void:
 	super._build_faction_war_screen();P_MENUS.war(self)
 func _show_main_menu() -> void:
-	preload('res://scripts/LandscapeMainMenu.gd').open(self)
+	preload('res://scripts/ui/LandscapeMainMenu.gd').open(self)
 
 func _show_portrait_guide() -> void:
 	var sheet:=content_root.get_node_or_null('PortraitActionSheet')
@@ -565,4 +565,4 @@ func _install_hunt_efficiency(details: Control) -> void:
 	var readout:=P_SKIN.label("",16);readout.name="HuntEfficiencyReadout"
 	readout.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	box.add_child(readout);box.move_child(readout,1)
-	readout.text=preload("res://scripts/HuntEfficiency.gd").text(self)
+	readout.text=preload("res://scripts/hunting/HuntEfficiency.gd").text(self)

@@ -1,3 +1,0 @@
-Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
-
-AUDIT_OBSERVATIONS {"challenge_report_persistence":"Runtime-only: ChallengeReportScreens explicitly states records disappear on app exit.","first_raid_readiness":{"party_power":1849,"recommended":5400},"stash":[{"content_nodes":488,"items":50,"save_bytes":24533,"synchronous_build_ms":1593.713},{"claim_ok":true,"content_nodes":4538,"items":500,"save_bytes":162633,"scroll_after_claim":2000,"scroll_before_claim":2000,"synchronous_build_ms":13776.268}]}

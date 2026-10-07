@@ -12,6 +12,8 @@ class RunnerGuards(unittest.TestCase):
         self.assertFalse(evaluate_output(0, 'SCRIPT ERROR: bad\nmarker', 'marker')[0])
     def test_generic_engine_error(self):
         self.assertFalse(evaluate_output(0, 'ERROR: resource unavailable\nmarker', 'marker')[0])
+    def test_shader_error_is_not_hidden_by_successful_exit(self):
+        self.assertFalse(evaluate_output(0, 'SHADER ERROR: unknown identifier\nmarker', 'marker')[0])
     def test_no_marker(self):
         self.assertFalse(evaluate_output(0, 'Godot started but no test completion', 'marker')[0])
     def test_failure_list(self):

@@ -52,9 +52,9 @@
 ```bash
 audit_dir=$(mktemp -d)
 XDG_DATA_HOME="$audit_dir/data" XDG_CONFIG_HOME="$audit_dir/config" XDG_CACHE_HOME="$audit_dir/cache" \
-  godot --headless --path . --script checks/game-audit-2026-10-04/AuditProbe.gd -- --quick-stash
+  godot --headless --path . --script tools/diagnostics/game-audit-2026-10-04/AuditProbe.gd -- --quick-stash
 XDG_DATA_HOME="$audit_dir/guardian-data" XDG_CONFIG_HOME="$audit_dir/guardian-config" XDG_CACHE_HOME="$audit_dir/guardian-cache" \
-  godot --headless --path . --script checks/game-audit-2026-10-04/GuardianPolicyProbe.gd
+  godot --headless --path . --script tools/diagnostics/game-audit-2026-10-04/GuardianPolicyProbe.gd
 ```
 
 ## 다음 변경 때 이어서 점검할 기준

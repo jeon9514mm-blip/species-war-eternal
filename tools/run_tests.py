@@ -10,6 +10,8 @@ import subprocess
 import sys
 import tempfile
 import time
+from project_paths import resource_path, select_tests, source_scripts
+from run_v80_runtime_checks import evaluate_output
 
 
 def main():
@@ -18,16 +20,32 @@ def main():
     parser.add_argument('--output', help='Optional JSON results path')
     parser.add_argument('--jobs', type=int, default=1, choices=range(1, 5), help='Concurrent tests with independent save directories (1-4)')
     parser.add_argument('--tests', nargs='+', help='Optional explicit script filenames for a targeted regression suite')
+    parser.add_argument('--list', action='store_true', help='List discovered tests without requiring Godot')
+    parser.add_argument('--skip-syntax', action='store_true', help='Explicitly skip the full parser pass after a separate syntax check')
     args = parser.parse_args()
+    project = Path(__file__).resolve().parents[1]
+    try:
+        scripts = select_tests(project, args.tests)
+    except ValueError as error:
+        parser.error(str(error))
+    if args.list:
+        print('\n'.join(script.relative_to(project).as_posix() for script in scripts))
+        return 0
     if not args.godot:
         parser.error('Specify the Godot 4.7.2 executable with --godot PATH')
     if sys.platform not in ('linux', 'win32'):
         parser.error('This save-isolating runner currently supports Linux and Windows.')
-    project = Path(__file__).resolve().parents[1]
     binary = str(Path(args.godot).resolve())
     results = []
     with tempfile.TemporaryDirectory(prefix='pixel-rpg-tests-') as tmp:
-        env = dict(os.environ, XDG_DATA_HOME=tmp, APPDATA=tmp)
+        # The editor also writes preferences and font/import caches. Keep all
+        # three XDG locations writable and isolated from the developer profile.
+        locations = {name: str(Path(tmp) / folder) for name, folder in (
+            ('XDG_DATA_HOME', 'data'), ('XDG_CONFIG_HOME', 'config'),
+            ('XDG_CACHE_HOME', 'cache'))}
+        for location in locations.values():
+            Path(location).mkdir()
+        env = dict(os.environ, **locations, APPDATA=locations['XDG_DATA_HOME'])
         imported = subprocess.run([binary, '--headless', '--path', str(project), '--editor', '--import', '--quit'],
                                   env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=180)
         if imported.returncode or 'SCRIPT ERROR' in imported.stdout or 'ERROR:' in imported.stdout:
@@ -52,10 +70,11 @@ def main():
                 passed = False
             return {'script': relative, 'passed': passed, 'output': output if not passed else ''}
         with ThreadPoolExecutor(max_workers=args.jobs) as pool:
-            syntax = list(pool.map(check_script, sorted(project.rglob('*.gd'))))
-        syntax_report = {'passed': sum(item['passed'] for item in syntax),
+            syntax = list(pool.map(check_script, [] if args.skip_syntax else source_scripts(project)))
+        syntax_report = {'requested': not args.skip_syntax, 'passed': sum(item['passed'] for item in syntax),
                          'total': len(syntax), 'results': syntax}
-        print('%d/%d scripts compile' % (syntax_report['passed'], syntax_report['total']), flush=True)
+        print('Full parser pass skipped (explicit --skip-syntax)' if args.skip_syntax else
+              '%d/%d scripts compile' % (syntax_report['passed'], syntax_report['total']), flush=True)
         if syntax_report['passed'] != syntax_report['total']:
             for item in syntax:
                 if not item['passed']:
@@ -64,24 +83,16 @@ def main():
                 Path(args.output).write_text(json.dumps({'stage': 'syntax', 'syntax': syntax_report},
                                                        ensure_ascii=False, indent=2), encoding='utf-8')
             return 1
-        if args.tests:
-            scripts = []
-            for name in args.tests:
-                script = project / 'scripts' / name
-                if Path(name).name != name or not name.endswith('Test.gd') or not script.is_file():
-                    parser.error('Unknown test script filename: ' + name)
-                scripts.append(script)
-        else:
-            scripts = sorted((project / 'scripts').glob('*SmokeTest.gd'))
-            scripts.append(project / 'scripts' / 'AutoHuntRegressionTest.gd')
         def run_one(script):
             test_dir = Path(tmp) / script.stem
             test_dir.mkdir()
             test_env = dict(env, XDG_DATA_HOME=str(test_dir), APPDATA=str(test_dir))
             started = time.monotonic()
             # Two full 180-second simulated 10-hero runs include live UI and save updates.
-            timeout_seconds = 600 if script.stem in {"V26CombatSoakSmokeTest", "V27BalanceMatrixSmokeTest", "V27BossLifecycleSmokeTest"} else 180
-            command = [binary, '--headless', '--path', str(project), '--script', 'res://scripts/' + script.name]
+            # The pattern audit runs twelve natural battles, including six full
+            # 90-second weekly rotations; keep their complete simulation steps.
+            timeout_seconds = 600 if script.stem in {"V26CombatSoakSmokeTest", "V27BalanceMatrixSmokeTest", "V27BossLifecycleSmokeTest", "V835PatternBattleSmokeTest"} else 180
+            command = [binary, '--headless', '--path', str(project), '--script', resource_path(project, script)]
             measurement_path = test_dir / 'balance-results.json'
             if script.stem in {'V27BalanceMatrixSmokeTest', 'V29RosterKitSmokeTest', 'V31HeroArtSmokeTest', 'PortraitRegressionSmokeTest'}:
                 command += ['--', '--report=' + str(measurement_path)]
@@ -89,7 +100,7 @@ def main():
                 proc = subprocess.run(command,
                                       env=test_env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=timeout_seconds)
                 output = proc.stdout
-                ok = proc.returncode == 0 and 'SCRIPT ERROR' not in output and 'ERROR:' not in output
+                ok, _reason = evaluate_output(proc.returncode, output)
             except subprocess.TimeoutExpired as error:
                 partial = error.stdout or ""
                 if isinstance(partial, bytes):
@@ -105,14 +116,20 @@ def main():
                     result['output'] += '\nInvalid test report: ' + str(error)
             print(('PASS' if ok else 'FAIL') + ' ' + script.name, flush=True)
             if not ok:
-                print(result['output'], flush=True)
+                # Preserve full evidence in --output without flooding the
+                # terminal when one runtime error repeats each simulation tick.
+                excerpt = result['output']
+                if len(excerpt) > 12000:
+                    excerpt = excerpt[:6000] + '\n[repeated output omitted; see JSON report]\n' + excerpt[-6000:]
+                print(excerpt, flush=True)
             return result
         with ThreadPoolExecutor(max_workers=args.jobs) as pool:
             futures = [pool.submit(run_one, script) for script in scripts]
             for future in as_completed(futures):
                 results.append(future.result())
         results.sort(key=lambda x: x['test'])
-    report = {'engine': subprocess.check_output([binary, '--version'], text=True).strip(),
+        engine_version = subprocess.check_output([binary, '--version'], text=True, env=env).strip()
+    report = {'engine': engine_version,
               'syntax': syntax_report,
               'passed': sum(x['passed'] for x in results), 'total': len(results), 'results': results}
     if args.output:

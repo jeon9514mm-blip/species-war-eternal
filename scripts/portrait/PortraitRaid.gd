@@ -4,12 +4,12 @@ extends Control
 const SKIN := preload('res://scripts/portrait/PortraitSkin.gd')
 const MENUS := preload('res://scripts/portrait/PortraitMenus.gd')
 const HUD := preload('res://scripts/portrait/PortraitHud.gd')
-const DESIGN := preload('res://scripts/RaidBossDesign.gd')
-const BALANCE := preload('res://scripts/RaidBalance.gd')
-const KITS := preload('res://scripts/HeroKitRuntime.gd')
+const DESIGN := preload('res://scripts/raid/RaidBossDesign.gd')
+const BALANCE := preload('res://scripts/raid/RaidBalance.gd')
+const KITS := preload('res://scripts/heroes/HeroKitRuntime.gd')
 const TELEGRAPH := preload('res://scripts/portrait/RaidArenaTelegraph.gd')
 const BOSS_MOTION := preload('res://scripts/portrait/RaidBossMotion.gd')
-const FIELD := preload('res://scripts/RaidBattlefield.gd')
+const FIELD := preload('res://scripts/raid/RaidBattlefield.gd')
 var game: Node
 var hp: ProgressBar
 var information: Label
@@ -577,7 +577,7 @@ func refresh() -> void:
 	start.disabled=game.raid_running or game.deployed_heroes.is_empty()
 	start.text='전투 중' if game.raid_running else ('다시 도전' if not game.raid_last_result.is_empty() else '레이드 시작')
 	recovery_action.visible=not game.raid_running and str(game.raid_outcome) in ['defeat','timeout']
-	if recovery_action.visible: recovery_action.text=str(preload('res://scripts/RaidRecoveryGuide.gd').advice(game).caption)
+	if recovery_action.visible: recovery_action.text=str(preload('res://scripts/raid/RaidRecoveryGuide.gd').advice(game).caption)
 	if is_instance_valid(landscape_info):
 		state_scroll.custom_minimum_size.y=minf(160.0,maxf(54.0,landscape_info.size.y-108.0)) if recovery_action.visible else 160.0
 	formation.disabled=game.raid_running
@@ -710,7 +710,7 @@ func _settle_stage_layout(body: Control,w: float,h: float) -> void:
 
 func _follow_recovery() -> void:
 	if game.raid_running or str(game.raid_outcome) not in ['defeat','timeout']:return
-	var route: String=str(preload('res://scripts/RaidRecoveryGuide.gd').advice(game).route)
+	var route: String=str(preload('res://scripts/raid/RaidRecoveryGuide.gd').advice(game).route)
 	if route=='party':_open_formation()
 	elif route=='hunt':game._open_home()
 	else:game._build_growth_screen()

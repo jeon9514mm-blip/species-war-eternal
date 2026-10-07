@@ -1,6 +1,6 @@
 extends Control
 ## Isolated art review. No Main, source monster controller, economy or save.
-const UI = preload("res://scripts/GameUiTheme.gd")
+const UI = preload("res://scripts/ui/GameUiTheme.gd")
 const SKIN = preload("res://scripts/portrait/PortraitSkin.gd")
 const PRESENTATION = preload("res://scripts/art/PilotMonsterPresentation.gd")
 const ACTION_LABELS := {

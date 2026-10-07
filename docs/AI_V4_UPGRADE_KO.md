@@ -39,11 +39,11 @@
 
 ## 코드 위치와 조정값
 
-- `scripts/AutoHuntController.gd`: 상태 전환, AStarGrid2D 경로 탐색, 목표 유지, 재등장·재탐색 시간, 이동 속도.
-- `scripts/Main.gd`: 전투 판정, 영웅별 공격 준비, 스킬 사용 조건, 파티 회복, 보상, 화면 연결.
-- `scripts/HeroSpriteController.gd`: 매 프레임 같은 걷기 애니메이션을 재시작하지 않도록 처리.
-- `scripts/MonsterSpriteController.gd`: 절차적 공격·피격·사망 연출의 지속시간과 등장 효과 분리.
-- `scripts/HeroSpriteFactory.gd`: 전용 스프라이트가 없는 영웅에게 임시 색상 마커를 표시. 새 캐릭터 원화나 전용 공격 프레임을 추가한 것은 아닙니다.
+- `scripts/hunting/AutoHuntController.gd`: 상태 전환, AStarGrid2D 경로 탐색, 목표 유지, 재등장·재탐색 시간, 이동 속도.
+- `scripts/app/Main.gd`: 전투 판정, 영웅별 공격 준비, 스킬 사용 조건, 파티 회복, 보상, 화면 연결.
+- `scripts/heroes/HeroSpriteController.gd`: 매 프레임 같은 걷기 애니메이션을 재시작하지 않도록 처리.
+- `scripts/monsters/MonsterSpriteController.gd`: 절차적 공격·피격·사망 연출의 지속시간과 등장 효과 분리.
+- `scripts/heroes/HeroSpriteFactory.gd`: 전용 스프라이트가 없는 영웅에게 임시 색상 마커를 표시. 새 캐릭터 원화나 전용 공격 프레임을 추가한 것은 아닙니다.
 
 | 설정 | 기본값 | 위치 |
 |---|---:|---|

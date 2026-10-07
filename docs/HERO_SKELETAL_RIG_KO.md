@@ -40,13 +40,13 @@
 
 최종 검사: GDScript **376/376** 컴파일, 선택한 런타임 테스트 **5/5 (4,282개 확인)**, 아키텍처 정적 테스트 **12/12** 통과.
 
-- `scripts/HeroSkeletalRigSmokeTest.gd`: 30명×16종, 가중치/역바인드, 단순 평행이동이 아닌 변형, 반복 재생, 정지, 사망 자세, 반전, GPU 관절 전달, 실제 사냥/레이드 연결.
+- `tests/regression/HeroSkeletalRigSmokeTest.gd`: 30명×16종, 가중치/역바인드, 단순 평행이동이 아닌 변형, 반복 재생, 정지, 사망 자세, 반전, GPU 관절 전달, 실제 사냥/레이드 연결.
 - `V62RigFxRewardSmokeTest`, `V61FieldRolesMotionSmokeTest`: 골격과 보상·장비 회귀. V61은 폐기된 PortraitSky 탐색을 현재 3D 전장 확인으로 갱신했다.
 - `V8364CombatViewSmokeTest`, `V836RaidBattleSmokeTest`: 화면 회전·카메라·실제 레이드 결과 집계.
 - 전체 결과와 실제 Forward+ 캡처: `checks/hero-rig/`.
 
 ```sh
-godot --headless --path . --script scripts/HeroSkeletalRigSmokeTest.gd
+godot --headless --path . --script tests/regression/HeroSkeletalRigSmokeTest.gd
 godot --path . --script tools/preview_hero_rigs.gd -- --roster
 godot --path . --script tools/preview_hero_rigs.gd -- --video
 ```

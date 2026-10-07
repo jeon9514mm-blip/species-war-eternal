@@ -1,4 +1,4 @@
-extends "res://scripts/MapTerrainRenderer.gd"
+extends "res://scripts/maps/MapTerrainRenderer.gd"
 ## Real 3D world embedded beneath the existing battle UI. Battle simulation owns
 ## the coordinates; both sprite billboards and 2D effects use this camera.
 const HERO_SKIN=preload('res://scripts/maps3d/HeroSkeletalBillboard.gd')
@@ -9,7 +9,7 @@ const HEALTH_OVERLAY=preload('res://scripts/maps3d/CombatHealthOverlay.gd')
 const HUNT_OVERLAY=preload('res://scripts/maps3d/HuntCombatOverlay.gd')
 const MOTION=preload('res://scripts/maps3d/HuntMotionPresentation.gd')
 const CONTACT_SHADOW=preload('res://shaders/PaintedContactShadow.gdshader')
-const FIELD_PALETTE=preload('res://scripts/FieldArtCatalog.gd')
+const FIELD_PALETTE=preload('res://scripts/maps/FieldArtCatalog.gd')
 const STONE_GROUND=preload('res://scripts/maps/RuneStoneGround.gd')
 const CAMERA_OFFSET=Vector3(0,40,28)
 const HUNT_CAMERA_OFFSET=Vector3(0,.6691306,.7431448) # 42 degree hunting camera.
@@ -150,7 +150,7 @@ func _resize_world() -> void:
 		camera.v_offset=(-5.0+57.0*raid_factor)/(RAID_UNITS*raid_factor)
 		# Measure the real floor projection; preserve actor/telegraph scale and
 		# leave the enlarged dodge/follow strip below every reachable point.
-		var floor_end: Vector2=preload("res://scripts/RaidBattlefield.gd").FLOOR.end
+		var floor_end: Vector2=preload("res://scripts/raid/RaidBattlefield.gd").FLOOR.end
 		var excess:=project_world(raid_to_world(floor_end)).y-(size.y-RAID_BOTTOM_CLEARANCE)
 		if excess>0.0:camera.v_offset-=excess/(RAID_UNITS*raid_factor)
 	else:
@@ -303,7 +303,7 @@ func skill_trail(hero_id: String) -> void:
 		hunt_overlay.afterimage(source,point,facing);break
 
 func visual_running() -> bool:
-	return is_instance_valid(game) and game.active_screen=='combat' and game.combat_running and not game._application_suspended and _visual_hitstop_remaining<=0 and not bool(game.get_meta('equipment_mail_paused',false)) and not preload('res://scripts/SaveSafety.gd').pending(game)
+	return is_instance_valid(game) and game.active_screen=='combat' and game.combat_running and not game._application_suspended and _visual_hitstop_remaining<=0 and not bool(game.get_meta('equipment_mail_paused',false)) and not preload('res://scripts/persistence/SaveSafety.gd').pending(game)
 
 func visual_speed() -> float:
 	return clampf(game.battle_speed,1,2) if is_finite(game.battle_speed) else 1.0

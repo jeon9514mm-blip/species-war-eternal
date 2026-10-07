@@ -17,7 +17,7 @@ func run() -> void:
  if count<=0:count=3
  game.party_slot_legacy_cap=count
  var ids:Array[String]=[]
- for hero in preload('res://scripts/HeroRosterCatalog.gd').roster('aurelia'):
+ for hero in preload('res://scripts/heroes/HeroRosterCatalog.gd').roster('aurelia'):
   if ids.size()<count:ids.append(str(hero.id))
  game._restore_deployed_heroes(ids);game.sound_effects_enabled=false;game.combat_effects_enabled=true
  if OS.get_environment('HUNT_CAPTURE_SMALL_SCREEN')=='1':

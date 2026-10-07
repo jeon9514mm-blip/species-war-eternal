@@ -21,14 +21,14 @@ func run() -> void:
 	game.sound_effects_enabled=false;game.combat_effects_enabled=true;game.tutorial_completed=true
 	game.selected_faction='aurelia';game.party_slot_legacy_cap=10;game.loot_rng.seed=1004;game.wallet_gold=10000
 	var ids: Array[String]=[]
-	for hero in preload('res://scripts/HeroRosterCatalog.gd').roster('aurelia'):
+	for hero in preload('res://scripts/heroes/HeroRosterCatalog.gd').roster('aurelia'):
 		ids.append(str(hero.id));game.hero_progress[str(hero.id)]={'level':60,'xp':0}
 	game._restore_deployed_heroes(ids);game.idle_stage=154;game._build_combat_screen();await settle()
 	game.combat_running=true
 	for n in 300:
 		game._advance_auto_hunt(.1)
 		if n%10==0:await process_frame
-	print('CAPTURE_BODY_CLEARANCE ',preload('res://scripts/HuntBodyCollision.gd').overlapping(game))
+	print('CAPTURE_BODY_CLEARANCE ',preload('res://scripts/hunting/HuntBodyCollision.gd').overlapping(game))
 	await capture('hunt-10-heroes')
 	game._toggle_hunt_details();await capture('hunt-efficiency')
 	game._toggle_hunt_details()

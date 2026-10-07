@@ -52,7 +52,7 @@ v27_growth_economy_smoke_test checks=40 passed=40 failures=[]
 실행 예:
 
 ```sh
-XDG_DATA_HOME=/tmp/pixel-v27-growth-check Godot_v4.7.2-stable_linux.x86_64 --headless --path . --script res://scripts/V27GrowthEconomySmokeTest.gd
+XDG_DATA_HOME=/tmp/pixel-v27-growth-check Godot_v4.7.2-stable_linux.x86_64 --headless --path . --script res://tests/regression/V27GrowthEconomySmokeTest.gd
 ```
 
 ## 통합 확인 및 남은 한계

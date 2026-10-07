@@ -1,6 +1,0 @@
-Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
-
-COUNTERPLAY_ECONOMIC_DIFF=[]
-COUNTERPLAY_ECONOMIC_DIFF=[]
-COUNTERPLAY_OBS=[{"elapsed":31.7000000000007,"explicit_stun_input":false,"metrics":{"casts_completed":1,"casts_started":1},"mode":"let_cast_finish","paused":true,"reason":"","ticks":951},{"elapsed":29.733333333334,"explicit_stun_input":true,"metrics":{"casts_started":1,"interrupts":1},"mode":"supply_stun_input","paused":true,"reason":"","ticks":892}]
-v835_counterplay_probe checks=9 failures=[]

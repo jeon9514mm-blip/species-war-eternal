@@ -40,8 +40,8 @@ Godot 4.7.2 / 검토 브랜치 `work/combat-readability-ai-motion`. 이전 8방�
 - 결과는 `checks/combat-quality/`에 저장한다. 이 검증은 Android 실기기의 터치·FPS·메모리·발열 및 장시간 밸런스 측정을 대신하지 않는다.
 
 ```sh
-godot --headless --path . --script scripts/CombatQualitySmokeTest.gd
-godot --headless --path . --script scripts/DirectionalHuntQualitySmokeTest.gd
+godot --headless --path . --script tests/regression/CombatQualitySmokeTest.gd
+godot --headless --path . --script tests/regression/DirectionalHuntQualitySmokeTest.gd
 godot --path . --script tools/capture_unified_ui.gd -- --output=res://checks/combat-quality/captures
 godot --path . --script tools/preview_hero_rigs.gd -- --video --output=res://checks/combat-quality/motion
 ```

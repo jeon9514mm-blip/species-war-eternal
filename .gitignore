@@ -23,3 +23,20 @@ export_credentials.cfg
 # Reproducible raw frames; keep the small review MP4 and selected stills.
 /checks/hero-rig/captures/frames/
 /checks/combat-quality/motion/frames/
+
+# Regenerable review output; selected PNG/MP4 and compact JSON remain reviewable.
+/checks/**/*.log
+/checks/**/*.log.*
+/checks/**/*.old
+/checks/**/*.txt
+!/checks/**/README.txt
+/checks/**/*.import
+/checks/**/frames/
+/checks/**/raw/
+/checks/**/tmp/
+/checks/**/*.avi
+/checks/**/github-base-tree.json
+/checks/**/github-integration-plan.json
+/checks/**/github-publish-manifest.json
+/docs/**/*.log
+/docs/**/*.import

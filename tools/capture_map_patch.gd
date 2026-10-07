@@ -25,7 +25,7 @@ func run() -> void:
 		game.selected_faction='aurelia';game.party_slot_legacy_cap=10;game.loot_rng.seed=20261005
 		game.current_zone_id=zone;game.idle_stage=54
 		var ids: Array[String]=[]
-		for hero in preload('res://scripts/HeroRosterCatalog.gd').roster('aurelia'):
+		for hero in preload('res://scripts/heroes/HeroRosterCatalog.gd').roster('aurelia'):
 			if ids.size()<3:
 				ids.append(str(hero.id));game.hero_progress[str(hero.id)]={'level':35,'xp':0}
 		game._restore_deployed_heroes(ids);game._build_combat_screen();await settle()

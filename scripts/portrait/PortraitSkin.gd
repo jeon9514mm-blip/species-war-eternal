@@ -1,6 +1,6 @@
 extends RefCounted
 ## Presentation-only skin shared by the portrait UI. Gameplay state is never mutated here.
-const UI = preload('res://scripts/GameUiTheme.gd')
+const UI = preload('res://scripts/ui/GameUiTheme.gd')
 const DARK = UI.BG
 const DARK_2 = UI.SURFACE
 const SURFACE = UI.SURFACE
@@ -16,7 +16,7 @@ const NOXFERA := Color('#d88caa')
 const MUTED = UI.MUTED
 const MUTED_DARK = UI.MUTED
 const SUCCESS = UI.GREEN
-const FONT_PROVIDER = preload("res://scripts/UIFontProvider.gd")
+const FONT_PROVIDER = preload("res://scripts/ui/UIFontProvider.gd")
 
 static func font() -> Font:
 	return FONT_PROVIDER.get_font()

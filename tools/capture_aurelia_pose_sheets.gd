@@ -3,8 +3,8 @@ extends SceneTree
 ## Run with a GPU display. AURELIA_CAPTURE_PREPARE=1 validates construction only.
 const CATALOG = preload("res://scripts/art/HeroPartsCatalog.gd")
 const RIG = preload("res://scripts/art/HeroPartsRig3D.gd")
-const FACTORY = preload("res://scripts/HeroSpriteFactory.gd")
-const FONT = preload("res://scripts/UIFontProvider.gd")
+const FACTORY = preload("res://scripts/heroes/HeroSpriteFactory.gd")
+const FONT = preload("res://scripts/ui/UIFontProvider.gd")
 const LABELS := {
 	"idle": "대기", "walk": "걷기", "run": "달리기", "attack_1": "기본 공격 1",
 	"attack_2": "기본 공격 2", "skill": "스킬", "ultimate": "궁극기", "hit": "피격",

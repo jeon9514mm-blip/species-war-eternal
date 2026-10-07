@@ -30,7 +30,7 @@ Godot 4.6.3에서 실제 ScreenTouch 입력으로 분류 전환, 사냥 조작, 
 재현 시 사용자 저장과 분리된 `XDG_DATA_HOME`, `XDG_CONFIG_HOME`, `XDG_CACHE_HOME`을 사용한다.
 
 ```sh
-godot --headless --path . --script scripts/SimpleUxSmokeTest.gd
+godot --headless --path . --script tests/regression/SimpleUxSmokeTest.gd
 # 디스플레이가 있는 환경에서 실제 화면을 저장한다.
 godot --path . --rendering-method gl_compatibility --audio-driver Dummy --script tools/capture_simple_ux.gd
 ```

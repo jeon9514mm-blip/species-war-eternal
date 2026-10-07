@@ -1,6 +1,6 @@
 extends SceneTree
-const DESIGN=preload('res://scripts/RaidBossDesign.gd')
-const FIELD=preload('res://scripts/RaidBattlefield.gd')
+const DESIGN=preload('res://scripts/raid/RaidBossDesign.gd')
+const FIELD=preload('res://scripts/raid/RaidBattlefield.gd')
 var game: Node
 var output: String
 func _initialize() -> void:run.call_deferred()

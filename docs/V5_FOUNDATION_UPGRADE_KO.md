@@ -50,5 +50,5 @@ python tools/run_tests.py --godot /path/to/godot
 또는 v5 기반 테스트만 실행한다.
 
 ```bash
-godot --headless --path . --script res://scripts/V5FoundationSmokeTest.gd
+godot --headless --path . --script res://tests/regression/V5FoundationSmokeTest.gd
 ```

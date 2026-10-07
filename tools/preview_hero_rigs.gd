@@ -1,6 +1,6 @@
 extends SceneTree
 ## Deterministic captures of the production GPU skin. No image compositing or mock poses.
-const FACTORY=preload('res://scripts/HeroSpriteFactory.gd')
+const FACTORY=preload('res://scripts/heroes/HeroSpriteFactory.gd')
 const RIG=preload('res://scripts/portrait/PortraitHeroSkeletalRig.gd')
 const MOTIONS=preload('res://scripts/portrait/HeroRigMotionCatalog.gd')
 const SKIN=preload('res://scripts/maps3d/HeroSkeletalBillboard.gd')
@@ -38,7 +38,7 @@ func run() -> void:
 		var cell_w:=9.0/cols;var cell_h:=8.55/rows
 		skin.position=Vector3(-4.5+cell_w*(float(i%cols)+.5),10.9-cell_h*(floorf(float(i)/cols)+1),0)
 		skin.sync(camera,h/rig.body_height,Color.WHITE);skins.append(skin)
-		var name_text: String=preload('res://scripts/HeroRosterCatalog.gd').HEROES[id].name
+		var name_text: String=preload('res://scripts/heroes/HeroRosterCatalog.gd').HEROES[id].name
 		var foot:=camera.unproject_position(skin.position)
 		label(name_text.split(' ')[0] if roster else name_text,Vector2(20+float(i%cols)*(720.0/cols),foot.y+8),15 if roster else 21)
 	label('Godot 4.7.2 · 실제 3D 렌더링',Vector2(38,921),18)

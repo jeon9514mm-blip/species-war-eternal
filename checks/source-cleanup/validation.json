@@ -1,0 +1,250 @@
+{
+  "status": "validated",
+  "date_kst": "2026-10-07",
+  "base_commit": "7a93befb04a6041bcca9ec3d10b8f74ef2cab30a",
+  "engine": "Godot 4.7.2",
+  "syntax": {
+    "passed": 466,
+    "total": 466
+  },
+  "python_unit_tests": {
+    "passed": 50,
+    "total": 50
+  },
+  "focused_regressions": {
+    "passed": 29,
+    "total": 29,
+    "results": [
+      {
+        "test": "EquipmentMailSmokeTest.gd",
+        "passed": true,
+        "seconds": 12.94,
+        "report_file": "hunt-equipment-final.json",
+        "explicit_checks": 37
+      },
+      {
+        "test": "EquipmentModalSaveRecoverySmokeTest.gd",
+        "passed": true,
+        "seconds": 10.81,
+        "report_file": "hunt-equipment-final.json",
+        "explicit_checks": 163
+      },
+      {
+        "test": "EquipmentStashSmokeTest.gd",
+        "passed": true,
+        "seconds": 106.82,
+        "report_file": "targeted-regression.json",
+        "explicit_checks": 586
+      },
+      {
+        "test": "GameplayReliabilitySmokeTest.gd",
+        "passed": true,
+        "seconds": 70.79,
+        "report_file": "challenge-final.json",
+        "explicit_checks": 133
+      },
+      {
+        "test": "HeroMenuUxSmokeTest.gd",
+        "passed": true,
+        "seconds": 57.39,
+        "report_file": "targeted-regression.json",
+        "explicit_checks": 1065
+      },
+      {
+        "test": "HuntAttackQualitySmokeTest.gd",
+        "passed": true,
+        "seconds": 6.88,
+        "report_file": "hunt-equipment-final.json",
+        "explicit_checks": 24
+      },
+      {
+        "test": "HuntAutosaveSmokeTest.gd",
+        "passed": true,
+        "seconds": 15.15,
+        "report_file": "targeted-regression.json",
+        "explicit_checks": 10
+      },
+      {
+        "test": "HuntCoordinationSmokeTest.gd",
+        "passed": true,
+        "seconds": 6.88,
+        "report_file": "hunt-equipment-final.json",
+        "explicit_checks": 48
+      },
+      {
+        "test": "HuntingHomeSmokeTest.gd",
+        "passed": true,
+        "seconds": 31.47,
+        "report_file": "fixes-and-broad-regression.json",
+        "explicit_checks": 53
+      },
+      {
+        "test": "InventoryCapacitySmokeTest.gd",
+        "passed": true,
+        "seconds": 2.79,
+        "report_file": "targeted-regression.json",
+        "explicit_checks": 22
+      },
+      {
+        "test": "LandscapeRosterUiSmokeTest.gd",
+        "passed": true,
+        "seconds": 55.19,
+        "report_file": "targeted-regression.json",
+        "explicit_checks": 7006
+      },
+      {
+        "test": "MeadowAppliedSmokeTest.gd",
+        "passed": true,
+        "seconds": 8.95,
+        "report_file": "hunt-equipment-final.json",
+        "explicit_checks": 105
+      },
+      {
+        "test": "MenuHuntReliabilitySmokeTest.gd",
+        "passed": true,
+        "seconds": 45.93,
+        "report_file": "targeted-regression.json",
+        "explicit_checks": 40
+      },
+      {
+        "test": "RaidStrengthSmokeTest.gd",
+        "passed": true,
+        "seconds": 43.72,
+        "report_file": "fixes-and-broad-regression.json",
+        "explicit_checks": 442
+      },
+      {
+        "test": "RaidTouchLayoutSmokeTest.gd",
+        "passed": true,
+        "seconds": 90.94,
+        "report_file": "fixes-and-broad-regression.json",
+        "explicit_checks": 1044
+      },
+      {
+        "test": "RoamingHuntDirectorSmokeTest.gd",
+        "passed": true,
+        "seconds": 0.29,
+        "report_file": "hunt-equipment-final.json",
+        "explicit_checks": null
+      },
+      {
+        "test": "V16PresentationIntegrationSmokeTest.gd",
+        "passed": true,
+        "seconds": 7.28,
+        "report_file": "hunt-equipment-final.json",
+        "explicit_checks": 77
+      },
+      {
+        "test": "V27SaveRecoverySmokeTest.gd",
+        "passed": true,
+        "seconds": 5.21,
+        "report_file": "targeted-regression.json",
+        "explicit_checks": 80
+      },
+      {
+        "test": "V52RoleMovementSmokeTest.gd",
+        "passed": true,
+        "seconds": 0.63,
+        "report_file": "hunt-equipment-final.json",
+        "explicit_checks": null
+      },
+      {
+        "test": "V54EquipmentPersistenceSmokeTest.gd",
+        "passed": true,
+        "seconds": 16.98,
+        "report_file": "hunt-equipment-final.json",
+        "explicit_checks": 98
+      },
+      {
+        "test": "V75RaidMechanicSmokeTest.gd",
+        "passed": true,
+        "seconds": 22.03,
+        "report_file": "fixes-and-broad-regression.json",
+        "explicit_checks": null
+      },
+      {
+        "test": "V80AbyssBattleSmokeTest.gd",
+        "passed": true,
+        "seconds": 37.2,
+        "report_file": "challenge-final.json",
+        "explicit_checks": 16
+      },
+      {
+        "test": "V80DailyBattleSmokeTest.gd",
+        "passed": true,
+        "seconds": 16.76,
+        "report_file": "challenge-final.json",
+        "explicit_checks": 18
+      },
+      {
+        "test": "V80DailyModesBattleSmokeTest.gd",
+        "passed": true,
+        "seconds": 24.53,
+        "report_file": "challenge-final.json",
+        "explicit_checks": 30
+      },
+      {
+        "test": "V80TowerBattleSmokeTest.gd",
+        "passed": true,
+        "seconds": 31.98,
+        "report_file": "challenge-final.json",
+        "explicit_checks": 42
+      },
+      {
+        "test": "V835PatternBattleSmokeTest.gd",
+        "passed": true,
+        "seconds": 180.63,
+        "report_file": "pattern-natural-final.json",
+        "explicit_checks": 1276
+      },
+      {
+        "test": "V8364CombatViewSmokeTest.gd",
+        "passed": true,
+        "seconds": 14.82,
+        "report_file": "hunt-equipment-final.json",
+        "explicit_checks": 1304
+      },
+      {
+        "test": "V83DomainParitySmokeTest.gd",
+        "passed": true,
+        "seconds": 7.24,
+        "report_file": "targeted-regression.json",
+        "explicit_checks": 144
+      },
+      {
+        "test": "V83PracticeBattleSmokeTest.gd",
+        "passed": true,
+        "seconds": 90.04,
+        "report_file": "challenge-final.json",
+        "explicit_checks": 870
+      }
+    ]
+  },
+  "all_historical_regressions_run": false,
+  "physical_android_device_tested": false,
+  "runtime_fixes": [
+    "raid loot slot reservation before hunt RNG",
+    "typed empty collision snapshot for challenge battles",
+    "lazy bulk-enhance modal resources"
+  ],
+  "cleanup": {
+    "runtime_scripts_relocated": 139,
+    "test_entrypoints_relocated": 224,
+    "test_support_files_relocated": 4,
+    "retired_root_documents_archived": 28,
+    "regenerable_outputs_removed": 1523,
+    "removed_output_bytes": 9889622
+  },
+  "explicit_assertion_count": 14733,
+  "completion_note": "All selected regressions completed; historical full 224-test suite was not run.",
+  "actual_game_capture": {
+    "image": "checks/source-cleanup/actual-game.png",
+    "metadata": "checks/source-cleanup/actual-game.json",
+    "scene": "scenes/PortraitMain.tscn",
+    "zone": "gray_meadow",
+    "renderer": "mobile",
+    "device": "llvmpipe software Vulkan; not physical Android",
+    "engine_errors": 0,
+    "save_data_isolated": true
+  }
+}

@@ -14,7 +14,7 @@ func run() -> void:
 	game.sound_effects_enabled=false;game.combat_effects_enabled=true
 	game.party_slot_legacy_cap=10
 	var ids: Array[String]=[]
-	for hero in preload("res://scripts/HeroRosterCatalog.gd").roster("aurelia"):
+	for hero in preload("res://scripts/heroes/HeroRosterCatalog.gd").roster("aurelia"):
 		if ids.size()<3:ids.append(str(hero.id))
 	game._restore_deployed_heroes(ids);game._build_combat_screen();await settle()
 	root.size=Vector2i(1280,720);await settle()
@@ -30,7 +30,7 @@ func run() -> void:
 	await RenderingServer.frame_post_draw
 	root.get_texture().get_image().save_png(out.path_join("hunt-3-heroes.png"))
 	ids.clear()
-	for hero in preload("res://scripts/HeroRosterCatalog.gd").roster("aurelia"):ids.append(str(hero.id))
+	for hero in preload("res://scripts/heroes/HeroRosterCatalog.gd").roster("aurelia"):ids.append(str(hero.id))
 	game.idle_stage=154
 	game._restore_deployed_heroes(ids);ids=game._deployed_hero_ids();game._build_combat_screen();await settle()
 	for n in 25:game._advance_auto_hunt(.1)

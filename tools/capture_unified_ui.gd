@@ -51,16 +51,16 @@ func run() -> void:
 	for serial in range(1,9):
 		for enemy in game.enemy_wave:enemy.hp=0
 		game._finish_hunt_target();game.invasion.clock+=4;game.invasion.serial=serial-1
-		preload('res://scripts/HuntFieldService.gd').admit(game)
+		preload('res://scripts/hunting/HuntFieldService.gd').admit(game)
 		game.portrait_hud.refresh()
 		await capture('entry-'+game.roaming_hunt.entry_side(serial).id)
 	# A real scaled mobile window also checks the viewport/overlay coordinate path.
 	game.selected_raid_id='moonrest_forest';game._build_raid_screen();await settle()
 	game._start_raid();if is_instance_valid(game.combat_timer):game.combat_timer.stop()
 	game.boss_telegraph_pending=true;game.boss_telegraph_remaining=.9
-	game.raid_cast_profile=preload('res://scripts/RaidBossDesign.gd').pattern('moonrest_forest',2)
+	game.raid_cast_profile=preload('res://scripts/raid/RaidBossDesign.gd').pattern('moonrest_forest',2)
 	game.boss_telegraph_skill=game.raid_cast_profile.name
-	game.raid_pattern_shape=preload('res://scripts/RaidBattlefield.gd').footprint(str(game.raid_cast_profile.kind),game.raid_boss_position,[Vector2(390,390),Vector2(490,430)],game.raid_cast_profile)
+	game.raid_pattern_shape=preload('res://scripts/raid/RaidBattlefield.gd').footprint(str(game.raid_cast_profile.kind),game.raid_boss_position,[Vector2(390,390),Vector2(490,430)],game.raid_cast_profile)
 	game.content_root.get_node('PortraitRaidView').refresh();await capture('raid-warning')
 	root.size=Vector2i(450,800);await settle();await capture('raid-mobile-scale')
 	game.presentation_runtime.audio.shutdown();await create_timer(.3).timeout;game.free();await process_frame;quit()

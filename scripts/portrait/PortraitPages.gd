@@ -4,16 +4,16 @@ extends RefCounted
 const S = preload('res://scripts/portrait/PortraitSkin.gd')
 const M = preload('res://scripts/portrait/PortraitMenus.gd')
 const H = preload('res://scripts/portrait/PortraitHud.gd')
-const R = preload('res://scripts/HeroRosterCatalog.gd')
-const ART = preload('res://scripts/EquipmentArtCatalog.gd')
-const GEAR = preload('res://scripts/EquipmentRules.gd')
-const VISUALS = preload('res://scripts/HeroVisualCatalog.gd')
+const R = preload('res://scripts/heroes/HeroRosterCatalog.gd')
+const ART = preload('res://scripts/equipment/EquipmentArtCatalog.gd')
+const GEAR = preload('res://scripts/equipment/EquipmentRules.gd')
+const VISUALS = preload('res://scripts/heroes/HeroVisualCatalog.gd')
 const SCENERY = preload('res://scripts/portrait/PortraitScenery.gd')
-const RAID_DESIGN = preload('res://scripts/RaidBossDesign.gd')
-const GUARDIANS = preload('res://scripts/GuardianCatalog.gd')
-const DAILY_RULES = preload('res://scripts/DailyDungeonBattleRules.gd')
-const TOWER_RULES = preload('res://scripts/TowerBattleRules.gd')
-const ABYSS_RULES = preload('res://scripts/WeeklyAbyssBattleRules.gd')
+const RAID_DESIGN = preload('res://scripts/raid/RaidBossDesign.gd')
+const GUARDIANS = preload('res://scripts/heroes/GuardianCatalog.gd')
+const DAILY_RULES = preload('res://scripts/progression/DailyDungeonBattleRules.gd')
+const TOWER_RULES = preload('res://scripts/progression/TowerBattleRules.gd')
+const ABYSS_RULES = preload('res://scripts/progression/WeeklyAbyssBattleRules.gd')
 const ZONES = ['gray_meadow','forgotten_mine','moonrest_forest']
 
 static func stack(parent: Node, gap: int = 12) -> VBoxContainer:
@@ -135,7 +135,7 @@ static func lobby(main: Node) -> void:
 		var goal := card(page,'다음 목표',S.GOLD)
 		goal.get_parent().name='LobbyGuideCard'
 		text(goal,main._tutorial_text(),18,S.MUTED)
-		action(goal,str(preload("res://scripts/FirstSessionGuide.gd").status(main).caption),Callable(main,'_follow_first_session_guide'),true).name='LobbyGuideAction'
+		action(goal,str(preload("res://scripts/app/FirstSessionGuide.gd").status(main).caption),Callable(main,'_follow_first_session_guide'),true).name='LobbyGuideAction'
 	var metrics := grid(page)
 	var power := card(metrics,'원정대 전투력')
 	text(power,main._compact_hud_amount(main._calculate_party_power()),28,S.GOLD)
@@ -332,7 +332,7 @@ static func _inventory_rows(main: Node, filters: Dictionary) -> Array:
 		var state:=str(filters.get('state','all'))
 		if state=='locked' and not bool(item.get('locked',false)):continue
 		if state in ['usable','improved']:
-			var preview: Dictionary=preload('res://scripts/EquipmentComparison.gd').preview(main,item,preload('res://scripts/EquipmentComparison.gd').selected_hero(main))
+			var preview: Dictionary=preload('res://scripts/equipment/EquipmentComparison.gd').preview(main,item,preload('res://scripts/equipment/EquipmentComparison.gd').selected_hero(main))
 			if preview.is_empty() or not bool(preview.compatible) or not (item.get('proposal',{}) as Dictionary).is_empty():continue
 			if state=='improved' and int(preview.delta)<=0:continue
 		rows.append({'index':index,'item':item})
@@ -469,7 +469,7 @@ static func _inventory_summary(main: Node, parent: Node) -> void:
 		_metric_tile(stats,str(entry[0]),str(entry[1]),metric_accent)
 
 static func inventory(main: Node) -> void:
-	load('res://scripts/EquipmentInventoryView.gd').build(main)
+	load('res://scripts/equipment/EquipmentInventoryView.gd').build(main)
 
 static func detail(main: Node, hero_id: String, scroll_position: int = 0) -> void:
 	var hero: Dictionary=R.hero(hero_id)
@@ -587,7 +587,7 @@ static func _content_party(main: Node, parent: Node, context: String, zone_id: S
 	if main.deployed_heroes.is_empty():text(box,'영웅을 한 명 이상 편성하면 도전할 수 있어요.',17,S.MUTED)
 	else:text(box,'시너지 · '+str(main._calculate_party_synergy().get('summary','')),17,S.BLUE_SOFT)
 	if context=='meta':
-		var role_info: Dictionary=preload('res://scripts/ChallengeCombatLedger.gd').capabilities(main.deployed_heroes)
+		var role_info: Dictionary=preload('res://scripts/combat/ChallengeCombatLedger.gd').capabilities(main.deployed_heroes)
 		text(box,'역할 · 탱커 %d / 딜러 %d / 보조 %d / 제어 %d · 아군 회복 보유 %d(조건부 포함)'%[role_info.tank,role_info.damage,role_info.support,role_info.control,role_info.heal],16,S.MUTED).name='ChallengePartyRoles'
 		text(box,'자동 스킬 %s · 자동 궁극기 %s'%['켜짐' if main.skill_auto else '꺼짐','켜짐' if main.ultimate_auto else '꺼짐'],16,S.BLUE_SOFT).name='ChallengePartyAutoStatus'
 	action(box,'편성하기' if main.deployed_heroes.is_empty() else '편성 수정',Callable(main,'_open_content_party').bind(context,zone_id),main.deployed_heroes.is_empty()).name='ContentPartyButton'
@@ -619,7 +619,7 @@ static func meta(main: Node) -> void:
 		button.name='ContentTab_'+tab_id
 	if selected=='raids':
 		tools.get_parent().get_parent().queue_free()
-		load('res://scripts/RaidCatalogView.gd').build(main,page,load('res://scripts/portrait/PortraitPages.gd'))
+		load('res://scripts/raid/RaidCatalogView.gd').build(main,page,load('res://scripts/portrait/PortraitPages.gd'))
 		return
 	var last_result: Dictionary=main.get_meta('last_dungeon_result',{})
 	if selected==str(last_result.get('mode','')):
@@ -631,7 +631,7 @@ static func meta(main: Node) -> void:
 		var report_serial: int=int(combat_report.get('serial',-1))
 		action(page,('최근 연습 분석 · ' if combat_report.get('practice',false) else '최근 실전 분석 · ')+str(combat_report.get('title','')),Callable(main,'_open_challenge_report').bind(report_serial)).name='ChallengeReportOpen'
 	if selected=='quests':
-		preload("res://scripts/LongTermGoalScreens.gd").build(main, page, load("res://scripts/portrait/PortraitPages.gd"))
+		preload("res://scripts/progression/LongTermGoalScreens.gd").build(main, page, load("res://scripts/portrait/PortraitPages.gd"))
 		return
 	var daily: bool=selected=='daily'
 	var tower: bool=selected=='tower'

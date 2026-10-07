@@ -1,6 +1,6 @@
 extends SceneTree
 ## Production UI with isolated fixtures; captures never modify a player save.
-const RULES=preload('res://scripts/EquipmentRules.gd')
+const RULES=preload('res://scripts/equipment/EquipmentRules.gd')
 var game: Node
 var output: String
 func _initialize() -> void:run.call_deferred()

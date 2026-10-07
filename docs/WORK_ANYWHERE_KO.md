@@ -39,7 +39,7 @@ git push -u origin work/my-change
 
 ## 다른 Codex 환경에서 이어가기
 
-- **로컬 Codex**: 복제한 `species-war-eternal` 폴더를 프로젝트로 열고 `README.md`, `CURRENT_DEVELOPMENT.md`, `MAPS_3D_README.md`를 먼저 읽도록 요청합니다.
+- **로컬 Codex**: 복제한 `species-war-eternal` 폴더를 프로젝트로 열고 `README.md`, `CURRENT_DEVELOPMENT.md`, `docs/PROJECT_STRUCTURE_KO.md`를 먼저 읽도록 요청합니다.
 - **GitHub를 사용하는 클라우드 Codex**: GitHub 연결에 이 비공개 저장소 접근을 허용하고 해당 저장소·브랜치를 선택합니다. 접근 목록에 안 보이면 GitHub 앱의 저장소 접근 범위를 확인합니다.
 - 실행 검증에는 해당 환경에도 Godot 4.7.2가 설치되어 있어야 합니다. 리소스 최초 임포트는 `godot --headless --editor --path . --quit`로 할 수 있습니다.
 - 이 저장소는 소스와 개발 문서를 보관합니다. 이 ChatGPT 대화 전체가 GitHub에 자동 복제되지는 않습니다.
@@ -48,6 +48,6 @@ git push -u origin work/my-change
 
 - `v83-6.2`: 부대 사냥·진형·화면 회전을 구현한 기준 버전
 - `v83-6.3`: 3D 맵과 GitHub 작업 안내를 포함한 보관 버전
-- 새 개발은 `main`에서 브랜치를 만듭니다. 이전 버전을 검토하려면 별도 복제본에서 `git switch --detach v83-6.2`를 사용합니다.
+- 현재 기본 브랜치 이름은 `jeon9514mm-blip/species-war-eternal`입니다. GitHub Desktop의 Current Branch와 원격 기본 브랜치를 확인한 뒤 새 작업 브랜치를 만듭니다. 저장소를 Clone하면 기본 브랜치를 자동으로 선택합니다. 이전 버전을 검토하려면 별도 복제본에서 `git switch --detach v83-6.2`를 사용합니다.
 
 Godot의 **플레이 진행 저장(user://)**은 GitHub 코드 동기화와 별개입니다. 다른 PC에서도 같은 캐릭터 성장 상태를 쓰려면 게임 저장을 따로 옮겨야 합니다. [저장 안내](../START_HERE_KO.md)를 확인하세요.

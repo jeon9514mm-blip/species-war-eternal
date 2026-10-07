@@ -49,8 +49,8 @@ Godot 4.7.2.stable.official.ed1daf0bf: 전체 회귀 **74/74 통과** 후 경계
 
 - docs/Pixel_RPG_v29_30_Heroes.md: 영웅 30명과 120개 스킬 전체 명세.
 - docs/hero-roster-v29.json: 명세의 구조화 데이터.
-- scripts/HeroRosterCatalog.gd: 게임이 사용하는 영웅·역할·4스킬 데이터.
-- scripts/HeroKitRuntime.gd: A2·신규 A1·궁극기·패시브·보호막 실행.
+- scripts/heroes/HeroRosterCatalog.gd: 게임이 사용하는 영웅·역할·4스킬 데이터.
+- scripts/heroes/HeroKitRuntime.gd: A2·신규 A1·궁극기·패시브·보호막 실행.
 - docs/v29-kit-results.json, docs/v29-faction-balance-results.json, docs/v29-regression-results.json: 검증 근거.
 
 최종 체크포인트 `pixel-faction-rpg-v29-30-heroes-checkpoint.patch`는 원본 v25 ZIP에 v26~v29 변경을 모두 적용하는 누적 패치입니다. v28에 중복 적용하면 안 됩니다. 복원할 때 원본 `pixel-faction-rpg-prototype-v25-godot47-combat-fx-runtime-verified.zip`을 새 폴더에 풀고 프로젝트 루트에서 `git apply --check <패치경로>` 다음 `git apply <패치경로>`를 실행합니다. 체크포인트 빌더가 새로 푼 원본에 실제 적용하여 모든 대상 파일의 내용·크기·권한을 대조합니다. 상세 해시는 함께 생성되는 manifest에 기록됩니다.

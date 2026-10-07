@@ -45,12 +45,12 @@ Godot 4.7.2, 1280×720 가로 전용 기준으로 영웅 확인·성장 화면�
 
 ## 구현 위치
 
-- `scripts/HeroShowcaseView.gd`: 영웅 목록·세로 탭·원본 아트와 골격 대기 동작·성장과 장비 연결
-- `scripts/LandscapeMainMenu.gd`: 오른쪽 메뉴, 그림 카드·아이콘 배치, 실제 화면 이동과 닫기 입력
+- `scripts/heroes/HeroShowcaseView.gd`: 영웅 목록·세로 탭·원본 아트와 골격 대기 동작·성장과 장비 연결
+- `scripts/ui/LandscapeMainMenu.gd`: 오른쪽 메뉴, 그림 카드·아이콘 배치, 실제 화면 이동과 닫기 입력
 - `scripts/portrait/PortraitMain.gd`: 하단 영웅 진입·선택 영웅 복원·새 메뉴 연결
 - `scripts/portrait/LandscapeHuntHud.gd`: 우상단 전체 메뉴 버튼
 - `scripts/portrait/PortraitMenus.gd`: 가로 편성·진영 선택 배치
-- `scripts/ResearchAllocationScreens.gd`, `scripts/Main.gd`: 연구 재배분 후 영웅·원래 편성 복귀
+- `scripts/progression/ResearchAllocationScreens.gd`, `scripts/app/Main.gd`: 연구 재배분 후 영웅·원래 편성 복귀
 
 ## 화면과 검증 상태
 

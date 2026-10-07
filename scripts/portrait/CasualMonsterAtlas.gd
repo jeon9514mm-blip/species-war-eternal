@@ -1,7 +1,7 @@
 extends RefCounted
 ## Painted 4-pose atlases for the portrait game. The original navigation and
 ## monster identities remain shared with the landscape renderer.
-const SOURCE := preload('res://scripts/MonsterPixelAtlasLayout.gd')
+const SOURCE := preload('res://scripts/monsters/MonsterPixelAtlasLayout.gd')
 const V60_MEADOW_MONSTERS := {
 	'초원 고블린': preload('res://assets/monsters/meadow-v60/goblin-four.png'),
 	'들개 무리': preload('res://assets/monsters/meadow-v60/wild-dog-four.png'),

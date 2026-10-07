@@ -44,10 +44,10 @@ Godot 4.7.2에서 다음 도구를 실행한다.
 
 ```sh
 godot --path . --script tools/capture_unified_ui.gd
-godot --headless --path . --script scripts/MultiDirectionHuntSmokeTest.gd
-godot --headless --path . --script scripts/UnifiedInterfaceSmokeTest.gd
-godot --headless --path . --script scripts/V49PortraitLayoutSmokeTest.gd
-godot --headless --path . --script scripts/V52HuntUiSmokeTest.gd
+godot --headless --path . --script tests/regression/MultiDirectionHuntSmokeTest.gd
+godot --headless --path . --script tests/regression/UnifiedInterfaceSmokeTest.gd
+godot --headless --path . --script tests/regression/V49PortraitLayoutSmokeTest.gd
+godot --headless --path . --script tests/regression/V52HuntUiSmokeTest.gd
 ```
 
 시험마다 별도 저장 디렉터리를 사용한다. 실행 결과는 `checks/unified-ui/regression.json`에 보관한다. 다방향 이동·증원·보상, 진형, 화면 회전, 공통 메뉴, 성장·종의전쟁, 전투 카메라·경고 투영, 레이드 맵과 UI 배치를 확인한다.

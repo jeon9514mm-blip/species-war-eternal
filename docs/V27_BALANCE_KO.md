@@ -25,7 +25,7 @@ Godot 4.7.2에서 프로젝트 리소스를 먼저 import한다.
 
 ```bash
 godot --headless --editor --path . --import --quit
-godot --headless --path . --script res://scripts/V27BalanceMatrixSmokeTest.gd -- --report=res://docs/v27-balance-results.json
+godot --headless --path . --script res://tests/regression/V27BalanceMatrixSmokeTest.gd -- --report=res://docs/v27-balance-results.json
 python tools/balance_report.py docs/v27-balance-results.json docs/V27_BALANCE_RESULTS_KO.md
 ```
 

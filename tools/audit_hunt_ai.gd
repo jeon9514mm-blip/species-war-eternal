@@ -40,7 +40,7 @@ func trial(faction: String,count: int,stage: int,level: int,zone: String) -> Dic
 	main.party_slot_legacy_cap=10;main.combat_effects_enabled=false;main.sound_effects_enabled=false
 	main.loot_rng.seed=1004;main.battle_speed=1;main.tutorial_completed=true
 	var ids: Array[String]=[]
-	for hero in preload("res://scripts/HeroRosterCatalog.gd").roster(faction):
+	for hero in preload("res://scripts/heroes/HeroRosterCatalog.gd").roster(faction):
 		if ids.size()<count: ids.append(str(hero.id))
 	main._restore_deployed_heroes(ids)
 	for id in ids:main.hero_progress[id]={"level":level,"xp":0}
@@ -88,16 +88,16 @@ func trial(faction: String,count: int,stage: int,level: int,zone: String) -> Dic
 		if n%5 != 0:continue
 		samples+=1
 		if n>=100:
-			var overlap: Dictionary=preload('res://scripts/HuntBodyCollision.gd').overlapping(main)
+			var overlap: Dictionary=preload('res://scripts/hunting/HuntBodyCollision.gd').overlapping(main)
 			for key in body_overlaps:body_overlaps[key]+=int(overlap[key])
 			if overlap.hero_hero+overlap.enemy_enemy+overlap.hero_enemy>0:
 				overlapping_frames+=1
 				if collision_details.size()<10:
-					var bodies: Array=preload('res://scripts/HuntBodyCollision.gd').actors(main)
+					var bodies: Array=preload('res://scripts/hunting/HuntBodyCollision.gd').actors(main)
 					for a in bodies.size():
 						for b in range(a+1,bodies.size()):
 							var distance: float=Vector2(bodies[a].position).distance_to(bodies[b].position)
-							if distance<preload('res://scripts/HuntBodyCollision.gd').clearance(bodies[a],bodies[b])-.01:collision_details.append({'seconds':n*.1,'left':bodies[a],'right':bodies[b],'distance':distance})
+							if distance<preload('res://scripts/hunting/HuntBodyCollision.gd').clearance(bodies[a],bodies[b])-.01:collision_details.append({'seconds':n*.1,'left':bodies[a],'right':bodies[b],'distance':distance})
 		var alive: Array=main._alive_hero_ids()
 		var chosen: Dictionary={}
 		for id in alive:

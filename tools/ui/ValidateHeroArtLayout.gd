@@ -1,7 +1,7 @@
 extends SceneTree
 
-const ROSTER = preload("res://scripts/HeroRosterCatalog.gd")
-const VISUALS = preload("res://scripts/HeroVisualCatalog.gd")
+const ROSTER = preload("res://scripts/heroes/HeroRosterCatalog.gd")
+const VISUALS = preload("res://scripts/heroes/HeroVisualCatalog.gd")
 var failures: Array[String] = []
 var checks := 0
 

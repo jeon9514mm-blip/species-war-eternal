@@ -1,4 +1,0 @@
-Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
-
-AUDIO_DIAGNOSTICS {"accepted":104,"active_voices":1,"ambient":"","cached_sfx":16,"max_voices":8,"music":"meadow","sample_loads":23,"suppressed":400,"suspended":false,"voice_nodes":8}
-v82_audio checks=71 failures=[] audible_device_test=false

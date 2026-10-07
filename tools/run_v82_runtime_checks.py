@@ -21,6 +21,7 @@ import time
 import uuid
 
 from run_v80_runtime_checks import TESTS as V80_TESTS, evaluate_output, isolate_project_name
+from project_paths import test_resource
 
 ROOT = Path(__file__).resolve().parents[1]
 DEVELOPMENT_STEP = "v82-1"
@@ -183,7 +184,7 @@ def main() -> int:
             # mutate only the temporary project's name for a unique user:// path.
             if os.name != "posix":
                 config.write_text(isolate_project_name(original_config, namespace + "-" + str(index)), encoding="utf-8")
-            result = invoke(["--headless", "--path", str(project), "--script", "res://scripts/" + test],
+            result = invoke(["--headless", "--path", str(project), "--script", test_resource(project, test)],
                             project, env_for(temp / ("case-" + str(index))), test + ".log", TESTS[test])
             return {"script": test, **result}
         with ThreadPoolExecutor(max_workers=workers) as pool:

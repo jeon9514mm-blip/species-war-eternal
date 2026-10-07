@@ -1,9 +1,0 @@
-Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
-
-ERROR: new settings reachable without overcrowded fixed menu
-   at: push_error (core/variant/variant_utility.cpp:1024)
-   GDScript backtrace (most recent call first):
-       [0] check (res://scripts/V82PresentationUiSmokeTest.gd:8)
-       [1] _run (res://scripts/V82PresentationUiSmokeTest.gd:21)
-       [2] settle (res://scripts/V82PresentationUiSmokeTest.gd:10)
-v82_presentation_ui checks=22 failures=["new settings reachable without overcrowded fixed menu"]

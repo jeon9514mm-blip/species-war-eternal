@@ -1,5 +1,0 @@
-Godot 4.6.3-stable (official)
-Tested commit 52ccd2dd94aca7bc780f7edd30959154a6586797
-HUNT_AI_AUDIT_COMPLETE 8
-No script/runtime errors in the audit run.
-UI integration: 9 suites, 3213 checks passed.

@@ -14,6 +14,7 @@ import subprocess
 import tempfile
 import time
 import uuid
+from project_paths import test_resource
 
 ROOT = Path(__file__).resolve().parents[1]
 TESTS = {
@@ -31,7 +32,7 @@ TESTS = {
     'V80AbyssBattleSmokeTest.gd': 'v80_abyss_actual_battle',
     'V80EngineRewardRegressionSmokeTest.gd': 'v80_engine_reward_regression',
 }
-ERROR_PATTERN = re.compile(r'(^|\n)\s*(?:SCRIPT ERROR:|ERROR:|Parse Error:|.*Failed to load script)', re.I)
+ERROR_PATTERN = re.compile(r'(^|\n)\s*(?:SCRIPT ERROR:|SHADER ERROR:|ERROR:|Parse Error:|.*Failed to load script)', re.I)
 
 
 def evaluate_output(returncode: int | None, text: str, marker: str = '') -> tuple[bool, str]:
@@ -156,7 +157,7 @@ def main() -> int:
             # No state shared across test scripts; restarting the engine with a
             # distinct project name selects a new user:// directory per case.
             config_path.write_text(isolate_project_name(original_config, namespace + '-' + str(index)), encoding='utf-8')
-            result = invoke(['--headless', '--path', str(project), '--script', 'res://scripts/' + test], project, env, TESTS[test])
+            result = invoke(['--headless', '--path', str(project), '--script', test_resource(project, test)], project, env, TESTS[test])
             log_path = logs/(test+'.log')
             log_path.write_text(result.pop('output'), encoding='utf-8')
             report['tests'].append({'script': test, **result, 'log': str(log_path)})

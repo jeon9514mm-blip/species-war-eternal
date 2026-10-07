@@ -1,8 +1,0 @@
-Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
-
-ERROR: practice cannot write transient state
-   at: push_error (core/variant/variant_utility.cpp:1023)
-   GDScript backtrace (most recent call first):
-       [0] check (res://scripts/V83UpgradeTestBase.gd:11)
-       [1] _run (res://scripts/V83PracticeBattleSmokeTest.gd:30)
-v83_practice_battle checks=810 failures=["practice cannot write transient state"]

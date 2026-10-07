@@ -23,4 +23,4 @@
 | `exec-d52da06d-9941-44e2-bd8f-05778f8168d0.png` | `assets/backgrounds/field-v61/mine-header.png` |
 | `exec-81be69d7-8514-4c21-a4f5-883f3eeb3820.png` | `assets/backgrounds/field-v61/forest-header.png` |
 
-실행 검사: `scripts/V61FieldRolesMotionSmokeTest.gd`는 세 사냥터의 소품과 영웅 관절·피격 모션, 실제 드롭의 역할 분포, 역할별 옵션, 장착 제한을 확인한다.
+실행 검사: `tests/regression/V61FieldRolesMotionSmokeTest.gd`는 세 사냥터의 소품과 영웅 관절·피격 모션, 실제 드롭의 역할 분포, 역할별 옵션, 장착 제한을 확인한다.

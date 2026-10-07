@@ -1,4 +1,4 @@
-extends "res://scripts/HeroSpriteController.gd"
+extends "res://scripts/heroes/HeroSpriteController.gd"
 ## Visual-only adapter: one approved pose, affine motion, not new authored action poses.
 const VISUALS = preload("res://scripts/sd/SDHeroVisuals.gd")
 func configure_sd(hero_id: String) -> void:

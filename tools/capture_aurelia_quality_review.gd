@@ -3,8 +3,8 @@ extends SceneTree
 ## explicitly static; the right uses the same independent parts as the pilot.
 const CATALOG = preload("res://scripts/art/HeroPartsCatalog.gd")
 const RIG = preload("res://scripts/art/HeroPartsRig3D.gd")
-const FACTORY = preload("res://scripts/HeroSpriteFactory.gd")
-const FONT = preload("res://scripts/UIFontProvider.gd")
+const FACTORY = preload("res://scripts/heroes/HeroSpriteFactory.gd")
+const FONT = preload("res://scripts/ui/UIFontProvider.gd")
 var hero_id := "mira"
 var OUTPUT := "res://checks/aurelia-roster-parts/review/mira/"
 const VIEW_SIZE := Vector2i(604, 586)

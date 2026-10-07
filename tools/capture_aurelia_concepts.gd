@@ -1,7 +1,7 @@
 extends SceneTree
 ## A labelled reference gallery, not a battle or animation-completion screenshot.
 const CATALOG = preload("res://scripts/art/HeroPartsCatalog.gd")
-const FONT = preload("res://scripts/UIFontProvider.gd")
+const FONT = preload("res://scripts/ui/UIFontProvider.gd")
 const OUTPUT := "res://checks/aurelia-four-head/"
 
 func _initialize() -> void:

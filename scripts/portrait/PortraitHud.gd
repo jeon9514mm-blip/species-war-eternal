@@ -1,6 +1,6 @@
 extends Control
 ## A read-only HUD/view adapter. All buttons delegate to existing v32 commands.
-const NAV = preload("res://scripts/NavigationCatalog.gd")
+const NAV = preload("res://scripts/ui/NavigationCatalog.gd")
 const SKIN := preload('res://scripts/portrait/PortraitSkin.gd')
 const ICON := preload('res://scripts/portrait/PortraitIcon.gd')
 const REWARD_FEED := preload('res://scripts/portrait/PortraitRewardFeed.gd')
@@ -249,10 +249,10 @@ func refresh() -> void:
 		first_session_action.visible=not game.tutorial_completed and game.challenge_session==null and not bool(game.get_meta("practice_active",false))
 		if first_session_action.visible:
 			game._refresh_tutorial_state()
-			var guide: Dictionary=preload("res://scripts/FirstSessionGuide.gd").status(game)
+			var guide: Dictionary=preload("res://scripts/app/FirstSessionGuide.gd").status(game)
 			quest_label.text=str(guide.short);quest_label.tooltip_text=str(guide.text)
 			first_session_action.text=str(guide.caption);first_session_action.tooltip_text=str(guide.text)
-			first_session_action.disabled=preload("res://scripts/SaveSafety.gd").pending(game) or game._save_blocked_for_newer_version
+			first_session_action.disabled=preload("res://scripts/persistence/SaveSafety.gd").pending(game) or game._save_blocked_for_newer_version
 		if not compact_guide_layout and hud_bounds.size()>2:
 			hud_bounds[2]=first_session_action.get_rect() if first_session_action.visible else Rect2()
 			if is_instance_valid(reward_feed):reward_feed.position.y=game.get_viewport_rect().size.y-302.0-(150.0 if first_session_action.visible else 100.0)
@@ -264,7 +264,7 @@ func refresh() -> void:
 	var details: Control=game.combat_labels.get("details_panel")
 	if is_instance_valid(details) and details.is_visible_in_tree():
 		var efficiency: Label=details.find_child("HuntEfficiencyReadout",true,false)
-		if efficiency!=null:efficiency.text=preload("res://scripts/HuntEfficiency.gd").text(game)
+		if efficiency!=null:efficiency.text=preload("res://scripts/hunting/HuntEfficiency.gd").text(game)
 	speed_button.text='×%d'%int(game.battle_speed)
 	auto_button.text='영웅 편성하기' if game.deployed_heroes.is_empty() else ('Ⅱ  자동사냥 중' if game.combat_running else '▶  사냥 재개')
 	auto_button.tooltip_text='영웅 편성 열기' if game.deployed_heroes.is_empty() else ('자동사냥 일시정지' if game.combat_running else '자동사냥 재개')

@@ -38,12 +38,20 @@ class CurrentContractsTests(unittest.TestCase):
             path.write_text(text.replace(before, after))
             self.assertTrue(any(expected in e for e in verify(root)['errors']))
     def test_duplicate_economy_owner_rejected(self):
-        self.check_mutation('scripts/HuntFieldService.gd', 'extends RefCounted',
+        self.check_mutation('scripts/hunting/HuntFieldService.gd', 'extends RefCounted',
                             'extends RefCounted\nvar wallet_gold = 0', 'duplicate host state')
     def test_field_delegation_required(self):
-        self.check_mutation('scripts/Main.gd', '_FIELD.finish_hunt_target(self)',
+        self.check_mutation('scripts/app/Main.gd', '_FIELD.finish_hunt_target(self)',
                             'pass', 'field orchestration delegation missing')
     def test_zone_alias_drift_rejected(self):
-        self.check_mutation('scripts/EquipmentRules.gd', 'preload("res://scripts/ZoneCatalog.gd").MEADOW_NAME',
+        self.check_mutation('scripts/equipment/EquipmentRules.gd', 'preload("res://scripts/maps/ZoneCatalog.gd").MEADOW_NAME',
                             '"회색 초원"', 'canonical MEADOW_NAME')
+    def test_critical_save_coordination_remains_required(self):
+        self.check_mutation('scripts/app/Main.gd',
+                            'if is_instance_valid(hunt_autosave): hunt_autosave.before_critical_save()',
+                            'pass', '_save_idle_state: compatibility facade changed')
+    def test_bulk_preview_remains_required(self):
+        self.check_mutation('scripts/app/Main.gd',
+                            'preload("res://scripts/equipment/BulkEnhancePreview.gd").show(self)',
+                            'pass', '_bulk_enhance_equipped: compatibility facade changed')
 if __name__=='__main__':unittest.main()

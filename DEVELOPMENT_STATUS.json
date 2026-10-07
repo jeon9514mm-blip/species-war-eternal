@@ -1,8 +1,8 @@
 {
   "project": "Species War: Eternal",
   "development_step": "v83-6.5",
-  "workstream": "anime_art_direction_pilot",
-  "status": "leonhardt_grip_and_attack_revision_ready_for_visual_review",
+  "workstream": "source_cleanup_and_runtime_reliability",
+  "status": "implemented_and_validated",
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "save_version": 37,
   "orientation": "landscape_only",
@@ -48,7 +48,7 @@
     "uses_existing_navigation_callbacks": true
   },
   "raid_balance": {
-    "source": "scripts/RaidBalance.gd",
+    "source": "scripts/raid/RaidBalance.gd",
     "strength_multiplier": 10,
     "revision": "raid-strength-10x-1",
     "bosses": {
@@ -103,7 +103,7 @@
   "combat_movement_rules_changed": false,
   "combat_damage_rules_changed": false,
   "game_zip_created": false,
-  "working_branch": "work/aurelia-four-head",
+  "working_branch": "jeon9514mm-blip/species-war-eternal",
   "previous_hero_menu_validation": {
     "published_main_commit": "5225317abdd65641708c094a397d5ed746cc4a0b",
     "validation": "checks/hero-menu/regression.json",
@@ -118,63 +118,63 @@
     "landscape_faction_and_party_layout_verified": true,
     "completed_tests": [
       {
-        "script": "scripts/HeroMenuUxSmokeTest.gd",
+        "script": "tests/regression/HeroMenuUxSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/LandscapeRosterUiSmokeTest.gd",
+        "script": "tests/regression/LandscapeRosterUiSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V83NavigationSmokeTest.gd",
+        "script": "tests/regression/V83NavigationSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/UnifiedInterfaceSmokeTest.gd",
+        "script": "tests/regression/UnifiedInterfaceSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V54EquipmentUiSmokeTest.gd",
+        "script": "tests/regression/V54EquipmentUiSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V55EquipmentDetailUiSmokeTest.gd",
+        "script": "tests/regression/V55EquipmentDetailUiSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V57QualityPassSmokeTest.gd",
+        "script": "tests/regression/V57QualityPassSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V834GrowthUiSmokeTest.gd",
+        "script": "tests/regression/V834GrowthUiSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V79ConvenienceFlowSmokeTest.gd",
+        "script": "tests/regression/V79ConvenienceFlowSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V834ResearchSmokeTest.gd",
+        "script": "tests/regression/V834ResearchSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V27GrowthEconomySmokeTest.gd",
+        "script": "tests/regression/V27GrowthEconomySmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V27LiveGrowthSmokeTest.gd",
+        "script": "tests/regression/V27LiveGrowthSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V8362FormationDisplaySmokeTest.gd",
+        "script": "tests/regression/V8362FormationDisplaySmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/EquipmentUpgradeSmokeTest.gd",
+        "script": "tests/regression/EquipmentUpgradeSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/HeroSkeletalRigSmokeTest.gd",
+        "script": "tests/regression/HeroSkeletalRigSmokeTest.gd",
         "passed": true
       }
     ]
@@ -193,71 +193,71 @@
     "landscape_settings_suites_passed": 3,
     "completed_tests": [
       {
-        "script": "scripts/EquipmentUpgradeSmokeTest.gd",
+        "script": "tests/regression/EquipmentUpgradeSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V55EquipmentDetailUiSmokeTest.gd",
+        "script": "tests/regression/V55EquipmentDetailUiSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V54EquipmentUiSmokeTest.gd",
+        "script": "tests/regression/V54EquipmentUiSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V54EquipmentCrystalUiSmokeTest.gd",
+        "script": "tests/regression/V54EquipmentCrystalUiSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V54EquipmentPersistenceSmokeTest.gd",
+        "script": "tests/regression/V54EquipmentPersistenceSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V54EquipmentMarketSmokeTest.gd",
+        "script": "tests/regression/V54EquipmentMarketSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V54EquipmentIntegrationSmokeTest.gd",
+        "script": "tests/regression/V54EquipmentIntegrationSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V54EquipmentRulesSmokeTest.gd",
+        "script": "tests/regression/V54EquipmentRulesSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/EquipmentSmokeTest.gd",
+        "script": "tests/regression/EquipmentSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/InventorySmokeTest.gd",
+        "script": "tests/regression/InventorySmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V83NavigationSmokeTest.gd",
+        "script": "tests/regression/V83NavigationSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/UnifiedInterfaceSmokeTest.gd",
+        "script": "tests/regression/UnifiedInterfaceSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/InventoryCapacitySmokeTest.gd",
+        "script": "tests/regression/InventoryCapacitySmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V27SaveRecoverySmokeTest.gd",
+        "script": "tests/regression/V27SaveRecoverySmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V8362FormationDisplaySmokeTest.gd",
+        "script": "tests/regression/V8362FormationDisplaySmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V82PresentationUiSmokeTest.gd",
+        "script": "tests/regression/V82PresentationUiSmokeTest.gd",
         "passed": true
       },
       {
-        "script": "scripts/V24MobileLandscapeSmokeTest.gd",
+        "script": "tests/regression/V24MobileLandscapeSmokeTest.gd",
         "passed": true
       }
     ]
@@ -282,8 +282,8 @@
     "Android device touch, performance, memory and thermal validation",
     "online, accounts and cloud save"
   ],
-  "publication_target": "GitHub main",
-  "base_commit": "eb1812d9dd28eca0f830322f2e33a01bb434a57e",
+  "publication_target": "GitHub default branch: jeon9514mm-blip/species-war-eternal",
+  "base_commit": "7a93befb04a6041bcca9ec3d10b8f74ef2cab30a",
   "previous_raid_quality_validation": {
     "published_main_commit": "eb1812d9dd28eca0f830322f2e33a01bb434a57e",
     "workstream": "raid_strength_quality",
@@ -302,154 +302,154 @@
     "validation": "checks/raid-strength-quality/regression.json",
     "completed_tests": [
       {
-        "script": "scripts/RaidStrengthSmokeTest.gd",
+        "script": "tests/regression/RaidStrengthSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 442,
         "expected_warning": null
       },
       {
-        "script": "scripts/V64RealtimeRaidSmokeTest.gd",
+        "script": "tests/regression/V64RealtimeRaidSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 33,
         "expected_warning": null
       },
       {
-        "script": "scripts/V74BossRaidBehaviorSmokeTest.gd",
+        "script": "tests/regression/V74BossRaidBehaviorSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 34,
         "expected_warning": null
       },
       {
-        "script": "scripts/V75RaidMechanicSmokeTest.gd",
+        "script": "tests/regression/V75RaidMechanicSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 18,
         "expected_warning": null
       },
       {
-        "script": "scripts/V836RaidBattleSmokeTest.gd",
+        "script": "tests/regression/V836RaidBattleSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 123,
         "expected_warning": null
       },
       {
-        "script": "scripts/V836RaidLedgerSmokeTest.gd",
+        "script": "tests/regression/V836RaidLedgerSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 63,
         "expected_warning": null
       },
       {
-        "script": "scripts/RaidCatalogUiSmokeTest.gd",
+        "script": "tests/regression/RaidCatalogUiSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 805,
         "expected_warning": null
       },
       {
-        "script": "scripts/RaidCombatQualitySmokeTest.gd",
+        "script": "tests/regression/RaidCombatQualitySmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 32,
         "expected_warning": null
       },
       {
-        "script": "scripts/V76RaidVisualSmokeTest.gd",
+        "script": "tests/regression/V76RaidVisualSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 9,
         "expected_warning": null
       },
       {
-        "script": "scripts/EquipmentModalSaveRecoverySmokeTest.gd",
+        "script": "tests/regression/EquipmentModalSaveRecoverySmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 163,
         "expected_warning": "Three intentionally injected save write failures"
       },
       {
-        "script": "scripts/EquipmentUpgradeSmokeTest.gd",
+        "script": "tests/regression/EquipmentUpgradeSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 113,
         "expected_warning": null
       },
       {
-        "script": "scripts/HeroMenuUxSmokeTest.gd",
+        "script": "tests/regression/HeroMenuUxSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 1065,
         "expected_warning": null
       },
       {
-        "script": "scripts/V54EquipmentPersistenceSmokeTest.gd",
+        "script": "tests/regression/V54EquipmentPersistenceSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 97,
         "expected_warning": "Intentionally oversized save rejected with too_large"
       },
       {
-        "script": "scripts/V27SaveRecoverySmokeTest.gd",
+        "script": "tests/regression/V27SaveRecoverySmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 80,
         "expected_warning": null
       },
       {
-        "script": "scripts/V83NavigationSmokeTest.gd",
+        "script": "tests/regression/V83NavigationSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 101,
         "expected_warning": null
       },
       {
-        "script": "scripts/UnifiedInterfaceSmokeTest.gd",
+        "script": "tests/regression/UnifiedInterfaceSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 119,
         "expected_warning": null
       },
       {
-        "script": "scripts/LandscapeRosterUiSmokeTest.gd",
+        "script": "tests/regression/LandscapeRosterUiSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 7006,
         "expected_warning": null
       },
       {
-        "script": "scripts/V54EquipmentUiSmokeTest.gd",
+        "script": "tests/regression/V54EquipmentUiSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 643,
         "expected_warning": null
       },
       {
-        "script": "scripts/V55EquipmentDetailUiSmokeTest.gd",
+        "script": "tests/regression/V55EquipmentDetailUiSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 6405,
         "expected_warning": null
       },
       {
-        "script": "scripts/InventoryCapacitySmokeTest.gd",
+        "script": "tests/regression/InventoryCapacitySmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 22,
         "expected_warning": null
       },
       {
-        "script": "scripts/CombatControlsSmokeTest.gd",
+        "script": "tests/regression/CombatControlsSmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": null,
         "expected_warning": null
       },
       {
-        "script": "scripts/DirectionalHuntQualitySmokeTest.gd",
+        "script": "tests/regression/DirectionalHuntQualitySmokeTest.gd",
         "passed": true,
         "exit_code": 0,
         "reported_checks": 32,
@@ -497,11 +497,11 @@
     "editor_reimport_verified": true,
     "runtime_assertions_note": "Counted assertions only; CombatControlsSmokeTest passed without reporting a numeric assertion count.",
     "suites_without_numeric_counter": [
-      "scripts/CombatControlsSmokeTest.gd"
+      "tests/regression/CombatControlsSmokeTest.gd"
     ],
     "attempted_obsolete_tests": [
       {
-        "script": "scripts/V59ThreeRaidVisualSmokeTest.gd",
+        "script": "tests/regression/V59ThreeRaidVisualSmokeTest.gd",
         "result": "timeout_after_240_seconds",
         "included_in_passing_total": false,
         "reason": "Obsolete 2D PortraitRaidStageArt node contract. Node was already absent in base 5225317. Current RaidTerrain3D contract is covered by RaidCatalogUiSmokeTest, RaidCombatQualitySmokeTest, V76RaidVisualSmokeTest and actual rendered captures."
@@ -536,7 +536,7 @@
   "live_preview_video": "checks/aurelia-four-head/leonhardt-v2/motion-review.mp4",
   "completed_tests": [
     {
-      "script": "scripts/AureliaHeroPartsSmokeTest.gd",
+      "script": "tests/regression/AureliaHeroPartsSmokeTest.gd",
       "checks": 803,
       "failures": []
     },
@@ -763,5 +763,27 @@
     "old_scenery_deleted": true,
     "raid_new_design_applied": false,
     "real_device_performance_tested": false
+  },
+  "source_cleanup": {
+    "status": "validated",
+    "base_commit": "7a93befb04a6041bcca9ec3d10b8f74ef2cab30a",
+    "runtime_scripts_moved": 139,
+    "regression_scripts_moved": 224,
+    "support_scripts_moved": 4,
+    "root_historical_files_archived": 28,
+    "raw_outputs_removed": 1523,
+    "validation": "checks/source-cleanup/validation.json",
+    "audit": "docs/PROJECT_AUDIT_2026_10_07_KO.md",
+    "date_kst": "2026-10-07",
+    "focused_engine_tests": 29,
+    "syntax_scripts_passed": 466,
+    "python_unit_tests_passed": 50,
+    "runtime_fixes": [
+      "raid loot slot reservation before hunt RNG",
+      "typed empty collision snapshot for challenge battles",
+      "lazy bulk-enhance modal resources"
+    ],
+    "actual_game_capture": "checks/source-cleanup/actual-game.png",
+    "explicit_assertions_passed": 14733
   }
 }

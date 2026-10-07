@@ -26,7 +26,7 @@ func run() -> void:
 		main._calculate_offline_reward();main._claim_offline_rewards();main.manage()
 		print("ECONOMY_DAY_DONE ",faction," ",fixture_seed," day=",day)
 		if day in [1,7,30]:rows.append(main.checkpoint());print("ECONOMY_CHECKPOINT ",faction," ",fixture_seed," ",JSON.stringify(rows[-1]))
-	var report={"schema":1,"economy_revision":preload("res://scripts/GrowthEconomyRules.gd").REVISION,"first_ten_minutes":first_session,"faction":faction,"seed":fixture_seed,"active_seconds_per_day":600,"offline_seconds_per_day":28800,"assumptions":"Fixed starter guardian; fill unlocked slots, spend research, recommend gear and upgrade once/minute. No real-money/ad payouts or extra dungeon rewards. Full active combat and production offline receipts; visual nodes and disk saves omitted.","rows":rows}
+	var report={"schema":1,"economy_revision":preload("res://scripts/progression/GrowthEconomyRules.gd").REVISION,"first_ten_minutes":first_session,"faction":faction,"seed":fixture_seed,"active_seconds_per_day":600,"offline_seconds_per_day":28800,"assumptions":"Fixed starter guardian; fill unlocked slots, spend research, recommend gear and upgrade once/minute. No real-money/ad payouts or extra dungeon rewards. Full active combat and production offline receipts; visual nodes and disk saves omitted.","rows":rows}
 	for argument in arguments:
 		if argument.begins_with("--report="):FileAccess.open(argument.trim_prefix("--report="),FileAccess.WRITE).store_string(JSON.stringify(report,"  ")+"\n")
 	main.free();print("ECONOMY_SIMULATION_COMPLETE ",faction," ",fixture_seed);quit()

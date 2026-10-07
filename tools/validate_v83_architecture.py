@@ -40,13 +40,13 @@ def canonical(body: str, owner: bool = False) -> str:
 
 def verify_historical_v82(root: Path) -> dict:
     manifest = json.loads((root/'tools/v83_extraction_map.json').read_text())
-    current = functions((root/'scripts/Main.gd').read_text())
+    current = functions((root/'scripts/app/Main.gd').read_text())
     errors: list[str] = []
     modules = {}
     for item in manifest['methods']:
         module = item['module']
         if module not in modules:
-            text = (root/f'scripts/{module}.gd').read_text()
+            text = (root/manifest['service_module_paths'][module]).read_text()
             modules[module] = functions(text)
             if re.search(r'^var\s+', text, re.M):
                 errors.append(f'{module}: service must not keep duplicate mutable state/host')
@@ -65,9 +65,9 @@ def verify_historical_v82(root: Path) -> dict:
         path = root/rel
         if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != sha:
             errors.append(f'{rel}: protected gameplay/save/asset file changed')
-    for rel in ['scripts/portrait/PortraitHud.gd','scripts/portrait/PortraitMain.gd','scripts/UiChrome.gd']:
+    for rel in ['scripts/portrait/PortraitHud.gd','scripts/portrait/PortraitMain.gd','scripts/ui/UiChrome.gd']:
         text = (root/rel).read_text()
-        if 'res://scripts/NavigationCatalog.gd' not in text:
+        if 'res://scripts/ui/NavigationCatalog.gd' not in text:
             errors.append(f'{rel}: missing shared navigation source')
     result = {'ok': not errors, 'errors': errors, 'extracted_methods': len(manifest['methods']),
               'service_modules': len(modules), 'unchanged_main_functions': len(manifest['untouched_functions']),
@@ -78,40 +78,45 @@ def verify_historical_v82(root: Path) -> dict:
 def verify(root: Path) -> dict:
     """Current structural contracts; v82 immutability is explicitly historical."""
     manifest = json.loads((root/'tools/v83_extraction_map.json').read_text())
-    main_text = (root/'scripts/Main.gd').read_text()
+    main_text = (root/'scripts/app/Main.gd').read_text()
     current = functions(main_text)
+    contract = manifest['current_contract']
     errors = []
     modules = {}
     for item in manifest['methods']:
         module = item['module']
         if module not in modules:
-            text = (root/f'scripts/{module}.gd').read_text()
+            text = (root/manifest['service_module_paths'][module]).read_text()
             modules[module] = functions(text)
             if re.search(r'^var\s+', text, re.M):
                 errors.append(f'{module}: service must not own mutable game state')
         if item['entrypoint'] not in modules[module]:
             errors.append(f'{module}: missing {item["entrypoint"]}')
         facade = current.get(item['method'], ('', ''))
-        if facade[0] != item['facade_signature'] or canonical(facade[1]) != item['facade_body_sha256']:
+        expected_body = contract['facade_overrides'].get(item['method'], item)['facade_body_sha256']
+        if facade[0] != item['facade_signature'] or canonical(facade[1]) != expected_body:
             errors.append(f'{item["method"]}: compatibility facade changed')
-    field = (root/'scripts/HuntFieldService.gd').read_text()
+    field = (root/'scripts/hunting/HuntFieldService.gd').read_text()
     if re.search(r'^var\s+', field, re.M):
         errors.append('HuntFieldService must not duplicate host state')
     for name in ['spawn_enemy_wave','advance_roaming_hunt','advance_auto_hunt_step','finish_hunt_target']:
         if name not in functions(field) or f'_FIELD.{name}(self' not in current.get('_'+name, ('',''))[1]:
             errors.append(f'{name}: field orchestration delegation missing')
-    if 'preload("res://scripts/ZoneCatalog.gd").all()' not in current.get('_zone_data', ('',''))[1]:
+    if 'preload("res://scripts/maps/ZoneCatalog.gd").all()' not in current.get('_zone_data', ('',''))[1]:
         errors.append('zone data must use canonical catalog')
-    equipment = (root/'scripts/EquipmentRules.gd').read_text()
+    equipment = (root/'scripts/equipment/EquipmentRules.gd').read_text()
     for name in ['MEADOW_NAME','MINE_NAME','FOREST_NAME']:
         if f'ZoneCatalog.gd").{name}' not in equipment:
             errors.append(f'equipment zone lacks canonical {name}')
-    if len(main_text.splitlines()) > 5650:
-        errors.append('Main grew beyond v83-6.2 orchestration budget')
-    for rel in ['scripts/portrait/PortraitHud.gd','scripts/portrait/PortraitMain.gd','scripts/UiChrome.gd']:
-        if 'res://scripts/NavigationCatalog.gd' not in (root/rel).read_text():
+    if len(main_text.splitlines()) > contract['main_line_budget']:
+        errors.append('Main grew beyond the recorded shipped orchestration budget')
+    for rel in ['scripts/portrait/PortraitHud.gd','scripts/portrait/PortraitMain.gd','scripts/ui/UiChrome.gd']:
+        if 'res://scripts/ui/NavigationCatalog.gd' not in (root/rel).read_text():
             errors.append(f'{rel}: missing shared navigation source')
     return {'ok': not errors, 'errors': errors, 'service_modules': len(modules)+1,
+            'current_contract_source_commit': contract['source_commit'],
+            'current_facade_adjustments': list(contract['facade_overrides']),
+            'main_line_budget': contract['main_line_budget'],
             'scope': 'current facade, state ownership, field extraction and canonical naming; runtime suite validates behavior',
             'historical_check': '--historical-v82 checks original v82 fingerprints and is expected to differ after feature changes'}
 

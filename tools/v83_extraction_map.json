@@ -1608,22 +1608,54 @@
     "audio/v82/upgrade.wav": "e76dd82cb5a1c758dc189d9b5b7da01e14fe9c8ab9aaa9b9aa5a397a36c1d114",
     "audio/v82/victory.wav": "11d71ce0ffcea6167ce6d2f12b625ae76de26450b522a7c9bcee08525fd5f332",
     "project.godot": "705fd73c2d8a2be70858443c3934101e4093f8cd41d50e6cc3ac85be59d52f13",
-    "scripts/AutoHuntController.gd": "a819aa2f69b0aaa12109d3083ef385a5b83ed3d7e9e88bfc3970f5cc9d4dd713",
-    "scripts/ChallengeBattleDirector.gd": "4b92d707ea20011d4039098b8a33d624c9ee9b4935adfba0b1c8fab52210b184",
-    "scripts/DailyDungeonBattleRules.gd": "e169ce0bcebce760af981ab86b89a5146a076f8e21b08701be26f5aea28d6ab5",
-    "scripts/EquipmentRules.gd": "037dbf76d6e87a773ed395325c01b61d7e9e49598af27e2f8e69bd4298e7f742",
-    "scripts/EquipmentWorkshop.gd": "0ee401b0f4712758e75e9b9ab2de0ac5e7857f9239ba58c665002845f9c5859e",
-    "scripts/GuardianCatalog.gd": "11e2e07e4e4ac7504b334915209c1ba207729ef733ad63f8f9ac8f56a45b9255",
-    "scripts/HeroCombatRules.gd": "16a42cd50b510c8de1b18893605484ac663c7c0df951f71f6d6f9c229c96ddb0",
-    "scripts/HeroRosterCatalog.gd": "c09e9c2788398b9ed50ebfd5649befd4978adeae448db07626cac4538294afaf",
-    "scripts/LongTermGoalState.gd": "13ca7da3f7cb4c7cf8d14a33ae8858b69584277b6d240c9ea2c55913016e65d2",
-    "scripts/LongTermGoalsService.gd": "1e82b6a6a6cabf081837d6d3d2fe7dfe9dca643ccbfbf6749385267a62d8d130",
-    "scripts/RaidBattlefield.gd": "942581f7eab0e7c445649fad82b8ab4bc97b61bda2061efe087f7233b2c52211",
-    "scripts/RaidBossDesign.gd": "3b4cef0f1cbc002b266b853adabddf18246eaecfaaeac5ecdec9d47f93ed9ddf",
-    "scripts/RoamingHuntDirector.gd": "0d152b1b6b7fd68424a02101ed565f54ec6911882c7cbbf5bb0abff5d6f94023",
-    "scripts/SaveStore.gd": "0020e8a710845ce139fffab0c6e501a684331d6b895d9c936d0619012b3ceba1",
-    "scripts/SaveValidation.gd": "c2f23ef3d2c0801c35b037318f5367941c11d5c3d55e7d71c1943ffd63ce11d7",
-    "scripts/TowerBattleRules.gd": "928261dec54061142f5e6cb975251dda4edc20eac1f91307ffe672dd78cfd218",
-    "scripts/WeeklyAbyssBattleRules.gd": "b439b6f5989fa30c2b0b85d61b0472d619d46ac975ea3e404868f1e2f9c34aee"
+    "scripts/hunting/AutoHuntController.gd": "a819aa2f69b0aaa12109d3083ef385a5b83ed3d7e9e88bfc3970f5cc9d4dd713",
+    "scripts/combat/ChallengeBattleDirector.gd": "4b92d707ea20011d4039098b8a33d624c9ee9b4935adfba0b1c8fab52210b184",
+    "scripts/progression/DailyDungeonBattleRules.gd": "e169ce0bcebce760af981ab86b89a5146a076f8e21b08701be26f5aea28d6ab5",
+    "scripts/equipment/EquipmentRules.gd": "037dbf76d6e87a773ed395325c01b61d7e9e49598af27e2f8e69bd4298e7f742",
+    "scripts/equipment/EquipmentWorkshop.gd": "0ee401b0f4712758e75e9b9ab2de0ac5e7857f9239ba58c665002845f9c5859e",
+    "scripts/heroes/GuardianCatalog.gd": "11e2e07e4e4ac7504b334915209c1ba207729ef733ad63f8f9ac8f56a45b9255",
+    "scripts/heroes/HeroCombatRules.gd": "16a42cd50b510c8de1b18893605484ac663c7c0df951f71f6d6f9c229c96ddb0",
+    "scripts/heroes/HeroRosterCatalog.gd": "c09e9c2788398b9ed50ebfd5649befd4978adeae448db07626cac4538294afaf",
+    "scripts/progression/LongTermGoalState.gd": "13ca7da3f7cb4c7cf8d14a33ae8858b69584277b6d240c9ea2c55913016e65d2",
+    "scripts/progression/LongTermGoalsService.gd": "1e82b6a6a6cabf081837d6d3d2fe7dfe9dca643ccbfbf6749385267a62d8d130",
+    "scripts/raid/RaidBattlefield.gd": "942581f7eab0e7c445649fad82b8ab4bc97b61bda2061efe087f7233b2c52211",
+    "scripts/raid/RaidBossDesign.gd": "3b4cef0f1cbc002b266b853adabddf18246eaecfaaeac5ecdec9d47f93ed9ddf",
+    "scripts/hunting/RoamingHuntDirector.gd": "0d152b1b6b7fd68424a02101ed565f54ec6911882c7cbbf5bb0abff5d6f94023",
+    "scripts/persistence/SaveStore.gd": "0020e8a710845ce139fffab0c6e501a684331d6b895d9c936d0619012b3ceba1",
+    "scripts/persistence/SaveValidation.gd": "c2f23ef3d2c0801c35b037318f5367941c11d5c3d55e7d71c1943ffd63ce11d7",
+    "scripts/progression/TowerBattleRules.gd": "928261dec54061142f5e6cb975251dda4edc20eac1f91307ffe672dd78cfd218",
+    "scripts/progression/WeeklyAbyssBattleRules.gd": "b439b6f5989fa30c2b0b85d61b0472d619d46ac975ea3e404868f1e2f9c34aee"
+  },
+  "service_module_paths": {
+    "GameSaveCoordinator": "scripts/persistence/GameSaveCoordinator.gd",
+    "OfflineRewardService": "scripts/persistence/OfflineRewardService.gd",
+    "HeroProgressionService": "scripts/heroes/HeroProgressionService.gd",
+    "GuardianProgressionService": "scripts/heroes/GuardianProgressionService.gd",
+    "SummonService": "scripts/progression/SummonService.gd",
+    "LegacyQuestService": "scripts/progression/LegacyQuestService.gd",
+    "RewardClaimService": "scripts/progression/RewardClaimService.gd",
+    "EquipmentCommandService": "scripts/equipment/EquipmentCommandService.gd"
+  },
+  "current_contract": {
+    "source_commit": "7a93befb04a6041bcca9ec3d10b8f74ef2cab30a",
+    "note": "The original v82 methods/protected fingerprints remain unchanged. Only the three already-shipped facade updates below and the already-shipped Main line budget are recognized by current verification. The reorganization changes resource paths only.",
+    "main_line_budget": 5684,
+    "facade_overrides": {
+      "_save_idle_state": {
+        "facade_body_sha256": "2f72e75b7de77689c70ceac31f09ba5af073307a407fe25ae001f74d422616fd",
+        "reason": "Previously shipped critical-save autosave coordination before save service delegation.",
+        "shipped_body_sha256": "2f72e75b7de77689c70ceac31f09ba5af073307a407fe25ae001f74d422616fd"
+      },
+      "_load_idle_state": {
+        "facade_body_sha256": "ed2a465f088b847601c9aa80c45bb07db0e16f82d60901b0bc477a480389e257",
+        "reason": "Previously shipped critical-save autosave coordination before load service delegation.",
+        "shipped_body_sha256": "ed2a465f088b847601c9aa80c45bb07db0e16f82d60901b0bc477a480389e257"
+      },
+      "_bulk_enhance_equipped": {
+        "facade_body_sha256": "2a345c64a4ebabdce7dda0e6c5d70b00723281854fdf0c9aba2e9c60e5fc351f",
+        "reason": "Previously shipped bulk-enhancement confirmation preview replaces immediate mutation.",
+        "shipped_body_sha256": "c8b70d07b5a23311f7385a66c168e1f820d055beb9196b3da05953ea38f7e7fc"
+      }
+    }
   }
 }

@@ -29,7 +29,7 @@ Godot 4.7.2 headless로 다음 **15개 테스트 스크립트가 모두 종료 �
 재현:
 
 ```sh
-Godot --headless --path . -s res://scripts/V27TerritoryLifecycleSmokeTest.gd
+Godot --headless --path . -s res://tests/regression/V27TerritoryLifecycleSmokeTest.gd
 ```
 
 ## 범위 밖과 남은 검증

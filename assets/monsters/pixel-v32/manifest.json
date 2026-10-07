@@ -954,7 +954,7 @@
     "source_alpha_cutoff": 0.5,
     "modulation_order": "Texture alpha below cutoff becomes zero; runtime actor tint including death fade is multiplied afterwards.",
     "filter": "nearest",
-    "pixel_art_pipeline": "res://scripts/PixelArtPipeline.gd",
+    "pixel_art_pipeline": "res://scripts/art/PixelArtPipeline.gd",
     "source_images_modified": false
   }
 }

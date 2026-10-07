@@ -1,10 +1,10 @@
 extends Control
 ## Independent multipart-art viewer. The hidden source controller supplies only
 ## action names/frame progress; this scene never creates Main, saves or economy.
-const UI = preload("res://scripts/GameUiTheme.gd")
-const FONT = preload("res://scripts/UIFontProvider.gd")
-const FACTORY = preload("res://scripts/HeroSpriteFactory.gd")
-const ROSTER = preload("res://scripts/HeroRosterCatalog.gd")
+const UI = preload("res://scripts/ui/GameUiTheme.gd")
+const FONT = preload("res://scripts/ui/UIFontProvider.gd")
+const FACTORY = preload("res://scripts/heroes/HeroSpriteFactory.gd")
+const ROSTER = preload("res://scripts/heroes/HeroRosterCatalog.gd")
 const CATALOG_PATH := "res://scripts/art/HeroPartsCatalog.gd"
 const RIG_PATH := "res://scripts/art/HeroPartsRig3D.gd"
 const ART_ROOT := "res://assets/art-direction/aurelia-4head/"

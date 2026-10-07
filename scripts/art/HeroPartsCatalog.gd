@@ -1,7 +1,7 @@
 extends RefCounted
 ## Production identities plus a strict, reviewed separated-art gate. This catalog
 ## creates no new gameplay heroes and never accepts a whole-body image as parts.
-const ROSTER = preload("res://scripts/HeroRosterCatalog.gd")
+const ROSTER = preload("res://scripts/heroes/HeroRosterCatalog.gd")
 const MOTIONS = preload("res://scripts/portrait/HeroRigMotionCatalog.gd")
 const ROOT := "res://assets/art-direction/aurelia-4head/"
 const HERO_IDS: Array[String] = ["leonhardt", "mira", "elisia", "kairen", "orwin", "seria", "astel", "darius", "lunea", "caelum", "adrien", "tessa", "naia", "sael", "odelia"]

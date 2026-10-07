@@ -54,7 +54,7 @@ func build(main: Node) -> void:
 	hud_bounds = [header,footer]
 	refresh()
 func _add_command_icon(button: Button, icon_name: String) -> void:
-	var icon := preload("res://scripts/GameUiIcon.gd").new()
+	var icon := preload("res://scripts/ui/GameUiIcon.gd").new()
 	icon.icon_name = icon_name; icon.ink = SKIN.INK
 	SKIN.place(button,icon,Rect2((button.size.x-24)/2,10,24,24))
 func refresh() -> void:

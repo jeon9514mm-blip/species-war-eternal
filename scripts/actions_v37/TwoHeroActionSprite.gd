@@ -1,4 +1,4 @@
-extends "res://scripts/HeroSpriteController.gd"
+extends "res://scripts/heroes/HeroSpriteController.gd"
 ## Presentation only. All combat time, movement, damage and RNG remain in the v32 code.
 ## Uses 1--3 extracted source key poses per action. It does NOT claim hand-drawn in-betweens
 ## or new rear/up/down art. Vertical directions reuse the 3/4 source; left is mirrored.

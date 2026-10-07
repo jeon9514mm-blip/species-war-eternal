@@ -4,11 +4,12 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-main = (ROOT / 'scripts/Main.gd').read_text()
-director = (ROOT / 'scripts/ChallengeBattleDirector.gd').read_text()
-session = (ROOT / 'scripts/ChallengeBattleSession.gd').read_text()
+main = (ROOT / 'scripts/app/Main.gd').read_text()
+director = (ROOT / 'scripts/combat/ChallengeBattleDirector.gd').read_text()
+session = (ROOT / 'scripts/combat/ChallengeBattleSession.gd').read_text()
 pages = (ROOT / 'scripts/portrait/PortraitPages.gd').read_text()
-legacy = (ROOT / 'scripts/ContentScreens.gd').read_text()
+legacy = (ROOT / 'scripts/ui/ContentScreens.gd').read_text()
+field_service = (ROOT / 'scripts/hunting/HuntFieldService.gd').read_text()
 checks = []
 
 def body(source, name):
@@ -22,11 +23,14 @@ def check(condition, name):
 
 entry = body(main, '_run_daily_dungeon')
 check('CHALLENGE_DRIVER.start_daily(self, variant)' in entry and 'wallet_gold' not in entry, 'daily entry delegates instead of paying')
-for method, needle in [('_ensure_roaming_wave', 'CHALLENGE_DRIVER.ensure_wave(self)'),
-                       ('_advance_auto_hunt_step', 'CHALLENGE_DRIVER.advance(self, step)'),
-                       ('_finish_hunt_target', 'CHALLENGE_DRIVER.wave_cleared(self)')]:
-    block = body(main, method)
-    check(block.index('if challenge_session != null:') < block.index(needle) < block.index('\t\treturn'), method + ' intercept precedes normal field path')
+for source, method, guard, needle in [
+        (main, '_ensure_roaming_wave', 'if challenge_session != null:', 'CHALLENGE_DRIVER.ensure_wave(self)'),
+        (field_service, 'advance_auto_hunt_step', 'if main.challenge_session != null:', 'main.CHALLENGE_DRIVER.advance(main, step)'),
+        (field_service, 'finish_hunt_target', 'if main.challenge_session != null:', 'main.CHALLENGE_DRIVER.wave_cleared(main)')]:
+    block = body(source, method)
+    check(block.index(guard) < block.index(needle) < block.index('\t\treturn'), method + ' intercept precedes normal field path')
+for method in ['advance_auto_hunt_step', 'finish_hunt_target']:
+    check('_FIELD.' + method + '(self' in body(main, '_' + method), method + ' facade reaches guarded field service')
 check('challenge_session.defeat()' in body(main, '_begin_hunt_recovery'), 'dungeon defeat does not auto-revive')
 check('challenge_session.cancel("left_screen")' in body(main, '_clear_screen'), 'scene exit cancels session')
 check('if daily:main._run_daily_dungeon(daily_variant)' in pages and 'if completed and not daily and not tower:main._build_meta_hub_screen()' not in pages, 'portrait callback keeps all challenge battles open')
@@ -47,7 +51,7 @@ fields = set(re.findall(r'^(?:var|const)\s+(\w+)',main,re.M))
 methods = set(re.findall(r'^func\s+(\w+)',main,re.M))
 # Object.has_method is a native Godot method used by optional goal hooks.
 native = {'set_meta','get_meta','has_meta','has_method','free','set_physics_process'}
-for rel in ['scripts/ChallengeBattleDirector.gd','scripts/V80DailyBattleSmokeTest.gd']:
+for rel in ['scripts/combat/ChallengeBattleDirector.gd','tests/regression/V80DailyBattleSmokeTest.gd']:
     refs = set(re.findall(r'\bmain\.(\w+)', (ROOT / rel).read_text()))
     check(not refs-fields-methods-native, rel+' host members exist')
 print('V80 SOURCE-STRUCTURE CHECKS OK | checks=%d | GDScript runtime NOT executed' % len(checks))
