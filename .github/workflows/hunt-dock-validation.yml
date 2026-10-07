@@ -1,0 +1,102 @@
+name: Hunt dock validation
+on:
+  push:
+    branches:
+      - 'codex/hunt-unified-dock-*'
+      - 'jeon9514mm-blip/species-war-eternal'
+    paths:
+      - 'scripts/portrait/LandscapeHuntHud.gd'
+      - 'scripts/portrait/LandscapeHuntLayout.gd'
+      - 'tests/regression/HuntCompactHudSmokeTest.gd'
+      - 'tests/regression/HuntDockGeometryTest.gd'
+      - 'tests/regression/HuntDockCapture.gd'
+      - '.github/workflows/hunt-dock-validation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: hunt-dock-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  godot-ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GODOT_VERSION: '4.7.2'
+      LIBGL_ALWAYS_SOFTWARE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Download official Godot and verify release digest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, urllib.request, zipfile
+          version = os.environ['GODOT_VERSION']
+          tag = version + '-stable'
+          name = 'Godot_v' + tag + '_linux.x86_64.zip'
+          headers = {'User-Agent': 'SpeciesWar-HuntDock-CI'}
+          url = 'https://api.github.com/repos/godotengine/godot-builds/releases/tags/' + tag
+          release = json.load(urllib.request.urlopen(urllib.request.Request(url, headers=headers)))
+          asset = next(x for x in release['assets'] if x['name'] == name)
+          digest = asset.get('digest', '')
+          if not digest.startswith('sha256:'):
+              raise RuntimeError('Official release SHA-256 digest is required')
+          archive = pathlib.Path(os.environ['RUNNER_TEMP']) / name
+          urllib.request.urlretrieve(asset['browser_download_url'], archive)
+          if hashlib.sha256(archive.read_bytes()).hexdigest() != digest.split(':', 1)[1]:
+              raise RuntimeError('Godot archive checksum mismatch')
+          target = pathlib.Path(os.environ['RUNNER_TEMP']) / 'godot'
+          target.mkdir()
+          with zipfile.ZipFile(archive) as z:
+              for entry in z.infolist():
+                  if pathlib.PurePosixPath(entry.filename).name != entry.filename:
+                      raise RuntimeError('Unexpected nested archive entry')
+              z.extractall(target)
+          binary = target / name.removesuffix('.zip')
+          binary.chmod(0o755)
+          (target / 'godot').symlink_to(binary)
+          with open(os.environ['GITHUB_PATH'], 'a') as f:
+              f.write(str(target) + '\n')
+          PY
+      - name: Install software-rendering display dependencies
+        run: sudo apt-get update -qq && sudo apt-get install -y xvfb libgl1-mesa-dri libegl1
+      - name: Import project in isolated user data directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p checks/hunt-unified-dock/runtime
+          export XDG_DATA_HOME="$RUNNER_TEMP/hunt-dock-data"
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/hunt-dock-config"
+          export XDG_CACHE_HOME="$RUNNER_TEMP/hunt-dock-cache"
+          godot --version | tee checks/hunt-unified-dock/runtime/engine.txt
+          timeout 300 godot --headless --path . --editor --import --quit 2>&1 | tee checks/hunt-unified-dock/runtime/import.log
+      - name: Native geometry and touch/state regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          for suite in HuntDockGeometryTest HuntCompactHudSmokeTest; do
+            export XDG_DATA_HOME="$RUNNER_TEMP/$suite-data"
+            export XDG_CONFIG_HOME="$RUNNER_TEMP/$suite-config"
+            export XDG_CACHE_HOME="$RUNNER_TEMP/$suite-cache"
+            timeout 180 godot --headless --path . --script "tests/regression/$suite.gd" 2>&1 | tee "checks/hunt-unified-dock/runtime/$suite.log"
+          done
+      - name: Render actual Godot UI captures (software OpenGL, not an Android performance test)
+        shell: bash
+        run: |
+          set -euo pipefail
+          export XDG_DATA_HOME="$RUNNER_TEMP/capture-data"
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/capture-config"
+          export XDG_CACHE_HOME="$RUNNER_TEMP/capture-cache"
+          export HUNT_UI_CAPTURE_DIR="$GITHUB_WORKSPACE/checks/hunt-unified-dock/runtime"
+          timeout 180 xvfb-run -a godot --path . --rendering-method gl_compatibility --script tests/regression/HuntDockCapture.gd 2>&1 | tee checks/hunt-unified-dock/runtime/capture.log
+      - name: Upload raw validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hunt-dock-validation-${{ github.sha }}
+          path: checks/hunt-unified-dock/runtime/
+          retention-days: 7
+          if-no-files-found: warn
