@@ -423,9 +423,9 @@ func _build_world_map_screen() -> void:
 func _build_boss_select_screen() -> void:
 	set_meta('content_meta_tab','raids')
 	P_PAGES.meta(self)
-func _raid_play_hero_action(hero_id: String) -> void:
+func _raid_play_hero_action(hero_id: String, action: String='basic') -> void:
 	var view:=content_root.get_node_or_null('PortraitRaidView')
-	if is_instance_valid(view):view.play_hero_attack(hero_id)
+	if is_instance_valid(view):view.play_hero_attack(hero_id,action)
 func _show_raid_victory(headline: String, details: String) -> void:
 	var view:=content_root.get_node_or_null('PortraitRaidView')
 	if is_instance_valid(view):view.show_victory()

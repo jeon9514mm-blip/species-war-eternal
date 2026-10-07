@@ -1,6 +1,8 @@
 shader_type spatial;
 render_mode cull_disabled, diffuse_burley, specular_schlick_ggx;
 uniform sampler2D stone_art : source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D stone_detail : filter_linear_mipmap, repeat_enable;
+uniform float detail_strength = 0.14;
 uniform vec4 stone_tint : source_color = vec4(1.0);
 uniform vec4 rune_color : source_color = vec4(0.18, 0.75, 1.0, 1.0);
 uniform float tiling = 5.5;
@@ -12,6 +14,9 @@ uniform float wetness = 0.74;
 uniform float rune_power = 5.2;
 uniform float edge_wear = 0.48;
 uniform float visual_time = 0.0;
+// Meta v33 detail adapted to the real stone painting. Screen derivatives stop
+// microscopic grain from aliasing; no fabricated 32K maps or virtual geometry.
+uniform float micro_detail = 0.014;
 uniform vec2 rune_center = vec2(16.0, 10.0);
 uniform float rune_radius = 6.2;
 varying vec3 world_position;
@@ -57,6 +62,11 @@ void fragment() {
     float dx=dFdx(value),dy=dFdy(value);
     NORMAL=normalize(NORMAL-vec3(dx,0.0,dy)*2.5);
     stone+=vec3(clamp(length(vec2(dx,dy))*4.0,0.0,0.08)*edge_wear);
+    float detail_lod=1.0-smoothstep(.20,.65,length(fwidth(world))*14.0);
+    float grain=(noise(world*14.0)-.5)*micro_detail*detail_lod;
+    stone+=vec3(grain)*(1.0-puddle*.5);
+    float detail=texture(stone_detail,world*.8).r-.5;
+    stone*=1.0+detail*detail_strength*detail_lod;
     float radius=distance_to_center/rune_radius;
     float rings=band(radius,0.90,0.009)+band(radius,0.70,0.007);
     float angle=atan(world.y-rune_center.y,world.x-rune_center.x);
@@ -73,6 +83,7 @@ void fragment() {
     ALBEDO=stone+rune_color.rgb*halo*0.055;
     ROUGHNESS=mix(mix(0.88,0.96,crack),0.12,clamp(puddle/0.74,0.0,1.0));
     METALLIC=puddle*0.18;
+    AO=clamp(1.0-crack*crack_depth*.25,0.65,1.0);
     float flow=fract(sector/24.0*1.6+visual_time*0.14);
     float sweep=smoothstep(0.0,0.07,flow)*(1.0-smoothstep(0.93,1.0,flow));
     EMISSION=rune_color.rgb*(rings+glyph*0.72+halo*0.045)*rune_power*pulse*flicker;

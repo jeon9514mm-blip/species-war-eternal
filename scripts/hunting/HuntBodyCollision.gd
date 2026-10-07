@@ -4,6 +4,12 @@ const HERO_CLEARANCE:=1.14
 const ENEMY_CLEARANCE:=1.12
 const CONTACT_CLEARANCE:=.76
 const EPSILON:=.002
+const DEPTH_SCALE:=.52
+static func body_vector(vector: Vector2) -> Vector2:
+	# Camera compresses ground depth; reserve room for the upright painting.
+	return Vector2(vector.x,vector.y*DEPTH_SCALE)
+static func body_distance(left: Vector2,right: Vector2) -> float:
+	return body_vector(left-right).length()
 static func clearance(left: Dictionary,right: Dictionary) -> float:
 	return CONTACT_CLEARANCE if left.hero!=right.hero else (HERO_CLEARANCE if left.hero else ENEMY_CLEARANCE)
 static func actors(main) -> Array[Dictionary]:
@@ -20,7 +26,7 @@ static func can_commit(main,hero: bool,id) -> bool:
 	var body: Dictionary={'hero':hero,'id':id,'position':main._hero_field_position(str(id)) if hero else main.roaming_hunt.enemy_position(int(id))}
 	for other in actors(main):
 		if other.hero==hero and other.id==id:continue
-		if Vector2(body.position).distance_squared_to(other.position)<pow(clearance(body,other)-EPSILON,2):return false
+		if body_distance(body.position,other.position)<clearance(body,other)-EPSILON:return false
 	return true
 static func move(main,actor: Dictionary,push: Vector2) -> bool:
 	if actor.fixed:return false
@@ -37,7 +43,7 @@ static func move(main,actor: Dictionary,push: Vector2) -> bool:
 static func clear(bodies: Array[Dictionary]) -> bool:
 	for a in bodies.size():
 		for b in range(a+1,bodies.size()):
-			if Vector2(bodies[a].position).distance_to(bodies[b].position)<clearance(bodies[a],bodies[b])-EPSILON:return false
+			if body_distance(bodies[a].position,bodies[b].position)<clearance(bodies[a],bodies[b])-EPSILON:return false
 	return true
 static func resolve(main,delta: float,previous_bodies: Array[Dictionary]=[]) -> void:
 	if main.challenge_session!=null or not main.party_movement.independent_hunt or delta<=0:return
@@ -48,11 +54,12 @@ static func resolve(main,delta: float,previous_bodies: Array[Dictionary]=[]) -> 
 		for a in bodies.size():
 			for b in range(a+1,bodies.size()):
 				var left: Dictionary=bodies[a];var right: Dictionary=bodies[b]
-				var vector: Vector2=left.position-right.position
+				var vector: Vector2=body_vector(left.position-right.position)
 				var required:=clearance(left,right)
 				if vector.length_squared()>=(required-EPSILON)*(required-EPSILON) or (left.fixed and right.fixed):continue
 				var distance: float=vector.length()
 				var direction: Vector2=vector/distance if distance>.0001 else Vector2.from_angle(float(posmod((str(left.id)+':'+str(right.id)).hash(),6283))*.001)
+				direction.y/=DEPTH_SCALE
 				var overlap:=required-distance+.001
 				var left_share:=0.0 if left.fixed else (1.0 if right.fixed else .5)
 				var right_share:=0.0 if right.fixed else (1.0 if left.fixed else .5)
@@ -69,7 +76,7 @@ static func resolve(main,delta: float,previous_bodies: Array[Dictionary]=[]) -> 
 		var crowded:=false
 		for other in bodies:
 			if actor==other:continue
-			if Vector2(actor.position).distance_to(other.position)<clearance(actor,other)-.01:crowded=true;break
+			if body_distance(actor.position,other.position)<clearance(actor,other)-.01:crowded=true;break
 		if not crowded:continue
 		var start: Vector2=actor.position
 		var found:=false
@@ -80,7 +87,7 @@ static func resolve(main,delta: float,previous_bodies: Array[Dictionary]=[]) -> 
 				if not main.field_navigation.is_walkable(goal) or not main.field_navigation.has_clear_path(start,goal):continue
 				var clear:=true
 				for other in bodies:
-					if actor!=other and goal.distance_to(other.position)<clearance(actor,other)-EPSILON:clear=false;break
+					if actor!=other and body_distance(goal,other.position)<clearance(actor,other)-EPSILON:clear=false;break
 				if clear:actor.position=goal;found=true;break
 			if found:break
 	# If a dense pocket has no legal side step, block this frame's movement.
@@ -111,7 +118,7 @@ static func overlapping(main) -> Dictionary:
 	for a in bodies.size():
 		for b in range(a+1,bodies.size()):
 			counts.pairs+=1
-			if Vector2(bodies[a].position).distance_to(bodies[b].position)>=clearance(bodies[a],bodies[b])-.01:continue
+			if body_distance(bodies[a].position,bodies[b].position)>=clearance(bodies[a],bodies[b])-.01:continue
 			var key: String='hero_enemy' if bodies[a].hero!=bodies[b].hero else ('hero_hero' if bodies[a].hero else 'enemy_enemy')
 			counts[key]+=1
 	return counts

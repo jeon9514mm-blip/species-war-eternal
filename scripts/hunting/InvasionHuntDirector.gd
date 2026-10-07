@@ -118,10 +118,13 @@ func _approach_slot(index: int, target: Vector2, radius: float, alive_mask: Arra
 	# Two contact lanes fit the actor footprints. Overflow waits in spaced rings
 	# and advances as a lane opens instead of piling fifteen bodies on one hero.
 	var angle := (-PI*.5 if rank == 0 else PI*.5)
+	if rank<2:angle=(0.0 if rank==0 else PI)-direction.angle()
 	if rank >= 2:
 		angle = float((rank-2)%6)*TAU/6.0
 		radius = 2.15 + float((rank-2)/6)*1.10
-	var point := _clamp_field(target + direction.rotated(angle) * radius)
+	var lane_offset:=direction.rotated(angle)*radius
+	if rank>=2:lane_offset.y/=preload('res://scripts/hunting/HuntBodyCollision.gd').DEPTH_SCALE
+	var point := _clamp_field(target + lane_offset)
 	if rank < 2 and field_navigation != null:
 		# A contact slot projected to the far side of a rock creates a stalemate
 		# at the hero's pursuit leash. Find a clear lane on the target's side.

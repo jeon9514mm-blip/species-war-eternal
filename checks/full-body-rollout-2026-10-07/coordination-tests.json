@@ -1,0 +1,19 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 1,
+  "total": 1,
+  "results": [
+    {
+      "test": "HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.19,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=48 failures=[]\n"
+    }
+  ]
+}

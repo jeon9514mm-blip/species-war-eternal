@@ -1,0 +1,49 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 6,
+  "total": 6,
+  "results": [
+    {
+      "test": "FullBodyRolloutSmokeTest.gd",
+      "passed": true,
+      "seconds": 19.88,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nfull_body_rollout checks=1143 failures=[]\n"
+    },
+    {
+      "test": "HuntFramePilotSmokeTest.gd",
+      "passed": true,
+      "seconds": 9.08,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_frame_pilot checks=179 failures=[]\n"
+    },
+    {
+      "test": "RaidCombatQualitySmokeTest.gd",
+      "passed": true,
+      "seconds": 11.41,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nraid_combat_quality checks=35 failures=[]\n"
+    },
+    {
+      "test": "V53HuntNavigationSmokeTest.gd",
+      "passed": true,
+      "seconds": 2.11,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV53HuntNavigationSmokeTest: 12 checks, 0 failures, 804 terrain approach cases\n"
+    },
+    {
+      "test": "V71HuntFlowSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.62,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV71HuntFlowSmokeTest: 17 checks, 0 failures\n"
+    },
+    {
+      "test": "V8364CombatViewSmokeTest.gd",
+      "passed": true,
+      "seconds": 19.31,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8364_combat_view checks=1334 failures=[]\n"
+    }
+  ]
+}

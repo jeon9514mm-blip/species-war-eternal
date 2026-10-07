@@ -65,7 +65,8 @@ func _test_pack_assist_and_separation() -> void:
 	director.mode = RoamingHuntDirector.Mode.ENGAGED
 	var before := director.enemy_positions.duplicate()
 	director.advance(0.1, [true,true,true], [], [Vector2(16,10),Vector2(16,10),Vector2(16,10)])
-	_check(bool(director.enemy_alerted[1]) and bool(director.enemy_alerted[2]), "A directly engaged monster alerts its local habitat pack")
+	_check(director.enemy_pack_ids[0]==director.enemy_pack_ids[1] and director.enemy_pack_ids[0]!=director.enemy_pack_ids[2], "Small populations use the current two-member habitat packs")
+	_check(bool(director.enemy_alerted[1]) and not bool(director.enemy_alerted[2]), "A directly engaged monster alerts its own pack without waking another habitat")
 	var spread_before := Vector2(before[0]).distance_to(Vector2(before[1]))
 	var spread_after := director.enemy_positions[0].distance_to(director.enemy_positions[1])
 	_check(spread_after > spread_before, "Crowded monsters separate instead of occupying one point")

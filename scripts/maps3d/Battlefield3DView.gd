@@ -6,6 +6,7 @@ const FRAME_PILOT=preload('res://scripts/art/HuntFramePilot.gd')
 const MAP_LOADER=preload('res://scripts/maps/MapLoader.gd')
 const FRAMING=preload('res://scripts/maps3d/CombatCameraFraming.gd')
 const HEALTH_LAYOUT=preload('res://scripts/maps3d/CombatHealthLayout.gd')
+const BODY_LAYOUT=preload('res://scripts/maps3d/CombatBodyLayout.gd')
 const HEALTH_OVERLAY=preload('res://scripts/maps3d/CombatHealthOverlay.gd')
 const HUNT_OVERLAY=preload('res://scripts/maps3d/HuntCombatOverlay.gd')
 const MOTION=preload('res://scripts/maps3d/HuntMotionPresentation.gd')
@@ -14,7 +15,9 @@ const FIELD_PALETTE=preload('res://scripts/maps/FieldArtCatalog.gd')
 const STONE_GROUND=preload('res://scripts/maps/RuneStoneGround.gd')
 const CAMERA_OFFSET=Vector3(0,40,28)
 const HUNT_CAMERA_OFFSET=Vector3(0,.6691306,.7431448) # 42 degree hunting camera.
-const HERO_HEIGHT=1.55
+const HERO_HEIGHT=2.05
+const RAID_HERO_HEIGHT=4.20
+const RAID_BOSS_HEIGHT=5.10
 const ENEMY_HEIGHT=1.20
 var game: Node
 var raid_view: Node
@@ -55,6 +58,9 @@ var frame_pilot_enabled := true
 var _actor_delta := 0.0
 var _frame_events: Dictionary = {}
 var _frame_catalog:=FRAME_PILOT.CATALOG.new()
+var _body_scales: Dictionary={}
+var _source_attacks: Dictionary={}
+var _paint_rects: Dictionary={}
 func apply_render_profile() -> void:
 	if not is_instance_valid(viewport_3d) or not is_instance_valid(game):return
 	var battery: bool=str(game.presentation_options.get('performance','balanced'))=='battery'
@@ -108,6 +114,7 @@ func _ready() -> void:
 	process_priority=100
 	for environment_node in map_root.find_children("*","WorldEnvironment",true,false):
 		if environment_node.environment!=null:environment_node.environment=environment_node.environment.duplicate(false)
+	preload('res://scripts/maps3d/MythicDetailProfile.gd').configure(map_root)
 	add_to_group("game_battlefields");apply_render_profile()
 func _create_map_root() -> Node3D:
 	if raid_mode:return map_loader.load_zone(zone_id,viewport_3d,true)
@@ -173,17 +180,25 @@ func _set_focus(point: Vector2) -> void:
 func camera_points() -> Array[Vector3]:
 	var points: Array[Vector3]=[]
 	if not is_instance_valid(game):return points
-	for hero in game.deployed_heroes:
+	for hero_index in game.deployed_heroes.size():
+		var hero=game.deployed_heroes[hero_index]
 		var id:=str(hero.id)
 		if float(game.hero_battle_state.get(id,{}).get('hp',1))<=0:continue
 		var point: Vector2=game._hero_field_position(id)
 		points.append(Vector3(point.x,0,point.y))
-		points.append(Vector3(point.x,HERO_HEIGHT+.6,point.y))
+		var height:=HERO_HEIGHT
+		if hero_index<game.hero_map_sprites.size():height=_actor_height(game.hero_map_sprites[hero_index],true)
+		points.append(Vector3(point.x,height*1.35+.25,point.y))
+	# Follow the party and its target. Distant arriving waves must not zoom
+	# every hero out; their simulation keeps running beyond the camera.
 	for i in game.enemy_wave.size():
+		if i!=game.roaming_hunt.current_target:continue
 		if float(game.enemy_wave[i].get('hp',0))<=0:continue
 		var point: Vector2=game.roaming_hunt.enemy_position(i)
 		points.append(Vector3(point.x,0,point.y))
-		points.append(Vector3(point.x,ENEMY_HEIGHT*1.35+.6,point.y))
+		var height:=ENEMY_HEIGHT
+		if i<game.enemy_wave_sprites.size():height=_actor_height(game.enemy_wave_sprites[i],false)
+		points.append(Vector3(point.x,height*1.35+.25,point.y))
 	return points
 
 func _update_hunt_camera(delta: float,snap:=false) -> void:
@@ -232,12 +247,13 @@ func _process(delta: float) -> void:
 	_visual_hitstop_remaining=maxf(0,_visual_hitstop_remaining-maxf(0,delta))
 	if visual_running():_presentation_clock+=maxf(0,delta)*visual_speed()
 	if not raid_mode:_update_hunt_camera(delta)
+	var speed:=visual_speed() if visual_running() else 0.0
+	var animated: Array=(raid_view.hero_actors.values()+[game.raid_boss_sprite]) if raid_mode and is_instance_valid(raid_view) else game.hero_map_sprites+game.enemy_wave_sprites
+	for actor in animated:
+		if is_instance_valid(actor):
+			actor.speed_scale=speed
+			if actor is MonsterSpriteController:actor.set_process(speed>0)
 	if not raid_mode:
-		var speed:=visual_speed() if visual_running() else 0.0
-		for actor in game.hero_map_sprites+game.enemy_wave_sprites:
-			if is_instance_valid(actor):
-				actor.speed_scale=speed
-				if actor is MonsterSpriteController:actor.set_process(speed>0)
 		if speed>0:_impact_age+=maxf(0,delta)*speed
 	if not raid_mode and _impact_age<_impact_duration:
 		var beat:=sin(_impact_age/_impact_duration*TAU*1.5)*(1-clampf(_impact_age/_impact_duration,0,1))
@@ -246,6 +262,7 @@ func _process(delta: float) -> void:
 	var live: Dictionary={}
 	_health_entries.clear()
 	_health_links.clear()
+	_update_body_layout(delta)
 	if raid_mode:
 		if not is_instance_valid(raid_view):return
 		var mood:=world.get_node_or_null('RaidDesign')
@@ -263,7 +280,8 @@ func _process(delta: float) -> void:
 				var source: Node2D=game.hero_map_sprites[i]
 				source.position=position+project_world(game._hero_field_position(id))
 				if game.hero_hp_bars.has(id):
-					_queue_health(game.hero_hp_bars[id],source.position+Vector2(0,7),source.visible,
+					var paint: Rect2=_paint_rects.get(source.get_instance_id(),Rect2(source.position,Vector2.ZERO))
+					_queue_health(game.hero_hp_bars[id],Vector2(source.position.x,paint.end.y+7),source.visible,
 						float(game.hero_battle_state.get(id,{}).get('hp',0)),true,false)
 		for i in game.enemy_wave_sprites.size():
 			if i<game.enemy_wave.size():
@@ -273,6 +291,7 @@ func _process(delta: float) -> void:
 					var source: AnimatedSprite2D=game.enemy_wave_sprites[i]
 					var selected: bool=game.roaming_hunt.aggro_active and game.roaming_hunt.current_target==i
 					var anchor: Vector2=source.position-Vector2(0,_actor_height(source,false)*size.y/camera.size+9)
+					if _paint_rects.has(source.get_instance_id()):anchor.y=_paint_rects[source.get_instance_id()].position.y-9
 					_queue_health(game.enemy_hp_bars[i],anchor,source.visible,float(game.enemy_wave[i].get('hp',0)),false,selected)
 		game._update_combat_target_marker()
 		_layout_health()
@@ -300,7 +319,8 @@ func hunt_hit(point: Vector2,source: Vector2,tint: Color,critical: bool) -> void
 					break
 
 func _uses_frame_pilot(source: AnimatedSprite2D,hero: bool) -> bool:
-	return not raid_mode and frame_pilot_enabled and not FRAME_PILOT.CATALOG.identity(source,hero).is_empty()
+	if not frame_pilot_enabled:return false
+	return preload('res://scripts/sd/SDHeroVisuals.gd').has_hero(str(source.atlas_key)) if hero else preload('res://scripts/portrait/CasualMonsterAtlas.gd').has_monster(str(source.pixel_monster_name))
 
 func frame_release(actor: AnimatedSprite2D,hero: bool,action: String,windup: float) -> void:
 	if not is_instance_valid(actor) or not _uses_frame_pilot(actor,hero):return
@@ -314,17 +334,20 @@ func frame_hit(actor: AnimatedSprite2D,hero: bool,incoming: Vector2) -> void:
 
 func _frame_runtime(source: AnimatedSprite2D,hero: bool) -> Dictionary:
 	if hero:
-		var runtime: Dictionary=game.hero_skill_runtime.get('leonhardt',{}).duplicate()
+		var runtime: Dictionary=game.hero_skill_runtime.get(str(source.atlas_key),{}).duplicate()
+		if raid_mode:return {}
 		var prepared:=str(runtime.get('prepared_action','basic'))
 		runtime.visual_action='ultimate' if prepared=='ultimate' else ('skill' if prepared in ['a1','a2'] else 'attack_1')
 		return runtime
+	if raid_mode:return {}
 	var index: int=game.enemy_wave_sprites.find(source)
 	if index<0 or index>=game.enemy_wave.size():return {}
 	var enemy: Dictionary=game.enemy_wave[index]
 	return {'windup':float(enemy.get('attack_remaining',0.0)) if enemy.has('attack_intent') else -1.0,'attack_windup_duration':.22,'visual_action':'attack_1'}
 
 func _frame_dead(source: AnimatedSprite2D,hero: bool) -> bool:
-	if hero:return int(game.hero_battle_state.get('leonhardt',{}).get('hp',0))<=0
+	if hero:return int(game.hero_battle_state.get(str(source.atlas_key),{}).get('hp',0))<=0
+	if raid_mode:return game.raid_boss_hp<=0
 	var index: int=game.enemy_wave_sprites.find(source)
 	return int(game.enemy_wave[index].get('hp',0))<=0 if index>=0 and index<game.enemy_wave.size() else source.state=='death'
 
@@ -340,7 +363,7 @@ func skill_trail(hero_id: String) -> void:
 		break
 
 func visual_running() -> bool:
-	return presentation_visible and not presentation_suspended and is_instance_valid(game) and game.active_screen=='combat' and game.combat_running and not game._application_suspended and _visual_hitstop_remaining<=0 and not bool(game.get_meta('equipment_mail_paused',false)) and not preload('res://scripts/persistence/SaveSafety.gd').pending(game)
+	return presentation_visible and not presentation_suspended and is_instance_valid(game) and ((game.active_screen=='raid' and game.raid_running) if raid_mode else (game.active_screen=='combat' and game.combat_running)) and not game._application_suspended and _visual_hitstop_remaining<=0 and not bool(game.get_meta('equipment_mail_paused',false)) and not preload('res://scripts/persistence/SaveSafety.gd').pending(game)
 
 func visual_speed() -> float:
 	return clampf(game.battle_speed,1,2) if is_finite(game.battle_speed) else 1.0
@@ -364,6 +387,7 @@ func _queue_health(bar: ProgressBar,anchor: Vector2,shown: bool,hp: float,hero: 
 func _layout_health() -> void:
 	_health_entries.sort_custom(func(a: Dictionary,b: Dictionary) -> bool:return a.priority>b.priority)
 	var occupied: Array[Rect2]=[]
+	for rect: Rect2 in _paint_rects.values():occupied.append(rect.grow(2))
 	var bounds:=Rect2(position+Vector2(8,8),size-Vector2(16,16))
 	for entry in _health_entries:
 		var bar: ProgressBar=entry.bar
@@ -377,13 +401,65 @@ func _layout_health() -> void:
 		if absf(tip.y-entry.anchor.y)>8:
 			_health_links.append(PackedVector2Array([entry.anchor-position,tip-position]))
 
-func _actor_height(source: AnimatedSprite2D,hero: bool) -> float:
-	var native: float=maxf(1,source.native_visual_height)
-	if raid_mode:return native*absf(source.scale.y)/RAID_UNITS
+func _base_actor_height(source: AnimatedSprite2D,hero: bool) -> float:
+	if raid_mode:
+		# All hero originals share one height, independent of old sprite margins.
+		return RAID_HERO_HEIGHT if hero else RAID_BOSS_HEIGHT
 	if hero:return HERO_HEIGHT
 	# Atlas normalization is not a gameplay size bonus. Compare against the
 	# normalized rest scale, then apply only spawn/hit/death presentation changes.
 	return ENEMY_HEIGHT*clampf(absf(source.scale.y)/maxf(.001,source._base_scale.y),.15,1.35)
+
+func _actor_height(source: AnimatedSprite2D,hero: bool) -> float:
+	return _base_actor_height(source,hero)*float(_body_scales.get(source.get_instance_id(),1.0))
+
+func _update_body_layout(delta: float) -> void:
+	var items: Array[Dictionary]=[]
+	# Existing renderers supply bounds on subsequent frames; bootstrap bounds
+	# below are replaced by actual atlas margins/paint extents after binding.
+	var sources: Array=[];var points: Array[Vector2]=[];var heroes: Array[bool]=[]
+	if raid_mode and is_instance_valid(raid_view):
+		for actor in raid_view.hero_actors.values():sources.append(actor);points.append(raid_to_world(actor.position));heroes.append(true)
+		if is_instance_valid(game.raid_boss_sprite):sources.append(game.raid_boss_sprite);points.append(raid_to_world(game.raid_boss_sprite.position));heroes.append(false)
+	elif not raid_mode:
+		for i in mini(game.hero_map_sprites.size(),game.deployed_heroes.size()):sources.append(game.hero_map_sprites[i]);points.append(game._hero_field_position(str(game.deployed_heroes[i].id)));heroes.append(true)
+		for i in mini(game.enemy_wave_sprites.size(),game.enemy_wave.size()):sources.append(game.enemy_wave_sprites[i]);points.append(game.roaming_hunt.enemy_position(i));heroes.append(false)
+	for i in sources.size():
+		var source: AnimatedSprite2D=sources[i]
+		if not is_instance_valid(source) or _frame_dead(source,heroes[i]) or source.state=='death' or source.modulate.a<.15:continue
+		var id:=source.get_instance_id();var height:=_base_actor_height(source,heroes[i])
+		var bounds:=Rect2(-height*.55,-height,height*1.1,height)
+		var sprite: Sprite3D=actors.get(id)
+		if sprite!=null:
+			var pilot=sprite.get_node_or_null('HuntFramePilot')
+			if pilot!=null:bounds=pilot.footprint(height)
+		if source.flip_h:bounds.position.x=-bounds.end.x
+		var projection:=project_world(points[i])
+		# Camera-aligned drawings have identical x/y scale in orthographic view.
+		items.append({'id':id,'hero':heroes[i],'point':projection*camera.size/size.y,'bounds':bounds})
+	var desired:=BODY_LAYOUT.fit(items)
+	var next: Dictionary={}
+	for id in desired:
+		var previous: float=_body_scales.get(id,1.0)
+		var limit: float=desired[id]
+		next[id]=limit if limit<previous else minf(limit,lerpf(previous,limit,1.0-exp(-maxf(delta,0)*4.0)))
+	var hero_scale:=1.0
+	for item in items:
+		if item.hero:hero_scale=minf(hero_scale,next[item.id])
+	for item in items:
+		if item.hero:next[item.id]=hero_scale
+	for i in sources.size():
+		var source: AnimatedSprite2D=sources[i]
+		if not is_instance_valid(source):continue
+		var id:=source.get_instance_id()
+		if heroes[i]:next[id]=hero_scale
+		elif source.state=='death':next[id]=_body_scales.get(id,1.0)
+	_body_scales=next
+	_paint_rects.clear()
+	for item in items:
+		var paint: Rect2=item.bounds
+		var scale: float=next[item.id]*size.y/camera.size
+		_paint_rects[item.id]=Rect2(position+item.point*size.y/camera.size+paint.position*scale,paint.size*scale)
 
 func actor_head_offset(source: AnimatedSprite2D) -> Vector2:
 	if not is_instance_valid(camera):return Vector2.ZERO
@@ -443,14 +519,31 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 	sprite.scale=Vector3(presentation_shape.x,presentation_shape.y,1)
 	var pilot=sprite.get_node_or_null('HuntFramePilot')
 	if frame_active:
+		var expected: String=FRAME_PILOT.CATALOG.identity(source,hero)
+		if expected.is_empty():expected=str(source.atlas_key) if hero else str(source.pixel_monster_name)
+		if pilot!=null and str(pilot.entry.id)!=expected:
+			sprite.remove_child(pilot);pilot.free();pilot=null;_source_attacks.erase(id)
 		if pilot==null:
 			pilot=FRAME_PILOT.new();sprite.add_child(pilot)
 			if not pilot.bind(source,hero,_frame_catalog):sprite.remove_child(pilot);pilot.free();pilot=null
 		if pilot!=null:
+			var source_rig=source.get_node_or_null('PortraitHeroSkeletalRig')
+			if source_rig!=null:source_rig.set_process(false)
+			# Raids release instantly in the existing simulation; observe the real
+			# source attack restart instead of inventing a second gameplay timer.
+			if raid_mode:
+				var mark: float=float(source.visual_sequence) if hero else float(source.visual_state_time)
+				var previous: Dictionary=_source_attacks.get(id,{})
+				if source.state=='attack' and (str(previous.get('state',''))!='attack' or (hero and mark!=float(previous.get('mark',-1))) or (not hero and mark<float(previous.get('mark',0)))):
+					var action: String=str(source.get('visual_action')) if hero and source.has_method('play_visual') else 'attack_1'
+					pilot.timeline.release(action,.15 if hero else .22)
+				_source_attacks[id]={'state':source.state,'mark':mark}
+				if source.state=='hit' and str(previous.get('state',''))!='hit':pilot.timeline.hit(Vector2.LEFT if source.flip_h else Vector2.RIGHT)
 			var pending: Dictionary=_frame_events.get(id,{})
 			if pending.has('release'):pilot.timeline.release(str(pending.release.action),float(pending.release.windup))
 			if pending.has('hit'):pilot.timeline.hit(pending.hit)
 			_frame_events.erase(id);pilot.show()
+			pilot.fur_layers=0 if str(game.presentation_options.get('performance','balanced'))=='battery' else (8 if RenderingServer.get_current_rendering_method()=='forward_plus' else 4)
 			pilot.present(camera,height,sprite.modulate,_actor_delta,visual_running(),point,_frame_runtime(source,hero),_frame_dead(source,hero))
 			var old_skin=sprite.get_node_or_null('HeroSkeletalBillboard')
 			if old_skin!=null:old_skin.hide()
@@ -460,6 +553,7 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 	if hero and not frame_active:
 		var rig: Node2D=source.get_node_or_null('PortraitHeroSkeletalRig')
 		if rig!=null:
+			rig.set_process(true)
 			var skinned=sprite.get_node_or_null('HeroSkeletalBillboard')
 			if skinned==null:
 				skinned=HERO_SKIN.new();sprite.add_child(skinned);skinned.bind(rig)
@@ -470,6 +564,7 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 			# The Sprite3D remains the positioning/shadow API, but only the skin draws.
 			sprite.texture=null
 	# Keep source animation active; hide only its 2D rendering in the main canvas.
+	source.visibility_layer=0
 	source.self_modulate.a=0
 	for child in source.get_children():
 		if child is CanvasItem:child.visible=false
@@ -478,6 +573,7 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 	if not raid_mode:
 		var lift_scale:=1.0-clampf(motion.y*3.0,0,.6)
 		shadow.scale=Vector3(lift_scale/presentation_shape.x,1/presentation_shape.y,lift_scale)
-	sprite.get_node('TeamFootRing').scale=Vector3(1/presentation_shape.x,1/presentation_shape.y,1)
+	var crowd: float=_body_scales.get(id,1.0)
+	sprite.get_node('TeamFootRing').scale=Vector3(crowd/presentation_shape.x,crowd/presentation_shape.y,crowd)
 	sprite.get_node('TeamFootRing').position=Vector3(0,.04,0)-motion
 	sprite.get_node('TeamFootRing').visible=source.modulate.a>.5 and source.state!='death'

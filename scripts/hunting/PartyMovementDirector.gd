@@ -70,9 +70,9 @@ func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
 		var offset := Vector2((0.38 if row == "front" else (-0.38 if row == "rear" else 0.0)) - float(index / 3) * 0.16, float(index % 3 - 1) * 0.5)
 		if independent_hunt:
 			var count:=heroes.size()
-			var radius:=maxf(1.3,1.30/(2.0*sin(PI/maxf(2,count))*.62))
+			var radius:=maxf(1.3,1.30/(2.0*sin(PI/maxf(2,count))*.52))
 			var angle:=TAU*float(index)/maxf(1,count)
-			offset=Vector2(cos(angle),sin(angle)*.62)*radius if count>1 else Vector2.ZERO
+			offset=Vector2(cos(angle),sin(angle))*radius if count>1 else Vector2.ZERO
 		travel_offsets[id] = offset
 		positions[id] = _clamp(origin + offset)
 		velocities[id] = Vector2.ZERO

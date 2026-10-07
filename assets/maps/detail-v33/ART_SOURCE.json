@@ -1,0 +1,10 @@
+{
+  "generator": "built-in image_gen",
+  "purpose": "Seamless grayscale weathered stone detail map; middle gray, fine pores, no labels or vignette",
+  "size": [
+    1254,
+    1254
+  ],
+  "sha256": "2e6269b0ef10b76b2c4016616e38b5e924fcac95a761f78b0f3001a35569ab80",
+  "usage": "Multiply over existing stone painting, .14 strength, derivative distance fade. Not a 32K source."
+}

@@ -23,9 +23,14 @@ func run() -> void:
 				check(Rect2(Vector2.ZERO,terrain.size).has_point(visual),'living actor fits '+str(screen))
 			for point in [Vector2(0,0),Vector2(16,10),Vector2(32,20)]:
 				check(terrain.local_to_world(terrain.project_world(point)).distance_to(point)<.001,'tap projection round trip')
+			var reference_height:=-1.0
 			for sprite in main.hero_map_sprites:
+				check(sprite.visibility_layer==0,'source 2D painting cannot reappear over original')
 				var actor: Sprite3D=terrain.actors[sprite.get_instance_id()]
-				check(is_equal_approx(actor.pixel_size*sprite.native_visual_height,terrain.HERO_HEIGHT),'consistent hero height')
+				var paint=actor.get_node('HuntFramePilot')
+				var standing_height: float=paint.basis.y.length()*float(paint.entry.motion.native_height)
+				if reference_height<0:reference_height=standing_height
+				check(is_equal_approx(standing_height,reference_height),'consistent original hero body height after crowd fitting')
 			for bar in main.hero_hp_bars.values():check(not bar.visible,'full health hero bar leaves screen clear')
 			check(terrain.find_child('CombatViewToggle',true,false)==null,'only combat camera remains')
 			check(not terrain.has_method('_toggle_overview'),'overview switching removed')

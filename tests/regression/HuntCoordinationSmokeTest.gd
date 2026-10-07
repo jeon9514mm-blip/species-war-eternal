@@ -115,12 +115,13 @@ func run() -> void:
 	for id in ids:main.hero_skill_runtime[id].windup=-1;main.hero_battle_state[id].hp=0
 	for enemy in main.enemy_wave:enemy.hp=0
 	main.hero_battle_state[ids[0]].hp=100;main.hero_battle_state[ids[1]].hp=100
-	main.party_movement.positions[ids[0]]=Vector2(16,10);main.party_movement.positions[ids[1]]=Vector2(17.2,10)
+	var previous_point:=Vector2(16+COLLISION.HERO_CLEARANCE+.06,10)
+	main.party_movement.positions[ids[0]]=Vector2(16,10);main.party_movement.positions[ids[1]]=previous_point
 	var previous:=COLLISION.actors(main)
 	var walked: float=main.party_movement.distance_walked[ids[1]]
 	main.party_movement.positions[ids[1]]=Vector2(16.1,10);main.party_movement.distance_walked[ids[1]]+=1.1
 	var navigation=main.field_navigation;main.field_navigation=ClosedNavigation.new()
 	COLLISION.resolve(main,.1,previous);main.field_navigation=navigation
-	check(main.party_movement.positions[ids[1]]==Vector2(17.2,10) and COLLISION.clear(COLLISION.actors(main)),'blocked crowd holds the previous non-overlapping frame')
+	check(main.party_movement.positions[ids[1]]==previous_point and COLLISION.clear(COLLISION.actors(main)),'blocked crowd holds the previous non-overlapping frame')
 	check(main.party_movement.distance_walked[ids[1]]==walked and main.party_movement.velocities[ids[1]]==Vector2.ZERO,'blocked movement cannot grant travelled-distance passives')
 	await dispose(main);done('HUNT_COORDINATION')

@@ -1,6 +1,8 @@
 extends RefCounted
 ## One complete painting per pose. No anatomical fragmentation or bone weights.
 const ROOT := 'res://assets/art-direction/hunt-frame-pilot/'
+const ORIGINAL_ROOT := 'res://assets/art-direction/full-body-v2/'
+const MONSTERS := {'초원 고블린':'goblin','들개 무리':'wild_dog','가시 멧돼지':'bristle_boar','철갑 두더지':'iron_mole','독버섯 정령':'mushroom','달빛 늑대':'moon_wolf','바람 까마귀':'wind_crow','광산 오크':'mine_orc','용암 박쥐':'lava_bat','수정 거미':'crystal_spider','숲의 망령':'forest_wraith','밤까마귀':'night_raven','서리 사슴':'frost_deer','초원왕 그룬':'grun','광맥의 거인 모르굴':'morgul','월식의 여왕 셀레네':'selene_boss'}
 const RELEASE_PHASE := .44
 # Leave the final recovery pose enough time to appear at 30 FPS. The impact
 # boundary remains .44, the phase owned by the actual simulation release.
@@ -8,13 +10,14 @@ const ATTACK_PHASES := [0.0,.12,.28,.44,.56,.68,.80,.90]
 var _entries: Dictionary = {}
 
 static func identity(source: AnimatedSprite2D,hero: bool) -> String:
-	if hero:return 'leonhardt' if str(source.get('atlas_key'))=='leonhardt' else ''
-	return 'goblin' if str(source.get('pixel_monster_name'))=='초원 고블린' else ''
+	if hero:return str(source.get('atlas_key'))
+	return str(MONSTERS.get(str(source.get('pixel_monster_name')),''))
 
 func load_entry(id: String) -> Dictionary:
-	if id not in ['leonhardt','goblin']:return {}
 	if _entries.has(id):return _entries[id]
-	var path:=ROOT+id+'/frames.json'
+	if id.is_empty() or id.contains('/') or id.contains('..'):return {}
+	var path: String=ORIGINAL_ROOT+id+'/frames.json'
+	if not FileAccess.file_exists(path) and id in ['leonhardt','goblin']:path=ROOT+id+'/frames.json'
 	if not FileAccess.file_exists(path):return {}
 	var parsed=JSON.parse_string(FileAccess.get_file_as_string(path))
 	if not parsed is Dictionary or str(parsed.get('id',''))!=id:return {}

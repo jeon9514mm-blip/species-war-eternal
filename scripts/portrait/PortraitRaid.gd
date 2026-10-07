@@ -435,9 +435,13 @@ func _toggle_skill_auto() -> void:
 func _toggle_ultimate_auto() -> void:
 	game._toggle_ultimate_auto();refresh()
 
-func play_hero_attack(hero_id: String) -> void:
+func play_hero_attack(hero_id: String, action: String='basic') -> void:
 	var actor: Node2D=hero_actors.get(hero_id)
-	if is_instance_valid(actor):actor.play_attack('right')
+	if not is_instance_valid(actor):return
+	actor.direction='right';actor.flip_h=false
+	if action in ['ultimate','a1','a2'] and actor.has_method('play_visual'):
+		actor.play_visual('ultimate' if action=='ultimate' else 'skill')
+	else:actor.play_attack('right')
 
 func show_victory() -> void:
 	if not is_instance_valid(stage):return
@@ -463,7 +467,9 @@ func _process(delta: float) -> void:
 			var actor: Node2D=hero_actors[id]
 			if is_instance_valid(actor) and game.raid_positions.has(id):
 				var destination: Vector2=game.raid_positions[id]
-				var moved: Vector2=actor.position.lerp(destination,minf(1.0,delta*18.0))
+				# Simulation already advances feet smoothly; a second interpolation
+				# creates crossed bodies and drifts away from warning coordinates.
+				var moved: Vector2=destination
 				if moved.distance_to(actor.position)>1.0 and actor.state=='idle':actor.play_walk(destination-actor.position)
 				elif moved.distance_to(actor.position)<=1.0 and actor.state=='walk':actor.play_idle('right')
 				actor.position=moved

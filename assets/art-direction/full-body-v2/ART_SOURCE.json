@@ -1,0 +1,326 @@
+{
+  "date": "2026-10-07",
+  "generator": "built-in image_gen",
+  "renderer": "complete original painted frames; zero bone or limb fragmentation",
+  "new_atlases": 45,
+  "approved_existing": [
+    "goblin"
+  ],
+  "assets": [
+    {
+      "id": "adrien",
+      "atlas": "assets/art-direction/full-body-v2/adrien/poses.png",
+      "sha256": "d9d11d0b56215040636915623f97b4e6e9d8e71a058b5cf74e68d784490931a3",
+      "frames": 16,
+      "native_height": 304
+    },
+    {
+      "id": "astel",
+      "atlas": "assets/art-direction/full-body-v2/astel/poses.png",
+      "sha256": "f76f1964d3fe89891b137a36e3b585a1d1824b5891773b543a1eb28cdbcb54f0",
+      "frames": 16,
+      "native_height": 280
+    },
+    {
+      "id": "bora",
+      "atlas": "assets/art-direction/full-body-v2/bora/poses.png",
+      "sha256": "71ecce7b843d936835390cc45e6add71754f3092af1dee5e4cf9a61a53e49348",
+      "frames": 16,
+      "native_height": 244
+    },
+    {
+      "id": "bristle_boar",
+      "atlas": "assets/art-direction/full-body-v2/bristle_boar/poses.png",
+      "sha256": "ed6b527d344a6b23d63be35b769712f7f2b9da72f68c57970d0ba14b38b01e37",
+      "frames": 16,
+      "native_height": 224
+    },
+    {
+      "id": "bron",
+      "atlas": "assets/art-direction/full-body-v2/bron/poses.png",
+      "sha256": "33cd5bf199e518a56ec8b54710582ba9d752a9063cbcebf8ff598a0613e09e6e",
+      "frames": 16,
+      "native_height": 256
+    },
+    {
+      "id": "caelum",
+      "atlas": "assets/art-direction/full-body-v2/caelum/poses.png",
+      "sha256": "6e2890328fc8a2a4c8caf8c8b0421034910d420aad47955eaf038d3b83a1164b",
+      "frames": 16,
+      "native_height": 313
+    },
+    {
+      "id": "corvin",
+      "atlas": "assets/art-direction/full-body-v2/corvin/poses.png",
+      "sha256": "db9da45b47e636f93d6c547c7ca71d028ea2836379fc58619817d23a5da76093",
+      "frames": 16,
+      "native_height": 219
+    },
+    {
+      "id": "crystal_spider",
+      "atlas": "assets/art-direction/full-body-v2/crystal_spider/poses.png",
+      "sha256": "a0bf2d08edba05f3a35e877bf3f8d57e9064c53efd4b213879aea56569645517",
+      "frames": 16,
+      "native_height": 214
+    },
+    {
+      "id": "darius",
+      "atlas": "assets/art-direction/full-body-v2/darius/poses.png",
+      "sha256": "f0b36d1702da6951e3e7f85bcd5610de2276d0301319b487cfac56b38b23e965",
+      "frames": 16,
+      "native_height": 289
+    },
+    {
+      "id": "elisia",
+      "atlas": "assets/art-direction/full-body-v2/elisia/poses.png",
+      "sha256": "9725d4d1674abc80f6e3389474cdfd7f8946e7857444575f23a95d3849d911b2",
+      "frames": 16,
+      "native_height": 310
+    },
+    {
+      "id": "fenris",
+      "atlas": "assets/art-direction/full-body-v2/fenris/poses.png",
+      "sha256": "e645af339b2a59078eda3f17405446afa507dba2e14e17c6c5878cd6811c8a9c",
+      "frames": 16,
+      "native_height": 239
+    },
+    {
+      "id": "forest_wraith",
+      "atlas": "assets/art-direction/full-body-v2/forest_wraith/poses.png",
+      "sha256": "dbea2d6da12c395988d99552ef917a59ef82190bf563cf9c9defd72b6c846dae",
+      "frames": 16,
+      "native_height": 230
+    },
+    {
+      "id": "frost_deer",
+      "atlas": "assets/art-direction/full-body-v2/frost_deer/poses.png",
+      "sha256": "f4a9185e11a1dd8020a7dc7c04b346ff7f0e90a9eec61d229c189440e4d9c71b",
+      "frames": 16,
+      "native_height": 243
+    },
+    {
+      "id": "garm",
+      "atlas": "assets/art-direction/full-body-v2/garm/poses.png",
+      "sha256": "a6f3c6d7a9356a836b1850c7977a6622d329f7fec86638254f6f858c5cade300",
+      "frames": 16,
+      "native_height": 223
+    },
+    {
+      "id": "grun",
+      "atlas": "assets/art-direction/full-body-v2/grun/poses.png",
+      "sha256": "6a1d4cb0abfbf6b8436f8f59e832e506ec46154352efe948aa092f40edb9f13d",
+      "frames": 16,
+      "native_height": 260
+    },
+    {
+      "id": "iron_mole",
+      "atlas": "assets/art-direction/full-body-v2/iron_mole/poses.png",
+      "sha256": "9fef00c7ac9b3ae196f0550715a16cfe5a0635c66f50e821a0f094c14b3a150d",
+      "frames": 16,
+      "native_height": 187
+    },
+    {
+      "id": "isolde",
+      "atlas": "assets/art-direction/full-body-v2/isolde/poses.png",
+      "sha256": "d20aabf59db77aef5499f9cfa8f9a7bff8d8b234dbd095e77009e8524b61a52d",
+      "frames": 16,
+      "native_height": 212
+    },
+    {
+      "id": "kairen",
+      "atlas": "assets/art-direction/full-body-v2/kairen/poses.png",
+      "sha256": "230195370f9775cd7a746f4fd13c3036516f651b8de676261f2a74964eb8a3ea",
+      "frames": 16,
+      "native_height": 232
+    },
+    {
+      "id": "lava_bat",
+      "atlas": "assets/art-direction/full-body-v2/lava_bat/poses.png",
+      "sha256": "5f2f6860d896afcf75c5a025d2e8c64a6a8380fd05fd9ab8bb1b1bd38d4d1e52",
+      "frames": 16,
+      "native_height": 208
+    },
+    {
+      "id": "leonhardt",
+      "atlas": "assets/art-direction/full-body-v2/leonhardt/poses.png",
+      "sha256": "dc8414803f64b0b2ffbe823694b62380baa8698eb2099ce020da235bde39c620",
+      "frames": 16,
+      "native_height": 298
+    },
+    {
+      "id": "lucien",
+      "atlas": "assets/art-direction/full-body-v2/lucien/poses.png",
+      "sha256": "bee11fed63e8aac229e9c67c3aaf2d4641da33a985ac8ef42d60b8cac7448880",
+      "frames": 16,
+      "native_height": 225
+    },
+    {
+      "id": "lunea",
+      "atlas": "assets/art-direction/full-body-v2/lunea/poses.png",
+      "sha256": "7cd2ed5ab0bcf665dc5f8742802544da6ba5fb4a6d0aaf270a58caa5e79f7b71",
+      "frames": 16,
+      "native_height": 272
+    },
+    {
+      "id": "mine_orc",
+      "atlas": "assets/art-direction/full-body-v2/mine_orc/poses.png",
+      "sha256": "99674abc89f384b6ed871e227dc50646cfac3ffcb9fcd84de41d5cab1ea43ed3",
+      "frames": 16,
+      "native_height": 223
+    },
+    {
+      "id": "mira",
+      "atlas": "assets/art-direction/full-body-v2/mira/poses.png",
+      "sha256": "394ca811ec3e8b04e5e3637afa83fda04df731ee7860eee325ac5ef1e7e4df8f",
+      "frames": 16,
+      "native_height": 307
+    },
+    {
+      "id": "moon_wolf",
+      "atlas": "assets/art-direction/full-body-v2/moon_wolf/poses.png",
+      "sha256": "08ccb9a2a919aede813f32efd94e331a13cf89f3fb5adc63054dc9039cd92cd4",
+      "frames": 16,
+      "native_height": 247
+    },
+    {
+      "id": "morgas",
+      "atlas": "assets/art-direction/full-body-v2/morgas/poses.png",
+      "sha256": "b3ecc0a73c324898b819a20d33b23fc94b51d84b4844294ebc7b61a3304918c3",
+      "frames": 16,
+      "native_height": 240
+    },
+    {
+      "id": "morgul",
+      "atlas": "assets/art-direction/full-body-v2/morgul/poses.png",
+      "sha256": "61babe064a90fedb332c7781b0140343718ca1711c307da21baf2b3080e0c6a3",
+      "frames": 16,
+      "native_height": 260
+    },
+    {
+      "id": "mushroom",
+      "atlas": "assets/art-direction/full-body-v2/mushroom/poses.png",
+      "sha256": "b5fe5fae38a29e942cf87d500e2383614e4b6bc2bb1eebe18156dcef8b185bbc",
+      "frames": 16,
+      "native_height": 205
+    },
+    {
+      "id": "naia",
+      "atlas": "assets/art-direction/full-body-v2/naia/poses.png",
+      "sha256": "c10255e9516ccba5bf1daaa41aa52a9c86ab09f80d0c58f0bf7fff43d818c5c1",
+      "frames": 16,
+      "native_height": 235
+    },
+    {
+      "id": "night_raven",
+      "atlas": "assets/art-direction/full-body-v2/night_raven/poses.png",
+      "sha256": "0ecceb9ca4b3b7a201cbfb4d9715315e05627ffd92db47aeec45487bb1d7c640",
+      "frames": 16,
+      "native_height": 198
+    },
+    {
+      "id": "nyx",
+      "atlas": "assets/art-direction/full-body-v2/nyx/poses.png",
+      "sha256": "cbd2f2296d91b46ed1119894a5979844acc7ea6c58aa231bd91c25ec86c4599d",
+      "frames": 16,
+      "native_height": 228
+    },
+    {
+      "id": "odelia",
+      "atlas": "assets/art-direction/full-body-v2/odelia/poses.png",
+      "sha256": "01bab81adfbc3036452ba08bcf690138f1872a3e9044ddf096b94bee12662125",
+      "frames": 16,
+      "native_height": 186
+    },
+    {
+      "id": "orwin",
+      "atlas": "assets/art-direction/full-body-v2/orwin/poses.png",
+      "sha256": "19367ecb5156a55eeb90276a0895e32367255fd5a223ad787f376e7e84a914a3",
+      "frames": 16,
+      "native_height": 221
+    },
+    {
+      "id": "ragna",
+      "atlas": "assets/art-direction/full-body-v2/ragna/poses.png",
+      "sha256": "2ea8fc642700f4f0b5a723c890031294663dde478aa6e4000200eebe5769b7f0",
+      "frames": 16,
+      "native_height": 242
+    },
+    {
+      "id": "rokan",
+      "atlas": "assets/art-direction/full-body-v2/rokan/poses.png",
+      "sha256": "25e51a30d6075a1f4c307bb3174694b7b8925112f2d0274c719fefa411620f86",
+      "frames": 16,
+      "native_height": 232
+    },
+    {
+      "id": "sael",
+      "atlas": "assets/art-direction/full-body-v2/sael/poses.png",
+      "sha256": "2eed337e43d3adbc808e2b447146b10cc683886888b964cd35c74e096c23c993",
+      "frames": 16,
+      "native_height": 228
+    },
+    {
+      "id": "selene",
+      "atlas": "assets/art-direction/full-body-v2/selene/poses.png",
+      "sha256": "1d2ab6813b989a5860dd64b21f09e952ae40160f02be31c7b4f7d630e78c7f10",
+      "frames": 16,
+      "native_height": 216
+    },
+    {
+      "id": "selene_boss",
+      "atlas": "assets/art-direction/full-body-v2/selene_boss/poses.png",
+      "sha256": "9a244ed18d2c470f130d3c21df6cd89f3523c4c978e558faf9efddb94a8a06f5",
+      "frames": 16,
+      "native_height": 294
+    },
+    {
+      "id": "seria",
+      "atlas": "assets/art-direction/full-body-v2/seria/poses.png",
+      "sha256": "f7e564c6c7b874815281b1f6cc6d8d1be846d338bd88eed4cb61385bad8e6401",
+      "frames": 16,
+      "native_height": 313
+    },
+    {
+      "id": "tessa",
+      "atlas": "assets/art-direction/full-body-v2/tessa/poses.png",
+      "sha256": "561bd91c1a6b62dbafeeaa697e14fb7f5ea96b75b2e6cd92b0b337f4842229fc",
+      "frames": 16,
+      "native_height": 241
+    },
+    {
+      "id": "ulric",
+      "atlas": "assets/art-direction/full-body-v2/ulric/poses.png",
+      "sha256": "dd4030544853a3e09d35be5d674be818799fcac408978e6d4a036b78823b91e2",
+      "frames": 16,
+      "native_height": 244
+    },
+    {
+      "id": "valeria",
+      "atlas": "assets/art-direction/full-body-v2/valeria/poses.png",
+      "sha256": "e61caf3c4265e415f450a7eb8218739fb4cf14f3402809ea4d93603c55979dd9",
+      "frames": 16,
+      "native_height": 236
+    },
+    {
+      "id": "veyra",
+      "atlas": "assets/art-direction/full-body-v2/veyra/poses.png",
+      "sha256": "23185a4b8380ccc28f616fe82428434b0ca80ef17102634a021e34b05199e3f3",
+      "frames": 16,
+      "native_height": 242
+    },
+    {
+      "id": "wild_dog",
+      "atlas": "assets/art-direction/full-body-v2/wild_dog/poses.png",
+      "sha256": "593c18beacfb5f48fb7191445e6abf6c6836ff393c703dd78f43cac1b830fb0b",
+      "frames": 16,
+      "native_height": 227
+    },
+    {
+      "id": "wind_crow",
+      "atlas": "assets/art-direction/full-body-v2/wind_crow/poses.png",
+      "sha256": "91e26cedb5f8da1ab0b8bbef420bc629efe42b5c23aec9601e1d9935137ecdcf",
+      "frames": 16,
+      "native_height": 191
+    }
+  ]
+}

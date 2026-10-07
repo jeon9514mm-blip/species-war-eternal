@@ -3649,7 +3649,7 @@ func _raid_manual_cast(ultimate: bool, selected_id: String = "") -> bool:
 	if best_id.is_empty(): return false
 	var damage := _cast_raid_ultimate(best_id) if ultimate else (HERO_KITS.cast(self, best_id, best_slot))
 	_apply_raid_damage(damage, best_id)
-	if has_method("_raid_play_hero_action"): call("_raid_play_hero_action", best_id)
+	if has_method("_raid_play_hero_action"): call("_raid_play_hero_action", best_id, best_slot)
 	if raid_boss_hp <= 0: _finish_raid("victory")
 	return true
 
@@ -3761,9 +3761,7 @@ func _raid_move_actors(delta: float) -> void:
 		goals[id]=RAID_FIELD.clamp_to_floor(destination)
 		speeds[id]=205.0 if raid_rally_active else (158.0 if destination!=role_destination else 128.0)
 	goals=RAID_FIELD.spread_destinations(goals,shape if boss_telegraph_pending or followup else {})
-	for id in goals:
-		var current: Vector2=raid_positions[id]
-		raid_positions[id]=RAID_FIELD.clamp_to_floor(current.move_toward(goals[id],delta*float(speeds[id])))
+	RAID_FIELD.advance_positions(raid_positions,goals,speeds,raid_boss_position,delta,shape if boss_telegraph_pending or followup else {})
 
 func _apply_raid_second_wave() -> void:
 	var profile: Dictionary=raid_second_wave_profile.duplicate(true)
@@ -3962,15 +3960,19 @@ func _advance_raid_encounter(delta: float) -> void:
 			continue
 		runtime["attack_remaining"] = (0.78 + float(int(state.get("slot", 0)) % 3) * 0.08) * float(state.get("attack_interval_mult", 1.0))
 		var raw_damage := 0
+		var painted_action: String='basic'
 		var action: String = HERO_KITS.preferred_slot(self, hero_id) if _skill_spacing <= 0.0 else "basic"
 		var control_ultimate := preload("res://scripts/heroes/HeroCombatRules.gd").ultimate_role(hero_id, str(state.get("role_group", ""))) == "컨트롤러" and preload("res://scripts/heroes/HeroCombatRules.gd").ultimate_status(hero_id) == "stun"
 		if action == "ultimate" and (not control_ultimate or _raid_control_window()):
+			painted_action='ultimate'
 			raw_damage = _cast_raid_ultimate(hero_id)
 			_skill_spacing = maxf(_skill_spacing, 0.16)
 		elif action == "a1" and (str(runtime["profile"].get("kind", "")) != "stun" or _raid_control_window()):
+			painted_action='a1'
 			raw_damage = _cast_hero_skill(hero_id)
 			_skill_spacing = 0.14
 		elif action == "a2":
+			painted_action='a2'
 			raw_damage = HERO_KITS.cast(self, hero_id, "a2")
 			_skill_spacing = 0.14
 		else:
@@ -3979,7 +3981,7 @@ func _advance_raid_encounter(delta: float) -> void:
 			_gain_ultimate(hero_id, 10.0)
 		_apply_raid_damage(raw_damage, hero_id)
 		if has_method('_raid_play_hero_action'):
-			call('_raid_play_hero_action',hero_id)
+			call('_raid_play_hero_action',hero_id,painted_action)
 	if raid_boss_hp > 0:
 		_apply_raid_damage(_advance_raid_pet(delta), "$support")
 	if raid_boss_hp <= 0:

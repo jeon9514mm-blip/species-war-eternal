@@ -8,24 +8,38 @@ const ENTRY := Vector2(635.0, 397.0)
 static func hero_entry(slot: int) -> Vector2:
 	return Vector2(330.0 + float(slot % 5) * 52.0, 330.0 + float(slot / 5) * 104.0)
 
-static func spread_destinations(goals: Dictionary, danger: Dictionary = {}) -> Dictionary:
+static func spread_destinations(goals: Dictionary, danger: Dictionary = {}, fixed: Dictionary = {}) -> Dictionary:
 	# Resolve role/rally crowding in simulation coordinates, never visual offsets.
 	var result: Dictionary=goals.duplicate()
 	var ids: Array=result.keys();ids.sort()
-	for iteration in 10:
+	for iteration in 24:
 		for i in ids.size():
 			for j in range(i+1,ids.size()):
 				var a: Vector2=result[ids[i]];var b: Vector2=result[ids[j]]
-				var away:=a-b;var distance:=away.length()
-				if distance>=48.0:continue
+				var away:=(a-b)*Vector2(1,.65);var distance:=away.length()
+				var clearance:=110.0 if fixed.has(ids[i]) or fixed.has(ids[j]) else 85.0
+				if distance>=clearance:continue
 				if distance<.01:away=Vector2.from_angle(float(absi((str(ids[i])+str(ids[j])).hash())%6283)/1000.0)
 				else:away/=distance
-				var shift:=away*(48.0-distance)*.5
+				var shift:=away*(clearance-distance)/Vector2(1,.65)
+				if not fixed.has(ids[i]) and not fixed.has(ids[j]):shift*=.5
 				for pair in [[ids[i],a,a+shift],[ids[j],b,b-shift]]:
+					if fixed.has(pair[0]):continue
 					var candidate:=clamp_to_floor(pair[2])
 					# A chosen safe escape must stay outside the damage footprint.
 					if danger.is_empty() or contains(danger,pair[1]) or not contains(danger,candidate):result[pair[0]]=candidate
 	return result
+
+static func advance_positions(positions: Dictionary, goals: Dictionary, speeds: Dictionary, boss_position: Vector2, delta: float, danger: Dictionary = {}) -> void:
+	# Paths to separated goals can cross. Resolve the actual feet too, with
+	# the boss fixed and safe escape positions outside active warnings.
+	var actual: Dictionary={}
+	for id in goals:
+		var current: Vector2=positions[id]
+		actual[id]=clamp_to_floor(current.move_toward(goals[id],delta*float(speeds[id])))
+	actual['@boss']=boss_position
+	actual=spread_destinations(actual,danger,{'@boss':true})
+	for id in goals:positions[id]=actual[id]
 
 static func clamp_to_floor(point: Vector2) -> Vector2:
 	return Vector2(clampf(point.x, FLOOR.position.x + 12.0, FLOOR.end.x - 12.0), clampf(point.y, FLOOR.position.y + 10.0, FLOOR.end.y - 10.0))

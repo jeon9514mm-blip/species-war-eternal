@@ -1,6 +1,7 @@
 extends RefCounted
 ## Reserve destinations as well as bodies. Casts stay fixed; walkers yield.
 const SPACING := 1.12
+const BODY=preload('res://scripts/hunting/HuntBodyCollision.gd')
 const ANGLES := [0.0,.45,-.45,.90,-.90,1.35,-1.35,1.8,-1.8,2.25,-2.25,2.7,-2.7,PI]
 static func choose(director, id: String, start: Vector2, target: int, desired: Vector2, state: Dictionary, states: Dictionary, bodies: Dictionary, reserved: Dictionary, enemies: Array, points: Array[Vector2], runtimes: Dictionary) -> Vector2:
 	var enemy: Vector2=points[target]
@@ -25,13 +26,16 @@ static func choose(director, id: String, start: Vector2, target: int, desired: V
 		if not director._point_walkable(candidate) or not director._clear_path(candidate,enemy):continue
 		if start.distance_to(enemy)<reach+1.0 and not director._clear_path(start,candidate):continue
 		var score: float=start.distance_to(candidate)*.18+candidate.distance_to(desired)*(.42 if melee else .12)
+		# Contact from the side leaves the enemy's face and the hero's body visible.
+		var contact_overlap:=maxf(0,BODY.CONTACT_CLEARANCE-BODY.body_distance(candidate,enemy))
+		score+=contact_overlap*contact_overlap*30.0
 		for other in bodies:
 			if other==id or int(states.get(other,{}).get('hp',0))<=0:continue
 			var fixed: bool=float(runtimes.get(other,{}).get('windup',-1))>=0
-			var overlap:=maxf(0,SPACING-candidate.distance_to(bodies[other]))
+			var overlap:=maxf(0,SPACING-BODY.body_distance(candidate,bodies[other]))
 			score+=overlap*overlap*(12.0 if fixed else 6.0)
 			var occupied: Vector2=reserved.get(other,bodies[other])
-			var goal_overlap:=maxf(0,SPACING-candidate.distance_to(occupied))
+			var goal_overlap:=maxf(0,SPACING-BODY.body_distance(candidate,occupied))
 			score+=goal_overlap*goal_overlap*10.0
 		if not melee:
 			for i in points.size():

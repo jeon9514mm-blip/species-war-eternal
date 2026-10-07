@@ -1,8 +1,8 @@
 extends RefCounted
 ## Camera-only framing. Points encode (world x, billboard height, world z).
 ## The simulation, formation spacing and movement bounds are never modified.
-const MINIMUM_SPAN := Vector2(14.0, 10.5)
-const PADDING := Vector2(2.4, 1.8)
+const MINIMUM_SPAN := Vector2(6.0, 4.5)
+const PADDING := Vector2(.20, .20)
 
 static func fit(points: Array[Vector3], viewport_size: Vector2, pitch_sine: float) -> Dictionary:
 	var low := Vector2(INF, INF)

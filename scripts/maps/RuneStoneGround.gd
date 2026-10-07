@@ -16,6 +16,7 @@ func _ready() -> void:
 	stone_material=ShaderMaterial.new();stone_material.shader=SURFACE_SHADER
 	var selected_zone: String=str(field.zone_id) if is_instance_valid(field) else zone_id
 	stone_material.set_shader_parameter('stone_art',ART.texture_for(selected_zone))
+	stone_material.set_shader_parameter('stone_detail',preload('res://assets/maps/detail-v33/stone-detail.png'))
 	var palette: Dictionary=ART.stone_palette(selected_zone)
 	stone_material.set_shader_parameter('stone_tint',palette.stone)
 	stone_material.set_shader_parameter('rune_color',palette.rune)

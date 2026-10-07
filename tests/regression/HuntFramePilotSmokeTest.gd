@@ -56,9 +56,9 @@ func run() -> void:
 	var enemy_pilot=terrain.actors[goblin.get_instance_id()].get_node_or_null('HuntFramePilot')
 	check(id=='leonhardt' and pilot!=null and enemy_pilot!=null,'actual default battlefield selects both full-body pilots')
 	if pilot==null or enemy_pilot==null:await dispose(main);done('hunt_frame_pilot');return
-	check(pilot.skin==null and pilot.find_children('*','Skeleton3D',true,false).is_empty() and pilot.get_child_count()==0,'hero uses one complete painting without anatomical joints')
-	check(enemy_pilot.skin==null and enemy_pilot.get_child_count()==0,'goblin has no segmented limbs or neck hinges')
-	check(terrain.actors[main.hero_map_sprites[1].get_instance_id()].get_node_or_null('HuntFramePilot')==null,'other heroes retain their existing renderer')
+	check(pilot.skin==null and pilot.find_children('*','Skeleton3D',true,false).is_empty() and pilot.debug_snapshot().body_parts==1,'hero uses one complete painting without anatomical joints')
+	check(enemy_pilot.skin==null and enemy_pilot.find_children('*','Skeleton3D',true,false).is_empty(),'goblin has no segmented limbs or neck hinges')
+	check(terrain.actors[main.hero_map_sprites[1].get_instance_id()].get_node_or_null('HuntFramePilot')!=null,'other packaged heroes also use the complete-frame renderer')
 	var before:=economic(main);var rng: int=main.loot_rng.state
 	var positions: Dictionary=main.party_movement.positions.duplicate(true)
 	var enemy_positions: Array=main.roaming_hunt.enemy_positions.duplicate(true)

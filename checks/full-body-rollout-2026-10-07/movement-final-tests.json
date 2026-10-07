@@ -1,0 +1,37 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 4,
+  "total": 4,
+  "results": [
+    {
+      "test": "HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.69,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=48 failures=[]\n"
+    },
+    {
+      "test": "V26CombatSoakSmokeTest.gd",
+      "passed": true,
+      "seconds": 151.38,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV26 SOAK REPORT: {\"completed_actions_by_hero\":{\"astel\":113,\"caelum\":112,\"darius\":107,\"elisia\":101,\"kairen\":100,\"leonhardt\":109,\"lunea\":112,\"mira\":97,\"orwin\":115,\"seria\":81},\"distance_walked\":0.0,\"faction\":\"aurelia\",\"gold_earned\":1534,\"health_valid\":true,\"heroes_with_completed_actions\":10,\"kill_count\":34,\"kills_at_60_120_180_seconds\":[11,19,34],\"longest_kill_gap_seconds\":24.7,\"party_size\":10,\"simulated_seconds\":180,\"wipe_recovery_seconds\":4.4,\"xp_earned\":1121}\nV26 SOAK REPORT: {\"completed_actions_by_hero\":{\"bron\":130,\"fenris\":102,\"garm\":131,\"isolde\":108,\"morgas\":95,\"nyx\":116,\"ragna\":66,\"ulric\":92,\"valeria\":78,\"veyra\":74},\"distance_walked\":0.0,\"faction\":\"noxfera\",\"gold_earned\":1318,\"health_valid\":true,\"heroes_with_completed_actions\":10,\"kill_count\":30,\"kills_at_60_120_180_seconds\":[7,19,30],\"longest_kill_gap_seconds\":32.0,\"party_size\":10,\"simulated_seconds\":180,\"wipe_recovery_seconds\":4.4,\"xp_earned\":964}\nv26_combat_soak_smoke_test_ok checks=22 factions=2 heroes_per_party=10 simulated_seconds=360 wipe_recovery=ok continuous_rewards=ok\n"
+    },
+    {
+      "test": "V71HuntFlowSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.73,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nV71HuntFlowSmokeTest: 17 checks, 0 failures\n"
+    },
+    {
+      "test": "V8364CombatViewSmokeTest.gd",
+      "passed": true,
+      "seconds": 18.88,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8364_combat_view checks=836 failures=[]\n"
+    }
+  ]
+}
