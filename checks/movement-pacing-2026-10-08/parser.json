@@ -1,0 +1,187 @@
+{
+  "scope": "Every modified/new GDScript plus the one initial whole-parser process failure. Original whole-parser evidence remains preserved.",
+  "passed": 30,
+  "total": 30,
+  "results": [
+    {
+      "script": "scripts/app/Main.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/HuntFramePilot.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/MobileReliefPilot.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/PaintedFurLayers.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/heroes/HeroKitRuntime.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/HuntBodyCollision.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/HuntingTargetDirector.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/MeadowNavigation.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/PartyMovementDirector.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps/RuneStoneGround.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/Battlefield3DView.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/HuntCombatOverlay.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/HuntRenderInterpolation.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/MobileCameraMotion.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/CombatTextPresenter.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/ContactTimeDilation.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/PresentationRuntime.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/ui/LandingScreens.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HuntAttackQualitySmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HuntBodyCollisionMathSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HuntNavigationCostSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/MovementPacingSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/FurPoseCacheBenchmark.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/HuntCollisionDifferential.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/HuntCpuProfile.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/HuntDecisionEquivalenceProbe.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/HuntNavigationCostBench.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/MovementPacingProbe.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/PilotPresentBenchmark.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    }
+  ]
+}

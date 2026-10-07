@@ -1,0 +1,32 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "gpu_mobile",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 3,
+  "total": 3,
+  "results": [
+    {
+      "test": "Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "seconds": 14.22,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nMOBILE25D_SPEC checks=339 failures=[]\n"
+    },
+    {
+      "test": "MovementPacingSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.09,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nMOVEMENT_PACING checks=36 failures=[]\n"
+    },
+    {
+      "test": "RaidTouchLayoutSmokeTest.gd",
+      "passed": true,
+      "seconds": 53.95,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nRAID_TOUCH_LAYOUT checks=1044 failures=[]\n"
+    }
+  ]
+}

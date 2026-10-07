@@ -1,0 +1,36 @@
+{
+  "scope": "Isolated headless CPU microbenchmark; does not establish full-game FPS improvement",
+  "engine": "Godot 4.7.2 stable Windows",
+  "benchmark": "tools/diagnostics/game-audit-2026-10-07/FurPoseCacheBenchmark.gd",
+  "scenario": "Warm 8 repeated motion/attack atlas cells, then 20,000 pose transitions per sample with all 4 fur layers",
+  "samples_usec_per_present_before": [37.0047, 36.5412, 36.4493, 36.9355, 35.95995],
+  "samples_usec_per_present_after": [22.9561, 23.8839, 22.7895, 22.42685, 23.0986],
+  "mean_usec_before": 36.57813,
+  "mean_usec_after": 23.03099,
+  "mean_reduction_percent": 37.03618,
+  "cache_reuses_same_mesh": true,
+  "attack_region_keeps_distinct_mesh": true,
+  "preserved_fur_layers": 4,
+  "pilot_present_cpu_microbenchmark": {
+    "scope": "Headless MobileReliefPilot with one hero and one monster; 4000 actor presents per sample; does not establish full-game FPS",
+    "benchmark": "tools/diagnostics/game-audit-2026-10-07/PilotPresentBenchmark.gd",
+    "before_usec_per_actor": {
+      "idle": [50.11725, 49.21025, 49.5765],
+      "walk": [48.6375, 47.3725, 47.32325],
+      "pause": [35.748, 34.695, 33.9135]
+    },
+    "after_usec_per_actor": {
+      "idle": [43.01425, 42.293, 42.36875],
+      "walk": [41.2595, 41.31375, 39.64725],
+      "pause": [27.465, 27.27275, 27.241]
+    },
+    "retained": "Exact Color/float updates, mirrored basis, original pose clocks, mutable snapshot fields, and initial/shader-change parameter invalidation"
+  },
+  "checks": {
+    "MobileReliefPilot_parse": "passed",
+    "PaintedMotion25DSmokeTest": {"checks": 270, "failures": []},
+    "V43AllHeroMotionSmokeTest": {"heroes": 30, "actions_per_hero": 15, "passed": true},
+    "hero_cape_pause_effects_toggle_hair_tint_time_monster_and_boss_no_cape_fur_hide_restore": {"checks": 32, "failures": []}
+  },
+  "runtime_note": "Headless starts emitted the environment's Windows root certificate store warning; scripts exited 0. Actual GPU shader compilation and full-game pacing are covered by the movement probe."
+}

@@ -1,0 +1,60 @@
+{
+  "android_measured": false,
+  "assets": [],
+  "device": "NVIDIA GeForce GTX 1050",
+  "engine": "4.7.2-stable (official)",
+  "profiles": [
+    {
+      "draw_calls": 493.0,
+      "frames": 318,
+      "held_walking_frames": 44,
+      "held_walking_ratio": 0.0265700483091787,
+      "label": "hunt-aurelia",
+      "max_world_step": 0.0999815836548805,
+      "mean_fps": 39.7448778788634,
+      "p95_frame_ms": 46.195,
+      "physics_ms_mean": 45.1433584905662,
+      "process_ms_mean": 25.2844245283019,
+      "seconds": 8.001031,
+      "slowed_frame_ratio": 0.0,
+      "slowed_frames": 0,
+      "texture_bytes": 111939584,
+      "walking_actor_frames": 1656
+    },
+    {
+      "draw_calls": 513.0,
+      "frames": 322,
+      "held_walking_frames": 33,
+      "held_walking_ratio": 0.0173046670162559,
+      "label": "hunt-noxfera",
+      "max_world_step": 0.127763137221336,
+      "mean_fps": 40.1718206156045,
+      "p95_frame_ms": 46.071,
+      "physics_ms_mean": 40.6341149068322,
+      "process_ms_mean": 26.1833229813665,
+      "seconds": 8.015569,
+      "slowed_frame_ratio": 0.0,
+      "slowed_frames": 0,
+      "texture_bytes": 115609600,
+      "walking_actor_frames": 1907
+    },
+    {
+      "draw_calls": 233.0,
+      "frames": 356,
+      "held_walking_frames": 0,
+      "held_walking_ratio": 0.0,
+      "label": "raid",
+      "max_world_step": 2.22719407081604,
+      "mean_fps": 59.211948838215,
+      "p95_frame_ms": 35.986,
+      "physics_ms_mean": 34.4978202247191,
+      "process_ms_mean": 11.5745730337079,
+      "seconds": 6.0123,
+      "slowed_frame_ratio": 0.0,
+      "slowed_frames": 0,
+      "texture_bytes": 109620736,
+      "walking_actor_frames": 70
+    }
+  ],
+  "renderer": "mobile"
+}

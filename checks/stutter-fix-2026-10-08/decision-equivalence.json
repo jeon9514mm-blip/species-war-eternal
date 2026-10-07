@@ -1,0 +1,15 @@
+{
+  "checks": 6681,
+  "failures": [],
+  "priority": {
+    "checks": 1440,
+    "optimized_ms": 1329.868,
+    "reference_ms": 1451.391
+  },
+  "target": {
+    "checks": 3800,
+    "optimized_ms": 186.365,
+    "reference_ms": 301.685
+  },
+  "baseline_commit": "70b2e7e98eeb736171fef11240b5d85fb2fc65b5"
+}

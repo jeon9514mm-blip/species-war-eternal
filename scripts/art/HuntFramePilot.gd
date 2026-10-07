@@ -4,6 +4,7 @@ extends MeshInstance3D
 const CATALOG=preload('res://scripts/art/HuntFrameCatalog.gd')
 const TIMELINE=preload('res://scripts/art/HuntFrameTimeline.gd')
 const PAINT=preload('res://shaders/OriginalPainting.gdshader')
+const IDLE_PERIODS={'wild_dog':2.2,'bristle_boar':1.2,'wind_crow':1.5,'night_raven':1.5}
 var source: AnimatedSprite2D
 var timeline:=TIMELINE.new()
 var entry: Dictionary={}
@@ -33,6 +34,37 @@ var _facing_left:=false
 var _facing_override:=false
 var _turn_distance:=0.0
 var _step_distance:=0.0
+var _uniform_values: Dictionary={}
+var _identity:=''
+var _idle_period:=2.0
+var _idle_phase:=0.0
+var _uniform_visual_time:=-INF
+var _uniform_movement_heat:=-INF
+var _uniform_secondary_amount:=-INF
+var _uniform_locomotion_weight:=-INF
+var _uniform_action_energy:=-INF
+var _uniform_hit_flash:=-INF
+var _uniform_facing_sign:=0.0
+var _uniform_tint:=Color(-INF,-INF,-INF,-INF)
+var _last_basis:=Basis.IDENTITY
+
+func _set_uniform(key: StringName,value: Variant) -> void:
+	# Exact comparison preserves every animated/color update while avoiding
+	# repeated RenderingServer uploads for tint, facing and settled states.
+	if _uniform_values.has(key) and _uniform_values[key]==value:return
+	_uniform_values[key]=value
+	_material.set_shader_parameter(key,value)
+
+func _reset_uniform_cache() -> void:
+	# Shader replacement can restore defaults. Replay pose/bind parameters and
+	# invalidate the typed per-frame values so the next present re-sends them.
+	var values:=_uniform_values.duplicate()
+	_uniform_values.clear()
+	for key in values:_set_uniform(key,values[key])
+	_uniform_visual_time=-INF;_uniform_movement_heat=-INF
+	_uniform_secondary_amount=-INF;_uniform_locomotion_weight=-INF
+	_uniform_action_energy=-INF;_uniform_hit_flash=-INF
+	_uniform_facing_sign=0.0;_uniform_tint=Color(-INF,-INF,-INF,-INF)
 
 func bind(actor: AnimatedSprite2D,hero: bool,catalog: RefCounted=null) -> bool:
 	_catalog=catalog if catalog!=null else CATALOG.new()
@@ -41,14 +73,19 @@ func bind(actor: AnimatedSprite2D,hero: bool,catalog: RefCounted=null) -> bool:
 	if entry.is_empty():
 		entry=_existing_entry(actor,hero);_existing=true
 	if entry.is_empty():return false
+	_identity=str(entry.id)
+	_idle_period=2.0 if hero else float(IDLE_PERIODS.get(_identity,2.4))
+	_idle_phase=float(posmod(_identity.hash(),1000))*.006283
 	if hero and not _existing and not bool(entry.get('authored_full_body',false)):
 		entry=entry.duplicate(true)
 		for kind in ['attack','motion']:entry[kind].native_height=float(entry[kind].frames[0].region[3])
 	source=actor;name='HuntFramePilot';cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	_material=ShaderMaterial.new();_material.shader=PAINT
-	_material.set_shader_parameter('outline_px',.80);_material.set_shader_parameter('rim_strength',.025)
-	_material.set_shader_parameter('alpha_cutoff',.12);material_override=_material
-	_material.set_shader_parameter('secondary_seed',float(posmod(str(entry.id).hash(),1000))*.006283)
+	_uniform_values.clear()
+	_reset_uniform_cache()
+	_set_uniform(&'outline_px',.80);_set_uniform(&'rim_strength',.025)
+	_set_uniform(&'alpha_cutoff',.12);material_override=_material
+	_set_uniform(&'secondary_seed',_idle_phase)
 	for kind in entry.sheets if _existing else ['attack','motion']:
 		var sheet: Dictionary=entry[kind]
 		_textures[kind]=sheet.texture if _existing else load(str(sheet.atlas))
@@ -56,8 +93,9 @@ func bind(actor: AnimatedSprite2D,hero: bool,catalog: RefCounted=null) -> bool:
 		for frame: Dictionary in sheet.frames:meshes.append(_make_frame(frame,_textures[kind].get_size()))
 		_meshes[kind]=meshes
 	_footprint=_measure_footprint(1.0)
-	_fur=preload('res://scripts/art/PaintedFurLayers.gd').new();add_child(_fur);_fur.configure(hero,str(entry.id))
+	_fur=preload('res://scripts/art/PaintedFurLayers.gd').new();add_child(_fur);_fur.configure(hero,_identity)
 	_echoes=preload('res://scripts/art/PaintedAttackEchoes.gd').new();add_child(_echoes);_echoes.configure()
+	_snapshot={'id':_identity,'renderer':'one_complete_painted_pose','bones':0,'body_parts':1}
 	return true
 
 func present(camera: Camera3D,height: float,tint: Color,delta: float,active: bool,point: Vector2,runtime: Dictionary,dead: bool) -> void:
@@ -69,8 +107,10 @@ func present(camera: Camera3D,height: float,tint: Color,delta: float,active: boo
 		_visual_time+=maxf(0,delta)*source.speed_scale
 		_movement_heat=move_toward(_movement_heat,1.0 if _hero and walking else 0.0,maxf(0,delta)*.5)
 		_locomotion_weight=move_toward(_locomotion_weight,1.0 if walking else 0.0,maxf(0,delta)*source.speed_scale*6.0)
-	_material.set_shader_parameter('visual_time',_visual_time)
-	_material.set_shader_parameter('movement_heat',_movement_heat)
+	if _uniform_visual_time!=_visual_time:
+		_uniform_visual_time=_visual_time;_material.set_shader_parameter(&'visual_time',_visual_time)
+	if _uniform_movement_heat!=_movement_heat:
+		_uniform_movement_heat=_movement_heat;_material.set_shader_parameter(&'movement_heat',_movement_heat)
 	if _has_point and running and _was_active:
 		var travelled:=point.distance_to(_last_point)
 		if travelled<1.0:_distance+=travelled
@@ -120,10 +160,15 @@ func present(camera: Camera3D,height: float,tint: Color,delta: float,active: boo
 	elif action=='guard':frame=0
 	else:frame=int(floor(float(pose.time)*1.8))%2
 	_apply_frame(camera,height,tint,kind,frame)
-	_material.set_shader_parameter('secondary_amount',.018 if _hero and effects_enabled and action!='death' else 0.0)
-	_material.set_shader_parameter('locomotion_weight',_locomotion_weight)
+	var secondary_amount:=.018 if _hero and effects_enabled and action!='death' else 0.0
+	if _uniform_secondary_amount!=secondary_amount:
+		_uniform_secondary_amount=secondary_amount;_material.set_shader_parameter(&'secondary_amount',secondary_amount)
+	if _uniform_locomotion_weight!=_locomotion_weight:
+		_uniform_locomotion_weight=_locomotion_weight;_material.set_shader_parameter(&'locomotion_weight',_locomotion_weight)
 	var action_phase:=clampf(float(pose.time)/float(pose.duration),0,1)
-	_material.set_shader_parameter('action_energy',sin(action_phase*PI) if action in ['attack_1','attack_2','skill','ultimate'] else 0.0)
+	var action_energy:=sin(action_phase*PI) if action in ['attack_1','attack_2','skill','ultimate'] else 0.0
+	if _uniform_action_energy!=action_energy:
+		_uniform_action_energy=action_energy;_material.set_shader_parameter(&'action_energy',action_energy)
 	_fur.present(entry[kind],frame,_textures[kind],_visual_time,fur_layers if action!='death' else 0)
 	_echoes.layer_limit=echo_layers
 	_echoes.present(self,action,float(pose.time)/float(pose.duration),timeline.sequence,_visual_time,effects_enabled and action!='death')
@@ -133,18 +178,24 @@ func present(camera: Camera3D,height: float,tint: Color,delta: float,active: boo
 		var stride:=float(entry.get('stride_distance',1.4))
 		position=camera.global_basis.y*absf(sin(_distance/stride*TAU))*height*.018*_locomotion_weight
 	if action=='idle' and effects_enabled:
-		var period:=2.0 if _hero else float({'wild_dog':2.2,'bristle_boar':1.2,'wind_crow':1.5,'night_raven':1.5}.get(str(entry.id),2.4))
-		var phase:=float(posmod(str(entry.id).hash(),1000))*.006283
-		position=camera.global_basis.y*sin(_visual_time*TAU/period+phase)*minf(.012,height*.015)
+		position=camera.global_basis.y*sin(_visual_time*TAU/_idle_period+_idle_phase)*minf(.012,height*.015)
 	var hit_age:=float(pose.get('hit_age',-1.0))
-	_material.set_shader_parameter('hit_flash',(1.0-clampf(hit_age/.04,0,1))*.60 if effects_enabled and hit_age>=0 and action!='death' else 0.0)
+	var hit_flash:=(1.0-clampf(hit_age/.04,0,1))*.60 if effects_enabled and hit_age>=0 and action!='death' else 0.0
+	if _uniform_hit_flash!=hit_flash:
+		_uniform_hit_flash=hit_flash;_material.set_shader_parameter(&'hit_flash',hit_flash)
 	if action!='death' and hit_age>=0.0 and hit_age<.22:
 		var amount:=(1.0-smoothstep(.025,.22,hit_age))*smoothstep(0.0,.025,hit_age+.012)
 		var direction: Vector2=pose.get('recoil',Vector2.ZERO)
 		# Tiny directional reaction of the complete drawing; never move the
 		# simulation body, stretch a limb, or rotate an unattached head.
 		position=camera.global_basis.x*direction.x*amount*.015
-	_snapshot={'id':str(entry.id),'action':action,'phase':float(pose.time)/float(pose.duration),'time':float(pose.time),'duration':float(pose.duration),'frame':frame,'sheet':kind,'sequence':timeline.sequence,'distance':_distance,'paused':not running,'renderer':'one_complete_painted_pose','bones':0,'body_parts':1,'native_height':float(entry[kind].native_height),'anchor':entry[kind].frames[frame].anchor,'atlas':entry[kind].atlas,'flip':_facing_left if _facing_override else source.flip_h,'height':height}
+	_snapshot.action=action;_snapshot.phase=float(pose.time)/float(pose.duration)
+	_snapshot.time=float(pose.time);_snapshot.duration=float(pose.duration)
+	_snapshot.frame=frame;_snapshot.sheet=kind;_snapshot.sequence=timeline.sequence
+	_snapshot.distance=_distance;_snapshot.paused=not running
+	_snapshot.native_height=float(entry[kind].native_height)
+	_snapshot.anchor=entry[kind].frames[frame].anchor;_snapshot.atlas=entry[kind].atlas
+	_snapshot.flip=_facing_left if _facing_override else source.flip_h;_snapshot.height=height
 
 func _apply_frame(camera: Camera3D,height: float,tint: Color,kind: String,frame: int) -> void:
 	var sheet: Dictionary=entry[kind]
@@ -153,18 +204,21 @@ func _apply_frame(camera: Camera3D,height: float,tint: Color,kind: String,frame:
 	# each complete locomotion pose uniformly, keeping its foot pivot and aspect.
 	var reference: float=sheet.frames[frame].region[3] if not _existing and kind=='motion' and frame<6 else float(sheet.native_height)
 	var pixel_size:=height/reference
-	basis=camera.global_basis.scaled_local(Vector3(pixel_size*mirror,pixel_size,pixel_size))
+	var next_basis:=camera.global_basis.scaled_local(Vector3(pixel_size*mirror,pixel_size,pixel_size))
+	if _last_basis!=next_basis:_last_basis=next_basis;basis=next_basis
 	if kind!=_kind or frame!=_frame:
 		mesh=_meshes[kind][frame];_kind=kind;_frame=frame
 		var texture: Texture2D=_textures[kind]
 		var region: Array=sheet.frames[frame].region
 		var atlas_size:=texture.get_size()
-		_material.set_shader_parameter('source_texture',texture)
-		_material.set_shader_parameter('atlas_rect',Vector4(region[0]/atlas_size.x,region[1]/atlas_size.y,region[2]/atlas_size.x,region[3]/atlas_size.y))
-		_material.set_shader_parameter('atlas_texel',Vector2.ONE/atlas_size)
-		_material.set_shader_parameter('paint_size',Vector2(region[2],region[3]))
-	_material.set_shader_parameter('actor_tint',tint)
-	_material.set_shader_parameter('facing_sign',mirror)
+		_set_uniform(&'source_texture',texture)
+		_set_uniform(&'atlas_rect',Vector4(region[0]/atlas_size.x,region[1]/atlas_size.y,region[2]/atlas_size.x,region[3]/atlas_size.y))
+		_set_uniform(&'atlas_texel',Vector2.ONE/atlas_size)
+		_set_uniform(&'paint_size',Vector2(region[2],region[3]))
+	if _uniform_tint!=tint:
+		_uniform_tint=tint;_material.set_shader_parameter(&'actor_tint',tint)
+	if _uniform_facing_sign!=mirror:
+		_uniform_facing_sign=mirror;_material.set_shader_parameter(&'facing_sign',mirror)
 
 func _make_frame(frame: Dictionary,atlas_size: Vector2) -> ArrayMesh:
 	var region: Array=frame.region

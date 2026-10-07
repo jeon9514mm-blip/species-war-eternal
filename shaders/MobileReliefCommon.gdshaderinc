@@ -18,17 +18,22 @@ uniform float action_energy=0.0;
 uniform vec2 cape_0;
 uniform vec2 cape_1;
 uniform vec2 cape_2;
+uniform bool cape_enabled=false;
 varying vec2 local_uv;
 void vertex(){
     local_uv=UV;
     vec2 uv=atlas_rect.xy+UV*atlas_rect.zw;
-    vec4 ink=textureLod(source_texture,clamp(uv,atlas_rect.xy+atlas_texel*.5,atlas_rect.xy+atlas_rect.zw-atlas_texel*.5),0.0);
-    float warm=step(ink.g*1.08,ink.r)*step(ink.b*1.3,ink.g);
-    float outer=smoothstep(.20,.36,abs(UV.x-.5));
-    float cape=outer*smoothstep(.28,.40,UV.y)*(1.0-smoothstep(.86,.98,UV.y))*(1.0-warm)*ink.a;
-    vec2 drift=UV.y<.6?mix(cape_0,cape_1,clamp((UV.y-.3)/.3,0.0,1.0)):mix(cape_1,cape_2,clamp((UV.y-.6)/.3,0.0,1.0));
     VERTEX=vec3(UV.x*paint_size.x-paint_anchor.x,paint_anchor.y-UV.y*paint_size.y,VERTEX.z*paint_size.y*.06);
-    VERTEX.xy+=drift*cape;
+    // All vertices in a draw share this switch. Monster/boss reliefs have no
+    // cape, so they can omit the vertex texture fetch and cloth mask entirely.
+    if(cape_enabled){
+        vec4 ink=textureLod(source_texture,clamp(uv,atlas_rect.xy+atlas_texel*.5,atlas_rect.xy+atlas_rect.zw-atlas_texel*.5),0.0);
+        float warm=step(ink.g*1.08,ink.r)*step(ink.b*1.3,ink.g);
+        float outer=smoothstep(.20,.36,abs(UV.x-.5));
+        float cape=outer*smoothstep(.28,.40,UV.y)*(1.0-smoothstep(.86,.98,UV.y))*(1.0-warm)*ink.a;
+        vec2 drift=UV.y<.6?mix(cape_0,cape_1,clamp((UV.y-.3)/.3,0.0,1.0)):mix(cape_1,cape_2,clamp((UV.y-.6)/.3,0.0,1.0));
+        VERTEX.xy+=drift*cape;
+    }
     UV=uv;
 }
 void fragment(){

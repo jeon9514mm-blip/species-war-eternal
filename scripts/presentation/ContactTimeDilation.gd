@@ -1,7 +1,7 @@
 extends Node
-## Explicit user-requested 60ms global slow motion, restored on real wall time.
+## Optional cinematic slowdown. Ordinary battle contacts never enable it.
 var game: Node
-var enabled:=true
+var enabled:=false
 var deadline_us:=0
 var cooldown_us:=0
 var previous_scale:=1.0
