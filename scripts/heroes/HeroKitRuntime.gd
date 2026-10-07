@@ -65,7 +65,11 @@ static func _incoming_threat(main, id: String) -> float:
 # mechanics and manual/simulation callers do not inherit tactical hesitation.
 static func auto_profile(main, id: String, slot: String) -> Dictionary:
 	if slot == "a1" and main.hero_skill_runtime.has(id):
-		return main.hero_skill_runtime[id].get("profile", CATALOG.skill(id, slot)).duplicate(true)
+		var runtime: Dictionary = main.hero_skill_runtime[id]
+		# Dictionary.get evaluates its default argument even when it has a value.
+		# The runtime owns an adjusted profile; avoid copying a discarded catalog.
+		if runtime.has("profile"): return runtime["profile"].duplicate(true)
+		return CATALOG.skill(id, slot)
 	return adjusted(main, id, slot)
 
 static func select_target(main, id: String, slot := "basic") -> int:
@@ -102,10 +106,13 @@ static func priority(main, id: String, slot: String) -> int:
 			useful_statuses += 1
 	var lowest := 1.0
 	var threat := 0.0
-	for ally_id in _allies(main, id, profile):
-		var ally: Dictionary = main.hero_battle_state[ally_id]
-		lowest = minf(lowest, float(ally["hp"]) / maxf(1.0, float(ally["max_hp"])))
-		threat += _incoming_threat(main, ally_id)
+	# Offensive decisions never read ally triage. Skip its sorting and incoming
+	# threat scans while preserving live HP/status reads for support decisions.
+	if kind in ["heal", "barrier", "guard"]:
+		for ally_id in _allies(main, id, profile):
+			var ally: Dictionary = main.hero_battle_state[ally_id]
+			lowest = minf(lowest, float(ally["hp"]) / maxf(1.0, float(ally["max_hp"])))
+			threat += _incoming_threat(main, ally_id)
 	if kind == "heal":
 		return 100 if lowest <= .35 else (94 if lowest <= .60 else 82)
 	if kind in ["barrier", "guard"] and not raid and enemies.is_empty() and threat <= 0.0:

@@ -99,8 +99,8 @@ func _draw() -> void:
 		if hero_index<0 or hero_index>=game.hero_map_sprites.size() or index>=game.enemy_wave_sprites.size():continue
 		var hero_source: AnimatedSprite2D=game.hero_map_sprites[hero_index]
 		var enemy_source: AnimatedSprite2D=game.enemy_wave_sprites[index]
-		var start: Vector2 = terrain.project_world(game._hero_field_position(id),terrain._actor_height(hero_source,true)*.52)
-		var finish: Vector2 = terrain.project_world(game.roaming_hunt.enemy_position(index),terrain._actor_height(enemy_source,false)*.5)
+		var start: Vector2 = terrain.project_world(terrain.display_world(hero_source,game._hero_field_position(id)),terrain._actor_height(hero_source,true)*.52)
+		var finish: Vector2 = terrain.project_world(terrain.display_world(enemy_source,game.roaming_hunt.enemy_position(index)),terrain._actor_height(enemy_source,false)*.5)
 		var tint: Color = game._hero_accent_color(id)
 		if int(game.hero_battle_state[id].get('range',1)) > 1:
 			# Release late in anticipation, arrive exactly when the simulation hits.
@@ -121,8 +121,10 @@ func _draw() -> void:
 		if int(enemy.get('hp',0)) <= 0 or not enemy.has('attack_intent') or float(enemy.get('stun_seconds',0)) > 0: continue
 		var id := str(enemy.attack_intent)
 		if id not in alive: continue
-		var start: Vector2 = terrain.project_world(game.roaming_hunt.enemy_position(index))
-		var finish: Vector2 = terrain.project_world(game._hero_field_position(id))
+		var hero_index: int=game._deployed_hero_ids().find(id)
+		if index>=game.enemy_wave_sprites.size() or hero_index<0 or hero_index>=game.hero_map_sprites.size():continue
+		var start: Vector2 = terrain.project_world(terrain.display_world(game.enemy_wave_sprites[index],game.roaming_hunt.enemy_position(index)))
+		var finish: Vector2 = terrain.project_world(terrain.display_world(game.hero_map_sprites[hero_index],game._hero_field_position(id)))
 		var phase := clampf(1-float(enemy.get('attack_remaining',0))/ATTACK.ENEMY_WINDUP,0,1)
 		var direction := (finish-start).normalized()
 		var side := direction.orthogonal()*6

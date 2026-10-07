@@ -574,10 +574,14 @@ func _adapt_blocked_route(id: String, delta: float, start: Vector2, next: Vector
 	var target := int(targets.get(id, -1))
 	if target < 0 or target >= enemy_positions.size():
 		stalled_seconds[id] = 0.0; return
-	var can_hit := _decisions.can_attack_enemy(state, enemies, target, _distances_from(start, enemy_positions))
-	var approaching := next.distance_to(goal) < start.distance_to(goal) - 0.01 * delta
+	var distance_to_goal := start.distance_to(goal)
+	var approaching := next.distance_to(goal) < distance_to_goal - 0.01 * delta
 	# Waiting in attack reach or during a cast is intentional; only failed pursuit adapts.
-	if can_hit or approaching or start.distance_to(goal) < 0.2:
+	# Successful movement already clears a stall; skip the read-only all-enemy
+	# range query until a hero actually needs to distinguish waiting from stuck.
+	if approaching or distance_to_goal < 0.2:
+		stalled_seconds[id] = 0.0; return
+	if _decisions.can_attack_enemy(state, enemies, target, _distances_from(start, enemy_positions)):
 		stalled_seconds[id] = 0.0; return
 	stalled_seconds[id] = float(stalled_seconds.get(id, 0.0)) + delta
 	if float(stalled_seconds[id]) >= 2.5:

@@ -43,7 +43,11 @@ func _process(delta: float) -> void:
 	var radius: float=120.0*field.camera.size/field.size.y
 	var plane: PlaneMesh=surface.mesh;plane.size=Vector2(radius*2.22,radius*2.22/absf(field.camera.global_basis.z.y))
 	var center: Vector2=Vector2.ZERO;var alive: Array=field.game._alive_hero_ids()
-	for id in alive:center+=field.game._hero_field_position(id)
+	for id in alive:
+		var point: Vector2=field.game._hero_field_position(id)
+		var index: int=field.game._deployed_hero_ids().find(id)
+		if index>=0 and index<field.game.hero_map_sprites.size():point=field.display_world(field.game.hero_map_sprites[index],point)
+		center+=point
 	center=center/maxi(1,alive.size()) if not alive.is_empty() else field.game.expedition_position
 	surface.position=Vector3(center.x,.026,center.y)
 	var direction: Vector2=(field.game.expedition_target-center).normalized()

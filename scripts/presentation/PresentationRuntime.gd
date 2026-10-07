@@ -1,6 +1,6 @@
 class_name PresentationRuntime
 extends Node
-## Presentation plus explicitly requested 60ms contact time dilation.
+## Presentation feedback keeps the combat clock running at its selected speed.
 var game: Node
 var audio: GameAudioDirector
 var contact_time: Node
@@ -19,7 +19,7 @@ func bind(host: Node) -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_original_fps = Engine.max_fps
 	audio = GameAudioDirector.new(); audio.name = "GameAudio"; add_child(audio)
-	contact_time=preload('res://scripts/presentation/ContactTimeDilation.gd').new();contact_time.name='ContactTimeDilation';contact_time.game=game;contact_time.enabled=DisplayServer.get_name()!='headless';add_child(contact_time)
+	contact_time=preload('res://scripts/presentation/ContactTimeDilation.gd').new();contact_time.name='ContactTimeDilation';contact_time.game=game;add_child(contact_time)
 	var loot_feedback:=preload('res://scripts/presentation/LootRewardFeedback.gd').new();loot_feedback.name='LootRewardFeedback';loot_feedback.bind(game);add_child(loot_feedback)
 	apply()
 	get_tree().node_added.connect(_on_node_added)

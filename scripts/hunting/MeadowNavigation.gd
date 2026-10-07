@@ -72,7 +72,7 @@ func _outside_obstacles(point: Vector2, extra_margin: float = 0.0) -> bool:
 func is_walkable(point: Vector2) -> bool:
 	if not _inside_bounds(point):
 		return false
-	if not enabled:
+	if not enabled or _active_obstacles.is_empty():
 		return true
 	_ensure_grid()
 	if not _outside_obstacles(point) or _unreachable_cells.has(_world_cell(point)):
@@ -160,6 +160,10 @@ func clamp_to_walkable(point: Vector2) -> Vector2:
 	return _cell_world(_nearest_free_cell(bounded))
 
 func _segment_clear(from: Vector2, target: Vector2) -> bool:
+	# An empty battlefield has no route or segment result to cache. Keep the
+	# same field bounds without allocating thousands of changing cache keys.
+	if not enabled or _active_obstacles.is_empty():
+		return _inside_bounds(from) and _inside_bounds(target)
 	var key:=Vector4(from.x,from.y,target.x,target.y)
 	if _segment_cache.has(key):return _segment_cache[key]
 	var result:=_segment_clear_uncached(from,target)
@@ -249,6 +253,12 @@ func move_toward(key: Variant, from: Vector2, target: Vector2, max_distance: flo
 	_move_count += 1
 	if max_distance <= 0.0 or not is_finite(max_distance) or not from.is_finite() or not target.is_finite():
 		return from
+	if not enabled or _active_obstacles.is_empty():
+		forget_actor(key)
+		# A legacy out-of-bounds position first returns to the field, exactly
+		# as the routed branch does, instead of cutting across toward a target.
+		var direct_goal := target.clamp(FIELD_MIN, FIELD_MAX) if _inside_bounds(from) else from.clamp(FIELD_MIN, FIELD_MAX)
+		return from.move_toward(direct_goal, max_distance)
 	var goal := clamp_to_walkable(target)
 	if not is_walkable(from):
 		forget_actor(key)

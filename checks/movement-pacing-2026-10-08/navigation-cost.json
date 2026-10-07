@@ -1,0 +1,25 @@
+{
+  "fixture": "Godot 4.7.2 headless, isolated MeadowNavigation benchmark: 3000 frames x 30 actors; each query checks walkability, segment clearance and one 0.0975-world-unit move. Deterministic changing positions on the current obstacle-free floor. Each timing is a single run; these are CPU query times, not measured GPU frame rates.",
+  "script": "tools/diagnostics/game-audit-2026-10-07/HuntNavigationCostBench.gd",
+  "before": {
+    "elapsed_ms": 1561.677,
+    "queries": 90000,
+    "checksum": [
+      1397885.875,
+      845912.875
+    ],
+    "move_calls": 90000
+  },
+  "after": {
+    "elapsed_ms": 476.233,
+    "queries": 90000,
+    "checksum": [
+      1397885.875,
+      845912.875
+    ],
+    "move_calls": 90000
+  },
+  "reduced_query_time_percent": 69.50502568712993,
+  "invariants": "HuntNavigationCostSmokeTest: 21 checks passed. Field bounds, invalid deltas, returning from old out-of-bounds positions, obstacle routing, disable/reenable, region cache reset, successful pursuit, attack waiting and unchanged 2.5-second blocked-target adaptation.",
+  "runtime_environment_note": "The restricted Windows runs emitted Failed to read the root certificate store at startup. Both benchmark processes and the regression test exited 0; the test body reported no failures. This test uses no network."
+}

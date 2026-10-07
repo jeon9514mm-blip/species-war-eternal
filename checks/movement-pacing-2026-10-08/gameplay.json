@@ -1,0 +1,68 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 8,
+  "total": 9,
+  "results": [
+    {
+      "test": "CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "seconds": 8.98,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nCOMBAT_READABILITY checks=151 failures=[]\n"
+    },
+    {
+      "test": "HuntAttackQualitySmokeTest.gd",
+      "passed": false,
+      "seconds": 7.39,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: camera accepts a later impact after recovery\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] run (res://tests/regression/HuntAttackQualitySmokeTest.gd:88)\n       [2] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nhunt_attack_quality checks=24 failures=[\"camera accepts a later impact after recovery\"]\n"
+    },
+    {
+      "test": "HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.89,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=48 failures=[]\n"
+    },
+    {
+      "test": "HuntNavigationCostSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.62,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_navigation_cost_smoke_test_ok checks=21 failures=[]\n"
+    },
+    {
+      "test": "IndependentHuntSmokeTest.gd",
+      "passed": true,
+      "seconds": 28.05,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nINDEPENDENT_HUNT_METRICS [{\"constrained\":{\"farthest\":1.97129797935486,\"spread\":1.90923018124368,\"targets\":8},\"faction\":\"aurelia\",\"individual\":{\"farthest\":4.00000047683716,\"spread\":3.82759063773685,\"targets\":9},\"natural\":{\"cycles\":2,\"enemy_contacts\":3,\"hero_hp_removed\":34,\"monster_targets\":4}},{\"constrained\":{\"farthest\":1.98084592819214,\"spread\":2.0275086581707,\"targets\":8},\"faction\":\"noxfera\",\"individual\":{\"farthest\":4.0,\"spread\":4.08682530456119,\"targets\":9},\"natural\":{\"cycles\":2,\"enemy_contacts\":5,\"hero_hp_removed\":74,\"monster_targets\":4}}]\nINDEPENDENT_HUNT checks=111 failures=[]\n"
+    },
+    {
+      "test": "MovementPacingSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.33,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nMOVEMENT_PACING checks=19 failures=[]\n"
+    },
+    {
+      "test": "NoHeroSkillVfxSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.89,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nNO_HERO_SKILL_VFX checks=250 failures=[]\n"
+    },
+    {
+      "test": "RaidTouchLayoutSmokeTest.gd",
+      "passed": true,
+      "seconds": 35.03,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_TOUCH_LAYOUT checks=1044 failures=[]\n"
+    },
+    {
+      "test": "V82PerformanceSmokeTest.gd",
+      "passed": true,
+      "seconds": 6.38,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nPERFORMANCE_COUNTS {\"balanced\":{\"hud\":18,\"power\":3},\"battery\":{\"hud\":10,\"power\":2}} atlas_cache_misses_for_10001_requests=4 android_fps_measured=false\nv82_performance checks=11 failures=[]\n"
+    }
+  ]
+}

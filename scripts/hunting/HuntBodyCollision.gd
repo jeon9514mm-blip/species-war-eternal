@@ -10,6 +10,15 @@ static func body_vector(vector: Vector2) -> Vector2:
 	return Vector2(vector.x,vector.y*DEPTH_SCALE)
 static func body_distance(left: Vector2,right: Vector2) -> float:
 	return body_vector(left-right).length()
+static func _within_radius(left: Vector2,right: Vector2,radius: float) -> bool:
+	if radius<=0:return false
+	var vector:=body_vector(left-right)
+	var squared:=vector.length_squared()
+	var limit:=radius*radius
+	# Vector2 distance uses float32 in the standard engine. At the exact
+	# boundary retain its original rounded sqrt result; other pairs need none.
+	if absf(squared-limit)<=maxf(.000001,limit*.000001):return vector.length()<radius
+	return squared<limit
 static func clearance(left: Dictionary,right: Dictionary) -> float:
 	var scale: float=maxf(float(left.get('pixel_scale',0)),float(right.get('pixel_scale',0)))
 	if scale>0:return (38.4 if left.hero!=right.hero else (66.0 if left.hero else 20.0))*scale
@@ -58,11 +67,29 @@ static func move(main,actor: Dictionary,push: Vector2) -> bool:
 static func clear(bodies: Array[Dictionary]) -> bool:
 	for a in bodies.size():
 		for b in range(a+1,bodies.size()):
-			if body_distance(bodies[a].position,bodies[b].position)<clearance(bodies[a],bodies[b])-EPSILON:return false
+			if _within_radius(bodies[a].position,bodies[b].position,clearance(bodies[a],bodies[b])-EPSILON):return false
+	return true
+static func _pair_radii(bodies: Array[Dictionary]) -> PackedFloat64Array:
+	var count:=bodies.size()
+	var radii:=PackedFloat64Array();radii.resize(count*count)
+	for a in count:
+		for b in range(a+1,count):
+			var required:=clearance(bodies[a],bodies[b])
+			radii[a*count+b]=required;radii[b*count+a]=required
+	return radii
+static func _clear_with_radii(bodies: Array[Dictionary],radii: PackedFloat64Array) -> bool:
+	var count:=bodies.size()
+	for a in count:
+		for b in range(a+1,count):
+			if _within_radius(bodies[a].position,bodies[b].position,radii[a*count+b]-EPSILON):return false
 	return true
 static func resolve(main,delta: float,previous_bodies: Array[Dictionary]=[]) -> void:
 	if main.challenge_session!=null or not main.party_movement.independent_hunt or delta<=0:return
 	var bodies:=actors(main)
+	var count:=bodies.size()
+	# Body types and pixel scale remain fixed throughout this solve. Calculate
+	# each pair once instead of reading/casting both dictionaries every pass.
+	var radii:=_pair_radii(bodies)
 	# Small frame-to-frame corrections converge before any new attack is committed.
 	for iteration in 8:
 		var changed:=false
@@ -70,7 +97,7 @@ static func resolve(main,delta: float,previous_bodies: Array[Dictionary]=[]) -> 
 			for b in range(a+1,bodies.size()):
 				var left: Dictionary=bodies[a];var right: Dictionary=bodies[b]
 				var vector: Vector2=body_vector(left.position-right.position)
-				var required:=clearance(left,right)
+				var required:=radii[a*count+b]
 				if vector.length_squared()>=(required-EPSILON)*(required-EPSILON) or (left.fixed and right.fixed):continue
 				var distance: float=vector.length()
 				var direction: Vector2=vector/distance if distance>.0001 else Vector2.from_angle(float(posmod((str(left.id)+':'+str(right.id)).hash(),6283))*.001)
@@ -86,12 +113,13 @@ static func resolve(main,delta: float,previous_bodies: Array[Dictionary]=[]) -> 
 		if not changed:break
 	# At a rock or pursuit boundary, use a short clear side step rather than
 	# repeatedly projecting the same outward push back onto the boundary.
-	for actor in bodies:
+	for a in count:
+		var actor: Dictionary=bodies[a]
 		if actor.fixed:continue
 		var crowded:=false
-		for other in bodies:
-			if actor==other:continue
-			if body_distance(actor.position,other.position)<clearance(actor,other)-.01:crowded=true;break
+		for b in count:
+			if a==b:continue
+			if _within_radius(actor.position,bodies[b].position,radii[a*count+b]-.01):crowded=true;break
 		if not crowded:continue
 		var start: Vector2=actor.position
 		var found:=false
@@ -101,14 +129,14 @@ static func resolve(main,delta: float,previous_bodies: Array[Dictionary]=[]) -> 
 				if actor.hero:goal=main.party_movement.clamp_hunt_position(str(actor.id),goal,main.expedition_position)
 				if not main.field_navigation.is_walkable(goal) or not main.field_navigation.has_clear_path(start,goal):continue
 				var clear:=true
-				for other in bodies:
-					if actor!=other and body_distance(goal,other.position)<clearance(actor,other)-EPSILON:clear=false;break
+				for b in count:
+					if a!=b and _within_radius(goal,bodies[b].position,radii[a*count+b]-EPSILON):clear=false;break
 				if clear:actor.position=goal;found=true;break
 			if found:break
 	# A crowded pocket must not cancel every actor's pursuit across the field.
 	# Begin from the clear snapshot and accept each legal local move separately.
 	var blocked_ids: Dictionary={}
-	if not clear(bodies) and previous_bodies.size()==bodies.size() and clear(previous_bodies):
+	if not _clear_with_radii(bodies,radii) and previous_bodies.size()==bodies.size() and clear(previous_bodies):
 		var compatible:=true
 		for i in bodies.size():
 			if bodies[i].hero!=previous_bodies[i].hero or bodies[i].id!=previous_bodies[i].id or (bodies[i].fixed and bodies[i].position!=previous_bodies[i].position):compatible=false;break
@@ -121,7 +149,7 @@ static func resolve(main,delta: float,previous_bodies: Array[Dictionary]=[]) -> 
 				var i:=posmod(offset+main.combat_tick_count,bodies.size())
 				var legal:=true
 				for j in bodies.size():
-					if i!=j and body_distance(proposed[i],bodies[j].position)<clearance(bodies[i],bodies[j])-EPSILON:legal=false;break
+					if i!=j and _within_radius(proposed[i],bodies[j].position,radii[i*count+j]-EPSILON):legal=false;break
 				if legal:bodies[i].position=proposed[i]
 				else:blocked_ids[str(bodies[i].hero)+':'+str(bodies[i].id)]=true
 	for actor in bodies:

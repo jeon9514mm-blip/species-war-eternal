@@ -53,10 +53,6 @@ static func raid(main, amount: int, kind: String, hero_id := '') -> void:
 	if kind in ['damage','critical']:
 		field.hunt_overlay.hit(field.raid_to_world(point),field.raid_to_world(point),Color('#c4a484') if kind=='critical' else Color('#d8d5cc'),kind=='critical',height)
 		field.mobile_camera.impact(kind=='critical')
-		if field._hitstop_cooldown<=0:
-			field._visual_hitstop_remaining=.06;field._hitstop_cooldown=.16
-			main.presentation_runtime.contact_time.request()
-			if DisplayServer.get_name()!='headless':field._hitstop_wall_deadline=Time.get_ticks_usec()+60000
 	var bounds := Rect2(offset + Vector2(12, 62), view.stage.size - Vector2(24, 120))
 	emit(main, amount, kind, center, bounds, 'raid:' + (hero_id if not hero_id.is_empty() else 'boss'))
 static func legacy(main, message: String, color: Color, origin: Vector2) -> void:

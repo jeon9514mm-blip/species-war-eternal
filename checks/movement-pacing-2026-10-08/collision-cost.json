@@ -1,0 +1,28 @@
+{
+  "fixture": "Godot 4.7.2 headless: 120 deterministic seeds x 24 actors (10 heroes and 14 enemies), including fixed casts, stunned enemies and hero pursuit clamps. Each baseline/new world begins from identical generated state and solves one .05-second collision step. Single run, isolated crowded-body CPU time; not production frame-rate evidence.",
+  "baseline_commit": "70b2e7e98eeb736171fef11240b5d85fb2fc65b5",
+  "baseline_script": "scripts/hunting/HuntBodyCollision.gd",
+  "diagnostic_script": "tools/diagnostics/game-audit-2026-10-07/HuntCollisionDifferential.gd",
+  "before_ms": 2048.489,
+  "after_ms": 1388.69,
+  "reduced_solver_time_percent": 32.20905750531246,
+  "exact_state_match": true,
+  "compared_fields": [
+    "hero positions",
+    "enemy positions",
+    "hero velocities",
+    "hero movement-passive distance"
+  ],
+  "regressions": {
+    "HuntBodyCollisionMathSmokeTest": {
+      "checks": 10,
+      "pair_boundary_samples": 75000,
+      "failures": []
+    },
+    "HuntCoordinationSmokeTest": {
+      "checks": 48,
+      "failures": []
+    }
+  },
+  "runtime_environment_note": "Restricted Windows headless runtime emitted Failed to read the root certificate store at startup. Benchmarks and both regression scripts exited 0; test bodies reported no failures. No network is used."
+}

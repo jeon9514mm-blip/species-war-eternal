@@ -15,7 +15,9 @@ func _init() -> void:
 	noise.seed=20261007;noise.noise_type=FastNoiseLite.TYPE_PERLIN;noise.frequency=.7
 func impact(critical: bool) -> void:
 	if cooldown>0:return
-	shake_age=0;shake_strength=4 if critical else 2;shake_duration=.16;cooldown=.15;punch_age=0
+	# Local flash/particles still play on all hits. Space out camera emphasis.
+	if not critical:return
+	shake_age=0;shake_strength=4;shake_duration=.16;cooldown=.75;punch_age=0
 func zoom_punch(effects: bool) -> float:
 	return 1.0+.05*sin(clampf(punch_age/.1,0,1)*PI) if effects and punch_age<.1 else 1.0
 func advance(delta: float,active: bool,effects: bool) -> Vector2:

@@ -1,0 +1,32 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 3,
+  "total": 3,
+  "results": [
+    {
+      "test": "Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.67,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nMOBILE25D_SPEC checks=339 failures=[]\n"
+    },
+    {
+      "test": "MovementPacingSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.55,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nMOVEMENT_PACING checks=18 failures=[]\n"
+    },
+    {
+      "test": "StableFacing25DSmokeTest.gd",
+      "passed": true,
+      "seconds": 18.02,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nSTABLE_FACING_25D checks=610 failures=[]\n"
+    }
+  ]
+}

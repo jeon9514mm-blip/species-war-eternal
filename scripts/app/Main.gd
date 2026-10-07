@@ -5,6 +5,9 @@ const FORMATIONS = preload("res://scripts/combat/BattleFormation.gd")
 var invasion := preload("res://scripts/hunting/InvasionWaveState.gd").new()
 var formation_id: String = "balanced"
 var _ordinary_hunt_accumulator:=0.0
+var _raid_accumulator:=0.0
+var _raid_realtime_loop:=false
+var _raid_damage_at_hud:=0
 var hunt_autosave: Node
 var background_hunt := preload("res://scripts/persistence/BackgroundHunt.gd").new()
 
@@ -445,16 +448,34 @@ func _combat_layout_for_width(layout_w: float, safe: Vector4) -> Dictionary:
 func _physics_process(delta: float) -> void:
 	# A stall or resuming a backgrounded app must not burst overdue attacks.
 	if not _application_suspended:
-		if DisplayServer.get_name()!='headless' and active_screen=='combat' and challenge_session==null and combat_running:
-			# Ordinary flock/slot decisions run at 20Hz; rendering and controls
-			# retain 60Hz. Pass elapsed game time, never drop or multiply rewards.
+		if DisplayServer.get_name()!='headless' and active_screen=='raid' and raid_running:
+			_ordinary_hunt_accumulator=0
+			_advance_realtime_raid(delta)
+		elif DisplayServer.get_name()!='headless' and active_screen=='combat' and challenge_session==null and combat_running:
+			# Keep expensive hunt decisions at 20Hz and interpolate their display
+			# on every rendered frame. Retain any fractional physics time.
 			_ordinary_hunt_accumulator+=delta
-			if _ordinary_hunt_accumulator>=.05:
-				var elapsed:=_ordinary_hunt_accumulator;_ordinary_hunt_accumulator=0
-				_advance_auto_hunt(elapsed)
+			if _ordinary_hunt_accumulator>=.05-.000001:
+				var field=combat_labels.get('terrain')
+				if is_instance_valid(field) and field.has_method('begin_hunt_step'):field.begin_hunt_step()
+				_ordinary_hunt_accumulator=maxf(0,_ordinary_hunt_accumulator-.05)
+				_advance_auto_hunt(.05)
+				if is_instance_valid(field) and field.has_method('finish_hunt_step'):field.finish_hunt_step(.05)
 		else:
 			_ordinary_hunt_accumulator=0
+			_raid_accumulator=0;_raid_realtime_loop=false
 			_advance_auto_hunt(delta)
+
+func _advance_realtime_raid(delta: float) -> void:
+	if not raid_running or active_screen!='raid' or _application_suspended or delta<=0 or not is_finite(delta):return
+	if not selected_raid_id.is_empty() and selected_raid_id!=raid_encounter_zone:
+		_finish_raid('cancelled');return
+	_raid_realtime_loop=true
+	var speed:=clampf(battle_speed,1,2) if is_finite(battle_speed) else 1.0
+	_raid_accumulator+=minf(delta,.5)*speed
+	if _raid_accumulator>=RAID_STEP-.000001:
+		_raid_accumulator=maxf(0,_raid_accumulator-RAID_STEP)
+		_advance_raid_encounter(RAID_STEP)
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
@@ -3630,6 +3651,7 @@ func _start_raid() -> void:
 	if is_instance_valid(old_result):
 		old_result.queue_free()
 	_reset_raid_encounter()
+	_raid_accumulator=0;_raid_realtime_loop=false;_raid_damage_at_hud=0
 	raid_encounter_serial += 1
 	var zone: Dictionary = _zone_data().get(raid_encounter_zone, _current_zone())
 	raid_running = true
@@ -3674,13 +3696,17 @@ func _on_raid_tick(expected_serial: int = -1) -> void:
 		_finish_raid("cancelled")
 		return
 	var remaining := 0.25 * clampf(battle_speed, 1.0, 2.0)
-	var damage_before := raid_damage_dealt
+	var damage_before := _raid_damage_at_hud if _raid_realtime_loop else raid_damage_dealt
 	# Fixed simulation steps make x1/x2/x4 share cooldowns, reaction windows and DPS.
-	while remaining > 0.00001 and raid_running:
+	# The player loop spreads the same 50ms steps over physics frames. This
+	# timer updates the HUD; manual/headless callers retain their deterministic
+	# quarter-second advance instead of running the encounter twice.
+	while not _raid_realtime_loop and remaining > 0.00001 and raid_running:
 		var step := minf(RAID_STEP, remaining)
 		_advance_raid_encounter(step)
 		remaining -= step
 	_update_raid_hud(raid_damage_dealt - damage_before)
+	_raid_damage_at_hud=raid_damage_dealt
 
 func _apply_raid_damage(raw_damage: int, source_id: String = "") -> int:
 	if not raid_running or raid_boss_hp <= 0 or raw_damage <= 0:

@@ -42,7 +42,6 @@ var _health_links: Array[PackedVector2Array]=[]
 var _health_overlay: Control
 var hunt_overlay: Control
 var _presentation_clock:=0.0
-var _visual_hitstop_remaining:=0.0
 var _last_footstep: Dictionary={}
 var _last_death: Dictionary={}
 var _impact_age:=1.0
@@ -70,8 +69,40 @@ var _paint_rects: Dictionary={}
 var mobile_camera:=CAMERA_MOTION.new()
 var _camera_base_v:=0.0
 var _rest_camera_size:=0.0
-var _hitstop_wall_deadline:=0
-var _hitstop_cooldown:=0.0
+var hunt_interpolation:=preload('res://scripts/maps3d/HuntRenderInterpolation.gd').new()
+var _hunt_before: Dictionary={}
+var _hunt_display: Dictionary={}
+var _render_hero_points: Dictionary={}
+var _render_enemy_indices: Dictionary={}
+func _hunt_points() -> Dictionary:
+	var points: Dictionary={}
+	for i in mini(game.hero_map_sprites.size(),game.deployed_heroes.size()):
+		var source=game.hero_map_sprites[i]
+		if is_instance_valid(source):points[source.get_instance_id()]=game._hero_field_position(str(game.deployed_heroes[i].id))
+	for i in mini(game.enemy_wave_sprites.size(),game.enemy_wave.size()):
+		var source=game.enemy_wave_sprites[i]
+		if is_instance_valid(source):points[source.get_instance_id()]=game.roaming_hunt.enemy_position(i)
+	return points
+func _hunt_states() -> Dictionary:
+	var states: Dictionary={}
+	for source in game.hero_map_sprites+game.enemy_wave_sprites:
+		if is_instance_valid(source):states[source.get_instance_id()]=source.state=='death'
+	return states
+func begin_hunt_step() -> void:_hunt_before=_hunt_points()
+func finish_hunt_step(seconds: float) -> void:
+	hunt_interpolation.capture(_hunt_before,_hunt_points(),_hunt_states(),seconds)
+func display_world(source: AnimatedSprite2D,fallback: Vector2) -> Vector2:
+	return _hunt_display.get(source.get_instance_id(),fallback) if is_instance_valid(source) and not raid_mode else fallback
+func _prepare_hunt_display() -> void:
+	if raid_mode:return
+	var remainder: float=game._ordinary_hunt_accumulator+Engine.get_physics_interpolation_fraction()/maxi(1,Engine.physics_ticks_per_second)
+	_hunt_display=hunt_interpolation.sample(_hunt_points(),_hunt_states(),remainder/hunt_interpolation.duration,battle_clock_running())
+	_render_hero_points.clear();_render_enemy_indices.clear()
+	for i in mini(game.hero_map_sprites.size(),game.deployed_heroes.size()):
+		var id: String=str(game.deployed_heroes[i].id)
+		if int(game.hero_battle_state.get(id,{}).get('hp',0))>0:_render_hero_points[id]=display_world(game.hero_map_sprites[i],game._hero_field_position(id))
+	for i in game.enemy_wave_sprites.size():
+		if is_instance_valid(game.enemy_wave_sprites[i]):_render_enemy_indices[game.enemy_wave_sprites[i].get_instance_id()]=i
 func apply_render_profile() -> void:
 	if not is_instance_valid(viewport_3d) or not is_instance_valid(game):return
 	var battery: bool=str(game.presentation_options.get('performance','balanced'))=='battery'
@@ -239,6 +270,7 @@ func camera_points() -> Array[Vector3]:
 		var id:=str(hero.id)
 		if float(game.hero_battle_state.get(id,{}).get('hp',1))<=0:continue
 		var point: Vector2=game._hero_field_position(id)
+		if hero_index<game.hero_map_sprites.size():point=display_world(game.hero_map_sprites[hero_index],point)
 		points.append(Vector3(point.x,0,point.y))
 		var height:=HERO_HEIGHT
 		if hero_index<game.hero_map_sprites.size():height=_actor_height(game.hero_map_sprites[hero_index],true)
@@ -250,6 +282,7 @@ func camera_points() -> Array[Vector3]:
 		if i!=game.roaming_hunt.current_target:continue
 		if float(game.enemy_wave[i].get('hp',0))<=0:continue
 		var point: Vector2=game.roaming_hunt.enemy_position(i)
+		if i<game.enemy_wave_sprites.size():point=display_world(game.enemy_wave_sprites[i],point)
 		var height:=ENEMY_HEIGHT
 		if i<game.enemy_wave_sprites.size():height=_actor_height(game.enemy_wave_sprites[i],false)
 		var candidate: Array[Vector3]=points.duplicate()
@@ -314,12 +347,7 @@ func _process(delta: float) -> void:
 	if not is_instance_valid(game) or not is_instance_valid(camera) or size.x<1 or size.y<1:return
 	_actor_delta=maxf(0.0,delta)
 	apply_render_profile()
-	if battle_clock_running():
-		_visual_hitstop_remaining=maxf(0,_visual_hitstop_remaining-maxf(0,delta))
-		_hitstop_cooldown=maxf(0,_hitstop_cooldown-maxf(0,delta))
-		if _hitstop_wall_deadline>0:
-			_visual_hitstop_remaining=maxf(0,float(_hitstop_wall_deadline-Time.get_ticks_usec())/1000000.)
-			if _visual_hitstop_remaining<=0:_hitstop_wall_deadline=0
+	_prepare_hunt_display()
 	if visual_running():_presentation_clock+=maxf(0,delta)*visual_speed()
 	if not raid_mode:_update_hunt_camera(delta)
 	var speed:=visual_speed() if visual_running() else 0.0
@@ -385,17 +413,19 @@ func _process(delta: float) -> void:
 		for i in game.hero_map_sprites.size():
 			if i<game.deployed_heroes.size():
 				var id: String=str(game.deployed_heroes[i]['id'])
-				sync_actor(game.hero_map_sprites[i],game._hero_field_position(id),true,live)
+				var point:=display_world(game.hero_map_sprites[i],game._hero_field_position(id))
+				sync_actor(game.hero_map_sprites[i],point,true,live)
 				var source: Node2D=game.hero_map_sprites[i]
-				source.position=position+project_world(game._hero_field_position(id))
+				source.position=position+project_world(point)
 				if game.hero_hp_bars.has(id):
 					var paint: Rect2=_paint_rects.get(source.get_instance_id(),Rect2(source.position,Vector2.ZERO))
 					_queue_health(game.hero_hp_bars[id],Vector2(source.position.x,paint.end.y+7),source.visible,
 						float(game.hero_battle_state.get(id,{}).get('hp',0)),true,false)
 		for i in game.enemy_wave_sprites.size():
 			if i<game.enemy_wave.size():
-				sync_actor(game.enemy_wave_sprites[i],game.roaming_hunt.enemy_position(i),false,live)
-				game.enemy_wave_sprites[i].position=position+project_world(game.roaming_hunt.enemy_position(i))
+				var point:=display_world(game.enemy_wave_sprites[i],game.roaming_hunt.enemy_position(i))
+				sync_actor(game.enemy_wave_sprites[i],point,false,live)
+				game.enemy_wave_sprites[i].position=position+project_world(point)
 				if i<game.enemy_hp_bars.size():
 					var source: AnimatedSprite2D=game.enemy_wave_sprites[i]
 					var selected: bool=game.roaming_hunt.aggro_active and game.roaming_hunt.current_target==i
@@ -426,10 +456,6 @@ func hunt_hit(point: Vector2,source: Vector2,tint: Color,critical: bool) -> void
 				height=_actor_height(game.enemy_wave_sprites[index],false);break
 		hunt_overlay.hit(point,source,tint,critical,height)
 		if game.combat_effects_enabled:
-			if _hitstop_cooldown<=0:
-				_visual_hitstop_remaining=.06;_hitstop_cooldown=.16
-				if is_instance_valid(game.presentation_runtime):game.presentation_runtime.contact_time.request()
-				if DisplayServer.get_name()!='headless':_hitstop_wall_deadline=Time.get_ticks_usec()+60000
 			mobile_camera.impact(critical)
 		if critical and game.combat_effects_enabled:
 			for actor in game.hero_map_sprites:
@@ -459,7 +485,7 @@ func _frame_runtime(source: AnimatedSprite2D,hero: bool) -> Dictionary:
 		runtime.visual_action='ultimate' if prepared=='ultimate' else ('skill' if prepared in ['a1','a2'] else 'attack_1')
 		return runtime
 	if raid_mode:return {}
-	var index: int=game.enemy_wave_sprites.find(source)
+	var index: int=_render_enemy_indices.get(source.get_instance_id(),-1)
 	if index<0 or index>=game.enemy_wave.size():return {}
 	var enemy: Dictionary=game.enemy_wave[index]
 	return {'windup':float(enemy.get('attack_remaining',0.0)) if enemy.has('attack_intent') else -1.0,'attack_windup_duration':.22,'visual_action':'attack_1'}
@@ -467,11 +493,11 @@ func _frame_runtime(source: AnimatedSprite2D,hero: bool) -> Dictionary:
 func _frame_dead(source: AnimatedSprite2D,hero: bool) -> bool:
 	if hero:return int(game.hero_battle_state.get(str(source.atlas_key),{}).get('hp',0))<=0
 	if raid_mode:return game.raid_boss_hp<=0
-	var index: int=game.enemy_wave_sprites.find(source)
+	var index: int=_render_enemy_indices.get(source.get_instance_id(),-1)
 	return int(game.enemy_wave[index].get('hp',0))<=0 if index>=0 and index<game.enemy_wave.size() else source.state=='death'
 
 func visual_running() -> bool:
-	return battle_clock_running() and _visual_hitstop_remaining<=0
+	return battle_clock_running()
 func battle_clock_running() -> bool:
 	return presentation_visible and not presentation_suspended and is_instance_valid(game) and ((game.active_screen=='raid' and game.raid_running) if raid_mode else (game.active_screen=='combat' and game.combat_running)) and not game._application_suspended and not bool(game.get_meta('equipment_mail_paused',false)) and not preload('res://scripts/persistence/SaveSafety.gd').pending(game)
 
@@ -541,8 +567,8 @@ func _update_body_layout(_delta: float) -> void:
 		for actor in raid_view.hero_actors.values():sources.append(actor);points.append(raid_to_world(actor.position));heroes.append(true)
 		if is_instance_valid(game.raid_boss_sprite):sources.append(game.raid_boss_sprite);points.append(raid_to_world(game.raid_boss_sprite.position));heroes.append(false)
 	elif not raid_mode:
-		for i in mini(game.hero_map_sprites.size(),game.deployed_heroes.size()):sources.append(game.hero_map_sprites[i]);points.append(game._hero_field_position(str(game.deployed_heroes[i].id)));heroes.append(true)
-		for i in mini(game.enemy_wave_sprites.size(),game.enemy_wave.size()):sources.append(game.enemy_wave_sprites[i]);points.append(game.roaming_hunt.enemy_position(i));heroes.append(false)
+		for i in mini(game.hero_map_sprites.size(),game.deployed_heroes.size()):sources.append(game.hero_map_sprites[i]);points.append(display_world(game.hero_map_sprites[i],game._hero_field_position(str(game.deployed_heroes[i].id))));heroes.append(true)
+		for i in mini(game.enemy_wave_sprites.size(),game.enemy_wave.size()):sources.append(game.enemy_wave_sprites[i]);points.append(display_world(game.enemy_wave_sprites[i],game.roaming_hunt.enemy_position(i)));heroes.append(false)
 	for i in sources.size():
 		var source: AnimatedSprite2D=sources[i]
 		if not is_instance_valid(source) or _frame_dead(source,heroes[i]) or source.state=='death' or source.modulate.a<.15:continue
@@ -593,16 +619,17 @@ func _paint_facing_target(source: AnimatedSprite2D,point: Vector2,hero: bool) ->
 		var runtime: Dictionary=game.hero_skill_runtime.get(id,{})
 		var index:=int(runtime.get('target_index',game.party_movement.targets.get(id,-1)))
 		if index>=0 and index<game.enemy_wave.size() and float(game.enemy_wave[index].get('hp',0))>0:
-			return {'facing_target':game.roaming_hunt.enemy_position(index)}
+			var target: Vector2=game.roaming_hunt.enemy_position(index)
+			if index<game.enemy_wave_sprites.size():target=display_world(game.enemy_wave_sprites[index],target)
+			return {'facing_target':target}
 	else:
-		var index: int=game.enemy_wave_sprites.find(source)
+		var index: int=_render_enemy_indices.get(source.get_instance_id(),-1)
 		if index>=0 and index<game.enemy_wave.size():
 			var target:=str(game.enemy_wave[index].get('attack_intent',''))
 			if target.is_empty():target=str(game.enemy_wave[index].get('target_id',''))
-			if target in game._alive_hero_ids():return {'facing_target':game._hero_field_position(target)}
+			if _render_hero_points.has(target):return {'facing_target':_render_hero_points[target]}
 			var nearest:=INF;var result: Dictionary={}
-			for id in game._alive_hero_ids():
-				var candidate: Vector2=game._hero_field_position(id)
+			for candidate: Vector2 in _render_hero_points.values():
 				if point.distance_squared_to(candidate)<nearest:
 					nearest=point.distance_squared_to(candidate);result={'facing_target':candidate}
 			return result
