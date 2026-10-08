@@ -72,7 +72,7 @@ func run() -> void:
 	restart(game)
 	check(game.raid_boss_sprite.state=='idle' and is_equal_approx(game.raid_boss_sprite.modulate.a,1.0),'retry restores defeated boss visibility')
 	game.raid_elapsed=210;view.refresh()
-	check(view.information.text.contains('남은 30초'),'live timer explicitly shows remaining fight time')
+	check(view.time_readout.text=='00:30','live timer explicitly shows remaining fight time in its dedicated readout')
 	game.raid_elapsed=0
 	game.raid_cast_profile={'kind':'cone','counter':'부채꼴 바깥 측면으로 이동','telegraph':1.0}
 	game.raid_pattern_shape=FIELD.footprint('cone',game.raid_boss_position,[game.raid_positions[first]],game.raid_cast_profile)

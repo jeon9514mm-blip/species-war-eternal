@@ -117,6 +117,15 @@ func _test_productivity(main) -> void:
 	main.invasion.clock=120.0; PRODUCTIVITY.record(main,9)
 	var measured: Dictionary=PRODUCTIVITY.observed(main,main.current_zone_id)
 	check(not measured.is_empty() and measured.seconds_per_pack==10.0, "twelve completed packs record elapsed game time")
+	var current_entry: Dictionary=main.hunt_productivity[PRODUCTIVITY.key(main,main.current_zone_id)].duplicate(true)
+	# Reconstruct the legacy unversioned fingerprint from a real current loadout.
+	var legacy_loadout: Dictionary={}
+	for hero_id in main._deployed_hero_ids():
+		legacy_loadout[hero_id]={"items":main.hero_equipment_items.get(hero_id,{}),"levels":main.hero_equipment.get(hero_id,{}),"rarities":main.hero_equipment_rarity.get(hero_id,{}),"sets":main.hero_equipment_sets.get(hero_id,{}),"research":main.hero_skill_tree.get(hero_id,{})}
+	main.hunt_productivity[PRODUCTIVITY.key(main,main.current_zone_id)]["build"]=JSON.stringify(JSON.parse_string(JSON.stringify(legacy_loadout))).sha256_text()
+	check(PRODUCTIVITY.observed(main,main.current_zone_id).is_empty(),"previous movement-policy pace is not reused after positioning changes")
+	main.hunt_productivity[PRODUCTIVITY.key(main,main.current_zone_id)]=current_entry
+	check(not PRODUCTIVITY.observed(main,main.current_zone_id).is_empty(),"new movement-policy pace remains usable before and after normal save")
 	main.idle_stage=58
 	check(PRODUCTIVITY.observed(main,main.current_zone_id).seconds_per_pack>10.0, "later enemy pressure slows the reused offline pace")
 	main.idle_stage=8

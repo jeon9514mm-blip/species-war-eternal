@@ -143,8 +143,9 @@ func _reconcile_party(main: Node) -> void:
 	for key in statuses: main.set(key, statuses[key])
 	for actor in main.hero_map_sprites:
 		if is_instance_valid(actor): actor.queue_free()
-	for bar in main.hero_hp_bars:
+	for bar in main.hero_hp_bars.values():
 		if is_instance_valid(bar): bar.queue_free()
+	main.hero_hp_bars.clear()
 	main._create_map_hero_sprites()
 	for index in ids.size():
 		var id: String = str(ids[index])

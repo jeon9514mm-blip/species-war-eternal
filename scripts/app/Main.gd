@@ -223,6 +223,7 @@ var raid_positions: Dictionary = {}
 var raid_boss_position := Vector2(635.0, 397.0)
 var raid_rally_position := Vector2.ZERO
 var raid_rally_active := false
+var raid_rally_offsets: Dictionary={}
 var raid_pattern_shape: Dictionary = {}
 var raid_second_wave_shape: Dictionary = {}
 var raid_dodge_remaining := 0.0
@@ -475,8 +476,12 @@ func _advance_realtime_raid(delta: float) -> void:
 	var speed:=clampf(battle_speed,1,2) if is_finite(battle_speed) else 1.0
 	_raid_accumulator+=minf(delta,.5)*speed
 	if _raid_accumulator>=RAID_STEP-.000001:
+		var view=content_root.get_node_or_null('PortraitRaidView') if is_instance_valid(content_root) else null
+		var field=view.battlefield_3d if is_instance_valid(view) else null
+		if is_instance_valid(field):field.begin_raid_step()
 		_raid_accumulator=maxf(0,_raid_accumulator-RAID_STEP)
 		_advance_raid_encounter(RAID_STEP)
+		if is_instance_valid(field):field.finish_raid_step(RAID_STEP)
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
@@ -3254,6 +3259,7 @@ func _reset_raid_encounter() -> void:
 	raid_positions.clear()
 	raid_boss_position = RAID_FIELD.ENTRY
 	raid_rally_active = false
+	raid_rally_offsets.clear()
 	raid_dodge_remaining = 0.0
 	raid_dodge_cooldown = 0.0
 	raid_evaded_hits = 0
@@ -3479,6 +3485,11 @@ func _raid_create_pattern_shape(kind: String, profile: Dictionary = {}) -> Dicti
 
 func _raid_order_move(point: Vector2) -> void:
 	if not raid_running: return
+	# Translate the current formation instead of crossing ten heroes into a
+	# fresh index-based grid every time the player touches the ground.
+	var center: Vector2=_raid_party_center()
+	raid_rally_offsets.clear()
+	for id in raid_positions:raid_rally_offsets[id]=Vector2(raid_positions[id])-center
 	raid_rally_position = RAID_FIELD.clamp_to_floor(point)
 	raid_rally_active = true
 
@@ -3598,7 +3609,13 @@ func _raid_move_actors(delta: float) -> void:
 				anchor=target+offset
 	var boss_speed := 66.0 if movement=='bulwark' else (86.0 if movement=='hunter' else 78.0)
 	if raid_enraged: boss_speed*=1.32
-	raid_boss_position = RAID_FIELD.clamp_to_floor(raid_boss_position.move_toward(anchor, delta * boss_speed))
+	var boss_next: Vector2=RAID_FIELD.clamp_boss_to_floor(raid_boss_position.move_toward(anchor, delta * boss_speed))
+	if not raid_rally_active and not boss_telegraph_pending and raid_second_wave_remaining<=0:
+		for id in _alive_hero_ids():
+			var hero_point: Vector2=raid_positions.get(id,RAID_FIELD.hero_entry(0))
+			if boss_next.distance_to(hero_point)>335 and boss_next.distance_to(hero_point)>raid_boss_position.distance_to(hero_point):
+				boss_next=raid_boss_position;break
+	raid_boss_position=boss_next
 	if is_instance_valid(raid_boss_sprite):
 		raid_boss_sprite.set_world_position(raid_boss_position)
 		if not boss_telegraph_pending and raid_boss_sprite.state == "idle" and raid_boss_position.distance_to(anchor) > 6.0:
@@ -3617,7 +3634,7 @@ func _raid_move_actors(delta: float) -> void:
 		var role_destination: Vector2 = _raid_role_destination(id,i)
 		var destination: Vector2 = role_destination
 		if raid_rally_active:
-			destination = raid_rally_position + Vector2(float(i % 5 - 2) * 48.0, float(i / 5) * 68.0-34.0)
+			destination = raid_rally_position + Vector2(raid_rally_offsets.get(id,Vector2.ZERO))
 		elif not shape.is_empty() and (boss_telegraph_pending or followup) and warning_remaining <= _raid_reaction_window(id) and _raid_auto_evade_allowed(id,i) and RAID_FIELD.contains(shape,current):
 			destination = RAID_FIELD.escape_position(shape, current)
 		goals[id]=RAID_FIELD.clamp_to_floor(destination)
@@ -3653,8 +3670,7 @@ func _apply_raid_second_wave() -> void:
 	raid_event_text='2차 지진 · 피해 %d · 회피 %d'%[total,avoided]
 
 func _start_raid() -> void:
-	if bool(get_meta("practice_active", false)) or preload("res://scripts/persistence/SaveSafety.gd").pending(self):
-		_show_toast("연습을 종료하거나 저장 대기를 먼저 해결해 주세요."); return
+	if not SAVE_SAFETY.allow_mutation(self): return
 	if active_screen != "raid" or raid_running or deployed_heroes.is_empty():
 		return
 	if equipment_overflow.size()>GEAR_OVERFLOW_CAP-2:

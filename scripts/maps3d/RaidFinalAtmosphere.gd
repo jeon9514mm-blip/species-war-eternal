@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
 	visible=field.presentation_visible and field.game.combat_effects_enabled
 	if not visible or field.presentation_suspended or field.size.y<1 or not is_instance_valid(field.camera):return
 	var point: Vector2=field.raid_to_world(field.game.raid_boss_position)
+	if is_instance_valid(field.game.raid_boss_sprite):point=field.raid_display_world(field.game.raid_boss_sprite,field.game.raid_boss_position)
 	seal.position=Vector3(point.x,.032,point.y)
 	var radius: float=90.0*field.camera.size/field.size.y
 	var plane: PlaneMesh=seal.mesh;plane.size=Vector2(radius*2.22,radius*2.22/maxf(.01,absf(field.camera.global_basis.z.y)))

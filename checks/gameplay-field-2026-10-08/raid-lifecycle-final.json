@@ -1,0 +1,44 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 5,
+  "total": 5,
+  "results": [
+    {
+      "test": "CompactRaidUiSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.26,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nCOMPACT_RAID_UI checks=114 failures=[]\n"
+    },
+    {
+      "test": "RaidInputLifecycleSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.41,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_INPUT_LIFECYCLE checks=54 failures=[]\n"
+    },
+    {
+      "test": "RaidTouchLayoutSmokeTest.gd",
+      "passed": true,
+      "seconds": 35.78,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_TOUCH_LAYOUT checks=1044 failures=[]\n"
+    },
+    {
+      "test": "V82LifecycleSmokeTest.gd",
+      "passed": true,
+      "seconds": 12.8,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv82_lifecycle checks=75 failures=[] scene_rebuilds=18\n"
+    },
+    {
+      "test": "V836RaidLedgerSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.61,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv836_raid_ledger checks=63 failures=[]\n"
+    }
+  ]
+}

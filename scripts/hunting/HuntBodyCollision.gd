@@ -4,9 +4,17 @@ const HERO_CLEARANCE:=1.14
 const ENEMY_CLEARANCE:=1.12
 const CONTACT_CLEARANCE:=.76
 const EPSILON:=.002
-const DEPTH_SCALE:=.52
+const HERO_PIXELS:=66.0
+const HERO_HEIGHT_PIXELS:=86.4
+const CONTACT_PIXELS:=38.4
+const ENEMY_PIXELS:=20.0
+const PROJECTED_DEPTH:=.7071068 # The hunt camera is fixed at 45 degrees.
+const DEPTH_SCALE:=PROJECTED_DEPTH*HERO_PIXELS/HERO_HEIGHT_PIXELS
+static func projected_vector(vector: Vector2) -> Vector2:
+	return Vector2(vector.x,vector.y*PROJECTED_DEPTH)
 static func body_vector(vector: Vector2) -> Vector2:
-	# Camera compresses ground depth; reserve room for the upright painting.
+	# Projection and upright-body clearance are distinct. A 66px-wide hero
+	# needs 86.4px of depth clearance; its original painting is never shrunk.
 	return Vector2(vector.x,vector.y*DEPTH_SCALE)
 static func body_distance(left: Vector2,right: Vector2) -> float:
 	return body_vector(left-right).length()
@@ -21,8 +29,10 @@ static func _within_radius(left: Vector2,right: Vector2,radius: float) -> bool:
 	return squared<limit
 static func clearance(left: Dictionary,right: Dictionary) -> float:
 	var scale: float=maxf(float(left.get('pixel_scale',0)),float(right.get('pixel_scale',0)))
-	if scale>0:return (38.4 if left.hero!=right.hero else (66.0 if left.hero else 20.0))*scale
-	return CONTACT_CLEARANCE if left.hero!=right.hero else (HERO_CLEARANCE if left.hero else ENEMY_CLEARANCE)
+	return radius(bool(left.hero),bool(right.hero),scale)
+static func radius(left_hero: bool,right_hero: bool,scale: float=0.0) -> float:
+	if scale>0:return (CONTACT_PIXELS if left_hero!=right_hero else (HERO_PIXELS if left_hero else ENEMY_PIXELS))*scale
+	return CONTACT_CLEARANCE if left_hero!=right_hero else (HERO_CLEARANCE if left_hero else ENEMY_CLEARANCE)
 static func pixel_scale(main) -> float:
 	var field: Control=main.combat_labels.get('terrain')
 	if is_instance_valid(field) and field.has_method('actor_world_height') and field.size.y>0:return (field._rest_camera_size if field._rest_camera_size>0 else field.camera.size)/field.size.y
@@ -43,8 +53,8 @@ static func can_commit(main,hero: bool,id) -> bool:
 	# The same clearance rule without allocating every actor record per caster.
 	var point: Vector2=main._hero_field_position(str(id)) if hero else main.roaming_hunt.enemy_position(int(id))
 	var units:=pixel_scale(main)
-	var hero_radius:=((66. if hero else 38.4)*units if units>0 else (HERO_CLEARANCE if hero else CONTACT_CLEARANCE))-EPSILON
-	var enemy_radius:=((38.4 if hero else 20.)*units if units>0 else (CONTACT_CLEARANCE if hero else ENEMY_CLEARANCE))-EPSILON
+	var hero_radius:=radius(hero,true,units)-EPSILON
+	var enemy_radius:=radius(hero,false,units)-EPSILON
 	for other_id in main._alive_hero_ids():
 		if (hero and str(id)==str(other_id)) or int(main.hero_battle_state[other_id].get('hp',0))<=0:continue
 		if body_vector(point-main._hero_field_position(str(other_id))).length_squared()<hero_radius*hero_radius:return false
@@ -156,10 +166,12 @@ static func resolve(main,delta: float,previous_bodies: Array[Dictionary]=[]) -> 
 		if actor.hero:
 			var id:=str(actor.id)
 			var blocked_frame:=blocked_ids.has('true:'+id)
-			var before: Vector2=main.party_movement.positions[id]
+			# A restored/changed party may reach the body solve before its first
+			# movement tick. Use the same spawn fallback as actor collection.
+			var before: Vector2=main.party_movement.positions.get(id,main.expedition_position)
 			main.party_movement.positions[id]=actor.position
 			if blocked_frame:main.party_movement.velocities[id]=Vector2.ZERO
-			else:main.party_movement.velocities[id]+=Vector2(actor.position-before)/delta
+			else:main.party_movement.velocities[id]=Vector2(main.party_movement.velocities.get(id,Vector2.ZERO))+Vector2(actor.position-before)/delta
 			main.party_movement.distance_walked[id]=float(actor.walked)+before.distance_to(actor.position)
 			if blocked_frame:
 				for previous in previous_bodies:

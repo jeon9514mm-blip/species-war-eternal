@@ -57,10 +57,16 @@ func run() -> void:
 	var field=main.combat_labels.terrain;field.set_process(false);main.combat_running=false
 	CIRCLE.hunt(main,field,true);field._process(0)
 	var center: Vector2=field.project_world(main.expedition_position);var ids: Array=main._deployed_hero_ids()
+	# The later formation request supersedes the uniform 120px hunting ring.
+	# Keep the fixed painting size while validating the actual selected diagram.
+	var formation: Dictionary=preload('res://scripts/combat/BattleFormation.gd').projected_offsets(main.deployed_heroes,main.formation_id)
 	for i in ids.size():
 		var point: Vector2=field.project_world(main.party_movement.positions[ids[i]])-center
-		check(absf(point.length()-120)<.1,ids[i]+' starts at radius 120 logical pixels')
-		check(absf(wrapf(point.angle()-(-PI*.5+i*TAU/10),-PI,PI))<.002,ids[i]+' starts at 36 degree intervals')
+		check(point.distance_to(formation[ids[i]])<.1,ids[i]+' starts in the selected formation shown by the menu')
+		var gap:=INF
+		for j in ids.size():
+			if i!=j:gap=minf(gap,point.distance_to(field.project_world(main.party_movement.positions[ids[j]])-center))
+		check(gap>=71.9,ids[i]+' reserves native body clearance in the selected formation')
 		var actor=main.hero_map_sprites[i];check(absf(field._actor_height(actor,true)*field.size.y/field.camera.size-86.4)<.001,ids[i]+' remains 86.4 pixels after camera zoom')
 	check(is_equal_approx(absf(field.camera.global_basis.z.y),sqrt(.5)),'camera is 45 degrees')
 	var size: float=field.camera.size;main.combat_running=true

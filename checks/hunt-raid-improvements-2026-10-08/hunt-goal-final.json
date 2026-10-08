@@ -1,0 +1,12 @@
+{
+  "passed": 1,
+  "total": 1,
+  "rows": [
+    {
+      "script": "tests/regression/HuntGoalReservationSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.672,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_GOAL_RESERVATION checks=12 failures=[]\n"
+    }
+  ]
+}

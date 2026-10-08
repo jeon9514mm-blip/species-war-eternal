@@ -1,6 +1,5 @@
 extends RefCounted
 ## Reserve destinations as well as bodies. Casts stay fixed; walkers yield.
-const SPACING := 1.12
 const BODY=preload('res://scripts/hunting/HuntBodyCollision.gd')
 const ANGLES := [0.0,.45,-.45,.90,-.90,1.35,-1.35,1.8,-1.8,2.25,-2.25,2.7,-2.7,PI]
 static func _body_distance(left: Vector2,right: Vector2) -> float:
@@ -15,9 +14,11 @@ static func choose(director, id: String, start: Vector2, target: int, desired: V
 	var reach: float=director._decisions.spatial_range(int(state.get('range',1)))
 	# Leave travel room for a moving enemy during the committed attack windup.
 	var safe_reach: float=maxf(.12,reach-(.08 if melee else .24))
+	var hero_clearance: float=director.hero_clearance()
+	var contact_clearance: float=director.contact_clearance()
 	# A melee destination inside body clearance cannot become an attack stance.
-	var radius: float=minf(safe_reach,maxf(BODY.CONTACT_CLEARANCE+.06,desired.distance_to(enemy))) if melee else safe_reach
-	var settled: bool=start.distance_to(enemy)<=safe_reach and _body_distance(start,enemy)>=BODY.CONTACT_CLEARANCE
+	var radius: float=minf(safe_reach,maxf(contact_clearance+.06,desired.distance_to(enemy))) if melee else safe_reach
+	var settled: bool=start.distance_to(enemy)<=safe_reach and _body_distance(start,enemy)>=contact_clearance-BODY.EPSILON
 	var movement_proc: bool=bool(profile.get('moving',false)) and start.distance_to(desired)>.15
 	# A choice executes synchronously. Snapshot eligibility/positions once in
 	# the original iteration order; never retain HP or reservations across calls.
@@ -26,18 +27,18 @@ static func choose(director, id: String, start: Vector2, target: int, desired: V
 	for other in bodies:
 		if other==id or int(states.get(other,{}).get('hp',0))<=0:continue
 		body_ids.append(other);body_points.append(bodies[other])
-		if _body_distance(start,bodies[other])<BODY.HERO_CLEARANCE:settled=false
+		if _body_distance(start,bodies[other])<hero_clearance-BODY.EPSILON:settled=false
 	var enemy_indices: Array[int]=[]
 	var enemy_points: Array[Vector2]=[]
 	for i in points.size():
 		if i>=enemies.size() or int(enemies[i].get('hp',0))<=0:continue
 		enemy_indices.append(i);enemy_points.append(points[i])
-		if _body_distance(start,points[i])<BODY.CONTACT_CLEARANCE:settled=false
+		if _body_distance(start,points[i])<contact_clearance-BODY.EPSILON:settled=false
 		if not melee and start.distance_to(points[i])<1.10:settled=false
 	# Hold a legal firing position instead of continually chasing a rotating slot.
 	# Movement-triggered kits and threatened back-line heroes still reposition.
 	if settled and not movement_proc:
-		director.hunt_slots[id]={'target':target,'offset':start-enemy}
+		director.hunt_slots[id]={'target':target,'offset':start-enemy,'holding':true}
 		director.combat_goals[id]={'target':target,'goal':start}
 		return start
 	var body_goals: Array[Vector2]=[]
@@ -69,12 +70,12 @@ static func choose(director, id: String, start: Vector2, target: int, desired: V
 		if start.distance_to(enemy)<reach+1.0 and not director._clear_path(start,candidate):continue
 		var score: float=start.distance_to(candidate)*.18+candidate.distance_to(desired)*(.42 if melee else .12)
 		# Contact from the side leaves the enemy's face and the hero's body visible.
-		var contact_overlap:=maxf(0,BODY.CONTACT_CLEARANCE-_body_distance(candidate,enemy))
+		var contact_overlap:=maxf(0,contact_clearance-_body_distance(candidate,enemy))
 		score+=contact_overlap*contact_overlap*30.0
 		for body_index in body_points.size():
-			var overlap:=maxf(0,SPACING-_body_distance(candidate,body_points[body_index]))
+			var overlap:=maxf(0,hero_clearance-_body_distance(candidate,body_points[body_index]))
 			score+=overlap*overlap*body_weights[body_index]
-			var goal_overlap:=maxf(0,SPACING-_body_distance(candidate,body_goals[body_index]))
+			var goal_overlap:=maxf(0,hero_clearance-_body_distance(candidate,body_goals[body_index]))
 			score+=goal_overlap*goal_overlap*10.0
 		if not melee:
 			for enemy_index in enemy_points.size():
@@ -84,6 +85,6 @@ static func choose(director, id: String, start: Vector2, target: int, desired: V
 		if candidate==previous and int(memory.get('target',-1))==target:score-=.16
 		if candidate==start:score-=.08
 		if score<best_score:best=candidate;best_score=score
-	director.hunt_slots[id]={'target':target,'offset':best-enemy}
+	director.hunt_slots[id]={'target':target,'offset':best-enemy,'holding':false}
 	director.combat_goals[id]={'target':target,'goal':best}
 	return best

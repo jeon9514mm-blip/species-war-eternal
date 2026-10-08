@@ -1,0 +1,15 @@
+{
+  "phase": "before",
+  "sources": {
+    "scripts/app/Main.gd": "ec069cf81a62cd44745f21429821ef8626bb289e777a85353a5e19cb02b8ca54",
+    "scripts/hunting/HuntBodyCollision.gd": "102a9da230d16b6ff6a71c2f7953b5ba27c99425bddbb2ad1eaefe2d4ba71204",
+    "scripts/hunting/HuntPositionPlanner.gd": "970dde6bd39d52656c2b1649b29382b5d72008eea5bcb1f070047871b2cc1bc0",
+    "scripts/hunting/PartyMovementDirector.gd": "371e27d99d5a9ee80a44e085d142bd6fae074986675cf0099a3b01e6700cbcc4",
+    "scripts/maps3d/HeroCircleFormation.gd": "5f8693cbe261d241bfbf7c0bb1113af9eb34f641e694af05a31c3f1513cadb94",
+    "scripts/art/RaidArenaBattlefield.gd": "f87f4a775e727061c9e45a266e81495d408bc103c2c06add3b167b0d46417703",
+    "scripts/presentation/PresentationRuntime.gd": "7a77967f6a4187c87b2b424d2301ffebdc4ad65b15c0d5af95c88ac84e4b4737"
+  },
+  "player_save_used": false,
+  "concurrent_gpu_runs": false,
+  "live_production_timing": true
+}

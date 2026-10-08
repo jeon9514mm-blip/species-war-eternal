@@ -1,0 +1,20 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 1,
+  "total": 1,
+  "results": [
+    {
+      "test": "RaidContinuousMovementSmokeTest.gd",
+      "passed": true,
+      "seconds": 6.02,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_CROSSING {\"a\":[480.0,380.0],\"a_distance\":0.0,\"b\":[379.992797851563,380.006011962891],\"b_distance\":0.00938161183148623}\nRAID_CONTINUOUS_GEOMETRY checks=8 failures=[]\n"
+    }
+  ]
+}

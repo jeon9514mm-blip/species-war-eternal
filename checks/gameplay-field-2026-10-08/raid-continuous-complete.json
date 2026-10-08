@@ -1,0 +1,26 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 1,
+  "total": 2,
+  "results": [
+    {
+      "test": "RaidContinuousMovementSmokeTest.gd",
+      "passed": false,
+      "seconds": 18.66,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: crossing actors yield or slide until both reachable goals are reached\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] isolated_geometry (res://tests/regression/RaidContinuousMovementSmokeTest.gd:39)\n       [2] run (res://tests/regression/RaidContinuousMovementSmokeTest.gd:62)\nRAID_CONTINUOUS aurelia/gray_meadow {\"max_rally_step\":10.25,\"natural_minimum\":71.99365234375,\"natural_swept_minimum\":71.9936338002328,\"natural_traveled\":113.981763720512,\"rally_final_distance\":0.000335693359375,\"rally_initial_distance\":75.0}\nRAID_CONTINUOUS aurelia/forgotten_mine {\"max_rally_step\":10.25,\"natural_minimum\":71.99658203125,\"natural_swept_minimum\":71.996552086275,\"natural_traveled\":0.0,\"rally_final_distance\":0.000030517578125,\"rally_initial_distance\":75.0}\nRAID_CONTINUOUS aurelia/moonrest_forest {\"max_rally_step\":10.25,\"natural_minimum\":71.956169128418,\"natural_swept_minimum\":71.9561489744483,\"natural_traveled\":112.701225280762,\"rally_final_distance\":0.00152587890625,\"rally_initial_distance\":75.0}\nRAID_CONTINUOUS noxfera/gray_meadow {\"max_rally_step\":10.2500028610229,\"natural_minimum\":71.9358367919922,\"natural_swept_minimum\":71.9358244293128,\"natural_traveled\":362.360778689384,\"rally_final_distance\":0.437153577804565,\"rally_initial_distance\":75.0}\nRAID_CONTINUOUS noxfera/forgotten_mine {\"max_rally_step\":10.25,\"natural_minimum\":71.943244934082,\"natural_swept_minimum\":71.9432120682918,\"natural_traveled\":534.474201917648,\"rally_final_distance\":0.000030517578125,\"rally_initial_distance\":75.0}\nRAID_CONTINUOUS noxfera/moonrest_forest {\"max_rally_step\":10.25,\"natural_minimum\":71.953727722168,\"natural_swept_minimum\":71.9537652685638,\"natural_traveled\":589.270149230957,\"rally_final_distance\":0.0,\"rally_initial_distance\":75.0}\nRAID_CONTINUOUS_MOVEMENT checks=50 failures=[\"crossing actors yield or slide until both reachable goals are reached\"]\n"
+    },
+    {
+      "test": "RaidProjectedSpacingSmokeTest.gd",
+      "passed": true,
+      "seconds": 16.42,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_PROJECTED_SPACING aurelia/gray_meadow {\"boss_min\":143.455947875977,\"factor\":0.786995208269458,\"farthest_attack_distance\":263.032867431641,\"lowest_after_3s\":71.9936370849609,\"median\":136.906188964844,\"min\":71.9936370849609,\"p10\":72.0269393920898}\nRAID_PROJECTED_SPACING aurelia/forgotten_mine {\"boss_min\":192.453063964844,\"factor\":0.710145539573338,\"farthest_attack_distance\":334.999237060547,\"lowest_after_3s\":71.9965515136719,\"median\":143.998321533203,\"min\":71.9965515136719,\"p10\":71.9983215332031}\nRAID_PROJECTED_SPACING aurelia/moonrest_forest {\"boss_min\":161.977157592773,\"factor\":0.786995208269458,\"farthest_attack_distance\":274.343811035156,\"lowest_after_3s\":71.9561462402344,\"median\":138.771377563477,\"min\":71.9936676025391,\"p10\":72.0}\nRAID_PROJECTED_SPACING noxfera/gray_meadow {\"boss_min\":82.6147689819336,\"factor\":0.786995208269458,\"farthest_attack_distance\":272.310211181641,\"lowest_after_3s\":71.9358062744141,\"median\":140.638702392578,\"min\":71.9358062744141,\"p10\":71.9818878173828}\nRAID_PROJECTED_SPACING noxfera/forgotten_mine {\"boss_min\":122.364288330078,\"factor\":0.710145539573338,\"farthest_attack_distance\":322.182250976563,\"lowest_after_3s\":71.9432144165039,\"median\":140.735870361328,\"min\":71.9435958862305,\"p10\":72.1142807006836}\nRAID_PROJECTED_SPACING noxfera/moonrest_forest {\"boss_min\":146.799057006836,\"factor\":0.786995208269458,\"farthest_attack_distance\":295.689239501953,\"lowest_after_3s\":71.9537506103516,\"median\":141.244445800781,\"min\":71.9537506103516,\"p10\":72.1729965209961}\nRAID_PROJECTED_SPACING checks=342 failures=[]\n"
+    }
+  ]
+}

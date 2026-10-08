@@ -1,0 +1,167 @@
+{
+	"fastest_allowed_combat_coordinate_step": 10.25,
+	"gpu_fps_measurement": false,
+	"maximum_rally_speed": 205,
+	"normal_role_speed": 128,
+	"real_production_raid_geometry": true,
+	"renderer": "headless_dummy",
+	"results": [
+		{
+			"boss_clearance": 114.359016418457,
+			"faction": "aurelia",
+			"factor": 0.786995208269458,
+			"final_min_logical_gap": 71.9985656738281,
+			"hero_clearance": 91.4872131347656,
+			"largest": {
+				"after": [
+					420.323822021484,
+					461.606262207031
+				],
+				"before": [
+					420.053192138672,
+					468.000549316406
+				],
+				"id": "seria",
+				"logical_pixels": 5.05025339126587,
+				"step": 13
+			},
+			"max_combat_coordinate_step": 6.40001201629639,
+			"max_logical_pixel_step": 5.05025339126587,
+			"max_step_after_3_seconds": 0.0,
+			"seconds": 6.0,
+			"steps_above_fastest_205px_per_second": 0,
+			"zone": "gray_meadow"
+		},
+		{
+			"boss_clearance": 114.359016418457,
+			"faction": "aurelia",
+			"factor": 0.786995208269458,
+			"final_min_logical_gap": 71.9446105957031,
+			"hero_clearance": 91.4872131347656,
+			"largest": {
+				"after": [
+					420.113189697266,
+					471.201385498047
+				],
+				"before": [
+					420.033782958984,
+					474.400390625
+				],
+				"id": "seria",
+				"logical_pixels": 2.5206778049469,
+				"step": 5
+			},
+			"max_combat_coordinate_step": 3.19999051094055,
+			"max_logical_pixel_step": 2.5206778049469,
+			"max_step_after_3_seconds": 0.934883236885071,
+			"seconds": 6.0,
+			"steps_above_fastest_205px_per_second": 0,
+			"zone": "forgotten_mine"
+		},
+		{
+			"boss_clearance": 114.359016418457,
+			"faction": "aurelia",
+			"factor": 0.786995208269458,
+			"final_min_logical_gap": 72.1161346435547,
+			"hero_clearance": 91.4872131347656,
+			"largest": {
+				"after": [
+					420.084136962891,
+					469.600006103516
+				],
+				"before": [
+					420.068634033203,
+					476.0
+				],
+				"id": "seria",
+				"logical_pixels": 5.03680229187012,
+				"step": 9
+			},
+			"max_combat_coordinate_step": 6.4000129699707,
+			"max_logical_pixel_step": 5.06185007095337,
+			"max_step_after_3_seconds": 6.4000039100647,
+			"seconds": 6.0,
+			"steps_above_fastest_205px_per_second": 0,
+			"zone": "moonrest_forest"
+		},
+		{
+			"boss_clearance": 114.359016418457,
+			"faction": "noxfera",
+			"factor": 0.786995208269458,
+			"final_min_logical_gap": 69.044303894043,
+			"hero_clearance": 91.4872131347656,
+			"largest": {
+				"after": [
+					529.238159179688,
+					311.49365234375
+				],
+				"before": [
+					523.83447265625,
+					308.064300537109
+				],
+				"id": "ragna",
+				"logical_pixels": 8.92324733734131,
+				"step": 2
+			},
+			"max_combat_coordinate_step": 6.40002202987671,
+			"max_logical_pixel_step": 10.0009851455688,
+			"max_step_after_3_seconds": 6.40000867843628,
+			"seconds": 6.0,
+			"steps_above_fastest_205px_per_second": 0,
+			"zone": "gray_meadow"
+		},
+		{
+			"boss_clearance": 114.359016418457,
+			"faction": "noxfera",
+			"factor": 0.786995208269458,
+			"final_min_logical_gap": 72.0824890136719,
+			"hero_clearance": 91.4872131347656,
+			"largest": {
+				"after": [
+					548.899780273438,
+					332.140441894531
+				],
+				"before": [
+					543.164367675781,
+					329.300476074219
+				],
+				"id": "bron",
+				"logical_pixels": 9.30008983612061,
+				"step": 108
+			},
+			"max_combat_coordinate_step": 6.40002870559692,
+			"max_logical_pixel_step": 10.0736083984375,
+			"max_step_after_3_seconds": 6.40002870559692,
+			"seconds": 6.0,
+			"steps_above_fastest_205px_per_second": 0,
+			"zone": "forgotten_mine"
+		},
+		{
+			"boss_clearance": 114.359016418457,
+			"faction": "noxfera",
+			"factor": 0.786995208269458,
+			"final_min_logical_gap": 72.1753692626953,
+			"hero_clearance": 91.4872131347656,
+			"largest": {
+				"after": [
+					521.401123046875,
+					290.0
+				],
+				"before": [
+					515.001098632813,
+					290.0
+				],
+				"id": "bron",
+				"logical_pixels": 10.0736083984375,
+				"step": 36
+			},
+			"max_combat_coordinate_step": 6.4000244140625,
+			"max_logical_pixel_step": 10.0736083984375,
+			"max_step_after_3_seconds": 6.4000244140625,
+			"seconds": 6.0,
+			"steps_above_fastest_205px_per_second": 0,
+			"zone": "moonrest_forest"
+		}
+	],
+	"step_seconds": 0.05
+}

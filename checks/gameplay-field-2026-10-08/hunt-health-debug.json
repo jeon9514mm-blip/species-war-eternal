@@ -1,0 +1,648 @@
+[
+	{
+		"bars": [
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4805,
+				"id": "leonhardt",
+				"in_tree": true,
+				"max_hp": 4805,
+				"position": [
+					835.228454589844,
+					324.7900390625
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": true
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 3841,
+				"id": "mira",
+				"in_tree": true,
+				"max_hp": 3841,
+				"position": [
+					763.187805175781,
+					417.190185546875
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": true
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4149,
+				"id": "elisia",
+				"in_tree": true,
+				"max_hp": 4149,
+				"position": [
+					691.147155761719,
+					509.590301513672
+				],
+				"size": [
+					32.0,
+					4.00003051757813
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": true
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4325,
+				"id": "kairen",
+				"in_tree": true,
+				"max_hp": 4325,
+				"position": [
+					763.187805175781,
+					509.590301513672
+				],
+				"size": [
+					32.0,
+					4.00003051757813
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": true
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 5283,
+				"id": "orwin",
+				"in_tree": true,
+				"max_hp": 5283,
+				"position": [
+					835.228454589844,
+					417.190185546875
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": true
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4104,
+				"id": "seria",
+				"in_tree": true,
+				"max_hp": 4104,
+				"position": [
+					691.147155761719,
+					324.7900390625
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": true
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4572,
+				"id": "astel",
+				"in_tree": true,
+				"max_hp": 4572,
+				"position": [
+					619.106506347656,
+					417.190185546875
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": true
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4580,
+				"id": "darius",
+				"in_tree": true,
+				"max_hp": 4580,
+				"position": [
+					835.228454589844,
+					509.590301513672
+				],
+				"size": [
+					32.0,
+					4.00003051757813
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": true
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4774,
+				"id": "lunea",
+				"in_tree": true,
+				"max_hp": 4774,
+				"position": [
+					691.147155761719,
+					417.190185546875
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": true
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4918,
+				"id": "caelum",
+				"in_tree": true,
+				"max_hp": 4918,
+				"position": [
+					763.187805175781,
+					324.7900390625
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": true
+			}
+		],
+		"label": "after-legacy-map-motion",
+		"queued_health": 0,
+		"unowned": []
+	},
+	{
+		"bars": [
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4805,
+				"id": "leonhardt",
+				"in_tree": false,
+				"max_hp": 4805,
+				"position": [
+					835.228454589844,
+					324.7900390625
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 3841,
+				"id": "mira",
+				"in_tree": false,
+				"max_hp": 3841,
+				"position": [
+					763.187805175781,
+					417.190185546875
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4149,
+				"id": "elisia",
+				"in_tree": false,
+				"max_hp": 4149,
+				"position": [
+					691.147155761719,
+					509.590301513672
+				],
+				"size": [
+					32.0,
+					4.00003051757813
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4325,
+				"id": "kairen",
+				"in_tree": false,
+				"max_hp": 4325,
+				"position": [
+					763.187805175781,
+					509.590301513672
+				],
+				"size": [
+					32.0,
+					4.00003051757813
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 5283,
+				"id": "orwin",
+				"in_tree": false,
+				"max_hp": 5283,
+				"position": [
+					835.228454589844,
+					417.190185546875
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4104,
+				"id": "seria",
+				"in_tree": false,
+				"max_hp": 4104,
+				"position": [
+					691.147155761719,
+					324.7900390625
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4572,
+				"id": "astel",
+				"in_tree": false,
+				"max_hp": 4572,
+				"position": [
+					619.106506347656,
+					417.190185546875
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4580,
+				"id": "darius",
+				"in_tree": false,
+				"max_hp": 4580,
+				"position": [
+					835.228454589844,
+					509.590301513672
+				],
+				"size": [
+					32.0,
+					4.00003051757813
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4774,
+				"id": "lunea",
+				"in_tree": false,
+				"max_hp": 4774,
+				"position": [
+					691.147155761719,
+					417.190185546875
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4918,
+				"id": "caelum",
+				"in_tree": false,
+				"max_hp": 4918,
+				"position": [
+					763.187805175781,
+					324.7900390625
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			}
+		],
+		"label": "after-field-presentation",
+		"queued_health": 0,
+		"unowned": []
+	},
+	{
+		"bars": [
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4430,
+				"id": "leonhardt",
+				"in_tree": false,
+				"max_hp": 4430,
+				"position": [
+					799.208129882813,
+					324.7900390625
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 3541,
+				"id": "mira",
+				"in_tree": false,
+				"max_hp": 3541,
+				"position": [
+					727.16748046875,
+					324.7900390625
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 3826,
+				"id": "elisia",
+				"in_tree": false,
+				"max_hp": 3826,
+				"position": [
+					655.126831054688,
+					417.190185546875
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 3988,
+				"id": "kairen",
+				"in_tree": false,
+				"max_hp": 3988,
+				"position": [
+					727.16748046875,
+					417.190185546875
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4871,
+				"id": "orwin",
+				"in_tree": false,
+				"max_hp": 4871,
+				"position": [
+					799.208129882813,
+					417.190185546875
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 3784,
+				"id": "seria",
+				"in_tree": false,
+				"max_hp": 3784,
+				"position": [
+					727.16748046875,
+					509.590301513672
+				],
+				"size": [
+					32.0,
+					4.00003051757813
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4214,
+				"id": "astel",
+				"in_tree": false,
+				"max_hp": 4214,
+				"position": [
+					655.126831054688,
+					509.590301513672
+				],
+				"size": [
+					32.0,
+					4.00003051757813
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4223,
+				"id": "darius",
+				"in_tree": false,
+				"max_hp": 4223,
+				"position": [
+					799.208129882813,
+					509.590301513672
+				],
+				"size": [
+					32.0,
+					4.00003051757813
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": 4401,
+				"id": "lunea",
+				"in_tree": false,
+				"max_hp": 4401,
+				"position": [
+					655.126831054688,
+					324.7900390625
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": false,
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"background": "151a1eff",
+				"fill": "328263ff",
+				"hp": -1,
+				"id": "caelum",
+				"in_tree": false,
+				"max_hp": -1,
+				"position": [
+					763.187805175781,
+					324.7900390625
+				],
+				"size": [
+					32.0,
+					4.0
+				],
+				"stale": true,
+				"value": 100.0,
+				"visible": false
+			}
+		],
+		"label": "after-background-party-edit",
+		"queued_health": 0,
+		"unowned": [
+			{
+				"fill": "328263ff",
+				"path": "/root/@Control@2/@Control@205/FieldActorClip/FieldActors/@ProgressBar@225",
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"fill": "328263ff",
+				"path": "/root/@Control@2/@Control@205/FieldActorClip/FieldActors/@ProgressBar@226",
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"fill": "328263ff",
+				"path": "/root/@Control@2/@Control@205/FieldActorClip/FieldActors/@ProgressBar@227",
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"fill": "328263ff",
+				"path": "/root/@Control@2/@Control@205/FieldActorClip/FieldActors/@ProgressBar@228",
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"fill": "328263ff",
+				"path": "/root/@Control@2/@Control@205/FieldActorClip/FieldActors/@ProgressBar@229",
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"fill": "328263ff",
+				"path": "/root/@Control@2/@Control@205/FieldActorClip/FieldActors/@ProgressBar@230",
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"fill": "328263ff",
+				"path": "/root/@Control@2/@Control@205/FieldActorClip/FieldActors/@ProgressBar@231",
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"fill": "328263ff",
+				"path": "/root/@Control@2/@Control@205/FieldActorClip/FieldActors/@ProgressBar@232",
+				"value": 100.0,
+				"visible": false
+			},
+			{
+				"fill": "328263ff",
+				"path": "/root/@Control@2/@Control@205/FieldActorClip/FieldActors/@ProgressBar@233",
+				"value": 100.0,
+				"visible": false
+			}
+		]
+	}
+]

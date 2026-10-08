@@ -1,0 +1,20 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 0,
+  "total": 1,
+  "results": [
+    {
+      "test": "RaidContinuousMovementSmokeTest.gd",
+      "passed": false,
+      "seconds": 6.02,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_CROSSING {\"a\":[412.416656494141,384.288116455078],\"a_distance\":67.7192459106445,\"b\":[452.734252929688,372.6064453125],\"b_distance\":73.1090698242188}\nERROR: crossing actors yield or slide until both reachable goals are reached\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] isolated_geometry (res://tests/regression/RaidContinuousMovementSmokeTest.gd:40)\n       [2] run (res://tests/regression/RaidContinuousMovementSmokeTest.gd:63)\nRAID_CONTINUOUS_GEOMETRY checks=8 failures=[\"crossing actors yield or slide until both reachable goals are reached\"]\n"
+    }
+  ]
+}

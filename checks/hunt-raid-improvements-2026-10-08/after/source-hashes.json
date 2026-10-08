@@ -1,0 +1,24 @@
+{
+  "phase": "after",
+  "sources": {
+    "scripts/app/Main.gd": "71fa144515626ac22d4d48fbc84ee9067864c30b7c7c14117b7211d4cd090218",
+    "scripts/combat/BattleFormation.gd": "70ba055108e58abceba5e98cc96f4555f637f4fb09a1ef0f7786269a77c2dd9e",
+    "scripts/persistence/BackgroundHunt.gd": "47fa12e8cdfd8e437db2c1d80cc6d9a622e2687e68a5fd9d031fd9f4ee596434",
+    "scripts/hunting/HuntBodyCollision.gd": "23e1ed271a7c6bbfd5e018ec459048b35e2406c79fd10d0d5fb85fa14898dc36",
+    "scripts/hunting/HuntPositionPlanner.gd": "63939e82735a4eff0d354632d73afe20fac5787809505f4caaba760a8b106065",
+    "scripts/hunting/PartyMovementDirector.gd": "17e98ba9eac2e3f97eef72f99a5070203201980de4b3e8362463d27518587ce3",
+    "scripts/hunting/HuntProductivity.gd": "01b23ae80afa0a6d7ae58972db2a8ae0fd4d4f912d22dfc2727c8f372c5369c9",
+    "scripts/maps3d/Battlefield3DView.gd": "3848d810ba7fa1ca4102d94a9875c60cf05abf7263166ec16db57a276a19f2e6",
+    "scripts/maps3d/HeroCircleFormation.gd": "0650de732d3feab1894ee4d1508793382468652841ce0de011db577fcd919dad",
+    "scripts/art/RaidArenaBattlefield.gd": "c68caa81d420e9d365425a0312287c041e8d67f7d8a222aff04b613ce79c5323",
+    "scripts/presentation/PresentationRuntime.gd": "9dbfd5d7f820516872e1daab31e944e6646aa81c944b8f48a642d42ed67368f4",
+    "scripts/maps3d/RaidEncounterArena.gd": "08a4e3b7c97df5629cc23aa67f6eca45d435a34c19733d2bbc62868e6066c6fa",
+    "scripts/raid/RaidBattlefield.gd": "e26583c7102ca374762c4820ed902fba7e46b9a30db4df0eb11a36f5d8667bc1",
+    "scripts/maps3d/RaidFinalAtmosphere.gd": "94c0c941b94fb9b3069184f4c5021c6dbef3580de710c103b2efa9c181f90a30",
+    "scripts/portrait/RaidSelectionIndicator.gd": "b5d5a4095bc5be3cadc90b0942780e56986a5f2657e4fc634d7dd13439bacef5",
+    "shaders/RaidArenaPBR.gdshader": "1951bcb01e6a5a9d6fec4cd6fe1f2d46bc7d301e3e14fd3466e789fbafc1d589"
+  },
+  "player_save_used": false,
+  "concurrent_gpu_runs": false,
+  "live_production_timing": true
+}

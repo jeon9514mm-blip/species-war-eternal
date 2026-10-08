@@ -1,0 +1,13 @@
+{
+  "player_save_used": false,
+  "performance_measurement": false,
+  "results": [
+    {
+      "script": "res://tools/diagnostics/combat-improvements-2026-10-08/CaptureRaidArenas.gd",
+      "native": true,
+      "passed": true,
+      "seconds": 18.156,
+      "returncode": 0
+    }
+  ]
+}

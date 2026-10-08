@@ -1,0 +1,25 @@
+{
+  "captured_utc": "2026-10-08T11:10:51.158768+00:00",
+  "passed": true,
+  "rendering_method": "mobile",
+  "files": {
+    "capture.log": "d034aa8177d534188ef8cd1cbaf3d3404d8d1eac8faf8fcf349bbd6fe5982617",
+    "formation-assault-peak-zoom.png": "b147b28a34430c28d02ce71bc41f51f0610b8e3896cedd93a674c860fdec6310",
+    "formation-balanced-peak-zoom.png": "c842235ef9e4aceb3dbbdaf8d227feafa7f1b29a172e724404cdb06d6f3b44d1",
+    "formation-bulwark-peak-zoom.png": "7965aa327648b7bdeb63653292562e4286845d338227ff18866bd8c1812f86e7",
+    "formation-volley-peak-zoom.png": "e5175521c5717efd549a7a0144cd0a20dc64237648781b01e37c2dd3ee6be302",
+    "hunt-aurelia.png": "8f44908b08f837bde28b072ec30433414a35c7c66242483b2307a3a700eb182b",
+    "hunt-noxfera.png": "a31a453b02d43b48a7c27dbbbb63414c7a02cf1a948016813606b709dc0e00fe",
+    "observations.json": "b8b59c35cc5b87363e029efeb9dda3d3f1b7359d611c31cd3e22cfb8f47ea0fa",
+    "ready-aurelia.png": "b8ed524b10bfbbc0fb9991ed5888e88b9ae89a65c1d07742fa60fae720511408",
+    "ready-noxfera.png": "bc89b168b5f008b05796f3355c3c215789c9af1e2d501233d7562c1ea5aff795"
+  },
+  "sources": {
+    "scripts/hunting/HuntBodyCollision.gd": "23e1ed271a7c6bbfd5e018ec459048b35e2406c79fd10d0d5fb85fa14898dc36",
+    "scripts/hunting/HuntPositionPlanner.gd": "63939e82735a4eff0d354632d73afe20fac5787809505f4caaba760a8b106065",
+    "scripts/hunting/PartyMovementDirector.gd": "17e98ba9eac2e3f97eef72f99a5070203201980de4b3e8362463d27518587ce3",
+    "scripts/combat/BattleFormation.gd": "70ba055108e58abceba5e98cc96f4555f637f4fb09a1ef0f7786269a77c2dd9e",
+    "scripts/maps3d/HeroCircleFormation.gd": "0650de732d3feab1894ee4d1508793382468652841ce0de011db577fcd919dad",
+    "scripts/maps3d/Battlefield3DView.gd": "3848d810ba7fa1ca4102d94a9875c60cf05abf7263166ec16db57a276a19f2e6"
+  }
+}

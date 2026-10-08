@@ -1,0 +1,1540 @@
+{
+  "android_measured": false,
+  "assets": [],
+  "device": "NVIDIA GeForce GTX 1050",
+  "engine": "4.7.2-stable (official)",
+  "profiles": [],
+  "renderer": "mobile",
+  "samples": [
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.9203109741211,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 0.028937
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.772346496582,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 0.20075
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8957290649414,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 0.417526
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.7760162353516,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 0.601517
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.7717742919922,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 0.835482
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.7648544311523,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 1.034499
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.9351654052734,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 1.227943
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.851203918457,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 1.422633
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8404846191406,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 1.619766
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.9001007080078,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 1.801187
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.7853012084961,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 2.002419
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8710632324219,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 2.20394
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8492889404297,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 2.423198
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8296051025391,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 2.630656
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8270645141602,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 2.825701
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8316802978516,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 3.01693
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8310470581055,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 3.232357
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.906120300293,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 3.405326
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8549499511719,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 3.622786
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.120361328125,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 3.81928
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8866348266602,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 4.027587
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.9468841552734,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 4.231068
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8881378173828,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 4.425313
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8690490722656,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 4.622249
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8436431884766,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 4.801088
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.828254699707,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 5.036233
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.7952270507813,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 5.225227
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.1201324462891,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 5.418712
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.0485534667969,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 5.619716
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 276
+      },
+      "corps": 0,
+      "enemies_alive": 14,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.0512237548828,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 5.820994
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 276
+      },
+      "corps": 0,
+      "enemies_alive": 14,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8913040161133,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 6.011409
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 276
+      },
+      "corps": 0,
+      "enemies_alive": 14,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8584747314453,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 6.221042
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 276
+      },
+      "corps": 0,
+      "enemies_alive": 14,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.7857055664063,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 6.401213
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 276
+      },
+      "corps": 0,
+      "enemies_alive": 14,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.0083923339844,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 6.635023
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 253
+      },
+      "corps": 0,
+      "enemies_alive": 13,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.1202697753906,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 6.826178
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 231
+      },
+      "corps": 0,
+      "enemies_alive": 12,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.1203460693359,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 7.011854
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 210
+      },
+      "corps": 0,
+      "enemies_alive": 11,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.1200256347656,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 7.225144
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 210
+      },
+      "corps": 0,
+      "enemies_alive": 11,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.1200942993164,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 7.421802
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 210
+      },
+      "corps": 0,
+      "enemies_alive": 11,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8315124511719,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 7.621584
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 190
+      },
+      "corps": 0,
+      "enemies_alive": 10,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8385696411133,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 7.815276
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 171
+      },
+      "corps": 0,
+      "enemies_alive": 9,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.1200180053711,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 8.018652
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 153
+      },
+      "corps": 0,
+      "enemies_alive": 8,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.1199035644531,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 8.235251
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 153
+      },
+      "corps": 0,
+      "enemies_alive": 8,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.1201400756836,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 8.40095
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 153
+      },
+      "corps": 0,
+      "enemies_alive": 8,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.1198959350586,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 8.609653
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 120
+      },
+      "corps": 0,
+      "enemies_alive": 6,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.9374465942383,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 8.809967
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 120
+      },
+      "corps": 0,
+      "enemies_alive": 6,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.6501235961914,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 9.014531
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 120
+      },
+      "corps": 0,
+      "enemies_alive": 6,
+      "faction": "aurelia",
+      "hero_gap_pixels": 65.8312454223633,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 9.217134
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 105
+      },
+      "corps": 0,
+      "enemies_alive": 5,
+      "faction": "aurelia",
+      "hero_gap_pixels": 75.9387664794922,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 9.403728
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 435
+      },
+      "corps": 0,
+      "enemies_alive": 20,
+      "faction": "aurelia",
+      "hero_gap_pixels": 75.7963714599609,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 9.624134
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 435
+      },
+      "corps": 0,
+      "enemies_alive": 20,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.1202697753906,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 9.809652
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 435
+      },
+      "corps": 0,
+      "enemies_alive": 20,
+      "faction": "aurelia",
+      "hero_gap_pixels": 66.1201782226563,
+      "heroes_alive": 10,
+      "hp": 45351,
+      "seconds": 10.03169
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.1199569702148,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 0.029435
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.1201400756836,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 0.229011
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8985900878906,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 0.420854
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8904190063477,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 0.615463
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.9258728027344,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 0.811244
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.775032043457,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 1.014622
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.764533996582,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 1.22809
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.9119644165039,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 1.42768
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8845672607422,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 1.633538
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8509674072266,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 1.819945
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.9184646606445,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 2.037996
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8127670288086,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 2.227473
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8517074584961,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 2.424767
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.7976531982422,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 2.617404
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.814338684082,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 2.823134
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8249435424805,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 3.024204
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8173904418945,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 3.224565
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8772430419922,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 3.43413
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8326873779297,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 3.632164
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.9590225219727,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 3.824203
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.9093246459961,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 4.031072
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.9681549072266,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 4.231493
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.7790298461914,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 4.43183
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.9325332641602,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 4.639664
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.0541076660156,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 4.816874
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.7621231079102,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 5.000498
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.9108047485352,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 5.226742
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8239135742188,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 5.426811
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.120002746582,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 5.614749
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 300
+      },
+      "corps": 0,
+      "enemies_alive": 15,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.1202774047852,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 5.810557
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 276
+      },
+      "corps": 0,
+      "enemies_alive": 14,
+      "faction": "noxfera",
+      "hero_gap_pixels": 69.4491729736328,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 6.025356
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 276
+      },
+      "corps": 0,
+      "enemies_alive": 14,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.1203079223633,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 6.227117
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 276
+      },
+      "corps": 0,
+      "enemies_alive": 14,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.0777130126953,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 6.428563
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 276
+      },
+      "corps": 0,
+      "enemies_alive": 14,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.1203002929688,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 6.607603
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 253
+      },
+      "corps": 0,
+      "enemies_alive": 13,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.7738342285156,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 6.828126
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 253
+      },
+      "corps": 0,
+      "enemies_alive": 13,
+      "faction": "noxfera",
+      "hero_gap_pixels": 68.8825531005859,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 7.012506
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 231
+      },
+      "corps": 0,
+      "enemies_alive": 12,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.522705078125,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 7.219565
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 231
+      },
+      "corps": 0,
+      "enemies_alive": 12,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8197784423828,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 7.422245
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 210
+      },
+      "corps": 0,
+      "enemies_alive": 11,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.1378479003906,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 7.62675
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 190
+      },
+      "corps": 0,
+      "enemies_alive": 10,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.0104141235352,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 7.823705
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 190
+      },
+      "corps": 0,
+      "enemies_alive": 10,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8669052124023,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 8.005903
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 190
+      },
+      "corps": 0,
+      "enemies_alive": 10,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8492050170898,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 8.222083
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 171
+      },
+      "corps": 0,
+      "enemies_alive": 9,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.1202545166016,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 8.421291
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 171
+      },
+      "corps": 0,
+      "enemies_alive": 9,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.1203079223633,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 8.619886
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 171
+      },
+      "corps": 0,
+      "enemies_alive": 9,
+      "faction": "noxfera",
+      "hero_gap_pixels": 74.9712371826172,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 8.820836
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 153
+      },
+      "corps": 0,
+      "enemies_alive": 8,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.1202850341797,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 9.015635
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 153
+      },
+      "corps": 0,
+      "enemies_alive": 8,
+      "faction": "noxfera",
+      "hero_gap_pixels": 66.1203460693359,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 9.209896
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 120
+      },
+      "corps": 0,
+      "enemies_alive": 6,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.8123245239258,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 9.415602
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 120
+      },
+      "corps": 0,
+      "enemies_alive": 6,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.9535064697266,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 9.615697
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 105
+      },
+      "corps": 0,
+      "enemies_alive": 5,
+      "faction": "noxfera",
+      "hero_gap_pixels": 65.9193267822266,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 9.821
+    },
+    {
+      "body_overlap": {
+        "enemy_enemy": 0,
+        "hero_enemy": 0,
+        "hero_hero": 0,
+        "pairs": 465
+      },
+      "corps": 0,
+      "enemies_alive": 21,
+      "faction": "noxfera",
+      "hero_gap_pixels": 75.5720520019531,
+      "heroes_alive": 10,
+      "hp": 45261,
+      "seconds": 10.077833
+    }
+  ]
+}

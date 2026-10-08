@@ -13,6 +13,7 @@ var _frame_samples := PackedFloat32Array()
 var _sample_cursor: int = 0
 var settings_error: int = OK
 var _last_scene: String = ""
+var _last_frame_us: int = 0
 
 func bind(host: Node) -> void:
 	game = host; name = "PresentationRuntime"
@@ -38,17 +39,32 @@ func apply() -> void:
 	if DisplayServer.get_name() != "headless": Engine.max_fps = _applied_fps
 	sync_context()
 
-func _process(delta: float) -> void:
+func _record_frame(now: int) -> float:
+	# Hit-stop scales delta and can end before this callback. Measure the wall
+	# interval directly so slow motion cannot report fictitious render FPS.
+	if game._application_suspended:
+		_last_frame_us = 0
+		return 0.0
+	var previous := _last_frame_us
+	_last_frame_us = now
+	if previous <= 0 or now <= previous: return 0.0
+	var seconds := float(now - previous) / 1000000.0
+	if _frame_samples.size() < 180: _frame_samples.append(seconds * 1000.0)
+	else: _frame_samples[_sample_cursor] = seconds * 1000.0; _sample_cursor = (_sample_cursor + 1) % 180
+	return seconds
+
+func _process(_delta: float) -> void:
 	if not is_instance_valid(game): return
-	if not game._application_suspended and is_finite(delta) and delta > 0.0:
-		if _frame_samples.size() < 180: _frame_samples.append(delta * 1000.0)
-		else: _frame_samples[_sample_cursor] = delta * 1000.0; _sample_cursor = (_sample_cursor + 1) % 180
-	_elapsed += delta
+	_elapsed += _record_frame(Time.get_ticks_usec())
 	if _elapsed >= 0.20: _elapsed = 0.0; sync_context()
 
 func sync_context() -> void:
-	if not is_instance_valid(game) or not is_instance_valid(audio): return
+	if not is_instance_valid(game): return
 	var paused: bool = bool(game._application_suspended)
+	# Some mobile platforms stop callbacks as soon as the pause notification
+	# arrives; clear the origin here even if no suspended frame is processed.
+	if paused: _last_frame_us = 0
+	if not is_instance_valid(audio): return
 	haptics.suspended = paused
 	var combat_pause: bool = str(game.active_screen) == "combat" and not bool(game.combat_running)
 	var audio_pause: bool = paused
