@@ -1,676 +1,783 @@
 {
   "passed": true,
   "error": "",
-  "comparisons": 71,
-  "steps_completed": 93,
-  "steps_total": 93,
-  "start_frame": 55,
-  "end_frame": 760,
-  "elapsed_seconds": 12.9019985,
+  "comparisons": 93,
+  "steps_completed": 111,
+  "steps_total": 111,
+  "start_frame": 53,
+  "end_frame": 1787,
+  "elapsed_seconds": 30.8843918,
   "batch_editor": false,
   "virtual_qa_mouse": false,
   "trace": [
     {
       "step": "verify party labels do not overlap after font import",
-      "frame": 56
+      "frame": 54
+    },
+    {
+      "step": "observe manual chain input availability",
+      "frame": 55
+    },
+    {
+      "input": "mouse_down",
+      "label": "manual-chain-4",
+      "x": 1356.00012,
+      "y": 254.5,
+      "frame": 77
+    },
+    {
+      "step": "cast a ready chain tile through native pointer",
+      "frame": 77
+    },
+    {
+      "step": "verify exact manual route played an original skill",
+      "frame": 81
+    },
+    {
+      "step": "capture actual manual skill strip",
+      "frame": 82
     },
     {
       "input": "mouse_down",
       "label": "영웅",
       "x": 583.500061,
       "y": 31.9999542,
-      "frame": 57
+      "frame": 83
     },
     {
       "step": "open hero navigation",
-      "frame": 57
+      "frame": 83
     },
     {
       "input": "mouse_down",
       "label": "leonhardt",
       "x": 1641.50012,
-      "y": 824.5,
-      "frame": 61
+      "y": 669.5,
+      "frame": 87
     },
     {
       "step": "open original Leonhardt portrait",
-      "frame": 61
+      "frame": 87
     },
     {
       "input": "mouse_down",
       "label": "성장 · 장비",
       "x": 1639.0,
       "y": 639.0,
-      "frame": 65
+      "frame": 91
     },
     {
       "step": "open growth panel",
-      "frame": 65
+      "frame": 91
     },
     {
       "step": "capture research state",
-      "frame": 69
+      "frame": 95
     },
     {
       "input": "mouse_down",
       "label": "연구 +1",
       "x": 1795.50012,
       "y": 558.0,
-      "frame": 70
+      "frame": 96
     },
     {
       "step": "research offense through pointer",
-      "frame": 70
+      "frame": 96
     },
     {
       "step": "verify research affects same live actor",
-      "frame": 74
+      "frame": 100
     },
     {
       "input": "mouse_down",
       "label": "가방",
       "x": 1336.50012,
       "y": 31.9999542,
-      "frame": 75
+      "frame": 101
     },
     {
       "step": "open bag navigation",
-      "frame": 75
+      "frame": 101
     },
     {
       "step": "capture bag state",
-      "frame": 79
+      "frame": 105
     },
     {
       "input": "mouse_down",
       "label": "추천 장착",
       "x": 1815.50012,
       "y": 839.0,
-      "frame": 80
+      "frame": 106
     },
     {
       "step": "recommended equipment through pointer",
-      "frame": 80
+      "frame": 106
     },
     {
       "step": "verify recommendation preserves wallet and protected gear",
-      "frame": 84
+      "frame": 110
     },
     {
       "input": "mouse_down",
       "label": "legacy_equipped_leonhardt_weapon",
       "x": 1652.00012,
       "y": 710.0,
-      "frame": 85
+      "frame": 111
     },
     {
       "step": "select displaced equipment",
-      "frame": 85
+      "frame": 111
     },
     {
       "step": "capture equipment enhancement",
-      "frame": 89
+      "frame": 115
     },
     {
       "input": "mouse_down",
       "label": "강화 ·",
       "x": 1648.50012,
       "y": 582.0,
-      "frame": 90
+      "frame": 116
     },
     {
       "step": "enhance equipment through pointer",
-      "frame": 90
+      "frame": 116
     },
     {
       "step": "verify exact enhancement level and cost",
-      "frame": 94
+      "frame": 120
     },
     {
       "input": "mouse_down",
       "label": "장비 잠금",
       "x": 1648.50012,
       "y": 528.0,
-      "frame": 95
+      "frame": 121
     },
     {
       "step": "lock gear through pointer",
-      "frame": 95
+      "frame": 121
     },
     {
       "step": "verify lock disables decomposition",
-      "frame": 99
+      "frame": 125
     },
     {
       "input": "mouse_down",
       "label": "잠금 해제",
       "x": 1648.50012,
       "y": 528.0,
-      "frame": 100
+      "frame": 126
     },
     {
       "step": "unlock through pointer",
-      "frame": 100
+      "frame": 126
     },
     {
       "step": "verify unlock",
-      "frame": 104
+      "frame": 130
     },
     {
       "input": "mouse_down",
       "label": "연계 순서",
       "x": 1844.5,
       "y": 189.999985,
-      "frame": 105
+      "frame": 131
     },
     {
       "step": "open skill-chain editor",
-      "frame": 105
+      "frame": 131
     },
     {
       "step": "capture chain order",
-      "frame": 109
+      "frame": 135
     },
     {
       "input": "mouse_down",
       "label": "↓",
       "x": 1832.00012,
       "y": 716.0,
-      "frame": 110
+      "frame": 136
     },
     {
       "step": "reorder chain through pointer",
-      "frame": 110
+      "frame": 136
     },
     {
       "step": "verify reordered chain",
-      "frame": 114
+      "frame": 140
     },
     {
       "input": "mouse_down",
       "label": "자동 연계 ON",
       "x": 1654.50012,
       "y": 851.0,
-      "frame": 115
+      "frame": 141
     },
     {
       "step": "disable auto chain through pointer",
-      "frame": 115
+      "frame": 141
     },
     {
       "step": "verify disabled chain",
-      "frame": 119
+      "frame": 145
     },
     {
       "input": "mouse_down",
       "label": "자동 연계 OFF",
       "x": 1654.50012,
       "y": 851.0,
-      "frame": 120
+      "frame": 146
     },
     {
       "step": "enable auto chain through pointer",
-      "frame": 120
+      "frame": 146
     },
     {
       "step": "verify enabled chain",
-      "frame": 124
+      "frame": 150
     },
     {
       "input": "mouse_down",
       "label": "메뉴",
       "x": 1713.49988,
       "y": 31.9999542,
-      "frame": 125
+      "frame": 151
     },
     {
       "step": "open state menu",
-      "frame": 125
+      "frame": 151
     },
     {
       "input": "mouse_down",
       "label": "소환 · 수호신",
       "x": 1649.5,
       "y": 597.0,
-      "frame": 129
+      "frame": 155
     },
     {
       "step": "open summon panel",
-      "frame": 129
+      "frame": 155
     },
     {
       "step": "capture free guardian state",
-      "frame": 133
+      "frame": 159
     },
     {
       "input": "mouse_down",
       "label": "첫 무료 수호신 소환",
       "x": 1638.00012,
       "y": 355.0,
-      "frame": 134
+      "frame": 160
     },
     {
       "step": "free guardian summon through pointer",
-      "frame": 134
+      "frame": 160
     },
     {
       "step": "verify free guardian copy and wallet",
-      "frame": 138
+      "frame": 164
     },
     {
       "step": "capture original hero shard total",
-      "frame": 139
+      "frame": 165
     },
     {
       "input": "mouse_down",
       "label": "영웅 조각 소환 · 젬 100",
       "x": 1638.00012,
       "y": 559.0,
-      "frame": 140
+      "frame": 166
     },
     {
       "step": "hero shard summon through pointer",
-      "frame": 140
+      "frame": 166
     },
     {
       "step": "verify hero shards and exact currency",
-      "frame": 144
+      "frame": 170
     },
     {
       "input": "mouse_down",
       "label": "보유 수호신",
       "x": 1639.0,
       "y": 308.999939,
-      "frame": 145
+      "frame": 171
     },
     {
       "step": "open owned guardians",
-      "frame": 145
+      "frame": 171
     },
     {
       "step": "equip another owned guardian if drawn",
-      "frame": 149
+      "frame": 175
     },
     {
       "step": "verify guardian equipment if applicable",
-      "frame": 150
+      "frame": 176
     },
     {
       "input": "mouse_down",
       "label": "도전",
       "x": 960.000061,
       "y": 31.9999542,
-      "frame": 151
+      "frame": 177
     },
     {
       "step": "open raid navigation gray_meadow",
-      "frame": 151
+      "frame": 177
     },
     {
       "step": "capture retained hunt gray_meadow",
-      "frame": 155
+      "frame": 181
     },
     {
       "input": "mouse_down",
       "label": "초원왕 그룬",
-      "x": 1654.50012,
-      "y": 787.0,
-      "frame": 156
+      "x": 1705.50012,
+      "y": 716.0,
+      "frame": 182
     },
     {
       "step": "enter regional boss gray_meadow",
-      "frame": 156
+      "frame": 182
     },
     {
       "step": "verify native raid route gray_meadow",
-      "frame": 160
+      "frame": 186
     },
     {
       "step": "verify hunting remains suspended during raid gray_meadow",
-      "frame": 161
+      "frame": 187
     },
     {
       "input": "mouse_down",
       "label": "긴급 회피",
       "x": 1496.5,
       "y": 265.0,
-      "frame": 162
+      "frame": 188
     },
     {
       "step": "dodge through pointer gray_meadow",
-      "frame": 162
+      "frame": 188
     },
     {
       "step": "verify dodge cooldown gray_meadow",
-      "frame": 166
+      "frame": 192
     },
     {
       "input": "mouse_down_ground",
       "x": 796.294739,
-      "y": 583.135132,
-      "frame": 167
+      "y": 581.719,
+      "frame": 193
     },
     {
       "step": "rally through ground pointer gray_meadow",
-      "frame": 167
+      "frame": 193
     },
     {
       "step": "verify rally destination gray_meadow",
-      "frame": 171
+      "frame": 197
     },
     {
       "input": "mouse_down",
       "label": "패턴 훈련",
       "x": 1756.50012,
       "y": 265.0,
-      "frame": 172
+      "frame": 198
     },
     {
       "step": "enter original-balance pattern training through pointer",
-      "frame": 172
+      "frame": 198
     },
     {
       "step": "verify training keeps boss balance and changes temporary party level",
-      "frame": 176
+      "frame": 202
     },
     {
       "input": "mouse_down",
       "label": "자동 회피 ON",
       "x": 1053.5,
       "y": 265.0,
-      "frame": 177
+      "frame": 203
     },
     {
       "step": "disable auto evasion through pointer for deliberate counter",
-      "frame": 177
+      "frame": 203
     },
     {
       "step": "verify manual raid positioning mode",
-      "frame": 181
+      "frame": 207
     },
     {
       "input": "mouse_down",
       "label": "카운터 연습",
       "x": 1765.50012,
       "y": 265.0,
-      "frame": 182
+      "frame": 208
     },
     {
       "step": "start authored cone practice through pointer",
-      "frame": 182
+      "frame": 208
     },
     {
       "step": "verify explicit counter practice route",
-      "frame": 186
+      "frame": 212
     },
     {
       "input": "mouse_down_ground",
       "x": 955.8229,
-      "y": 557.3938,
-      "frame": 187
+      "y": 556.123352,
+      "frame": 213
     },
     {
       "input": "mouse_down",
       "label": "카운터",
       "x": 812.0,
       "y": 265.0,
-      "frame": 209
+      "frame": 238
     },
     {
       "step": "observe counter opportunity",
-      "frame": 209
+      "frame": 238
     },
     {
       "step": "verify native counter practice success",
-      "frame": 213
+      "frame": 242
     },
     {
       "step": "wait for the actual counter HUD refresh",
-      "frame": 224
+      "frame": 253
     },
     {
       "step": "capture authored counter practice",
-      "frame": 225
+      "frame": 254
     },
     {
       "step": "record raid input evidence gray_meadow",
-      "frame": 226
+      "frame": 255
     },
     {
       "input": "mouse_down",
       "label": "사냥",
       "x": 206.500015,
       "y": 31.9999542,
-      "frame": 227
+      "frame": 256
     },
     {
       "step": "return to hunting through pointer gray_meadow",
-      "frame": 227
+      "frame": 256
     },
     {
       "step": "verify retained hunting gray_meadow",
-      "frame": 231
+      "frame": 260
     },
     {
       "input": "mouse_down",
       "label": "도전",
       "x": 960.000061,
       "y": 31.9999542,
-      "frame": 232
+      "frame": 261
     },
     {
       "step": "open raid navigation forgotten_mine",
-      "frame": 232
+      "frame": 261
     },
     {
       "step": "capture retained hunt forgotten_mine",
-      "frame": 236
+      "frame": 265
     },
     {
       "input": "mouse_down",
       "label": "광맥의 거인 모르굴",
-      "x": 1654.50012,
-      "y": 675.0,
-      "frame": 237
+      "x": 1705.50012,
+      "y": 500.0,
+      "frame": 266
     },
     {
       "step": "enter regional boss forgotten_mine",
-      "frame": 237
+      "frame": 266
     },
     {
       "step": "verify native raid route forgotten_mine",
-      "frame": 241
+      "frame": 270
     },
     {
       "step": "verify hunting remains suspended during raid forgotten_mine",
-      "frame": 242
+      "frame": 271
     },
     {
       "input": "mouse_down",
       "label": "긴급 회피",
       "x": 1496.5,
       "y": 265.0,
-      "frame": 243
+      "frame": 272
     },
     {
       "step": "dodge through pointer forgotten_mine",
-      "frame": 243
+      "frame": 272
     },
     {
       "step": "verify dodge cooldown forgotten_mine",
-      "frame": 247
+      "frame": 276
     },
     {
       "input": "mouse_down_ground",
       "x": 796.294739,
-      "y": 580.6304,
-      "frame": 248
+      "y": 580.7153,
+      "frame": 277
     },
     {
       "step": "rally through ground pointer forgotten_mine",
-      "frame": 248
+      "frame": 277
     },
     {
       "step": "verify rally destination forgotten_mine",
-      "frame": 252
+      "frame": 281
     },
     {
       "step": "record raid input evidence forgotten_mine",
-      "frame": 253
+      "frame": 282
     },
     {
       "input": "mouse_down",
       "label": "사냥",
       "x": 206.500015,
       "y": 31.9999542,
-      "frame": 254
+      "frame": 283
     },
     {
       "step": "return to hunting through pointer forgotten_mine",
-      "frame": 254
+      "frame": 283
     },
     {
       "step": "verify retained hunting forgotten_mine",
-      "frame": 258
+      "frame": 287
     },
     {
       "input": "mouse_down",
       "label": "도전",
       "x": 960.000061,
       "y": 31.9999542,
-      "frame": 259
+      "frame": 288
     },
     {
       "step": "open raid navigation moonrest_forest",
-      "frame": 259
+      "frame": 288
     },
     {
       "step": "capture retained hunt moonrest_forest",
-      "frame": 263
+      "frame": 292
     },
     {
       "input": "mouse_down",
       "label": "월식의 여왕 셀레네",
-      "x": 1654.50012,
-      "y": 563.0,
-      "frame": 264
+      "x": 1705.50012,
+      "y": 283.999969,
+      "frame": 293
     },
     {
       "step": "enter regional boss moonrest_forest",
-      "frame": 264
+      "frame": 293
     },
     {
       "step": "verify native raid route moonrest_forest",
-      "frame": 268
+      "frame": 297
     },
     {
       "step": "verify hunting remains suspended during raid moonrest_forest",
-      "frame": 269
+      "frame": 298
     },
     {
       "input": "mouse_down",
       "label": "긴급 회피",
       "x": 1496.5,
       "y": 265.0,
-      "frame": 270
+      "frame": 299
     },
     {
       "step": "dodge through pointer moonrest_forest",
-      "frame": 270
+      "frame": 299
     },
     {
       "step": "verify dodge cooldown moonrest_forest",
-      "frame": 274
+      "frame": 303
     },
     {
       "input": "mouse_down_ground",
       "x": 796.294739,
-      "y": 580.506,
-      "frame": 275
+      "y": 581.2366,
+      "frame": 304
     },
     {
       "step": "rally through ground pointer moonrest_forest",
-      "frame": 275
+      "frame": 304
     },
     {
       "step": "verify rally destination moonrest_forest",
-      "frame": 279
+      "frame": 308
     },
     {
       "step": "record raid input evidence moonrest_forest",
-      "frame": 280
+      "frame": 309
     },
     {
       "input": "mouse_down",
       "label": "사냥",
       "x": 206.500015,
       "y": 31.9999542,
-      "frame": 281
+      "frame": 310
     },
     {
       "step": "return to hunting through pointer moonrest_forest",
-      "frame": 281
+      "frame": 310
     },
     {
       "step": "verify retained hunting moonrest_forest",
-      "frame": 285
+      "frame": 314
     },
     {
       "step": "capture continuing hunt rewards",
-      "frame": 286
+      "frame": 315
     },
     {
       "step": "observe an actual hunted pack settlement",
-      "frame": 743
+      "frame": 754
     },
     {
       "step": "verify actual hunt wallet and xp credit",
-      "frame": 744
+      "frame": 755
     },
     {
       "input": "mouse_down",
       "label": "빠른 성장",
       "x": 1607.5,
       "y": 189.999985,
-      "frame": 745
+      "frame": 756
     },
     {
       "step": "open quick growth through pointer",
-      "frame": 745
+      "frame": 756
     },
     {
       "step": "verify quick growth destination",
-      "frame": 749
+      "frame": 760
     },
     {
       "input": "mouse_down",
       "label": "닫기",
       "x": 1818.50012,
       "y": 907.0,
-      "frame": 750
+      "frame": 761
     },
     {
       "step": "close quick growth",
-      "frame": 750
+      "frame": 761
     },
     {
       "step": "capture quick equipment wallet",
-      "frame": 754
+      "frame": 765
     },
     {
       "input": "mouse_down",
       "label": "장비 추천",
       "x": 1725.50012,
       "y": 189.999985,
-      "frame": 755
+      "frame": 766
     },
     {
       "step": "quick equipment through pointer",
-      "frame": 755
+      "frame": 766
     },
     {
       "step": "verify quick equipment preserves currency",
-      "frame": 759
+      "frame": 770
+    },
+    {
+      "input": "mouse_down",
+      "label": "도전",
+      "x": 960.000061,
+      "y": 31.9999542,
+      "frame": 771
+    },
+    {
+      "step": "open a fresh raid for natural result flow",
+      "frame": 771
+    },
+    {
+      "input": "mouse_down",
+      "label": "초원왕 그룬",
+      "x": 1705.50012,
+      "y": 716.0,
+      "frame": 775
+    },
+    {
+      "step": "enter original meadow boss for natural victory",
+      "frame": 775
+    },
+    {
+      "step": "capture isolated raid wallet and retained hunt",
+      "frame": 779
+    },
+    {
+      "step": "observe natural raid completion",
+      "frame": 1234
+    },
+    {
+      "step": "verify actual raid result and unchanged hunt wallet",
+      "frame": 1235
+    },
+    {
+      "step": "capture actual native raid result",
+      "frame": 1236
+    },
+    {
+      "input": "mouse_down",
+      "label": "다시 도전",
+      "x": 836.500061,
+      "y": 485.999969,
+      "frame": 1237
+    },
+    {
+      "step": "retry natural raid through pointer",
+      "frame": 1237
+    },
+    {
+      "step": "verify retry clears prior result",
+      "frame": 1241
+    },
+    {
+      "input": "mouse_down",
+      "label": "사냥",
+      "x": 206.500015,
+      "y": 31.9999542,
+      "frame": 1242
+    },
+    {
+      "step": "return to retained hunt after retry",
+      "frame": 1242
+    },
+    {
+      "step": "verify new route returns to hunting",
+      "frame": 1246
+    },
+    {
+      "step": "start observing a real ultimate presentation",
+      "frame": 1247
+    },
+    {
+      "step": "observe confirmed ultimate cut-in during live hunting",
+      "frame": 1784
+    },
+    {
+      "step": "verify original ultimate identity and nonblocking cut-in",
+      "frame": 1785
+    },
+    {
+      "step": "capture confirmed native ultimate",
+      "frame": 1786
     }
   ],
   "raid_inputs": [
@@ -678,7 +785,7 @@
       "zone": "gray_meadow",
       "dodge_verified": true,
       "rally_verified": true,
-      "native_ticks": 22,
+      "native_ticks": 26,
       "counter_successes": 1,
       "counter_input_success_verified": true,
       "counter_scope": "explicit authored cone practice"
@@ -705,5 +812,9 @@
   "no_direct_ui_callbacks": true,
   "real_player_io": false,
   "note": "QA dispatches actual Input System mouse events across native frames against the explicit memory-only review seed. Meadow counter evidence uses the visible Lv50 authored-cone practice route, which temporarily suspends automatic hero attacks and rearms the window. It does not prove a naturally occurring counter in a full encounter. Ordinary original-balance raid parity is checked separately.",
-  "development_player": true
+  "development_player": true,
+  "ultimate_presentations": 2,
+  "last_ultimate_hero": "orwin",
+  "last_ultimate_skill": "불굴의 황금진",
+  "manual_skill_casts": 1
 }

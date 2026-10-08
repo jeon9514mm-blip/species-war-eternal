@@ -19,6 +19,7 @@ namespace Eternal.UnityMigration.Editor
             Directory.CreateDirectory("Assets/Game/Resources/Eternal/Materials");AssetDatabase.Refresh();
             PaintedImpactInstaller.Apply();
             PaintedGroundSealInstaller.Apply();
+            PaintedSkillShapesInstaller.Apply();
             Material Material(string name,string shader)
             {
                 string path="Assets/Game/Resources/Eternal/Materials/"+name+".mat";

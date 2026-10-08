@@ -14,6 +14,7 @@ namespace Eternal.UnityMigration
         MeshRenderer warningRenderer;
         int shownVersion=-1;
         public string PaintedMap {get;private set;}
+        public float WarningProgress {get;private set;}
         public void Rebind(RaidSimulation simulation)
         {
             if(raid==null||raid.Zone!=simulation.Zone)throw new System.InvalidOperationException("Arena reuse must preserve its original zone.");
@@ -77,9 +78,13 @@ namespace Eternal.UnityMigration
                 for(int i=0;i<96;i++){float a=i*Mathf.PI*2/96;ring.SetPosition(i,new Vector3(8+Mathf.Cos(a)*2.4f,.14f,.5f+Mathf.Sin(a)*2.4f));}
             }
             }
-            warningMaterial=new Material(Resources.Load<Material>("Eternal/Materials/Particles"));warningMaterial.SetFloat("_SoftDot",0);ownedMaterials.Add(warningMaterial);
-            warningMaterial.SetFloat("_ClipArena",1);warningMaterial.SetVector("_ArenaBounds",new Vector4(RaidFootprint.Floor.xMin,RaidFootprint.Floor.yMin,RaidFootprint.Floor.xMax,RaidFootprint.Floor.yMax));warningMaterial.renderQueue=2990;
-            outlineMaterial=new Material(warningMaterial);outlineMaterial.renderQueue=2991;ownedMaterials.Add(outlineMaterial);
+            var telegraph=Resources.Load<Material>("Eternal/Materials/RaidTelegraph");
+            warningMaterial=new Material(telegraph!=null?telegraph:Resources.Load<Material>("Eternal/Materials/Particles"));ownedMaterials.Add(warningMaterial);
+            if(warningMaterial.HasProperty("_SoftDot"))warningMaterial.SetFloat("_SoftDot",0);
+            if(warningMaterial.HasProperty("_ClipArena"))warningMaterial.SetFloat("_ClipArena",1);
+            warningMaterial.SetVector("_ArenaBounds",new Vector4(RaidFootprint.Floor.xMin,RaidFootprint.Floor.yMin,RaidFootprint.Floor.xMax,RaidFootprint.Floor.yMax));warningMaterial.renderQueue=2990;
+            outlineMaterial=new Material(Resources.Load<Material>("Eternal/Materials/Particles"));outlineMaterial.SetFloat("_SoftDot",0);outlineMaterial.SetFloat("_ClipArena",1);
+            outlineMaterial.SetVector("_ArenaBounds",new Vector4(RaidFootprint.Floor.xMin,RaidFootprint.Floor.yMin,RaidFootprint.Floor.xMax,RaidFootprint.Floor.yMax));outlineMaterial.renderQueue=2991;ownedMaterials.Add(outlineMaterial);
             var warning=new GameObject("Shared geometry warning fill");warning.transform.SetParent(transform,false);
             warningMesh=new Mesh{name="Frozen raid warning"};warning.AddComponent<MeshFilter>().sharedMesh=warningMesh;warningRenderer=warning.AddComponent<MeshRenderer>();warningRenderer.sharedMaterial=warningMaterial;
             for(int i=0;i<4;i++){var line=new GameObject("Warning footprint "+i).AddComponent<LineRenderer>();line.transform.SetParent(transform,false);line.sharedMaterial=outlineMaterial;line.loop=true;line.useWorldSpace=false;line.widthMultiplier=.065f;warningLines.Add(line);}
@@ -91,8 +96,23 @@ namespace Eternal.UnityMigration
             if(raid==null)return;
             var shape=raid.SecondWarning??raid.Warning;
             if(shownVersion!=raid.WarningVersion){shownVersion=raid.WarningVersion;RebuildWarning(shape);}
-            var color=raid.CounterReady?new Color(.28f,.69f,1,.7f):new Color(1,.24f,.28f,.6f);
-            outlineMaterial.SetColor("_Tint",color);color.a=shape==null?0:.13f+Mathf.Sin(Time.unscaledTime*7)*.035f;warningMaterial.SetColor("_Tint",color);
+            WarningProgress=ReadWarningProgress(raid);
+            // Blue announces an existing response window. Button eligibility
+            // still independently requires an alive front-facing hero.
+            var color=raid.CounterWindowOpen?new Color(.28f,.72f,1,.86f):new Color(1,.26f,.24f,.62f+WarningProgress*.24f);
+            outlineMaterial.SetColor("_Tint",color);
+            foreach(var line in warningLines)line.widthMultiplier=.055f+WarningProgress*.035f;
+            if(warningMaterial.HasProperty("_Progress")){warningMaterial.SetFloat("_Progress",WarningProgress);color.a=shape==null?0:1;}
+            else color.a=shape==null?0:.13f+WarningProgress*.12f;
+            warningMaterial.SetColor("_Tint",color);
+        }
+        public static float ReadWarningProgress(RaidSimulation raid)
+        {
+            if(raid==null)return 0;
+            if(raid.SecondWarning!=null)return Mathf.Clamp01(1-(float)(raid.SecondWaveRemaining/.42));
+            if(raid.Warning==null||raid.CastProfile==null)return 0;
+            double total=Mathf.Max(.001f,(float)LegacyCombatRules.Number(raid.CastProfile,"telegraph",1.2));
+            return Mathf.Clamp01(1-(float)(raid.TelegraphRemaining/total));
         }
         void RebuildWarning(RaidFootprint shape)
         {

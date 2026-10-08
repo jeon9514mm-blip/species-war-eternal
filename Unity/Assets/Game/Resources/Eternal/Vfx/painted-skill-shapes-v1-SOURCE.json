@@ -1,0 +1,38 @@
+{
+  "asset": "painted-skill-shapes-v1.png",
+  "generator": "builtin image_gen",
+  "prompt": "Create ONE production-ready painted fantasy game VFX SPRITE ATLAS, fully transparent RGBA background, landscape canvas in exactly a FOUR COLUMNS by TWO ROWS uniform grid (eight equal rectangular cells). No grid lines, no labels, no letters, no numerals, no background, no cast shadows, no characters. Each sprite stays within the central 65 percent of its own cell, large transparent padding between cells; identical cell geometry. Painterly high detail with crisp tapered silhouettes and a luminous small core, moss/bronze palette accents, realistic brush-painted energy rather than neon vector diagrams. Top row LEFT TO RIGHT: 1) asymmetric amber and vermilion crescent sword slash with flowing ember streaks, shaped like a sweeping diagonal blade arc; 2) cyan-white sharp frozen crystal starburst, six uneven icy shards and delicate frosty vapor; 3) warm ivory-gold radiant sunburst with two short wing-like ribbons of light, sacred elegant controlled bloom; 4) deep violet eclipse vortex, asymmetrical purple-black curling ribbons and a very small pale violet luminous eye, avoid opaque black center. Bottom row LEFT TO RIGHT: 5) sage-moss green woodland healing bloom made of six curling leaves, green wisps and gold pollen, no tree trunk; 6) upright translucent ancient bronze shield crest with a diamond center, graceful green filigree edge, shield reads at tiny size; 7) slim horizontal bronze-gold magical spear projectile flying RIGHT, luminous tapered spearhead on RIGHT and long painterly streak trailing to LEFT, no vertical components; 8) clean ivory-bronze curved blade swoosh with a slim sharp taper, softer secondary gold stroke. All eight effects must have truly transparent interiors and edges, including gaps between their particles. No square rectangular glow plate behind any sprite, no white checkerboard drawn. Polish suitable for a detailed original-painted 2.5D Korean fantasy RPG: readable at 100px, beautiful energy strokes, restrained sparks, avoid giant smoke clouds, large bloom discs and thin wireframe circles.",
+  "source_sha256": "76a0337eb704d974b264e7cf6c93026800f5c9b6720d422a905da824f6d73e0d",
+  "source_width": 1774,
+  "source_height": 887,
+  "source_bytes": 2077735,
+  "source_mode": "RGBA",
+  "alpha_range": [
+    0,
+    255
+  ],
+  "transparent_pixels": 743643,
+  "layout": {
+    "columns": 4,
+    "rows": 2,
+    "top_row": [
+      "ember-slash",
+      "frost-shards",
+      "solar-light",
+      "eclipse-vortex"
+    ],
+    "bottom_row": [
+      "woodland-heal",
+      "bronze-shield",
+      "spear-tracer",
+      "ivory-slash"
+    ]
+  },
+  "import": {
+    "maxTextureSize": 1024,
+    "Standalone": "BC7",
+    "Android": "ASTC_6x6 authored; unverified",
+    "mipmaps": false
+  },
+  "scope": "Eight shared painted shapes layered with 120 original timing/palette/glyph profiles and 30 motifs. Not 120 bespoke textures or full GPU effects."
+}

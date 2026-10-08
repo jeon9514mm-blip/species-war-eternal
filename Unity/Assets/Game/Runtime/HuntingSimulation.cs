@@ -18,6 +18,7 @@ namespace Eternal.UnityMigration
         public readonly OriginalCombatCatalog Catalog;
         public readonly GameStateCommands PlayerState;
         public PartySkillChain Chain {get;private set;}
+        public int ManualSkillCasts {get;private set;}
         public int PacksCleared, Kills, Stage=1, Gold, Xp, Ticks;
         public double Elapsed, NextPack;
         public string Zone="gray_meadow",Formation="balanced";
@@ -83,6 +84,25 @@ namespace Eternal.UnityMigration
                 foreach(string slot in new[]{"a1","a2","ultimate"})kit.Profiles[slot]=Catalog.AdjustedSkill(actor.Id,slot,kit.Utility);
             }
             Formation=PlayerState.Formation;Battle.CriticalChance=PlayerState.GuardianBonus("crit");
+        }
+        public bool CanManualCast(string heroId,string slot)=>ManualContext(heroId,slot,out _,out _);
+        bool ManualContext(string heroId,string slot,out Combatant hero,out Combatant target)
+        {
+            hero=null;target=null;
+            if(Paused||Defeated||slot!="a1"&&slot!="a2"&&slot!="ultimate")return false;
+            hero=Battle.Heroes.FirstOrDefault(h=>h.Id==heroId&&h.Alive&&h.Stun<=0);
+            if(hero==null||!HeroKitExecution.CanUse(Battle,hero,slot))return false;
+            var profile=Battle.Kits[hero.Id].Profiles[slot];target=CombatTargeting.Rank(Battle,hero,profile).FirstOrDefault();
+            return !LegacyCombatRules.NeedsEnemy(profile)||target!=null&&CombatTargeting.CanAttack(Battle,hero,target);
+        }
+        public bool ManualCast(string heroId,string slot)
+        {
+            if(!ManualContext(heroId,slot,out var hero,out var target))return false;
+            // A manual click uses the same resource/target/settlement rules and
+            // replaces this hero's outstanding automatic intent only on success.
+            Battle.Emit("windup",hero,slot,target);
+            if(!HeroKitExecution.Cast(Battle,hero,slot,target))return false;
+            intents.Remove(hero.Serial);hero.Windup=-1;hero.AttackRemaining=Math.Max(hero.AttackRemaining,.24);ManualSkillCasts++;return true;
         }
         void HandleEvent(BattleEvent e)
         {

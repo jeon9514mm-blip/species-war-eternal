@@ -132,6 +132,7 @@ namespace Eternal.UnityMigration
             float alpha=paused||!running?1:Mathf.Clamp01((float)(accumulator/.05));
             RebuildActors();
             feedback.RaidWarningVisible=Raid!=null&&(Raid.Warning!=null||Raid.SecondWarning!=null);
+            feedback.SuppressCombatPopups=Raid!=null&&!Raid.Running;
             var center=Vector2.zero;int alive=0;foreach(var hero in ActiveBattle.Heroes)if(hero.Alive){center+=hero.Position;alive++;}if(alive>0)feedback.SetExpeditionCenter(center/alive);
             foreach(var combatant in drawActors)
             {
@@ -149,12 +150,14 @@ namespace Eternal.UnityMigration
                 if((e.Kind=="damage"||e.Kind=="critical"||e.Kind=="hero_hit")&&actors.TryGetValue(e.TargetSerial,out var victim))victim.HitSeconds=.04f;
                 if(e.Kind=="cast"&&actors.ContainsKey(e.SourceSerial))trails[e.SourceSerial]=(.4f,0);
                 feedback.Observe(e,ActiveBattle);
+                ObserveCastPresentation(e);
             }
             UpdateAfterImages((float)frame);
             visualQueue.Clear();hudTimer+=frame;if(hudTimer>=.10){hudTimer=0;RefreshHud();}
             // Counter windows are shorter than the ordinary text refresh. Keep
             // actionable buttons current on every rendered frame.
             if(Raid!=null)RefreshRaidActions();
+            RefreshSkillPresentation();
             FrameCost.End();
         }
         void UpdateAfterImages(float dt)
@@ -281,6 +284,8 @@ namespace Eternal.UnityMigration
             counterPracticeButton.tooltip="기존 부채꼴 패턴을 재현합니다. 훈련 동안 평타·자동 스킬을 쉬고 정면 카운터와 회피를 연습하세요.";
             mechanicTrack=new VisualElement{name="raid-mechanic-track"};mechanicTrack.style.height=6;mechanicTrack.style.flexShrink=0;mechanicTrack.style.marginTop=8;mechanicTrack.style.backgroundColor=new Color(.13f,.18f,.19f);raidCommands.Add(mechanicTrack);
             mechanicBar=new VisualElement{name="raid-mechanic-fill"};mechanicBar.style.height=6;mechanicBar.style.backgroundColor=Moss;mechanicTrack.Add(mechanicBar);
+            BuildSkillPresentation();
+            BuildChainStrip();
             battleSpace.pickingMode=PickingMode.Position;
             battleSpace.RegisterCallback<PointerDownEvent>(e=>
             {
@@ -330,6 +335,7 @@ namespace Eternal.UnityMigration
         }
         void RefreshHud()
         {
+            RefreshChainStrip();
             fixtureLabel.text=Raid!=null?(Raid.ReviewLevel==50?"패턴 훈련":"플레이테스트")+" · Lv"+Raid.ReviewLevel+" 임시 원정대 · 보상은 저장되지 않습니다":"플레이테스트 · Lv20 임시 원정대 · 보상은 저장되지 않습니다";
             huntStageTrack.style.display=huntActions.style.display=Raid==null?DisplayStyle.Flex:DisplayStyle.None;
             if(Raid==null)
@@ -353,7 +359,15 @@ namespace Eternal.UnityMigration
             }
             else chainLabel.text=lastChain;
             foreach(var c in cards)
-            {var kit=ActiveBattle.Kits[c.actor.Id];c.health.text="HP "+(int)(c.actor.HpRatio*100)+"%";c.hp.style.width=Length.Percent((float)c.actor.HpRatio*100);c.skills.text="스킬 "+kit.Cooldowns.GetValueOrDefault("a1").ToString("F1")+"s · 궁극 "+(int)c.actor.Ultimate+"%";}
+            {
+                var h=c.actor;var kit=ActiveBattle.Kits[h.Id];
+                string status=h.Stun>0?"기절":h.Weaken>0?"약화":h.Vulnerable>0?"노출":h.Shield>0?"보호":h.Guard>0?"방어":"";
+                c.health.text="HP "+(int)(h.HpRatio*100)+"%"+(status.Length>0?" · "+status:"");
+                c.health.style.color=h.Debuffed?new Color(.94f,.53f,.47f):h.Shield>0?new Color(.45f,.78f,.81f):Moss;
+                c.health.tooltip="보호막 "+h.Shield.ToString("N0")+" · 방어 "+h.Guard.ToString("F1")+"초\n기절 "+h.Stun.ToString("F1")+"초 · 약화 "+h.Weaken.ToString("F1")+"초 · 약점 노출 "+h.Vulnerable.ToString("F1")+"초";
+                c.hp.style.width=Length.Percent((float)h.HpRatio*100);c.hp.style.backgroundColor=h.HpRatio<=.25?new Color(.85f,.38f,.33f):Moss;
+                c.skills.text="스킬 "+kit.Cooldowns.GetValueOrDefault("a1").ToString("F1")+"s · 궁극 "+(int)h.Ultimate+"%";c.skills.style.color=h.Ultimate>=100?new Color(.94f,.81f,.57f):Bronze;
+            }
             if(Raid!=null)
             {
                 RefreshRaidMechanic();bossBar.style.width=Length.Percent((float)Raid.Boss.HpRatio*100);
@@ -362,6 +376,7 @@ namespace Eternal.UnityMigration
         }
         void RefreshRaidMechanic()
         {
+            if(!Raid.Running){raidInfo.text=Raid.EventText;raidInfo.style.color=Bronze;mechanicTrack.style.visibility=Visibility.Hidden;return;}
             // These fills read the simulation's existing counters. They never
             // change combat, create a second timer or pretend HP is stagger.
             string mechanic="";float progress=0;Color color=Moss;
@@ -381,7 +396,7 @@ namespace Eternal.UnityMigration
             mechanicBar.style.width=Length.Percent(Mathf.Clamp01(progress)*100);mechanicBar.style.backgroundColor=color;
         }
         void PanelHeader(string title)
-        {modal.Clear();modal.style.display=DisplayStyle.Flex;var row=Row(modal);var heading=Text(row,title,22);heading.style.flexGrow=1;Button(row,"닫기",()=>modal.style.display=DisplayStyle.None);}
+        {modal.Clear();modal.style.display=DisplayStyle.Flex;RefreshChainStrip();var row=Row(modal);var heading=Text(row,title,22);heading.style.flexGrow=1;Button(row,"닫기",()=>modal.style.display=DisplayStyle.None);}
         void ShowHero(string id)
         {
             var h=Simulation.Catalog.Hero(id);PanelHeader((string)h["name"]);
@@ -415,6 +430,17 @@ namespace Eternal.UnityMigration
         void ShowRoster()
         {
             PanelHeader("영웅 도감 · 30명");var ids=Simulation.Catalog.HeroIds.ToList();
+            var search=new TextField("이름 찾기");search.style.height=30;search.style.marginTop=12;search.style.fontSize=13;modal.Add(search);
+            var filterRow=Row(modal);filterRow.style.marginTop=8;filterRow.style.marginBottom=4;
+            var factionFilter=new DropdownField("진영",new List<string>{"전체","아우렐리아","녹스페라"},0);
+            var roleFilter=new DropdownField("역할",new List<string>{"전체","탱커","딜러","서포터","컨트롤러"},0);
+            foreach(var field in new BaseField<string>[] {search,factionFilter,roleFilter})
+            {
+                field.labelElement.style.minWidth=0;field.labelElement.style.width=42;field.labelElement.style.color=Moss;
+                field.AddToClassList("roster-filter");
+            }
+            foreach(var field in new VisualElement[]{factionFilter,roleFilter}){field.style.flexGrow=1;field.style.flexBasis=0;field.style.minWidth=0;field.style.fontSize=12;filterRow.Add(field);}
+            var count=Text(modal,"영웅 30 / 30 · 원화를 눌러 스킬 보기",11);count.style.color=Moss;count.style.marginTop=4;
             VisualElement Make()
             {
                 var card=new Button();card.AddToClassList("hero-roster-card");card.clicked+=()=>{if(card.userData is string id)ShowHero(id);};
@@ -428,9 +454,23 @@ namespace Eternal.UnityMigration
                 string id=ids[index];var h=Simulation.Catalog.Hero(id);card.userData=id;card.Q<Image>("hero-art").sprite=InspectionPortrait(id);
                 card.Q<Label>("hero-name").text=(string)h["name"];
                 card.Q<Label>("hero-detail").text=((string)h["faction"]=="aurelia"?"아우렐리아":"녹스페라")+" · "+(string)h["role_group"]+" · "+((string)h["reach"]=="melee"?"근접":"원거리");
+                bool deployed=ReviewState.DeployedHeroes().Contains(id);card.style.borderLeftWidth=deployed?3:1;card.style.borderLeftColor=deployed?Moss:new Color(.25f,.31f,.31f);
             }
             var list=new ListView(ids,66,Make,Bind){selectionType=SelectionType.None};list.style.flexGrow=1;list.style.marginTop=8;
             list.unbindItem=(item,_)=>{item.userData=null;item.Q<Image>("hero-art").sprite=null;};modal.Add(list);
+            void Filter()
+            {
+                string query=(search.value??"").Trim();ids.Clear();
+                foreach(string id in Simulation.Catalog.HeroIds)
+                {
+                    var h=Simulation.Catalog.Hero(id);string faction=(string)h["faction"]=="aurelia"?"아우렐리아":"녹스페라";
+                    if(factionFilter.value!="전체"&&factionFilter.value!=faction||roleFilter.value!="전체"&&roleFilter.value!=(string)h["role_group"])continue;
+                    string searchable=(string)h["name"]+" "+(string)h["class"]+" "+(string)h["race"];
+                    if(query.Length>0&&searchable.IndexOf(query,StringComparison.OrdinalIgnoreCase)<0)continue;ids.Add(id);
+                }
+                list.Rebuild();count.text="영웅 "+ids.Count+" / 30 · 원화를 눌러 스킬 보기";
+            }
+            search.RegisterValueChangedCallback(_=>Filter());factionFilter.RegisterValueChangedCallback(_=>Filter());roleFilter.RegisterValueChangedCallback(_=>Filter());
         }
         void OpenPanel(string route)
         {
@@ -442,15 +482,7 @@ namespace Eternal.UnityMigration
             }
             if(route=="도전")
             {
-                PanelHeader("지역 레이드");
-                Text(modal,"Lv.100 독립 검수 원정대 · 기존 영웅·스킬 유지",13).style.whiteSpace=WhiteSpace.Normal;
-                foreach(string zone in new[]{"gray_meadow","forgotten_mine","moonrest_forest"})
-                {
-                    string id=zone;var data=Newtonsoft.Json.Linq.JObject.Parse(OriginalCatalog.Required("legacy-catalogs").text);
-                    var z=data["zones"][id];var design=data["catalogs"]["raid"]["data"]["RAIDS"][id];
-                    Button(modal,(string)z["boss"],()=>StartRaid(id)).style.marginTop=22;
-                    Text(modal,(string)design["description"],14).style.whiteSpace=WhiteSpace.Normal;
-                }
+                ShowRaidSelection();
                 return;
             }
             if(route=="가방")ShowInventory();else ShowStateMenu();
@@ -494,6 +526,7 @@ namespace Eternal.UnityMigration
         public void StartRaid(string zone,int reviewLevel=100)
         {
             if(Simulation==null)return;if(raidMap!=null)raidMap.gameObject.SetActive(false);
+            ResetSkillPresentation();
             SelectNavigation("도전");
             Raid=new RaidSimulation(zone,reviewLevel,9514,Simulation.Battle.Heroes.Select(h=>h.Id).ToArray());Raid.OnEvent=Receive;
             ResetViews();accumulator=0;visualQueue.Clear();huntFloor.SetActive(false);feedback.SetRaidMode(true);
@@ -504,6 +537,7 @@ namespace Eternal.UnityMigration
         public void EndRaid()
         {
             if(Raid==null)return;Raid=null;ResetViews();if(raidMap!=null)raidMap.gameObject.SetActive(false);raidMap=null;
+            ResetSkillPresentation();
             SelectNavigation("사냥");
             accumulator=0;visualQueue.Clear();huntFloor.SetActive(true);feedback.SetRaidMode(false);raidCommands.style.display=DisplayStyle.None;bossTrack.style.display=DisplayStyle.None;BuildParty();RebuildActors();RefreshHud();
         }

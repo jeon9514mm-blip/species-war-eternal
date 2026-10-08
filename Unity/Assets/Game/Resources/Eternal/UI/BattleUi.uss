@@ -10,3 +10,6 @@
 .inventory-card { height: 61px; margin: 2px 1px; padding: 6px 10px; flex-direction: column; align-items: flex-start; justify-content: center; background-color: rgb(24, 34, 36); border-width: 1px; border-color: rgb(61, 78, 74); border-radius: 6px; }
 .inventory-card:hover { background-color: rgb(34, 47, 44); border-color: rgb(196, 164, 132); }
 .growth-gear-card { margin-top: 9px; padding: 9px; background-color: rgb(24, 34, 36); border-width: 1px; border-color: rgb(61, 78, 74); border-radius: 6px; }
+.roster-filter .unity-base-field__input { background-color: rgb(24, 34, 36); color: rgb(216, 213, 204); border-color: rgb(61, 78, 74); border-radius: 4px; }
+.roster-filter .unity-base-popup-field__text { color: rgb(216, 213, 204); }
+.roster-filter .unity-text-field__input { color: rgb(216, 213, 204); }

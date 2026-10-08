@@ -13,6 +13,8 @@ These adaptation decisions are our design choices informed by the linked sources
 
 ## Native implementation update — 2026-10-09
 
+- The next feature group adds six visible/manual chain cards, cooldown/energy/readiness, compact confirmed-ultimate portrait cut-ins, actual party status labels, eight painted skill shapes, recipient-correct support VFX, timer-driven danger hatching, natural raid result/retry, original boss/map selection cards and roster search/faction/role filters. These are concrete adaptations of the four-game play-flow goals; complete game migration and the final art target remain unfinished.
+- User priority: build major graphics/skills/raids/UI groups continuously, inspect the completed group together, and postpone frame-rate optimization. Do not repeat full tests/benchmarks after every small visual edit. Compile blockers and critical runtime failures still need prompt repair.
 - The user clarified that UI, UX, design and graphics should be rebuilt for Unity rather than painstakingly copied from Godot. All four references above guide the new native play flow. They are design inspirations, not copied assets, skill names or numerical balance.
 - New session-only hunting settlement connects actual cleared packs to gold and deployed-hero XP with atomic duplicate/sequence protection. It rejects real player payloads and is not exhaustive legacy reward-service parity. The current executable still uses temporary memory state.
 - Native input reports, labelled practice screenshots, standalone graphics captures and frame reports are under `checks/unity-migration-2026-10-08`. Read those results for accepted scope; the matrix does not mean all reference-game features or final visual quality are finished.
