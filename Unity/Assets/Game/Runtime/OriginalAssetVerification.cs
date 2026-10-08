@@ -67,6 +67,10 @@ namespace Eternal.UnityMigration
         Camera cameraView;
         int frame;
         float phase;
+        public bool Driven;
+        public Vector2 Facing=Vector2.right;
+        public float MovingSpeed,AttackSeconds,HitSeconds;
+        float traveled;
 
         public void Initialize(string id,float height,Camera camera)
         {
@@ -74,8 +78,9 @@ namespace Eternal.UnityMigration
             var art = new GameObject("Original painted body");
             art.transform.SetParent(transform,false);
             meshFilter=art.AddComponent<MeshFilter>(); meshRenderer=art.AddComponent<MeshRenderer>();
+            var template=Resources.Load<Material>("Eternal/Materials/OriginalPaint");
             var shader=Shader.Find("Eternal/OriginalPaint") ?? throw new InvalidOperationException("Original paint shader missing");
-            var material=new Material(shader);
+            var material=template!=null?new Material(template):new Material(shader);
             material.mainTexture=Resources.Load<Texture2D>("Eternal/Actors/"+id+"/poses") ?? throw new InvalidOperationException("Atlas missing: "+id);
             meshRenderer.sharedMaterial=material;
             meshRenderer.sortingOrder=1000-Mathf.RoundToInt(transform.position.z*10);
@@ -100,11 +105,17 @@ namespace Eternal.UnityMigration
         void LateUpdate()
         {
             if(frames==null)return;
-            int next=(int)((Time.time+phase)*5)%frames.Length;
+            AttackSeconds=Mathf.Max(0,AttackSeconds-Time.unscaledDeltaTime);HitSeconds=Mathf.Max(0,HitSeconds-Time.unscaledDeltaTime);
+            traveled+=MovingSpeed*Time.unscaledDeltaTime;
+            int next=Driven?(AttackSeconds>0?(int)((.32f-AttackSeconds)*25)%atlas.attack.frames.Length:atlas.attack.frames.Length+(MovingSpeed>.05f?(int)(traveled*5)%atlas.motion.frames.Length:0)):(int)((Time.time+phase)*5)%frames.Length;
+            next=Mathf.Clamp(next,0,frames.Length-1);
             if(next!=frame){frame=next;meshFilter.sharedMesh=frames[frame];}
             // Feet and body scale never pulse; breathing is a small position offset.
             meshFilter.transform.rotation=cameraView.transform.rotation;
-            meshFilter.transform.localPosition=new Vector3(0,Mathf.Sin((Time.time+phase)*Mathf.PI)*.04f,0);
+            meshFilter.transform.localPosition=new Vector3(0,Mathf.Sin((Time.unscaledTime+phase)*Mathf.PI)*.045f,0);
+            if(Driven&&Mathf.Abs(Facing.x)>.08f)meshFilter.transform.localScale=new Vector3(Facing.x<0?-1:1,1,1);
+            meshRenderer.sortingOrder=1000-Mathf.RoundToInt(transform.position.z*10);
+            meshRenderer.sharedMaterial.SetColor("_Tint",HitSeconds>0?new Color(1.5f,1.5f,1.5f,1):Color.white);
         }
         void OnDestroy()
         {

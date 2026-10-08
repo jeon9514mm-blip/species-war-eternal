@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "comparisons": 293696,
+  "maximum_tick_movement": 0.090004101395607,
+  "minimum_normalized_body_clearance": 0.9994998574256897,
+  "verification_elapsed_ms": 2949,
+  "scenarios": [
+    {
+      "zone": "gray_meadow",
+      "simulated_seconds": 119.99999999999532,
+      "packs_cleared": 14,
+      "kills": 177,
+      "casts": 166,
+      "damage": 56066
+    },
+    {
+      "zone": "forgotten_mine",
+      "simulated_seconds": 119.99999999999532,
+      "packs_cleared": 10,
+      "kills": 120,
+      "casts": 180,
+      "damage": 88572
+    },
+    {
+      "zone": "moonrest_forest",
+      "simulated_seconds": 119.99999999999532,
+      "packs_cleared": 8,
+      "kills": 102,
+      "casts": 199,
+      "damage": 117672
+    }
+  ],
+  "note": "Isolated domain verification; not a renderer FPS benchmark or full economy parity."
+}
