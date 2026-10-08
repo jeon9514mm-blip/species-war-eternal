@@ -29,6 +29,9 @@ namespace Eternal.UnityMigration
         readonly Dictionary<int,int> personalities=new();
         readonly Dictionary<string,Vector2> homes=new();
         readonly Dictionary<int,int> assignedTargets=new();
+        readonly Dictionary<int,(Combatant target,double lockUntil,Vector2 offset)> movementPlans=new();
+        readonly Dictionary<int,Vector2> reservations=new();
+        readonly HashSet<int> meleeHeroes=new();
         int serial;
         public Action<BattleEvent> OnEvent;
         public HuntingSimulation(int reviewLevel=20,int seed=9514)
@@ -44,11 +47,11 @@ namespace Eternal.UnityMigration
         public void SetParty(IReadOnlyList<string> ids)
         {
             if(ids.Count<1||ids.Count>10||ids.Distinct().Count()!=ids.Count||ids.Any(id=>!Catalog.HeroIds.Contains(id)))throw new ArgumentException("Party requires 1–10 distinct original heroes.");
-            Battle.Heroes.Clear();Battle.Kits.Clear();homes.Clear();intents.Clear();
+            Battle.Heroes.Clear();Battle.Kits.Clear();homes.Clear();intents.Clear();movementPlans.Clear();meleeHeroes.Clear();
             for(int i=0;i<ids.Count;i++)
             {
                 string id=ids[i];var h=Catalog.Hero(id);var identity=(JObject)h["identity_profile"];
-                string role=(string)h["role_group"],row=i<4?"front":i<7?"middle":"rear";
+                string role=(string)h["role_group"],row=LegacyHeroLayout.Row(i);
                 int baseHp=role=="탱커"?560:role=="서포터"?405:role=="컨트롤러"?390:360;
                 int defense=role=="탱커"?18:role=="서포터"?9:role=="컨트롤러"?8:6;
                 int hp=Math.Max(120,(int)((baseHp+ReviewLevel*42)*LegacyCombatRules.Number(identity,"hp_mult",1)));
@@ -59,8 +62,8 @@ namespace Eternal.UnityMigration
                 attack=(int)Math.Round(attack*LegacyCombatRules.Number(formation,"attack",1),MidpointRounding.AwayFromZero);
                 double angle=i*Math.PI*2/ids.Count;
                 var origin=new Vector2(-3+(float)Math.Cos(angle)*3.2f,(float)Math.Sin(angle)*4.8f);
-                var a=new Combatant{Id=id,Serial=++serial,Slot=i,Hp=hp,MaxHp=hp,Attack=attack,Defense=defense+(int)LegacyCombatRules.Number(identity,"defense_bonus"),Role=role,Style=(string)identity["ai_style"]??"balanced",Row=row,Position=origin,PreviousPosition=origin,Range=(string)h["reach"]=="melee"?(row=="front"?1:2):(role=="서포터"||role=="컨트롤러"||row=="rear"?3:2),AttackIntervalMultiplier=LegacyCombatRules.Number(identity,"attack_interval_mult",1)/LegacyCombatRules.Number(formation,"speed",1),UltimateGainMultiplier=LegacyCombatRules.Number(identity,"ult_gain_mult",1),AttackRemaining=.1+i*.11};
-                Battle.Heroes.Add(a);homes[id]=origin;
+                var a=new Combatant{Id=id,Serial=++serial,Slot=i,Hp=hp,MaxHp=hp,Attack=attack,Defense=defense+(int)LegacyCombatRules.Number(identity,"defense_bonus"),Role=role,Style=(string)identity["ai_style"]??"balanced",Row=row,Position=origin,PreviousPosition=origin,Range=LegacyHeroLayout.Range(h,i),AttackIntervalMultiplier=LegacyCombatRules.Number(identity,"attack_interval_mult",1)/LegacyCombatRules.Number(formation,"speed",1),UltimateGainMultiplier=LegacyCombatRules.Number(identity,"ult_gain_mult",1),AttackRemaining=.1+i*.11};
+                Battle.Heroes.Add(a);homes[id]=origin;if((string)h["reach"]=="melee")meleeHeroes.Add(a.Serial);
                 Battle.Kits[id]=new HeroKitState(Catalog,id,0,origin);
                 Battle.Kits[id].Cooldowns["a1"]=i*.12;Battle.Kits[id].Cooldowns["a2"]=1.2+i*.12;
             }
@@ -147,16 +150,26 @@ namespace Eternal.UnityMigration
         }
         void MoveHeroes(float dt)
         {
-            assignedTargets.Clear();
+            assignedTargets.Clear();reservations.Clear();Vector2 center=Vector2.zero;int living=0;
+            foreach(var hero in Battle.Heroes)if(hero.Alive){center+=hero.PreviousPosition;living++;reservations[hero.Serial]=hero.PreviousPosition;}
+            if(living>0)center/=living;
             foreach(var h in Battle.Heroes.Where(a=>a.Alive))
             {
                 if(h.Stun>0||intents.ContainsKey(h.Serial)){h.Velocity=Vector2.zero;continue;}
                 var candidates=CombatTargeting.Rank(Battle,h,null,null,false);
-                var target=candidates.OrderBy(e=>Vector2.SqrMagnitude(h.Position-e.Position)*.16+CombatTargeting.BaseScore(h,e,e.Slot)+assignedTargets.GetValueOrDefault(e.Serial)*1.25).FirstOrDefault();
+                bool retained=movementPlans.TryGetValue(h.Serial,out var plan)&&plan.target.Alive&&candidates.Contains(plan.target);
+                var target=retained&&Elapsed<plan.lockUntil&&CombatTargeting.CanAttack(Battle,h,plan.target)?plan.target:candidates.OrderBy(e=>Vector2.SqrMagnitude(h.Position-e.Position)*.16+CombatTargeting.BaseScore(h,e,e.Slot)+assignedTargets.GetValueOrDefault(e.Serial)*(h.Style=="finisher"?.18:1.25)-(retained && e==plan.target ? .35 : 0)-(CombatTargeting.CanAttack(Battle,h,e)?4:0)).FirstOrDefault();
                 if(target!=null)assignedTargets[target.Serial]=assignedTargets.GetValueOrDefault(target.Serial)+1;
-                Vector2 goal=target?.Position??homes[h.Id],delta=goal-h.Position;
-                float stop=target==null?.1f:(float)CombatTargeting.Reach(h)*.90f;
-                var velocity=delta.magnitude>stop?delta.normalized*1.8f:Vector2.zero;
+                Vector2 goal=homes[h.Id];
+                if(target!=null)
+                {
+                    bool same=retained&&plan.target==target;
+                    goal=HuntPositionPlanner.Goal(this,h,target,meleeHeroes.Contains(h.Serial),center,reservations,plan.offset,same);
+                    movementPlans[h.Serial]=(target,same?plan.lockUntil:Elapsed+.45,goal-target.Position);
+                }
+                else movementPlans.Remove(h.Serial);
+                reservations[h.Serial]=goal;Vector2 delta=goal-h.Position;
+                var velocity=delta.magnitude>.10f?delta.normalized*(1.8f*Mathf.Clamp01(delta.magnitude/.72f)):Vector2.zero;
                 velocity+=Separation(h,false);h.Velocity=Vector2.Lerp(h.Velocity,Vector2.ClampMagnitude(velocity,2.2f),dt*8);
                 h.Position=MoveLegally(h,h.Velocity*dt);
             }

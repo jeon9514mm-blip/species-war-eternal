@@ -30,6 +30,7 @@ namespace Eternal.UnityMigration
         readonly List<(Combatant actor,Label health,Label skills,VisualElement hp)> cards=new();
         readonly List<BattleEvent> visualQueue=new();
         readonly List<Sprite> portraits=new();
+        readonly Dictionary<string,Sprite> inspectionPortraits=new(StringComparer.Ordinal);
         VisualElement root,modal,chainRow,raidCommands,bossBar;
         Label raidInfo;
         Button dodgeButton,counterButton;
@@ -43,12 +44,14 @@ namespace Eternal.UnityMigration
         GameObject worldRoot,huntFloor;
         RaidArenaPresentation raidMap;
         string lastChain="제어 → 약화 → 추가 피해",selectedHero;
+        ReviewLaunchSettings launch;
 
         void Start()
         {
             Application.targetFrameRate=60;
             Simulation=new HuntingSimulation(20);Simulation.OnEvent=Receive;Simulation.Chain.Enabled=true;
             CreateWorld();BuildHud();RebuildActors();BuildParty();
+            launch=ReviewLaunchSettings.Load();if(launch.HasRaid)StartRaid(launch.initialRaidZone);
             Debug.Log("ETERNAL_HUNT_REVIEW_RUNNING: native hunting, 10 original heroes, isolated Lv20 fixture; player saves untouched.");
         }
         void CreateWorld()
@@ -70,6 +73,7 @@ namespace Eternal.UnityMigration
             floor.transform.SetParent(worldRoot.transform,false);huntFloor=floor;
             var floorMaterial=Resources.Load<Material>("Eternal/Materials/Stone");
             ownedFloorMaterial=new Material(floorMaterial);
+            ownedFloorMaterial.SetVector("_TileSize",new Vector4(3.05f,3.6f,0,0));
             // Imported texture GUIDs are generated locally. Resolve by stable
             // resource paths so a clean import never depends on those GUIDs.
             ownedFloorMaterial.SetTexture("_BaseMap",Resources.Load<Texture2D>("Eternal/Floor/stone_1024_albedo_ao"));
@@ -100,6 +104,7 @@ namespace Eternal.UnityMigration
             if(!paused&&running)accumulator+=frame*speed;
             int steps=0;
             while(accumulator>=.05&&steps<5){if(Raid!=null)Raid.Step(.05);else Simulation.Step(.05);accumulator-=.05;steps++;}
+            if(Raid!=null&&launch.pauseAfterSeconds>0&&Raid.Elapsed>=launch.pauseAfterSeconds){Raid.Paused=true;launch.pauseAfterSeconds=0;}
             if(accumulator>=.05){CatchupLimitHits++;accumulator%=.05;}
             float alpha=paused||!running?1:Mathf.Clamp01((float)(accumulator/.05));
             RebuildActors();
@@ -136,7 +141,7 @@ namespace Eternal.UnityMigration
                 if(!actor.Alive||!actors.TryGetValue(actor.Serial,out var view)){finishedTrails.Add(actor.Serial);continue;}
                 trail.remaining-=dt;trail.untilSample-=dt;
                 if(trail.remaining<=0){finishedTrails.Add(actor.Serial);continue;}
-                if(trail.untilSample<=0){afterImages.Capture(view.CapturePose());trail.untilSample=.08f;}
+                if(trail.untilSample<=0){if(view.MovingSpeed>.20f)afterImages.Capture(view.CapturePose());trail.untilSample=.08f;}
                 trails[actor.Serial]=trail;
             }
             foreach(int id in finishedTrails)trails.Remove(id);
@@ -186,6 +191,7 @@ namespace Eternal.UnityMigration
             panel=ScriptableObject.CreateInstance<PanelSettings>();panel.scaleMode=PanelScaleMode.ScaleWithScreenSize;panel.referenceResolution=new Vector2Int(1600,900);panel.match=.5f;
             panel.themeStyleSheet=Resources.Load<ThemeStyleSheet>("Eternal/UI/RuntimeTheme")??throw new InvalidOperationException("Runtime UI theme missing.");
             var document=gameObject.AddComponent<UIDocument>();document.panelSettings=panel;root=document.rootVisualElement;
+            var styles=Resources.Load<StyleSheet>("Eternal/UI/BattleUi");if(styles!=null)root.styleSheets.Add(styles);
             root.style.flexGrow=1;root.style.color=Parchment;root.style.fontSize=16;
             korean=Font.CreateDynamicFontFromOSFont(new[]{"Malgun Gothic","맑은 고딕","Arial"},16);root.style.unityFont=korean;
             var top=Box(root,"top",Ink);top.style.height=92;top.style.paddingLeft=24;top.style.paddingRight=24;
@@ -283,23 +289,55 @@ namespace Eternal.UnityMigration
         {modal.Clear();modal.style.display=DisplayStyle.Flex;var row=Row(modal);var heading=Text(row,title,22);heading.style.flexGrow=1;Button(row,"닫기",()=>modal.style.display=DisplayStyle.None);}
         void ShowHero(string id)
         {
-            var h=Simulation.Catalog.Hero(id);PanelHeader((string)h["name"]);Text(modal,(string)h["identity"]+" · "+(string)h["role_group"],14);
+            var h=Simulation.Catalog.Hero(id);PanelHeader((string)h["name"]);
+            var intro=Row(modal);intro.style.alignItems=Align.Center;intro.style.marginTop=10;intro.style.marginBottom=6;
+            var art=new Image{sprite=InspectionPortrait(id),scaleMode=ScaleMode.ScaleToFit};art.style.width=98;art.style.height=128;art.style.marginRight=14;intro.Add(art);
+            var identity=new VisualElement();identity.style.flexGrow=1;intro.Add(identity);
+            Text(identity,(string)h["class"]+" · "+(string)h["role_group"],15).style.whiteSpace=WhiteSpace.Normal;
+            Text(identity,((string)h["faction"]=="aurelia"?"아우렐리아":"녹스페라")+" · "+(string)h["race"]+" · "+((string)h["reach"]=="melee"?"근접":"원거리"),12).style.color=Moss;
+            Text(identity,(string)h["identity_profile"]["trait"],13).style.whiteSpace=WhiteSpace.Normal;
             var scroll=new ScrollView();scroll.style.flexGrow=1;modal.Add(scroll);
             foreach(var skill in h["skills"])
             {
                 var block=new VisualElement();block.style.marginTop=18;scroll.Add(block);
                 var title=Text(block,(string)skill["skill"],18);title.style.color=Bronze;
                 var detail=Text(block,(string)skill["effect"],14);detail.style.whiteSpace=WhiteSpace.Normal;
-                Text(block,(string)skill["slot"]+" · "+((string)skill["slot"]=="passive"?"조건 발동":(string)skill["slot"]=="ultimate"?"궁극기 게이지 100%":skill["cooldown"]+"초"),12);
+                string slot=(string)skill["slot"];string label=slot=="passive"?"패시브":slot=="a1"?"주력 스킬":slot=="a2"?"보조 스킬":"궁극기";
+                Text(block,label+" · "+(slot=="passive"?"조건 발동":slot=="ultimate"?"궁극기 게이지 100%":skill["cooldown"]+"초"),12);
             }
+        }
+        Sprite InspectionPortrait(string id)
+        {
+            if(inspectionPortraits.TryGetValue(id,out var found))return found;
+            var f=OriginalCatalog.Atlas(id).attack.frames[0];var texture=Resources.Load<Texture2D>("Eternal/Actors/"+id+"/poses");
+            var sprite=Sprite.Create(texture,new Rect(f.region[0],1024-f.region[1]-f.region[3],f.region[2],f.region[3]),new Vector2(.5f,.5f));inspectionPortraits.Add(id,sprite);return sprite;
+        }
+        void ShowRoster()
+        {
+            PanelHeader("영웅 도감 · 30명");var ids=Simulation.Catalog.HeroIds.ToList();
+            VisualElement Make()
+            {
+                var card=new Button();card.AddToClassList("hero-roster-card");card.clicked+=()=>{if(card.userData is string id)ShowHero(id);};
+                var art=new Image{name="hero-art",scaleMode=ScaleMode.ScaleToFit};art.AddToClassList("hero-art");card.Add(art);
+                var text=new VisualElement();text.style.flexGrow=1;card.Add(text);
+                var name=new Label{name="hero-name"};name.AddToClassList("hero-roster-name");text.Add(name);
+                var detail=new Label{name="hero-detail"};detail.AddToClassList("hero-roster-detail");text.Add(detail);return card;
+            }
+            void Bind(VisualElement card,int index)
+            {
+                string id=ids[index];var h=Simulation.Catalog.Hero(id);card.userData=id;card.Q<Image>("hero-art").sprite=InspectionPortrait(id);
+                card.Q<Label>("hero-name").text=(string)h["name"];
+                card.Q<Label>("hero-detail").text=((string)h["faction"]=="aurelia"?"아우렐리아":"녹스페라")+" · "+(string)h["role_group"]+" · "+((string)h["reach"]=="melee"?"근접":"원거리");
+            }
+            var list=new ListView(ids,66,Make,Bind){selectionType=SelectionType.None};list.style.flexGrow=1;list.style.marginTop=8;
+            list.unbindItem=(item,_)=>{item.userData=null;item.Q<Image>("hero-art").sprite=null;};modal.Add(list);
         }
         void OpenPanel(string route)
         {
             if(route=="사냥"){EndRaid();modal.style.display=DisplayStyle.None;return;}
             if(route=="영웅")
             {
-                PanelHeader("영웅 30명 · 원래 스킬 확인");var scroll=new ScrollView();scroll.style.flexGrow=1;modal.Add(scroll);
-                foreach(string id in Simulation.Catalog.HeroIds){string selected=id;Button(scroll,(string)Simulation.Catalog.Hero(id)["name"],()=>ShowHero(selected));}return;
+                ShowRoster();return;
             }
             if(route=="도전")
             {
@@ -360,6 +398,6 @@ namespace Eternal.UnityMigration
         }
         void ResetViews(){foreach(var actor in actors.Values)if(actor!=null)Destroy(actor.gameObject);actors.Clear();drawActors.Clear();presentIds.Clear();trails.Clear();afterImages?.Clear();}
         void OnDestroy()
-        {ResetViews();foreach(var pool in enemyViews.Values)foreach(var view in pool)if(view!=null)Destroy(view.gameObject);enemyViews.Clear();afterImages?.Dispose();foreach(var p in portraits)Destroy(p);if(panel!=null)Destroy(panel);if(korean!=null)Destroy(korean);if(ownedFloorMaterial!=null)Destroy(ownedFloorMaterial);if(worldRoot!=null)Destroy(worldRoot);if(raidMap!=null)Destroy(raidMap.gameObject);if(feedback!=null)Destroy(feedback.gameObject);OriginalReliefMesh.Clear();}
+        {ResetViews();foreach(var pool in enemyViews.Values)foreach(var view in pool)if(view!=null)Destroy(view.gameObject);enemyViews.Clear();afterImages?.Dispose();foreach(var p in portraits)Destroy(p);foreach(var p in inspectionPortraits.Values)if(p!=null)Destroy(p);if(panel!=null)Destroy(panel);if(korean!=null)Destroy(korean);if(ownedFloorMaterial!=null)Destroy(ownedFloorMaterial);if(worldRoot!=null)Destroy(worldRoot);if(raidMap!=null)Destroy(raidMap.gameObject);if(feedback!=null)Destroy(feedback.gameObject);OriginalReliefMesh.Clear();}
     }
 }

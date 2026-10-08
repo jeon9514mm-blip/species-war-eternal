@@ -17,7 +17,7 @@ namespace Eternal.UnityMigration
     // One mutable owner for an intact original save payload. Unknown fields and
     // faction/world/preset data survive every supported command and snapshot.
     // Storage failures retain the awarded snapshot; RetrySave never replays it.
-    public sealed class GameStateCommands
+    public sealed partial class GameStateCommands
     {
         public const long CurrencyCap=1000000000000;
         readonly OriginalCombatCatalog catalog;

@@ -25,8 +25,10 @@ namespace Eternal.UnityMigration.Editor
                 return material;
             }
             Material("OriginalPaint","Eternal/OriginalPaint");Material("Particles","Eternal/EffectParticles");
+            Material("PaintedArena","Eternal/PaintedArena");
             Material("ReliefPaint","Eternal/OriginalRelief");
             var stone=Material("Stone","Eternal/WeatheredStone");stone.shader=Shader.Find("Eternal/WeatheredStone");
+            stone.SetVector("_TileSize",new Vector4(3.05f,3.6f,0,0));
             stone.SetTexture("_BaseMap",Resources.Load<Texture2D>("Eternal/Floor/stone_1024_albedo_ao"));stone.SetTexture("_MicroNormal",Resources.Load<Texture2D>("Eternal/Floor/stone_1024_micro_normal"));EditorUtility.SetDirty(stone);
             string profilePath="Assets/Game/Resources/Eternal/Materials/BattlePost.asset";
             var profile=AssetDatabase.LoadAssetAtPath<VolumeProfile>(profilePath);

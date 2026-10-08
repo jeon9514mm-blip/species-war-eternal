@@ -33,3 +33,6 @@ Both latest Meta AI links were rechecked in Chrome: [Ultra design brief](https:/
 - Profile active worst-case hunting/raid/VFX on target hardware. Anti-aliasing and renderer features must form tested quality profiles; do not blindly stack incompatible options. Preserve smooth combat when adding stronger slow motion/hit-stop/camera effects.
 - Recheck all user-supplied Meta AI effect/art links against accessible content before claiming they were incorporated. Missing/inaccessible content must be listed explicitly, not guessed.
 - GitHub default-branch publication for every completed checkpoint, native Unity captures and actual build validation before declaring the full engine migration complete.
+# Native UI implementation reference
+
+Unity's ListView documentation describes creating and rebinding recycled row elements. The native portrait encyclopedia uses that path instead of creating all 30 image rows at once: https://docs.unity.com/en-us/engine/6000.0/script-reference/unityengine/uielements/listview . This is an implementation reference, not additional reference-game research or proof that portrait scrolling/detail input has been accepted.

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "comparisons": 4783,
+  "production_cases": 513,
+  "types": {
+    "normalize": 56,
+    "sets": 343,
+    "command": 114
+  },
+  "note": "Production equipment normalization/set rules and selected actual commands with isolated healthy snapshots; workshop/market/auto-equip, native UI and all corrupt legacy variants remain incomplete."
+}

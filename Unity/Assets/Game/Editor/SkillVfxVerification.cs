@@ -52,6 +52,10 @@ namespace Eternal.UnityMigration.Editor
                 for(int i=0;i<250;i++)echoes.Capture(snapshot);echoes.Advance(.01f);
                 if(echoes.ActiveCount!=50)throw new InvalidOperationException("Afterimage pool exceeded or lost its 50-slot capacity.");comparisons++;
                 echoes.Advance(.4f);if(echoes.ActiveCount!=0)throw new InvalidOperationException("Afterimage pool leaked expired poses.");comparisons++;
+                // Scene teardown may destroy child renderers before the review
+                // owner. Repeated clear/dispose must remain safe in that order.
+                foreach(var child in owner.GetComponentsInChildren<MeshRenderer>())if(child.name.StartsWith("Paint echo "))UnityEngine.Object.DestroyImmediate(child.gameObject);
+                echoes.Clear();echoes.Dispose();echoes.Dispose();echoes.Advance(.1f);echoes.Capture(snapshot);comparisons++;
                 var oldMesh=OriginalReliefMesh.Load(source.Id).Body;oldMesh.Clear();
                 var restored=OriginalReliefMesh.Load(source.Id).Body;
                 if(restored==null||restored.vertexCount==0||restored.triangles.Length/3!=6000)throw new InvalidOperationException("Empty cached original body was reused.");comparisons++;
