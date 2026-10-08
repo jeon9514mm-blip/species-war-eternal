@@ -39,7 +39,11 @@ static func box(fill: Color, edge: Color = EDGE, radius: int = 10, border: int =
 	return s
 
 static func elevated(fill: Color, edge: Color = EDGE_SOFT, radius: int = 12) -> StyleBoxFlat:
-	return box(fill,EDGE_SOFT,radius,1)
+	var style:=box(fill,edge,radius,1)
+	style.shadow_color=Color(0,0,0,.24)
+	style.shadow_size=12
+	style.shadow_offset=Vector2(0,4)
+	return style
 
 static func label(text: String, points: int = 22, color: Color = INK) -> Label:
 	var n := Label.new()

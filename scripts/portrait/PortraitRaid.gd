@@ -31,6 +31,7 @@ var ultimate_cast_button: Button
 var hero_bars: Dictionary={}
 var hero_cards: Dictionary={}
 var hero_slots: Dictionary={}
+var hero_state_labels: Dictionary={}
 var selected_hero_id := ''
 var arena: Control
 var battlefield_3d: Control
@@ -299,6 +300,13 @@ func install(main: Node) -> void:
 		caption.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 		caption.mouse_filter=Control.MOUSE_FILTER_IGNORE
 		SKIN.place(slot,caption,Rect2(4,59,cell-8,24))
+		var hero_state:=SKIN.label('',12,SKIN.MUTED)
+		hero_state.name='RaidHeroState_'+id
+		hero_state.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+		hero_state.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		hero_state.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+		SKIN.place(slot,hero_state,Rect2(6,81,cell-12,17))
+		hero_state_labels[id]=hero_state
 		hero_bars[id]=SKIN.gauge(slot,Rect2(6,85,cell-12,7),SKIN.SUCCESS)
 		hero_bars[id].mouse_filter=Control.MOUSE_FILTER_IGNORE
 		hero_cards[id]=art
@@ -641,6 +649,11 @@ func refresh() -> void:
 			slot.add_theme_stylebox_override('panel',SKIN.box(SKIN.SURFACE,SKIN.GOLD if id==selected_hero_id else SKIN.EDGE_SOFT,12,2 if id==selected_hero_id else 1))
 		var state: Dictionary=game.hero_battle_state.get(id,{})
 		var alive: bool=float(state.get('hp',0))>0.0
+		var state_tag: Label=hero_state_labels.get(id)
+		if is_instance_valid(state_tag):
+			var progress: Dictionary=game.hero_progress.get(id,{})
+			state_tag.text='%s · Lv.%d'%['전투불능' if not alive else ('선택' if id==selected_hero_id else '출전'),int(progress.get('level',1))]
+			state_tag.add_theme_color_override('font_color',SKIN.MUTED if not alive else (SKIN.GOLD if id==selected_hero_id else SKIN.MUTED))
 		hero_bars[id].value=100.0*float(state.get('hp',0))/maxf(1.0,float(state.get('max_hp',1)))
 		hero_cards[id].modulate=Color.WHITE if alive else Color('#6a7180')
 		var actor: Node2D=hero_actors.get(id)
@@ -680,7 +693,10 @@ func _layout_party_strip(party: Control,origin: Vector2,width: float) -> void:
 		slot.mouse_filter=Control.MOUSE_FILTER_PASS
 		for child in slot.get_children():
 			if child is TextureRect:child.size=Vector2(cell-6,58)
-			elif child is Label:child.position.y=59;child.size.x=cell-8;child.add_theme_font_size_override('font_size',18)
+			elif child is Label:
+				if str(child.name).begins_with('RaidHeroState_'):
+					child.position.y=81;child.size.x=cell-12;child.add_theme_font_size_override('font_size',12)
+				else:child.position.y=59;child.size.x=cell-8;child.add_theme_font_size_override('font_size',18)
 			elif child is ProgressBar:child.position.y=98;child.size.x=cell-12
 
 func _compact_raid_layout(body: Control,summary: Control,status: Control,actions: Control,party: Control,heading: Control,w: float,h: float) -> void:

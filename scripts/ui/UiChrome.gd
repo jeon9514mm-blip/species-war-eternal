@@ -60,7 +60,9 @@ static func navigation(main, active_id: String) -> void:
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.disabled = selected and str(entry["id"]) != "more"
 		if selected:
-			button.add_theme_stylebox_override("disabled", UI.panel(Color("#dbe7d4"), Color.TRANSPARENT, 11, 0))
+			button.add_theme_stylebox_override("disabled", UI.dock_style(true))
+		button.add_theme_stylebox_override("normal", UI.dock_style(selected))
+		button.add_theme_stylebox_override("hover", UI.dock_style(true))
 		if not button.disabled:
 			button.pressed.connect(Callable(main, str(entry["method"])))
 		row.add_child(button)

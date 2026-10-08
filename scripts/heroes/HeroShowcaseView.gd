@@ -7,10 +7,11 @@ const VISUALS=preload('res://scripts/heroes/HeroVisualCatalog.gd')
 const ART=preload('res://scripts/equipment/EquipmentArtCatalog.gd')
 const GEAR=preload('res://scripts/equipment/EquipmentRules.gd')
 const SAFETY=preload('res://scripts/persistence/SaveSafety.gd')
-const INK=Color('#213744')
-const MUTED=Color('#526b77')
-const ACCENT=Color('#246c81')
-const PAPER=Color('#eef6f5')
+const UI=preload('res://scripts/ui/GameUiTheme.gd')
+const INK=UI.INK
+const MUTED=UI.MUTED
+const ACCENT=UI.PRIMARY
+const PAPER=UI.SURFACE
 const TABS=[['growth','성장'],['skills','스킬'],['equipment','장비'],['ascension','승급 · 돌파']]
 
 class ShowcaseRig:
@@ -69,9 +70,9 @@ func install(main: Node, selected_id: String, selected_tab: String) -> void:
 	combat_stats=game._hero_combat_stats(hero_id,maxi(0,party_slot),hp_mult)
 	mouse_filter=Control.MOUSE_FILTER_IGNORE
 	var area: Vector2=game.get_viewport_rect().size
-	var right_width:=clampf(area.x*.27,338,420)
-	right_rect=Rect2(area.x-right_width-24,100,right_width,area.y-210)
-	art_rect=Rect2(340,92,right_rect.position.x-360,area.y-204)
+	var right_width:=clampf(area.x*.33,380,420)
+	right_rect=Rect2(area.x-right_width-24,108,right_width,area.y-218)
+	art_rect=Rect2(244,104,right_rect.position.x-268,area.y-214)
 	_background(area);_header(area);_roster(area);_tabs(area);_hero_art();_identity();_details()
 	HUD.navigation(game,game.content_root,'heroes',area.y-90,90)
 	live_signature=_live_state_signature()
@@ -81,42 +82,43 @@ func _background(area: Vector2) -> void:
 	var sky:=TextureRect.new();sky.name='HeroShowcaseBackdrop'
 	sky.texture=load('res://assets/ui/v30/expedition-key-art.png')
 	sky.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;sky.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	sky.mouse_filter=Control.MOUSE_FILTER_IGNORE;sky.modulate=Color(.91,.98,1.,1.)
+	sky.mouse_filter=Control.MOUSE_FILTER_IGNORE;sky.modulate=Color(.58,.67,.63,.16)
 	add_child(sky);sky.size=area
-	var shader:=Shader.new()
-	shader.code='shader_type canvas_item; void fragment(){ vec3 sky=mix(vec3(.60,.80,.87),vec3(.90,.95,.88),UV.y); COLOR=vec4(sky,.57); }'
-	var tint:=ColorRect.new();tint.mouse_filter=Control.MOUSE_FILTER_IGNORE;tint.size=area
-	var mat:=ShaderMaterial.new();mat.shader=shader;tint.material=mat;add_child(tint)
-	var gradient:=Gradient.new();gradient.colors=PackedColorArray([Color(1.,1.,1.,.0),Color(.80,.90,.91,.80)])
-	var tex:=GradientTexture2D.new();tex.gradient=gradient;tex.fill_from=Vector2.ZERO;tex.fill_to=Vector2(1,0)
-	var veil:=TextureRect.new();veil.texture=tex;veil.size=area;veil.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(veil)
+	var roster_panel:=Panel.new();roster_panel.name='HeroRosterPanel';roster_panel.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	roster_panel.add_theme_stylebox_override('panel',UI.panel(UI.SURFACE,UI.BORDER,12))
+	_place(self,roster_panel,Rect2(24,108,196,area.y-218))
+	var information_panel:=Panel.new();information_panel.name='HeroInformationPanel';information_panel.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	information_panel.add_theme_stylebox_override('panel',UI.panel(UI.SURFACE,UI.BORDER,12))
+	_place(self,information_panel,right_rect.grow(12))
 
 func _draw() -> void:
+	draw_rect(Rect2(Vector2.ZERO,size),UI.BG)
 	if art_rect.size.x<=0:return
 	var center:=art_rect.get_center()+Vector2(0,12)
-	var radius:=minf(art_rect.size.x*.46,art_rect.size.y*.43)
-	for scale_value in [1.0,.93,.73]:
-		draw_arc(center,radius*scale_value,0,TAU,100,Color(1.,1.,1.,.38),1.4,true)
-	for index in 12:
-		var angle:=float(index)*TAU/12.
-		var direction:=Vector2(cos(angle),sin(angle))
-		draw_line(center+direction*radius*.94,center+direction*radius*1.03,Color(1.,1.,1.,.38),1.,true)
+	var radius:=minf(art_rect.size.x*.43,art_rect.size.y*.40)
+	draw_arc(center,radius,0,TAU,80,Color(UI.PRIMARY,.09),1.,true)
+	draw_line(Vector2(24,88),Vector2(size.x-24,88),Color(UI.BORDER,.72),1.,true)
 
 func _header(area: Vector2) -> void:
-	var back:=_button('‹',func():
+	var back:=_button('',func():
 		if not game.content_party_context.is_empty():game._build_hero_select_screen()
 		else:game._open_home())
-	back.name='HeroShowcaseBack';back.tooltip_text='이전 화면';back.add_theme_font_size_override('font_size',34)
-	_place(self,back,Rect2(24,22,104,48))
-	_label_at(self,'영웅',Rect2(161,17,250,40),30,INK)
-	_label_at(self,'H E R O E S   /   '+('아우렐리아' if game.selected_faction=='aurelia' else '녹스페라'),Rect2(162,61,380,25),13,MUTED)
+	back.name='HeroShowcaseBack';back.tooltip_text='이전 화면';back.add_theme_font_size_override('font_size',30)
+	_place(self,back,Rect2(24,22,48,48))
+	_place(back,UI.icon('back',Vector2(24,24),UI.INK),Rect2(12,12,24,24))
+	_label_at(self,'영웅',Rect2(88,20,160,30),26,INK)
+	_label_at(self,'아우렐리아' if game.selected_faction=='aurelia' else '녹스페라',Rect2(88,53,200,22),13,MUTED)
+	var formation:=_button('원정대 편성',Callable(game,'_build_hero_select_screen'))
+	formation.name='HeroFormationAction';_place(self,formation,Rect2(300,24,150,44))
 	var wallet:=HBoxContainer.new();wallet.add_theme_constant_override('separation',12)
-	_place(self,wallet,Rect2(area.x-440,23,416,46))
+	_place(self,wallet,Rect2(area.x-388,23,364,46))
 	for entry in [['G',game.wallet_gold],['정수',game.raid_crystals]]:
-		var balance:=_panel(wallet,Color(1.,1.,1.,.48),Color(1.,1.,1.,.65));balance.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		var balance:=_panel(wallet,UI.SURFACE,UI.BORDER);balance.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		balance.tooltip_text='골드' if str(entry[0])=='G' else '레이드 정수'
 		var row:=HBoxContainer.new();balance.add_child(row)
-		_text(row,str(entry[0]),15,MUTED)
-		var amount:=_text(row,game._compact_hud_amount(int(entry[1])),21,INK);amount.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
+		var symbol:=UI.icon('coin' if str(entry[0])=='G' else 'gem',Vector2(20,20),UI.PRIMARY if str(entry[0])=='G' else UI.BLUE)
+		row.add_child(symbol)
+		var amount:=_text(row,game._compact_hud_amount(int(entry[1])),18,INK);amount.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
 		amount.size_flags_horizontal=Control.SIZE_EXPAND_FILL;amount.tooltip_text=str(entry[1])
 		var currency:=str(entry[0])
 		amount.name='HeroGoldValue' if currency=='G' else 'HeroCrystalsValue'
@@ -125,47 +127,52 @@ func _header(area: Vector2) -> void:
 			amount.text=game._compact_hud_amount(value);amount.tooltip_text=str(value))
 
 func _roster(area: Vector2) -> void:
+	_label_at(self,'영웅 목록',Rect2(38,119,120,26),15,INK)
+	var count:=_label_at(self,str(game._hero_roster_for_faction().size()),Rect2(165,119,39,26),13,MUTED)
+	count.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
 	var scroll:=ScrollContainer.new();scroll.name='HeroRosterScroll';S.make_scroll_responsive(scroll)
-	_place(self,scroll,Rect2(22,94,126,area.y-204))
-	var column:=VBoxContainer.new();column.size_flags_horizontal=Control.SIZE_EXPAND_FILL;column.add_theme_constant_override('separation',10);scroll.add_child(column)
+	_place(self,scroll,Rect2(34,152,176,area.y-272))
+	var column:=VBoxContainer.new();column.size_flags_horizontal=Control.SIZE_EXPAND_FILL;column.add_theme_constant_override('separation',8);scroll.add_child(column)
 	for entry: Dictionary in game._hero_roster_for_faction():
 		var id:=str(entry.id)
 		var button:=_button('',func():build(game,id,tab),id==hero_id)
-		button.name='HeroRoster_'+id;button.custom_minimum_size=Vector2(108,116)
+		button.name='HeroRoster_'+id;button.custom_minimum_size=Vector2(156,76)
+		if id==hero_id:_selected_control(button)
 		button.mouse_filter=Control.MOUSE_FILTER_PASS
 		button.tooltip_text=str(entry.name)+' · '+str(game._hero_role_group(id))
 		column.add_child(button)
 		var portrait:=TextureRect.new();portrait.texture=game._combat_portrait_texture(id)
 		portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;portrait.mouse_filter=Control.MOUSE_FILTER_IGNORE
-		_place(button,portrait,Rect2(5,3,98,83))
+		_place(button,portrait,Rect2(6,6,53,64))
+		var name_label:=_label_at(button,str(entry.name).get_slice(' ',0),Rect2(68,9,86,26),15,INK)
+		name_label.name='HeroRosterName_'+id
 		var is_locked: bool=game.idle_stage<int(entry.get('unlock_stage',1))
 		if is_locked:portrait.modulate=Color(.5,.6,.63,.65)
 		var state:=('잠김 · %d'%int(entry.get('unlock_stage',1))) if is_locked else ('Lv.%d'%int(game._get_hero_progress(id).level))
-		var small:=_label_at(button,state,Rect2(6,83,96,25),14,Color.WHITE if id==hero_id else INK)
-		small.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+		var small:=_label_at(button,state,Rect2(68,39,86,24),12,UI.PRIMARY if id==hero_id else MUTED)
 		live_bindings.append(func():
 			var still_locked: bool=game.idle_stage<int(entry.get('unlock_stage',1))
 			small.text=('잠김 · %d'%int(entry.get('unlock_stage',1))) if still_locked else ('Lv.%d'%int(game._get_hero_progress(id).level))
 			portrait.modulate=Color(.5,.6,.63,.65) if still_locked else Color.WHITE)
 		if game._is_hero_deployed(id):
-			var active:=_label_at(button,'●',Rect2(8,4,25,24),14,Color('#2c895e'));active.tooltip_text='출전 중'
+			var active:=_label_at(button,'●',Rect2(8,7,15,18),10,UI.GREEN);active.tooltip_text='출전 중'
 		if id==hero_id:button.set_meta('selected_hero',true)
 	scroll.set_deferred('scroll_vertical',roster_position)
 	scroll.get_v_scroll_bar().value_changed.connect(func(value: float):game.set_meta('hero_showcase_roster_scroll',int(value)))
 
-func _tabs(area: Vector2) -> void:
+func _tabs(_area: Vector2) -> void:
+	var tab_width: float=(right_rect.size.x-18)/4.
 	for index in TABS.size():
 		var entry: Array=TABS[index];var key:=str(entry[0]);var active:=tab==key
 		var button:=_button(str(entry[1]),func():build(game,hero_id,key),active)
-		button.name='HeroTab_'+key;button.alignment=HORIZONTAL_ALIGNMENT_LEFT
-		button.add_theme_font_size_override('font_size',21)
-		_place(self,button,Rect2(163,116+index*65,170,54))
+		button.name='HeroTab_'+key;button.alignment=HORIZONTAL_ALIGNMENT_CENTER
+		button.add_theme_font_size_override('font_size',14)
+		if active:_selected_control(button)
+		_place(self,button,Rect2(right_rect.position.x+index*(tab_width+6),212,tab_width,44))
 		button.toggle_mode=true;button.button_pressed=active
-	var rank:=_label_at(self,str(game._hero_grade(hero_id)),Rect2(168,area.y-294,158,57),43,ACCENT)
+	var rank:=_label_at(self,str(game._hero_grade(hero_id)),Rect2(art_rect.position.x+14,119,74,34),22,ACCENT)
 	rank.name='HeroGradeValue'
-	_label_at(self,str(hero.get('identity',hero.get('role',''))),Rect2(168,area.y-231,158,58),18,INK)
-	var party:=_button('원정대 편성',Callable(game,'_build_hero_select_screen'))
-	party.name='HeroFormationAction';_place(self,party,Rect2(163,area.y-166,170,48))
+	_label_at(self,str(hero.get('identity',hero.get('role',''))),Rect2(art_rect.position.x+94,122,art_rect.size.x-108,28),14,MUTED)
 
 func _hero_art() -> void:
 	var frame:=Control.new();frame.name='HeroShowcaseArt';frame.mouse_filter=Control.MOUSE_FILTER_IGNORE;frame.clip_contents=true
@@ -173,13 +180,13 @@ func _hero_art() -> void:
 	var actor:=HeroSpriteFactory.create_hero(hero_id)
 	actor.name='HeroShowcaseActor';actor.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
 	frame.add_child(actor)
-	var height:=minf(art_rect.size.y-64,art_rect.size.x*.99)
+	var height:=minf(art_rect.size.y-116,art_rect.size.x*.99)
 	actor.scale=Vector2.ONE*(height/maxf(1.,actor.native_visual_height))
 	actor.position=Vector2(art_rect.size.x*.5,art_rect.size.y-49)
 	var rig:=ShowcaseRig.new()
 	if not rig.install(actor):rig.queue_free()
 	actor.play_idle('down')
-	var shadow:=Polygon2D.new();shadow.color=Color(.21,.40,.34,.12)
+	var shadow:=Polygon2D.new();shadow.color=Color(0.,0.,0.,.36)
 	var points:=PackedVector2Array()
 	for index in 40:
 		var angle:=float(index)*TAU/40.;points.append(Vector2(cos(angle)*height*.27,sin(angle)*12))
@@ -193,10 +200,10 @@ func _hero_art() -> void:
 		state_label.text='스테이지 %d에서 합류'%int(hero.get('unlock_stage',1)) if locked else ('출전 · '+str(game._party_slot_name(party_slot)) if party_slot>=0 else '미편성'))
 
 func _identity() -> void:
-	var name_label:=_label_at(self,str(hero.name),Rect2(right_rect.position.x,94,right_rect.size.x,40),27,INK)
+	var name_label:=_label_at(self,str(hero.name),Rect2(right_rect.position.x,108,right_rect.size.x,40),28,INK)
 	name_label.name='HeroIdentityName';name_label.max_lines_visible=1;name_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
-	_label_at(self,'%s · %s · %s'%[hero.get('race',''),hero.get('class',''),game._hero_role_group(hero_id)],Rect2(right_rect.position.x,137,right_rect.size.x,28),15,MUTED)
-	var level:=_label_at(self,'LEVEL  %d / %d'%[int(progress_data.level),game.MAX_HERO_LEVEL],Rect2(right_rect.position.x,172,right_rect.size.x,33),22,INK)
+	_label_at(self,'%s · %s · %s'%[hero.get('race',''),hero.get('class',''),game._hero_role_group(hero_id)],Rect2(right_rect.position.x,151,right_rect.size.x,24),13,MUTED)
+	var level:=_label_at(self,'LEVEL  %d / %d'%[int(progress_data.level),game.MAX_HERO_LEVEL],Rect2(right_rect.position.x,178,right_rect.size.x,28),17,ACCENT)
 	level.name='HeroLevelValue'
 	live_bindings.append(func():level.text='LEVEL  %d / %d'%[int(progress_data.level),game.MAX_HERO_LEVEL])
 	var values:=_text(self,'현재 전투 능력치 · HP %s · 공격 %s · 방어 %s'%[game._compact_hud_amount(int(combat_stats.max_hp)),game._compact_hud_amount(int(combat_stats.attack)),game._compact_hud_amount(int(combat_stats.defense))],13,MUTED)
@@ -205,12 +212,12 @@ func _identity() -> void:
 	var scroll:=ScrollContainer.new();scroll.name='PortraitContentScroll';S.make_scroll_responsive(scroll)
 	# This direct-child path is the equipment workshop's return-scroll contract.
 	game.content_root.add_child(scroll)
-	scroll.position=Vector2(right_rect.position.x,218);scroll.size=Vector2(right_rect.size.x,game.get_viewport_rect().size.y-388)
-	detail=VBoxContainer.new();detail.name='HeroShowcaseDetailContent';detail.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN;detail.add_theme_constant_override('separation',7);scroll.add_child(detail)
+	scroll.position=Vector2(right_rect.position.x,270);scroll.size=Vector2(right_rect.size.x,game.get_viewport_rect().size.y-440)
+	detail=VBoxContainer.new();detail.name='HeroShowcaseDetailContent';detail.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN;detail.add_theme_constant_override('separation',10);scroll.add_child(detail)
 	detail.custom_minimum_size.x=right_rect.size.x-18
 	scroll.set_deferred('scroll_vertical',content_position)
 	var deploy_text: String='스테이지 %d에서 합류'%int(hero.get('unlock_stage',1)) if locked else ('배치 해제' if party_slot>=0 else '원정대에 배치')
-	var deploy:=_button(deploy_text,_deploy,true);deploy.name='HeroDeployAction'
+	var deploy:=_button(deploy_text,_deploy,party_slot<0);deploy.name='HeroDeployAction'
 	_guard_action(deploy,func():return locked or (party_slot<0 and game.deployed_heroes.size()>=game._party_slot_cap()))
 	if not locked and party_slot<0 and game.deployed_heroes.size()>=game._party_slot_cap():deploy.tooltip_text='원정대가 가득 찼습니다. 편성에서 자리를 선택해 교체하세요.'
 	_place(self,deploy,Rect2(right_rect.position.x,game.get_viewport_rect().size.y-160,right_rect.size.x,48))
@@ -226,19 +233,19 @@ func _details() -> void:
 		'ascension':_ascension()
 
 func _stats() -> void:
-	var grid:=VBoxContainer.new();grid.name='HeroStatGrid';grid.add_theme_constant_override('separation',4);detail.add_child(grid)
+	var grid:=HBoxContainer.new();grid.name='HeroStatGrid';grid.add_theme_constant_override('separation',8);detail.add_child(grid)
 	for entry in [['attack','공격력'],['defense','방어력'],['max_hp','체력']]:
-		var key:=str(entry[0]);var row:=_panel(grid,Color(1.,1.,1.,.67),Color.TRANSPARENT,5)
-		var line:=HBoxContainer.new();row.add_child(line)
-		_text(line,str(entry[1]),17,INK)
+		var key:=str(entry[0]);var row:=_panel(grid,UI.SOFT,Color.TRANSPARENT,10)
+		var line:=VBoxContainer.new();line.add_theme_constant_override('separation',4);row.add_child(line)
+		_text(line,str(entry[1]),12,MUTED)
 		var value:=_text(line,game._compact_hud_amount(int(combat_stats[key])),19,INK)
 		value.name='HeroStat_'+('hp' if key=='max_hp' else key);value.set_meta('combat_value',int(combat_stats[key]))
-		value.size_flags_horizontal=Control.SIZE_EXPAND_FILL;value.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
+		value.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 		value.tooltip_text=str(combat_stats[key])
 		live_bindings.append(func():
 			value.text=game._compact_hud_amount(int(combat_stats[key]));value.tooltip_text=str(combat_stats[key])
 			value.set_meta('combat_value',int(combat_stats[key])))
-	var note:=_text(detail,'현재 장비·연구·진형'+('·원정대 시너지 반영' if party_slot>=0 else ' 반영'),13,MUTED)
+	var note:=_text(detail,'장비·연구·진형'+('·시너지 반영' if party_slot>=0 else ' 반영'),12,MUTED)
 	note.name='HeroStatBasis'
 
 func _growth() -> void:
@@ -254,8 +261,8 @@ func _growth() -> void:
 		var at_max: bool=int(progress_data.level)>=game.MAX_HERO_LEVEL
 		experience.text='최대 레벨 달성' if at_max else 'EXP  %d / %d · 전투로 성장'%[int(progress_data.xp),next_xp]
 		bar.max_value=next_xp;bar.value=next_xp if at_max else int(progress_data.xp))
-	bar.add_theme_stylebox_override('background',_style(Color(.3,.45,.5,.14),Color.TRANSPARENT,3))
-	bar.add_theme_stylebox_override('fill',_style(ACCENT,Color.TRANSPARENT,3));detail.add_child(bar)
+	bar.add_theme_stylebox_override('background',UI.panel(UI.BG,Color.TRANSPARENT,3,0))
+	bar.add_theme_stylebox_override('fill',UI.panel(UI.GREEN,Color.TRANSPARENT,3,0));detail.add_child(bar)
 	var points: int=game._skill_tree_available_points(hero_id)
 	var research_points:=_text(detail,'성장 연구     %d P 남음'%points,18,INK);research_points.name='HeroResearchPoints'
 	live_bindings.append(func():research_points.text='성장 연구     %d P 남음'%game._skill_tree_available_points(hero_id))
@@ -272,16 +279,18 @@ func _growth() -> void:
 	live_bindings.append(func():hint.visible=game._skill_tree_available_points(hero_id)<=0)
 
 func _skills() -> void:
+	_text(detail,'전투 기술 · 4종',16,INK)
 	for kit: Dictionary in hero.get('skills',[]):
-		var box:=_section();box.get_parent().name='HeroSkill_'+str(kit.slot)
+		var ultimate: bool=str(kit.slot)=='ultimate'
+		var box:=_section(ultimate);box.get_parent().name='HeroSkill_'+str(kit.slot)
 		var line:=HBoxContainer.new();line.add_theme_constant_override('separation',10);box.add_child(line)
 		var icon:=TextureRect.new();icon.texture=VISUALS.skill_texture(hero_id,str(kit.slot));icon.custom_minimum_size=Vector2(52,52)
 		icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;line.add_child(icon)
 		var titles:=VBoxContainer.new();titles.size_flags_horizontal=Control.SIZE_EXPAND_FILL;titles.add_theme_constant_override('separation',2);line.add_child(titles)
-		_text(titles,str(kit.skill),19,INK)
+		_text(titles,str(kit.skill),18,UI.PRIMARY if ultimate else INK)
 		var slot_name: String={'a1':'액티브 1','a2':'액티브 2','passive':'패시브','ultimate':'궁극기'}.get(str(kit.slot),'기술')
-		_text(titles,slot_name+(' · 게이지 100' if str(kit.slot)=='ultimate' else ' · %.1f초'%float(kit.get('cooldown',0))),13,ACCENT)
-		_text(box,str(kit.get('effect','')),15,MUTED)
+		_text(titles,slot_name+(' · 게이지 100' if ultimate else ' · %.1f초'%float(kit.get('cooldown',0))),12,MUTED)
+		_text(box,str(kit.get('effect','')),14,INK)
 	var profile: Dictionary=game.hero_identity_catalog.profile(hero_id)
 	_text(detail,'전투 성향 · '+game.hero_identity_catalog.ai_style_name(str(profile.get('ai_style','balanced'))),17,INK)
 	_text(detail,str(profile.get('trait','')),15,MUTED)
@@ -369,13 +378,13 @@ func _research(branch: String) -> void:
 	host._upgrade_skill_tree(selected,branch)
 	build(host,selected,'growth')
 
-func _section() -> VBoxContainer:
-	var panel:=_panel(detail,Color(1.,1.,1.,.58),Color(1.,1.,1.,.6),12)
+func _section(important: bool=false) -> VBoxContainer:
+	var panel:=_panel(detail,UI.SOFT,Color(UI.PRIMARY,.5) if important else UI.BORDER,12)
 	var box:=VBoxContainer.new();box.add_theme_constant_override('separation',10);panel.add_child(box);return box
 
 static func _style(fill: Color, edge: Color=Color.TRANSPARENT, radius: int=8) -> StyleBoxFlat:
-	var style:=StyleBoxFlat.new();style.bg_color=fill;style.border_color=edge
-	style.set_corner_radius_all(radius);style.set_border_width_all(1 if edge.a>.01 else 0)
+	var style:=UI.panel(fill,edge,radius,1 if edge.a>.01 else 0)
+	style.bg_color=fill
 	style.content_margin_left=12;style.content_margin_right=12;style.content_margin_top=6;style.content_margin_bottom=6
 	return style
 
@@ -384,20 +393,20 @@ static func _panel(parent: Node, fill: Color, edge: Color, padding: int=8) -> Pa
 	var style:=_style(fill,edge);style.set_content_margin_all(padding);panel.add_theme_stylebox_override('panel',style);parent.add_child(panel);return panel
 
 static func _button(caption: String, callback: Callable, primary: bool=false) -> Button:
-	var button:=Button.new();button.text=caption;button.tooltip_text=caption
+	var button:=UI.button(caption,Vector2.ZERO,UI.PRIMARY if primary else UI.SOFT);button.tooltip_text=caption
 	button.add_theme_font_override('font',S.bold_font());button.add_theme_font_size_override('font_size',17)
-	button.add_theme_stylebox_override('normal',_style(ACCENT if primary else Color(1.,1.,1.,.38),Color(1.,1.,1.,.42)))
-	button.add_theme_stylebox_override('hover',_style(ACCENT.lightened(.12) if primary else Color(1.,1.,1.,.76),Color.WHITE))
-	button.add_theme_stylebox_override('pressed',_style(ACCENT,Color.WHITE))
-	button.add_theme_stylebox_override('disabled',_style(Color(.66,.73,.74,.42),Color(.67,.77,.80,.4)))
-	button.add_theme_stylebox_override('focus',_style(Color.TRANSPARENT,Color('#c28e3d')))
-	button.add_theme_color_override('font_color',Color.WHITE if primary else INK)
-	button.add_theme_color_override('font_hover_color',Color.WHITE if primary else INK)
-	button.add_theme_color_override('font_pressed_color',Color.WHITE);button.add_theme_color_override('font_disabled_color',MUTED)
-	button.add_theme_color_override('font_focus_color',Color.WHITE if primary else INK)
 	button.clip_text=true;button.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 	if callback.is_valid():button.pressed.connect(callback)
 	return button
+
+static func _selected_control(button: Button) -> void:
+	button.add_theme_stylebox_override('normal',_style(UI.SURFACE.lerp(UI.PRIMARY,.12),UI.PRIMARY))
+	button.add_theme_stylebox_override('hover',_style(UI.SOFT.lerp(UI.PRIMARY,.15),UI.PRIMARY))
+	button.add_theme_stylebox_override('pressed',_style(UI.SURFACE.lerp(UI.PRIMARY,.16),UI.PRIMARY))
+	button.add_theme_color_override('font_color',UI.INK)
+	button.add_theme_color_override('font_pressed_color',UI.INK)
+	button.add_theme_color_override('font_hover_color',UI.INK)
+	button.add_theme_color_override('font_focus_color',UI.INK)
 
 static func _text(parent: Node, value: String, points: int=17, color: Color=INK) -> Label:
 	var label:=Label.new();label.text=value;label.add_theme_font_override('font',S.bold_font() if points>=19 else S.font())

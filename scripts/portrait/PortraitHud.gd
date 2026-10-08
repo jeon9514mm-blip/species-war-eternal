@@ -39,6 +39,7 @@ var hud_bounds: Array[Rect2] = []
 var reward_feed: Control
 
 var options_layer: Control
+var _options_return_focus: WeakRef
 func build(main: Node) -> void:
 	game=main;name='PortraitHud';mouse_filter=Control.MOUSE_FILTER_IGNORE
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);z_index=90
@@ -105,7 +106,7 @@ func _build_options(w: float,h: float,include_offline: bool = true) -> void:
 	for edge in ['left','right','top','bottom']:margin.add_theme_constant_override('margin_'+edge,20)
 	var layout:=VBoxContainer.new();layout.add_theme_constant_override('separation',12);margin.add_child(layout)
 	var heading:=HBoxContainer.new();layout.add_child(heading)
-	var title:=SKIN.label('사냥 조작',22);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;heading.add_child(title)
+	var title:=SKIN.label('사냥 설정',22);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;heading.add_child(title)
 	var close:=SKIN.button('닫기',_toggle_options);close.name='HuntOptionsClose';close.custom_minimum_size=Vector2(76,52);heading.add_child(close)
 	var scroll:=ScrollContainer.new();scroll.name='HuntOptionsScroll';SKIN.make_scroll_responsive(scroll)
 	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;layout.add_child(scroll)
@@ -115,7 +116,7 @@ func _build_options(w: float,h: float,include_offline: bool = true) -> void:
 	skill_button=_option(box,'',_toggle_skill_auto,'PortraitSkillAuto')
 	ultimate_button=_option(box,'',_toggle_ultimate_auto,'PortraitUltimateAuto')
 	_option(box,'전투 진형',Callable(game,'_open_battle_formation'),'HuntFormation')
-	_option(box,'사냥 정보 · 피해와 보상',func():options_layer.hide();game._toggle_hunt_details(),'HuntStatistics')
+	_option(box,'사냥 정보 · 피해와 보상',func():_set_options_visible(false);game._toggle_hunt_details(),'HuntStatistics')
 	_option(box,'사냥터 지도',Callable(game,'_build_world_map_screen'),'PortraitMapButton')
 	_option(box,'목표 · 업적',Callable(game,'_open_goal_screen'),'PortraitQuestButton')
 	if include_offline:offline_button=_option(box,'',_open_offline_rewards,'PortraitOfflineRewards')
@@ -124,14 +125,45 @@ func _build_options(w: float,h: float,include_offline: bool = true) -> void:
 
 func _option(parent: Node,caption: String,callback: Callable,node_name: String) -> Button:
 	var button:=SKIN.button(caption,func():
-		if node_name not in ['PortraitSkillAuto','PortraitUltimateAuto']:options_layer.hide()
+		if node_name not in ['PortraitSkillAuto','PortraitUltimateAuto']:_set_options_visible(false)
 		callback.call())
 	button.name=node_name
 	button.custom_minimum_size=Vector2(0,52 if compact_guide_layout else 76);button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	button.add_theme_font_size_override('font_size',18 if compact_guide_layout else 22)
 	button.mouse_filter=Control.MOUSE_FILTER_PASS;parent.add_child(button);return button
 
-func _toggle_options() -> void:options_layer.visible=not options_layer.visible
+func _toggle_options() -> void:_set_options_visible(not options_layer.visible)
+
+func _set_options_visible(shown: bool) -> void:
+	if not is_instance_valid(options_layer):return
+	if shown:
+		var previous:=get_viewport().gui_get_focus_owner()
+		_options_return_focus=weakref(previous) if is_instance_valid(previous) else weakref(details_button)
+		options_layer.show()
+		var close: Button=options_layer.find_child('HuntOptionsClose',true,false)
+		if close!=null:close.grab_focus()
+	else:
+		options_layer.hide()
+		var previous: Control=_options_return_focus.get_ref() as Control if _options_return_focus!=null else null
+		if is_instance_valid(previous) and previous.is_inside_tree() and previous.is_visible_in_tree():previous.grab_focus()
+		_options_return_focus=null
+
+func _input(event: InputEvent) -> void:
+	if not is_instance_valid(options_layer) or not options_layer.is_visible_in_tree():return
+	if event.is_action_pressed('ui_cancel'):
+		_set_options_visible(false);get_viewport().set_input_as_handled();return
+	if event is InputEventKey and event.pressed and event.keycode==KEY_TAB:
+		var choices: Array[Button]=[]
+		for child in options_layer.find_children('*','Button',true,false):
+			if child.is_visible_in_tree() and not child.disabled:choices.append(child)
+		if choices.is_empty():return
+		var selected:=choices.find(get_viewport().gui_get_focus_owner())
+		var direction: int=-1 if event.shift_pressed else 1
+		var next: Button=choices[posmod(selected+direction,choices.size())]
+		next.grab_focus()
+		var scroll: ScrollContainer=options_layer.find_child('HuntOptionsScroll',true,false)
+		if scroll!=null and scroll.is_ancestor_of(next):scroll.ensure_control_visible(next)
+		get_viewport().set_input_as_handled()
 
 func show_hunt_reward(gold: int, xp: int, drops: Array[Dictionary], chest: bool) -> void:
 	if is_instance_valid(reward_feed):reward_feed.add_reward(gold,xp,drops,chest)
@@ -325,7 +357,7 @@ func _toggle_ultimate_auto() -> void:
 
 static func navigation(main: Node, parent: Node, active: String, y: float, height: float = 90) -> Control:
 	var w: float=main.get_viewport_rect().size.x
-	var panel:=SKIN.panel(parent,Rect2(0,y-6,w,height+6),Color('#0d2230fa'),Color('#315667'),1,18)
+	var panel:=SKIN.panel(parent,Rect2(0,y-6,w,height+6),SKIN.SURFACE,SKIN.EDGE_SOFT,1,12)
 	panel.name='PortraitNavigation'
 	panel.z_index=95
 	# Keep the bottom dock to five high-frequency destinations. Secondary systems stay
@@ -336,26 +368,26 @@ static func navigation(main: Node, parent: Node, active: String, y: float, heigh
 	for i in entries.size():
 		var e: Dictionary=entries[i]
 		var selected: bool = str(e['id']) == selected_tab
-		var is_battle: bool=e['id']=='battle'
 		var slim_dock := height <= 56
 		var top:=4.0 if slim_dock else 5.0
 		var button_height:=height-8.0 if slim_dock else height-10.0
-		var fill: Color=Color('#224654') if selected else Color('#0d223000')
-		var edge: Color=SKIN.GOLD if selected else Color('#35556600')
+		var fill: Color=SKIN.UI.SELECTED if selected else Color.TRANSPARENT
 		var btn:=SKIN.button('',Callable(main,str(e['method'])),fill)
 		btn.name='PortraitNav_'+str(e['id']);btn.tooltip_text=str(e['label'])
-		btn.add_theme_stylebox_override('normal',SKIN.box(fill,edge,16 if is_battle else 12,2 if selected else 0))
-		btn.add_theme_stylebox_override('hover',SKIN.box(Color('#1b3b49'),Color(SKIN.BLUE_SOFT,.55),16 if is_battle else 12,1))
-		btn.add_theme_stylebox_override('pressed',SKIN.box(Color('#18323e'),SKIN.GOLD,16 if is_battle else 12,2))
+		btn.add_theme_stylebox_override('normal',SKIN.UI.dock_style(selected))
+		btn.add_theme_stylebox_override('hover',SKIN.UI.dock_style(true))
+		btn.add_theme_stylebox_override('pressed',SKIN.UI.dock_style(selected,true))
 		SKIN.place(panel,btn,Rect2(i*bw+4,top,bw-8,button_height))
 		var compact_dock := height < 80
 		var icon_size:=20.0 if slim_dock else (24.0 if compact_dock else 30.0)
 		var icon:=SKIN.UI.icon(str(e['portrait_icon']),Vector2.ONE*icon_size,SKIN.GOLD if selected else SKIN.MUTED)
-		SKIN.place(btn,icon,Rect2((bw-icon_size)/2,3 if slim_dock else (5 if compact_dock else 7),icon_size,icon_size))
+		var group_width:=icon_size+10+SKIN.font().get_string_size(str(e['label']),HORIZONTAL_ALIGNMENT_LEFT,-1,16).x
+		var icon_x: float=(btn.size.x-group_width)*.5 if slim_dock else (btn.size.x-icon_size)*.5
+		SKIN.place(btn,icon,Rect2(icon_x,(button_height-icon_size)*.5 if slim_dock else (5 if compact_dock else 7),icon_size,icon_size))
 		if selected:
 			var marker:=ColorRect.new();marker.color=SKIN.GOLD;marker.mouse_filter=Control.MOUSE_FILTER_IGNORE
-			SKIN.place(btn,marker,Rect2((bw-28)/2,2,28,3))
-		var text:=SKIN.label(str(e['label']),12 if slim_dock else (13 if compact_dock else 16),SKIN.GOLD if selected else SKIN.MUTED_DARK)
+			SKIN.place(btn,marker,Rect2((btn.size.x-28)/2,button_height-3,28,2))
+		var text:=SKIN.label(str(e['label']),16 if slim_dock else (14 if compact_dock else 16),SKIN.GOLD if selected else SKIN.MUTED_DARK)
 		text.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-		SKIN.place(btn,text,Rect2(0,25 if slim_dock else (31 if compact_dock else 45),bw-8,16 if slim_dock else (18 if compact_dock else 24)))
+		SKIN.place(btn,text,Rect2(icon_x+icon_size+10,0,group_width-icon_size-10,button_height) if slim_dock else Rect2(0,31 if compact_dock else 45,btn.size.x,20 if compact_dock else 24))
 	return panel

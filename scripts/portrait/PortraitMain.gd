@@ -480,7 +480,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			return
 		if active_screen=='combat' and is_instance_valid(portrait_hud) and is_instance_valid(portrait_hud.options_layer) and portrait_hud.options_layer.visible:
-			portrait_hud.options_layer.hide();get_viewport().set_input_as_handled();return
+			portrait_hud._set_options_visible(false);get_viewport().set_input_as_handled();return
 		var raid_options: Control=content_root.get_node_or_null('PortraitRaidView/RaidOptionsSheet')
 		if is_instance_valid(raid_options) and raid_options.visible:
 			raid_options.hide();get_viewport().set_input_as_handled();return

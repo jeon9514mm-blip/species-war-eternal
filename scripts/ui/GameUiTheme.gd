@@ -6,6 +6,8 @@ class_name GameUiTheme
 const BG := Color("#0d1013")
 const SURFACE := Color("#151a1e")
 const SOFT := Color("#1e262d")
+const RAISED := Color("#242d32")
+const SELECTED := Color("#29332f")
 const INK := Color("#e9e5dc")
 const MUTED := Color("#9aa8b0")
 const PRIMARY := Color("#c4a484")
@@ -26,7 +28,7 @@ static func _is_accent(color: Color) -> bool:
 
 static func surface_color(color: Color) -> Color:
 	if color.a < 0.02 or _is_accent(color):return color
-	for token in [BG,SURFACE,SOFT]:
+	for token in [BG,SURFACE,SOFT,RAISED,SELECTED]:
 		if Color(color,1.).is_equal_approx(token):return color
 	# Older screens used unrelated blue/green/cream surfaces. Translate them once.
 	return Color(SURFACE,maxf(color.a,.94))
@@ -62,6 +64,14 @@ static func _button_style(color: Color, border: Color, width: int = 1) -> StyleB
 	style.content_margin_bottom = 6
 	return style
 
+static func card_style(selected: bool = false, accent: Color = PRIMARY) -> StyleBoxFlat:
+	return panel(SELECTED if selected else SOFT, Color(accent,.72) if selected else BORDER, 10, 1)
+
+static func dock_style(selected: bool, pressed: bool = false) -> StyleBoxFlat:
+	var style := panel(SELECTED if selected else Color.TRANSPARENT, Color.TRANSPARENT, 10, 0)
+	if pressed:style.bg_color=RAISED
+	return style
+
 static func make_theme() -> Theme:
 	var result := Theme.new()
 	result.default_font = preload("res://scripts/ui/UIFontProvider.gd").get_font()
@@ -78,8 +88,8 @@ static func make_theme() -> Theme:
 	result.set_stylebox("panel", "PanelContainer", panel(SURFACE))
 	for type_name: String in ["Button", "OptionButton", "MenuButton"]:
 		result.set_stylebox("normal", type_name, _button_style(SOFT, BORDER))
-		result.set_stylebox("hover", type_name, _button_style(SOFT, PRIMARY))
-		result.set_stylebox("pressed", type_name, _button_style(SOFT, PRIMARY))
+		result.set_stylebox("hover", type_name, _button_style(RAISED, PRIMARY))
+		result.set_stylebox("pressed", type_name, _button_style(BG, PRIMARY))
 		result.set_stylebox("disabled", type_name, _button_style(SURFACE, BORDER))
 		var focus := panel(Color.TRANSPARENT, GOLD, 12, 2)
 		focus.expand_margin_left = 2
@@ -162,7 +172,7 @@ static func button(text: String, min_size: Vector2 = Vector2(0, 44), color: Colo
 	result.add_theme_color_override("font_focus_color", foreground)
 	result.add_theme_color_override("font_disabled_color", MUTED)
 	result.add_theme_stylebox_override("normal", _button_style(fill, PRIMARY if primary else BORDER))
-	result.add_theme_stylebox_override("hover", _button_style(fill.lightened(0.08) if primary else fill.lerp(SOFT, 0.38), PRIMARY))
+	result.add_theme_stylebox_override("hover", _button_style(fill.lightened(0.08) if primary else RAISED, PRIMARY))
 	result.add_theme_stylebox_override("pressed", _button_style(fill.darkened(0.10) if primary else fill.lerp(BG, 0.5), PRIMARY))
 	result.add_theme_stylebox_override("disabled", _button_style(SURFACE, BORDER))
 	var focus := panel(Color.TRANSPARENT, GOLD, 12, 2)

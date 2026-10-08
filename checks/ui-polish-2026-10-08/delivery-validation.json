@@ -1,0 +1,108 @@
+{
+  "scope": "UI changes and GPU lifecycle regressions; not the full historical test suite",
+  "latest_gpu": {
+    "passed": 10,
+    "total": 10,
+    "results": {
+      "CompactRaidUiSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-integration.json"
+      },
+      "HeroMenuUxSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-layout-final.json"
+      },
+      "HuntCompactHudSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-integration.json"
+      },
+      "HuntMenuStateSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-repairs.json"
+      },
+      "RaidTouchLayoutSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-integration.json"
+      },
+      "SimpleHudUiSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-layout-final.json"
+      },
+      "V29RosterUiSaveSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-integration.json"
+      },
+      "V8362FormationDisplaySmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-layout-final.json"
+      },
+      "UltraSkillGpuLifecycleSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-repairs.json"
+      },
+      "UltraSkillIdentitySmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-repairs.json"
+      }
+    }
+  },
+  "parser": {
+    "passed": 19,
+    "total": 19,
+    "source_hashes_match": true
+  },
+  "native_captures": [
+    {
+      "file": "battle/formation.png",
+      "bytes": 218156,
+      "sha256": "9733812ead3e954f792280c1c3c64179aacd485c7674077f5832da350fa7f5eb"
+    },
+    {
+      "file": "battle/hunt-options.png",
+      "bytes": 554417,
+      "sha256": "79b075f2eb4ac61a31ea350377a38cbe26d678bdfc443935065f86a54bdf89db"
+    },
+    {
+      "file": "battle/hunt-small.png",
+      "bytes": 563441,
+      "sha256": "b79fecf6f114357fe833b3aaa3656038cf3ddc424f438a0ecc6f8085ddaf178d"
+    },
+    {
+      "file": "battle/hunt.png",
+      "bytes": 958368,
+      "sha256": "e9ba659c6bfb0347a7c33eb9253aad1eb0a3121f22928f2bff48458055b0b605"
+    },
+    {
+      "file": "battle/raid-ready.png",
+      "bytes": 895347,
+      "sha256": "19b2104c1da9601930d3c6e693db4730bf294b04249d82da7f6fa40093078b9d"
+    },
+    {
+      "file": "battle/raid-running.png",
+      "bytes": 906447,
+      "sha256": "11747469b60c086da1fac2e57c5d83d455a4bb76e2e084084fd3858f248970ea"
+    },
+    {
+      "file": "heroes/hero-equipment.png",
+      "bytes": 521473,
+      "sha256": "6fdc21b578a8a75c6edf36ec89fd3efe18a7f59bfa14013fde26c2884ffcf855"
+    },
+    {
+      "file": "heroes/hero-growth.png",
+      "bytes": 498143,
+      "sha256": "84b4fab65a3e9b0c2f99e0972454746b2b2eb62467724f28c399feb066993b24"
+    },
+    {
+      "file": "heroes/hero-noxfera-skills.png",
+      "bytes": 510646,
+      "sha256": "04e577f83afd8c31f31edf2fa1ace534d03110e6286bed05603eb33707253bd5"
+    },
+    {
+      "file": "heroes/hero-skills.png",
+      "bytes": 512570,
+      "sha256": "9acb47aaae88855bf587adaff72b31003a01377660ebe1edc5a3c8960df25285"
+    }
+  ],
+  "player_save_used": false,
+  "new_performance_benchmark": false
+}

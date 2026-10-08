@@ -1,0 +1,44 @@
+{
+	"captures": [
+		{
+			"active_screen": "combat",
+			"file": "hunt.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"active_screen": "combat",
+			"file": "hunt-options.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"active_screen": "combat",
+			"file": "formation.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"active_screen": "combat",
+			"file": "hunt-small.png",
+			"height": 540,
+			"width": 960
+		},
+		{
+			"active_screen": "raid",
+			"file": "raid-ready.png",
+			"height": 720,
+			"width": 1280
+		},
+		{
+			"active_screen": "raid",
+			"file": "raid-running.png",
+			"height": 720,
+			"width": 1280
+		}
+	],
+	"fixture": "Stage154/Level60/49,000gold/840gems; actual production menu/battle calls; effects disabled only in this disposable UI review.",
+	"native_godot_pixels": true,
+	"performance_measurement": false,
+	"player_save_used": false
+}
