@@ -61,7 +61,7 @@ namespace Eternal.UnityMigration.Editor
                 importer.wrapMode = TextureWrapMode.Clamp;
                 importer.filterMode = FilterMode.Bilinear;
                 importer.maxTextureSize = 1024;
-                importer.textureCompression = TextureImporterCompression.Uncompressed;
+                ActorTextureBudget.Configure(importer);
                 importer.SaveAndReimport();
             }
             foreach (string path in AssetDatabase.FindAssets("t:Texture2D", new[] { Destination + "/Floor" }).Select(AssetDatabase.GUIDToAssetPath))

@@ -1,0 +1,12 @@
+{
+  "native_material_gallery": true,
+  "painted_quads": 4,
+  "profiles": [
+    "darius:passive",
+    "lunea:passive",
+    "leonhardt:passive",
+    "mira:passive"
+  ],
+  "image": "painted-impact-material-gallery.png",
+  "note": "Isolated Unity URP material render at a fixed timeline age. This is a shader/art inspection gallery, not a gameplay screenshot or 120-skill visual acceptance."
+}

@@ -72,6 +72,11 @@ namespace Eternal.UnityMigration.Editor
                 runs.Add(new JObject{{"zone",zone},{"outcome",sim.Outcome},{"seconds",sim.Elapsed},{"phase",sim.Phase},{"damage",sim.DamageDealt},{"patterns",sim.Patterns},{"interrupts",sim.Interrupts},{"survivors",sim.Battle.Heroes.Count(h=>h.Alive)}});
             }
             var dodge=new RaidSimulation();dodge.StartWarning(new JObject{{"kind","aoe"},{"telegraph",1.2},{"name","fixture"}});
+            var counter=new RaidSimulation();counter.StartWarning(new JObject{{"kind","cone"},{"telegraph",.4},{"name","counter fixture"}});
+            foreach(var h in counter.Battle.Heroes)h.Position=counter.Boss.Position-counter.Warning.Direction*2;
+            Equal("counter window remains visible without candidate",counter.CounterWindowOpen?1:0,1);Equal("counter button rejects wrong side",counter.CounterReady?1:0,0);Equal("counter cannot trigger on wrong side",counter.Counter()?1:0,0);
+            var front=counter.Battle.Heroes[0];front.Position=counter.Boss.Position+counter.Warning.Direction*2;front.Stun=1;Equal("stunned hero cannot counter",counter.CounterReady?1:0,0);
+            front.Stun=0;Equal("eligible front hero enables counter",counter.CounterReady?1:0,1);Equal("counter interrupts warning",counter.Counter(front.Id)?1:0,1);Equal("counter records success",counter.CounterSuccesses,1);Equal("one counter per cast",counter.Counter()?1:0,0);Equal("counter closes warning",counter.Warning==null?1:0,1);
             var before=dodge.Battle.Heroes.Select(h=>h.Position).ToArray();if(!dodge.Dodge()||dodge.Dodge())throw new InvalidOperationException("Dodge cooldown not enforced.");
             for(int i=0;i<before.Length;i++){Equal("dodge no instant X",dodge.Battle.Heroes[i].Position.x,before[i].x);Equal("dodge no instant Y",dodge.Battle.Heroes[i].Position.y,before[i].y);}
             var atlas=OriginalCatalog.Atlas("leonhardt");for(int frame=0;frame<200;frame++)

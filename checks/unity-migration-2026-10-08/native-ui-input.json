@@ -1,0 +1,575 @@
+{
+  "passed": true,
+  "error": "",
+  "comparisons": 40,
+  "steps_completed": 74,
+  "steps_total": 74,
+  "start_frame": 99,
+  "end_frame": 1355,
+  "elapsed_seconds": 22.4476261,
+  "batch_editor": false,
+  "virtual_qa_mouse": false,
+  "trace": [
+    {
+      "input": "mouse_down",
+      "label": "영웅",
+      "x": 583.500061,
+      "y": 31.9999542,
+      "frame": 100
+    },
+    {
+      "step": "open hero navigation",
+      "frame": 100
+    },
+    {
+      "input": "mouse_down",
+      "label": "leonhardt",
+      "x": 1641.50012,
+      "y": 827.5,
+      "frame": 104
+    },
+    {
+      "step": "open original Leonhardt portrait",
+      "frame": 104
+    },
+    {
+      "input": "mouse_down",
+      "label": "성장 · 장비",
+      "x": 1639.0,
+      "y": 644.0,
+      "frame": 108
+    },
+    {
+      "step": "open growth panel",
+      "frame": 108
+    },
+    {
+      "step": "capture research state",
+      "frame": 112
+    },
+    {
+      "input": "mouse_down",
+      "label": "연구 +1",
+      "x": 1795.50012,
+      "y": 570.0,
+      "frame": 113
+    },
+    {
+      "step": "research offense through pointer",
+      "frame": 113
+    },
+    {
+      "step": "verify research affects same live actor",
+      "frame": 117
+    },
+    {
+      "input": "mouse_down",
+      "label": "가방",
+      "x": 1336.50012,
+      "y": 31.9999542,
+      "frame": 118
+    },
+    {
+      "step": "open bag navigation",
+      "frame": 118
+    },
+    {
+      "step": "capture bag state",
+      "frame": 122
+    },
+    {
+      "input": "mouse_down",
+      "label": "추천 장착",
+      "x": 1811.00012,
+      "y": 842.0,
+      "frame": 123
+    },
+    {
+      "step": "recommended equipment through pointer",
+      "frame": 123
+    },
+    {
+      "step": "verify recommendation preserves wallet and protected gear",
+      "frame": 127
+    },
+    {
+      "input": "mouse_down",
+      "label": "legacy_equipped_leonhardt_weapon",
+      "x": 1652.00012,
+      "y": 715.0,
+      "frame": 128
+    },
+    {
+      "step": "select displaced equipment",
+      "frame": 128
+    },
+    {
+      "step": "capture equipment enhancement",
+      "frame": 132
+    },
+    {
+      "input": "mouse_down",
+      "label": "강화 ·",
+      "x": 1648.50012,
+      "y": 594.0,
+      "frame": 133
+    },
+    {
+      "step": "enhance equipment through pointer",
+      "frame": 133
+    },
+    {
+      "step": "verify exact enhancement level and cost",
+      "frame": 137
+    },
+    {
+      "input": "mouse_down",
+      "label": "장비 잠금",
+      "x": 1648.50012,
+      "y": 540.0,
+      "frame": 138
+    },
+    {
+      "step": "lock gear through pointer",
+      "frame": 138
+    },
+    {
+      "step": "verify lock disables decomposition",
+      "frame": 142
+    },
+    {
+      "input": "mouse_down",
+      "label": "잠금 해제",
+      "x": 1648.50012,
+      "y": 540.0,
+      "frame": 143
+    },
+    {
+      "step": "unlock through pointer",
+      "frame": 143
+    },
+    {
+      "step": "verify unlock",
+      "frame": 147
+    },
+    {
+      "input": "mouse_down",
+      "label": "연계 순서",
+      "x": 1840.0,
+      "y": 189.999985,
+      "frame": 148
+    },
+    {
+      "step": "open skill-chain editor",
+      "frame": 148
+    },
+    {
+      "step": "capture chain order",
+      "frame": 152
+    },
+    {
+      "input": "mouse_down",
+      "label": "↓",
+      "x": 1832.00012,
+      "y": 702.0,
+      "frame": 153
+    },
+    {
+      "step": "reorder chain through pointer",
+      "frame": 153
+    },
+    {
+      "step": "verify reordered chain",
+      "frame": 157
+    },
+    {
+      "input": "mouse_down",
+      "label": "자동 연계 ON",
+      "x": 1654.50012,
+      "y": 854.0,
+      "frame": 158
+    },
+    {
+      "step": "disable auto chain through pointer",
+      "frame": 158
+    },
+    {
+      "step": "verify disabled chain",
+      "frame": 162
+    },
+    {
+      "input": "mouse_down",
+      "label": "자동 연계 OFF",
+      "x": 1654.50012,
+      "y": 854.0,
+      "frame": 163
+    },
+    {
+      "step": "enable auto chain through pointer",
+      "frame": 163
+    },
+    {
+      "step": "verify enabled chain",
+      "frame": 167
+    },
+    {
+      "input": "mouse_down",
+      "label": "메뉴",
+      "x": 1713.49988,
+      "y": 31.9999542,
+      "frame": 168
+    },
+    {
+      "step": "open state menu",
+      "frame": 168
+    },
+    {
+      "input": "mouse_down",
+      "label": "소환 · 수호신",
+      "x": 1649.5,
+      "y": 611.999939,
+      "frame": 172
+    },
+    {
+      "step": "open summon panel",
+      "frame": 172
+    },
+    {
+      "step": "capture free guardian state",
+      "frame": 176
+    },
+    {
+      "input": "mouse_down",
+      "label": "첫 무료 수호신 소환",
+      "x": 1638.00012,
+      "y": 379.0,
+      "frame": 177
+    },
+    {
+      "step": "free guardian summon through pointer",
+      "frame": 177
+    },
+    {
+      "step": "verify free guardian copy and wallet",
+      "frame": 181
+    },
+    {
+      "step": "capture original hero shard total",
+      "frame": 182
+    },
+    {
+      "input": "mouse_down",
+      "label": "영웅 조각 소환 · 젬 100",
+      "x": 1638.00012,
+      "y": 576.0,
+      "frame": 183
+    },
+    {
+      "step": "hero shard summon through pointer",
+      "frame": 183
+    },
+    {
+      "step": "verify hero shards and exact currency",
+      "frame": 187
+    },
+    {
+      "input": "mouse_down",
+      "label": "보유 수호신",
+      "x": 1639.0,
+      "y": 332.999939,
+      "frame": 188
+    },
+    {
+      "step": "open owned guardians",
+      "frame": 188
+    },
+    {
+      "step": "equip another owned guardian if drawn",
+      "frame": 192
+    },
+    {
+      "step": "verify guardian equipment if applicable",
+      "frame": 193
+    },
+    {
+      "input": "mouse_down",
+      "label": "도전",
+      "x": 960.000061,
+      "y": 31.9999542,
+      "frame": 194
+    },
+    {
+      "step": "open raid navigation gray_meadow",
+      "frame": 194
+    },
+    {
+      "step": "capture retained hunt gray_meadow",
+      "frame": 198
+    },
+    {
+      "input": "mouse_down",
+      "label": "초원왕 그룬",
+      "x": 1654.50012,
+      "y": 792.0,
+      "frame": 199
+    },
+    {
+      "step": "enter regional boss gray_meadow",
+      "frame": 199
+    },
+    {
+      "step": "verify native raid route gray_meadow",
+      "frame": 203
+    },
+    {
+      "step": "verify hunting remains suspended during raid gray_meadow",
+      "frame": 204
+    },
+    {
+      "input": "mouse_down",
+      "label": "긴급 회피",
+      "x": 1698.00012,
+      "y": 265.0,
+      "frame": 205
+    },
+    {
+      "step": "dodge through pointer gray_meadow",
+      "frame": 205
+    },
+    {
+      "step": "verify dodge cooldown gray_meadow",
+      "frame": 209
+    },
+    {
+      "input": "mouse_down_ground",
+      "x": 796.294739,
+      "y": 583.024536,
+      "frame": 210
+    },
+    {
+      "step": "rally through ground pointer gray_meadow",
+      "frame": 210
+    },
+    {
+      "step": "verify rally destination gray_meadow",
+      "frame": 214
+    },
+    {
+      "step": "record raid input evidence gray_meadow",
+      "frame": 215
+    },
+    {
+      "input": "mouse_down",
+      "label": "사냥",
+      "x": 206.500015,
+      "y": 31.9999542,
+      "frame": 216
+    },
+    {
+      "step": "return to hunting through pointer gray_meadow",
+      "frame": 216
+    },
+    {
+      "step": "verify retained hunting gray_meadow",
+      "frame": 220
+    },
+    {
+      "input": "mouse_down",
+      "label": "도전",
+      "x": 960.000061,
+      "y": 31.9999542,
+      "frame": 221
+    },
+    {
+      "step": "open raid navigation forgotten_mine",
+      "frame": 221
+    },
+    {
+      "step": "capture retained hunt forgotten_mine",
+      "frame": 225
+    },
+    {
+      "input": "mouse_down",
+      "label": "광맥의 거인 모르굴",
+      "x": 1654.50012,
+      "y": 660.0,
+      "frame": 226
+    },
+    {
+      "step": "enter regional boss forgotten_mine",
+      "frame": 226
+    },
+    {
+      "step": "verify native raid route forgotten_mine",
+      "frame": 230
+    },
+    {
+      "step": "verify hunting remains suspended during raid forgotten_mine",
+      "frame": 231
+    },
+    {
+      "input": "mouse_down",
+      "label": "긴급 회피",
+      "x": 1698.00012,
+      "y": 265.0,
+      "frame": 232
+    },
+    {
+      "step": "dodge through pointer forgotten_mine",
+      "frame": 232
+    },
+    {
+      "step": "verify dodge cooldown forgotten_mine",
+      "frame": 236
+    },
+    {
+      "input": "mouse_down_ground",
+      "x": 796.294739,
+      "y": 582.071655,
+      "frame": 237
+    },
+    {
+      "step": "rally through ground pointer forgotten_mine",
+      "frame": 237
+    },
+    {
+      "step": "verify rally destination forgotten_mine",
+      "frame": 241
+    },
+    {
+      "step": "record raid input evidence forgotten_mine",
+      "frame": 242
+    },
+    {
+      "input": "mouse_down",
+      "label": "사냥",
+      "x": 206.500015,
+      "y": 31.9999542,
+      "frame": 243
+    },
+    {
+      "step": "return to hunting through pointer forgotten_mine",
+      "frame": 243
+    },
+    {
+      "step": "verify retained hunting forgotten_mine",
+      "frame": 247
+    },
+    {
+      "input": "mouse_down",
+      "label": "도전",
+      "x": 960.000061,
+      "y": 31.9999542,
+      "frame": 248
+    },
+    {
+      "step": "open raid navigation moonrest_forest",
+      "frame": 248
+    },
+    {
+      "step": "capture retained hunt moonrest_forest",
+      "frame": 252
+    },
+    {
+      "input": "mouse_down",
+      "label": "월식의 여왕 셀레네",
+      "x": 1654.50012,
+      "y": 550.0,
+      "frame": 253
+    },
+    {
+      "step": "enter regional boss moonrest_forest",
+      "frame": 253
+    },
+    {
+      "step": "verify native raid route moonrest_forest",
+      "frame": 257
+    },
+    {
+      "step": "verify hunting remains suspended during raid moonrest_forest",
+      "frame": 258
+    },
+    {
+      "input": "mouse_down",
+      "label": "긴급 회피",
+      "x": 1698.00012,
+      "y": 265.0,
+      "frame": 259
+    },
+    {
+      "step": "dodge through pointer moonrest_forest",
+      "frame": 259
+    },
+    {
+      "step": "verify dodge cooldown moonrest_forest",
+      "frame": 263
+    },
+    {
+      "input": "mouse_down_ground",
+      "x": 796.294739,
+      "y": 581.2611,
+      "frame": 264
+    },
+    {
+      "step": "rally through ground pointer moonrest_forest",
+      "frame": 264
+    },
+    {
+      "step": "verify rally destination moonrest_forest",
+      "frame": 268
+    },
+    {
+      "step": "observe counter opportunity",
+      "frame": 1348
+    },
+    {
+      "step": "record raid input evidence moonrest_forest",
+      "frame": 1349
+    },
+    {
+      "input": "mouse_down",
+      "label": "사냥",
+      "x": 206.500015,
+      "y": 31.9999542,
+      "frame": 1350
+    },
+    {
+      "step": "return to hunting through pointer moonrest_forest",
+      "frame": 1350
+    },
+    {
+      "step": "verify retained hunting moonrest_forest",
+      "frame": 1354
+    }
+  ],
+  "raid_inputs": [
+    {
+      "zone": "gray_meadow",
+      "dodge_verified": true,
+      "rally_verified": true,
+      "native_ticks": 5,
+      "counter_successes": 0,
+      "counter_input_success_verified": false
+    },
+    {
+      "zone": "forgotten_mine",
+      "dodge_verified": true,
+      "rally_verified": true,
+      "native_ticks": 4,
+      "counter_successes": 0,
+      "counter_input_success_verified": false
+    },
+    {
+      "zone": "moonrest_forest",
+      "dodge_verified": true,
+      "rally_verified": true,
+      "native_ticks": 383,
+      "counter_successes": 0,
+      "counter_input_success_verified": false
+    }
+  ],
+  "no_direct_ui_callbacks": true,
+  "real_player_io": false,
+  "note": "Editor QA dispatches actual Input System mouse events across native frames. Batch Editor creates a virtual mouse when no hardware mouse exists and removes it afterward. Tests run only against the explicit memory-only review seed. Counter success is reported separately and may remain unverified if no eligible window occurred.",
+  "development_player": true
+}

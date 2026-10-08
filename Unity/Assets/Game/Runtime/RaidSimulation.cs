@@ -223,10 +223,18 @@ namespace Eternal.UnityMigration
         }
         // Reference adaptation: deliberate front counter for cone warnings.
         // It shares the authored stun/weakness path and has one use per cast.
-        public bool CounterReady=>Running&&!Paused&&Warning?.Shape=="cone"&&!counterUsed&&ControlImmunity<=0&&TelegraphRemaining>0&&TelegraphRemaining<=.55;
+        public bool CounterWindowOpen=>Running&&!Paused&&Warning?.Shape=="cone"&&!counterUsed&&ControlImmunity<=0&&TelegraphRemaining>0&&TelegraphRemaining<=.55;
+        Combatant CounterCandidate(string selected=null)
+        {
+            if(!CounterWindowOpen)return null;Combatant candidate=null;
+            foreach(var h in Battle.Heroes)
+                if(h.Alive&&h.Stun<=0&&(selected==null||selected==h.Id)&&Vector2.Distance(h.Position,Boss.Position)<=7.8f&&Vector2.Angle(Warning.Direction,h.Position-Boss.Position)<=35&&(candidate==null||h.Slot<candidate.Slot))candidate=h;
+            return candidate;
+        }
+        public bool CounterReady=>CounterCandidate()!=null;
         public bool Counter(string selected=null)
         {
-            if(!CounterReady)return false;var candidate=Battle.Heroes.Where(h=>h.Alive&&h.Stun<=0&&(selected==null||selected==h.Id)&&Vector2.Distance(h.Position,Boss.Position)<=7.8f&&Vector2.Angle(Warning.Direction,h.Position-Boss.Position)<=35).OrderBy(h=>h.Slot).FirstOrDefault();
+            var candidate=CounterCandidate(selected);
             if(candidate==null)return false;counterUsed=true;if(!ApplyControl(1,candidate))return false;CounterSuccesses++;EventText="정면 카운터 성공 · 보스 공격 차단";Battle.Emit("counter",candidate,"",Boss);return true;
         }
         public void Rally(Vector2 destination)

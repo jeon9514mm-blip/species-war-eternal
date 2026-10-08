@@ -54,12 +54,21 @@ namespace Eternal.UnityMigration
         readonly Mesh mesh;
         readonly Material material;
         readonly GameObject root;
+        readonly Mesh paintedMesh;
+        readonly Material paintedMaterial;
+        readonly GameObject paintedRoot;
+        readonly Camera camera;
+        readonly List<Vector3> paintedVertices=new(Capacity*4);
+        readonly List<Color> paintedColors=new(Capacity*4);
+        readonly List<Vector2> paintedUvs=new(Capacity*4);
+        readonly List<int> paintedTriangles=new(Capacity*6);
+        public int PaintedQuads=>paintedVertices.Count/4;
         int cursor,effectQuads;
         public int ActiveEffects {get;private set;}
         public int PresentedSkills {get;private set;}
         public int Quads=>vertices.Count/4;
         public IReadOnlyDictionary<string,SkillVfxProfile> Profiles=>profiles;
-        public SkillVfxBatch(Transform owner,Material template,JArray catalog)
+        public SkillVfxBatch(Transform owner,Material template,JArray catalog,Camera camera=null)
         {
             foreach(JObject item in catalog){var profile=new SkillVfxProfile(item);profiles.Add(profile.Signature,profile);}
             mesh=new Mesh{name="50-slot original skill timeline batch"};mesh.MarkDynamic();
@@ -67,6 +76,13 @@ namespace Eternal.UnityMigration
             root=new GameObject("Original skill charge launch impact and echo batch");root.transform.SetParent(owner,false);
             root.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=root.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.sortingOrder=1100;
             renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;renderer.receiveShadows=false;
+            this.camera=camera;var paintedTemplate=Resources.Load<Material>("Eternal/Materials/PaintedImpact");
+            if(paintedTemplate!=null)
+            {
+                paintedMaterial=new Material(paintedTemplate);paintedMesh=new Mesh{name="50-slot painted elemental impact batch"};paintedMesh.MarkDynamic();
+                paintedRoot=new GameObject("Painted fire frost light shadow impact batch");paintedRoot.transform.SetParent(owner,false);
+                paintedRoot.AddComponent<MeshFilter>().sharedMesh=paintedMesh;var r=paintedRoot.AddComponent<MeshRenderer>();r.sharedMaterial=paintedMaterial;r.sortingOrder=1101;r.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;r.receiveShadows=false;
+            }
         }
         public bool Observe(BattleEvent e,CombatEncounter battle)
         {
@@ -87,25 +103,50 @@ namespace Eternal.UnityMigration
         }
         static Combatant Find(CombatEncounter battle,int serial)
         {foreach(var h in battle.Heroes)if(h.Serial==serial)return h;foreach(var e in battle.Enemies)if(e.Serial==serial)return e;return null;}
-        public void Clear(){Array.Clear(effects,0,effects.Length);mesh.Clear();ActiveEffects=0;}
+        public void Clear(){Array.Clear(effects,0,effects.Length);mesh.Clear();paintedMesh?.Clear();paintedVertices.Clear();ActiveEffects=0;}
         public void Advance(float dt,bool warning)
         {
             vertices.Clear();colors.Clear();uvs.Clear();triangles.Clear();ActiveEffects=0;
+            paintedVertices.Clear();paintedColors.Clear();paintedUvs.Clear();paintedTriangles.Clear();
             for(int i=0;i<effects.Length;i++)
             {
                 var e=effects[i];if(e.profile==null)continue;e.age+=Mathf.Max(0,dt);
                 if(e.age>=e.lifetime){effects[i]=default;continue;}effects[i]=e;ActiveEffects++;effectQuads=0;
                 Draw(e,warning);
+                DrawPainted(e,warning);
             }
             // The next timeline can have fewer vertices than the previous one.
             // Drop stale indices before resizing, including the zero-effect frame.
             mesh.Clear(true);mesh.SetVertices(vertices);mesh.SetColors(colors);mesh.SetUVs(0,uvs);mesh.SetTriangles(triangles,0,false);
             mesh.bounds=new Bounds(Vector3.zero,new Vector3(70,20,50));
+            if(paintedMesh!=null)
+            {paintedMesh.Clear(true);paintedMesh.SetVertices(paintedVertices);paintedMesh.SetColors(paintedColors);paintedMesh.SetUVs(0,paintedUvs);paintedMesh.SetTriangles(paintedTriangles,0,false);paintedMesh.RecalculateBounds();}
+        }
+        void DrawPainted(Effect e,bool warning)
+        {
+            if(paintedMesh==null||e.charge||e.age>.38f)return;var p=e.profile;float t=e.age/.38f;
+            // Preserve 30 authored signatures. This shared four-cell art adds
+            // painted energy to their procedural glyphs rather than replacing
+            // every hero's skill with one bitmap.
+            int cell=p.Family==4?1:p.Kind=="heal"||p.Kind=="buff"||p.Family==0||p.Family==1?2:p.Color.b>p.Color.r*1.15f?3:0;
+            float size=(p.Slot=="ultimate"?3.6f:2.6f)*(.8f+Mathf.Sin(t*Mathf.PI*.8f)*.4f);
+            float a=Mathf.Pow(1-t,1.15f)*(p.Slot=="ultimate"?.95f:.85f)*(warning?.26f:1);
+            var color=Color.Lerp(Color.white,p.Color,.18f);color.a=a;
+            Vector3 right=camera!=null?camera.transform.right:Vector3.right,up=camera!=null?camera.transform.up:Vector3.up;
+            // Keep the impact above the depth-writing floor, including its lower
+            // billboard corner. The painted center follows the real target.
+            var center=e.to+Vector3.up*1.25f;right*=size*.5f;up*=size*.5f;int v=paintedVertices.Count;
+            paintedVertices.Add(center-right-up);paintedVertices.Add(center-right+up);paintedVertices.Add(center+right+up);paintedVertices.Add(center+right-up);
+            for(int k=0;k<4;k++)paintedColors.Add(color);
+            float x=(cell%2)*.5f,y=cell<2?.5f:0;const float gutter=.002f;
+            paintedUvs.Add(new Vector2(x+gutter,y+gutter));paintedUvs.Add(new Vector2(x+gutter,y+.5f-gutter));paintedUvs.Add(new Vector2(x+.5f-gutter,y+.5f-gutter));paintedUvs.Add(new Vector2(x+.5f-gutter,y+gutter));
+            paintedTriangles.Add(v);paintedTriangles.Add(v+1);paintedTriangles.Add(v+2);paintedTriangles.Add(v);paintedTriangles.Add(v+2);paintedTriangles.Add(v+3);
         }
         void Draw(Effect e,bool warning)
         {
             var p=e.profile;float t=e.age/e.lifetime;
             float fade=e.charge?Mathf.Lerp(.2f,.7f,t):Mathf.Clamp01((1-t)*2.8f);
+            if(!e.charge&&paintedMesh!=null&&e.age<.38f)fade*=.48f;
             if(warning)fade*=.38f;
             var color=p.Color;color.a=fade*.75f;var core=p.Core;core.a=fade;
             float rotation=p.Twist*e.age+p.Glyph*.13f+p.Seed*.017f;
@@ -170,7 +211,7 @@ namespace Eternal.UnityMigration
             uvs.Add(Vector2.zero);uvs.Add(Vector2.up);uvs.Add(Vector2.one);uvs.Add(Vector2.right);
             triangles.Add(v);triangles.Add(v+1);triangles.Add(v+2);triangles.Add(v);triangles.Add(v+2);triangles.Add(v+3);
         }
-        public void Dispose(){Release(root);Release(mesh);Release(material);}
+        public void Dispose(){Release(root);Release(mesh);Release(material);Release(paintedRoot);Release(paintedMesh);Release(paintedMaterial);}
         static void Release(UnityEngine.Object value){if(value==null)return;if(Application.isPlaying)UnityEngine.Object.Destroy(value);else UnityEngine.Object.DestroyImmediate(value);}
     }
 }

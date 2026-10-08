@@ -14,6 +14,11 @@ namespace Eternal.UnityMigration
         MeshRenderer warningRenderer;
         int shownVersion=-1;
         public string PaintedMap {get;private set;}
+        public void Rebind(RaidSimulation simulation)
+        {
+            if(raid==null||raid.Zone!=simulation.Zone)throw new System.InvalidOperationException("Arena reuse must preserve its original zone.");
+            raid=simulation;shownVersion=-1;RebuildWarning(null);
+        }
         public void Initialize(RaidSimulation simulation,Material stone)
         {
             raid=simulation;bool meadow=raid.Zone=="gray_meadow",mine=raid.Zone=="forgotten_mine";

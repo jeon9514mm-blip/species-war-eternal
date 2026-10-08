@@ -171,7 +171,13 @@ namespace Eternal.UnityMigration
                 var h=f.hair_rect;material.SetVector("_HairRect",h?.Length==4?new Vector4(h[0],h[1],h[2],h[3]):new Vector4(.1f,0,.8f,.3f));
             }
             Configure(meshRenderer.sharedMaterial);meshRenderer.sharedMaterial.SetFloat("_Outline",heroSurface?3*f.region[3]/86.4f:0);
-            if(hairRenderer!=null)Configure(hairRenderer.sharedMaterial);
+            // The shader remaps normalized source vertices to each pose. A
+            // shared 12m mesh bound keeps distant cards in every shadow/frustum.
+            // Renderer-local bounds retain the entire painted pose plus its
+            // bounded cape/hair/breath displacement without changing the cache.
+            var bounds=new Bounds(new Vector3((f.region[2]*.5f-f.anchor[0])*k,(f.anchor[1]-f.region[3]*.5f)*k,0),new Vector3(f.region[2]*k+.28f,f.region[3]*k+.28f,.35f));
+            meshRenderer.localBounds=bounds;
+            if(hairRenderer!=null){Configure(hairRenderer.sharedMaterial);hairRenderer.localBounds=bounds;}
         }
         public static int PoseIndex(AtlasDefinition data,float movingSpeed,float distance,float attack,float hit,float idleTime)
         {

@@ -1,0 +1,17 @@
+{
+  "provider": "OpenAI imagegen",
+  "purpose": "Four shared painterly elemental impact cells layered over original 120 skill timelines; no claim of 120 individually painted effects",
+  "prompt": "Create a production-ready 2D fantasy game VFX sprite atlas, a square transparent PNG, exactly a 2x2 regular grid of FOUR separate effects. Each quadrant is a centered isolated effect with large fully transparent gutters, NO text, NO frames, NO background, NO checkerboard. Art direction: beautiful hand-painted high-end Korean fantasy RPG combat impact textures, crisp tapered energy strokes, tiny glowing embers and painterly luminous soft falloff, elegant readable detail at small size; avoid simple geometric wireframe diagrams. Top-left quadrant: an orange-red fire impact burst with curling flame tongues, a warm white core, sparks and sharp flame fragments. Top-right quadrant: a cyan and icy blue crystalline frost burst, long tapered ice shards, white core and fine cold mist. Bottom-left quadrant: an antique gold and soft moss luminous protective halo impact, light ribbons and softly sparkling motes, ring seen face-on, bright center but hollow enough to show a character. Bottom-right quadrant: a deep violet and silver shadow impact, curling smoky tendrils with a pale core and tiny purple shards. Each effect fits inside central 80 percent of its 50-percent-sized quadrant, without bleeding into adjacent cells. Transparent negative space between energetic strokes and all around each effect, alpha fading smoothly to zero. Asset texture only, no heroes or UI or floor. Four visually distinct painterly impact sprites, evenly spaced, oriented face-on for billboard use.",
+  "source_image": "exec-f357c98c-5524-4fa2-91a5-07e702273c0b.png",
+  "transparent_background": true,
+  "cell_order": [
+    "fire",
+    "ice",
+    "light",
+    "dark"
+  ],
+  "grid": "2x2 top-left origin",
+  "source_sha256": "d034ea707aa332bf134fed4caab7692d4f24df9b121548785ac4442606c1c341",
+  "source_dimensions": [1254,1254],
+  "standalone_import": "1024 BC7 RGBA, clamp, bilinear, no mipmaps"
+}
