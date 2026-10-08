@@ -36,6 +36,9 @@ func bind(actor: AnimatedSprite2D,hero: bool,catalog: RefCounted=null) -> bool:
 	_breath_amplitude=float(BREATH_AMPLITUDES.get(identity,.04))
 	_material.shader=FORWARD_PAINT if RenderingServer.get_current_rendering_method()=='forward_plus' else MOBILE_PAINT
 	_reset_uniform_cache()
+	_set_uniform(&'outline_px',2.0 if hero else 0.0)
+	_material.set_shader_parameter('outline_opacity',.6)
+	_material.set_shader_parameter('display_height',86.4 if hero else (179.2 if _boss else 40.0))
 	_cape_enabled=hero
 	_material.set_shader_parameter('cape_enabled',_cape_enabled)
 	if hero:
@@ -76,9 +79,9 @@ func present(camera: Camera3D,height: float,tint: Color,delta: float,active: boo
 			for i in 3:_material.set_shader_parameter(CAPE_UNIFORMS[i],drift[i]/maxf(.00001,basis.y.length())*pixel)
 		if not effects_enabled:
 			for i in 3:_material.set_shader_parameter(CAPE_UNIFORMS[i],Vector2.ZERO)
-		if str(_snapshot.get('action',''))=='idle' and effects_enabled:position=camera.global_basis.y*sin(_visual_time*TAU/2.0+_breath_phase)*height/86.4*1.5
+		if str(_snapshot.get('action',''))=='idle' and effects_enabled:position=camera.global_basis.y*sin(_visual_time*TAU/2.0+_breath_phase)*height/86.4*2.0
 		_hair.visible=not dead and effects_enabled
 	else:
 		if str(_snapshot.get('action',''))=='idle' and effects_enabled:
-			position=camera.global_basis.y*sin(_visual_time*TAU/_breath_period+_breath_phase)*(height/166.4*2.0 if _boss else _breath_amplitude)
+			position=camera.global_basis.y*sin(_visual_time*TAU/_breath_period+_breath_phase)*(height/179.2*2.0 if _boss else _breath_amplitude)
 		_snapshot.fur_layers=fur_layers

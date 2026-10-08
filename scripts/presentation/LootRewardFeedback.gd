@@ -1,6 +1,7 @@
 extends Node
 ## Watch confirmed wallet changes; never rolls, grants or previews rewards.
 const FONT=preload('res://assets/fonts/combat/outfit/Outfit-ExtraBold.ttf')
+const ICON=preload('res://scripts/ui/GameUiIcon.gd')
 var game: Node
 var previous_gold:=0
 var previous_gems:=0
@@ -30,5 +31,9 @@ func popup(message: String,origin: Vector2,tint: Color) -> void:
 	label.add_theme_font_override('font',FONT);label.add_theme_font_size_override('font_size',12);label.add_theme_color_override('font_color',tint)
 	label.add_theme_color_override('font_outline_color',Color('#000000cc'));label.add_theme_constant_override('outline_size',2)
 	label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;label.size=Vector2(180,24);label.position=origin-Vector2(90,12);label.add_to_group('loot_reward_popup');game.content_root.add_child(label)
+	var symbol:=ICON.new();symbol.name='LootCurrencyIcon';symbol.icon_name='gold' if message.begins_with('골드') else 'gem';symbol.ink=tint
+	symbol.size=Vector2(18,18);symbol.position=Vector2(2,3);label.add_child(symbol)
+	label.pivot_offset=label.size*.5;label.scale=Vector2.ONE*1.2
 	var tween:=label.create_tween().set_parallel(true);tween.set_ignore_time_scale(true)
+	tween.tween_property(label,'scale',Vector2.ONE,.16).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(label,'position',label.position-Vector2(0,24),.8);tween.tween_property(label,'modulate:a',0,.3).set_delay(.5);tween.chain().tween_callback(label.queue_free)

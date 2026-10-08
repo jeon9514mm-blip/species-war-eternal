@@ -35,17 +35,24 @@ func run() -> void:
 	check(Vector2(sprite.position.x,sprite.position.z).distance_to(shown)<.00001,'painted body and contact shadow share the displayed foot')
 	check(actor.position.distance_to(field.position+field.project_world(shown))<.001,'source health/text anchors use the same displayed projection')
 	check(main._hero_field_position(id)==moved and main.loot_rng.state==rng,'interpolation never changes simulation positions or loot RNG')
-	for i in 100:field.hunt_hit(moved,original,Color.WHITE,i%3==0)
-	check(is_equal_approx(Engine.time_scale,1) and field.visual_running(),'a burst of normal/critical contacts cannot stop the whole battle')
+	for i in 100:field.hunt_hit(moved,original,Color.WHITE,false)
+	check(is_equal_approx(Engine.time_scale,1) and field.visual_running(),'a burst of ordinary contacts cannot stop the whole battle')
 	check(field.mobile_camera.cooldown>.7,'camera impacts are bounded across simultaneous attackers')
+	field.hunt_hit(moved,original,Color.WHITE,true)
+	var dilation=main.presentation_runtime.contact_time
+	check(is_equal_approx(Engine.time_scale,.15) and field.visual_running(),'crit feedback slows time briefly without stopping rendered movement')
+	var deadline: int=dilation.deadline_us
+	for i in 100:field.hunt_hit(moved,original,Color.WHITE,true)
+	check(dilation.deadline_us==deadline,'critical volleys cannot extend or stack global slowdown')
+	dilation.restore()
 	var impact_age: float=field.mobile_camera.shake_age
 	field.mobile_camera.impact(true);check(field.mobile_camera.shake_age==impact_age,'repeated crits cannot restart an active camera impact')
 	main.combat_running=false;field._process(.05);var pause_foot: Vector3=sprite.position;field._process(.1)
 	check(sprite.position==pause_foot,'real battlefield remains still while paused')
 	main._build_raid_screen();await settle();main._start_raid();main.combat_timer.stop()
 	field=main.content_root.get_node('PortraitRaidView').battlefield_3d;field.set_process(false)
-	for i in 40:TEXT.raid(main,10,'critical' if i%2==0 else 'damage')
-	check(is_equal_approx(Engine.time_scale,1) and field.visual_running(),'raid contact bursts keep normal game time too')
+	for i in 40:TEXT.raid(main,10,'damage')
+	check(is_equal_approx(Engine.time_scale,1) and field.visual_running(),'ordinary raid contact bursts keep normal game time too')
 	var elapsed: float=main.raid_elapsed
 	var ticks: int=main.combat_tick_count
 	for i in 15:

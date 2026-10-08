@@ -81,7 +81,7 @@ func run() -> void:
 	main.combat_fx.camera_impact(4,.16,.01);terrain._process(.04)
 	check(main.content_root.position==position and main.content_root.scale==scale,'impact leaves HUD and touch controls fixed')
 	check(absf(terrain.camera.h_offset)>0,'impact moves only the world camera')
-	terrain._process(.8)
+	terrain._process(1.6)
 	var rest: Vector2=terrain.mobile_camera.advance(0,false,true)
 	check(is_zero_approx(terrain.camera.h_offset) and is_equal_approx(terrain.camera.v_offset,terrain._camera_base_v-rest.y*terrain.camera.size/terrain.size.y),'camera returns to its breathing resting projection')
 	main.combat_fx.camera_impact(4,.16,.01);terrain._process(.04)

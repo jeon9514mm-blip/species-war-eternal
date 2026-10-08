@@ -21,6 +21,7 @@ func bind(host: Node) -> void:
 	audio = GameAudioDirector.new(); audio.name = "GameAudio"; add_child(audio)
 	contact_time=preload('res://scripts/presentation/ContactTimeDilation.gd').new();contact_time.name='ContactTimeDilation';contact_time.game=game;add_child(contact_time)
 	var loot_feedback:=preload('res://scripts/presentation/LootRewardFeedback.gd').new();loot_feedback.name='LootRewardFeedback';loot_feedback.bind(game);add_child(loot_feedback)
+	var celebration:=preload('res://scripts/presentation/HeroCelebrationFeedback.gd').new();celebration.name='HeroCelebrationFeedback';celebration.bind(game);add_child(celebration)
 	apply()
 	get_tree().node_added.connect(_on_node_added)
 	_wire_buttons(game)

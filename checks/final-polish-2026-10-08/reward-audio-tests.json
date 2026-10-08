@@ -1,0 +1,32 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 3,
+  "total": 3,
+  "results": [
+    {
+      "test": "FinalRewardAudioSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.81,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nfinal_reward_audio checks=24 failures=[] actual_haptic_device_test=false\n"
+    },
+    {
+      "test": "V82AudioSmokeTest.gd",
+      "passed": true,
+      "seconds": 1.28,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nAUDIO_DIAGNOSTICS {\"accepted\":109,\"active_voices\":1,\"ambient\":\"\",\"cached_sfx\":22,\"max_voices\":8,\"music\":\"meadow\",\"positional_accepted\":0,\"sample_loads\":29,\"shared_voice_limit\":8,\"spatial_voice_nodes\":0,\"suppressed\":395,\"suspended\":false,\"voice_nodes\":8}\nv82_audio checks=79 failures=[] audible_device_test=false\n"
+    },
+    {
+      "test": "V82SettingsSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.34,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv82_settings checks=20 failures=[] hardware_vibrations=0\n"
+    }
+  ]
+}

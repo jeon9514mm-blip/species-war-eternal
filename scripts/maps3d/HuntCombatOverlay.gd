@@ -9,6 +9,10 @@ var souls: Array[Dictionary]=[]
 var terrain: Control
 var hits: Array[Dictionary] = []
 var loot_beams: Array[Dictionary]=[]
+var celebrations: Array[Dictionary]=[]
+func celebrate(point: Vector2,level_up: bool) -> void:
+	if celebrations.size()>=4:celebrations.pop_front()
+	celebrations.append({'point':point,'level_up':level_up,'age':0.0})
 func loot(point: Vector2) -> void:
 	if loot_beams.size()>=4:loot_beams.pop_front()
 	loot_beams.append({'point':point,'age':0.0})
@@ -22,9 +26,9 @@ func soul(point: Vector2,hero: bool) -> void:
 func afterimage(source: AnimatedSprite2D,point: Vector2,direction: Vector2) -> void:
 	if not source.sprite_frames.has_animation(source.animation):return
 	var texture: Texture2D=source.sprite_frames.get_frame_texture(source.animation,source.frame)
-	for i in 3:
+	for i in 2:
 		if echoes.size()>=24:echoes.pop_front()
-		echoes.append({'texture':texture,'point':point-direction*float(i+1)*.13,'height':terrain.HERO_HEIGHT,'flip':source.flip_h,'age':-float(i)*.035})
+		echoes.append({'texture':texture,'point':point-direction*float(i+1)*.13,'height':terrain.HERO_HEIGHT,'flip':source.flip_h,'age':0.0})
 func hit(point: Vector2, source: Vector2, tint: Color, critical: bool,height: float=.6) -> void:
 	if not is_instance_valid(terrain.game) or not terrain.game.combat_effects_enabled: return
 	if hits.size() >= MAX_HITS: hits.pop_front()
@@ -35,16 +39,16 @@ func _process(delta: float) -> void:
 	if not is_instance_valid(terrain) or not is_instance_valid(terrain.game): return
 	var game = terrain.game
 	if not game.combat_effects_enabled:
-		hits.clear();dust.clear();echoes.clear();souls.clear();loot_beams.clear();queue_redraw();return
+		hits.clear();dust.clear();echoes.clear();souls.clear();loot_beams.clear();celebrations.clear();queue_redraw();return
 	if terrain.visual_running():
 		for item in hits: item.age += maxf(0,delta) * terrain.visual_speed()
 		for i in range(hits.size()-1,-1,-1):
 			if float(hits[i].age) >= .20: hits.remove_at(i)
 	if terrain.visual_running():
-		for collection in [dust,echoes,souls,loot_beams]:
+		for collection in [dust,echoes,souls,loot_beams,celebrations]:
 			for item in collection:item.age+=maxf(0,delta)*terrain.visual_speed()
 			for i in range(collection.size()-1,-1,-1):
-				if float(collection[i].age)>(.8 if collection==loot_beams else .55):collection.remove_at(i)
+				if float(collection[i].age)>(.8 if collection==loot_beams else (.20 if collection==echoes else .55)):collection.remove_at(i)
 	queue_redraw()
 
 func _draw() -> void:
@@ -63,17 +67,23 @@ func _draw() -> void:
 			var angle:=float(i)*TAU/6;var age: float=item.age
 			draw_circle(point+Vector2.from_angle(angle)*age*22-Vector2(0,age*16),1.4*(1-age/.8),Color(Color('#c4a484'),alpha))
 	_draw_hits()
+	for item in celebrations:
+		var phase: float=item.age/.55;var foot: Vector2=terrain.project_world(item.point)
+		for i in 12:
+			var angle:=float(i)*TAU/12
+			var spot:=foot+Vector2.from_angle(angle)*(8+phase*24)-Vector2(0,phase*38)
+			draw_circle(spot,1.8*(1-phase),Color(Color('#ffd700') if item.level_up else Color('#e8c99a'),(1-phase)*.8))
 	if terrain.raid_mode:return
 	for item in echoes:
 		var age: float=item.age
-		if age<0 or age>.24:continue
+		if age<0 or age>.20:continue
 		var texture: Texture2D=item.texture
 		var height: float=item.height*terrain.size.y/terrain.camera.size
 		var extent:=Vector2(texture.get_width()/float(texture.get_height())*height,height)
 		var foot: Vector2=terrain.project_world(item.point)
 		var rect:=Rect2(foot-Vector2(extent.x*.5,extent.y),extent)
 		if item.flip:rect.position.x+=rect.size.x;rect.size.x=-rect.size.x
-		draw_texture_rect(texture,rect,false,Color(.70,.87,1.,.22*(1-age/.24)))
+		draw_texture_rect(texture,rect,false,Color(.70,.87,1.,.5*(1-age/.20)))
 	for item in dust:
 		var age: float=item.age/.55
 		var foot: Vector2=terrain.project_world(item.point)
@@ -88,14 +98,16 @@ func _draw() -> void:
 			var offset:=Vector2(cos(angle)*age*20,-age*(18+float(i%3)*8))
 			draw_circle(foot+offset,2*(1-age),Color(.61,.82,1.,(1-age)*.65))
 	var alive: Array[String] = game._alive_hero_ids()
-	for hero in game.deployed_heroes:
+	var hero_indices: Dictionary={}
+	for hero_index in game.deployed_heroes.size():hero_indices[str(game.deployed_heroes[hero_index].id)]=hero_index
+	for hero_index in game.deployed_heroes.size():
+		var hero: Dictionary=game.deployed_heroes[hero_index]
 		var id := str(hero.id)
 		var runtime: Dictionary = game.hero_skill_runtime.get(id,{})
 		var remaining := float(runtime.get('windup',-1))
 		var index := int(runtime.get('target_index',-1))
 		if remaining < 0 or str(runtime.get('prepared_action','')) != 'basic' or not game._can_attack_enemy(id,index): continue
 		var phase := clampf(1.0 - remaining/maxf(.01,float(runtime.get('attack_windup_duration',.15))),0,1)
-		var hero_index: int=game._deployed_hero_ids().find(id)
 		if hero_index<0 or hero_index>=game.hero_map_sprites.size() or index>=game.enemy_wave_sprites.size():continue
 		var hero_source: AnimatedSprite2D=game.hero_map_sprites[hero_index]
 		var enemy_source: AnimatedSprite2D=game.enemy_wave_sprites[index]
@@ -121,7 +133,7 @@ func _draw() -> void:
 		if int(enemy.get('hp',0)) <= 0 or not enemy.has('attack_intent') or float(enemy.get('stun_seconds',0)) > 0: continue
 		var id := str(enemy.attack_intent)
 		if id not in alive: continue
-		var hero_index: int=game._deployed_hero_ids().find(id)
+		var hero_index: int=hero_indices.get(id,-1)
 		if index>=game.enemy_wave_sprites.size() or hero_index<0 or hero_index>=game.hero_map_sprites.size():continue
 		var start: Vector2 = terrain.project_world(terrain.display_world(game.enemy_wave_sprites[index],game.roaming_hunt.enemy_position(index)))
 		var finish: Vector2 = terrain.project_world(terrain.display_world(game.hero_map_sprites[hero_index],game._hero_field_position(id)))
@@ -139,9 +151,18 @@ func _draw_hits() -> void:
 		var age := float(item.age)/.20
 		var tint := Color(Color(item.tint),1-age)
 		var angle := (point-source).angle()
-		var radius := (16 if bool(item.critical) else 10)*(1+age*.65)
-		var count:=10
+		var radius := (16 if bool(item.critical) else 10)*1.2*(1+age*.65)
+		var count:=16
+		var rays:=PackedVector2Array();rays.resize(count*2)
 		for i in count:
 			var ray := Vector2.from_angle(angle+float(i)*TAU/count)
-			draw_line(point+ray*radius*.35,point+ray*radius,tint,2 if bool(item.critical) else 1.5,true)
+			rays[i*2]=point+ray*radius*.35;rays[i*2+1]=point+ray*radius
+		# Identical 16 independent segments, submitted as one canvas command.
+		draw_multiline(rays,tint,2 if bool(item.critical) else 1.5,true)
 		draw_circle(point,2*(1-age),Color(Color('#d8d5cc'),(1-age)*.6))
+		if float(item.age)<.08:
+			var impact: float=1-float(item.age)/.08
+			draw_arc(point,8+float(item.age)*100,0,TAU,24,Color(1,1,1,impact*.8),4,true)
+		if source.distance_to(point)>1:
+			var toward:=(point-source).normalized()
+			draw_line(point-toward*22,point+toward*8,Color(1,1,1,(1-age)*.8),4,true)

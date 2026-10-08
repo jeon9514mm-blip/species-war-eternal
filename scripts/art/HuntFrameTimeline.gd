@@ -5,6 +5,7 @@ const RELEASE_PHASE := .44
 var elapsed := 0.0
 var release_age := -1.0
 var hit_age := -1.0
+var hit_sequence := 0
 var death_age := -1.0
 var sequence := 0
 var release_action := "attack_1"
@@ -24,6 +25,7 @@ func release(action: String, windup: float) -> void:
 	_release_pending = true
 
 func hit(direction: Vector2) -> void:
+	hit_sequence += 1
 	hit_age = 0.0
 	recoil = direction.normalized() if direction.is_finite() else Vector2.ZERO
 	_hit_pending = true

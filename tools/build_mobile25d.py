@@ -164,19 +164,19 @@ if detail_path.exists():
     detail=resize(image_array(detail_path),size,size)[...,:3]
     stone=(detail*.86+stone*.14)*.78
     height+=(detail.mean(axis=-1)-.5)*.025
-stone*=1-crack[...,None]*.4;stone+=wear[...,None]*.5*.18
+stone*=1-crack[...,None]*.35;stone+=wear[...,None]*.6*.18
 cracks=crack>.2;patina=np.zeros((size,size),dtype=bool)
 locations=np.flatnonzero(cracks);order=locations[np.argsort(hash_noise.ravel()[locations])]
-patina.ravel()[order[:round(len(order)*.18)]]=True
-stone[patina]=stone[patina]*.65+np.array([107,138,122])/255*.35
+patina.ravel()[order[:round(len(order)*.20)]]=True
+stone[patina]=stone[patina]*.60+np.array([107,138,122])/255*.40
 moss_score=hash_noise*.30+np.sin(u*math.tau*7)*.20+np.cos(v*math.tau*11)*.15+crack*.60
-# Coverage is 12% of the floor, strictly selected inside the crack band.
+# Coverage is 15% of the floor, strictly selected inside the crack band.
 moss_band=edge<32;locations=np.flatnonzero(moss_band);order=locations[np.argsort(moss_score.ravel()[locations])[::-1]]
-moss=np.zeros((size,size),dtype=bool);moss.ravel()[order[:round(size*size*.12)]]=True
-stone[moss]=stone[moss]*.62+np.array([168,184,158])/255*.38
+moss=np.zeros((size,size),dtype=bool);moss.ravel()[order[:round(size*size*.15)]]=True
+stone[moss]=stone[moss]*.56+np.array([168,184,158])/255*.44
 dust=(.5+.5*np.sin(u*math.tau*3)*np.cos(v*math.tau*5))*.15*(1-crack)
 stone=stone*(1-dust[...,None])+np.array([216,213,204])/255*dust[...,None]*.45
-ao=1-crack*.4
+ao=1-crack*.5
 albedo=np.dstack([np.clip(stone,0,1),ao]).astype(np.float32)
 gx=(np.roll(height,-1,1)-np.roll(height,1,1))*7;gy=(np.roll(height,-1,0)-np.roll(height,1,0))*7
 normal=np.stack([-gx,-gy,np.ones_like(gx)],axis=-1);normal/=np.linalg.norm(normal,axis=-1)[...,None]
@@ -185,7 +185,7 @@ floor=OUT/'floor';floor.mkdir(exist_ok=True)
 save_image('StoneSlab1024 AlbedoAO',albedo,floor/'stone_1024_albedo_ao.png')
 save_image('StoneSlab1024 Normal',normal,floor/'stone_1024_normal.png')
 save_image('StoneSlab1024 AO authoring',np.dstack([ao,ao,ao,np.ones_like(ao)]).astype(np.float32),floor/'stone_1024_ao.png')
-material={'texture_size':[1024,1024],'roughness':.58,'metallic':.32,'patina_fraction_in_cracks':float(patina.sum()/cracks.sum()),'moss_fraction':float(moss.mean()),'moss_outside_crack_band':int((moss & ~moss_band).sum()),'moss_color':'#A8B89E','patina_color':'#6B8A7A','edge_wear':.5,'dust':.15,'ao_strength':.4,'runtime_ao_channel':'albedo alpha','runtime_textures':2,'runtime_bc7_bc5_bytes_with_mipmaps':2796202,'ao_separate_image':'authoring reference; packed in albedo alpha at runtime'}
+material={'texture_size':[1024,1024],'roughness':.58,'metallic':.32,'patina_fraction_in_cracks':float(patina.sum()/cracks.sum()),'moss_fraction':float(moss.mean()),'moss_outside_crack_band':int((moss & ~moss_band).sum()),'moss_color':'#A8B89E','patina_color':'#6B8A7A','edge_wear':.6,'crack_dark':.35,'dust':.15,'ao_strength':.5,'moss_glow':.15,'runtime_ao_channel':'albedo alpha','runtime_textures':2,'runtime_bc7_bc5_bytes_with_mipmaps':2796202,'ao_separate_image':'authoring reference; packed in albedo alpha at runtime'}
 (floor/'material.json').write_text(json.dumps(material,indent=2)+'\n')
 if not floor_only:bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'source/mobile25d-library.blend'),compress=True)
 (OUT/'catalog.json').write_text(json.dumps({'schema':1,'representation':'painted 2.5D relief billboards with separate hair geometry','entries':catalog,'floor':material},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

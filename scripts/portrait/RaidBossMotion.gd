@@ -9,6 +9,7 @@ var enraged := false
 var clock := 0.0
 var strike := 0.0
 var last_state := "idle"
+var decorative_ground_enabled := true
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(actor): return
@@ -24,8 +25,9 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	var lit := (0.62 + 0.20 * sin(clock * (6.0 if casting else 2.8))) * (1.5 if enraged else 1.0)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0 + strike * .12, 1.0))
-	_paint_ground_oval(Vector2(0,2), Vector2(58,13), Color("#041522",.50))
-	draw_arc(Vector2.ZERO, 54.0 + 5.0 * sin(clock * 2.0), 0, TAU, 48, Color(accent,.29 * lit),3.0)
+	if decorative_ground_enabled:
+		_paint_ground_oval(Vector2(0,2), Vector2(58,13), Color("#041522",.50))
+		draw_arc(Vector2.ZERO, 54.0 + 5.0 * sin(clock * 2.0), 0, TAU, 48, Color(accent,.29 * lit),3.0)
 	if zone_id == "gray_meadow":
 		for i in 5:
 			var angle := clock * .35 + float(i) * TAU / 5.0

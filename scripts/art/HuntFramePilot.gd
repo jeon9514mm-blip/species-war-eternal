@@ -44,6 +44,17 @@ var _uniform_secondary_amount:=-INF
 var _uniform_locomotion_weight:=-INF
 var _uniform_action_energy:=-INF
 var _uniform_hit_flash:=-INF
+var _observed_hit_sequence:=0
+var _flash_started_us:=-120000
+
+func _contact_flash_at(now_us: int,dead: bool) -> float:
+	# Ten raid attackers must not extend a white silhouette through hitstop.
+	# Flash expires on wall time even while the struck pose is held for 80ms.
+	if timeline.hit_sequence!=_observed_hit_sequence:
+		_observed_hit_sequence=timeline.hit_sequence
+		if now_us-_flash_started_us>=120000:_flash_started_us=now_us
+	if dead or not effects_enabled:return 0.0
+	return (1.0-clampf(float(now_us-_flash_started_us)/40000.0,0,1))*.60
 var _uniform_facing_sign:=0.0
 var _uniform_tint:=Color(-INF,-INF,-INF,-INF)
 var _last_basis:=Basis.IDENTITY
@@ -180,7 +191,7 @@ func present(camera: Camera3D,height: float,tint: Color,delta: float,active: boo
 	if action=='idle' and effects_enabled:
 		position=camera.global_basis.y*sin(_visual_time*TAU/_idle_period+_idle_phase)*minf(.012,height*.015)
 	var hit_age:=float(pose.get('hit_age',-1.0))
-	var hit_flash:=(1.0-clampf(hit_age/.04,0,1))*.60 if effects_enabled and hit_age>=0 and action!='death' else 0.0
+	var hit_flash:=_contact_flash_at(Time.get_ticks_usec(),action=='death')
 	if _uniform_hit_flash!=hit_flash:
 		_uniform_hit_flash=hit_flash;_material.set_shader_parameter(&'hit_flash',hit_flash)
 	if action!='death' and hit_age>=0.0 and hit_age<.22:

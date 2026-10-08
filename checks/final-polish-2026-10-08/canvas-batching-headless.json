@@ -1,0 +1,26 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 2,
+  "total": 2,
+  "results": [
+    {
+      "test": "FinalHeroFeedbackSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.81,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nFINAL_HERO_FEEDBACK checks=19 failures=[]\n"
+    },
+    {
+      "test": "NoHeroSkillVfxSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.27,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nBOUNDED_HERO_SKILL_VFX checks=239 failures=[]\n"
+    }
+  ]
+}

@@ -9,6 +9,8 @@ uniform float facing_sign=1.0;
 uniform float hit_flash=0.0;
 uniform float movement_heat=0.0;
 uniform float outline_px=.8;
+uniform float outline_opacity=.6;
+uniform float display_height=86.4;
 uniform float rim_strength=.18;
 uniform float alpha_cutoff=.12;
 uniform float secondary_amount=.018;
@@ -39,17 +41,23 @@ void vertex(){
 void fragment(){
     vec2 lo=atlas_rect.xy+atlas_texel*.5;vec2 hi=atlas_rect.xy+atlas_rect.zw-atlas_texel*.5;
     vec4 ink=texture(source_texture,clamp(UV,lo,hi));
+    float edge=0.0;
+    if(outline_px>0.0){
+        vec2 d=atlas_texel*outline_px*paint_size.y/max(display_height,1.0);
+        edge=max(max(texture(source_texture,clamp(UV+vec2(d.x,0),lo,hi)).a,texture(source_texture,clamp(UV-vec2(d.x,0),lo,hi)).a),max(texture(source_texture,clamp(UV+vec2(0,d.y),lo,hi)).a,texture(source_texture,clamp(UV-vec2(0,d.y),lo,hi)).a));
+        edge*=outline_opacity*(1.0-smoothstep(.08,.35,ink.a));
+    }
     float warm=smoothstep(.05,.20,ink.r-ink.b)*smoothstep(.4,.7,ink.g);
     float armor=warm*smoothstep(.25,.38,local_uv.y)*(1.0-smoothstep(.8,.96,local_uv.y));
-    ALBEDO=mix(ink.rgb*actor_tint.rgb*.82,vec3(1.0,.98,.9),hit_flash);
+    ALBEDO=mix(mix(ink.rgb*actor_tint.rgb*.82,vec3(1.0,.98,.9),hit_flash),vec3(0.0),edge);
     ROUGHNESS=mix(.82,.58,armor);METALLIC=armor*.32;
     EMISSION=ALBEDO*.08;
     RIM=.18;RIM_TINT=.35;
 #ifdef TRUE_SSS
-    SSS_STRENGTH=.15;
+    SSS_STRENGTH=.20;
 #else
     // Mobile supports native PBR and rim; warm transmission is approximated.
-    EMISSION+=ALBEDO*warm*.15*.15;
+    EMISSION+=ALBEDO*warm*.20*.15;
 #endif
-    ALPHA=ink.a*actor_tint.a;ALPHA_SCISSOR_THRESHOLD=alpha_cutoff;
+    ALPHA=max(ink.a,edge)*actor_tint.a;ALPHA_SCISSOR_THRESHOLD=alpha_cutoff;
 }

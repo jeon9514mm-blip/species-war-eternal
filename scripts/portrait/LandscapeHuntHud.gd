@@ -28,8 +28,10 @@ func build(main: Node) -> void:
 	power_label = _label_at("",Rect2()); power_label.hide()
 	profile_xp = SKIN.gauge(self,Rect2(),SKIN.GOLD); profile_xp.hide()
 	stage_label = _label_at("",Rect2(24,18,w-652,34),22)
-	gold_label = _label_at("",Rect2(w-614,20,142,30),16)
-	gem_label = _label_at("",Rect2(w-466,20,94,30),16)
+	gold_badge=preload('res://scripts/presentation/CurrencyFeedbackBadge.gd').new();add_child(gold_badge)
+	gold_badge.bind(game,'gold',Rect2(w-614,20,142,30),16);gold_label=gold_badge.caption
+	gem_badge=preload('res://scripts/presentation/CurrencyFeedbackBadge.gd').new();add_child(gem_badge)
+	gem_badge.bind(game,'gem',Rect2(w-466,20,94,30),16);gem_label=gem_badge.caption
 	_button_at("편성",Callable(game,"_build_hero_select_screen"),Rect2(w-368,18,68,44),"HuntPartyEdit")
 	auto_button = _button_at("",_toggle_auto,Rect2(w-292,18,84,44),"PortraitAutoButton")
 	speed_button = _button_at("",_cycle_speed,Rect2(w-200,18,56,44),"PortraitSpeedButton")

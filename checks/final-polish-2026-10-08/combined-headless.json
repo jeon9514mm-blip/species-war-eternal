@@ -1,0 +1,56 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 7,
+  "total": 7,
+  "results": [
+    {
+      "test": "CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "seconds": 8.81,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nCOMBAT_READABILITY checks=151 failures=[]\n"
+    },
+    {
+      "test": "HuntAttackQualitySmokeTest.gd",
+      "passed": true,
+      "seconds": 7.59,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_attack_quality checks=24 failures=[]\n"
+    },
+    {
+      "test": "Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.56,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nMOBILE25D_SPEC checks=339 failures=[]\n"
+    },
+    {
+      "test": "MovementPacingSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.53,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nMOVEMENT_PACING checks=38 failures=[]\n"
+    },
+    {
+      "test": "NoHeroSkillVfxSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.97,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nBOUNDED_HERO_SKILL_VFX checks=239 failures=[]\n"
+    },
+    {
+      "test": "RaidTouchLayoutSmokeTest.gd",
+      "passed": true,
+      "seconds": 34.94,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_TOUCH_LAYOUT checks=1044 failures=[]\n"
+    },
+    {
+      "test": "StableFacing25DSmokeTest.gd",
+      "passed": true,
+      "seconds": 16.61,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nSTABLE_FACING_25D checks=610 failures=[]\n"
+    }
+  ]
+}

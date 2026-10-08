@@ -8,6 +8,9 @@ var progress := 0.0
 var accent := Color('#c4a484')
 var targets: Array[Vector2] = []
 var clock := 0.0
+const WARNING_RED=Color('#e94c43')
+const WARNING_ALPHA=.6
+const WARNING_GLOW=.6
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -19,11 +22,11 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	if not active or shape.is_empty():return
-	var pulse:=1.0+.2*sin(clock*TAU/1.2)
+	var pulse:=1.0+.14*sin(clock*TAU/1.0)
 	var glow := (.10 + .07 * progress)*pulse
-	var warning:=Color('#a8b89e').lerp(Color('#c4a484'),smoothstep(.35,1.0,progress))
-	var edge := Color(warning,.80 + .1 * sin(clock * 8.0))
-	var fill := Color(Color('#c4a484'),glow)
+	var warning:=Color('#c4a484').lerp(WARNING_RED,.6+.4*smoothstep(.35,1.0,progress))
+	var edge := Color(warning,WARNING_ALPHA + .08 * sin(clock * 8.0))
+	var fill := Color(WARNING_RED,glow*WARNING_ALPHA)
 	match str(shape.get('shape','')):
 		'lane':
 			_draw_warning_rect(shape['rect'],fill,edge)
@@ -57,7 +60,7 @@ func _draw() -> void:
 			var center: Vector2=shape['center']
 			var inner: float=shape['inner']
 			var outer: float=shape['outer']
-			draw_arc(center,(inner+outer)*.5,0,TAU,100,Color(accent,glow),outer-inner)
+			draw_arc(center,(inner+outer)*.5,0,TAU,100,fill,outer-inner)
 			draw_arc(center,inner,0,TAU,100,Color('#101823'),11.0,true)
 			draw_arc(center,outer,0,TAU,100,Color('#101823'),11.0,true)
 			draw_arc(center,inner,0,TAU,100,edge,5.0)
@@ -71,15 +74,15 @@ func _draw() -> void:
 	if str(shape.get('shape','')) in ['ring','circle']:
 		var center: Vector2=shape.center;var radius: float=float(shape.outer if shape.shape=='ring' else shape.radius)
 		# Pulse changes brightness only; displayed hazard bounds remain exact.
-		for width in [12.,7.]:draw_arc(center,radius,0,TAU,100,Color(warning,.5*.12*pulse),width,true)
+		for width in [12.,7.]:draw_arc(center,radius,0,TAU,100,Color(warning,WARNING_GLOW*.12*pulse),width,true)
 		draw_arc(center,radius-5,0,TAU,100,Color('#a8b89e',.25),2,true)
 		for i in 8:
-			var angle:=float(i)*TAU/8+clock*.15;var point:=center+Vector2.from_angle(angle)*radius
-			draw_circle(point,1.5,Color(Color('#c4a484'),.5*pulse))
+			var angle:=float(i)*TAU/8+clock*.12;var point:=center+Vector2.from_angle(angle)*radius
+			draw_circle(point,1.5,Color(Color('#e8c99a'),.6*pulse))
 	if progress>0.0 and str(shape.get('shape','')) in ['ring','circle']:
 		var center: Vector2=shape['center']
 		var radius: float=float(shape['outer'] if shape['shape']=='ring' else shape['radius'])
-		draw_arc(center,radius*(1.0-progress),0,TAU,80,Color(accent,.5),3.0)
+		draw_arc(center,radius*(1.0-progress),0,TAU,80,Color(WARNING_RED,.6),3.0)
 
 
 func _draw_warning_rect(rect: Rect2, fill: Color, edge: Color) -> void:

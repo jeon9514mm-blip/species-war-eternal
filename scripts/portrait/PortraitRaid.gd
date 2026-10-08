@@ -125,6 +125,8 @@ func install(main: Node) -> void:
 	selection.name='RaidSelectedHeroIndicator';selection.raid=self;stage.add_child(selection)
 	selection.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	boss_motion=BOSS_MOTION.new();boss_motion.name='PortraitRaidBossMotion'
+	# The final 3D seal and contact shadow already own the boss's ground marks.
+	boss_motion.decorative_ground_enabled=not (is_instance_valid(battlefield_3d.world) and is_instance_valid(battlefield_3d.world.get_node_or_null('RaidDesign')))
 	boss_motion.zone_id=zone_id;boss_motion.accent=design['accent'];arena.add_child(boss_motion)
 	mechanic_visual=preload('res://scripts/portrait/RaidMechanicVisual.gd').new()
 	mechanic_visual.name='PortraitRaidMechanicVisual';arena.add_child(mechanic_visual);mechanic_visual.bind(game,design['accent'])
@@ -570,11 +572,13 @@ func refresh() -> void:
 	if is_instance_valid(mechanic_visual):mechanic_visual.queue_redraw()
 	if game.raid_phase>last_phase:
 		last_phase=game.raid_phase
+		game._presentation_event('phase_change')
 		phase_flash.color=Color(DESIGN.raid(game.raid_encounter_zone)['accent'],.5)
 		create_tween().tween_property(phase_flash,'color:a',0.0,.6)
 		_show_phase_banner('PHASE %d\n%s'%[game.raid_phase,game._raid_phase_hint()])
 	if game.raid_enraged and not last_enraged:
 		last_enraged=true
+		game._presentation_event('phase_change')
 		_show_phase_banner('광폭화\n공격력·이동·공격 속도 상승')
 	elif not game.raid_running:
 		last_enraged=false

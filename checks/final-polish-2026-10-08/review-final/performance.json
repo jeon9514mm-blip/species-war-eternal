@@ -1,0 +1,83 @@
+{
+  "android_measured": false,
+  "assets": [],
+  "crit_fixture": {
+    "copies": 7,
+    "guardian": "eclipse",
+    "natural_crit_chance": 0.084,
+    "seed": 20261008
+  },
+  "device": "NVIDIA GeForce GTX 1050",
+  "engine": "4.7.2-stable (official)",
+  "profiles": [
+    {
+      "draw_calls": 551.0,
+      "frames": 262,
+      "held_walking_frames": 43,
+      "held_walking_ratio": 0.0316409124356144,
+      "label": "hunt-aurelia",
+      "max_world_step": 0.0950000807642937,
+      "mean_fps": 32.6736987450057,
+      "p95_frame_ms": 50.543,
+      "physics_ms_mean": 42.3022633587788,
+      "process_ms_mean": 28.6347824427481,
+      "seconds": 8.018682,
+      "slowed_frame_ratio": 0.0,
+      "slowed_frames": 0,
+      "texture_bytes": 112070656,
+      "walking_actor_frames": 1359
+    },
+    {
+      "draw_calls": 620.0,
+      "frames": 275,
+      "held_walking_frames": 30,
+      "held_walking_ratio": 0.0181598062953995,
+      "label": "hunt-noxfera",
+      "max_world_step": 0.108241386711597,
+      "mean_fps": 34.337130437269,
+      "p95_frame_ms": 48.001,
+      "physics_ms_mean": 45.3903854545454,
+      "process_ms_mean": 28.9538981818181,
+      "seconds": 8.008823,
+      "slowed_frame_ratio": 0.0,
+      "slowed_frames": 0,
+      "texture_bytes": 115740672,
+      "walking_actor_frames": 1652
+    },
+    {
+      "draw_calls": 311.0,
+      "frames": 349,
+      "held_walking_frames": 0,
+      "held_walking_ratio": 0.0,
+      "label": "raid",
+      "max_world_step": 2.1997058391571,
+      "mean_fps": 58.0829014423033,
+      "p95_frame_ms": 33.328,
+      "physics_ms_mean": 33.620441260745,
+      "process_ms_mean": 11.797687679083,
+      "seconds": 6.008653,
+      "slowed_frame_ratio": 0.0,
+      "slowed_frames": 0,
+      "texture_bytes": 111283200,
+      "walking_actor_frames": 59
+    },
+    {
+      "draw_calls": 614.0,
+      "frames": 323,
+      "held_walking_frames": 31,
+      "held_walking_ratio": 0.0139013452914798,
+      "label": "hunt-natural-crits",
+      "max_world_step": 0.199136406183243,
+      "mean_fps": 32.2465899730277,
+      "p95_frame_ms": 53.011,
+      "physics_ms_mean": 49.6388544891641,
+      "process_ms_mean": 29.5183622291022,
+      "seconds": 10.016563,
+      "slowed_frame_ratio": 0.0340557275541796,
+      "slowed_frames": 11,
+      "texture_bytes": 124571648,
+      "walking_actor_frames": 2230
+    }
+  ],
+  "renderer": "mobile"
+}

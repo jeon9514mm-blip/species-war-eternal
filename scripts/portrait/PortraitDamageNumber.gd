@@ -30,29 +30,33 @@ func show_value(message: String, _tint: Color, origin: Vector2, large: bool, lan
 	add_theme_color_override('font_outline_color', Color('#000000cc'))
 	add_theme_constant_override('outline_size', 2)
 	material=null
-	pivot_offset = size * .5; scale = Vector2.ONE * 1.2
+	pivot_offset = size * .5; scale = Vector2.ONE * 1.3
 	issued_at = Time.get_ticks_msec(); queue_redraw()
 	var base := position
 	var drift := Vector2(float(lane % 2 * 2 - 1) * 3, -16 if kind == 'heal' else -10)
 	var motion := create_tween(); _life_tween = motion
-	motion.tween_property(self, 'scale', Vector2.ONE*1.2, .06).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	motion.tween_interval(.26)
+	motion.tween_property(self, 'scale', Vector2.ONE*1.3, .06).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	motion.tween_interval(.31)
 	motion.chain().tween_property(self, 'position', base + drift, .28).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	motion.parallel().tween_property(self, 'modulate:a', 0.0, .20).set_delay(.08)
 	motion.chain().tween_callback(retire)
 func _draw() -> void:
 	if visible and kind in ['damage','critical']:
-		var baseline:=Vector2((size.x-STYLE.FONT.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,14).x)*.5,size.y-STYLE.FONT.get_descent(14))
-		draw_string(STYLE.FONT,baseline+Vector2(.15,0),text,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color(1,.25,.3,.01))
-		draw_string(STYLE.FONT,baseline-Vector2(.15,0),text,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color(.25,.6,1,.01))
+		var baseline:=Vector2((size.x-STYLE.FONT.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x)*.5,size.y-STYLE.FONT.get_descent(16))
+		# Godot outline sizes are integer pixels. Blend the 2/3px outer border
+		# to retain the requested half-pixel softness, then restore the glyph face.
+		draw_string_outline(STYLE.FONT,baseline,text,HORIZONTAL_ALIGNMENT_LEFT,-1,16,3,Color(0,0,0,.4))
+		draw_string(STYLE.FONT,baseline,text,HORIZONTAL_ALIGNMENT_LEFT,-1,16,STYLE.PALETTES[kind][0])
+		draw_string(STYLE.FONT,baseline+Vector2(.2,0),text,HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color(1,.25,.3,.015))
+		draw_string(STYLE.FONT,baseline-Vector2(.2,0),text,HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color(.25,.6,1,.015))
 	if kind != 'critical' or not visible: return
-	var phase:=clampf(float(Time.get_ticks_msec()-issued_at)/600.,0,1)
-	for i in 8:
-		var ray:=Vector2.from_angle(float(i)*TAU/8)
-		draw_circle(size*.5+ray*(9+phase*16),1.2*(1-phase),Color(Color('#c4a484'),(1-phase)*.65))
+	var phase:=clampf(float(Time.get_ticks_msec()-issued_at)/650.,0,1)
+	for i in 12:
+		var ray:=Vector2.from_angle(float(i)*TAU/12)
+		draw_circle(size*.5+ray*(9+phase*16),1.2*(1-phase),Color(Color('#ffd700'),(1-phase)*.65))
 	var width := STYLE.FONT.get_string_size('CRIT', HORIZONTAL_ALIGNMENT_LEFT, -1, 9).x
 	draw_string_outline(STYLE.FONT, Vector2((size.x-width)*.5, 8), 'CRIT', HORIZONTAL_ALIGNMENT_LEFT, -1, 9, 2, Color('#080e12e8'))
-	draw_string(STYLE.FONT, Vector2((size.x-width)*.5, 8), 'CRIT', HORIZONTAL_ALIGNMENT_LEFT, -1, 9, Color('#c4a484'))
+	draw_string(STYLE.FONT, Vector2((size.x-width)*.5, 8), 'CRIT', HORIZONTAL_ALIGNMENT_LEFT, -1, 9, Color('#ffd700'))
 func _process(_delta: float) -> void:
 	if visible and kind=='critical':queue_redraw()
 func retire() -> void:

@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-08",
+  "method": "In-app browser UI and DOM inspection of the standalone HTML through a localhost file server",
+  "all_heroes": 30,
+  "all_skills": 120,
+  "embedded_art_elements": 30,
+  "search_leonhardt": {"heroes": 1, "skills": 4},
+  "filter_noxfera_tank": {"heroes": 2, "skills": 8},
+  "hero_jump_clears_filters": true,
+  "desktop": {"viewport_width": 1280, "viewport_height": 900, "client_width": 1265, "scroll_width": 1265, "horizontal_overflow": false},
+  "mobile": {"viewport_width": 390, "viewport_height": 844, "client_width": 375, "scroll_width": 375, "horizontal_overflow": false},
+  "console_errors": [],
+  "preview": "gallery-mobile.jpg",
+  "final_state": "All filters and search cleared, all 30 heroes shown, responsive viewport override reset"
+}

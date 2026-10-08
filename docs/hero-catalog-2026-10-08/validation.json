@@ -1,0 +1,705 @@
+{
+  "heroes": 30,
+  "unique_hero_ids": 30,
+  "factions": {
+    "aurelia": 15,
+    "noxfera": 15
+  },
+  "skills": 120,
+  "unique_skill_ids": 120,
+  "each_slot_count": {
+    "passive": 30,
+    "a1": 30,
+    "a2": 30,
+    "ultimate": 30
+  },
+  "embedded_images": 30,
+  "missing_skill_descriptions": 0,
+  "missing_image_files": 0,
+  "null_values": 0,
+  "source_image_pixels_modified": false,
+  "embedded_hashes_match_source": true,
+  "exported_rgba_matches_original_region": true,
+  "html_bytes": 4334838,
+  "embedded_source_png_bytes": 3122294,
+  "standalone": true,
+  "network_requests_required_for_gallery": false,
+  "saves_loaded": 0,
+  "browser_visual_review": "passed, see browser-qa.json",
+  "zip_artifact": {
+    "file": "hero-art-and-skills-30.zip",
+    "bytes": 3157357,
+    "sha256": "5325f08b852e688a0710f44b39b2ceccb763000554be3c0b89d627308f1bd360",
+    "images": 30,
+    "members": 34,
+    "korean_hero_names_and_ids": true,
+    "markdown_image_links_valid": true,
+    "images_identical_to_extracted_pngs": true,
+    "contains_html": false,
+    "contains_original_atlases": false,
+    "fixed_metadata": true,
+    "repeat_build_bytes_identical": true
+  },
+  "images": [
+    {
+      "hero": "leonhardt",
+      "source": "res://docs/hero-catalog-2026-10-08/art/leonhardt.png",
+      "sha256": "dc19df1c0d74c43a702c6783357b2e87ff8046cbab3f0e72dd25a46351d73c04",
+      "bytes": 122027,
+      "svg_viewbox": [
+        0,
+        0,
+        259,
+        298
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/leonhardt/poses.png",
+      "source_region": [
+        16.0,
+        635.0,
+        259.0,
+        298.0
+      ],
+      "rgba_sha256": "a346a13b324da7112dd28d2c3160eb242a76c66d87d3c84cc54d88f4cf6e5b51",
+      "source_region_rgba_sha256": "a346a13b324da7112dd28d2c3160eb242a76c66d87d3c84cc54d88f4cf6e5b51",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "mira",
+      "source": "res://docs/hero-catalog-2026-10-08/art/mira.png",
+      "sha256": "0359f66c220e02bca90cf4a8ac63c316184acefb81463b47dcc514e65595f6ac",
+      "bytes": 136685,
+      "svg_viewbox": [
+        0,
+        0,
+        265,
+        307
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/mira/poses.png",
+      "source_region": [
+        26.0,
+        634.0,
+        265.0,
+        307.0
+      ],
+      "rgba_sha256": "0bf25ae0b7f807979fae73312808996e4f64f6cd8a8b6302232936c7fe3e5968",
+      "source_region_rgba_sha256": "0bf25ae0b7f807979fae73312808996e4f64f6cd8a8b6302232936c7fe3e5968",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "elisia",
+      "source": "res://docs/hero-catalog-2026-10-08/art/elisia.png",
+      "sha256": "9de54c3eaa3af767cee75fff34b12b82dd3ad0872fd0d2e8df59f0b4cd1b6838",
+      "bytes": 144266,
+      "svg_viewbox": [
+        0,
+        0,
+        233,
+        310
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/elisia/poses.png",
+      "source_region": [
+        41.0,
+        641.0,
+        233.0,
+        310.0
+      ],
+      "rgba_sha256": "84cdf4366c596057983cadd3689f1067945c1cb59da667f499fc607ac6c686c7",
+      "source_region_rgba_sha256": "84cdf4366c596057983cadd3689f1067945c1cb59da667f499fc607ac6c686c7",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "kairen",
+      "source": "res://docs/hero-catalog-2026-10-08/art/kairen.png",
+      "sha256": "ebc9a05edb9a816ff316ef76fbc50a994a8bd1caa1f3bf01b02cc6aa30d11ff3",
+      "bytes": 89355,
+      "svg_viewbox": [
+        0,
+        0,
+        180,
+        232
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/kairen/poses.png",
+      "source_region": [
+        61.0,
+        678.0,
+        180.0,
+        232.0
+      ],
+      "rgba_sha256": "92ffc907c346d674e1c0cdba08b11410677b90a87e9f2af03307ea6c6fe32f34",
+      "source_region_rgba_sha256": "92ffc907c346d674e1c0cdba08b11410677b90a87e9f2af03307ea6c6fe32f34",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "orwin",
+      "source": "res://docs/hero-catalog-2026-10-08/art/orwin.png",
+      "sha256": "7a827f440ab25d03ae72ddf36862c6557bdeceace5957795c83e41a8cb46bf7f",
+      "bytes": 80474,
+      "svg_viewbox": [
+        0,
+        0,
+        172,
+        221
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/orwin/poses.png",
+      "source_region": [
+        126.0,
+        521.0,
+        172.0,
+        221.0
+      ],
+      "rgba_sha256": "e50ac13493276f5da1ac54901fcc2e3264422539ddd0b7d08f6e8fb9024616b1",
+      "source_region_rgba_sha256": "e50ac13493276f5da1ac54901fcc2e3264422539ddd0b7d08f6e8fb9024616b1",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "seria",
+      "source": "res://docs/hero-catalog-2026-10-08/art/seria.png",
+      "sha256": "e53c56a271945756ec85d7a0ef0dfe8068c11d9cf6ccf388e6ce04d29781cffd",
+      "bytes": 155329,
+      "svg_viewbox": [
+        0,
+        0,
+        242,
+        313
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/seria/poses.png",
+      "source_region": [
+        46.0,
+        638.0,
+        242.0,
+        313.0
+      ],
+      "rgba_sha256": "e991c6c4eb9e9a1985d14daf197fd9ea4f3024db5d59babdd0a81c6a657d1214",
+      "source_region_rgba_sha256": "e991c6c4eb9e9a1985d14daf197fd9ea4f3024db5d59babdd0a81c6a657d1214",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "astel",
+      "source": "res://docs/hero-catalog-2026-10-08/art/astel.png",
+      "sha256": "ac77a77e5e0fd7780a26ce3ed3280ab612db6feebd0ed46ca36120e09f7b0b5f",
+      "bytes": 132956,
+      "svg_viewbox": [
+        0,
+        0,
+        228,
+        280
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/astel/poses.png",
+      "source_region": [
+        54.0,
+        666.0,
+        228.0,
+        280.0
+      ],
+      "rgba_sha256": "b1646e12ee99bf48e381fded8770c13bda91f2b2828408a2895d5d57637cefe2",
+      "source_region_rgba_sha256": "b1646e12ee99bf48e381fded8770c13bda91f2b2828408a2895d5d57637cefe2",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "darius",
+      "source": "res://docs/hero-catalog-2026-10-08/art/darius.png",
+      "sha256": "3d3072d77af03d7b509105bf7c72116ffb308840496d6412cced5ed3ee9773f0",
+      "bytes": 123555,
+      "svg_viewbox": [
+        0,
+        0,
+        274,
+        289
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/darius/poses.png",
+      "source_region": [
+        49.0,
+        586.0,
+        274.0,
+        289.0
+      ],
+      "rgba_sha256": "3411beeb08e428d367ffec01c94589d91512d2b19e9df6fe618968d7cdb91205",
+      "source_region_rgba_sha256": "3411beeb08e428d367ffec01c94589d91512d2b19e9df6fe618968d7cdb91205",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "lunea",
+      "source": "res://docs/hero-catalog-2026-10-08/art/lunea.png",
+      "sha256": "784f232e2f16ef94198511daa32d58128a446e26b1d8471c43f8346c09506227",
+      "bytes": 128713,
+      "svg_viewbox": [
+        0,
+        0,
+        224,
+        272
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/lunea/poses.png",
+      "source_region": [
+        74.0,
+        574.0,
+        224.0,
+        272.0
+      ],
+      "rgba_sha256": "6e952466e5cdbd129517889a6ca5479c13cfdcc9a90153d8b5faa0c09b68f649",
+      "source_region_rgba_sha256": "6e952466e5cdbd129517889a6ca5479c13cfdcc9a90153d8b5faa0c09b68f649",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "caelum",
+      "source": "res://docs/hero-catalog-2026-10-08/art/caelum.png",
+      "sha256": "72d59bee6cc62753068e8003967304f3befad1c3e4f50345fec0d6a60f327672",
+      "bytes": 144685,
+      "svg_viewbox": [
+        0,
+        0,
+        232,
+        313
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/caelum/poses.png",
+      "source_region": [
+        36.0,
+        604.0,
+        232.0,
+        313.0
+      ],
+      "rgba_sha256": "0293a8a69cc8bebffb37a41e53058ec838c68e732337ab6c6d496e58cd95e92d",
+      "source_region_rgba_sha256": "0293a8a69cc8bebffb37a41e53058ec838c68e732337ab6c6d496e58cd95e92d",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "valeria",
+      "source": "res://docs/hero-catalog-2026-10-08/art/valeria.png",
+      "sha256": "f6093be0903aa189d4aa14cc8463412309ce5946f92cf7273a33c748f0bb77f3",
+      "bytes": 82460,
+      "svg_viewbox": [
+        0,
+        0,
+        194,
+        236
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/valeria/poses.png",
+      "source_region": [
+        140.0,
+        880.0,
+        194.0,
+        236.0
+      ],
+      "rgba_sha256": "25b68c867cecda23d1bc6df5e612f27dcc54c1db35713cf4305258464c5e7f74",
+      "source_region_rgba_sha256": "25b68c867cecda23d1bc6df5e612f27dcc54c1db35713cf4305258464c5e7f74",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "morgas",
+      "source": "res://docs/hero-catalog-2026-10-08/art/morgas.png",
+      "sha256": "51adce8680dd1439d50f530d19c333cfa17b1f4134033b9d5a6303d78d644352",
+      "bytes": 103219,
+      "svg_viewbox": [
+        0,
+        0,
+        260,
+        240
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/morgas/poses.png",
+      "source_region": [
+        100.0,
+        887.0,
+        260.0,
+        240.0
+      ],
+      "rgba_sha256": "3e7d7f8b6a1a5a92c1264d53a9025c0332f8a8b011f5f8d526a9e47ad48fa0ea",
+      "source_region_rgba_sha256": "3e7d7f8b6a1a5a92c1264d53a9025c0332f8a8b011f5f8d526a9e47ad48fa0ea",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "ragna",
+      "source": "res://docs/hero-catalog-2026-10-08/art/ragna.png",
+      "sha256": "6617bb690fb5e22ebfd5902eeb6a3120de651d226f1515082417cc3b5a1e50ac",
+      "bytes": 93442,
+      "svg_viewbox": [
+        0,
+        0,
+        204,
+        242
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/ragna/poses.png",
+      "source_region": [
+        125.0,
+        860.0,
+        204.0,
+        242.0
+      ],
+      "rgba_sha256": "1d521c0cfe719cd4aa2d5cb0f4a87c3ce65b00d360fa41f4128d6ce341c69d19",
+      "source_region_rgba_sha256": "1d521c0cfe719cd4aa2d5cb0f4a87c3ce65b00d360fa41f4128d6ce341c69d19",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "bron",
+      "source": "res://docs/hero-catalog-2026-10-08/art/bron.png",
+      "sha256": "b79b70d600f654a43a216613a1ea34cf19c27050ee70ada6a13e0cd4e342b334",
+      "bytes": 115609,
+      "svg_viewbox": [
+        0,
+        0,
+        262,
+        256
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/bron/poses.png",
+      "source_region": [
+        94.0,
+        883.0,
+        262.0,
+        256.0
+      ],
+      "rgba_sha256": "15425802d0ece5ce9ae2f8a7336d1d695bfc9228df96e2f0b04c9de446a6a8a1",
+      "source_region_rgba_sha256": "15425802d0ece5ce9ae2f8a7336d1d695bfc9228df96e2f0b04c9de446a6a8a1",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "nyx",
+      "source": "res://docs/hero-catalog-2026-10-08/art/nyx.png",
+      "sha256": "9484fea2b19ef17bbb318cc98b49e398b972945381febed419867ebdacdee95b",
+      "bytes": 85872,
+      "svg_viewbox": [
+        0,
+        0,
+        177,
+        228
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/nyx/poses.png",
+      "source_region": [
+        148.0,
+        887.0,
+        177.0,
+        228.0
+      ],
+      "rgba_sha256": "d4f47322026c2b0d9a443a5a5ccbad46b129819a017ea75fc5c68d30d9338afa",
+      "source_region_rgba_sha256": "d4f47322026c2b0d9a443a5a5ccbad46b129819a017ea75fc5c68d30d9338afa",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "fenris",
+      "source": "res://docs/hero-catalog-2026-10-08/art/fenris.png",
+      "sha256": "8d8883f60114e72d3ea37edfa16e1354091ba0c5c02fba27d0d5226f8d0f1759",
+      "bytes": 92030,
+      "svg_viewbox": [
+        0,
+        0,
+        240,
+        239
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/fenris/poses.png",
+      "source_region": [
+        79.0,
+        864.0,
+        240.0,
+        239.0
+      ],
+      "rgba_sha256": "944a014da7d5fd08a82bc1243aa1c61f88326beaee036bd52b3a1d72ac786470",
+      "source_region_rgba_sha256": "944a014da7d5fd08a82bc1243aa1c61f88326beaee036bd52b3a1d72ac786470",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "isolde",
+      "source": "res://docs/hero-catalog-2026-10-08/art/isolde.png",
+      "sha256": "29290a1fd986a20f54c07d7f0c6d9af817e59c0b840ce97a1ddeec9c68b008f6",
+      "bytes": 86769,
+      "svg_viewbox": [
+        0,
+        0,
+        196,
+        212
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/isolde/poses.png",
+      "source_region": [
+        54.0,
+        674.0,
+        196.0,
+        212.0
+      ],
+      "rgba_sha256": "411f3d9106a6f975cf5469bd0c6033015f34f6b04851119d1ab4d3684e88ae8d",
+      "source_region_rgba_sha256": "411f3d9106a6f975cf5469bd0c6033015f34f6b04851119d1ab4d3684e88ae8d",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "garm",
+      "source": "res://docs/hero-catalog-2026-10-08/art/garm.png",
+      "sha256": "28464a7b5a78e240d6a2948156a5f3150689b1bac020c8f317b598242ae93af8",
+      "bytes": 94334,
+      "svg_viewbox": [
+        0,
+        0,
+        264,
+        223
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/garm/poses.png",
+      "source_region": [
+        127.0,
+        890.0,
+        264.0,
+        223.0
+      ],
+      "rgba_sha256": "274146f3a243b061bc469d5956e3b65f51bd5ab76f41e9408ef805544d37e668",
+      "source_region_rgba_sha256": "274146f3a243b061bc469d5956e3b65f51bd5ab76f41e9408ef805544d37e668",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "veyra",
+      "source": "res://docs/hero-catalog-2026-10-08/art/veyra.png",
+      "sha256": "cc92e62d9c4a4f740670d4259b93ba104b64c2816e231d964c92810b6bc5b3ab",
+      "bytes": 89673,
+      "svg_viewbox": [
+        0,
+        0,
+        195,
+        242
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/veyra/poses.png",
+      "source_region": [
+        133.0,
+        927.0,
+        195.0,
+        242.0
+      ],
+      "rgba_sha256": "bf4866471b41dd802d4c961b2bb3b9fb7dd83e44dc4fb0a5092f676d91481b91",
+      "source_region_rgba_sha256": "bf4866471b41dd802d4c961b2bb3b9fb7dd83e44dc4fb0a5092f676d91481b91",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "ulric",
+      "source": "res://docs/hero-catalog-2026-10-08/art/ulric.png",
+      "sha256": "8ef433762f13552ff0560f1ee7dfd28f32c9b4dfa77c3426ff4541fddb2e5814",
+      "bytes": 92975,
+      "svg_viewbox": [
+        0,
+        0,
+        220,
+        244
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/ulric/poses.png",
+      "source_region": [
+        107.0,
+        898.0,
+        220.0,
+        244.0
+      ],
+      "rgba_sha256": "50edc4e8043bf191ec48e0250fc89a0add91d8e46c5b48b08eb55786ec4deb02",
+      "source_region_rgba_sha256": "50edc4e8043bf191ec48e0250fc89a0add91d8e46c5b48b08eb55786ec4deb02",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "adrien",
+      "source": "res://docs/hero-catalog-2026-10-08/art/adrien.png",
+      "sha256": "363033e1bc4ee21c7d2ec8f1bdd8f11a9b50f1c718821527e49480e5feb29c81",
+      "bytes": 118454,
+      "svg_viewbox": [
+        0,
+        0,
+        231,
+        304
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/adrien/poses.png",
+      "source_region": [
+        41.0,
+        644.0,
+        231.0,
+        304.0
+      ],
+      "rgba_sha256": "b55d1b12f1e33faeb930f8419683988ec5a9aefff24812c5b675156a4fa4546e",
+      "source_region_rgba_sha256": "b55d1b12f1e33faeb930f8419683988ec5a9aefff24812c5b675156a4fa4546e",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "tessa",
+      "source": "res://docs/hero-catalog-2026-10-08/art/tessa.png",
+      "sha256": "ea6509e6e764625ba6151bf31ef7e5668f16177d5403edd3718e906d77565455",
+      "bytes": 90292,
+      "svg_viewbox": [
+        0,
+        0,
+        196,
+        241
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/tessa/poses.png",
+      "source_region": [
+        154.0,
+        891.0,
+        196.0,
+        241.0
+      ],
+      "rgba_sha256": "680678c8c3e0d7c13cd45a48e64333195ca9e4362f3d8cdd742fab2ae3ab3b2d",
+      "source_region_rgba_sha256": "680678c8c3e0d7c13cd45a48e64333195ca9e4362f3d8cdd742fab2ae3ab3b2d",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "naia",
+      "source": "res://docs/hero-catalog-2026-10-08/art/naia.png",
+      "sha256": "beb94d5633744388429061d2f3805a753a8aa52027716c4a16969cf5b22a2bde",
+      "bytes": 88810,
+      "svg_viewbox": [
+        0,
+        0,
+        174,
+        235
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/naia/poses.png",
+      "source_region": [
+        53.0,
+        692.0,
+        174.0,
+        235.0
+      ],
+      "rgba_sha256": "a01ba694001fa5830849d51dfe472902b73bba4cec3b18ecea2c6aa4137ead90",
+      "source_region_rgba_sha256": "a01ba694001fa5830849d51dfe472902b73bba4cec3b18ecea2c6aa4137ead90",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "sael",
+      "source": "res://docs/hero-catalog-2026-10-08/art/sael.png",
+      "sha256": "6829b00d2b87e1e52a2ee94ac25a7a3eb85ad998c52c9e9895682d5dfaac099a",
+      "bytes": 95475,
+      "svg_viewbox": [
+        0,
+        0,
+        235,
+        228
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/sael/poses.png",
+      "source_region": [
+        40.0,
+        672.0,
+        235.0,
+        228.0
+      ],
+      "rgba_sha256": "9f8569222db0c93657dea311bd69ff083ad4a880a8705620e67b08f45364feca",
+      "source_region_rgba_sha256": "9f8569222db0c93657dea311bd69ff083ad4a880a8705620e67b08f45364feca",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "odelia",
+      "source": "res://docs/hero-catalog-2026-10-08/art/odelia.png",
+      "sha256": "a08f0e015152e89f29c543cfe73f18e7879ab769924af351120ca85f33cb3587",
+      "bytes": 80383,
+      "svg_viewbox": [
+        0,
+        0,
+        213,
+        186
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/odelia/poses.png",
+      "source_region": [
+        53.0,
+        702.0,
+        213.0,
+        186.0
+      ],
+      "rgba_sha256": "d83c6fef0663f8a894ad06157dd478c77480b26acfc4c7592da08eaac66a38f5",
+      "source_region_rgba_sha256": "d83c6fef0663f8a894ad06157dd478c77480b26acfc4c7592da08eaac66a38f5",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "lucien",
+      "source": "res://docs/hero-catalog-2026-10-08/art/lucien.png",
+      "sha256": "2b2a85f384d962b04e9a64297b9c115346b3d4ad7a289b7f6edc584c3807bda5",
+      "bytes": 103698,
+      "svg_viewbox": [
+        0,
+        0,
+        298,
+        225
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/lucien/poses.png",
+      "source_region": [
+        94.0,
+        877.0,
+        298.0,
+        225.0
+      ],
+      "rgba_sha256": "46f67449dcee0199bc6d4c8d0f8b7c9a7edd86da149cfb5f3efabb40afff2669",
+      "source_region_rgba_sha256": "46f67449dcee0199bc6d4c8d0f8b7c9a7edd86da149cfb5f3efabb40afff2669",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "corvin",
+      "source": "res://docs/hero-catalog-2026-10-08/art/corvin.png",
+      "sha256": "4a01bb00febbd65bb5d7e17e14db2ac41b6b8a2364dd4d24cba2e08bbc611b92",
+      "bytes": 71327,
+      "svg_viewbox": [
+        0,
+        0,
+        191,
+        219
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/corvin/poses.png",
+      "source_region": [
+        121.0,
+        894.0,
+        191.0,
+        219.0
+      ],
+      "rgba_sha256": "3c50173fd0eff78f1285e92cd250271848d1ebeaef73c42e8ddea673f0091c55",
+      "source_region_rgba_sha256": "3c50173fd0eff78f1285e92cd250271848d1ebeaef73c42e8ddea673f0091c55",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "rokan",
+      "source": "res://docs/hero-catalog-2026-10-08/art/rokan.png",
+      "sha256": "22162dcec155b0c4726a1c1188f2dc17a73dbb4510cea4a1142083a5f9d1b5e4",
+      "bytes": 74240,
+      "svg_viewbox": [
+        0,
+        0,
+        177,
+        232
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/rokan/poses.png",
+      "source_region": [
+        141.0,
+        887.0,
+        177.0,
+        232.0
+      ],
+      "rgba_sha256": "b82b75c685bdb4284c51a21307f7732a25320c311b0c6f733923feaa7b7f9189",
+      "source_region_rgba_sha256": "b82b75c685bdb4284c51a21307f7732a25320c311b0c6f733923feaa7b7f9189",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "bora",
+      "source": "res://docs/hero-catalog-2026-10-08/art/bora.png",
+      "sha256": "452049d9a6af590d06bf1b650c7104f996af8f9e1705f498853331422990a6fa",
+      "bytes": 100823,
+      "svg_viewbox": [
+        0,
+        0,
+        202,
+        244
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/bora/poses.png",
+      "source_region": [
+        104.0,
+        875.0,
+        202.0,
+        244.0
+      ],
+      "rgba_sha256": "7115aeb3ca5c9617d0ca176d7bf9269a5b643a750b03fb092b21f220c868f852",
+      "source_region_rgba_sha256": "7115aeb3ca5c9617d0ca176d7bf9269a5b643a750b03fb092b21f220c868f852",
+      "rgba_identical_to_source_region": true
+    },
+    {
+      "hero": "selene",
+      "source": "res://docs/hero-catalog-2026-10-08/art/selene.png",
+      "sha256": "c9bc2b202ebb85fceaf216cba8f30aff670b84894e079a92151f22f0465611a4",
+      "bytes": 104364,
+      "svg_viewbox": [
+        0,
+        0,
+        246,
+        216
+      ],
+      "original_source": "res://assets/art-direction/full-body-v2/selene/poses.png",
+      "source_region": [
+        106.0,
+        894.0,
+        246.0,
+        216.0
+      ],
+      "rgba_sha256": "85f02d0d25c065532726a7b0b2875aaf57159b561188ac03aeadc8f3aa10f3ff",
+      "source_region_rgba_sha256": "85f02d0d25c065532726a7b0b2875aaf57159b561188ac03aeadc8f3aa10f3ff",
+      "rgba_identical_to_source_region": true
+    }
+  ]
+}

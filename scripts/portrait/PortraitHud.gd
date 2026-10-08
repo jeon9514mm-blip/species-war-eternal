@@ -10,6 +10,8 @@ var profile_level: Label
 var power_label: Label
 var gold_label: Label
 var gem_label: Label
+var gold_badge: Control
+var gem_badge: Control
 var stage_label: Label
 var stage_progress: ProgressBar
 var enemy_label: Label
@@ -213,8 +215,10 @@ func refresh() -> void:
 	if _power_elapsed>=float(game._presentation_profile()['power_interval']):
 		_power_elapsed=0.0;power_evaluations+=1
 		power_label.text=('전투력 ' if compact_guide_layout else '')+game._compact_hud_amount(game._calculate_party_power())
-	gold_label.text="골드 "+game._compact_hud_amount(game.wallet_gold)
-	gem_label.text="젬 "+game._compact_hud_amount(game.wallet_gems)
+	if is_instance_valid(gold_badge):gold_badge.sync_wallet()
+	else:gold_label.text="골드 "+game._compact_hud_amount(game.wallet_gold)
+	if is_instance_valid(gem_badge):gem_badge.sync_wallet()
+	else:gem_label.text="젬 "+game._compact_hud_amount(game.wallet_gems)
 	var pending_gold: int=game.offline_pending_gold+game.offline_pending_chest_gold
 	var pending_xp: int=game.offline_pending_xp+game.offline_pending_chest_xp
 	offline_button.disabled=pending_gold<=0 and pending_xp<=0

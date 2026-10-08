@@ -1,13 +1,13 @@
 extends Node3D
-## One short silhouette of the actual painted contact pose.
+## Two bounded silhouettes of the actual painted contact pose.
 const SHADER=preload('res://shaders/PaintedAttackEcho.gdshader')
-const DURATION:=.15
+const DURATION:=.20
 var layers: Array[MeshInstance3D]=[]
 var sequence:=-1
 var started:=-1.0
-var layer_limit:=1
+var layer_limit:=2
 func configure() -> void:
-	for i in 1:
+	for i in 2:
 		var layer:=MeshInstance3D.new();layer.name='PaintedEcho'+str(i)
 		layer.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		var material:=ShaderMaterial.new();material.shader=SHADER
@@ -30,4 +30,4 @@ func present(paint: MeshInstance3D,action: String,phase: float,serial: int,clock
 		layers[i].visible=visible_now
 		if not visible_now:continue
 		layers[i].position=Vector3(-float(i+1)*(8+age*30),0,-.03*float(i+1))
-		layers[i].material_override.set_shader_parameter('opacity',(.16 if i==0 else .09)*(1-age/DURATION))
+		layers[i].material_override.set_shader_parameter('opacity',.5*(1-age/DURATION))

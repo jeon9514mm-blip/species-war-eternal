@@ -1,0 +1,69 @@
+# 사용자 지정 11항목 최종 적용 검수
+
+2026-10-08 · Godot4.7.2 · Mobile 기본 · 1280×720 논리 화면. 이 문서는 현재 구현과 검사 범위를 기록합니다. 최종 GPU 검수와 선택한 회귀를 완료했습니다. 원격 커밋·트리 확인 결과는 작업 완료 메시지와 연결한 GitHub PR에 기록합니다.
+
+## 실제 적용 값
+
+| 항목 | 현재 구현 |
+|---|---|
+| 1. Floor | 1024 albedo/AO+normal 두 텍스처. 균열 이끼15%, 녹20%, 마모0.6, 균열 어둠0.35, AO0.5, 이끼 발광0.15. Roughness0.58/Metallic0.32, Dust0.15 유지. |
+| 2. Circle | Moss #A8B89E/Bronze #E8C99A, Glow0.5/Inner0.35, Pulse0.8초, Rotation0.12rad/s, 룬8개/밝기0.7, 낙엽12개와 균열 셰이더. 그림자를 만들지 않는 Moss OmniLight3D1개/에너지0.6. |
+| 3. Heroes | 표시 높이86.4px 유지, 그림자 알파0.5/아래14px, 검정60% 윤곽2px, idle 호흡2px/2초, 3점 망토, 0.20초 잔상2개/시작 알파0.5. 실제 레벨 상승과 별도1% 장식 반짝임에 파티클12개. |
+| 4. Damage | Outfit ExtraBold80016px, 1.3배, 발 기준위36px, 0.65초. 기본 #D8D5CC/치명 #FFD700, 검정80% 2px 기본 윤곽+낮은 알파3px 외곽으로 요청2.5px를 근사. Chromatic0.015, 치명 숫자 파티클12개와 50ms 낮은 알파 화면 섬광. |
+| 5. Lighting | Directional0.9, Bloom0.45/Strength0.9, Vignette0.70, 광선0.15, SSS0.2/Rim18%. Mobile은 셰이더 광선·Bloom·따뜻한 투과광 근사, Forward+는 native SSS. |
+| 6. Trail/Impact | 0.20초 잔상, 흰색80%/너비4px Slash, 타격 선분16개, Impact1.2배/80ms. 피해 원화80ms 멈춤/동일 대상200ms 재발동 제한. 전체 이동을 일반 타격마다 멈추지 않음. |
+| 7. Camera | 기본 Zoom1.3/y−20/45°. Breathe8초/2.5px, Perlin Shake일반3px/치명5px, Zoom punch1.08/0.1초, 보스 포커스, Dust12개. 일반 카메라 충격750ms, 치명1.5초 간격. 치명 전역0.15배 슬로모션은 벽시계80ms/1.5초 간격. |
+| 8. Raid | 보스128px×1.4=179.2px, Moss/Bronze 바닥 봉인 Glow0.6/Pulse1초. 붉은 경고 알파0.6, 기존 실제 시전 타이머·공격 범위·위상·광폭화에 연결한 화면/음향 피드백. 경고와 터치 좌표 유지. |
+| 9. Skill VFX | Fire/Ice/Light/Dark4속성 룬·궤적·파티클, 실제 Buff/Debuff 아이콘과 Ultimate Gauge, 스킬음·궁극기 짧은 저알파 섬광. 실제 확정 시전만 관찰하며 원화 크기와 경제/피해/RNG를 변경하지 않음. |
+| 10. UI/Rewards | Gold/Gem벡터 아이콘·발광·실제 잔액0.38초 카운트·1.2배 팝. 소비는 즉시 숫자 반영. 실제 지갑 증가의 Bronze광기둥/6파티클/아이콘 팝업/Gold음향. 배경 적립·효과 끔은 정적 표시. |
+| 11. Sound/Haptic | Hit.wav/Crit.wav/Gold.wav/Skill.wav 원본 PCM4개/총52,654bytes. 실제 World3D공간 음향, 별도 RNG Pitch0.94~1.06/Volume0.92~1.0. 기존 볼륨·음소거·진동 설정 유지. 진동 기본off, light/normal옵션·공통 쿨다운. |
+
+바닥 제작 메타데이터의 실제 이끼 비율은0.1499996, 균열 밖 이끼는0입니다. 녹20%는 균열 후보 영역 내 비율입니다. AO는 albedo 알파에 합쳐 별도1024 AO텍스처를 런타임에 추가로 읽지 않습니다. [재질 측정](../../assets/mobile25d/floor/material.json), [바닥 셰이더](../../shaders/FinalStonePBR.gdshader).
+
+## 연타·경제·성능 제한
+
+- 타격 정지는 피해를 받은 캐릭터의 원화만80ms 멈추며 같은 대상에200ms 간격으로 적용합니다. 다른 영웅의 이동과 일반 전투 시계는 계속 진행합니다. 치명타 전역 슬로모션은1.5초 간격으로 제한하고 원래 배속을 벽시계80ms 뒤 복원합니다. 중단·배경 전환·효과 끔·노드 종료에서도 복원합니다.
+- 원화 백색 Flash는 벽시계40ms/재발동120ms 제한입니다. 게임 배속/슬로모션에 의해 하얀 원화가 길게 남거나 연타로 영구 갱신되지 않습니다. 화면 전체 치명 Flash는 별도50ms/낮은 알파 표현이며 조작 UI를 가리지 않습니다.
+- 레이드 입장 때의 커튼 전환을 실제 검수 캡처와 구분해 해결했습니다. 표시 보스 크기를 키워도 실제 경고 범위·보스 발 위치·터치 역투영을 같이 맞춥니다.
+- 레벨 파티클은 실제 `hero_progress.level` 증가를 감지합니다. 별도 장식은 살아 있는 영웅마다4초당1% 확률로 평가하며 경험치/레벨/골드를 주지 않습니다. 전투용 RNG와 분리되어 있습니다.
+- 스킬은 캔버스1개, 동시 시전8개/시전당 대상4개/중복 키64개로 제한합니다. 타격12개, 잔상24개, 먼지48개, 영혼16개, 광기둥4개, 레벨/장식4개를 초과하면 오래된 표시를 대체합니다. 영웅의3D잔상은 캐릭터마다2개를 재사용합니다.
+- 지갑은 지속 위젯2개만 사용하고 보상 팝업은8개까지 생성합니다. 재화 표시는 실제 잔액을 읽으며 보상 지급이나 재추첨을 하지 않습니다. 공간 음성4노드와 UI음성을 합쳐 활성 효과음8개, 낮은 우선순위 효과음은18회/초로 제한합니다. 음악/환경음은 별도 기존 풀을 유지합니다.
+- Mobile native SSS/SDFGI/볼륨 광선을 구현한 것으로 표시하지 않습니다. Mobile의 광선은 셰이더 내 해석적3개 빛줄기이며 별도 ray marching을 사용하지 않습니다. 절전 프로필과 효과 끔/음소거/백그라운드 제어를 유지합니다.
+
+## 검사와 화면
+
+| 보고서 | 결과와 범위 |
+|---|---|
+| [통합 전투 회귀](combined-headless.json) | 7/7: 숫자 수명·사냥 타격·2.5D규격·이동 보간·제한된 스킬·레이드 터치·시선/크기. |
+| [환경 회귀](environment-headless.json) | 1/1: 새 바닥 값·문양·레이드 분위기. |
+| [스킬 회귀](skills-headless.json) | 2/2: 실제 확정 시전, 버프/디버프, 게이지, 타깃 교체와 원래 전투 효과 유지. |
+| [영웅 피드백 회귀](hero-feedback-headless.json) | 3/3: 레벨/장식 상태 보존, 크기와 이동 보간. |
+| [캔버스 최적화 회귀](canvas-batching-headless.json) | 2/2: 타격/스킬 표시 합산 제출 후 동일 이벤트·상태 동작. |
+| [재화·음향·설정 회귀](reward-audio-tests.json) | 3/3, 명시적123검사: 실제 잔액, 풀 상한, PCM읽기, 독립 RNG, 일시정지/음소거, 주입한 진동 sink. |
+
+보고서 사이 같은 테스트가 반복되어 있으므로 행별 합계를 전체 고유 테스트 수로 주장하지 않습니다. 이는 이번 집중 검사 결과이며 과거 전체 회귀가 모두 통과했다는 뜻이 아닙니다. Windows 제한 환경의 인증서 저장소 읽기 문제 때문에 격리 Godot 검증은 허용된 검사 실행 권한으로 수행했습니다.
+
+[사냥 실제 화면](review-final/hunt-final-review.png), [레이드 실제 화면](review-final/raid-final-review.png), [검수 fixture](review-final/review-fixture.json), [GPU 측정 파일](review-final/performance.json). 화면은 Godot 렌더 결과이며 검수 fixture는 화면 연출 상태와 실제 경제 동작 검사를 구분해 기록합니다.
+
+## 최종 GPU 검증과 레이드 추가 수정
+
+변경 GDScript **42/42**, 실제 Mobile GPU 회귀 **7/7**, 선택한 서로 다른 회귀 **14개**가 통과했습니다. 전체 과거 회귀를 다시 실행한 결과로 표시하지 않습니다. [통합 검증 범위](validation-summary.json), [실제 GPU 회귀](final-gpu-tests.json), [보스 공격 원화 681항목](raid-paint-framing-headless.json), [최신 피격 경로](final-contact-headless.json).
+
+| 실제 GTX1050 / Mobile | 평균 FPS | p95 프레임 |
+|---|---:|---:|
+| hunt-aurelia | 32.67 | 50.54ms |
+| hunt-noxfera | 34.34 | 48.00ms |
+| raid | 58.08 | 33.33ms |
+| hunt-natural-crits | 32.25 | 53.01ms |
+
+[원시 측정](review-final/performance.json)은 1280×720논리/1120×630창, balanced, 10명Lv60/154스테이지의 실제 전경 루프입니다. PNG저장 시간은 측정 뒤이며 동시에 다른 검사/빌드/캡처를 실행하지 않았습니다. 치명타 프로필은 실제 eclipse수호신7개 공명(8.4%)과 고정 seed로 자연 치명타를 만들었으며 전투 RNG나 피해 계산을 수정하지 않았습니다. 323프레임 중11프레임(3.41%)에서만 슬로모션을 관찰했습니다. 사냥60fps·Android·발열·실기기 진동/청취 품질은 검증하지 않았습니다. 전 단계의 사냥약40fps보다 추가 표현의 비용이 남아 있습니다. `review/`는 최종 정리 이전의 측정·이미지이며 현재 화면은 `review-final/`입니다.
+
+레이드의 기존 주황 접지 링을 새 Moss/Bronze봉인과 중복해서 그리지 않고, 실제3D전장에서는 기존2D피격 패널/카메라충격/RGB틴트 대신 새 접촉 경로를 사용합니다. 원화 셰이더가40ms백색 점멸을 소유하므로 소스 컨트롤러의180ms붉은 점멸을 다시 곱하지 않습니다. 보스 크기179.2px는 유지하면서 공격 원화 상단+호흡 여유를 그룬218.31/모르굴237.43/셀레네186.39px로 예약합니다. 바닥·경고·터치 역투영을 함께 검증했습니다. 석판은 사냥2배/레이드4배로 필드 카메라에 맞춘 반복만 바꿨습니다.
+
+[사냥 최종 화면](review-final/hunt-final-review.png) · [레이드 최종 화면](review-final/raid-final-review.png) · [네 속성 실제 스킬 시전](review-final/skill-elements-review.png). 원화 검수 장면은 명시적 리뷰 fixture이며 시간 측정과 분리합니다. 네 속성 장면은 원형 배치/사거리 내 실제 타깃/준비된 쿨다운/다친 아군을 배치하고 실제HeroKit으로120개스킬과 같은 경로의4개시전을 확정합니다. 모두accepted=true입니다. 지갑 초기값과 수동 진행, 커튼.9초 대기와 피격 섬광 뒤의 캡처는 [fixture기록](review-final/review-fixture.json)에 구분했습니다.
+
+재현: `python tools/diagnostics/game-audit-2026-10-07/run_final_polish_review.py`. 이미지는 실제 Godot Mobile 출력이며 새 원화나 게임과 다른 합성 그림으로 대체하지 않았습니다.
+
+## 30명 영웅 원화·전체 스킬
+
+[원화30개·스킬120개 단일 갤러리](../../docs/hero-catalog-2026-10-08/hero-gallery.html) · [원화와 스킬 ZIP](../../docs/hero-catalog-2026-10-08/hero-art-and-skills-30.zip) · [전체 설명](../../docs/hero-catalog-2026-10-08/hero-skills.md) · [원화 무결성과 자료 검증](../../docs/hero-catalog-2026-10-08/validation.json).

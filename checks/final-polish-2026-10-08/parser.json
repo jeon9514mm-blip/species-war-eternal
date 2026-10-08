@@ -1,0 +1,259 @@
+{
+  "scope": "Every modified/new GDScript plus LandingScreens.gd. Unmodified scripts are outside this parser run.",
+  "passed": 42,
+  "total": 42,
+  "results": [
+    {
+      "script": "scripts/app/Main.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/HuntFramePilot.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/HuntFrameTimeline.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/MobileReliefPilot.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/art/PaintedAttackEchoes.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/combat/CombatNumberStyle.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/combat/DamageNumberManager.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/heroes/HeroKitRuntime.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps/RuneStoneGround.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/Battlefield3DView.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/ContactScreenFlash.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/HuntCombatOverlay.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/MobileCameraMotion.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/MythicDetailProfile.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/RaidFinalAtmosphere.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/LandscapeHuntHud.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitDamageNumber.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitHud.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitRaid.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/RaidArenaTelegraph.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/RaidBossMotion.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/CombatTextPresenter.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/ContactTimeDilation.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/CurrencyFeedbackBadge.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/GameAudioDirector.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/HapticDirector.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/HeroCelebrationFeedback.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/HeroSkillVfxPresenter.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/LootRewardFeedback.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/PresentationRuntime.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "scripts/ui/LandingScreens.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/FinalEnvironmentSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/FinalHeroFeedbackSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/FinalRewardAudioSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HuntAttackQualitySmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/MovementPacingSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/NoHeroSkillVfxSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tests/regression/RaidBossPaintFramingSmokeTest.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/FinalPolishReview.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "script": "tools/export_hero_catalog.gd",
+      "passed": true,
+      "exit": 0,
+      "output": ""
+    }
+  ]
+}
