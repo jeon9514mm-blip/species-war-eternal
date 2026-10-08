@@ -47,6 +47,9 @@ namespace Eternal.UnityMigration.Editor
             var snapshotReport=UnitySnapshotVerification.Verify();
             var equipmentReport=EquipmentRuleVerification.Verify();
             var movementReport=MovementPlannerVerification.Verify();
+            var heroStatReport=HeroStatVerification.Verify();
+            var autoEquipmentReport=AutoEquipmentVerification.Verify();
+            var reviewStateReport=ReviewStateVerification.Verify();
             var result=new JObject{{"passed",true},{"comparisons",comparisons},{"maximum_tick_movement",worstMove},{"minimum_normalized_body_clearance",minClearance},{"verification_elapsed_ms",timer.ElapsedMilliseconds},{"scenarios",report},{"skill_chain",chainReport},{"note","Isolated domain verification; not a renderer FPS benchmark or full economy parity."}};
             result["skill_vfx"]=vfxReport;
             result["legacy_save"]=saveReport;
@@ -54,6 +57,9 @@ namespace Eternal.UnityMigration.Editor
             result["unity_snapshot_store"]=snapshotReport;
             result["equipment"]=equipmentReport;
             result["movement_planner"]=movementReport;
+            result["hero_combat_profiles"]=heroStatReport;
+            result["auto_equipment"]=autoEquipmentReport;
+            result["review_state_session"]=reviewStateReport;
             Directory.CreateDirectory("../checks/unity-migration-2026-10-08");File.WriteAllText("../checks/unity-migration-2026-10-08/native-hunt-simulation.json",result.ToString());return result.ToString();
         }
         static JObject VerifyChain(ref int comparisons)

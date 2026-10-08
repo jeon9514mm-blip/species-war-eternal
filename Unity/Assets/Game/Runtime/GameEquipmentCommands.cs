@@ -68,7 +68,8 @@ namespace Eternal.UnityMigration
             profile["ultimate_pct"]=Math.Min(26,(double)profile["ultimate_pct"]+(double)options["ultimate_pct"]);return profile;
         }
         public JObject EquipmentProfile(string hero)=>ValidHero(data,hero)?GearProfile(Snapshot(),hero):OriginalEquipmentRules.SetProfile(new JObject());
-        public StateCommandResult EquipGear(string itemId,string hero)=>Commit(state=>
+        public StateCommandResult EquipGear(string itemId,string hero)=>Commit(state=>EquipDraft(state,itemId,hero));
+        StateCommandResult EquipDraft(JObject state,string itemId,string hero)
         {
             var bag=Bag(state);int index=ItemIndex(bag,itemId);
             if(index<0||!ValidHero(state,hero))return StateCommandResult.Fail("장비나 영웅을 다시 선택해 주세요.");
@@ -79,7 +80,7 @@ namespace Eternal.UnityMigration
             Entry(state,"hero_equipment_items",hero)[slot]=item;Levels(state,hero)[slot]=item["level"].DeepClone();RaritiesMap(state,hero)[slot]=item["rarity"].DeepClone();
             NamesMap(state,hero)[slot]=item["name"].DeepClone();SetsMap(state,hero)[slot]=item["set"].DeepClone();bag[index]=old;
             return StateCommandResult.Success("장비를 장착했습니다.");
-        });
+        }
         public StateCommandResult EnhanceGear(string itemId,string hero="",string slot="")=>Commit(state=>
         {
             bool equipped=hero.Length>0;var bag=Bag(state);int index=equipped?-1:ItemIndex(bag,itemId);

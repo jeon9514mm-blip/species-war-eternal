@@ -8,9 +8,11 @@ using UnityEngine.Rendering.Universal;
 
 namespace Eternal.UnityMigration
 {
-    public sealed class HuntingMigrationReview : MonoBehaviour
+    public sealed partial class HuntingMigrationReview : MonoBehaviour
     {
         public HuntingSimulation Simulation {get;private set;}
+        public GameStateCommands ReviewState=>Simulation?.PlayerState;
+        public Newtonsoft.Json.Linq.JObject ReviewSnapshot {get;private set;}
         public RaidSimulation Raid {get;private set;}
         public CombatEncounter ActiveBattle=>Raid?.Battle??Simulation.Battle;
         public int RenderedFrames {get;private set;}
@@ -49,9 +51,12 @@ namespace Eternal.UnityMigration
         void Start()
         {
             Application.targetFrameRate=60;
-            Simulation=new HuntingSimulation(20);Simulation.OnEvent=Receive;Simulation.Chain.Enabled=true;
+            var catalog=new OriginalCombatCatalog(OriginalCatalog.Required("hero-catalog").text);ReviewSnapshot=ReviewStateFixture.Create(catalog);
+            var state=new GameStateCommands(catalog,ReviewSnapshot,snapshot=>{ReviewSnapshot=snapshot;return true;});
+            Simulation=new HuntingSimulation(20,9514,state);Simulation.OnEvent=Receive;Simulation.Chain.Enabled=true;
             CreateWorld();BuildHud();RebuildActors();BuildParty();
             launch=ReviewLaunchSettings.Load();if(launch.HasRaid)StartRaid(launch.initialRaidZone);
+            if(launch.initialPanel=="growth")ShowGrowth("leonhardt");else if(launch.initialPanel=="bag")ShowInventory();else if(launch.initialPanel=="menu")ShowStateMenu();
             Debug.Log("ETERNAL_HUNT_REVIEW_RUNNING: native hunting, 10 original heroes, isolated Lv20 fixture; player saves untouched.");
         }
         void CreateWorld()
@@ -78,6 +83,8 @@ namespace Eternal.UnityMigration
             // resource paths so a clean import never depends on those GUIDs.
             ownedFloorMaterial.SetTexture("_BaseMap",Resources.Load<Texture2D>("Eternal/Floor/stone_1024_albedo_ao"));
             ownedFloorMaterial.SetTexture("_MicroNormal",Resources.Load<Texture2D>("Eternal/Floor/stone_1024_micro_normal"));
+            var paintedSlabs=Resources.Load<Texture2D>("Eternal/Environment/painted-slabs-v1");
+            if(paintedSlabs!=null){ownedFloorMaterial.SetTexture("_PaintedMap",paintedSlabs);ownedFloorMaterial.SetFloat("_PaintedSlabs",1);}
             floor.GetComponent<Renderer>().sharedMaterial=ownedFloorMaterial;
             Destroy(floor.GetComponent<Collider>());
             feedback=new GameObject("Bounded hunting presentation").AddComponent<HuntingFeedback>();feedback.Initialize(BattleCamera);
@@ -266,7 +273,7 @@ namespace Eternal.UnityMigration
         {
             fixtureLabel.text=Raid!=null?"UNITY 레이드 검수 · Lv100 독립 원정대 · 기존 저장 데이터 유지":"UNITY 사냥 검수 · Lv20 독립 원정대 · 기존 저장 데이터 유지";
             stageLabel.text=Raid!=null?(string)Raid.ZoneData["boss"]+" · PHASE "+Raid.Phase:"사냥터 1  ·  "+Simulation.Stage+" 스테이지";
-            currencyLabel.text=Raid!=null?"HP "+Raid.Boss.Hp.ToString("N0")+" / "+Raid.Boss.MaxHp.ToString("N0")+" · "+TimeSpan.FromSeconds(Math.Max(0,240-Raid.Elapsed)).ToString(@"mm\:ss"):"◈ 골드 "+Simulation.Gold.ToString("N0")+"   ·   성장 경험치 "+Simulation.Xp.ToString("N0");
+            currencyLabel.text=Raid!=null?"HP "+Raid.Boss.Hp.ToString("N0")+" / "+Raid.Boss.MaxHp.ToString("N0")+" · "+TimeSpan.FromSeconds(Math.Max(0,240-Raid.Elapsed)).ToString(@"mm\:ss"):"◈ 골드 "+ReviewState.WalletGold.ToString("N0")+"   ·   ◆ 젬 "+ReviewState.WalletGems.ToString("N0");
             statusLabel.text=Raid!=null?(Raid.Paused?"일시정지":Raid.Running?"레이드 전투":Raid.EventText)+" · 원정대 "+ActiveBattle.Heroes.Count(h=>h.Alive)+"/10 · 피해 "+Raid.DamageDealt.ToString("N0"):(Simulation.Defeated?"원정대 전멸":Simulation.Paused?"일시정지":"자동 사냥")+" · "+Simulation.Battle.Heroes.Count(h=>h.Alive)+"/10  ·  적 "+Simulation.Battle.Enemies.Count(e=>e.Alive)+"  ·  무리 "+Simulation.PacksCleared+"  ·  ×"+speed;
             var chain=Raid?.Chain??Simulation.Chain;
             if(chain.Current is ChainSkill next)
@@ -297,6 +304,11 @@ namespace Eternal.UnityMigration
             Text(identity,((string)h["faction"]=="aurelia"?"아우렐리아":"녹스페라")+" · "+(string)h["race"]+" · "+((string)h["reach"]=="melee"?"근접":"원거리"),12).style.color=Moss;
             Text(identity,(string)h["identity_profile"]["trait"],13).style.whiteSpace=WhiteSpace.Normal;
             var scroll=new ScrollView();scroll.style.flexGrow=1;modal.Add(scroll);
+            if(ReviewState.IsFactionHero(id))
+            {
+                var profile=ReviewState.CombatProfile(id);Text(scroll,"Lv."+ReviewState.HeroProgress(id).level+" · "+ReviewState.Grade(id)+" · 공격 "+profile["attack"]+" · 체력 "+profile["max_hp"],13).style.color=Moss;
+                Button(scroll,"성장 · 장비",()=>ShowGrowth(id)).style.marginLeft=0;
+            }
             foreach(var skill in h["skills"])
             {
                 var block=new VisualElement();block.style.marginTop=18;scroll.Add(block);
@@ -352,8 +364,7 @@ namespace Eternal.UnityMigration
                 }
                 return;
             }
-            PanelHeader(route+" · 이관 상태");var note=Text(modal,route=="가방"?"기존 장비·세트·프리셋·빠른 장착 규칙을 이관 중입니다.":"성장·수호신·진영·저장 데이터 이관 검증 중입니다.",16);note.style.whiteSpace=WhiteSpace.Normal;
-            Text(modal,"이 검수 화면은 기존 저장 파일을 읽거나 덮어쓰지 않습니다.",13).style.whiteSpace=WhiteSpace.Normal;
+            if(route=="가방")ShowInventory();else ShowStateMenu();
         }
         void ShowChain()
         {

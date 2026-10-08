@@ -65,6 +65,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _PaintedMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -109,6 +113,7 @@ Material:
     - _Moss: 0.18
     - _MossGlow: 0.25
     - _OcclusionStrength: 1
+    - _PaintedSlabs: 0
     - _Parallax: 0.005
     - _Patina: 0.25
     - _QueueOffset: 0
