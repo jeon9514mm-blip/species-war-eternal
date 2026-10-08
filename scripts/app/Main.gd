@@ -2886,27 +2886,10 @@ func _notify_hunt_frame_release(index: int, hero: bool, action: String, windup: 
 		terrain.frame_release(sources[index], hero, action, windup)
 
 func _emit_skill_cast_fx(hero_id: String, target_index: int, aoe: bool, profile: Dictionary, ultimate := false) -> void:
-	var field: Control
-	if active_screen=='combat':field=combat_labels.get('terrain')
-	elif active_screen=='raid' and is_instance_valid(content_root):
-		var view=content_root.get_node_or_null('PortraitRaidView')
-		if is_instance_valid(view):field=view.battlefield_3d
-	if is_instance_valid(field) and is_instance_valid(field.skill_overlay):
-		field.skill_overlay.cast(hero_id,target_index,aoe,profile,ultimate)
-		var serial: int=int(profile.get('fx_cast_serial',0))
-		var token: String='%s:%s:%s:%s' % [raid_encounter_serial if field.raid_mode else hunt_ai.encounter_id,hero_id,profile.get('fx_slot',profile.get('slot','a1')),serial]
-		var play_audio: bool=field.battle_clock_running() and (serial<=0 or not _skill_audio_tokens.has(token))
-		if play_audio and is_instance_valid(presentation_runtime):
-			if _skill_audio_tokens.size()>=64:_skill_audio_tokens.clear()
-			_skill_audio_tokens[token]=true
-			var point: Vector2=field.raid_to_world(raid_positions.get(hero_id,Vector2.ZERO)) if field.raid_mode else _hero_field_position(hero_id)
-			presentation_runtime.audio.play_positional('ultimate' if ultimate else 'skill',field,point)
-			presentation_runtime.haptics.pulse('ultimate' if ultimate else 'skill')
-	elif ultimate:_presentation_event('ultimate')
+	preload('res://scripts/presentation/HeroSkillPresentationRouter.gd').emit(self,hero_id,target_index,aoe,profile,ultimate)
 
-func _emit_passive_proc_fx(_hero_id: String, _target_index: int, _profile: Dictionary, _lowest_id: String) -> void:
-	# Passive gameplay is applied by HeroKitRuntime; no visual badge is emitted.
-	pass
+func _emit_passive_proc_fx(hero_id: String, target_index: int, profile: Dictionary, lowest_id: String) -> void:
+	preload('res://scripts/presentation/HeroSkillPresentationRouter.gd').passive(self,hero_id,target_index,profile,lowest_id)
 
 func _should_dodge_hit(hero_id: String, base_damage: int) -> bool:
 	if not hero_battle_state.has(hero_id):
@@ -2979,7 +2962,9 @@ func _damage_enemy(enemy_index: int, damage: int, source_index := 0) -> int:
 				combat_fx.death_burst(sprite.position - Vector2(0, 10), death_color, true)
 			if bool(enemy.get("elite", false)) or bool(enemy.get("treasure", false)):
 				combat_fx.camera_impact(4.4, 0.14, 0.007)
+		set_meta('damage_feedback_context',{'overkill':maxi(0,int(minf(float(damage),1000000000.0)*multiplier)-hp_before),'ultimate_critical':critical and str(get_meta('settled_skill_slot',''))=='ultimate'})
 		_spawn_floating_combat_text(("치명! " if critical else "") + "-%d" % actual, GOLD if critical else RED, sprite.position - Vector2(90, 60) + Vector2(0, maxi(0, source_index) * 3))
+		remove_meta('damage_feedback_context')
 	_sync_enemy_wave_summary()
 	return actual
 
@@ -5212,9 +5197,8 @@ func _hero_accent_color(hero_id: String) -> Color:
 			return Color(hero.get("color", GOLD))
 	return GOLD
 
-func _emit_ultimate_cutin(_hero_id: String, _detail: String) -> void:
-	# Ultimate gameplay and the normal HUD remain; the cut-in is removed.
-	pass
+func _emit_ultimate_cutin(hero_id: String, detail: String) -> void:
+	preload('res://scripts/presentation/HeroSkillPresentationRouter.gd').cutin(self,hero_id,detail)
 
 func _emit_boss_telegraph(skill_name: String, seconds: float) -> void:
 	_presentation_event("boss_warning")

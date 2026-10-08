@@ -1,0 +1,68 @@
+{
+  "engine": "4.7.2-stable (official)",
+  "profiles": [
+    {
+      "active_casts_mean": 1.3875,
+      "canvas_draw_included": false,
+      "component_total_us": {
+        "attacks": 1356408,
+        "collision": 950093,
+        "flocking": 156639,
+        "party": 1137910,
+        "target_and_roam": 1088391
+      },
+      "faction": "aurelia",
+      "gpu_measured": false,
+      "max_enemies": 31,
+      "max_paint_actors": 41,
+      "overlay_advance_ms_mean": 0.0858166666666667,
+      "presentation_sync_ms_mean": 6.6622125,
+      "presentation_sync_ms_p95": 10.908,
+      "render_profile": {
+        "micro_normal": 1024,
+        "mode": "balanced",
+        "msaa": 1,
+        "parallax_steps": 4,
+        "resolution_scale": 0.850000023841858
+      },
+      "simulated_seconds": 12.0,
+      "simulation_ms_mean": 22.2707958333333,
+      "simulation_ms_p95": 35.45,
+      "skill_casts": 19,
+      "step_seconds": 0.05,
+      "steps": 240
+    },
+    {
+      "active_casts_mean": 1.25,
+      "canvas_draw_included": false,
+      "component_total_us": {
+        "attacks": 1394557,
+        "collision": 854491,
+        "flocking": 153246,
+        "party": 1014867,
+        "target_and_roam": 896751
+      },
+      "faction": "noxfera",
+      "gpu_measured": false,
+      "max_enemies": 31,
+      "max_paint_actors": 41,
+      "overlay_advance_ms_mean": 0.0805458333333333,
+      "presentation_sync_ms_mean": 6.42855416666667,
+      "presentation_sync_ms_p95": 8.139,
+      "render_profile": {
+        "micro_normal": 1024,
+        "mode": "balanced",
+        "msaa": 1,
+        "parallax_steps": 4,
+        "resolution_scale": 0.850000023841858
+      },
+      "simulated_seconds": 12.0,
+      "simulation_ms_mean": 20.6054166666667,
+      "simulation_ms_p95": 28.399,
+      "skill_casts": 17,
+      "step_seconds": 0.05,
+      "steps": 240
+    }
+  ],
+  "scope": "isolated headless natural20Hz simulation and manually timed3D sync; native canvas draws and GPU are excluded"
+}

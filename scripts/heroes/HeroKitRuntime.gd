@@ -347,7 +347,9 @@ static func cast(main, id: String, slot: String, target := -1) -> int:
 				if raid:
 					total += raw
 				else:
+					main.set_meta('settled_skill_slot',slot)
 					total += main._damage_enemy(index, raw, int(s["slot"]))
+					main.remove_meta('settled_skill_slot')
 		actual = mini(int(main.raid_boss_hp), int(float(total) * (1.25 if main._vulnerable_seconds > 0.0 else 1.0))) if raid else total
 	if p.has("lifesteal"):
 		if _credited_heal(main, id, RULES.lifesteal_amount(p, s, actual), id) > 0:

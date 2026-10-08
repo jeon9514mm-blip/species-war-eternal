@@ -7,5 +7,5 @@ void fragment() {
     vec2 tap=vec2(1.0/128.0);
     float falloff=(texture(baked_mask,UV).r*2.0+texture(baked_mask,UV+vec2(tap.x,0)).r+texture(baked_mask,UV-vec2(tap.x,0)).r+texture(baked_mask,UV+vec2(0,tap.y)).r+texture(baked_mask,UV-vec2(0,tap.y)).r)/6.0;
     ALBEDO = vec3(0.055, 0.075, 0.06);
-    ALPHA = falloff * 0.50;
+    ALPHA = falloff * 0.70;
 }

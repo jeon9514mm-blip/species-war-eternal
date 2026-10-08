@@ -2,6 +2,7 @@ class_name GameAudioDirector
 extends Node
 ## Sample playback only. Voice budget is shared by UI and world-space feedback.
 const ROOT := "res://audio/v82/"
+const HERO_FEEDBACK = preload('res://scripts/presentation/HeroSkillFeedbackCatalog.gd')
 const CUES := {"ui_click": ["ui_click", "ui", 3, 0.055], "equip": ["equip", "ui", 4, 0.12],
 	"upgrade": ["upgrade", "ui", 4, 0.20], "reward": ["res://audio/final-feedback/Gold.wav", "ui", 4, 0.3],
 	"summon": ["summon", "ui", 5, 0.7], "victory": ["victory", "ui", 6, 1.0],
@@ -152,7 +153,7 @@ func set_scene(music_key: String, ambient_key: String = "") -> void:
 
 func play_cue(event: String) -> bool:
 	if not _admit_event(event):return false
-	var cue: Array = CUES[event]
+	var cue: Array = _cue_spec(event)
 	if not _reserve_budget(int(cue[2])):return false
 	var index: int = -1
 	for i in voices.size():
@@ -178,13 +179,24 @@ func play_cue(event: String) -> bool:
 	return true
 
 func _admit_event(event: String) -> bool:
-	if _closing or suspended or not CUES.has(event) or voices.is_empty():return false
-	var cue: Array=CUES[event]
+	if _closing or suspended or voices.is_empty():return false
+	var cue: Array=_cue_spec(event)
+	if cue.is_empty():return false
 	if _gain(str(cue[1]))<=0 or (combat_paused and str(cue[1])=='effects'):return false
 	if _clock-_window_start>=1.0:_window_start=_clock;_window_count=0
 	if _clock-float(_last_cue.get(event,-100.0))<float(cue[3]) or (_window_count>=18 and int(cue[2])<5):
 		suppressed+=1;return false
 	return true
+
+func _cue_spec(event: String) -> Array:
+	return CUES[event] if CUES.has(event) else HERO_FEEDBACK.event_spec(event)
+
+func play_hero_skill(hero_id: String, slot: String, field: Node = null, point: Vector2 = Vector2.ZERO, _ultimate: bool = false) -> bool:
+	# The settled cast supplies its real slot. No dice roll, resource spending or
+	# inferred ultimate upgrade occurs here; unknown IDs are rejected outright.
+	var feedback: Dictionary=HERO_FEEDBACK.profile(hero_id,slot)
+	if feedback.is_empty():return false
+	return play_positional(str(feedback.event),field,point) if is_instance_valid(field) else play_cue(str(feedback.event))
 
 func _record_event(event: String) -> void:
 	_last_cue[event]=_clock;_window_count+=1;accepted+=1
@@ -230,7 +242,7 @@ func _bind_spatial(field: Node) -> bool:
 func play_positional(event: String,field: Node,point: Vector2) -> bool:
 	if not _admit_event(event):return false
 	if not _bind_spatial(field):return play_cue(event)
-	var cue: Array=CUES[event]
+	var cue: Array=_cue_spec(event)
 	if not _reserve_budget(int(cue[2])):return false
 	var index:=-1
 	for i in spatial_voices.size():
@@ -264,7 +276,8 @@ func diagnostics() -> Dictionary:
 	return {"music": _music_key, "ambient": _ambient_key, "accepted": accepted, "suppressed": suppressed,
 		"active_voices": active_voice_count(), "max_voices": max_active_voices, "voice_nodes": voices.size(),
 		"sample_loads": sample_loads, "cached_sfx": _cue_cache.size(), "suspended": suspended,
-		"positional_accepted":positional_accepted,"spatial_voice_nodes":spatial_voices.size(),"shared_voice_limit":VOICE_LIMIT}
+		"positional_accepted":positional_accepted,"spatial_voice_nodes":spatial_voices.size(),"shared_voice_limit":VOICE_LIMIT,
+		"hero_skill_identities":HERO_FEEDBACK.HEROES.size(),"registered_hero_skill_cues":HERO_FEEDBACK.HEROES.size()*HERO_FEEDBACK.SLOTS.size()}
 
 func shutdown() -> void:
 	_closing = true; suspended = true; set_process(false)

@@ -1,0 +1,355 @@
+{
+  "scope": "Every new and changed GDScript",
+  "passed": 58,
+  "total": 58,
+  "results": [
+    {
+      "script": "scripts/app/Main.gd",
+      "passed": true,
+      "sha256": "ec069cf81a62cd44745f21429821ef8626bb289e777a85353a5e19cb02b8ca54",
+      "output": ""
+    },
+    {
+      "script": "scripts/art/CapeThreePointMotion.gd",
+      "passed": true,
+      "sha256": "0d2a3280e6db85060779e2e6c35c35788c2cd4448d93337d15ad229581addd91",
+      "output": ""
+    },
+    {
+      "script": "scripts/art/HuntFramePilot.gd",
+      "passed": true,
+      "sha256": "90d55eb29d58a6f438ec8ba6c620205cc158e3e837892f822571f9d71ed5c6c0",
+      "output": ""
+    },
+    {
+      "script": "scripts/art/MobileReliefPilot.gd",
+      "passed": true,
+      "sha256": "9d67a03c302922c582fa37a1f06e179e954bdbc1a2fbe5d7d4af7cc5ceb451ca",
+      "output": ""
+    },
+    {
+      "script": "scripts/art/PaintedAttackEchoes.gd",
+      "passed": true,
+      "sha256": "221d5be9a9b886ea35b760a83084f28964745e5bc8ecf078f92c803b83fcae73",
+      "output": ""
+    },
+    {
+      "script": "scripts/art/PaintedFurLayers.gd",
+      "passed": true,
+      "sha256": "2091ece727e0a266ae201e9b767654e423e00c5c33548a3437256ad783fac647",
+      "output": ""
+    },
+    {
+      "script": "scripts/combat/CombatNumberStyle.gd",
+      "passed": true,
+      "sha256": "f85ac90c1fcc76c0378b021cc0780f07065067bad92ae0d60621a594de3bce2c",
+      "output": ""
+    },
+    {
+      "script": "scripts/combat/DamageNumberManager.gd",
+      "passed": true,
+      "sha256": "1e28fd44b86e70fd28df4749c6ce599fd544df7db4b53f5773bba4f833339763",
+      "output": ""
+    },
+    {
+      "script": "scripts/heroes/HeroKitRuntime.gd",
+      "passed": true,
+      "sha256": "414df08168ca4a95cdb47de254b06aea2b5dadfe19916f4150bc67cea7306b90",
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/HuntPositionPlanner.gd",
+      "passed": true,
+      "sha256": "970dde6bd39d52656c2b1649b29382b5d72008eea5bcb1f070047871b2cc1bc0",
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/MonsterFlocking.gd",
+      "passed": true,
+      "sha256": "73209764217760b8c92d37ff6c24ef2e38e17af4d5b1b54db5d3b65a6528986e",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps/RuneStoneGround.gd",
+      "passed": true,
+      "sha256": "840c4a34202a769366cfb068df34a0b4cefed89b5ecf9118fd45a4566fa45993",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/Battlefield3DView.gd",
+      "passed": true,
+      "sha256": "2e6d37a8048d0711e821de5677f07176801d65346120be05624e708ec49cc2be",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/ContactScreenFlash.gd",
+      "passed": true,
+      "sha256": "b0fa3cd3ed98ce10ce127219f8746f04c6e797e44b072aa951c0b936457f08c7",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/HeroSkeletalBillboard.gd",
+      "passed": true,
+      "sha256": "76bf6f7d600e412d8281d7ba34fb851ce7f7ca8d7698905b1486e9007c296133",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/HuntCombatOverlay.gd",
+      "passed": true,
+      "sha256": "dd8d8204411d1285c0a7c79bbe14f659b30af8309e205202f168a78243e64232",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/MobileAmbientDust.gd",
+      "passed": true,
+      "sha256": "ee42ebc66663e7391f97b9b454846df47f8c127054c49f86fb629ca405c8724c",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/MobileCameraMotion.gd",
+      "passed": true,
+      "sha256": "bdd1c2c4b6fcd2f7d27379b845878a24f4b10218cbb347cdc00d0bd667ea908e",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/MythicDetailProfile.gd",
+      "passed": true,
+      "sha256": "1074393c72d0d93fcb5d3494bf699c49c1ab425d101361fcef3391f62b59446a",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/RaidFinalAtmosphere.gd",
+      "passed": true,
+      "sha256": "594d0ee536e9d054c46d119c0d1d20c87640241e14a85b173f8bcf5c8b561782",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/UltraFloorFootprints.gd",
+      "passed": true,
+      "sha256": "28862f2b1c06b216057cc3e41195fe1e99d13ba1a4e65969ef4e1e58cf244677",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/UltraSkillGpuPool.gd",
+      "passed": true,
+      "sha256": "7ddb7389f7f660bba41d7f619584aa737ded4718e79a70e7dade710276b9a645",
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitDamageNumber.gd",
+      "passed": true,
+      "sha256": "e2d94a5dda0cda5161fc26ccf388b940de9d814f962164b7450b97b0eebf6be4",
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitMain.gd",
+      "passed": true,
+      "sha256": "41b04ee8b2c2a1726ad9de1d52befda8682308150b7fc5b045a4c4794489229d",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/BatchedMotes.gd",
+      "passed": true,
+      "sha256": "cca3993a9c81c62972bce9d7b2a03b15210dae8ec8d6d37a6f41c78e693aa1ae",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/CombatTextPresenter.gd",
+      "passed": true,
+      "sha256": "69799e89d37801264ffcb207fe5780722531427ffc7f00cdf303511dd51bcba8",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/ContactTimeDilation.gd",
+      "passed": true,
+      "sha256": "b642938a7f02efe33baaa9944cd6afb94075323d92cfe172d9ea43935e0007b1",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/GameAudioDirector.gd",
+      "passed": true,
+      "sha256": "996aa130e7bdcef0ed21743a3ce3c3ce9ff4374d37cfeccb4caf5f5890dc22ef",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/HapticDirector.gd",
+      "passed": true,
+      "sha256": "1e64c9b61f35c38c597b88d21f2d521cd70ef4b4b6d20db906dab34fb4bd7859",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/HeroSkillFeedbackCatalog.gd",
+      "passed": true,
+      "sha256": "8ca0f50b508b66fdf1af7b03ac0a2722be8a0bd0b9f29420b0324e43194b689f",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/HeroSkillPresentationRouter.gd",
+      "passed": true,
+      "sha256": "eae8c7bfbeb5f8e26234bd7d8201237ef6d4e6e12edd268323d9d98f70a4d0a1",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/HeroSkillVfxCatalog.gd",
+      "passed": true,
+      "sha256": "81f46a97007ee19b28c16b821adc104238f0bfcc697b664ed8fe1aef0d91de71",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/HeroSkillVfxPresenter.gd",
+      "passed": true,
+      "sha256": "eb4533694ac0eca62174830271ef7e49dbd40124c4105a2db647bbd7685b0cc8",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/PresentationRuntime.gd",
+      "passed": true,
+      "sha256": "7a77967f6a4187c87b2b424d2301ffebdc4ad65b15c0d5af95c88ac84e4b4737",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/PresentationSettings.gd",
+      "passed": true,
+      "sha256": "4ab2f3b39ef174bee5a0b280a63406668d498a80568b4132c8000718b1db2ec0",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/PresentationSettingsScreen.gd",
+      "passed": true,
+      "sha256": "3e7c77fabcc5a219e4951e3347700c1982116c2d648486e802ff2c1654c3df09",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/BatchedMotesGpuSmokeTest.gd",
+      "passed": true,
+      "sha256": "e79a203f49c8690866bc3cf81b9d65e91d8ee395d8c5e698b276a0606427f875",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "sha256": "0d32ac701e0a405fb0c2e94864c6d7bf1baaad5a20ad5e5950987bf220fa4583",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/FinalEnvironmentSmokeTest.gd",
+      "passed": true,
+      "sha256": "41985e86679f22bdd2a9f017c278970af01a156ba76769ab6f07e31c80384b14",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/FinalHeroFeedbackSmokeTest.gd",
+      "passed": true,
+      "sha256": "828a07e42e2ebb88bf8636036e7fefb630cd68b4bc35ac1f80a5ceb53542ba18",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "sha256": "6dc6315668f72182406c5d718224706b28142467f386241e5e0e6c575b409d3c",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/NoHeroSkillVfxSmokeTest.gd",
+      "passed": true,
+      "sha256": "1a9cc120047b5704cdfcfdbcfb4f3465519b7d8500d381864d85f3465191691b",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/PaintedMotion25DSmokeTest.gd",
+      "passed": true,
+      "sha256": "5e8fa5462cdaff8fe01ef211fa1743b8c105416cf03952e8ae80ee1b7558e9f8",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/QualityV40SmokeTest.gd",
+      "passed": true,
+      "sha256": "0cbce4981b89236eaef5e2c090f7075f95a313f5dfa62ed1321b9f387cfe57d4",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/UltraActorSecondarySmokeTest.gd",
+      "passed": true,
+      "sha256": "5f7eb1ca6497f7b0f07b15e2fc9eced8ca9a81b12dc1a13e6af9dc40c4b69740",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/UltraDamageAudioSmokeTest.gd",
+      "passed": true,
+      "sha256": "d2ce4bc4418c017a2859a11c0c450b7950ad7da602b0dfcd98b44c204fbfe67f",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/UltraEnvironmentSmokeTest.gd",
+      "passed": true,
+      "sha256": "187727900fc7ba610decd0dc8b1e6048d60cdad0a6ce207be50d4941a4b04fdc",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/UltraFieldRenderProfileSmokeTest.gd",
+      "passed": true,
+      "sha256": "6e82efce052ae63d75632b11d657d713048619a59bdcec392887795c80000833",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/UltraPlannerEquivalenceSmokeTest.gd",
+      "passed": true,
+      "sha256": "252b5e56ea76f44168cdb030adc79bc2ef7e246bcccd376885abebc4ff79aa21",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/UltraSkillIdentitySmokeTest.gd",
+      "passed": true,
+      "sha256": "81d5d2cc1ada4763205250bd4c4ba5cd7c4f826b8c726bb532fe5d4898c5622a",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/UltraSkillRouterSmokeTest.gd",
+      "passed": true,
+      "sha256": "8a3dcdf4f890d3de6e5a01e49378ff44faa02147eb277d041364311984d0947d",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/FurPoseCacheBenchmark.gd",
+      "passed": true,
+      "sha256": "5f1ec6b4ce68884ba00427b5d6cc2d68455832f0b8fcbcac413bc08cae7ca4a9",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/GameAuditProbe.gd",
+      "passed": true,
+      "sha256": "76265fdc563fdf436ef026bcaf16a62cb7369cdf2d0c12be7913d27e21c60766",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/ultra-vfx-2026-10-08/HuntCpuBudgetProbe.gd",
+      "passed": true,
+      "sha256": "ea94a417213d6392c144c2e8239d1e4b886e58e05d927bc11c098968050a697d",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/ultra-vfx-2026-10-08/NativeUltraSkillShowcase.gd",
+      "passed": true,
+      "sha256": "905eef9d465ad4e71caeed38cc919f7b826293279b4ac26a7c68252ed6b3801c",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/ultra-vfx-2026-10-08/UltraPerformanceReview.gd",
+      "passed": true,
+      "sha256": "c1cdb9a4c95582b678d33c226959980d31f59b2e65373d1f240351d75d9493de",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/ultra-vfx-2026-10-08/reference/HuntPositionPlanner.gd",
+      "passed": true,
+      "sha256": "7a2ca5f73304a2e112018b233d64c7cb0657b619bedd80a5795759724e09a6e0",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/ultra-vfx-2026-10-08/reference/PartyMovementDirector.gd",
+      "passed": true,
+      "sha256": "050124a640f3e027ab82c83daa88f2fe23c8e62f23f9faf37e303df187333b33",
+      "output": ""
+    }
+  ]
+}

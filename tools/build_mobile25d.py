@@ -18,7 +18,9 @@ OUT.mkdir(parents=True,exist_ok=True)
 (OUT/'source').mkdir(exist_ok=True)
 (OUT/'source/.gdignore').write_text('')
 floor_only='--floor-only' in sys.argv
-catalog=json.loads((OUT/'catalog.json').read_text(encoding='utf-8'))['entries'] if floor_only else []
+actors_only='--actors-only' in sys.argv
+if floor_only and actors_only:raise SystemExit('Choose --floor-only or --actors-only')
+catalog=json.loads((OUT/'catalog.json').read_text(encoding='utf-8'))['entries'] if floor_only or actors_only else []
 bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
 
 def image_array(path):
@@ -68,21 +70,46 @@ def mesh_object(name,columns,rows,relief=True):
     obj=bpy.data.objects.new(name,mesh);bpy.context.collection.objects.link(obj)
     return obj
 
-def hair_object(identity):
+def hair_object(identity,count=600,lod=False):
     seed=int(hashlib.sha256(identity.encode()).hexdigest()[:8],16)
     rng=np.random.default_rng(seed);vertices=[];faces=[];coordinates=[]
-    for index in range(300):
+    for index in range(count):
         u=float(rng.uniform(.04,.96));v=float(rng.uniform(.02,.95))
         width=float(rng.uniform(.006,.014));length=float(rng.uniform(.025,.065))
         n=len(vertices)
         for a,b in [(u-width,v),(u+width,v),(u+width*.25,v+length),(u-width*.25,v+length)]:
             vertices.append((a,-.006-index%3*.0003,1-b));coordinates.append((a,1-b))
         faces.extend([(n,n+2,n+1),(n,n+3,n+2)])
-    mesh=bpy.data.meshes.new(identity+' HairCards300');mesh.from_pydata(vertices,[],faces);mesh.update()
+    name=identity+(' HairCards300LOD' if lod else ' HairCards600')
+    mesh=bpy.data.meshes.new(name);mesh.from_pydata(vertices,[],faces);mesh.update()
     uv=mesh.uv_layers.new(name='UVMap')
     for loop in mesh.loops:uv.data[loop.index].uv=coordinates[loop.vertex_index]
-    obj=bpy.data.objects.new(identity+' HairCards300',mesh);bpy.context.collection.objects.link(obj)
+    obj=bpy.data.objects.new(name,mesh);bpy.context.collection.objects.link(obj)
     return obj
+
+def export_geometry(identity,folder,hero):
+    body=mesh_object(identity+' PaintedRelief',50 if hero else 30,60 if hero else 50)
+    body['identity']=identity;body['representation']='Original painted 2.5D relief billboard';body['cape_points']=5 if hero else 0
+    objects=[body]
+    if hero:
+        objects.extend([hair_object(identity),mesh_object(identity+' PaintedReliefLOD3000',30,50),hair_object(identity,300,True)])
+    bpy.ops.object.select_all(action='DESELECT')
+    for obj in objects:obj.select_set(True)
+    bpy.context.view_layer.objects.active=body
+    bpy.ops.export_scene.gltf(filepath=str(folder/'billboard.glb'),export_format='GLB',use_selection=True,export_animations=False,export_materials='NONE',export_cameras=False,export_lights=False)
+    for obj in objects:obj.hide_set(True)
+    return sum(len(obj.data.polygons) for obj in objects)
+
+def rebuild_hero_geometry(item):
+    identity=item['id'];folder=OUT/identity
+    entry=json.loads((folder/'frames.json').read_text(encoding='utf-8'))
+    texture_hash=hashlib.sha256((folder/'poses_1024.png').read_bytes()).hexdigest()
+    entry.update({'body_triangles':6000,'hair_cards':600,'hair_triangles':1200,'cape_control_points':5,'lod_body_triangles':3000,'lod_hair_cards':300,'lod_hair_triangles':600,'hair_wind':.15,'hair_clump':.3,'hair_frizz':.1,'cloth_stiffness':.12,'cloth_damping':.88,'cloth_wind':.12,'secondary_collision':'analytic five-point strip; torso capsule and nonadjacent-point separation'})
+    exported=export_geometry(identity,folder,True)
+    assert hashlib.sha256((folder/'poses_1024.png').read_bytes()).hexdigest()==texture_hash
+    (folder/'frames.json').write_text(json.dumps(entry,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    item.update({'triangles':7200,'hair_cards':600,'cape_points':5,'lod_triangles':3600,'exported_triangles_including_lods':exported,'glb_bytes':(folder/'billboard.glb').stat().st_size})
+    print('MOBILE25D_ACTOR_ONLY',identity,item['triangles'],item['hair_cards'],flush=True)
 
 def pack(identity,path,hero):
     source=json.loads(path.read_text(encoding='utf-8'))
@@ -118,26 +145,31 @@ def pack(identity,path,hero):
     entry['mesh']='res://'+str((folder/'billboard.glb').relative_to(ROOT)).replace('\\','/')
     entry['base_px']=48 if hero else 40;entry['scale']=1.8 if hero else 1.0
     entry['requested_extra_scale']=1.2 if hero else 1.0
-    entry['body_triangles']=6000 if hero else 3000;entry['hair_cards']=300 if hero else 0
-    entry['hair_triangles']=600 if hero else 0;entry['cape_control_points']=3 if hero else 0
+    entry['body_triangles']=6000 if hero else 3000;entry['hair_cards']=600 if hero else 0
+    entry['hair_triangles']=1200 if hero else 0;entry['cape_control_points']=5 if hero else 0
+    if hero:entry.update({'lod_body_triangles':3000,'lod_hair_cards':300,'lod_hair_triangles':600,'hair_wind':.15,'hair_clump':.3,'hair_frizz':.1,'cloth_stiffness':.12,'cloth_damping':.88,'cloth_wind':.12})
     entry['runtime_texture_format_target']='BPTC/ASTC 4x4 RGBA with mipmaps; verify engine imports'
     (folder/'frames.json').write_text(json.dumps(entry,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    body=mesh_object(identity+' PaintedRelief',50 if hero else 30,60 if hero else 50)
-    body['identity']=identity;body['representation']='Original painted 2.5D relief billboard';body['cape_points']=3 if hero else 0
-    objects=[body]
-    if hero:objects.append(hair_object(identity))
-    bpy.ops.object.select_all(action='DESELECT')
-    for obj in objects:obj.select_set(True)
-    bpy.context.view_layer.objects.active=body
-    bpy.ops.export_scene.gltf(filepath=str(folder/'billboard.glb'),export_format='GLB',use_selection=True,export_animations=False,export_materials='NONE',export_cameras=False,export_lights=False)
+    exported=export_geometry(identity,folder,hero)
     model_bytes=(folder/'billboard.glb').stat().st_size
-    catalog.append({'id':identity,'hero':hero,'triangles':sum(len(obj.data.polygons) for obj in objects),'hair_cards':300 if hero else 0,'texture_size':[1024,1024],'png_bytes':(folder/'poses_1024.png').stat().st_size,'glb_bytes':model_bytes,'mesh':entry['mesh']})
-    for obj in objects:obj.hide_set(True)
+    catalog.append({'id':identity,'hero':hero,'triangles':7200 if hero else 3000,'hair_cards':600 if hero else 0,'cape_points':5 if hero else 0,'lod_triangles':3600 if hero else 3000,'exported_triangles_including_lods':exported,'texture_size':[1024,1024],'png_bytes':(folder/'poses_1024.png').stat().st_size,'glb_bytes':model_bytes,'mesh':entry['mesh']})
     print('MOBILE25D_ASSET',identity,catalog[-1]['triangles'],flush=True)
 
 original=ROOT/'assets/art-direction/full-body-v2'
 roster=json.loads((ROOT/'assets/heroes/sd-v36/roster-reference.json').read_text(encoding='utf-8'))
 hero_ids=set(roster) if isinstance(roster,dict) else set(row['id'] for row in roster)
+if actors_only:
+    heroes=[item for item in catalog if item['hero']]
+    assert len(heroes)==30
+    for item in heroes:rebuild_hero_geometry(item)
+    # Read the latest catalog again so a concurrent floor authoring change is retained.
+    latest=json.loads((OUT/'catalog.json').read_text(encoding='utf-8'))
+    by_id={item['id']:item for item in catalog}
+    latest['entries']=[by_id[item['id']] if item['hero'] else item for item in latest['entries']]
+    (OUT/'catalog.json').write_text(json.dumps(latest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'source/mobile25d-ultra-heroes.blend'),compress=True)
+    print('MOBILE25D_ACTORS_BUILD_OK',len(heroes),flush=True)
+    raise SystemExit(0)
 for path in ([] if floor_only else sorted(original.glob('*/frames.json'))):
     pack(path.parent.name,path,path.parent.name in hero_ids)
 fallback=ROOT/'assets/art-direction/hunt-frame-pilot/goblin/frames.json'

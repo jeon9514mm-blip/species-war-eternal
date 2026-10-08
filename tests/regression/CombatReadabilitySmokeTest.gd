@@ -36,8 +36,8 @@ func run() -> void:
 	check(reused.modulate==Color.WHITE and reused.text=='-32','reuse clears faded opacity and text')
 	var life=reused._life_tween;life.pause();life.custom_step(.39)
 	check(reused.visible and is_equal_approx(reused.modulate.a,1),'number stays fully readable through .39 seconds')
-	life.custom_step(.25);check(reused.visible and reused.modulate.a>0,'number remains visible before .65 seconds')
-	life.custom_step(.02);check(not reused.visible,'number retires after the full .65 second lifetime')
+	life.custom_step(.40);check(reused.visible and reused.modulate.a>0,'number remains visible before .80 seconds')
+	life.custom_step(.02);check(not reused.visible,'number retires after the full .80 second lifetime')
 	pool.free()
 	var main=await make_main('aurelia',3)
 	main.combat_effects_enabled=true;main._build_combat_screen();await settle();main.combat_running=false

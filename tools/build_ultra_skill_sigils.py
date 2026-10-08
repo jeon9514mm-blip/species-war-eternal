@@ -1,0 +1,44 @@
+"""Thirty authored vector sigils packed into one 1024 atlas; no source art edits."""
+from pathlib import Path
+import json
+ROOT=Path(__file__).resolve().parents[1]
+ids=['leonhardt','mira','elisia','kairen','orwin','seria','astel','darius','lunea','caelum','valeria','morgas','ragna','bron','nyx','fenris','isolde','garm','veyra','ulric','adrien','tessa','naia','sael','odelia','lucien','corvin','rokan','bora','selene']
+symbols=[
+'M-34-34H34V8L0 42L-34 8ZM-15-12H15M0-27V24',
+'M-42 0H-20M20 0H42M0-42V-20M0 20V42M-13-13L13 13M13-13L-13 13',
+'M0 42V-40M0-27L-27-12L-35-24M0-8L32-24L40-13M0 8L-24 25M0 20L26 35',
+'M-43 0Q0-58 43 0Q0 58-43 0M0-44Q-54 0 0 44Q54 0 0-44M-31-31L31 31',
+'M-42 32V-12L-28-28L-14-12V32M-14 32V-30L0-44L14-30V32M14 32V-12L28-28L42-12V32',
+'M-42 28Q-9-30 0-42M-28 38Q-1-10 17-29M-7 42Q16 10 35-6M-36-6L-7 23M-21-25L7 3',
+'M-36 36Q-48-20-20-38M36 36Q48-20 20-38M-20-30V31M-7-39V35M7-39V35M20-30V31',
+'M-10 44V-38L0-48L10-38V44M-36 4H36M-28-8L28 16M-23 31L23 31',
+'M-44-30H26V-13H-28V4H44V21H-10V38H30M-30 38V21M43-30V-43',
+'M0-49L8-25L25-40L25-13L47-18L33 2L47 18L25 13L25 40L8 25L0 49L-8 25L-25 40L-25 13L-47 18L-33 2L-47-18L-25-13L-25-40L-8-25Z',
+'M24-43Q-43-40-40 10Q-37 50 22 43Q-20 20 24-43ZM9-11Q-10 8 9 27Q27 8 9-11Z',
+'M-13-43H13M-9-43V-20L-34 26Q-38 43 0 43Q38 43 34 26L9-20V-43M-25 13H25M-21 29H21',
+'M-40-38L-22-9L-38 15L-8 40L0 18L8 40L38 15L22-9L40-38L12-20L0-35L-12-20ZM-15 1L-5 5M15 1L5 5',
+'M-46 37L-19-40L0-8L16-30L46 37ZM-29 0L-12 8M7-4L22 9M-30 31H31',
+'M-45 0Q0-40 45 0Q0 40-45 0ZM0-12V12M-33-34L-23-20M33-34L23-20M-23 20L-33 34M23 20L33 34',
+'M-34-40Q-46-1-20 40M-8-47Q-19 0 1 46M22-39Q5 0 29 39M-44 12L44-12',
+'M0-40Q28-48 29-19Q51-15 36 10Q43 33 16 33Q0 53-16 33Q-43 33-36 10Q-51-15-29-19Q-28-48 0-40ZM0-15L16 0L0 15L-16 0Z',
+'M-43-26L-31 33L-15 4L0 42L15 4L31 33L43-26L22-8L0-30L-22-8ZM-35-35H35',
+'M-38-29Q0 0-38 36M38-29Q0 0 38 36M-32-33Q0-15 32-33M-21 15Q0 42 21 15M0-42V-18',
+'M-32-40Q28-49 41 2Q26 44-31 40Q5 13-32-40ZM-44-3H44M-14-17L14 17',
+'M0-47V39M-8-36L0-47L8-36M-28 3H28M-41 28L-18-20M41 28L18-20M-32 35H32',
+'M-36-22H20V10H-36ZM20-16H43V4H20M-17 10V38M-28 38H-6M-26-31V-43M-7-31V-43',
+'M0-49L11-15L44-28L15-4L49 8L15 15L31 43L4 23L-14 49L-15 15L-48 22L-22 0L-43-27L-12-15Z',
+'M-42 24Q-25-28 0-42Q26-12 0 22Q-15 39-42 24ZM0-13Q39-40 44-10Q42 26 11 41M-31 25L4-14M4 26L35-13',
+'M0-43L39-21V21L0 43L-39 21V-21ZM0-28L25-14V14L0 28L-25 14V-14ZM-42 0H42M0-43V43',
+'M-33 40L27-37L35-45L40-30L32-23L-22 47M-31-1L4 26M-16-23Q-2-41 14-28',
+'M-44 1Q-22-45 0 1Q22 45 44 1M-44 20Q-22-26 0 20Q22 66 44 20M-30-24V-42M0-27V-45M30-24V-42',
+'M-41 35L30-37L44-44L40-22L-29 48M-16-3L10 22M-31 17L-19 29M13-27L25-15',
+'M-31 31V-8L-24-31L-10-35L-4-8V-40H10V-5L15-31H29L29 6L40 16L23 39L-12 44Z',
+'M-41-32Q0 48 41-32M-41 32Q0-48 41 32M-31-5Q0 24 31-5M-15-43Q21 0-15 43M15-43Q-21 0 15 43']
+out=ROOT/'assets/vfx/ultra';out.mkdir(parents=True,exist_ok=True)
+groups=[]
+for i,(hero,path) in enumerate(zip(ids,symbols)):
+    x=(i%6)*168+84;y=(i//6)*168+84
+    groups.append(f'<g id="{hero}" transform="translate({x} {y})" fill="none" stroke="white" stroke-width="2.7" stroke-linejoin="round" stroke-linecap="round"><circle r="54" opacity=".34"/><path d="{path}"/></g>')
+(out/'hero-sigils.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">'+''.join(groups)+'</svg>\n',encoding='utf-8')
+(out/'sigils.json').write_text(json.dumps({'size':[1024,1024],'tile':168,'heroes':[{'id':h,'index':i,'rect':[i%6*168,i//6*168,168,168]} for i,h in enumerate(ids)],'source_art_modified':False},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+print('ULTRA_SIGILS_30_OK')

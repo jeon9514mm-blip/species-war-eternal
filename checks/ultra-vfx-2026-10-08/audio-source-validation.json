@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "heroes": 30,
+  "registered_skills": 120,
+  "exact_registered_ids": true,
+  "unique_waveforms": 120,
+  "byte_identical_regeneration": true,
+  "mono_pcm_22050hz": true,
+  "sample_bytes": 2069160,
+  "decoded_pcm_bytes": 2063880,
+  "max_peak": 0.7199926755577257,
+  "max_dc_offset": 3.3736447549996896e-07,
+  "physical_haptics_verified": false,
+  "perceptual_listening_approval": false
+}

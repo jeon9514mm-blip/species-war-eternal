@@ -53,6 +53,7 @@ func sync_context() -> void:
 	var combat_pause: bool = str(game.active_screen) == "combat" and not bool(game.combat_running)
 	var audio_pause: bool = paused
 	audio.combat_paused = combat_pause
+	haptics.combat_paused = combat_pause or (str(game.active_screen)=='raid' and not bool(game.raid_running))
 	if audio.suspended != audio_pause: audio.set_suspended(audio_pause)
 	# Legacy toggles remain supported even when old code changes them directly.
 	if audio.sound_enabled != bool(game.sound_effects_enabled): audio.configure(game.presentation_options, game.sound_effects_enabled)

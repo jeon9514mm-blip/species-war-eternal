@@ -1,8 +1,12 @@
 extends Control
 ## One bounded canvas observes settled casts. Affinity changes paint, never
 ## damage, targeting, elemental resistance, status duration or combat RNG.
-const MAX_CASTS := 8
+const MAX_CASTS := 12
 const MAX_TARGETS := 4
+const POOL_CAPACITY := 50
+const CATALOG=preload('res://scripts/presentation/HeroSkillVfxCatalog.gd')
+const SIGILS=preload('res://assets/vfx/ultra/hero-sigils.svg')
+const SIGIL_SHADER=preload('res://shaders/UltraSkillSigil.gdshader')
 const ELEMENT_COLORS := {
 	'fire':Color('#f19b57'), 'ice':Color('#99d5ee'),
 	'light':Color('#e8c99a'), 'dark':Color('#b29bc9')}
@@ -23,6 +27,16 @@ var _rune_loop := _circle_points(48)
 var _element_rays8 := _element_directions(8)
 var _element_rays12 := _element_directions(12)
 var _draw_worlds: Dictionary = {}
+var _cards: Array[TextureRect]=[]
+var _materials: Array[ShaderMaterial]=[]
+var _sigil_atlases: Array[AtlasTexture]=[]
+var gpu_pool: Node3D
+var _cutin: Panel
+var _portrait: TextureRect
+var _cutin_title: Label
+var _cutin_detail: Label
+var _cutin_age:=1.0
+var _cutin_cooldown:=0.0
 
 static func _circle_points(segments: int) -> PackedVector2Array:
 	var result:=PackedVector2Array();result.resize(segments+1)
@@ -44,6 +58,64 @@ func _ready() -> void:
 	mouse_filter=Control.MOUSE_FILTER_IGNORE
 	process_priority=110
 	clip_contents=true
+	for glyph in CATALOG.THEMES.size():
+		var atlas:=AtlasTexture.new();atlas.atlas=SIGILS
+		atlas.region=Rect2((glyph%6)*168,(glyph/6)*168,168,168);_sigil_atlases.append(atlas)
+	# All nodes and shader instances are warmed once. Casts only lease cards.
+	for i in POOL_CAPACITY:
+		var card:=TextureRect.new();card.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		card.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;card.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		var paint:=ShaderMaterial.new();paint.shader=SIGIL_SHADER;card.material=paint
+		card.visible=false;add_child(card);_cards.append(card);_materials.append(paint)
+	gpu_pool=preload('res://scripts/maps3d/UltraSkillGpuPool.gd').new();gpu_pool.name='UltraSkillGpuPool';gpu_pool.field=field
+	field.world.add_child(gpu_pool)
+	_build_cutin()
+
+func _build_cutin() -> void:
+	_cutin=Panel.new();_cutin.mouse_filter=Control.MOUSE_FILTER_IGNORE;_cutin.clip_contents=true
+	var style:=StyleBoxFlat.new();style.bg_color=Color('#121c26');style.bg_color.a=.88
+	style.border_color=Color('#c4a484');style.set_border_width_all(1);style.set_corner_radius_all(8)
+	_cutin.add_theme_stylebox_override('panel',style);add_child(_cutin);_cutin.visible=false
+	_portrait=TextureRect.new();_portrait.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	_portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;_portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_portrait.position=Vector2(6,3);_portrait.size=Vector2(90,110);_cutin.add_child(_portrait)
+	_cutin_title=Label.new();_cutin_title.mouse_filter=Control.MOUSE_FILTER_IGNORE;_cutin_title.position=Vector2(102,18)
+	_cutin_title.add_theme_font_size_override('font_size',18);_cutin_title.add_theme_color_override('font_color',Color('#e8c99a'));_cutin.add_child(_cutin_title)
+	_cutin_detail=Label.new();_cutin_detail.mouse_filter=Control.MOUSE_FILTER_IGNORE;_cutin_detail.position=Vector2(102,52)
+	_cutin_detail.add_theme_font_size_override('font_size',15);_cutin.add_child(_cutin_detail)
+
+func show_ultimate(hero_id: String, detail: String) -> bool:
+	if not _active() or not field.game.combat_effects_enabled or _cutin_cooldown>0:return false
+	var anchor:=_hero_anchor(hero_id)
+	if anchor.is_empty():return false
+	var source=anchor.ref.get_ref();var actor: Sprite3D=field.actors.get(source.get_instance_id())
+	if is_instance_valid(actor):
+		var pilot=actor.get_node_or_null('HuntFramePilot')
+		if is_instance_valid(pilot) and pilot._material is ShaderMaterial:
+			var texture: Texture2D=pilot._material.get_shader_parameter('source_texture')
+			var region: Vector4=pilot._material.get_shader_parameter('atlas_rect')
+			if texture!=null:
+				var atlas:=AtlasTexture.new();atlas.atlas=texture;atlas.region=Rect2(region.x*texture.get_width(),region.y*texture.get_height(),region.z*texture.get_width(),region.w*texture.get_height());_portrait.texture=atlas
+	_cutin_title.text=str(CATALOG.ROSTER.HEROES.get(hero_id,{}).get('name',hero_id))+' · 궁극기'
+	_cutin_detail.text=detail;_cutin_age=0;_cutin_cooldown=3;_cutin.visible=true
+	return true
+
+func _lease_card(visual: Dictionary) -> int:
+	for i in _cards.size():
+		if _cards[i].visible:continue
+		var atlas: AtlasTexture=_sigil_atlases[int(visual.glyph)]
+		_cards[i].texture=atlas;_cards[i].visible=true
+		_materials[i].set_shader_parameter('uv_region',Vector4(atlas.region.position.x/1024.0,atlas.region.position.y/1024.0,168.0/1024.0,168.0/1024.0))
+		_materials[i].set_shader_parameter('identity',visual.seed)
+		_materials[i].set_shader_parameter('symmetry',float(visual.symmetry))
+		_materials[i].set_shader_parameter('core_color',visual.core)
+		return i
+	return -1
+
+func _retire(index: int) -> void:
+	var card:=int(casts[index].card)
+	if card>=0:_cards[card].visible=false
+	casts.remove_at(index)
 
 func _active() -> bool:
 	return is_instance_valid(field) and is_instance_valid(field.game) and field.battle_clock_running()
@@ -76,10 +148,16 @@ func cast(hero_id: String, target_index: int, _aoe: bool, profile: Dictionary, u
 		for i in casts.size():
 			if not bool(casts[i].ultimate):oldest=i;break
 		if oldest<0 and not ultimate:return false
-		casts.remove_at(0 if oldest<0 else oldest)
+		_retire(0 if oldest<0 else oldest)
+	var slot:=str(profile.get('fx_slot',profile.get('slot','ultimate' if ultimate else 'a1')))
+	var visual: Dictionary=CATALOG.profile(hero_id,slot)
+	if visual.is_empty():return false
+	var card:=_lease_card(visual)
+	if card<0:return false
 	casts.append({'caster':caster,'targets':destinations,'element':element_for(hero_id,profile),
 		'ultimate':ultimate,'kind':str(profile.get('kind','damage')),'age':0.0,
-		'duration':.85 if ultimate else .55})
+		'duration':float(visual.charge)+float(visual.flight)+float(visual.impact)+float(visual.tail),
+		'visual':visual,'card':card,'impacted':false})
 	accepted_casts+=1
 	queue_redraw()
 	return true
@@ -140,13 +218,45 @@ func _draw_world(anchor: Dictionary) -> Vector2:
 func advance(delta: float) -> void:
 	if not is_instance_valid(field) or not is_instance_valid(field.game):return
 	if not field.game.combat_effects_enabled:
-		casts.clear();_seen.clear();queue_redraw();return
+		for card in _cards:card.visible=false
+		casts.clear();_seen.clear();_cutin.visible=false;queue_redraw();return
 	if _active():
 		var elapsed: float = maxf(0,delta)*field.visual_speed()
-		for item in casts:item.age+=elapsed
+		_cutin_cooldown=maxf(0,_cutin_cooldown-elapsed)
+		_cutin_age+=elapsed
+		_cutin.visible=_cutin_age<.70
+		if _cutin.visible:
+			_cutin.position=Vector2(12,12);_cutin.size=Vector2(minf(390,size.x-24),116)
+			_cutin.modulate.a=minf(1,_cutin_age/.08)*clampf((.70-_cutin_age)/.15,0,1)
+		for item in casts:
+			item.age+=elapsed;_update_card(item)
+			if not item.impacted and float(item.age)>=float(item.visual.charge)+float(item.visual.flight):
+				item.impacted=true
+				var target: Dictionary=item.targets[0]
+				gpu_pool.burst(_world(target),float(target.height)*.45,item.visual)
+				if bool(item.ultimate):_ultimate_impact(item)
 		for i in range(casts.size()-1,-1,-1):
-			if float(casts[i].age)>=float(casts[i].duration):casts.remove_at(i)
+			if float(casts[i].age)>=float(casts[i].duration):_retire(i)
 	queue_redraw()
+
+func _update_card(item: Dictionary) -> void:
+	var visual: Dictionary=item.visual;var card: TextureRect=_cards[int(item.card)]
+	var phase:=clampf(float(item.age)/float(item.duration),0,1)
+	var charge: bool=float(item.age)<float(visual.charge)
+	var anchor: Dictionary=item.caster if charge else item.targets[0]
+	var point: Vector2=field.project_world(_world(anchor),0 if charge else float(anchor.height)*.48)
+	var diameter: float=(48 if charge else 56)*float(visual.power)
+	card.size=Vector2.ONE*diameter;card.pivot_offset=card.size*.5;card.position=point-card.size*.5
+	card.rotation=float(visual.twist)*sin(phase*PI)
+	card.modulate=Color(visual.color,sin(phase*PI)*.8)
+	_materials[int(item.card)].set_shader_parameter('phase',phase)
+
+func _ultimate_impact(item: Dictionary) -> void:
+	if is_instance_valid(field.mobile_camera):field.mobile_camera.impact(true)
+	field.ultra_post_impact()
+	var runtime=field.game.presentation_runtime
+	if is_instance_valid(runtime) and is_instance_valid(runtime.contact_time):runtime.contact_time.request_ultra()
+	if is_instance_valid(field.contact_flash):field.contact_flash.flash_ultra(item.visual.color)
 
 func _process(delta: float) -> void:advance(delta)
 
@@ -161,22 +271,27 @@ func _draw_cast(item: Dictionary) -> void:
 	var age := float(item.age)
 	var progress := clampf(age/float(item.duration),0,1)
 	var opacity := sin(progress*PI)*.8
-	var tint: Color=ELEMENT_COLORS[item.element]
+	var tint: Color=item.visual.color
 	var caster_world:=_draw_world(item.caster)
 	var origin: Vector2=field.project_world(caster_world)
-	var power := 1.25 if bool(item.ultimate) else 1.0
+	var power := float(item.visual.power)
 	var radius := (24.0+minf(1,progress*4)*6)*power
 	_draw_rune(origin,radius,tint,opacity,age)
 	var start: Vector2=field.project_world(caster_world,float(item.caster.height)*.52)
 	for target in item.targets:
 		var finish: Vector2=field.project_world(_draw_world(target),float(target.height)*.48)
 		if progress<.62 and start.distance_squared_to(finish)>25:
-			_draw_trail(start,finish,tint,progress/.62,opacity,power)
+			_draw_trail(start,finish,tint,progress/.62,opacity,power,float(item.visual.twist),int(item.visual.echoes))
 		if progress>=.20:
 			_draw_element(finish,str(item.element),tint,clampf((progress-.20)/.8,0,1),opacity,power)
 	if bool(item.ultimate) and age<.06:
 		# Short, low-alpha elemental flash leaves character silhouettes readable.
 		draw_rect(Rect2(Vector2.ZERO,size),Color(tint,.045*(1-age/.06)))
+	if bool(item.ultimate) and item.impacted:
+		var flare:=clampf(1-(age-float(item.visual.charge)-float(item.visual.flight))/.18,0,1)
+		var center: Vector2=field.project_world(_draw_world(item.targets[0]),float(item.targets[0].height)*.48)
+		draw_line(center-Vector2(65,0),center+Vector2(65,0),Color(tint,flare*.24),3,true)
+		draw_line(center-Vector2(0,25),center+Vector2(0,25),Color(item.visual.core,flare*.35),2,true)
 
 func _draw_rune(point: Vector2,radius: float,tint: Color,opacity: float,age: float) -> void:
 	# Transform cached 49-point loops in native code, with the same ellipse and
@@ -197,13 +312,17 @@ func _draw_rune(point: Vector2,radius: float,tint: Color,opacity: float,age: flo
 			glyphs[i*8+edge*2]=vertices[edge];glyphs[i*8+edge*2+1]=vertices[edge+1]
 	draw_multiline(glyphs,Color(Color('#e8c99a'),opacity*.7),.9,true)
 
-func _draw_trail(start: Vector2,finish: Vector2,tint: Color,phase: float,opacity: float,power: float) -> void:
+func _draw_trail(start: Vector2,finish: Vector2,tint: Color,phase: float,opacity: float,power: float,twist:=0.0,echoes:=5) -> void:
 	var points:=PackedVector2Array()
 	var side: Vector2=(finish-start).orthogonal().normalized()
 	var leading:=clampf(phase*1.4,0,1)
 	for i in 13:
 		var t:=lerpf(maxf(0,leading-.34),leading,float(i)/12)
-		points.append(start.lerp(finish,t)+side*sin(t*PI)*9*power)
+		points.append(start.lerp(finish,t)+side*sin(t*PI)*(9+twist*18)*power)
+	for echo in echoes:
+		var offset:=side*float(echo-2)*1.4
+		draw_polyline(Transform2D(0,offset)*points,Color(tint,opacity*.025*(1-float(echo)/echoes)),5*power,true)
+	draw_polyline(Transform2D(0,Vector2(0,2))*points,Color('#10161c',opacity*.15),7*power,true)
 	draw_polyline(points,Color(tint,opacity*.12),9*power,true)
 	draw_polyline(points,Color(tint,opacity*.48),3*power,true)
 	draw_polyline(points,Color(Color('#fff5df'),opacity*.75),1.0,true)

@@ -16,10 +16,11 @@ func _ready() -> void:
 	surface.position=Vector3(16,.016,10)
 	stone_material=ShaderMaterial.new();stone_material.shader=SURFACE_SHADER
 	stone_material.set_shader_parameter('moss',Color('#a8b89e'));stone_material.set_shader_parameter('bronze',Color('#e8c99a'))
-	stone_material.set_shader_parameter('glow',.5);stone_material.set_shader_parameter('inner_glow',.35)
+	stone_material.set_shader_parameter('glow',.7);stone_material.set_shader_parameter('inner_glow',.55)
 	stone_material.set_shader_parameter('pulse_period',.8);stone_material.set_shader_parameter('rotation_speed',.12)
-	stone_material.set_shader_parameter('rune_count',8);stone_material.set_shader_parameter('rune_brightness',.7)
-	set_meta('falling_leaves',12);set_meta('ground_cracks','bounded shader inlay')
+	stone_material.set_shader_parameter('rune_count',12);stone_material.set_shader_parameter('rune_brightness',.7)
+	stone_material.set_shader_parameter('leaf_count',20);stone_material.set_shader_parameter('dust_count',20)
+	set_meta('falling_leaves',20);set_meta('dust_motes',20);set_meta('circle_rings',3);set_meta('ground_cracks','bounded emissive shader inlay')
 	stone_material.set_shader_parameter('artist_circle',load('res://assets/mobile25d/vfx/moss_bronze_circle.png'))
 	surface.material_override=stone_material;add_child(surface)
 	surface.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
@@ -38,7 +39,7 @@ func _ready() -> void:
 	arrow.scale=Vector3.ONE*.45
 	arrow.material_override=bronze;arrow.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;add_child(arrow)
 	moss_light=OmniLight3D.new();moss_light.name='MossPointLight';moss_light.light_color=Color('#a8b89e')
-	moss_light.light_energy=.6;moss_light.omni_range=4.5;moss_light.omni_attenuation=1.4;moss_light.shadow_enabled=false
+	moss_light.light_energy=.9;moss_light.omni_range=4.5;moss_light.omni_attenuation=1.4;moss_light.shadow_enabled=false
 	moss_light.position=surface.position+Vector3(0,1.0,0);add_child(moss_light)
 	process_priority=101
 func _process(delta: float) -> void:

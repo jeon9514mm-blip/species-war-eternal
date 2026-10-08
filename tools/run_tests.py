@@ -23,6 +23,7 @@ def main():
     parser.add_argument('--list', action='store_true', help='List discovered tests without requiring Godot')
     parser.add_argument('--skip-syntax', action='store_true', help='Explicitly skip the full parser pass after a separate syntax check')
     parser.add_argument('--gpu', action='store_true', help='Run selected regressions on the real Mobile GPU renderer instead of the headless dummy backend')
+    parser.add_argument('--rendering-method',default='mobile',choices=['mobile','forward_plus'],help='GPU renderer; ignored for headless tests')
     args = parser.parse_args()
     project = Path(__file__).resolve().parents[1]
     try:
@@ -96,7 +97,7 @@ def main():
             # The pattern audit runs twelve natural battles, including six full
             # 90-second weekly rotations; keep their complete simulation steps.
             timeout_seconds = 600 if script.stem in {"V26CombatSoakSmokeTest", "V27BalanceMatrixSmokeTest", "V27BossLifecycleSmokeTest", "V835PatternBattleSmokeTest"} else 180
-            command = [binary] + (['--rendering-method', 'mobile', '--audio-driver', 'Dummy'] if args.gpu else ['--headless']) + ['--path', str(project), '--script', resource_path(project, script)]
+            command = [binary] + (['--rendering-method', args.rendering_method, '--audio-driver', 'Dummy'] if args.gpu else ['--headless']) + ['--path', str(project), '--script', resource_path(project, script)]
             startup = None
             if args.gpu and sys.platform == 'win32':
                 startup = subprocess.STARTUPINFO()
@@ -139,7 +140,7 @@ def main():
         results.sort(key=lambda x: x['test'])
         engine_version = subprocess.check_output([binary, '--version'], text=True, env=env).strip()
     report = {'engine': engine_version,
-              'renderer': 'gpu_mobile' if args.gpu else 'headless_dummy',
+              'renderer': 'gpu_'+args.rendering_method if args.gpu else 'headless_dummy',
               'syntax': syntax_report,
               'passed': sum(x['passed'] for x in results), 'total': len(results), 'results': results}
     if args.output:

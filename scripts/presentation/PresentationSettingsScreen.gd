@@ -45,7 +45,8 @@ static func open(game: Node) -> void:
 	P.action(body, "효과음 미리 듣기", func(): game._presentation_event("reward")).name = "PresentationAudioPreview"
 	_choice(game, body, "haptics", "진동 강도", [["off", "끔"], ["light", "약하게"], ["normal", "보통"]])
 	P.text(body, "진동은 기본 꺼짐입니다. 지원 기기와 진동 권한이 필요하며, 자동 전투 중 연속 진동을 제한합니다.", 16, S.MUTED)
-	_choice(game, body, "performance", "화면 성능", [["balanced", "기본 · 최대 60 FPS"], ["battery", "절전 · 최대 30 FPS"]])
+	_choice(game, body, "performance", "화면 성능", [["balanced", "기본 · 최대 60 FPS"], ["quality", "고화질 · 더 선명한 표면·윤곽"], ["battery", "절전 · 최대 30 FPS"]])
+	P.text(body, "고화질은 표면과 윤곽을 더 선명하게 표현하며, 기기에 따라 프레임이 낮아질 수 있습니다.", 16, S.MUTED)
 	P.text(body, "절전은 화면 갱신과 장식 효과 수만 줄입니다. 이동·공격 판정과 게임 배속, 보스 위험 표시는 유지합니다.", 16, S.MUTED)
 	var notice: Label = P.text(layout, "", 16, S.MUTED); notice.name = "PresentationSettingsSaveStatus"
 	var retry: Button = P.action(layout, "설정 다시 저장", func(): game._save_ui_preferences()); retry.name = "PresentationRetrySave"
