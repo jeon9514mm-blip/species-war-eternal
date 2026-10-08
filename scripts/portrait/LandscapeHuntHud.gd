@@ -4,12 +4,12 @@ const LAYOUT := preload("res://scripts/portrait/LandscapeHuntLayout.gd")
 var party_summary: Button
 var party_count: Label
 func _label_at(value: String, box: Rect2, points: int = 18) -> Label:
-	var label := SKIN.label(value, points)
+	var label: Label = SKIN.label(value, points)
 	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	SKIN.place(self, label, box)
 	return label
 func _button_at(value: String, action: Callable, box: Rect2, named: String) -> Button:
-	var button := SKIN.button(value, action)
+	var button: Button = SKIN.button(value, action)
 	button.name = named; button.add_theme_font_size_override("font_size",16)
 	SKIN.place(self, button, box)
 	return button
@@ -19,10 +19,10 @@ func build(main: Node) -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var screen: Vector2 = game.get_viewport_rect().size
 	var w: float = screen.x; var h: float = screen.y
-	var header := Rect2(12,12,w-24,112)
-	var footer := LAYOUT.footer(screen)
+	var header: Rect2 = Rect2(12,12,w-24,112)
+	var footer: Rect2 = LAYOUT.footer(screen)
 	SKIN.panel(self,header,SKIN.DARK,SKIN.EDGE_SOFT,1,14)
-	var strip := SKIN.panel(self,footer,SKIN.DARK,SKIN.EDGE_SOFT,1,10)
+	var strip: Panel = SKIN.panel(self,footer,SKIN.DARK,SKIN.EDGE_SOFT,1,10)
 	strip.name = "HuntHeroGaugeStrip"
 	# Retain the base refresh adapter without displaying the former profile panel.
 	profile_name = _label_at("",Rect2()); profile_name.hide()
@@ -39,7 +39,7 @@ func build(main: Node) -> void:
 	details_button = _button_at("",_toggle_options,Rect2(w-136,18,48,44),"PortraitDetailsButton")
 	details_button.tooltip_text = "사냥 조작 · 자동 각성기 · 보상"
 	_add_command_icon(details_button,"settings")
-	var menu := _button_at("",Callable(game,"_show_main_menu"),Rect2(w-80,18,56,44),"LandscapeMenuButton")
+	var menu: Button = _button_at("",Callable(game,"_show_main_menu"),Rect2(w-80,18,56,44),"LandscapeMenuButton")
 	menu.tooltip_text = "전체 메뉴"; _add_command_icon(menu,"hamburger")
 	stage_progress = SKIN.gauge(self,Rect2(24,62,w-160,8),SKIN.GOLD)
 	enemy_label = _label_at("",Rect2(w-118,48,95,30),16)
@@ -54,13 +54,14 @@ func build(main: Node) -> void:
 	SKIN.place(self,slot_row,LAYOUT.slots_rect(screen)); _build_slots()
 	_build_options(w,h,true)
 	reward_feed = REWARD_FEED.new()
-	SKIN.place(self,reward_feed,Rect2(24,LAYOUT.field(screen).end.y-96,320,90)); reward_feed.build(320)
+	var field_box: Rect2 = LAYOUT.field(screen)
+	SKIN.place(self,reward_feed,Rect2(24,field_box.end.y-96,320,90)); reward_feed.build(320)
 	_build_dock_navigation(screen)
 	hud_bounds = [header,footer]
 	refresh()
 func _add_command_icon(button: Button, icon_name: String) -> void:
-	var icon := preload("res://scripts/ui/GameUiIcon.gd").new()
-	icon.icon_name = icon_name; icon.ink = SKIN.INK
+	var icon: Control = preload("res://scripts/ui/GameUiIcon.gd").new()
+	icon.set("icon_name",icon_name); icon.set("ink",SKIN.INK)
 	SKIN.place(button,icon,Rect2((button.size.x-24)/2,10,24,24))
 func refresh() -> void:
 	if not is_instance_valid(game): return
@@ -87,8 +88,9 @@ func refresh() -> void:
 		party_summary.tooltip_text = status_label.text + "\n눌러서 원정대 편성"
 
 func _build_party_summary(screen: Vector2) -> void:
-	var area: Rect2 = LAYOUT.party_rect(screen)
-	party_summary = _button_at("", Callable(game,"_build_hero_select_screen"), Rect2(area.position,Vector2(LAYOUT.PARTY_SUMMARY_WIDTH,LAYOUT.HERO_HEIGHT)), "HuntPartySummary")
+	var party_box: Rect2 = LAYOUT.party_rect(screen)
+	var summary_box: Rect2 = Rect2(party_box.position,Vector2(LAYOUT.PARTY_SUMMARY_WIDTH,LAYOUT.HERO_HEIGHT))
+	party_summary = _button_at("",Callable(game,"_build_hero_select_screen"),summary_box,"HuntPartySummary")
 	var caption: Label = SKIN.label("원정대",14,SKIN.MUTED)
 	caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	SKIN.place(party_summary,caption,Rect2(0,5,LAYOUT.PARTY_SUMMARY_WIDTH,23))
