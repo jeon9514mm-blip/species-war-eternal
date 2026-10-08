@@ -41,3 +41,20 @@ export_credentials.cfg
 /docs/**/*.log
 /docs/**/*.import
 /.venv-ai/
+
+# Unity caches and local builds; source scenes, packages and settings stay tracked.
+/Unity/[Ll]ibrary/
+/Unity/[Tt]emp/
+/Unity/[Oo]bj/
+/Unity/[Ll]ogs/
+/Unity/[Uu]ser[Ss]ettings/
+/Unity/[Bb]uilds/
+/Unity/.vs/
+/Unity/*.csproj
+/Unity/*.sln
+/Unity/*.slnx
+/Unity/*.pidb
+/Unity/*.unityproj
+/Unity/*.user
+/Unity/Assets/OriginalImported/
+/Unity/Assets/OriginalImported.meta

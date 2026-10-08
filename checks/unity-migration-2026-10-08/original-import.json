@@ -1,0 +1,1477 @@
+{
+    "heroCount": 30,
+    "skillCount": 120,
+    "actorCount": 46,
+    "files": [
+        {
+            "source": "docs/hero-catalog-2026-10-08/hero-catalog.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/hero-catalog.json",
+            "sha256": "9d6a04f6ef12d9479479dc6c5091db4cfa5a1328579e92a319239468f6b81db9"
+        },
+        {
+            "source": "assets/mobile25d/catalog.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/actor-catalog.json",
+            "sha256": "9949a509844c3b4a088bdaec7f17e320c71ee428d4b507b6f441cee25df9d816"
+        },
+        {
+            "source": "assets/mobile25d/adrien/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/adrien/poses.png",
+            "sha256": "b30c3d5fe0e885894e8a9dfc8d4bffa90bd6e5a057295ae71718bc138dbc8c51"
+        },
+        {
+            "source": "assets/mobile25d/adrien/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/adrien/frames.json",
+            "sha256": "f7b481f763e7fb68fd7838a94489633301fb5d3079d091cf6689998cd9ecd765"
+        },
+        {
+            "source": "assets/mobile25d/adrien/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/adrien/billboard.glb.bytes",
+            "sha256": "b95385ca74002f632ee09405f694817806ee566279b0fa962235e013aa98410a"
+        },
+        {
+            "source": "assets/mobile25d/astel/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/astel/poses.png",
+            "sha256": "be24375b14c00d6e1649c37e4f1f62912ca47092f8445be2b77b63752e2b9faa"
+        },
+        {
+            "source": "assets/mobile25d/astel/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/astel/frames.json",
+            "sha256": "1d44773cb4ad99938efa736dfd5d79d8fe134d1ad56e57ea5dbfbbb6cb06eb23"
+        },
+        {
+            "source": "assets/mobile25d/astel/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/astel/billboard.glb.bytes",
+            "sha256": "ff2e2a0f73e435e41df9d25a923de29de224d5c938fd1c4e55490fca6ef60b6c"
+        },
+        {
+            "source": "assets/mobile25d/bora/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/bora/poses.png",
+            "sha256": "6b91805868796b6f64ed17f4bad4377ba6247b0fde1d5dca29b40c0b977a9301"
+        },
+        {
+            "source": "assets/mobile25d/bora/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/bora/frames.json",
+            "sha256": "6b71016e93dac256549194d2b2b058d3ee7b7b2c025fe725342dbdab3bfd26a2"
+        },
+        {
+            "source": "assets/mobile25d/bora/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/bora/billboard.glb.bytes",
+            "sha256": "dddc87334adc479bb847d7791d3d63b1ef0b750965cb1d07d88628a8e4f3c367"
+        },
+        {
+            "source": "assets/mobile25d/bristle_boar/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/bristle_boar/poses.png",
+            "sha256": "5b42d2e629423e2eb19eb953afe4509ad9df8405eba5852d918d2feb4cc49805"
+        },
+        {
+            "source": "assets/mobile25d/bristle_boar/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/bristle_boar/frames.json",
+            "sha256": "005a50fdb6044c576608dedffe0b9d848567b3f136cf0a96adf06ba31e7ebb22"
+        },
+        {
+            "source": "assets/mobile25d/bristle_boar/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/bristle_boar/billboard.glb.bytes",
+            "sha256": "1a558a4c038e240d9383ab547902f0f0f8452adbb43700c6b5b280804ad3e26a"
+        },
+        {
+            "source": "assets/mobile25d/bron/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/bron/poses.png",
+            "sha256": "df8acbc7884f5f36c6c234a6f028f2fce7aee43c95b6bbea5368780684d6f9c5"
+        },
+        {
+            "source": "assets/mobile25d/bron/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/bron/frames.json",
+            "sha256": "0c723c539267ceb596d8d2a04bc38bea5be39d8f0aa4ac1a35d62747283e2e57"
+        },
+        {
+            "source": "assets/mobile25d/bron/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/bron/billboard.glb.bytes",
+            "sha256": "db902c880acd874e7c60c875890ad6e9767dc28557fbe5cc1a71e122229323f3"
+        },
+        {
+            "source": "assets/mobile25d/caelum/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/caelum/poses.png",
+            "sha256": "a4bc1e8bdce85798746f8583aca9339738254aa448d5b837c48314b6d938cb73"
+        },
+        {
+            "source": "assets/mobile25d/caelum/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/caelum/frames.json",
+            "sha256": "3831cfc8245d495f7c4069fc1524e50898771b94889bd2a859b6c9e47ebaa235"
+        },
+        {
+            "source": "assets/mobile25d/caelum/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/caelum/billboard.glb.bytes",
+            "sha256": "fce84f74bfb49cbff692caa5a423b78e744397c7e52c5cbd8230d3489ff3c559"
+        },
+        {
+            "source": "assets/mobile25d/corvin/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/corvin/poses.png",
+            "sha256": "84fb8ba8b58906ea7e002cb2124cc4150eed0d907b5bc827fd43348222cab346"
+        },
+        {
+            "source": "assets/mobile25d/corvin/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/corvin/frames.json",
+            "sha256": "f1373ddbd08d5c29ab1b676ac47e782cdafe04ae2247ff20c815e0e90243f1bf"
+        },
+        {
+            "source": "assets/mobile25d/corvin/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/corvin/billboard.glb.bytes",
+            "sha256": "5b9667cdce6bbe44b6c9ab5ce318024ac30c77cf9a6ddf0e8e6505bd4131031c"
+        },
+        {
+            "source": "assets/mobile25d/crystal_spider/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/crystal_spider/poses.png",
+            "sha256": "ee28179fc7f482bf0d6f5039c13a677b78181ce4932932a0d57ce56fe430d88a"
+        },
+        {
+            "source": "assets/mobile25d/crystal_spider/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/crystal_spider/frames.json",
+            "sha256": "42a02dcaedfedab40e37b9002bf1e402a447a55aeb19cdff828854945a23bb7e"
+        },
+        {
+            "source": "assets/mobile25d/crystal_spider/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/crystal_spider/billboard.glb.bytes",
+            "sha256": "ddd9a49d907c9bd4e4720668969213ceccd5b64d320c60ba51bca91f07f17585"
+        },
+        {
+            "source": "assets/mobile25d/darius/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/darius/poses.png",
+            "sha256": "c239b6e907924332a2ba5e77b4745d6b27dac959a52a36d493d43ead816c227e"
+        },
+        {
+            "source": "assets/mobile25d/darius/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/darius/frames.json",
+            "sha256": "8e3de63337a558a9df8a31b04a3a1eae5cdf909cafbb1ab43108cdedbb589178"
+        },
+        {
+            "source": "assets/mobile25d/darius/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/darius/billboard.glb.bytes",
+            "sha256": "0b015a4b978638f29863c9e7264d3d8f62f33e6a638464150ceb815ab9fec04e"
+        },
+        {
+            "source": "assets/mobile25d/elisia/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/elisia/poses.png",
+            "sha256": "dc0b0a64a937c542dbd19099d85bb42166535e1e36196684534e65f5871227cf"
+        },
+        {
+            "source": "assets/mobile25d/elisia/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/elisia/frames.json",
+            "sha256": "e898caab131abab34e29ffc6bc123fc21f77f63f9bdf7b4cd51a2307d7df8e5a"
+        },
+        {
+            "source": "assets/mobile25d/elisia/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/elisia/billboard.glb.bytes",
+            "sha256": "f0f1cb5b0cda80bdee3599335352590338fd3c5828480e974e78e569dc5aef03"
+        },
+        {
+            "source": "assets/mobile25d/fenris/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/fenris/poses.png",
+            "sha256": "cbe604d87e4aad63d210708ef720a85bc7858708bdbf88c6b1e61a4f5ce0d8ee"
+        },
+        {
+            "source": "assets/mobile25d/fenris/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/fenris/frames.json",
+            "sha256": "f9bb0dfbda0aadb45e0dabb6ae118ba413a42d87c26ae51d358ea060a259200e"
+        },
+        {
+            "source": "assets/mobile25d/fenris/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/fenris/billboard.glb.bytes",
+            "sha256": "b82d02588336e4ba9b30f1286258cf96f2fa89c36e0cc72037559c5276878723"
+        },
+        {
+            "source": "assets/mobile25d/forest_wraith/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/forest_wraith/poses.png",
+            "sha256": "fcf90e3ba0e9dc1be05e551350fb217bb5be8186dcf56abe398228eb48d733de"
+        },
+        {
+            "source": "assets/mobile25d/forest_wraith/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/forest_wraith/frames.json",
+            "sha256": "7d7a1473e1ca200eee4199d484f7a0061c9e1321413e54b62fa968ab5d0bc766"
+        },
+        {
+            "source": "assets/mobile25d/forest_wraith/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/forest_wraith/billboard.glb.bytes",
+            "sha256": "c5782f0e4ccad2eec5ad9eb6c45d996f31647a97e6cf8620d231125e7457ec1f"
+        },
+        {
+            "source": "assets/mobile25d/frost_deer/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/frost_deer/poses.png",
+            "sha256": "bc1b0bf3469089f018a6fea11a5829ac3475efe9444271f8e35da16ebb45e499"
+        },
+        {
+            "source": "assets/mobile25d/frost_deer/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/frost_deer/frames.json",
+            "sha256": "1af2fe2f70950db1f13f35f16b83b1be96099c0d1a295740f4911dc68a37ce36"
+        },
+        {
+            "source": "assets/mobile25d/frost_deer/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/frost_deer/billboard.glb.bytes",
+            "sha256": "6300b953a1de52b9507cfc20e8309a8e35d855e97ef17e0d148d5ddd2d74e817"
+        },
+        {
+            "source": "assets/mobile25d/garm/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/garm/poses.png",
+            "sha256": "67b2738018e12ad41f0b691d791f9a1658901d993bd74b253cc1bad82ce24bd9"
+        },
+        {
+            "source": "assets/mobile25d/garm/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/garm/frames.json",
+            "sha256": "9df9b7178e2954a7b13a89b0858c63d85a60bc40c39b08ea566688e874f2e749"
+        },
+        {
+            "source": "assets/mobile25d/garm/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/garm/billboard.glb.bytes",
+            "sha256": "d2f779e3040166688616a0a1c339ee3a1b2170c570f61602297df83861331873"
+        },
+        {
+            "source": "assets/mobile25d/grun/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/grun/poses.png",
+            "sha256": "79073453ccb92bbd3fdaa47581aabafcd04f53d17f696c6ec619e616340ff321"
+        },
+        {
+            "source": "assets/mobile25d/grun/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/grun/frames.json",
+            "sha256": "592bd5b1d6f7a65f1218025d7b6bbcf8e9a6429d99368d4b8b9a4bb5e1e94bee"
+        },
+        {
+            "source": "assets/mobile25d/grun/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/grun/billboard.glb.bytes",
+            "sha256": "c55e76d18b071c12c369840b84ae1d9e7c24a288055c854f278a681bfb13db6f"
+        },
+        {
+            "source": "assets/mobile25d/iron_mole/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/iron_mole/poses.png",
+            "sha256": "22f7f07dbfa8978ea3547eafc5f3666f8a21ab2049bec173b87cfe38989e85cb"
+        },
+        {
+            "source": "assets/mobile25d/iron_mole/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/iron_mole/frames.json",
+            "sha256": "2dd1175cd25ac63f3ea478d939d25b0cf40ae501cb16ae969fb72c4eacc5eff9"
+        },
+        {
+            "source": "assets/mobile25d/iron_mole/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/iron_mole/billboard.glb.bytes",
+            "sha256": "6f169aea7a01d89eeaf26cf1c14087317a65fa2590b215eb552d7ec7bad327cd"
+        },
+        {
+            "source": "assets/mobile25d/isolde/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/isolde/poses.png",
+            "sha256": "08c122d20719e9d4ed0bba9d699d844d274847250f377cf496136b5accbddb22"
+        },
+        {
+            "source": "assets/mobile25d/isolde/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/isolde/frames.json",
+            "sha256": "41e8fd440bc765e1799d264c06d5e2c33d4fcc6b042c6e6c21170451a1cb8649"
+        },
+        {
+            "source": "assets/mobile25d/isolde/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/isolde/billboard.glb.bytes",
+            "sha256": "053efe0fa11dbddc70ba51cf0d16390e4167e86ad0981c95300bbdb2699648ca"
+        },
+        {
+            "source": "assets/mobile25d/kairen/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/kairen/poses.png",
+            "sha256": "85731873bad8040b32ea5200f552c2816ec226adeced4d57731ea56f5ace1141"
+        },
+        {
+            "source": "assets/mobile25d/kairen/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/kairen/frames.json",
+            "sha256": "03d8abc3f9f2c1c08ba19ffe8c4ee162ed49fc5e0a218ed186a95fe1483f873a"
+        },
+        {
+            "source": "assets/mobile25d/kairen/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/kairen/billboard.glb.bytes",
+            "sha256": "464a8d44ea8c5ecd5ebab16ab24361957ab6aa8177bd6a5d4fc7d3d03f18592e"
+        },
+        {
+            "source": "assets/mobile25d/lava_bat/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/lava_bat/poses.png",
+            "sha256": "b11e62945ac0133482708290f0cba4e9531cc795eddae159fc0e50b768becf62"
+        },
+        {
+            "source": "assets/mobile25d/lava_bat/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/lava_bat/frames.json",
+            "sha256": "ad98eb50014f2bbac477cc8f03c13b86a6b4b3b22cda5aec791b977e6e3fbb50"
+        },
+        {
+            "source": "assets/mobile25d/lava_bat/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/lava_bat/billboard.glb.bytes",
+            "sha256": "6506e9fe4898b05b255466385b11563c7f65dfd487c9988b7d6203c98d712482"
+        },
+        {
+            "source": "assets/mobile25d/leonhardt/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/leonhardt/poses.png",
+            "sha256": "475e572b4a39e3a404757b04281014a8f45dd86f247ca92dc192f1871169f554"
+        },
+        {
+            "source": "assets/mobile25d/leonhardt/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/leonhardt/frames.json",
+            "sha256": "70bf3b53497363fc27ccf65fb9ddca06c006e926b788438fffb5f04de9fb7f8d"
+        },
+        {
+            "source": "assets/mobile25d/leonhardt/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/leonhardt/billboard.glb.bytes",
+            "sha256": "37a00b0ec7b89356ab39bded487ba8666af273e7187f71dc7f2c673afb1492da"
+        },
+        {
+            "source": "assets/mobile25d/lucien/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/lucien/poses.png",
+            "sha256": "b7b6b7a30a762e8ebd756685baa06598eeb6125a9019fc8cbf96d310828d71f3"
+        },
+        {
+            "source": "assets/mobile25d/lucien/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/lucien/frames.json",
+            "sha256": "631bc86a23140c6cf200a0ed814da91a2ef7e4ca5471ff894e19f1d10d65bb6b"
+        },
+        {
+            "source": "assets/mobile25d/lucien/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/lucien/billboard.glb.bytes",
+            "sha256": "c947361f1f0699b5a3856c571d22bbe5bf362f2bc170e21e99514f17f73d9e8f"
+        },
+        {
+            "source": "assets/mobile25d/lunea/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/lunea/poses.png",
+            "sha256": "c739d8ee1806571e663c30bcbb2e31ce7dffb07d91ec1880257162e392e07f55"
+        },
+        {
+            "source": "assets/mobile25d/lunea/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/lunea/frames.json",
+            "sha256": "14608d185ad9a9eb1280a570d83bbde9fb3f8c3adf8eb20b62abf03d029741f5"
+        },
+        {
+            "source": "assets/mobile25d/lunea/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/lunea/billboard.glb.bytes",
+            "sha256": "e4b72f9aad17704ae953b29f9321b0b9d0ac38f8c1f63725803935e1068fc6d3"
+        },
+        {
+            "source": "assets/mobile25d/mine_orc/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/mine_orc/poses.png",
+            "sha256": "3cef75a3b69bbe4ffb9c86ebf18065f6aac13fe6d97bcbb3244ea6837b784c79"
+        },
+        {
+            "source": "assets/mobile25d/mine_orc/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/mine_orc/frames.json",
+            "sha256": "aef48bd16b6a2cd435d3a3730189c0aa726ef808fcc4fc9dbdb3cf7a533d7f64"
+        },
+        {
+            "source": "assets/mobile25d/mine_orc/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/mine_orc/billboard.glb.bytes",
+            "sha256": "b5e1ac8c8fbea34f20c38eae302341c050a7a92b42189ec3bdeffe2021aeb82b"
+        },
+        {
+            "source": "assets/mobile25d/mira/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/mira/poses.png",
+            "sha256": "a4b29160103b18496b72cf929e206f50c2eeea759d3cd1f130419dfc8e1e0d3c"
+        },
+        {
+            "source": "assets/mobile25d/mira/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/mira/frames.json",
+            "sha256": "e113ac7fc79043ca7d10ba4adcfd2a4c9a67dd21b481375eb757fb52393a3ca0"
+        },
+        {
+            "source": "assets/mobile25d/mira/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/mira/billboard.glb.bytes",
+            "sha256": "8490161ec25d4f2553a80279859c109201d571acf7e68873522da6695d9e32ad"
+        },
+        {
+            "source": "assets/mobile25d/moon_wolf/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/moon_wolf/poses.png",
+            "sha256": "cf71c73cac4e658e70b46f7d5a7f24485fa594a604ce3bbb8ba491551fc3a626"
+        },
+        {
+            "source": "assets/mobile25d/moon_wolf/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/moon_wolf/frames.json",
+            "sha256": "f1055de9875065ea170e9d8045429abbe6d5357464baa246c9b954a4fda70d80"
+        },
+        {
+            "source": "assets/mobile25d/moon_wolf/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/moon_wolf/billboard.glb.bytes",
+            "sha256": "698de77c1fbfec733ea650e0be7b2d4f04ce9d6a8396188b23a78cceaecc0989"
+        },
+        {
+            "source": "assets/mobile25d/morgas/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/morgas/poses.png",
+            "sha256": "b861844f732f217cb39f56b5427a293a50607100d470049f6faf80e0410afb7e"
+        },
+        {
+            "source": "assets/mobile25d/morgas/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/morgas/frames.json",
+            "sha256": "09190a7cb1a553408179e36b7fb9670736f1d877ac2e5bf530507e571770f9b1"
+        },
+        {
+            "source": "assets/mobile25d/morgas/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/morgas/billboard.glb.bytes",
+            "sha256": "1fb119edd60ba02535032c318ca70490d1051f3f66d42a5697eec706b4a656f9"
+        },
+        {
+            "source": "assets/mobile25d/morgul/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/morgul/poses.png",
+            "sha256": "b821f467d8bfd7261e2bda60204fb1ebd27ab02f608d1b3cd8a77773c87502b3"
+        },
+        {
+            "source": "assets/mobile25d/morgul/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/morgul/frames.json",
+            "sha256": "8099a4de6928b562e95af4ee89b7effc4ccd388226773de39ae56cfbb429aced"
+        },
+        {
+            "source": "assets/mobile25d/morgul/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/morgul/billboard.glb.bytes",
+            "sha256": "7a8ab807f77345d2a8116758ee53929363972e2cf493a2385a051161b9a0610e"
+        },
+        {
+            "source": "assets/mobile25d/mushroom/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/mushroom/poses.png",
+            "sha256": "caf4b6e8c00df38b170869f2488afb784fe788bf4e789e285884f8fea2fc28f5"
+        },
+        {
+            "source": "assets/mobile25d/mushroom/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/mushroom/frames.json",
+            "sha256": "762290dc614eee9d9d92b6770c1da77f5a753df7bff1dfc232d6f61a5e01a418"
+        },
+        {
+            "source": "assets/mobile25d/mushroom/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/mushroom/billboard.glb.bytes",
+            "sha256": "f29a67751d2c711db60a683feccca02e7c19a87a7a9cd157e90b9dde5015b856"
+        },
+        {
+            "source": "assets/mobile25d/naia/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/naia/poses.png",
+            "sha256": "da8f722cc3cd799eaeb9b52c58b95580738ffa292317ab2c2ad4fbb46005a6b6"
+        },
+        {
+            "source": "assets/mobile25d/naia/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/naia/frames.json",
+            "sha256": "094eead0d80055912fe5125149e72da5432fef939a2770202e13cfc98b8f7665"
+        },
+        {
+            "source": "assets/mobile25d/naia/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/naia/billboard.glb.bytes",
+            "sha256": "d617ce1f31b8e0b260ca55463e1108343c272d341ed6d60b51d591c21f3532f6"
+        },
+        {
+            "source": "assets/mobile25d/night_raven/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/night_raven/poses.png",
+            "sha256": "5d24418e5e9d36da2b74f224b7e9e40aef1603d6365e2f444d9c047ce3a8a802"
+        },
+        {
+            "source": "assets/mobile25d/night_raven/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/night_raven/frames.json",
+            "sha256": "ec7ca6d8c7650a3b390baa3c9241b55565510d015877c63e5c62a8127add7597"
+        },
+        {
+            "source": "assets/mobile25d/night_raven/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/night_raven/billboard.glb.bytes",
+            "sha256": "0145e045ac8ec0cd4f2b692854575051809af01faf3a91efe645d5fd060c8a36"
+        },
+        {
+            "source": "assets/mobile25d/nyx/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/nyx/poses.png",
+            "sha256": "2882b3210c9765c9318f9e7486230c1b85f3abdc5766def6722a49705c6768b7"
+        },
+        {
+            "source": "assets/mobile25d/nyx/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/nyx/frames.json",
+            "sha256": "0d23b27dcf14c7afdf97cfa7fd02527db89320d2b417cf15143e6e73b6340a81"
+        },
+        {
+            "source": "assets/mobile25d/nyx/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/nyx/billboard.glb.bytes",
+            "sha256": "3624e204ac475f3d7aff5814a642e0263da48d344eac4f1241832d7c756e59ae"
+        },
+        {
+            "source": "assets/mobile25d/odelia/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/odelia/poses.png",
+            "sha256": "7e009b6c3dd03ac1ac807f5fb3e24f95a880f4895030a2fe02dd16df34a79e3f"
+        },
+        {
+            "source": "assets/mobile25d/odelia/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/odelia/frames.json",
+            "sha256": "51b52d524bcabc1ed96e5c61f7dc27709fb9e33ca67c784e76ae5158dba72356"
+        },
+        {
+            "source": "assets/mobile25d/odelia/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/odelia/billboard.glb.bytes",
+            "sha256": "47a408d8ffb5b2cdf1473fa83bd4c4b5c220684fd04a3257c314ef9c9c8f5f30"
+        },
+        {
+            "source": "assets/mobile25d/orwin/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/orwin/poses.png",
+            "sha256": "db82a73e0d4a62553515307738d8d2011417c9657f6976bac36508a5493ce9b8"
+        },
+        {
+            "source": "assets/mobile25d/orwin/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/orwin/frames.json",
+            "sha256": "f620ae51958f4017bb1999e01e141b996bf8ce611f941fc78ef844cbf904375e"
+        },
+        {
+            "source": "assets/mobile25d/orwin/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/orwin/billboard.glb.bytes",
+            "sha256": "cc34bc477c87e4a47f94b7aeee8baf26442d6b8f69fb180a03b4ddcc86f04c3b"
+        },
+        {
+            "source": "assets/mobile25d/ragna/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/ragna/poses.png",
+            "sha256": "0553e1cbc92ebc943ed12510759d102515402d5f9e6b21da353db4804c34c6e6"
+        },
+        {
+            "source": "assets/mobile25d/ragna/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/ragna/frames.json",
+            "sha256": "08aee69e4bfc79d72713ff1c5880894001b523a1faea828c66b6db9f01dd594d"
+        },
+        {
+            "source": "assets/mobile25d/ragna/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/ragna/billboard.glb.bytes",
+            "sha256": "de5beb26e4292a6cdbcea610c1dd4084c4a2c65fa3789b95fdf58d49ec96ee8f"
+        },
+        {
+            "source": "assets/mobile25d/rokan/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/rokan/poses.png",
+            "sha256": "34e39442af2deb04225f2fb7a2a7419afa027f60c5a70083592f5711c2e6e869"
+        },
+        {
+            "source": "assets/mobile25d/rokan/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/rokan/frames.json",
+            "sha256": "125ecf8d7d0a6f8ed77e2a094ed9fff1d4bd4f2170b5ae46c556664d1a5b93a1"
+        },
+        {
+            "source": "assets/mobile25d/rokan/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/rokan/billboard.glb.bytes",
+            "sha256": "cdcf76a634c7378b50d371d7a570c46f33aa161b7067576aa447333ec0fd6dc8"
+        },
+        {
+            "source": "assets/mobile25d/sael/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/sael/poses.png",
+            "sha256": "9b544552b59d2181d4e8fc8b837c4867b9ac794cfd10efcb2f3d91d3c79a4a9f"
+        },
+        {
+            "source": "assets/mobile25d/sael/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/sael/frames.json",
+            "sha256": "dd45675a5170280564da9754f4efd727292eb4de9c7d220da7f2f62091d6128a"
+        },
+        {
+            "source": "assets/mobile25d/sael/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/sael/billboard.glb.bytes",
+            "sha256": "e8e4a1147e190f90151f0de6004ed01ed298b257ae5d9c665f3310ef20751f52"
+        },
+        {
+            "source": "assets/mobile25d/selene/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/selene/poses.png",
+            "sha256": "5150501d4f4381f2dc919dbcdcf7709778c7d6084fea72848692f1160b5a8222"
+        },
+        {
+            "source": "assets/mobile25d/selene/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/selene/frames.json",
+            "sha256": "76b360a124c9d2a456909531e984f59851144a4353da3595229c85ab0533c697"
+        },
+        {
+            "source": "assets/mobile25d/selene/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/selene/billboard.glb.bytes",
+            "sha256": "466c30ff8aa307e5ad34359554e5db3eec9bb97ec6dff7e1cc6a419c13f0652d"
+        },
+        {
+            "source": "assets/mobile25d/selene_boss/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/selene_boss/poses.png",
+            "sha256": "496d320fe36ac17cc7d3adce15a31dada8006fe7b48254e2f7eeeb66c292927b"
+        },
+        {
+            "source": "assets/mobile25d/selene_boss/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/selene_boss/frames.json",
+            "sha256": "6c9d023831b4515301f71c1c8288dee59b1c9836268056acf286472241f5f42b"
+        },
+        {
+            "source": "assets/mobile25d/selene_boss/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/selene_boss/billboard.glb.bytes",
+            "sha256": "c2427aff13f25b5906519d6e4b15130b08f6d5165c49d2cf1a5e6db934b32eac"
+        },
+        {
+            "source": "assets/mobile25d/seria/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/seria/poses.png",
+            "sha256": "577a8a9d483a2665ca15dbefafb865ad71a76dba376fb692fad1a94a7fcac661"
+        },
+        {
+            "source": "assets/mobile25d/seria/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/seria/frames.json",
+            "sha256": "d0996ec8f28b7eb66d9fea078e300b8f89e16cecf2f716b009b91bad030dcfcd"
+        },
+        {
+            "source": "assets/mobile25d/seria/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/seria/billboard.glb.bytes",
+            "sha256": "5d43762c7c747a4227d067de55c88167e97358fb2d77f853387d8265537c6bdc"
+        },
+        {
+            "source": "assets/mobile25d/tessa/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/tessa/poses.png",
+            "sha256": "672443847d7dd9fa631160306181179355ba7138283fcd0daf1a450bd72b171f"
+        },
+        {
+            "source": "assets/mobile25d/tessa/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/tessa/frames.json",
+            "sha256": "a8e93537c40623a15a21bd804e05537344d27fefcc860cae4628a9650802a4e5"
+        },
+        {
+            "source": "assets/mobile25d/tessa/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/tessa/billboard.glb.bytes",
+            "sha256": "589b90602af179c0ff11d4e756e60f4577ab06cc4727ecd8a6cf0540cc7c0f67"
+        },
+        {
+            "source": "assets/mobile25d/ulric/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/ulric/poses.png",
+            "sha256": "f9e690141762b598dfa6e97f40068491925cfa8a33f178b84813eee6e016498d"
+        },
+        {
+            "source": "assets/mobile25d/ulric/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/ulric/frames.json",
+            "sha256": "9eda4d24e979efc3d97b748ff72de88d486001473c40dda316cc035bcb93cf8c"
+        },
+        {
+            "source": "assets/mobile25d/ulric/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/ulric/billboard.glb.bytes",
+            "sha256": "4630fe0495dbb43e3d07c96112c6072d3ba207c759d2dd2c2d625bacc5a85776"
+        },
+        {
+            "source": "assets/mobile25d/valeria/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/valeria/poses.png",
+            "sha256": "5323ec35952b6b81f2e49cf80a5e1ea30de2a1b804f1916682862a0e282ddd15"
+        },
+        {
+            "source": "assets/mobile25d/valeria/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/valeria/frames.json",
+            "sha256": "b57f7126f6764ee3634d9fd8d4f2a3407e4ce9f0413db5a6d638269246a51cad"
+        },
+        {
+            "source": "assets/mobile25d/valeria/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/valeria/billboard.glb.bytes",
+            "sha256": "ac594ed8e7d42b2e9bf27fdc77eb4f2fee90071567ac749e5e6516bb0933a418"
+        },
+        {
+            "source": "assets/mobile25d/veyra/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/veyra/poses.png",
+            "sha256": "348a5c72c25cbda7da52605c7f34b01bede86103201a2d3e54cc8e33b012f31b"
+        },
+        {
+            "source": "assets/mobile25d/veyra/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/veyra/frames.json",
+            "sha256": "43fc3e1cb7fb775a5c874f982761307872b5b0ea827d6dcdad4b5dd3863255dd"
+        },
+        {
+            "source": "assets/mobile25d/veyra/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/veyra/billboard.glb.bytes",
+            "sha256": "243be5c24c218cb5df8a42782b5cea53a49412e7473ace2f36bbd35b709d1d33"
+        },
+        {
+            "source": "assets/mobile25d/wild_dog/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/wild_dog/poses.png",
+            "sha256": "7ab3404c989c847314a2d499b643709d63c48408682833551e33c818fe9ec373"
+        },
+        {
+            "source": "assets/mobile25d/wild_dog/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/wild_dog/frames.json",
+            "sha256": "86d6177eb6ef1c4d542a001ba0f8fcfe3e875968af87caa9793b47f03bb47f51"
+        },
+        {
+            "source": "assets/mobile25d/wild_dog/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/wild_dog/billboard.glb.bytes",
+            "sha256": "9161e9721c380aa77d4988cd70cc927767822efd27f8442f916c5e931432335a"
+        },
+        {
+            "source": "assets/mobile25d/wind_crow/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/wind_crow/poses.png",
+            "sha256": "3e851d5341c85b296bff76af5521092445c3274186d594a7ca537b5bbc18f667"
+        },
+        {
+            "source": "assets/mobile25d/wind_crow/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/wind_crow/frames.json",
+            "sha256": "1d5aad48dc9c50045bb22c31e88bc6838560f7977d64cdd28ca6000a5cecc928"
+        },
+        {
+            "source": "assets/mobile25d/wind_crow/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/wind_crow/billboard.glb.bytes",
+            "sha256": "a7b58fe6b3959392f9e8510149e5a37cadd7ff6d6ef0c06dc626ad4a423e9539"
+        },
+        {
+            "source": "assets/mobile25d/goblin/poses_1024.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/goblin/poses.png",
+            "sha256": "c5750b5c65a93d8bfab31f3cb4dad056171b7abfaf6f822083ee235c890c507e"
+        },
+        {
+            "source": "assets/mobile25d/goblin/frames.json",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/goblin/frames.json",
+            "sha256": "0ab18be153f73925dabba9a96baf23350185af2ce13f86d78463be5057e582e1"
+        },
+        {
+            "source": "assets/mobile25d/goblin/billboard.glb",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Actors/goblin/billboard.glb.bytes",
+            "sha256": "e62e448362789c81c34f0866eaffb3a7ab075af664e21a2741c1b1f6efb2c7a9"
+        },
+        {
+            "source": "assets/mobile25d/floor/stone_1024_albedo_ao.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Floor/stone_1024_albedo_ao.png",
+            "sha256": "35efef85473ab1f02874828d4a2512698c7a41357d7453f261830534ee735a5d"
+        },
+        {
+            "source": "assets/mobile25d/floor/stone_1024_ao.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Floor/stone_1024_ao.png",
+            "sha256": "b4fed2f7e651b645b4eb1b689d51a673786c839c71735bb9d97d19e22b8be7a1"
+        },
+        {
+            "source": "assets/mobile25d/floor/stone_1024_micro_normal.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Floor/stone_1024_micro_normal.png",
+            "sha256": "82929e11556b2f096cdc4f252af7644ff663dbceaa31b2d773ad276d2638d179"
+        },
+        {
+            "source": "assets/mobile25d/floor/stone_1024_normal.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Floor/stone_1024_normal.png",
+            "sha256": "fe95b67c49916cb6a5d0f4cbcc8240030ad43b0dcb3bc1a0edb989d859d48b1d"
+        },
+        {
+            "source": "assets/mobile25d/floor/stone_1024_surface.png",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Floor/stone_1024_surface.png",
+            "sha256": "80d631b254f0e18ec08b7314231b668a9b33a72c72e37ba95da3db90f295c8e9"
+        },
+        {
+            "source": "audio/ultra-skills/adrien__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/adrien__a1.wav",
+            "sha256": "9b1c212825d99a74ef5d10a18295b87866400e90b04136ec7098ca87d83026d4"
+        },
+        {
+            "source": "audio/ultra-skills/adrien__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/adrien__a2.wav",
+            "sha256": "bf5b5a1732016f01cedfe16988e65ea1d9fd1dc2380a7e9b948780f71ec00012"
+        },
+        {
+            "source": "audio/ultra-skills/adrien__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/adrien__passive.wav",
+            "sha256": "be4160ea848aa67b46d91354c3d4aa447311c92bf140808910edf81b5fe44d51"
+        },
+        {
+            "source": "audio/ultra-skills/adrien__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/adrien__ultimate.wav",
+            "sha256": "a08bec992c1f473580e1b2400f5e2119ac463608f71afdbeb91a4273c2aefa5d"
+        },
+        {
+            "source": "audio/ultra-skills/astel__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/astel__a1.wav",
+            "sha256": "7e325828d5c123352862756655f7e23d00b1949524495a2d71cfe77f287161f5"
+        },
+        {
+            "source": "audio/ultra-skills/astel__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/astel__a2.wav",
+            "sha256": "b9516b2b867a0d86e3692706c01cbf16e1fd12eda4b757e8339373414f067ebf"
+        },
+        {
+            "source": "audio/ultra-skills/astel__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/astel__passive.wav",
+            "sha256": "72378dd61dfc1a598ab2764ba6cd3b7d94a2bb0515ca3de34b85c0ca56bc9356"
+        },
+        {
+            "source": "audio/ultra-skills/astel__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/astel__ultimate.wav",
+            "sha256": "036b5072cfc7f5c702d8d951a30668a8de5b17edb70743970e8949f47b9a92b6"
+        },
+        {
+            "source": "audio/ultra-skills/bora__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/bora__a1.wav",
+            "sha256": "d7f6b701138ffe1249a90d953d5dc06bd32ceb43835e668320c9ec24a0a2f900"
+        },
+        {
+            "source": "audio/ultra-skills/bora__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/bora__a2.wav",
+            "sha256": "e59f8daf06a8e89febb6f45947c84fcdfd7db1881cf96f9cbef61570bcecac6b"
+        },
+        {
+            "source": "audio/ultra-skills/bora__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/bora__passive.wav",
+            "sha256": "e6dc4c496ae4a64e383649f280f984a99c2521f314d34f15049991d364651608"
+        },
+        {
+            "source": "audio/ultra-skills/bora__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/bora__ultimate.wav",
+            "sha256": "aa5dc4e2364ded3a4910ed6cc1b7f592ae9ae6cfc08dbe8f80dc1f271cfa5306"
+        },
+        {
+            "source": "audio/ultra-skills/bron__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/bron__a1.wav",
+            "sha256": "a3c06ed08d36a67857826b6588ea4c3c0dd7d6396ddba7839db4e94b61153269"
+        },
+        {
+            "source": "audio/ultra-skills/bron__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/bron__a2.wav",
+            "sha256": "06e7196bb62d55ecabe1c1ec161a61252b9662d9f412d1bbbd52b991debb8c37"
+        },
+        {
+            "source": "audio/ultra-skills/bron__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/bron__passive.wav",
+            "sha256": "c7870d4a4608a12dfa5c36b577186377dd2c397c2921eb7fa08f3f2451592c94"
+        },
+        {
+            "source": "audio/ultra-skills/bron__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/bron__ultimate.wav",
+            "sha256": "a7f28379e001fcbe20490e9ca619084024fc87166f0624bd18bad1af9ef21656"
+        },
+        {
+            "source": "audio/ultra-skills/caelum__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/caelum__a1.wav",
+            "sha256": "d1569e05302772828875d1709b8d84bbfc58046c549747caeee90411d3b85433"
+        },
+        {
+            "source": "audio/ultra-skills/caelum__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/caelum__a2.wav",
+            "sha256": "1eed7d1eb2269e131a06b40ea1385fff5ea375357f47cd40ccba8f6eb7996ea7"
+        },
+        {
+            "source": "audio/ultra-skills/caelum__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/caelum__passive.wav",
+            "sha256": "26f355432614b823a4845142c0b5a9b25ce9f5ec347f9d3091da3908d8387ed0"
+        },
+        {
+            "source": "audio/ultra-skills/caelum__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/caelum__ultimate.wav",
+            "sha256": "9f86b1e62d2b73d5ec6b08ab45907b349fbac1c0cc846e07bb6c66115b231332"
+        },
+        {
+            "source": "audio/ultra-skills/corvin__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/corvin__a1.wav",
+            "sha256": "a4441d1ad9ebaebcb4e03d93b85fb164df347d63a3bb9ec78ec1a1eee12612cd"
+        },
+        {
+            "source": "audio/ultra-skills/corvin__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/corvin__a2.wav",
+            "sha256": "2699c50a40a484dcba78673a0f3b133c7c01a970d775c3651bfd318977e78462"
+        },
+        {
+            "source": "audio/ultra-skills/corvin__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/corvin__passive.wav",
+            "sha256": "0a7e463d88c9c76b07e08ed69f242ad19c458ab14a9f71fab0d7b234c2642499"
+        },
+        {
+            "source": "audio/ultra-skills/corvin__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/corvin__ultimate.wav",
+            "sha256": "cff4e3c7d284347ed47fdcb1dfaa5110bb435b0a1352685c48a95e56be2e219a"
+        },
+        {
+            "source": "audio/ultra-skills/darius__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/darius__a1.wav",
+            "sha256": "7bf9ff8b84be67424087c3b0d525d948e5619e528248ea7844ed9e8356dcf97e"
+        },
+        {
+            "source": "audio/ultra-skills/darius__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/darius__a2.wav",
+            "sha256": "de9e5152e54f11796741f9d28cbd7af225b2d1483bfe6af6fb9c29e21d8e0b4e"
+        },
+        {
+            "source": "audio/ultra-skills/darius__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/darius__passive.wav",
+            "sha256": "f90953291d77cea344bb9118c61d2ce2b11d934dce4de3ea398c4959dcee591b"
+        },
+        {
+            "source": "audio/ultra-skills/darius__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/darius__ultimate.wav",
+            "sha256": "2af60397576a040232832d5d83bc8c3d4358c425e49ae146eca221d6aca6fe3c"
+        },
+        {
+            "source": "audio/ultra-skills/elisia__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/elisia__a1.wav",
+            "sha256": "77210bbbaf6e5e0383b54d9831c2ee5ed58e9f833f6b3b19449855624e89ff0d"
+        },
+        {
+            "source": "audio/ultra-skills/elisia__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/elisia__a2.wav",
+            "sha256": "2b1abad1d13570137908fe69e1bf9323914279fb35ae7bc1de93e305df6fbf0d"
+        },
+        {
+            "source": "audio/ultra-skills/elisia__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/elisia__passive.wav",
+            "sha256": "882feaf4d30ff9dbd39e29d987ba3a787667b3d4f0444624e7b8e080e93008b6"
+        },
+        {
+            "source": "audio/ultra-skills/elisia__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/elisia__ultimate.wav",
+            "sha256": "d0b5a1b68b84e61d80d8085b6aa7aef46c52de09ec9d56cff53139799d7de417"
+        },
+        {
+            "source": "audio/ultra-skills/fenris__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/fenris__a1.wav",
+            "sha256": "3ebb7d0ca1b6555d38240a09244dbb610839c5222c1a1ee877267d2c995812b3"
+        },
+        {
+            "source": "audio/ultra-skills/fenris__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/fenris__a2.wav",
+            "sha256": "62cb2e1187f4964a6b6911b68ed2b4f3f6a85ab81f68861a3f2d550e547f05e0"
+        },
+        {
+            "source": "audio/ultra-skills/fenris__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/fenris__passive.wav",
+            "sha256": "044e8729b023500bcd8d5bd27f3e7934ddf8e10b9eea1ff805d066b6f4be6d60"
+        },
+        {
+            "source": "audio/ultra-skills/fenris__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/fenris__ultimate.wav",
+            "sha256": "7df1775b0a7aab53897f777c9a70bd02aaa191454fefcf145c3264650b8a94e3"
+        },
+        {
+            "source": "audio/ultra-skills/garm__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/garm__a1.wav",
+            "sha256": "e5f7cad5da2c9115aa601e5034228868e983945fc488c140629a51a967ba2aef"
+        },
+        {
+            "source": "audio/ultra-skills/garm__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/garm__a2.wav",
+            "sha256": "16db8ec5854c3e4b0e437fa3fbb70539028efda515b25add71cda5c5e5d2842a"
+        },
+        {
+            "source": "audio/ultra-skills/garm__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/garm__passive.wav",
+            "sha256": "bdca3b3b45e10eb91dcce837b7e7412244f6e64c2b16502591857ee30d5d17a5"
+        },
+        {
+            "source": "audio/ultra-skills/garm__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/garm__ultimate.wav",
+            "sha256": "e80985c9598f119ce3fa55ba33e8055c3d576f6de594e36926cbf04d1d8646c4"
+        },
+        {
+            "source": "audio/ultra-skills/isolde__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/isolde__a1.wav",
+            "sha256": "4203c8923ca44247db94e86befc7673cc7a7c94b8d41f7bba87d7f1227a15101"
+        },
+        {
+            "source": "audio/ultra-skills/isolde__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/isolde__a2.wav",
+            "sha256": "74f8cbbbba2246df1e60ae94c36306af00a9d29738d78a7beeeb4fdeb6bc8f4e"
+        },
+        {
+            "source": "audio/ultra-skills/isolde__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/isolde__passive.wav",
+            "sha256": "e498063d9d32d5d6dc53bd95de89ae11a8f000fe8978fd76ee879bc195212b00"
+        },
+        {
+            "source": "audio/ultra-skills/isolde__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/isolde__ultimate.wav",
+            "sha256": "2c29c91605b886e5a929d67399f00e9bcf75cae247413699e4edad0a9472e650"
+        },
+        {
+            "source": "audio/ultra-skills/kairen__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/kairen__a1.wav",
+            "sha256": "3206a5b4788aeabf9a2c68f14af7a1541f1dfb9e71cedf73e58dd71aca89c240"
+        },
+        {
+            "source": "audio/ultra-skills/kairen__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/kairen__a2.wav",
+            "sha256": "2d3a101f6d8432c4b81f7b876b481370539b89e63bd008a70787cd051b9b1745"
+        },
+        {
+            "source": "audio/ultra-skills/kairen__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/kairen__passive.wav",
+            "sha256": "3556615be374d6349603a2133116a758315a918c1718c2c2510db97de724431d"
+        },
+        {
+            "source": "audio/ultra-skills/kairen__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/kairen__ultimate.wav",
+            "sha256": "51b3e8d41fd3e8d42b15e5995868479fbd12561f535d29c4f91b68d65b4060bd"
+        },
+        {
+            "source": "audio/ultra-skills/leonhardt__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/leonhardt__a1.wav",
+            "sha256": "7f9327868d59272eb5115597504d70409d62faf095c05cd1b299c11645adf3f4"
+        },
+        {
+            "source": "audio/ultra-skills/leonhardt__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/leonhardt__a2.wav",
+            "sha256": "92742a74df6674683d432fc2ec9266bdb53c007f7664fb5e67422e5edef4b4b5"
+        },
+        {
+            "source": "audio/ultra-skills/leonhardt__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/leonhardt__passive.wav",
+            "sha256": "528bd52e38d2174a9e9ca1245e16942ced20316d3a63fdd57192b2086358c9c0"
+        },
+        {
+            "source": "audio/ultra-skills/leonhardt__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/leonhardt__ultimate.wav",
+            "sha256": "2c4657740f4761c1e0811dd4f339804089ab8ff0f304ddf3d6265f0d419f2b2b"
+        },
+        {
+            "source": "audio/ultra-skills/lucien__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/lucien__a1.wav",
+            "sha256": "81b238eea7ac055ef8f11208168f317806a46cbe513275c72581f28b8cdd63ca"
+        },
+        {
+            "source": "audio/ultra-skills/lucien__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/lucien__a2.wav",
+            "sha256": "f6085f700c7b7205833ac6ff447cbf63ccbe3234a38cead3e2f5ace7471e1948"
+        },
+        {
+            "source": "audio/ultra-skills/lucien__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/lucien__passive.wav",
+            "sha256": "3af6433f3af362a4a23899ec6ea5b010a43c194a5242037e60fa42fbd1cb6f85"
+        },
+        {
+            "source": "audio/ultra-skills/lucien__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/lucien__ultimate.wav",
+            "sha256": "e10676993289a91e1fec12f9e2ec9f30458274e0492913f8a9d82882827dbbbf"
+        },
+        {
+            "source": "audio/ultra-skills/lunea__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/lunea__a1.wav",
+            "sha256": "1f95e956682e3b89458f5972d595f5a3474487bfc82c0a65c7172ff3bd944cba"
+        },
+        {
+            "source": "audio/ultra-skills/lunea__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/lunea__a2.wav",
+            "sha256": "a9945575b2e42d21a8149e304703d98b54b5bd05a98b2b7402d126a0a53096d8"
+        },
+        {
+            "source": "audio/ultra-skills/lunea__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/lunea__passive.wav",
+            "sha256": "70274e1911939737317cc8915fb2d55ecbfb82f3fcaff91bb2a7f6269a0afa60"
+        },
+        {
+            "source": "audio/ultra-skills/lunea__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/lunea__ultimate.wav",
+            "sha256": "5f8ebe3819f6f0b849c0175ada53344dd6a7dfe9a7442004e93d508f3f79ac57"
+        },
+        {
+            "source": "audio/ultra-skills/mira__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/mira__a1.wav",
+            "sha256": "5a1bd0df88051622e78eedcb6008aeeaa20d7d1630abb8207a22f05637d9945a"
+        },
+        {
+            "source": "audio/ultra-skills/mira__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/mira__a2.wav",
+            "sha256": "b4f081a3d261deac9670286f39d6ac2abb4cc0d95c16f39df82f2d2a86cceb7e"
+        },
+        {
+            "source": "audio/ultra-skills/mira__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/mira__passive.wav",
+            "sha256": "edaa83fbbbd1c14e6272a2e1472b87e30fa44171ca0f627b58f2a9a6d3d6e464"
+        },
+        {
+            "source": "audio/ultra-skills/mira__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/mira__ultimate.wav",
+            "sha256": "6aecbd500946a1f83a845b640710965a4f5caaea2422f5bef9b3bb6231f6a502"
+        },
+        {
+            "source": "audio/ultra-skills/morgas__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/morgas__a1.wav",
+            "sha256": "8d1a862ad7a4eff7a0295150437a34f8aeb0c324b04dc2378c90e69af181684c"
+        },
+        {
+            "source": "audio/ultra-skills/morgas__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/morgas__a2.wav",
+            "sha256": "bd3fca7f24a070ccee90077ee8a93e12941195a7e7dc2d77751933497bf13c78"
+        },
+        {
+            "source": "audio/ultra-skills/morgas__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/morgas__passive.wav",
+            "sha256": "a805a23de3c85fed9e1bfc9c9b88d91193ebd58765671bb8990e7cb79f96b13e"
+        },
+        {
+            "source": "audio/ultra-skills/morgas__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/morgas__ultimate.wav",
+            "sha256": "fdbb251cf455fabeb2a6f8eec51b70274245f37ceec4db9cd307da45a3c6bfb4"
+        },
+        {
+            "source": "audio/ultra-skills/naia__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/naia__a1.wav",
+            "sha256": "4ad833fcbd15f4331f81ec4af30dc6b5cdeb70465c86ca360944b025e8241add"
+        },
+        {
+            "source": "audio/ultra-skills/naia__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/naia__a2.wav",
+            "sha256": "a57bf7fc126960a3bff17ebbf2b683293766d387770031c14588149a8392fbed"
+        },
+        {
+            "source": "audio/ultra-skills/naia__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/naia__passive.wav",
+            "sha256": "a13ec7bd7b82b6ce39d33e1f466ff7d0d79b9546a01e53de468b44f1cd4112cb"
+        },
+        {
+            "source": "audio/ultra-skills/naia__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/naia__ultimate.wav",
+            "sha256": "ad9f9dcf223f5f783afbe2e700aea85f14fa8d5b6ea432cd83972392555ef794"
+        },
+        {
+            "source": "audio/ultra-skills/nyx__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/nyx__a1.wav",
+            "sha256": "3d8bbb659bc6f12f374b3d8b2a912def84ab149f2862e27cb37a9f53c0237604"
+        },
+        {
+            "source": "audio/ultra-skills/nyx__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/nyx__a2.wav",
+            "sha256": "828fc05cb40bb300c4c26bdfd2917394f758aea968a31faf0bd7d4748abd8654"
+        },
+        {
+            "source": "audio/ultra-skills/nyx__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/nyx__passive.wav",
+            "sha256": "0a315dddbaa53957da7c1fcece8294c8fc413fbd05a94387908e25dd38bc6b25"
+        },
+        {
+            "source": "audio/ultra-skills/nyx__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/nyx__ultimate.wav",
+            "sha256": "0fc4a84f6fc8fa1e5ebac60c50efb78fdc1f3ee50a4fd254d3feadacd46743d4"
+        },
+        {
+            "source": "audio/ultra-skills/odelia__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/odelia__a1.wav",
+            "sha256": "578ae3bb1c3d24f22aa5e57b3e7c68a7901b87c8670120903c0f5d9bdfaeb908"
+        },
+        {
+            "source": "audio/ultra-skills/odelia__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/odelia__a2.wav",
+            "sha256": "dbf1f1e9fcf4aecfa4c6567c3ea68eb721f1b64bc326a3099abccbe2afe0c9dd"
+        },
+        {
+            "source": "audio/ultra-skills/odelia__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/odelia__passive.wav",
+            "sha256": "f281ae0b3cce0fbbdfaa0556193f18245336a7cea6372f315b0025a9393143c0"
+        },
+        {
+            "source": "audio/ultra-skills/odelia__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/odelia__ultimate.wav",
+            "sha256": "e77a72ca454736c6df0f5ac45190b297362e0fa054d40a743f3072198b300975"
+        },
+        {
+            "source": "audio/ultra-skills/orwin__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/orwin__a1.wav",
+            "sha256": "b72bd48680ea52630a8c7dda5391aaf5fbf1f4ad0acbda9096cd96e9d4ddeabc"
+        },
+        {
+            "source": "audio/ultra-skills/orwin__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/orwin__a2.wav",
+            "sha256": "571ffb1138fe2e9f9574166e4c91cb08a8c26afcd326f0ee97ece85c37ca71e0"
+        },
+        {
+            "source": "audio/ultra-skills/orwin__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/orwin__passive.wav",
+            "sha256": "27c9fe83e9770cfe25a27ea7c2f450a5eb74c9f197d929e9722e58c1fbeec425"
+        },
+        {
+            "source": "audio/ultra-skills/orwin__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/orwin__ultimate.wav",
+            "sha256": "0fd2014a4eb3a3330aba48da07ef63538e97bb54008b05f3eb65c9191e9cea13"
+        },
+        {
+            "source": "audio/ultra-skills/ragna__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/ragna__a1.wav",
+            "sha256": "adf4bd5b4f4e7ceccb04d467ed5099d054416f800fa21673bb98539cb1ee67d0"
+        },
+        {
+            "source": "audio/ultra-skills/ragna__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/ragna__a2.wav",
+            "sha256": "a39af99cbac26d2aab37599013e9b6fbbff8496dc43eb64affab009cc8e46f5c"
+        },
+        {
+            "source": "audio/ultra-skills/ragna__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/ragna__passive.wav",
+            "sha256": "62eebf49cd8801144203f08c1b4935299f2469e3358b408369dfc8e8c3359b9b"
+        },
+        {
+            "source": "audio/ultra-skills/ragna__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/ragna__ultimate.wav",
+            "sha256": "494cb3a937dbc5f20627dc3b861d52cdac76aea554e52da8d475ec9523425499"
+        },
+        {
+            "source": "audio/ultra-skills/rokan__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/rokan__a1.wav",
+            "sha256": "3c573adeed8c8cd7bdd0c56fa915edeead5bd40736de1a8eeb887be7a08e41f4"
+        },
+        {
+            "source": "audio/ultra-skills/rokan__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/rokan__a2.wav",
+            "sha256": "624383366b6f699020ca2a70e06d0ce6ba95e325ff62fda946991e6e89148ceb"
+        },
+        {
+            "source": "audio/ultra-skills/rokan__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/rokan__passive.wav",
+            "sha256": "034c664257111108f52b1e23254e9870d52fdf1f657fc41710c78a0de6ea5765"
+        },
+        {
+            "source": "audio/ultra-skills/rokan__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/rokan__ultimate.wav",
+            "sha256": "7e10675cf2e2d5a4290d206f3c4d6573e045e34ff91fa52c6614f962237d815c"
+        },
+        {
+            "source": "audio/ultra-skills/sael__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/sael__a1.wav",
+            "sha256": "07c82ffdeb166cf56ac1a09c711cb5515ded106cf0694298217a1cdd5c237b30"
+        },
+        {
+            "source": "audio/ultra-skills/sael__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/sael__a2.wav",
+            "sha256": "5c804b72ade033e5509f377c01319c5a69bea883b56dc2483845ef4c3d4144ca"
+        },
+        {
+            "source": "audio/ultra-skills/sael__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/sael__passive.wav",
+            "sha256": "d0fa02fd923bc9b7779423d1e0f1f66f2e60d070682ef3f6b21da43b63105e60"
+        },
+        {
+            "source": "audio/ultra-skills/sael__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/sael__ultimate.wav",
+            "sha256": "b3dd1c448b0a015911f54e65706f12f65190e5fc69ec55e6224a388ccd5045a4"
+        },
+        {
+            "source": "audio/ultra-skills/selene__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/selene__a1.wav",
+            "sha256": "e243d42c3ab8430c113660bb38bcc8b0ae6a87da86b61cbf30ad3127ec75b543"
+        },
+        {
+            "source": "audio/ultra-skills/selene__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/selene__a2.wav",
+            "sha256": "0a466edf60237e830de3302f9da4bee4fa3d6d57f867799f88ee118470f200d6"
+        },
+        {
+            "source": "audio/ultra-skills/selene__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/selene__passive.wav",
+            "sha256": "c3fd2abd3a3519ff3b94e907016ce315c495621e0290a75131f7c67f06cbb4ea"
+        },
+        {
+            "source": "audio/ultra-skills/selene__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/selene__ultimate.wav",
+            "sha256": "599bfc2f9d92287621b430922bb679d19ede74a985ef8997ebfbd9e95b121ebe"
+        },
+        {
+            "source": "audio/ultra-skills/seria__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/seria__a1.wav",
+            "sha256": "524c641de7fd0425675fbd6e2a0d26bb047050548c894ebf386d218b39e68710"
+        },
+        {
+            "source": "audio/ultra-skills/seria__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/seria__a2.wav",
+            "sha256": "a93916ce402a057a15c06c5a98529002d41fbc4fe4aa07085ef10dcf41445195"
+        },
+        {
+            "source": "audio/ultra-skills/seria__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/seria__passive.wav",
+            "sha256": "6ef5783df9e0d237aa493176b592797d71d83c5fc6d402c1fd0b691cdcd3f233"
+        },
+        {
+            "source": "audio/ultra-skills/seria__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/seria__ultimate.wav",
+            "sha256": "cd6589a11fd01508fbc34b517acf4d93ab4bcb53f49ff1e78b83fc6523eaf4f8"
+        },
+        {
+            "source": "audio/ultra-skills/tessa__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/tessa__a1.wav",
+            "sha256": "5a304428f07a27792b955e087018eb3f164e45961c3961dbe5c360112314c81a"
+        },
+        {
+            "source": "audio/ultra-skills/tessa__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/tessa__a2.wav",
+            "sha256": "86a139e5fce7ed6df3c33850cc507f8d5bc812e27d8901d1c3df619e0904bfaf"
+        },
+        {
+            "source": "audio/ultra-skills/tessa__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/tessa__passive.wav",
+            "sha256": "c256059824dac4693efbb78899c989a72d43f9af02147c8378e6b0c4cc124285"
+        },
+        {
+            "source": "audio/ultra-skills/tessa__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/tessa__ultimate.wav",
+            "sha256": "9ab4b69845d118681d672a6165d7ec36c02af69a608d2d7ff0330210d64bafc5"
+        },
+        {
+            "source": "audio/ultra-skills/ulric__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/ulric__a1.wav",
+            "sha256": "3fe55175fa9ef088ae300898830f463a026535211d250db8af9672f0a4ca15d2"
+        },
+        {
+            "source": "audio/ultra-skills/ulric__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/ulric__a2.wav",
+            "sha256": "6412c574ed8a6e42e3c48576dc9b7a50602dcd7008ca8b90ecf9288754c01dbe"
+        },
+        {
+            "source": "audio/ultra-skills/ulric__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/ulric__passive.wav",
+            "sha256": "542d95850076cd07b67955673be3489af5ebd38dde86270ec4e428bd3e080aa8"
+        },
+        {
+            "source": "audio/ultra-skills/ulric__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/ulric__ultimate.wav",
+            "sha256": "e891cae2af8aa5d303b1eeac863eb64a348f67ac559bc46a7dece02ce605a14b"
+        },
+        {
+            "source": "audio/ultra-skills/valeria__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/valeria__a1.wav",
+            "sha256": "8d6938d633d0e1907485c4bc0384dfe2e7e2ddf8d509e49472581c3c8587c0a2"
+        },
+        {
+            "source": "audio/ultra-skills/valeria__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/valeria__a2.wav",
+            "sha256": "1327df11891a611f770c6dd4f276087ca816193e2c51789bdbbe5559bdb3ebd0"
+        },
+        {
+            "source": "audio/ultra-skills/valeria__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/valeria__passive.wav",
+            "sha256": "46d1a151d7ba466b8007d56c19a9ccddadec5fc8da7fd683b1c336b391cff7d0"
+        },
+        {
+            "source": "audio/ultra-skills/valeria__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/valeria__ultimate.wav",
+            "sha256": "cff1c5474c762664a7b0ea3568994461bbd39640de3a284ee1efd4ec547fdfa4"
+        },
+        {
+            "source": "audio/ultra-skills/veyra__a1.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/veyra__a1.wav",
+            "sha256": "f40dfefdeb2c99d031601e8d946c158bd868dbeb1d2e6586160a1e3caa3f10e2"
+        },
+        {
+            "source": "audio/ultra-skills/veyra__a2.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/veyra__a2.wav",
+            "sha256": "b57e2614077b73f689854cb6a76fe18c9b7bf5c94993a483f1d11b04fa2409bb"
+        },
+        {
+            "source": "audio/ultra-skills/veyra__passive.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/veyra__passive.wav",
+            "sha256": "272d9916b0f1363e1dc81963d4cefd443c065482d384f6c2a7af07b5796676a2"
+        },
+        {
+            "source": "audio/ultra-skills/veyra__ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/Skills/veyra__ultimate.wav",
+            "sha256": "da6117d556362c83c7ac07b333be107c392bf292cee1626628937d2d5a6a12be"
+        },
+        {
+            "source": "audio/v82/ambient_forest.ogg",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/ambient_forest.ogg",
+            "sha256": "2312c5edf9b3cf1a569aa2baa047d64b2f567313c9be85ade8e996bac85bd205"
+        },
+        {
+            "source": "audio/v82/ambient_meadow.ogg",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/ambient_meadow.ogg",
+            "sha256": "d7f67a5e741a2afe387743606e058e2c7dbb67eeb206a7674866930215f4a83a"
+        },
+        {
+            "source": "audio/v82/ambient_mine.ogg",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/ambient_mine.ogg",
+            "sha256": "6a05d9d91629cf29124d4dfd71c15c6eaae45cf7d72087ab88db7b2dd126772f"
+        },
+        {
+            "source": "audio/v82/boss.ogg",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/boss.ogg",
+            "sha256": "b34a80f1618b3f1c02d58b142776b607c119650b179937fc654a474121c78b82"
+        },
+        {
+            "source": "audio/v82/boss_warning.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/boss_warning.wav",
+            "sha256": "4b56af350e07a3dc9304a1a9273de6e043bf098a274a89aeff47a7e7f3f79699"
+        },
+        {
+            "source": "audio/v82/bow.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/bow.wav",
+            "sha256": "145d9171452aa225f509c9f24ff3ef525b4d4bb19381873989213c646e495c56"
+        },
+        {
+            "source": "audio/v82/control.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/control.wav",
+            "sha256": "2807af0299090fdb48f9065b7a87f8825bbe54193186e6d73ab235b4a3021f55"
+        },
+        {
+            "source": "audio/v82/critical.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/critical.wav",
+            "sha256": "eb3d93ab9ea86cdd25645d118aa66569671d781af7465fa83d9d18b3a51cf840"
+        },
+        {
+            "source": "audio/v82/defeat.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/defeat.wav",
+            "sha256": "de38ab431b10be6429decdd74d2b2812188218e8b4e4c599b1d1793961fd777e"
+        },
+        {
+            "source": "audio/v82/equip.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/equip.wav",
+            "sha256": "7786b493a7f943f008711928ed924e1e107a108e6d1c19b148768bcbc2751b5c"
+        },
+        {
+            "source": "audio/v82/forest.ogg",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/forest.ogg",
+            "sha256": "95769cdbb0d0e50f62fba2e0c62971ceb58e22fe594f6b39527464274cbfd12b"
+        },
+        {
+            "source": "audio/v82/guard.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/guard.wav",
+            "sha256": "f3e519c882da5d333fc42594619465df19cef4e8ffb5058b03a33bd4bbd5b9e0"
+        },
+        {
+            "source": "audio/v82/heal.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/heal.wav",
+            "sha256": "01c6bd6d0ab7e7ef3f5b8d95bc98442aa16b1fd299f1177b0d7a41464f9fd077"
+        },
+        {
+            "source": "audio/v82/magic.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/magic.wav",
+            "sha256": "f9ed957078469213d8c46986e43454395c5d4b0db58184921e1d045d11a862b4"
+        },
+        {
+            "source": "audio/v82/meadow.ogg",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/meadow.ogg",
+            "sha256": "ac69bd1b9a13369b798cc0296395296044ab18dad5d6ea9ed5902a72530c586d"
+        },
+        {
+            "source": "audio/v82/mine.ogg",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/mine.ogg",
+            "sha256": "f578257dcecf2db83267d54230bd3d866d40aaa6f08aef764102d1723db9f7b4"
+        },
+        {
+            "source": "audio/v82/monster_bold.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/monster_bold.wav",
+            "sha256": "7c4d17df9c2c68a238a271f827e64ad58344cbbae2851a4a57aea79d66835dcd"
+        },
+        {
+            "source": "audio/v82/monster_cautious.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/monster_cautious.wav",
+            "sha256": "77c4e6ad384214b5b1cc6814fa60db851a51cb6fe724287e25cbba9c4f00f742"
+        },
+        {
+            "source": "audio/v82/monster_flanker.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/monster_flanker.wav",
+            "sha256": "4f6c0c05c9bb381fec5c652e7f76b8139b7712d6e3648bd652cf5601a4127a78"
+        },
+        {
+            "source": "audio/v82/monster_pack.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/monster_pack.wav",
+            "sha256": "dfe62a50b8a9c1b0fc60197e160bec9df3b343ff60e772162821d9ba579e16a6"
+        },
+        {
+            "source": "audio/v82/reward.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/reward.wav",
+            "sha256": "01f9ce5c9bcd49a4f6ca3e79817aeb55d53f0105ad2c3ab509cc11c798d65eeb"
+        },
+        {
+            "source": "audio/v82/shield_break.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/shield_break.wav",
+            "sha256": "5e6983832e566f764ca506504c6b6f6b082019030c3c3875205dd9707a846d9b"
+        },
+        {
+            "source": "audio/v82/summon.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/summon.wav",
+            "sha256": "e2c0ea3da4a81ecd4f6ac09275c58f632f29247b9cb6a23f39a7a4e6c8696b70"
+        },
+        {
+            "source": "audio/v82/sword.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/sword.wav",
+            "sha256": "1df763c5dbc228eaf0e0e830b33a0e93be7e92057029e3310e370f7ec789d7ac"
+        },
+        {
+            "source": "audio/v82/ui_click.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/ui_click.wav",
+            "sha256": "120934766369d3e37575bad34f1543333cdaa2b9d048d65de7bc68635ad2b288"
+        },
+        {
+            "source": "audio/v82/ultimate.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/ultimate.wav",
+            "sha256": "3c20a3ae66bd0378536b5bbe4db7e2b5b2760ef13b63173006c6c52d3c98590b"
+        },
+        {
+            "source": "audio/v82/upgrade.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/upgrade.wav",
+            "sha256": "e76dd82cb5a1c758dc189d9b5b7da01e14fe9c8ab9aaa9b9aa5a397a36c1d114"
+        },
+        {
+            "source": "audio/v82/victory.wav",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Audio/victory.wav",
+            "sha256": "11d71ce0ffcea6167ce6d2f12b625ae76de26450b522a7c9bcee08525fd5f332"
+        },
+        {
+            "source": "assets/fonts/combat/outfit/Outfit-ExtraBold.ttf",
+            "destination": "Assets/OriginalImported/Resources/Eternal/Fonts/Outfit-ExtraBold.ttf",
+            "sha256": "0f028cbdc61a588bc44fef911e8d2bcfc0bc05b241a9b797686024d269d964b6"
+        }
+    ]
+}
