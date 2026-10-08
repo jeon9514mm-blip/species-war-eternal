@@ -1,0 +1,14 @@
+{
+  "review": "isolated native Unity hunting fixture, not migrated player state",
+  "hero_list_pointer_opened": true,
+  "hero_list_entries": 30,
+  "hero_detail_pointer_opened": "leonhardt",
+  "detail_slots_visible": ["passive", "a1", "a2", "ultimate"],
+  "simulation_observed_while_panel_open": {"rendered_frames": 22862, "ticks": 7658, "packs_cleared": 35},
+  "current_console_ground_truth": {"compilation_failed": false, "errors": 0, "warnings": 0},
+  "history_retained": "Earlier Pipeline timeout/missing-command messages and the corrected UI-theme warning remain in history.",
+  "known_tooling_failure": "One set_autotick request returned HTTP 400 after reload; Play remained connected and frame progression was separately verified.",
+  "screenshots": ["Unity/Assets/Screenshots/native-hunting-first.png", "Unity/Assets/Screenshots/native-hero-skills.png"],
+  "fps_benchmark": "not performed",
+  "pending": ["live player-save import", "full economy and inventory", "guardian integration", "editable skill chain", "native raids", "final graphics parity", "standalone build"]
+}

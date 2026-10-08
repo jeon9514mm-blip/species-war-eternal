@@ -1,0 +1,150 @@
+using System;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using UnityEngine;
+
+namespace Eternal.UnityMigration
+{
+    // Bounded observers: no combat clocks, player state or settlement logic.
+    public sealed class HuntingFeedback : MonoBehaviour
+    {
+        struct Spark {public Vector3 position,velocity;public Color color;public float remaining,total,size;}
+        struct Popup {public Vector3 position;public string text;public Color color;public float remaining;}
+        readonly Spark[] sparks=new Spark[320];
+        readonly Popup[] popups=new Popup[32];
+        readonly Vector3[] vertices=new Vector3[1280];
+        readonly Color[] colors=new Color[1280];
+        readonly Dictionary<string,JObject> profiles=new();
+        readonly Dictionary<string,AudioClip> audio=new();
+        readonly List<LineRenderer> rings=new();
+        readonly AudioSource[] voices=new AudioSource[8];
+        readonly System.Random rng=new(74013);
+        Camera cameraView;
+        Material particleMaterial,shadowMaterial,runeMaterial;
+        Mesh particleMesh;
+        Texture2D shadowTexture;
+        Font outfit;
+        GUIStyle damageStyle;
+        Vector3 baseCamera;
+        float baseSize,shakeUntil,shakePixels,zoomUntil,nextStrongImpact,screenFlash;
+        int sparkCursor,popupCursor,voiceCursor;
+        public int ActiveParticles {get;private set;}
+        public int EventsPresented {get;private set;}
+        public void Initialize(Camera camera)
+        {
+            cameraView=camera;baseCamera=camera.transform.position;baseSize=camera.orthographicSize;
+            var legacy=JObject.Parse(OriginalCatalog.Required("legacy-catalogs").text);
+            foreach(JObject p in legacy["skill_vfx"])profiles[(string)p["signature"]]=p;
+            particleMaterial=Resources.Load<Material>("Eternal/Materials/Particles");
+            particleMesh=new Mesh{name="Bounded skill particles"};particleMesh.MarkDynamic();
+            var uv=new Vector2[1280];var triangles=new int[1920];
+            for(int i=0;i<320;i++)
+            {int v=i*4,t=i*6;uv[v]=Vector2.zero;uv[v+1]=Vector2.up;uv[v+2]=Vector2.one;uv[v+3]=Vector2.right;triangles[t]=v;triangles[t+1]=v+1;triangles[t+2]=v+2;triangles[t+3]=v;triangles[t+4]=v+2;triangles[t+5]=v+3;}
+            particleMesh.vertices=vertices;particleMesh.colors=colors;particleMesh.uv=uv;particleMesh.triangles=triangles;particleMesh.bounds=new Bounds(Vector3.zero,new Vector3(60,30,60));
+            var batch=new GameObject("Skill particle batch");batch.transform.SetParent(transform,false);batch.AddComponent<MeshFilter>().sharedMesh=particleMesh;batch.AddComponent<MeshRenderer>().sharedMaterial=particleMaterial;
+            shadowTexture=new Texture2D(64,64,TextureFormat.RGBA32,false);
+            var pixels=new Color[4096];for(int y=0;y<64;y++)for(int x=0;x<64;x++){float r=Vector2.Distance(new Vector2(x,y),new Vector2(31.5f,31.5f))/32;pixels[y*64+x]=new Color(1,1,1,Mathf.Clamp01((1-r)*2.2f));}
+            shadowTexture.SetPixels(pixels);shadowTexture.Apply();
+            shadowMaterial=new Material(Resources.Load<Material>("Eternal/Materials/OriginalPaint"));shadowMaterial.mainTexture=shadowTexture;shadowMaterial.SetColor("_Tint",new Color(.015f,.02f,.015f,.7f));
+            outfit=Resources.Load<Font>("Eternal/Fonts/Outfit-ExtraBold");
+            for(int i=0;i<8;i++){var voice=new GameObject("Bounded positional voice "+i);voice.transform.SetParent(transform,false);voices[i]=voice.AddComponent<AudioSource>();voices[i].playOnAwake=false;voices[i].spatialBlend=.4f;voices[i].volume=.14f;}
+            CreateCircle();
+        }
+        public void AddShadow(Transform actor,float width)
+        {
+            var shadow=GameObject.CreatePrimitive(PrimitiveType.Quad);shadow.name="Ground contact shadow";Destroy(shadow.GetComponent<Collider>());
+            shadow.transform.SetParent(actor,false);shadow.transform.localPosition=new Vector3(0,-.015f,.12f);shadow.transform.localRotation=Quaternion.Euler(90,0,0);shadow.transform.localScale=new Vector3(width*2,width*1.1f,1);shadow.GetComponent<Renderer>().sharedMaterial=shadowMaterial;
+        }
+        void CreateCircle()
+        {
+            runeMaterial=new Material(particleMaterial);runeMaterial.SetFloat("_SoftDot",0);
+            for(int ring=0;ring<3;ring++)
+            {
+                var line=new GameObject("Moss bronze expedition rune "+ring).AddComponent<LineRenderer>();line.transform.SetParent(transform,false);
+                line.sharedMaterial=runeMaterial;line.useWorldSpace=true;line.loop=true;line.positionCount=96;line.widthMultiplier=ring==1?.028f:.055f;
+                var color=ring==1?new Color(.91f,.79f,.6f,.65f):new Color(.66f,.72f,.62f,.38f);line.startColor=line.endColor=color;rings.Add(line);
+            }
+        }
+        static Color Parse(JObject p,string key,Color fallback)=>ColorUtility.TryParseHtmlString((string)p?[key]??"",out var color)?color:fallback;
+        public void Observe(BattleEvent e,HuntingSimulation simulation)
+        {
+            EventsPresented++;
+            var position=new Vector3(e.Position.x,.9f,e.Position.y);
+            if(e.Kind=="cast"||e.Kind=="passive")
+            {
+                if(!profiles.TryGetValue(e.Source+":"+e.Slot,out var p))return;
+                var color=Parse(p,"color",new Color(.66f,.72f,.62f));int particles=(int)(p["particles"]??16);
+                // Ultra identity data remains intact; concurrency is bounded so
+                // ten heroes cannot create unbounded particle/voice work.
+                Burst(position,color,Math.Min(particles,e.Slot=="ultimate"?40:16),e.Slot=="ultimate"?1.8f:.8f,(string)p["motif"]);
+                Play("Skills/"+e.Source+"__"+e.Slot,position,.11f);
+            }
+            else if(e.Kind=="damage"||e.Kind=="critical"||e.Kind=="hero_hit")
+            {
+                bool critical=e.Kind=="critical";var color=critical?new Color(1,.84f,0):e.Kind=="hero_hit"?new Color(.86f,.54f,.48f):new Color(.85f,.84f,.8f);
+                if(e.Amount>0)popups[popupCursor++%popups.Length]=new Popup{position=position+Vector3.up*.6f,text=(critical?"CRIT ":"")+e.Amount.ToString("N0"),color=color,remaining=.8f};
+                Burst(position,critical?color:new Color(.77f,.64f,.52f),critical?20:5,.55f,"spark");
+                float now=Time.unscaledTime;if(now>=nextStrongImpact)
+                {shakePixels=critical?5:2;shakeUntil=now+.08f;nextStrongImpact=now+.20f;if(critical){zoomUntil=now+.1f;screenFlash=.04f;}}
+                Play(critical?"crit":"hit",position,.08f);
+            }
+            else if(e.Kind=="loot")
+            {Burst(new Vector3(0,.5f,0),new Color(.77f,.64f,.52f),20,1.4f,"beam");Play("loot",Vector3.zero,.17f);}
+            else if(e.Kind=="heal"||e.Kind=="shield")Burst(position,new Color(.66f,.78f,.65f),6,.5f,e.Kind);
+        }
+        void Burst(Vector3 origin,Color color,int count,float power,string motif)
+        {
+            for(int i=0;i<count;i++)
+            {
+                double angle=i*Math.PI*2/count+rng.NextDouble()*.16;
+                bool beam=motif=="beam",slash=motif=="lunge"||motif=="cleave"||motif=="fang";
+                var direction=beam?Vector3.up:slash?new Vector3((float)Math.Cos(angle)*2,.25f,(float)Math.Sin(angle)*.3f):new Vector3((float)Math.Cos(angle),.4f+(float)rng.NextDouble(),(float)Math.Sin(angle));
+                sparks[sparkCursor++%sparks.Length]=new Spark{position=origin,velocity=direction*power,color=color,total=beam?.85f:.35f+(float)rng.NextDouble()*.25f,remaining=beam?.85f:.35f+(float)rng.NextDouble()*.25f,size=beam?.05f:.025f+(float)rng.NextDouble()*.035f};
+            }
+        }
+        void Play(string key,Vector3 position,float volume)
+        {
+            if(!audio.TryGetValue(key,out var clip)){clip=Resources.Load<AudioClip>("Eternal/Audio/"+key);audio[key]=clip;}
+            if(clip==null)return;var voice=voices[voiceCursor++%voices.Length];if(voice.isPlaying)return;
+            voice.transform.position=position;voice.pitch=.94f+(float)rng.NextDouble()*.12f;voice.PlayOneShot(clip,volume);
+        }
+        void LateUpdate()
+        {
+            if(cameraView==null)return;float dt=Time.unscaledDeltaTime,now=Time.unscaledTime;ActiveParticles=0;
+            var right=cameraView.transform.right;var up=cameraView.transform.up;
+            for(int i=0;i<sparks.Length;i++)
+            {
+                var s=sparks[i];int v=i*4;s.remaining=Mathf.Max(0,s.remaining-dt);
+                if(s.remaining>0){ActiveParticles++;s.velocity+=Vector3.down*.8f*dt;s.position+=s.velocity*dt;float size=s.size*Mathf.Clamp01(s.remaining/.12f);vertices[v]=s.position-right*size-up*size;vertices[v+1]=s.position-right*size+up*size;vertices[v+2]=s.position+right*size+up*size;vertices[v+3]=s.position+right*size-up*size;var c=s.color;c.a=Mathf.Clamp01(s.remaining/.15f);colors[v]=colors[v+1]=colors[v+2]=colors[v+3]=c;}
+                else colors[v]=colors[v+1]=colors[v+2]=colors[v+3]=Color.clear;
+                sparks[i]=s;
+            }
+            particleMesh.vertices=vertices;particleMesh.colors=colors;
+            for(int i=0;i<popups.Length;i++){var p=popups[i];p.remaining=Mathf.Max(0,p.remaining-dt);p.position+=Vector3.up*.55f*dt;popups[i]=p;}
+            float unit=baseSize*2/Mathf.Max(1,Screen.height*.72f);
+            float breathe=Mathf.Sin(now*Mathf.PI*2/8)*2.5f*unit;
+            var shake=now<shakeUntil?new Vector3((Mathf.PerlinNoise(now*41,0)-.5f)*shakePixels*unit,(Mathf.PerlinNoise(0,now*43)-.5f)*shakePixels*unit,0):Vector3.zero;
+            cameraView.transform.position=baseCamera+cameraView.transform.up*breathe+shake;
+            cameraView.orthographicSize=Mathf.Lerp(cameraView.orthographicSize,now<zoomUntil?baseSize/1.08f:baseSize,dt*15);
+            screenFlash=Mathf.Max(0,screenFlash-dt);
+            for(int ring=0;ring<rings.Count;ring++)for(int i=0;i<96;i++)
+            {float angle=i*Mathf.PI*2/96+now*.12f*(ring%2==0?1:-1);float radius=3.0f+ring*.13f;rings[ring].SetPosition(i,new Vector3(-3+Mathf.Cos(angle)*radius,.015f+ring*.002f,Mathf.Sin(angle)*radius*1.42f));}
+        }
+        void OnGUI()
+        {
+            if(cameraView==null)return;
+            damageStyle??=new GUIStyle(GUI.skin.label){font=outfit,fontSize=24,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};
+            foreach(var p in popups)
+            {
+                if(p.remaining<=0)continue;var point=cameraView.WorldToScreenPoint(p.position);if(point.z<=0)continue;
+                var rect=new Rect(point.x-65,Screen.height-point.y-20,130,40);float alpha=Mathf.Clamp01(p.remaining/.15f);
+                GUI.color=new Color(0,0,0,alpha*.8f);for(int i=0;i<4;i++){var outline=rect;outline.x+=i%2==0?-2:2;outline.y+=i<2?-2:2;GUI.Label(outline,p.text,damageStyle);}
+                var color=p.color;color.a=alpha;GUI.color=color;GUI.Label(rect,p.text,damageStyle);
+            }
+            if(screenFlash>0){GUI.color=new Color(1,.9f,.7f,screenFlash*.8f);GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height),Texture2D.whiteTexture);}
+            GUI.color=Color.white;
+        }
+        void OnDestroy()
+        {if(particleMesh!=null)Destroy(particleMesh);if(shadowTexture!=null)Destroy(shadowTexture);if(shadowMaterial!=null)Destroy(shadowMaterial);if(runeMaterial!=null)Destroy(runeMaterial);}
+    }
+}
