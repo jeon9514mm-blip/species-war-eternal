@@ -2,7 +2,7 @@ extends RefCounted
 ## Presentation owns fonts, projection and density; simulation owns every amount.
 const STYLE = preload('res://scripts/combat/CombatNumberStyle.gd')
 const POOL = preload('res://scripts/combat/DamageNumberManager.gd')
-static func emit(main, amount: int, kind: String, center: Vector2, bounds: Rect2, target: String) -> void:
+static func emit(main, amount: int, kind: String, center: Vector2, bounds: Rect2, target: String, context: Dictionary = {}) -> void:
 	if amount <= 0 or not main.combat_effects_enabled or main._application_suspended: return
 	if not is_instance_valid(main.content_root): return
 	if not is_instance_valid(main._damage_pool):
@@ -13,7 +13,7 @@ static func emit(main, amount: int, kind: String, center: Vector2, bounds: Rect2
 		if is_instance_valid(label) and label.visible: live.append(label)
 	var joins := false
 	for label in live:
-		if label.anchor_key == target and label.kind == kind and Time.get_ticks_msec()-label.burst_started_at <= 120: joins = true; break
+		if label.anchor_key == target and label.kind == kind and label.feedback_context == context and Time.get_ticks_msec()-label.burst_started_at <= 120: joins = true; break
 	if not joins and live.size() >= int(main._presentation_profile().float_limit):
 		live.sort_custom(func(a, b):
 			var x: int = STYLE.priority(a.kind); var y: int = STYLE.priority(b.kind)
@@ -21,7 +21,7 @@ static func emit(main, amount: int, kind: String, center: Vector2, bounds: Rect2
 		if STYLE.priority(live[0].kind) > STYLE.priority(kind): return
 		live[0].retire()
 	main._number_lane += 1
-	main._damage_pool.spawn_damage('', Color.WHITE, center, kind == 'critical', main._number_lane, bounds, kind, target, amount)
+	main._damage_pool.spawn_damage('', Color.WHITE, center, kind == 'critical', main._number_lane, bounds, kind, target, amount, context)
 static func hunt(main, data: Dictionary, origin: Vector2) -> void:
 	var near_hero: bool = data.kind in ['incoming', 'heal']
 	var target_foot := origin + Vector2(90, 78 if near_hero else 60)
@@ -32,15 +32,15 @@ static func hunt(main, data: Dictionary, origin: Vector2) -> void:
 		if not is_instance_valid(actor): continue
 		var distance: float = actor.position.distance_squared_to(target_foot)
 		if distance < closest: closest = distance; source = actor
-	var center := target_foot - Vector2(0, 38)
+	var center := target_foot - Vector2(0, 48)
 	var key := 'unknown:' + str(Vector2i(target_foot / 20))
 	if is_instance_valid(source):
-		center = source.position - Vector2(0, 36)
+		center = source.position - Vector2(0, 48)
 		key = str(source.get_instance_id())
 	var field: Rect2 = main.combat_field_rect
 	var bounds := Rect2(field.position + Vector2(12, 62), field.size - Vector2(24, 82))
-	emit(main, int(data.amount), str(data.kind), center, bounds, key)
-static func raid(main, amount: int, kind: String, hero_id := '') -> void:
+	emit(main, int(data.amount), str(data.kind), center, bounds, key, data.get('damage_context',{}))
+static func raid(main, amount: int, kind: String, hero_id := '', context: Dictionary = {}) -> void:
 	if not is_instance_valid(main.content_root): return
 	var view = main.content_root.get_node_or_null('PortraitRaidView')
 	if not is_instance_valid(view) or not is_instance_valid(view.battlefield_3d): return
@@ -49,12 +49,12 @@ static func raid(main, amount: int, kind: String, hero_id := '') -> void:
 	var actor: Node2D = view.hero_actors.get(hero_id) if not hero_id.is_empty() else main.raid_boss_sprite
 	var height: float = field.actor_world_height(actor, not hero_id.is_empty()) if is_instance_valid(actor) else 2.0
 	var offset: Vector2 = view.stage.global_position - main.content_root.global_position
-	var center: Vector2 = offset + field.project_world(field.raid_to_world(point)) - Vector2(0, 36)
+	var center: Vector2 = offset + field.project_world(field.raid_to_world(point)) - Vector2(0, 48)
 	if kind in ['damage','critical']:
 		field.hunt_overlay.hit(field.raid_to_world(point),field.raid_to_world(point),Color('#ffd700') if kind=='critical' else Color('#d8d5cc'),kind=='critical',height)
 		field.contact_feedback(kind=='critical',field.raid_to_world(point),actor)
 	var bounds := Rect2(offset + Vector2(12, 62), view.stage.size - Vector2(24, 120))
-	emit(main, amount, kind, center, bounds, 'raid:' + (hero_id if not hero_id.is_empty() else 'boss'))
+	emit(main, amount, kind, center, bounds, 'raid:' + (hero_id if not hero_id.is_empty() else 'boss'), context)
 static func legacy(main, message: String, color: Color, origin: Vector2) -> void:
 	if not main.combat_effects_enabled or not is_instance_valid(main.content_root):
 		return

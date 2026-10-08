@@ -13,9 +13,10 @@ func _ready() -> void:
 	material=ShaderMaterial.new();material.shader=preload('res://shaders/MossBronzeCircle.gdshader')
 	material.set_shader_parameter('artist_circle',load('res://assets/mobile25d/vfx/moss_bronze_circle.png'))
 	material.set_shader_parameter('moss',Color('#a8b89e'));material.set_shader_parameter('bronze',Color('#e8c99a'))
-	material.set_shader_parameter('glow',.6);material.set_shader_parameter('inner_glow',.35)
+	material.set_shader_parameter('glow',.7);material.set_shader_parameter('inner_glow',.55)
 	material.set_shader_parameter('pulse_period',1.0);material.set_shader_parameter('rotation_speed',.12)
-	material.set_shader_parameter('rune_count',8);material.set_shader_parameter('rune_brightness',.7)
+	material.set_shader_parameter('rune_count',12);material.set_shader_parameter('rune_brightness',.7)
+	material.set_shader_parameter('leaf_count',20);material.set_shader_parameter('dust_count',20)
 	seal.material_override=material;seal.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;add_child(seal)
 	process_priority=101
 func set_battle_mood(next_phase: int,next_enraged: bool) -> void:

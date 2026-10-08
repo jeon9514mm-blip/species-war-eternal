@@ -52,11 +52,24 @@ const RAID_PIVOT:=Vector2(519,383)
 const RAID_UNITS:=26.0
 const RAID_BOTTOM_CLEARANCE:=102.0
 const RAID_BOSS_PIXELS:=179.2 # Original 128px body x requested final 1.4.
+const MAX_CAMERA_PUNCH:=1.15
+const SECONDARY_LOD_PIXELS:=Vector3(300,500,800)
 var presentation_visible := true
 var presentation_suspended := false
 var _render_profile := ""
 var _render_container: SubViewportContainer
 var _render_defaults: Dictionary = {}
+var _battery_profile:=false
+var _actor_nodes: Dictionary={}
+var _post_material: ShaderMaterial
+var _post_time:=-INF
+var _post_chromatic:=-INF
+var _post_grain:=-INF
+var _post_distortion:=-INF
+var _post_blur:=-INF
+var _post_impact_deadline_us:=0
+var _post_impact_cooldown_us:=0
+var _post_pause_started_us:=0
 var diorama: Node3D
 var ultimate_details: Node3D
 var rune_ground: Node3D
@@ -113,16 +126,24 @@ func _prepare_hunt_display() -> void:
 		if is_instance_valid(game.enemy_wave_sprites[i]):_render_enemy_indices[game.enemy_wave_sprites[i].get_instance_id()]=i
 func apply_render_profile() -> void:
 	if not is_instance_valid(viewport_3d) or not is_instance_valid(game):return
-	var battery: bool=str(game.presentation_options.get('performance','balanced'))=='battery'
-	var key: String='battery' if battery else 'balanced'
+	var key: String=str(game.presentation_options.get('performance','balanced'))
+	if key not in ['battery','balanced','quality']:key='balanced'
+	var battery: bool=key=='battery'
+	var quality: bool=key=='quality'
+	_battery_profile=battery
 	if key!=_render_profile:
 		_render_profile=key
-		viewport_3d.msaa_3d=Viewport.MSAA_DISABLED if battery else Viewport.MSAA_2X
+		if presentation_visible and not presentation_suspended:
+			RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_VERY_LOW if battery else (RenderingServer.SHADOW_QUALITY_SOFT_HIGH if quality else RenderingServer.SHADOW_QUALITY_SOFT_MEDIUM))
+		viewport_3d.msaa_3d=Viewport.MSAA_DISABLED if battery else (Viewport.MSAA_4X if quality else Viewport.MSAA_2X)
 		viewport_3d.positional_shadow_atlas_size=256 if battery else (1024 if raid_mode else 2048)
 		viewport_3d.scaling_3d_mode=Viewport.SCALING_3D_MODE_BILINEAR
-		viewport_3d.scaling_3d_scale=1.0
-		viewport_3d.anisotropic_filtering_level=Viewport.ANISOTROPY_4X if battery else Viewport.ANISOTROPY_16X
+		viewport_3d.scaling_3d_scale=1.0 if quality or battery else .85
+		viewport_3d.anisotropic_filtering_level=Viewport.ANISOTROPY_16X if quality else Viewport.ANISOTROPY_4X
 		if is_instance_valid(_render_container):_render_container.stretch_shrink=2 if battery else 1
+		preload('res://scripts/maps3d/MythicDetailProfile.gd').configure_quality(map_root,quality)
+		map_root.set_meta('ultra_render_profile',{'mode':key,'resolution_scale':viewport_3d.scaling_3d_scale,'msaa':viewport_3d.msaa_3d,'micro_normal':4096 if quality else 1024,'parallax_steps':8 if quality else 4})
+		_update_ultra_post()
 		for node in map_root.find_children('*','DirectionalLight3D',true,false):
 			if not _render_defaults.has(node):_render_defaults[node]=node.shadow_enabled
 			node.shadow_enabled=false if battery else bool(_render_defaults[node])
@@ -130,9 +151,10 @@ func apply_render_profile() -> void:
 			var environment: Environment=node.environment
 			if environment==null:continue
 			if not _render_defaults.has(environment):
-				_render_defaults[environment]={'ssao_enabled':environment.ssao_enabled,'ssil_enabled':environment.ssil_enabled,'sdfgi_enabled':environment.sdfgi_enabled,'glow_enabled':environment.glow_enabled,'volumetric_fog_enabled':environment.volumetric_fog_enabled}
+				_render_defaults[environment]={'ssao_enabled':environment.ssao_enabled,'ssil_enabled':environment.ssil_enabled,'ssr_enabled':environment.ssr_enabled,'sdfgi_enabled':environment.sdfgi_enabled,'glow_enabled':environment.glow_enabled,'volumetric_fog_enabled':environment.volumetric_fog_enabled}
 			for property in _render_defaults[environment]:environment.set(property,false if battery else _render_defaults[environment][property])
-	viewport_3d.render_target_update_mode=SubViewport.UPDATE_ALWAYS if presentation_visible and not presentation_suspended else SubViewport.UPDATE_DISABLED
+	var update_mode: int=SubViewport.UPDATE_ALWAYS if presentation_visible and not presentation_suspended else SubViewport.UPDATE_DISABLED
+	if viewport_3d.render_target_update_mode!=update_mode:viewport_3d.render_target_update_mode=update_mode
 	if is_instance_valid(ultimate_details):ultimate_details.apply_profile()
 func set_presentation_visible(value: bool) -> void:
 	presentation_visible=value;apply_render_profile()
@@ -146,6 +168,7 @@ func _ready() -> void:
 	container.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(container)
 	_render_container=container
 	var post:=ShaderMaterial.new();post.shader=preload('res://shaders/MobileBattlePost.gdshader');container.material=post
+	_post_material=post
 	container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	viewport_3d=SubViewport.new();viewport_3d.name='World3D';viewport_3d.own_world_3d=true
 	viewport_3d.msaa_3d=Viewport.MSAA_2X;viewport_3d.positional_shadow_atlas_size=1024
@@ -247,7 +270,7 @@ func _resize_world() -> void:
 		# Keep every reachable floor point and the boss's head inside the stage.
 		# The original combat-coordinate transform remains shared with warnings.
 		var safe_size:=Vector2(maxf(1,size.x-36),maxf(1,size.y-RAID_BOTTOM_CLEARANCE))
-		raid_factor=minf(safe_size.x/(674.0*RAID_GROUND_STRETCH*1.08),safe_size.y/340.0*CAMERA_MOTION.ZOOM)
+		raid_factor=minf(safe_size.x/(674.0*RAID_GROUND_STRETCH*MAX_CAMERA_PUNCH),safe_size.y/340.0*CAMERA_MOTION.ZOOM)
 		_set_focus(Vector2(16,10))
 		camera.size=size.y/(RAID_UNITS*raid_factor)
 		camera.v_offset=(-5.0+57.0*raid_factor)/(RAID_UNITS*raid_factor)
@@ -291,7 +314,7 @@ func _set_focus(point: Vector2) -> void:
 		var left:=raid_to_world(floor_rect.position).x
 		var right:=raid_to_world(floor_rect.end).x
 		var middle: float=(left+right)*.5
-		var half_width: float=camera.size/1.08*(size.x-32)/size.y*.5
+		var half_width: float=camera.size/MAX_CAMERA_PUNCH*(size.x-32)/size.y*.5
 		var slack:=maxf(0,half_width-(right-left)*.5)
 		point.x=clampf(point.x,middle-slack,middle+slack)
 	focus=point
@@ -327,7 +350,7 @@ func camera_points() -> Array[Vector3]:
 		if i<game.enemy_wave_sprites.size():height=_actor_height(game.enemy_wave_sprites[i],false)
 		var candidate: Array[Vector3]=points.duplicate()
 		candidate.append(Vector3(point.x,0,point.y));candidate.append(Vector3(point.x,height*1.35+.25,point.y))
-		if float(FRAMING.fit(candidate,size,HUNT_CAMERA_OFFSET.normalized().y).size)<=_hunt_zoom():points=candidate
+		if float(FRAMING.fit(candidate,size,HUNT_CAMERA_OFFSET.normalized().y).size)<=_hunt_zoom()/MAX_CAMERA_PUNCH:points=candidate
 	return points
 
 func _hunt_zoom() -> float:return maxf(4.8,6.0/maxf(.1,size.x/maxf(1,size.y)))/CAMERA_MOTION.ZOOM
@@ -343,7 +366,7 @@ func _update_hunt_camera(delta: float,snap:=false) -> void:
 		else:next=focus.lerp(next,1.0-exp(-maxf(delta,0)*3.0))
 	# Pan enough to keep party heads/feet inside the fixed zoom. A remote target
 	# cannot drag the party off screen or force the old breathing zoom behavior.
-	var half:=Vector2(_hunt_zoom()*size.x/size.y,_hunt_zoom())*.5
+	var half:=Vector2(_hunt_zoom()*size.x/size.y,_hunt_zoom())*.5/MAX_CAMERA_PUNCH
 	var bounds: Rect2=frame.bounds
 	var low:=bounds.end-half;var high:=bounds.position+half
 	var plane:=Vector2(next.x,next.y*sine)
@@ -396,6 +419,7 @@ func _process(delta: float) -> void:
 	apply_render_profile()
 	_prepare_hunt_display()
 	if visual_running():_presentation_clock+=maxf(0,delta)*visual_speed()
+	_update_ultra_post()
 	if not raid_mode:_update_hunt_camera(delta)
 	var speed:=visual_speed() if visual_running() else 0.0
 	var animated: Array=(raid_view.hero_actors.values()+[game.raid_boss_sprite]) if raid_mode and is_instance_valid(raid_view) else game.hero_map_sprites+game.enemy_wave_sprites
@@ -418,8 +442,8 @@ func _process(delta: float) -> void:
 		var floor_point: Vector2=raid_to_world(preload('res://scripts/raid/RaidBattlefield.gd').FLOOR.end)
 		var below_boss: float=project_world(floor_point).y-project_world(boss_point).y
 		var available: float=maxf(1,size.y-RAID_BOTTOM_CLEARANCE-12-_raid_boss_top_pixels())
-		if below_boss*1.08>available:
-			var fit: float=below_boss*1.08/available
+		if below_boss*MAX_CAMERA_PUNCH>available:
+			var fit: float=below_boss*MAX_CAMERA_PUNCH/available
 			_rest_camera_size*=fit;raid_factor/=fit
 	camera.size=_rest_camera_size/punch
 	var units: float=camera.size/size.y
@@ -495,6 +519,7 @@ func _process(delta: float) -> void:
 			actors[key].free();actors.erase(key);_last_footstep.erase(key);_last_death.erase(key);_frame_events.erase(key)
 			_contact_holds.erase(key)
 			_contact_hold_cooldowns.erase(key)
+			_actor_nodes.erase(key)
 	_health_overlay.links=_health_links
 	_health_overlay.queue_redraw()
 	if is_instance_valid(diorama):diorama.update_foreground()
@@ -550,17 +575,29 @@ func frame_hit(actor: AnimatedSprite2D,hero: bool,incoming: Vector2) -> void:
 	pending.hit=project_world(incoming)-project_world(Vector2.ZERO);_frame_events[id]=pending
 
 func _frame_runtime(source: AnimatedSprite2D,hero: bool) -> Dictionary:
+	var nodes: Dictionary=_actor_nodes.get(source.get_instance_id(),{})
+	var result: Dictionary=nodes.get('frame_runtime',{})
+	result.clear() # Facing metadata is merged below; never retain an old target.
 	if hero:
-		var runtime: Dictionary=game.hero_skill_runtime.get(str(source.atlas_key),{}).duplicate()
-		if raid_mode:return {}
+		if raid_mode:return result
+		var runtime: Dictionary=game.hero_skill_runtime.get(str(source.atlas_key),{})
 		var prepared:=str(runtime.get('prepared_action','basic'))
-		runtime.visual_action='ultimate' if prepared=='ultimate' else ('skill' if prepared in ['a1','a2'] else 'attack_1')
-		return runtime
-	if raid_mode:return {}
+		# The pose observer needs only these scalars. Do not copy nested skill
+		# profiles, timers or kit history once per hero per rendered frame.
+		result.windup=runtime.get('windup',-1.0)
+		result.attack_windup_duration=runtime.get('attack_windup_duration',.15)
+		result.visual_action='ultimate' if prepared=='ultimate' else ('skill' if prepared in ['a1','a2'] else 'attack_1')
+		return result
+	if raid_mode:
+		result.health_ratio=clampf(float(game.raid_boss_hp)/maxf(1,float(game.raid_boss_max_hp)),0,1)
+		return result
 	var index: int=_render_enemy_indices.get(source.get_instance_id(),-1)
-	if index<0 or index>=game.enemy_wave.size():return {}
+	if index<0 or index>=game.enemy_wave.size():return result
 	var enemy: Dictionary=game.enemy_wave[index]
-	return {'windup':float(enemy.get('attack_remaining',0.0)) if enemy.has('attack_intent') else -1.0,'attack_windup_duration':.22,'visual_action':'attack_1'}
+	result.windup=float(enemy.get('attack_remaining',0.0)) if enemy.has('attack_intent') else -1.0
+	result.attack_windup_duration=.22;result.visual_action='attack_1'
+	result.health_ratio=clampf(float(enemy.get('hp',0))/maxf(1,float(enemy.get('max_hp',1))),0,1)
+	return result
 
 func _frame_dead(source: AnimatedSprite2D,hero: bool) -> bool:
 	if hero:return int(game.hero_battle_state.get(str(source.atlas_key),{}).get('hp',0))<=0
@@ -649,7 +686,7 @@ func _update_body_layout(_delta: float) -> void:
 		var sprite: Sprite3D=actors.get(id)
 		var left:=source.flip_h
 		if sprite!=null:
-			var pilot=sprite.get_node_or_null('Model3DPilot' if real_models_enabled else 'HuntFramePilot')
+			var pilot=_actor_nodes.get(id,{}).get('model' if real_models_enabled else 'paint')
 			if pilot!=null:
 				bounds=pilot.footprint(height)
 				if not real_models_enabled and pilot._facing_override:left=pilot._facing_left
@@ -707,13 +744,79 @@ func _paint_facing_target(source: AnimatedSprite2D,point: Vector2,hero: bool) ->
 			return result
 	return {}
 
+func secondary_lod_at(screen_point: Vector2) -> int:
+	# Logical pixels are independent of 3D render resolution and actor scale.
+	var distance_squared:=screen_point.distance_squared_to(size*.5)
+	if distance_squared>=SECONDARY_LOD_PIXELS.z*SECONDARY_LOD_PIXELS.z:return 3
+	if distance_squared>=SECONDARY_LOD_PIXELS.y*SECONDARY_LOD_PIXELS.y:return 2
+	if distance_squared>=SECONDARY_LOD_PIXELS.x*SECONDARY_LOD_PIXELS.x:return 1
+	return 0
+
+func ultra_post_impact() -> void:
+	if not is_instance_valid(game) or not game.combat_effects_enabled or _battery_profile or not battle_clock_running():return
+	var now:=Time.get_ticks_usec()
+	if now<_post_impact_cooldown_us:return
+	_post_impact_deadline_us=now+180000;_post_impact_cooldown_us=now+3000000
+	_post_pause_started_us=0
+	_update_ultra_post()
+
+func _update_ultra_post() -> void:
+	if _post_material==null or not is_instance_valid(game):return
+	var enabled: bool=game.combat_effects_enabled and not _battery_profile and presentation_visible and not presentation_suspended
+	var now:=Time.get_ticks_usec()
+	if not enabled:
+		_post_impact_deadline_us=0;_post_pause_started_us=0
+	elif _post_impact_deadline_us>0:
+		if not battle_clock_running():
+			if _post_pause_started_us==0:_post_pause_started_us=now
+		elif _post_pause_started_us>0:
+			_post_impact_deadline_us+=now-_post_pause_started_us;_post_pause_started_us=0
+	var visual_now: int=_post_pause_started_us if _post_pause_started_us>0 else now
+	var impact: bool=enabled and _post_impact_deadline_us>visual_now
+	if _post_impact_deadline_us>0 and visual_now>=_post_impact_deadline_us:_post_impact_deadline_us=0
+	var quality: bool=_render_profile=='quality'
+	var chromatic: float=(.05 if impact else (.005 if quality else .002)) if enabled else 0.0
+	var grain: float=(.02 if quality else .015) if enabled else 0.0
+	var distortion: float=(.005 if quality else .003) if enabled else 0.0
+	var blur: float=.02 if impact else 0.0
+	if _post_chromatic!=chromatic:_post_chromatic=chromatic;_post_material.set_shader_parameter('chromatic',chromatic)
+	if _post_grain!=grain:_post_grain=grain;_post_material.set_shader_parameter('film_grain',grain)
+	if _post_distortion!=distortion:_post_distortion=distortion;_post_material.set_shader_parameter('lens_distortion',distortion)
+	if _post_blur!=blur:_post_blur=blur;_post_material.set_shader_parameter('impact_blur',blur)
+	if _post_time!=_presentation_clock:_post_time=_presentation_clock;_post_material.set_shader_parameter('visual_time',_presentation_clock)
+
+func _invalidate_actor_children(id: int) -> void:
+	var nodes: Dictionary=_actor_nodes.get(id,{})
+	if not nodes.is_empty():nodes.child_count=-1
+
+func _nodes_for_actor(source: AnimatedSprite2D,sprite: Sprite3D) -> Dictionary:
+	var id:=source.get_instance_id()
+	var nodes: Dictionary=_actor_nodes.get(id,{})
+	if nodes.is_empty():
+		nodes={'shadow':sprite.get_node('ContactShadow'),'ring':sprite.get_node('TeamFootRing'),'paint':sprite.get_node_or_null('HuntFramePilot'),'model':sprite.get_node_or_null('Model3DPilot'),'skin':sprite.get_node_or_null('HeroSkeletalBillboard'),'frame_runtime':{},'child_count':-1,'source_rig':null,'canvas_children':[]}
+		_actor_nodes[id]=nodes
+		var invalidate: Callable=_invalidate_actor_children.bind(id)
+		if not source.child_order_changed.is_connected(invalidate):source.child_order_changed.connect(invalidate)
+	if int(nodes.child_count)!=source.get_child_count():
+		nodes.child_count=source.get_child_count();nodes.source_rig=source.get_node_or_null('PortraitHeroSkeletalRig')
+		var canvas_children: Array[CanvasItem]=[]
+		for child in source.get_children():
+			if child is CanvasItem:canvas_children.append(child)
+		nodes.canvas_children=canvas_children
+	return nodes
+
 func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Dictionary) -> void:
 	if not is_instance_valid(source) or source.sprite_frames==null:return
 	if not source.sprite_frames.has_animation(source.animation):return
+	var id:=source.get_instance_id();live[id]=true
+	var projected:=project_world(point)
 	if not raid_mode:
 		# Re-evaluate visibility after a camera change, including while paused.
-		source.visible=Rect2(Vector2.ZERO,size).grow(4).has_point(project_world(point))
-	var id:=source.get_instance_id();live[id]=true
+		# Use the complete painting: a foot outside the view can still show a head.
+		var paint_rect: Rect2=_paint_rects.get(id,Rect2(projected+position,Vector2.ONE))
+		paint_rect.position-=position
+		var shown:=Rect2(Vector2.ZERO,size).grow(4).intersects(paint_rect)
+		if source.visible!=shown:source.visible=shown
 	var sprite: Sprite3D=actors.get(id)
 	if sprite==null:
 		sprite=Sprite3D.new();sprite.name='HeroBillboard' if hero else 'EnemyBillboard'
@@ -734,16 +837,19 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 		ring_material.albedo_color=Color('#79d8d0') if hero else Color('#dd967e')
 		ring.material_override=ring_material;ring.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		ring.position.y=.04;sprite.add_child(ring)
-	var texture: Texture2D=source.sprite_frames.get_frame_texture(source.animation,source.frame)
+	var nodes:=_nodes_for_actor(source,sprite)
 	var frame_active: bool=_uses_frame_pilot(source,hero)
 	# The container never draws an atlas when a whole-paint/model pilot owns it.
 	# Avoid queuing a Sprite3D material update only to remove it in the same frame.
-	sprite.texture=null if frame_active else texture
+	var texture: Texture2D=null if frame_active else source.sprite_frames.get_frame_texture(source.animation,source.frame)
+	if sprite.texture!=texture:sprite.texture=texture
 	var native: float=maxf(1,source.native_visual_height)
 	var height: float=_actor_height(source,hero)
-	sprite.pixel_size=height/native
-	var canvas_offset: Vector2=source.offset if not source.centered else source.offset-texture.get_size()*.5
-	sprite.offset=Vector2(canvas_offset.x+texture.get_width()*.5,-canvas_offset.y-texture.get_height()*.5)
+	if sprite.pixel_size!=height/native:sprite.pixel_size=height/native
+	if texture!=null:
+		var canvas_offset: Vector2=source.offset if not source.centered else source.offset-texture.get_size()*.5
+		var offset:=Vector2(canvas_offset.x+texture.get_width()*.5,-canvas_offset.y-texture.get_height()*.5)
+		if sprite.offset!=offset:sprite.offset=offset
 	var motion:=Vector3.ZERO;var presentation_shape:=Vector2.ONE;var presentation_roll:=0.0
 	if not raid_mode:
 		var facing: Vector2={'left':Vector2.LEFT,'right':Vector2.RIGHT,'up':Vector2.UP,'down':Vector2.DOWN}.get(source.direction,Vector2.RIGHT)
@@ -758,27 +864,33 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 			if source.state!='death':_last_death.erase(id)
 			if source.state=='death' and not _last_death.has(id):
 				_last_death[id]=true;hunt_overlay.soul(point,hero)
-	sprite.position=Vector3(point.x,.10,point.y)+motion;sprite.flip_h=source.flip_h
+	var next_position:=Vector3(point.x,.10,point.y)+motion
+	if sprite.position!=next_position:sprite.position=next_position
+	if sprite.flip_h!=source.flip_h:sprite.flip_h=source.flip_h
 	# The 3D paint owns its 40ms flash. The source controller's legacy red
 	# blink would otherwise tint the painting a second time for 180ms.
-	sprite.modulate=source.modulate if frame_active else source.modulate*Color(source.self_modulate.r,source.self_modulate.g,source.self_modulate.b,1)
-	sprite.visible=source.visible
-	sprite.scale=Vector3(presentation_shape.x,presentation_shape.y,1)
-	var inactive=sprite.get_node_or_null('HuntFramePilot' if real_models_enabled else 'Model3DPilot')
-	if inactive!=null:inactive.hide()
-	var pilot=sprite.get_node_or_null('Model3DPilot' if real_models_enabled else 'HuntFramePilot')
+	var tint: Color=source.modulate if frame_active else source.modulate*Color(source.self_modulate.r,source.self_modulate.g,source.self_modulate.b,1)
+	if sprite.modulate!=tint:sprite.modulate=tint
+	if sprite.visible!=source.visible:sprite.visible=source.visible
+	var shape:=Vector3(presentation_shape.x,presentation_shape.y,1)
+	if sprite.scale!=shape:sprite.scale=shape
+	var pilot_key: String='model' if real_models_enabled else 'paint'
+	var inactive=nodes.get('paint' if real_models_enabled else 'model')
+	if inactive!=null and inactive.visible:inactive.hide()
+	var pilot=nodes.get(pilot_key)
 	if frame_active:
 		var expected: String=FRAME_PILOT.CATALOG.identity(source,hero)
 		if expected.is_empty():expected=str(source.atlas_key) if hero else str(source.pixel_monster_name)
 		if pilot!=null and str(pilot.entry.id)!=expected:
-			sprite.remove_child(pilot);pilot.free();pilot=null;_source_attacks.erase(id)
+			sprite.remove_child(pilot);pilot.free();pilot=null;nodes[pilot_key]=null;_source_attacks.erase(id)
 		if pilot==null:
 			var optimized: bool=_frame_catalog.load_entry(expected).get('optimized_mobile25d',false)
 			pilot=(MODEL_PILOT.new() if real_models_enabled else (MOBILE_PILOT.new() if optimized else FRAME_PILOT.new()));sprite.add_child(pilot)
 			if not pilot.bind(source,hero,MODEL_PILOT.CATALOG.new() if real_models_enabled else _frame_catalog):sprite.remove_child(pilot);pilot.free();pilot=null
+			nodes[pilot_key]=pilot
 		if pilot!=null:
-			var source_rig=source.get_node_or_null('PortraitHeroSkeletalRig')
-			if source_rig!=null:source_rig.set_process(false)
+			var source_rig=nodes.source_rig
+			if source_rig!=null and source_rig.is_processing():source_rig.set_process(false)
 			# Raids release instantly in the existing simulation; observe the real
 			# source attack restart instead of inventing a second gameplay timer.
 			if raid_mode:
@@ -792,45 +904,61 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 			var pending: Dictionary=_frame_events.get(id,{})
 			if pending.has('release'):pilot.timeline.release(str(pending.release.action),float(pending.release.windup))
 			if pending.has('hit'):pilot.timeline.hit(pending.hit)
-			_frame_events.erase(id);pilot.show()
-			pilot.fur_layers=0 if str(game.presentation_options.get('performance','balanced'))=='battery' else 4
-			if not real_models_enabled:pilot.echo_layers=2
-			pilot.effects_enabled=game.combat_effects_enabled and str(game.presentation_options.get('performance','balanced'))!='battery'
+			_frame_events.erase(id)
+			if not pilot.visible:pilot.show()
+			var lod:=secondary_lod_at(projected)
+			if _battery_profile:lod=maxi(lod,2)
+			pilot.fur_layers=0 if _battery_profile else 6
+			if not real_models_enabled:pilot.echo_layers=0 if _battery_profile or lod>=3 else (1 if lod>=2 else (3 if lod>=1 else 5))
+			pilot.effects_enabled=game.combat_effects_enabled and not _battery_profile
+			if pilot is MOBILE_PILOT:
+				pilot.secondary_lod=lod
+				# Balanced keeps the baked footprint. Quality also renders the dense
+				# alpha-card sun shadow, without toggling it twice every frame.
+				pilot.hair_shadow_enabled=_render_profile=='quality'
 			# The complete original painting casts into the modeled battle floor.
-			pilot.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF # Baked contact footprint; avoid a second dense billboard shadow pass.
+			if pilot.cast_shadow!=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF:pilot.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			var runtime:=_frame_runtime(source,hero)
 			runtime.merge(_paint_facing_target(source,point,hero))
 			var active:=visual_running() and Time.get_ticks_usec()>=int(_contact_holds.get(id,0))
 			pilot.present(camera,height,sprite.modulate,_actor_delta,active,point,runtime,_frame_dead(source,hero))
-			var old_skin=sprite.get_node_or_null('HeroSkeletalBillboard')
-			if old_skin!=null:old_skin.hide()
-			sprite.texture=null
+			var old_skin=nodes.skin
+			if old_skin!=null and old_skin.visible:old_skin.hide()
+			if sprite.texture!=null:sprite.texture=null
 		else:frame_active=false
-	elif pilot!=null:pilot.hide()
+	elif pilot!=null and pilot.visible:pilot.hide()
 	if hero and not frame_active:
-		var rig: Node2D=source.get_node_or_null('PortraitHeroSkeletalRig')
+		var rig: Node2D=nodes.source_rig
 		if rig!=null:
-			rig.set_process(true)
-			var skinned=sprite.get_node_or_null('HeroSkeletalBillboard')
+			if not rig.is_processing():rig.set_process(true)
+			var skinned=nodes.skin
 			if skinned==null:
 				skinned=HERO_SKIN.new();sprite.add_child(skinned);skinned.bind(rig)
 				skinned.set_environment_lighting(not raid_mode)
-			skinned.show()
+				nodes.skin=skinned
+			if not skinned.visible:skinned.show()
 			skinned.sync(camera,sprite.pixel_size,sprite.modulate)
 			if not raid_mode:skinned.basis=skinned.basis.rotated(camera.global_basis.z,presentation_roll)
 			# The Sprite3D remains the positioning/shadow API, but only the skin draws.
-			sprite.texture=null
+			if sprite.texture!=null:sprite.texture=null
 	# Keep source animation active; hide only its 2D rendering in the main canvas.
-	source.visibility_layer=0
-	source.self_modulate.a=0
-	for child in source.get_children():
-		if child is CanvasItem:child.visible=false
-	var shadow: MeshInstance3D=sprite.get_node('ContactShadow');shadow.position=Vector3(0,-.02,14*camera.size/size.y/absf(camera.global_basis.z.y))-motion
-	shadow.visible=source.modulate.a>.15
+	if source.visibility_layer!=0:source.visibility_layer=0
+	if source.self_modulate.a!=0:source.self_modulate.a=0
+	for child: CanvasItem in nodes.canvas_children:
+		if is_instance_valid(child) and child.visible:child.visible=false
+	var shadow: MeshInstance3D=nodes.shadow
+	var shadow_position:=Vector3(0,-.02,16*camera.size/size.y/absf(camera.global_basis.z.y))-motion
+	if shadow.position!=shadow_position:shadow.position=shadow_position
+	if shadow.visible!=(source.modulate.a>.15):shadow.visible=source.modulate.a>.15
 	var breathing_lift: float=pilot.position.length() if frame_active and pilot!=null else motion.y
 	var lift_scale:=1.0-clampf(breathing_lift*3.0,0,.6)
-	shadow.scale=Vector3(lift_scale/presentation_shape.x,1/presentation_shape.y,lift_scale)
+	var shadow_scale:=Vector3(lift_scale/presentation_shape.x,1/presentation_shape.y,lift_scale)
+	if shadow.scale!=shadow_scale:shadow.scale=shadow_scale
 	var crowd: float=_body_scales.get(id,1.0)
-	sprite.get_node('TeamFootRing').scale=Vector3(crowd/presentation_shape.x,crowd/presentation_shape.y,crowd)
-	sprite.get_node('TeamFootRing').position=Vector3(0,.04,0)-motion
-	sprite.get_node('TeamFootRing').visible=source.modulate.a>.5 and source.state!='death'
+	var ring: MeshInstance3D=nodes.ring
+	var ring_scale:=Vector3(crowd/presentation_shape.x,crowd/presentation_shape.y,crowd)
+	if ring.scale!=ring_scale:ring.scale=ring_scale
+	var ring_position:=Vector3(0,.04,0)-motion
+	if ring.position!=ring_position:ring.position=ring_position
+	var ring_visible: bool=source.modulate.a>.5 and source.state!='death'
+	if ring.visible!=ring_visible:ring.visible=ring_visible

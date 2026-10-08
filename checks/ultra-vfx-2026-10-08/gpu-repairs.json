@@ -1,0 +1,38 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "gpu_mobile",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 4,
+  "total": 4,
+  "results": [
+    {
+      "test": "Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "seconds": 14.97,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nMOBILE25D_SPEC checks=369 failures=[]\n"
+    },
+    {
+      "test": "UltraEnvironmentSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.11,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nULTRA_ENVIRONMENT checks=18 failures=[]\n"
+    },
+    {
+      "test": "UltraFieldRenderProfileSmokeTest.gd",
+      "passed": true,
+      "seconds": 12.81,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nULTRA_FIELD_RENDER_PROFILE checks=61 failures=[]\n"
+    },
+    {
+      "test": "UltraSkillIdentitySmokeTest.gd",
+      "passed": true,
+      "seconds": 10.78,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nULTRA_SKILL_IDENTITIES checks=376 failures=[]\n"
+    }
+  ]
+}

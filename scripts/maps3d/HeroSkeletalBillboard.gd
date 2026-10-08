@@ -47,6 +47,7 @@ func set_environment_lighting(enabled: bool) -> void:
 	if enabled:
 		toon_surface=ShaderMaterial.new();toon_surface.shader=TOON
 		toon_surface.set_shader_parameter('albedo_texture',surface.albedo_texture)
+		toon_surface.set_shader_parameter('rim_strength',.25)
 		material_override=toon_surface
 	else:
 		toon_surface=null;material_override=surface

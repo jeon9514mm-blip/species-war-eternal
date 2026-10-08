@@ -40,13 +40,14 @@ func run() -> void:
 		for i in skill.casts.size():check(is_equal_approx(float(skill.casts[i].age),float(ages[i])),'pause freezes cast age')
 		check(not skill.cast('mira',0,false,{'kind':'damage'},false),'paused battle cannot emit a new skill')
 		main.combat_running=not raid;main.raid_running=raid
-		skill.advance(1.0)
+		skill.advance(2.0)
 		check(skill.casts.is_empty(),'finished casts retire without holding the combat clock')
 		main.combat_effects_enabled=false
 		main._emit_skill_cast_fx('mira',0,true,{'kind':'damage'},true)
 		skill.advance(.01)
 		check(skill.casts.is_empty(),'effects opt-out clears skill feedback')
-		check(Engine.time_scale==1.0,'skills never restart global hitstop or slow the simulation')
+		main.presentation_runtime.contact_time.restore()
+		check(Engine.time_scale==1.0,'effects opt-out restores the bounded ultimate slowdown')
 		main.combat_effects_enabled=true
 		if raid:
 			main.boss_telegraph_pending=true;main.boss_telegraph_remaining=1.0;main.boss_telegraph_skill='테스트 위험 경고'

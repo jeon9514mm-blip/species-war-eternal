@@ -28,7 +28,7 @@ var fur_layers:=4
 var _fur: Node3D
 var _echoes: Node3D
 var effects_enabled:=true
-var echo_layers:=2
+var echo_layers:=5
 var _locomotion_weight:=0.0
 var _facing_left:=false
 var _facing_override:=false

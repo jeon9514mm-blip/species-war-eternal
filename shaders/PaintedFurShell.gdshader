@@ -3,10 +3,14 @@ render_mode unshaded, cull_disabled, depth_draw_never, blend_mix;
 uniform sampler2D source_texture : source_color, filter_linear_mipmap, repeat_disable;
 uniform vec4 atlas_rect;
 uniform vec2 atlas_texel;
-uniform float shell_layer = 0.5;
+varying float shell_layer;
 uniform float fur_length = 5.0;
 uniform float visual_time = 0.0;
 uniform bool hair_only = false;
+uniform float wind_strength=.15;
+uniform float clump=.30;
+uniform float frizz=.10;
+void vertex(){shell_layer=INSTANCE_CUSTOM.r;}
 vec4 sample_paint(vec2 uv) {
     vec2 lo=atlas_rect.xy+atlas_texel*.5,hi=atlas_rect.xy+atlas_rect.zw-atlas_texel*.5;
     vec4 value=texture(source_texture,clamp(uv,lo,hi));
@@ -14,7 +18,8 @@ vec4 sample_paint(vec2 uv) {
 }
 void fragment() {
     vec2 local=(UV-atlas_rect.xy)/atlas_rect.zw;
-    vec2 wind=vec2(sin(visual_time*.8+local.y*5.0)*.08,-.25);
+    float cluster=mix(local.y,floor(local.y*14.0)/14.0,clump);
+    vec2 wind=vec2(sin(visual_time*.8+cluster*5.0)*wind_strength+sin(local.y*67.0+visual_time*1.7)*frizz*.15,-.25);
     vec2 tap=atlas_texel*fur_length*shell_layer;
     vec4 center=sample_paint(UV);
     vec4 strand=sample_paint(UV+tap*(vec2(1,0)+wind));

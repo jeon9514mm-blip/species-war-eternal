@@ -1,0 +1,68 @@
+{
+  "engine": "4.7.2-stable (official)",
+  "profiles": [
+    {
+      "active_casts_mean": 1.3875,
+      "canvas_draw_included": false,
+      "component_total_us": {
+        "attacks": 1299060,
+        "collision": 885625,
+        "flocking": 149663,
+        "party": 1494632,
+        "target_and_roam": 1023289
+      },
+      "faction": "aurelia",
+      "gpu_measured": false,
+      "max_enemies": 31,
+      "max_paint_actors": 41,
+      "overlay_advance_ms_mean": 0.0779041666666667,
+      "presentation_sync_ms_mean": 6.42947916666667,
+      "presentation_sync_ms_p95": 8.177,
+      "render_profile": {
+        "micro_normal": 1024,
+        "mode": "balanced",
+        "msaa": 1,
+        "parallax_steps": 4,
+        "resolution_scale": 0.850000023841858
+      },
+      "simulated_seconds": 12.0,
+      "simulation_ms_mean": 22.735525,
+      "simulation_ms_p95": 34.349,
+      "skill_casts": 19,
+      "step_seconds": 0.05,
+      "steps": 240
+    },
+    {
+      "active_casts_mean": 1.25,
+      "canvas_draw_included": false,
+      "component_total_us": {
+        "attacks": 1366071,
+        "collision": 852593,
+        "flocking": 152852,
+        "party": 1375496,
+        "target_and_roam": 868966
+      },
+      "faction": "noxfera",
+      "gpu_measured": false,
+      "max_enemies": 31,
+      "max_paint_actors": 41,
+      "overlay_advance_ms_mean": 0.0766291666666667,
+      "presentation_sync_ms_mean": 6.538025,
+      "presentation_sync_ms_p95": 8.287,
+      "render_profile": {
+        "micro_normal": 1024,
+        "mode": "balanced",
+        "msaa": 1,
+        "parallax_steps": 4,
+        "resolution_scale": 0.850000023841858
+      },
+      "simulated_seconds": 12.0,
+      "simulation_ms_mean": 21.77595,
+      "simulation_ms_p95": 30.05,
+      "skill_casts": 17,
+      "step_seconds": 0.05,
+      "steps": 240
+    }
+  ],
+  "scope": "isolated headless natural20Hz simulation and manually timed3D sync; native canvas draws and GPU are excluded"
+}

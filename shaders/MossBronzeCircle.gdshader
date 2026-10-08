@@ -3,39 +3,56 @@ render_mode unshaded,cull_disabled,blend_mix,depth_draw_never;
 uniform vec4 moss : source_color=vec4(.659,.722,.620,1.0);
 uniform vec4 bronze : source_color=vec4(.910,.788,.604,1.0);
 uniform float visual_time=0.0;
-uniform float glow=.5;
-uniform float inner_glow=.35;
+uniform float glow=.7;
+uniform float inner_glow=.55;
 uniform float pulse_period=.8;
 uniform float rotation_speed=.12;
 uniform float rune_brightness=.7;
-uniform int rune_count=8;
+uniform int rune_count=12;
+uniform int leaf_count=20;
+uniform int dust_count=20;
 uniform sampler2D artist_circle : source_color,filter_linear_mipmap,repeat_disable;
 void fragment(){
-    vec2 p=(UV-.5)*2.0;float r=length(p);float a=atan(p.y,p.x)+visual_time*rotation_speed;
-    float line=(1.0-smoothstep(.008,.014,abs(r-.90)))+(1.0-smoothstep(.005,.010,abs(r-.70)))*.65;
-    float sector=fract((a+3.14159265)*float(rune_count)/6.2831853)-.5;
-    float stem=(1.0-smoothstep(.018,.035,abs(sector)))*(1.0-smoothstep(.025,.05,abs(r-.8)));
-    float rune=(1.0-smoothstep(.04,.06,abs(sector)+abs(r-.8)*1.8))*1.2;
-    float inner=exp(-abs(r-.70)*45.0)*inner_glow;
-    // Nearest angular sectors evaluate all eight motes/twelve leaves in
-    // constant cost per fragment, rather than 28 loop iterations per pixel.
-    float base_angle=atan(p.y,p.x);
-    float mote_angle=fract((a+3.14159265)*8.0/6.2831853)-.5;
-    float particles=exp(-length(vec2(mote_angle*.78539816*r,r-.89))*160.0)*.65;
-    float leaf_sector=floor((base_angle-visual_time*.10+3.14159265)*12.0/6.2831853+.5);
-    float seed=leaf_sector*6.2831853/12.0-3.14159265;
-    float falling=fract(visual_time*.13+leaf_sector/12.0);
+    vec2 p=(UV-.5)*2.0;float r=length(p);float base_angle=atan(p.y,p.x);
+    float turn=visual_time*rotation_speed;
+    // A bounded ripple warps this ground inlay, without a screen-copy pass.
+    float distortion=sin(r*45.0-visual_time*3.0)*.0025;
+    float a=base_angle+turn+distortion;
+    float line=(1.0-smoothstep(.006,.012,abs(r-.90)));
+    line+=(1.0-smoothstep(.004,.009,abs(r-.70)))*.70;
+    line+=(1.0-smoothstep(.004,.008,abs(r-.53)))*.45;
+    float rune_cell=(a+3.14159265)*float(rune_count)/6.2831853;
+    float sector=fract(rune_cell)-.5;float glyph=floor(rune_cell);
+    vec2 glyph_uv=vec2(sector*.38,(r-.80)*1.8);
+    float stem=(1.0-smoothstep(.004,.009,abs(glyph_uv.x)))*(1.0-smoothstep(.055,.068,abs(glyph_uv.y)));
+    float branch=abs(glyph_uv.y-glyph_uv.x*mix(-1.0,1.0,mod(glyph,2.0)));
+    float rune=(1.0-smoothstep(.004,.010,branch))*(1.0-smoothstep(.038,.050,abs(glyph_uv.x)));
+    float symbol=(1.0-smoothstep(.004,.009,abs(abs(glyph_uv.x)+abs(glyph_uv.y)-.052)))*step(.5,mod(glyph,3.0));
+    float inner=exp(-abs(r-.70)*38.0)*inner_glow+exp(-abs(r-.53)*48.0)*inner_glow*.35;
+    // Nearest angular sector evaluates 20 dust motes and 20 leaves/petals at
+    // constant cost per fragment, without 60 per-pixel loop iterations.
+    float dust_cell=(a+3.14159265)*float(dust_count)/6.2831853;
+    float mote_angle=fract(dust_cell)-.5;
+    float dust_radius=.57+.40*fract(floor(dust_cell)*.6180339+visual_time*.07);
+    float particles=exp(-length(vec2(mote_angle*6.2831853/float(dust_count)*r,r-dust_radius))*190.0)*.65;
+    float leaf_sector=floor((base_angle-visual_time*.10+3.14159265)*float(leaf_count)/6.2831853+.5);
+    float seed=leaf_sector*6.2831853/float(leaf_count)-3.14159265;
+    float falling=fract(visual_time*.13+leaf_sector/float(leaf_count));
     float leaf_angle=seed+visual_time*.10;
     vec2 center=vec2(cos(leaf_angle),sin(leaf_angle))*(.74+falling*.22);
     vec2 leaf=p-center;
     leaf=mat2(vec2(cos(seed),sin(seed)),vec2(-sin(seed),cos(seed)))*leaf;
-    float leaves=(1.0-smoothstep(.65,1.0,length(leaf/vec2(.015,.030))))*sin(falling*3.14159265)*.5;
+    float leaves=(1.0-smoothstep(.65,1.0,length(leaf/vec2(.014,.028))))*sin(falling*3.14159265)*.55;
+    float petal_radius=.56+.25*fract(falling+.4);
+    float petals=exp(-length(vec2(mote_angle*.314159*r,r-petal_radius))*150.0)*.22;
     float radial=abs(sin(base_angle*4.0))*r*.25;
     float fork=.008*sin(r*65.0+floor((base_angle+3.14159265)*8.0/6.2831853));
     float cracks=(1.0-smoothstep(.002,.006,abs(radial+fork)))*smoothstep(.87,.92,r)*(1.0-smoothstep(.97,1.0,r));
-    float ink=clamp(line+(stem+rune)*rune_brightness+particles+inner+leaves,0.0,1.0);
+    float rune_pulse=.78+.22*sin(visual_time*2.2+glyph*.8);
+    float pulse_wave=fract(visual_time*.45);
+    float energy=exp(-abs(r-(.40+pulse_wave*.53))*95.0)*sin(pulse_wave*3.14159265)*.24;
+    float ink=clamp(line+(stem+rune+symbol)*rune_brightness*rune_pulse+particles+inner+leaves+petals+energy,0.0,1.0);
     vec3 color=mix(moss.rgb,bronze.rgb,.5+.5*sin(a*2.0));
-    float turn=visual_time*rotation_speed;
     vec2 rotated=mat2(vec2(cos(turn),sin(turn)),vec2(-sin(turn),cos(turn)))*p;
     vec4 art=texture(artist_circle,rotated*.5+.5);
     float rune_band=smoothstep(.735,.76,r)*(1.0-smoothstep(.85,.875,r));
@@ -43,7 +60,6 @@ void fragment(){
     float pulse=.88+.12*sin(visual_time*6.2831853/max(.1,pulse_period));
     ALBEDO=mix(color,mix(art.rgb,moss.rgb,.16),art.a);
     ALBEDO=mix(ALBEDO,vec3(.055,.065,.055),clamp(cracks,0.0,1.0)*.8);
-    EMISSION=(color*ink+art.rgb*art.a)*glow*2.0*pulse;
-    EMISSION*=1.0-clamp(cracks,0.0,1.0)*.85;
-    ALPHA=max(max(ink*.72,art.a*.90),cracks*.65);
+    EMISSION=(color*ink+art.rgb*art.a+bronze.rgb*cracks*.18)*glow*1.75*pulse;
+    ALPHA=max(max(ink*.72,art.a*.82),cracks*.65);
 }

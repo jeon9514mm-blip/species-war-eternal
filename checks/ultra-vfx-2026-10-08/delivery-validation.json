@@ -1,0 +1,119 @@
+{
+  "scope": "Recorded native integration checks; not the entire historical test suite",
+  "parser": {
+    "passed": 58,
+    "total": 58,
+    "source_hashes_match": true
+  },
+  "latest_mobile": {
+    "passed": 15,
+    "total": 15,
+    "results": {
+      "CombatReadabilitySmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-final-integration.json"
+      },
+      "FinalEnvironmentSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-regressions.json"
+      },
+      "FinalHeroFeedbackSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-instancing-final.json"
+      },
+      "Mobile25dSpecSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-instancing-final.json"
+      },
+      "NoHeroSkillVfxSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-final-integration.json"
+      },
+      "RaidProjectedSpacingSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-instancing-final.json"
+      },
+      "UltraActorSecondarySmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-instancing-final.json"
+      },
+      "UltraDamageAudioSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-regressions.json"
+      },
+      "UltraEnvironmentSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-repairs.json"
+      },
+      "UltraFieldRenderProfileSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-final-integration.json"
+      },
+      "UltraSkillIdentitySmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-instancing-final.json"
+      },
+      "UltraSkillRouterSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-regressions.json"
+      },
+      "PaintedMotion25DSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-instancing-final.json"
+      },
+      "QualityV40SmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-instancing-final.json"
+      },
+      "BatchedMotesGpuSmokeTest.gd": {
+        "passed": true,
+        "report": "gpu-final-integration.json"
+      }
+    }
+  },
+  "forward_plus": {
+    "passed": 1,
+    "total": 1
+  },
+  "planner": {
+    "checks": 2080,
+    "exact_state_match": true
+  },
+  "performance": {
+    "report": "review/performance.json",
+    "device": "NVIDIA GeForce GTX 1050",
+    "profiles": [
+      {
+        "label": "hunt-aurelia",
+        "mean_fps": 37.2717339245459,
+        "p95_frame_ms": 49.501
+      },
+      {
+        "label": "hunt-noxfera",
+        "mean_fps": 39.1258341652765,
+        "p95_frame_ms": 44.497
+      },
+      {
+        "label": "raid",
+        "mean_fps": 59.3261548685942,
+        "p95_frame_ms": 26.9
+      },
+      {
+        "label": "hunt-natural-crits",
+        "mean_fps": 40.1405879158258,
+        "p95_frame_ms": 43.089
+      }
+    ]
+  },
+  "memory": {
+    "report": "review/process-memory.json",
+    "scope": "Windows Godot engine and its console wrapper combined; shared GPU not independently counted",
+    "max_working_set_bytes": 768192512,
+    "max_private_bytes": 1079685120
+  },
+  "goals": {
+    "hunt_60fps_achieved": false,
+    "total_process_200mb_achieved": false,
+    "android_measured": false
+  }
+}

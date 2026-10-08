@@ -1,0 +1,86 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "gpu_mobile",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 10,
+  "total": 12,
+  "results": [
+    {
+      "test": "CombatReadabilitySmokeTest.gd",
+      "passed": true,
+      "seconds": 12.99,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nCOMBAT_READABILITY checks=151 failures=[]\n"
+    },
+    {
+      "test": "FinalEnvironmentSmokeTest.gd",
+      "passed": true,
+      "seconds": 12.08,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nFINAL_ENVIRONMENT checks=21 failures=[]\n"
+    },
+    {
+      "test": "FinalHeroFeedbackSmokeTest.gd",
+      "passed": true,
+      "seconds": 12.02,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nFINAL_HERO_FEEDBACK checks=31 failures=[]\n"
+    },
+    {
+      "test": "Mobile25dSpecSmokeTest.gd",
+      "passed": false,
+      "seconds": 15.19,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nERROR: critical feedback uses the requested .08 slow motion\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] run (res://tests/regression/Mobile25dSpecSmokeTest.gd:77)\n       [2] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nMOBILE25D_SPEC checks=369 failures=[\"critical feedback uses the requested .08 slow motion\"]\n"
+    },
+    {
+      "test": "NoHeroSkillVfxSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.41,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nBOUNDED_HERO_SKILL_VFX checks=247 failures=[]\n"
+    },
+    {
+      "test": "RaidProjectedSpacingSmokeTest.gd",
+      "passed": true,
+      "seconds": 22.33,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nRAID_PROJECTED_SPACING aurelia/gray_meadow {\"boss_min\":92.8755340576172,\"factor\":0.625151386188849,\"farthest_attack_distance\":263.761169433594,\"lowest_after_3s\":71.9998779296875,\"median\":224.790725708008,\"min\":72.0021362304688,\"p10\":92.7320327758789}\nRAID_PROJECTED_SPACING aurelia/forgotten_mine {\"boss_min\":88.5016479492188,\"factor\":0.54663238759088,\"farthest_attack_distance\":327.922424316406,\"lowest_after_3s\":71.7957763671875,\"median\":201.549987792969,\"min\":71.9987182617188,\"p10\":95.5724563598633}\nRAID_PROJECTED_SPACING aurelia/moonrest_forest {\"boss_min\":117.285568237305,\"factor\":0.786995208269458,\"farthest_attack_distance\":298.126251220703,\"lowest_after_3s\":71.9941101074219,\"median\":167.5244140625,\"min\":72.9318771362305,\"p10\":83.1723861694336}\nRAID_PROJECTED_SPACING noxfera/gray_meadow {\"boss_min\":92.1245422363281,\"factor\":0.659354559599392,\"farthest_attack_distance\":319.719848632813,\"lowest_after_3s\":71.0766677856445,\"median\":226.756164550781,\"min\":72.2207183837891,\"p10\":87.9449768066406}\nRAID_PROJECTED_SPACING noxfera/forgotten_mine {\"boss_min\":118.884033203125,\"factor\":0.786995208269458,\"farthest_attack_distance\":298.106994628906,\"lowest_after_3s\":72.9773559570313,\"median\":155.60578918457,\"min\":76.8131637573242,\"p10\":77.6520767211914}\nRAID_PROJECTED_SPACING noxfera/moonrest_forest {\"boss_min\":118.984169006348,\"factor\":0.786995208269458,\"farthest_attack_distance\":299.559051513672,\"lowest_after_3s\":71.9996948242188,\"median\":151.485198974609,\"min\":72.1042098999023,\"p10\":80.9219970703125}\nRAID_PROJECTED_SPACING checks=342 failures=[]\n"
+    },
+    {
+      "test": "UltraActorSecondarySmokeTest.gd",
+      "passed": true,
+      "seconds": 5.38,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nULTRA_ACTOR_SECONDARY checks=308 failures=[]\n"
+    },
+    {
+      "test": "UltraDamageAudioSmokeTest.gd",
+      "passed": true,
+      "seconds": 3.72,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nultra_damage_audio checks=386 failures=[] actual_haptic_device_test=false\n"
+    },
+    {
+      "test": "UltraEnvironmentSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.34,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nULTRA_ENVIRONMENT checks=14 failures=[]\n"
+    },
+    {
+      "test": "UltraFieldRenderProfileSmokeTest.gd",
+      "passed": true,
+      "seconds": 12.64,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nULTRA_FIELD_RENDER_PROFILE checks=61 failures=[]\n"
+    },
+    {
+      "test": "UltraSkillIdentitySmokeTest.gd",
+      "passed": false,
+      "seconds": 180.17,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nSCRIPT ERROR: Invalid call. Nonexistent function 'stop' in base 'Nil'.\n   at: run (res://tests/regression/UltraSkillIdentitySmokeTest.gd:17)\n   GDScript backtrace (most recent call first):\n       [0] run (res://tests/regression/UltraSkillIdentitySmokeTest.gd:17)\n       [1] settle (res://tests/support/V83UpgradeTestBase.gd:13)\n\nTest timed out after 180 seconds."
+    },
+    {
+      "test": "UltraSkillRouterSmokeTest.gd",
+      "passed": true,
+      "seconds": 2.7,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nultra_skill_router checks=258 failures=[]\n"
+    }
+  ]
+}

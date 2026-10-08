@@ -1,9 +1,12 @@
 extends RefCounted
 ## Local steering on legal ground. Casts, stuns and real attack reach remain fixed.
-const SEPARATION_PX:=20.0
-const ALIGNMENT:=.10
-const COHESION:=.05
-const AVOID_PX:=30.0
+const SEPARATION_PX:=25.0
+const ALIGNMENT:=.15
+const COHESION:=.08
+const AVOID_PX:=40.0
+const BEHAVIOR_MIN:=1.0
+const BEHAVIOR_MAX:=8.0
+const SOUND_CHANCE:=.50
 const PERSONALITIES: Array[String]=['coward','curious','lazy','playful']
 static func advance(main,delta: float) -> void:
 	if main.challenge_session!=null or main.active_screen!='combat' or not main.combat_running:return
@@ -19,8 +22,10 @@ static func advance(main,delta: float) -> void:
 			var serial:=int(enemy.get('flock_serial',0))+1
 			var local_rng:=RandomNumberGenerator.new();local_rng.seed=absi((str(main.hunt_ai.encounter_id)+':'+str(index)+':'+str(serial)).hash())
 			enemy.flock_personality=PERSONALITIES[local_rng.randi_range(0,3)];enemy.flock_serial=serial
-			timer=local_rng.randf_range(2,6)
-			if local_rng.randf()<.30 and main.sound_effects_enabled:main._presentation_event('monster_'+str({'coward':'cautious','curious':'pack','lazy':'bold','playful':'flanker'}[enemy.flock_personality]))
+			timer=local_rng.randf_range(BEHAVIOR_MIN,BEHAVIOR_MAX)
+			if local_rng.randf()<SOUND_CHANCE and main.sound_effects_enabled:
+				var cue: String='monster_'+str({'coward':'cautious','curious':'pack','lazy':'bold','playful':'flanker'}[enemy.flock_personality])
+				if is_instance_valid(main.presentation_runtime) and is_instance_valid(main.presentation_runtime.audio):main.presentation_runtime.audio.play_positional(cue,field,Vector2(positions[index]))
 		enemy.flock_timer=timer
 		var start: Vector2=positions[index];var separation:=Vector2.ZERO;var average:=Vector2.ZERO;var alignment:=Vector2.ZERO;var neighbors:=0
 		for other in positions.size():

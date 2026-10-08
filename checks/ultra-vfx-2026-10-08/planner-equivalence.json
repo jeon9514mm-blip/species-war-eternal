@@ -1,0 +1,11 @@
+{
+  "checks": 2080,
+  "decision_checks": 1600,
+  "exact_state_match": true,
+  "failures": [],
+  "optimized_us": 391990,
+  "passed": true,
+  "reference_source_sha256": "7a2ca5f73304a2e112018b233d64c7cb0657b619bedd80a5795759724e09a6e0",
+  "reference_us": 1117468,
+  "trajectory_steps": 480
+}

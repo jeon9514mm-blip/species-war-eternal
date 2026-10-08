@@ -205,6 +205,7 @@ func _spawn_floating_combat_text(message: String, color: Color, origin: Vector2)
 	if data.is_empty():
 		if message!='무리 격파':super._spawn_floating_combat_text(message,color,origin)
 		return
+	data['damage_context']=get_meta('damage_feedback_context',{})
 	if active_screen=='combat':preload('res://scripts/presentation/CombatTextPresenter.gd').hunt(self,data,origin)
 	elif active_screen=='raid' and data.kind not in ['incoming','heal']:
 		preload('res://scripts/presentation/CombatTextPresenter.gd').raid(self,int(data.amount),str(data.kind))

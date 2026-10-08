@@ -5,41 +5,50 @@
     {
       "id": "adrien",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1181166,
-      "glb_bytes": 179336,
-      "mesh": "res://assets/mobile25d/adrien/billboard.glb"
+      "glb_bytes": 333516,
+      "mesh": "res://assets/mobile25d/adrien/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "astel",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1465425,
-      "glb_bytes": 179332,
-      "mesh": "res://assets/mobile25d/astel/billboard.glb"
+      "glb_bytes": 333512,
+      "mesh": "res://assets/mobile25d/astel/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "bora",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 903862,
-      "glb_bytes": 179328,
-      "mesh": "res://assets/mobile25d/bora/billboard.glb"
+      "glb_bytes": 333504,
+      "mesh": "res://assets/mobile25d/bora/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "bristle_boar",
@@ -57,41 +66,50 @@
     {
       "id": "bron",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 746514,
-      "glb_bytes": 179332,
-      "mesh": "res://assets/mobile25d/bron/billboard.glb"
+      "glb_bytes": 333504,
+      "mesh": "res://assets/mobile25d/bron/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "caelum",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1499100,
-      "glb_bytes": 179336,
-      "mesh": "res://assets/mobile25d/caelum/billboard.glb"
+      "glb_bytes": 333520,
+      "mesh": "res://assets/mobile25d/caelum/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "corvin",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 697719,
-      "glb_bytes": 179336,
-      "mesh": "res://assets/mobile25d/corvin/billboard.glb"
+      "glb_bytes": 333516,
+      "mesh": "res://assets/mobile25d/corvin/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "crystal_spider",
@@ -109,41 +127,50 @@
     {
       "id": "darius",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1284056,
-      "glb_bytes": 179336,
-      "mesh": "res://assets/mobile25d/darius/billboard.glb"
+      "glb_bytes": 333516,
+      "mesh": "res://assets/mobile25d/darius/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "elisia",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1575021,
-      "glb_bytes": 179340,
-      "mesh": "res://assets/mobile25d/elisia/billboard.glb"
+      "glb_bytes": 333520,
+      "mesh": "res://assets/mobile25d/elisia/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "fenris",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 825746,
-      "glb_bytes": 179340,
-      "mesh": "res://assets/mobile25d/fenris/billboard.glb"
+      "glb_bytes": 333520,
+      "mesh": "res://assets/mobile25d/fenris/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "forest_wraith",
@@ -174,15 +201,18 @@
     {
       "id": "garm",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 685931,
-      "glb_bytes": 179332,
-      "mesh": "res://assets/mobile25d/garm/billboard.glb"
+      "glb_bytes": 333504,
+      "mesh": "res://assets/mobile25d/garm/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "grun",
@@ -213,28 +243,34 @@
     {
       "id": "isolde",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1039640,
-      "glb_bytes": 179336,
-      "mesh": "res://assets/mobile25d/isolde/billboard.glb"
+      "glb_bytes": 333516,
+      "mesh": "res://assets/mobile25d/isolde/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "kairen",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1282803,
-      "glb_bytes": 179336,
-      "mesh": "res://assets/mobile25d/kairen/billboard.glb"
+      "glb_bytes": 333520,
+      "mesh": "res://assets/mobile25d/kairen/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "lava_bat",
@@ -252,41 +288,50 @@
     {
       "id": "leonhardt",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1230181,
-      "glb_bytes": 179348,
-      "mesh": "res://assets/mobile25d/leonhardt/billboard.glb"
+      "glb_bytes": 333540,
+      "mesh": "res://assets/mobile25d/leonhardt/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "lucien",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 799393,
-      "glb_bytes": 179336,
-      "mesh": "res://assets/mobile25d/lucien/billboard.glb"
+      "glb_bytes": 333516,
+      "mesh": "res://assets/mobile25d/lucien/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "lunea",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1353607,
-      "glb_bytes": 179332,
-      "mesh": "res://assets/mobile25d/lunea/billboard.glb"
+      "glb_bytes": 333512,
+      "mesh": "res://assets/mobile25d/lunea/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "mine_orc",
@@ -304,15 +349,18 @@
     {
       "id": "mira",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1615518,
-      "glb_bytes": 179328,
-      "mesh": "res://assets/mobile25d/mira/billboard.glb"
+      "glb_bytes": 333504,
+      "mesh": "res://assets/mobile25d/mira/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "moon_wolf",
@@ -330,15 +378,18 @@
     {
       "id": "morgas",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 822571,
-      "glb_bytes": 179336,
-      "mesh": "res://assets/mobile25d/morgas/billboard.glb"
+      "glb_bytes": 333516,
+      "mesh": "res://assets/mobile25d/morgas/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "morgul",
@@ -369,15 +420,18 @@
     {
       "id": "naia",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1055996,
-      "glb_bytes": 179328,
-      "mesh": "res://assets/mobile25d/naia/billboard.glb"
+      "glb_bytes": 333500,
+      "mesh": "res://assets/mobile25d/naia/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "night_raven",
@@ -395,93 +449,114 @@
     {
       "id": "nyx",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 790028,
-      "glb_bytes": 179328,
-      "mesh": "res://assets/mobile25d/nyx/billboard.glb"
+      "glb_bytes": 333496,
+      "mesh": "res://assets/mobile25d/nyx/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "odelia",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1102824,
-      "glb_bytes": 179336,
-      "mesh": "res://assets/mobile25d/odelia/billboard.glb"
+      "glb_bytes": 333516,
+      "mesh": "res://assets/mobile25d/odelia/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "orwin",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 917564,
-      "glb_bytes": 179332,
-      "mesh": "res://assets/mobile25d/orwin/billboard.glb"
+      "glb_bytes": 333512,
+      "mesh": "res://assets/mobile25d/orwin/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "ragna",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 712211,
-      "glb_bytes": 179332,
-      "mesh": "res://assets/mobile25d/ragna/billboard.glb"
+      "glb_bytes": 333512,
+      "mesh": "res://assets/mobile25d/ragna/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "rokan",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 616325,
-      "glb_bytes": 179332,
-      "mesh": "res://assets/mobile25d/rokan/billboard.glb"
+      "glb_bytes": 333508,
+      "mesh": "res://assets/mobile25d/rokan/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "sael",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1220377,
-      "glb_bytes": 179328,
-      "mesh": "res://assets/mobile25d/sael/billboard.glb"
+      "glb_bytes": 333500,
+      "mesh": "res://assets/mobile25d/sael/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "selene",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 730430,
-      "glb_bytes": 179336,
-      "mesh": "res://assets/mobile25d/selene/billboard.glb"
+      "glb_bytes": 333520,
+      "mesh": "res://assets/mobile25d/selene/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "selene_boss",
@@ -499,67 +574,82 @@
     {
       "id": "seria",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 1723751,
-      "glb_bytes": 179328,
-      "mesh": "res://assets/mobile25d/seria/billboard.glb"
+      "glb_bytes": 333504,
+      "mesh": "res://assets/mobile25d/seria/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "tessa",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 700374,
-      "glb_bytes": 179336,
-      "mesh": "res://assets/mobile25d/tessa/billboard.glb"
+      "glb_bytes": 333512,
+      "mesh": "res://assets/mobile25d/tessa/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "ulric",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 710217,
-      "glb_bytes": 179332,
-      "mesh": "res://assets/mobile25d/ulric/billboard.glb"
+      "glb_bytes": 333512,
+      "mesh": "res://assets/mobile25d/ulric/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "valeria",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 635462,
-      "glb_bytes": 179340,
-      "mesh": "res://assets/mobile25d/valeria/billboard.glb"
+      "glb_bytes": 333524,
+      "mesh": "res://assets/mobile25d/valeria/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "veyra",
       "hero": true,
-      "triangles": 6600,
-      "hair_cards": 300,
+      "triangles": 7200,
+      "hair_cards": 600,
       "texture_size": [
         1024,
         1024
       ],
       "png_bytes": 847336,
-      "glb_bytes": 179332,
-      "mesh": "res://assets/mobile25d/veyra/billboard.glb"
+      "glb_bytes": 333508,
+      "mesh": "res://assets/mobile25d/veyra/billboard.glb",
+      "cape_points": 5,
+      "lod_triangles": 3600,
+      "exported_triangles_including_lods": 10800
     },
     {
       "id": "wild_dog",
@@ -602,25 +692,46 @@
     }
   ],
   "floor": {
+    "schema": 2,
     "texture_size": [
       1024,
       1024
     ],
     "roughness": 0.58,
     "metallic": 0.32,
-    "patina_fraction_in_cracks": 0.20000262677471467,
-    "moss_fraction": 0.14999961853027344,
+    "patina_fraction_in_cracks": 0.249993244886379,
+    "moss_fraction": 0.18000030517578125,
     "moss_outside_crack_band": 0,
     "moss_color": "#A8B89E",
     "patina_color": "#6B8A7A",
-    "edge_wear": 0.6,
-    "crack_dark": 0.35,
+    "edge_wear": 0.8,
+    "edge_wear_stages": 2,
+    "moss_stages": 2,
+    "patina_stages": 2,
+    "crack_dark": 0.4,
     "dust": 0.15,
-    "ao_strength": 0.5,
-    "moss_glow": 0.15,
+    "ao_strength": 0.7,
+    "moss_glow": 0.25,
+    "height_scale": 0.08,
+    "packed_surface_channels": "R=height G=cavity B=curvature A=wetness",
     "runtime_ao_channel": "albedo alpha",
-    "runtime_textures": 2,
-    "runtime_bc7_bc5_bytes_with_mipmaps": 2796202,
-    "ao_separate_image": "authoring reference; packed in albedo alpha at runtime"
+    "runtime_textures": 4,
+    "runtime_bc7_bc5_bytes_with_mipmaps": 5592405,
+    "micro_normal_mobile": "stone_1024_micro_normal.png",
+    "micro_normal_quality_alternative": "stone_4096_micro_normal.png",
+    "micro_normal_quality_extra_bc5_bytes_with_mipmaps": 20971520,
+    "wet_fraction": 0.13562774658203125,
+    "parallax_steps_mobile": 4,
+    "parallax_steps_forward_plus": 8,
+    "footprint_pool": 50,
+    "ao_separate_image": "authoring reference; runtime AO in albedo alpha",
+    "image_sha256": {
+      "stone_1024_albedo_ao.png": "35efef85473ab1f02874828d4a2512698c7a41357d7453f261830534ee735a5d",
+      "stone_1024_ao.png": "b4fed2f7e651b645b4eb1b689d51a673786c839c71735bb9d97d19e22b8be7a1",
+      "stone_1024_micro_normal.png": "82929e11556b2f096cdc4f252af7644ff663dbceaa31b2d773ad276d2638d179",
+      "stone_1024_normal.png": "fe95b67c49916cb6a5d0f4cbcc8240030ad43b0dcb3bc1a0edb989d859d48b1d",
+      "stone_1024_surface.png": "80d631b254f0e18ec08b7314231b668a9b33a72c72e37ba95da3db90f295c8e9",
+      "stone_4096_micro_normal.png": "09d0e2ee7ca1e59eb4029fb93eb930f5d87d9d87fc1863bf1aa7a585a93f7680"
+    }
   }
 }

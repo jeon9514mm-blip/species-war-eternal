@@ -19760,8 +19760,18 @@
   "scale": 1.8,
   "requested_extra_scale": 1.2,
   "body_triangles": 6000,
-  "hair_cards": 300,
-  "hair_triangles": 600,
-  "cape_control_points": 3,
-  "runtime_texture_format_target": "BPTC/ASTC 4x4 RGBA with mipmaps; verify engine imports"
+  "hair_cards": 600,
+  "hair_triangles": 1200,
+  "cape_control_points": 5,
+  "runtime_texture_format_target": "BPTC/ASTC 4x4 RGBA with mipmaps; verify engine imports",
+  "lod_body_triangles": 3000,
+  "lod_hair_cards": 300,
+  "lod_hair_triangles": 600,
+  "hair_wind": 0.15,
+  "hair_clump": 0.3,
+  "hair_frizz": 0.1,
+  "cloth_stiffness": 0.12,
+  "cloth_damping": 0.88,
+  "cloth_wind": 0.12,
+  "secondary_collision": "analytic five-point strip; torso capsule and nonadjacent-point separation"
 }

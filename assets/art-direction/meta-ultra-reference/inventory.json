@@ -1,0 +1,1310 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-10-08",
+  "zip_sha256": "d0034aa66f4e876775a449c33158257e1bfd5828bdf7c625dd888eb6defec102",
+  "zip_bytes": 95538,
+  "entry_count": 32,
+  "member_bytes_total": 90892,
+  "members": [
+    {
+      "name": "docs/98_Ultra_Showcase.html",
+      "bytes": 8530,
+      "compressed_bytes": 8530,
+      "sha256": "ad5ae448139ebefd3db23f24acd42b2294f826f3f0bf7e8c25f75ac83d3be4db",
+      "crc32": "e6efa564",
+      "utf8_text_read": true,
+      "lines": 47,
+      "kind": "html_design_brief"
+    },
+    {
+      "name": "scripts/98_ultra/selene_98_ultra.gd",
+      "bytes": 2489,
+      "compressed_bytes": 2489,
+      "sha256": "c9e79aef4220bc8b2a841e3612e00646a52246649f21d2e71cad9c17bacccc04",
+      "crc32": "15fbcfeb",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/bora_98_ultra.gd",
+      "bytes": 2477,
+      "compressed_bytes": 2477,
+      "sha256": "13f7387a75aeca72fd4a47cecf04a545bf3a5eea8e837d8ef425c4cb6e73d06c",
+      "crc32": "71c992c8",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/rokan_98_ultra.gd",
+      "bytes": 2509,
+      "compressed_bytes": 2509,
+      "sha256": "101e8983412d69955afc5ee9cea699e2e912a98b2eefeeef7c1cb3c45a2f51a2",
+      "crc32": "0cbe379d",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/corvin_98_ultra.gd",
+      "bytes": 2447,
+      "compressed_bytes": 2447,
+      "sha256": "e145ef8c8885f8db2fea09307d7527ab8f2fdf5d9cabf5875a93d88385603eb1",
+      "crc32": "170dca4c",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/lucien_98_ultra.gd",
+      "bytes": 2484,
+      "compressed_bytes": 2484,
+      "sha256": "ba919c1bb4cdacf9bf54c940d2da2e2096a2f0c06a7127f8cc1f9aaac104f32f",
+      "crc32": "246a7c6d",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/odelia_98_ultra.gd",
+      "bytes": 2464,
+      "compressed_bytes": 2464,
+      "sha256": "d0c1525e56dcbcf0d5c396167d02421535d50a1eb9d1c0e781d4f792d7f347e0",
+      "crc32": "fb1b1b31",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/sael_98_ultra.gd",
+      "bytes": 2457,
+      "compressed_bytes": 2457,
+      "sha256": "02ced405ca7e27a6e4dc7634fbdf79dcec1bda56880b57737b323b2d4f44dbc3",
+      "crc32": "f4f3569f",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/naia_98_ultra.gd",
+      "bytes": 2454,
+      "compressed_bytes": 2454,
+      "sha256": "5f5e1837d78b5a7a24fec2c653d5dac298c6ae1a10e7433c8f8c05a7b85261cf",
+      "crc32": "e5599479",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/tessa_98_ultra.gd",
+      "bytes": 2436,
+      "compressed_bytes": 2436,
+      "sha256": "8a0f71b07ffb3e1d00d74a7b4ec34198dc739b4d250c5db4b20e0f4e84c18885",
+      "crc32": "612c11e4",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/adrien_98_ultra.gd",
+      "bytes": 2471,
+      "compressed_bytes": 2471,
+      "sha256": "4e17d0f6c2a80b46b6173fbc25d88fd1092b09e32d70ea25cb13456edd6f68cb",
+      "crc32": "36031d67",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/ulric_98_ultra.gd",
+      "bytes": 2485,
+      "compressed_bytes": 2485,
+      "sha256": "2f475742f73ac9b6997b380dbd3ec762c43d854af221e910ae3514d31bae1659",
+      "crc32": "1d3f61fd",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/veyra_98_ultra.gd",
+      "bytes": 2486,
+      "compressed_bytes": 2486,
+      "sha256": "eb34d6ed0671555cb880ecfaf3668b4f16f6805dc5251f10b8ce4413c5a40328",
+      "crc32": "d20a714a",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/garm_98_ultra.gd",
+      "bytes": 2469,
+      "compressed_bytes": 2469,
+      "sha256": "480c088fbe88a7c0fd91f778f09592bd0653eca21777e28e1980bb58309a38b0",
+      "crc32": "bb43e0b1",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/isolde_98_ultra.gd",
+      "bytes": 2467,
+      "compressed_bytes": 2467,
+      "sha256": "2f9c57683131481462bc70f03245a8579ccbdaa5fa554858020798665251a93d",
+      "crc32": "d9f071cf",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/fenris_98_ultra.gd",
+      "bytes": 2479,
+      "compressed_bytes": 2479,
+      "sha256": "6a01f18a883603b84f0cbdd9e58d5daea9fc65f5adbb51df5f769f476b9144b1",
+      "crc32": "44c7cab4",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/nyx_98_ultra.gd",
+      "bytes": 2450,
+      "compressed_bytes": 2450,
+      "sha256": "62ef64879ed1d9d39413b2370263202ade15e49aec2fb2f859e019edbcff5e70",
+      "crc32": "15aa80fa",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/bron_98_ultra.gd",
+      "bytes": 2449,
+      "compressed_bytes": 2449,
+      "sha256": "3e1a4a531868c6f0225e177b958eaf682019f9ecdab4b5ac0f7968816c8674fe",
+      "crc32": "3e524085",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/ragna_98_ultra.gd",
+      "bytes": 2468,
+      "compressed_bytes": 2468,
+      "sha256": "a2ce7f8153d5934915bdde6f4f3838dd6330ed087891950da70b9c4aadf63831",
+      "crc32": "25b1b25c",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/morgas_98_ultra.gd",
+      "bytes": 2468,
+      "compressed_bytes": 2468,
+      "sha256": "b141ade348565aa6c69ba853bc726c75120f73dc107d7b136090f48a6708f0db",
+      "crc32": "fa34be4b",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/valeria_98_ultra.gd",
+      "bytes": 2481,
+      "compressed_bytes": 2481,
+      "sha256": "eca772330d1efd99f37bd00f0707c9b33ccb0c5523475cdf07d2fba73619846d",
+      "crc32": "c1002ddc",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/caelum_98_ultra.gd",
+      "bytes": 2468,
+      "compressed_bytes": 2468,
+      "sha256": "4c5a8db6f0986ff6f2d151afbed22b5454775c4f8e8623787ca77c7ef50305ca",
+      "crc32": "11ead798",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/lunea_98_ultra.gd",
+      "bytes": 2479,
+      "compressed_bytes": 2479,
+      "sha256": "0aa6ccf1b2e5f73088fc5ad07cc541010dafa18f9227b902975b65b92eaa169f",
+      "crc32": "96f1a26d",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/darius_98_ultra.gd",
+      "bytes": 2461,
+      "compressed_bytes": 2461,
+      "sha256": "e104143b2408d6a2e41a7db1d31b0e606c47e3b6d603b65b8bccf1e1788256b5",
+      "crc32": "617f33fa",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/astel_98_ultra.gd",
+      "bytes": 2474,
+      "compressed_bytes": 2474,
+      "sha256": "83611ac5eabf47b6c1c8fc3df32784e43bae2b7485cfb5284f4554cedb1ba2ed",
+      "crc32": "c19bb4db",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/seria_98_ultra.gd",
+      "bytes": 2459,
+      "compressed_bytes": 2459,
+      "sha256": "489bc6334b0194e2e2fe1086fdf90f6a5c521fd86c3b2eef2d002f40553e07c7",
+      "crc32": "5e5dc9ea",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/orwin_98_ultra.gd",
+      "bytes": 2463,
+      "compressed_bytes": 2463,
+      "sha256": "01614ba83bc4e1ba0710ab4558401466e9f6cf8dc9a662006056aac7ef5f59cd",
+      "crc32": "e0e674bb",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/kairen_98_ultra.gd",
+      "bytes": 2444,
+      "compressed_bytes": 2444,
+      "sha256": "55b5b18cec7ac55398d879cfcbf56b025bd045f1b30b5df2d2b14999ca0dbbb6",
+      "crc32": "0d425c08",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/elisia_98_ultra.gd",
+      "bytes": 2467,
+      "compressed_bytes": 2467,
+      "sha256": "fbdc561e036419f5f521ca7001d896d9f435bd177316a26d8b9ba3d175c0f58e",
+      "crc32": "e71cb44f",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/mira_98_ultra.gd",
+      "bytes": 2465,
+      "compressed_bytes": 2465,
+      "sha256": "93d4b0bc3d7c5cab4ef5194d9e6ccfcfd396beeb3eda781dc3d9ed2e2716be7e",
+      "crc32": "e63be4fe",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/leonhardt_98_ultra.gd",
+      "bytes": 2496,
+      "compressed_bytes": 2496,
+      "sha256": "2289fe07327ee6d84520bca9e91f457e1c2a82f288e6da082258a93505a129be",
+      "crc32": "6595feb4",
+      "utf8_text_read": true,
+      "lines": 25,
+      "kind": "hero_parameter_data_script"
+    },
+    {
+      "name": "scripts/98_ultra/Ultra_Detail_98_v46.gd",
+      "bytes": 8296,
+      "compressed_bytes": 8296,
+      "sha256": "e7d2f2f4d9102da2884fc6a8314dfdf0b14576151a7eead1069c4c9b312d0472",
+      "crc32": "939a8b5e",
+      "utf8_text_read": true,
+      "lines": 75,
+      "kind": "shared_placeholder_script"
+    }
+  ],
+  "all_members_utf8_decoded_and_read_as_data": true,
+  "scripts_executed": false,
+  "scripts_imported_into_godot": false,
+  "scripts_extracted": false,
+  "hero_parameter_files": 30,
+  "normalized_hero_template_unique": 1,
+  "skill_names_compared": 120,
+  "skill_name_matches": 120,
+  "skill_name_mismatches": [],
+  "image_assets": 0,
+  "shader_assets": 0,
+  "mesh_assets": 0,
+  "audio_assets": 0,
+  "shared_render_stubs": [
+    "spawn_caster_98",
+    "spawn_projectile_98",
+    "spawn_impact_98"
+  ],
+  "skill_comparison": [
+    {
+      "hero_id": "adrien",
+      "slot": "a1",
+      "reference_skill": "은검 받아치기",
+      "registered_skill": "은검 받아치기",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/adrien_98_ultra.gd"
+    },
+    {
+      "hero_id": "adrien",
+      "slot": "a2",
+      "reference_skill": "결투 선언",
+      "registered_skill": "결투 선언",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/adrien_98_ultra.gd"
+    },
+    {
+      "hero_id": "adrien",
+      "slot": "passive",
+      "reference_skill": "받아치는 예법",
+      "registered_skill": "받아치는 예법",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/adrien_98_ultra.gd"
+    },
+    {
+      "hero_id": "adrien",
+      "slot": "ultimate",
+      "reference_skill": "은백의 일기토",
+      "registered_skill": "은백의 일기토",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/adrien_98_ultra.gd"
+    },
+    {
+      "hero_id": "astel",
+      "slot": "a1",
+      "reference_skill": "새벽의 찬가",
+      "registered_skill": "새벽의 찬가",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/astel_98_ultra.gd"
+    },
+    {
+      "hero_id": "astel",
+      "slot": "a2",
+      "reference_skill": "여명의 장막",
+      "registered_skill": "여명의 장막",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/astel_98_ultra.gd"
+    },
+    {
+      "hero_id": "astel",
+      "slot": "passive",
+      "reference_skill": "아침이슬 축복",
+      "registered_skill": "아침이슬 축복",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/astel_98_ultra.gd"
+    },
+    {
+      "hero_id": "astel",
+      "slot": "ultimate",
+      "reference_skill": "새벽을 여는 합창",
+      "registered_skill": "새벽을 여는 합창",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/astel_98_ultra.gd"
+    },
+    {
+      "hero_id": "bora",
+      "slot": "a1",
+      "reference_skill": "설원 연권",
+      "registered_skill": "설원 연권",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/bora_98_ultra.gd"
+    },
+    {
+      "hero_id": "bora",
+      "slot": "a2",
+      "reference_skill": "백야 되받기",
+      "registered_skill": "백야 되받기",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/bora_98_ultra.gd"
+    },
+    {
+      "hero_id": "bora",
+      "slot": "passive",
+      "reference_skill": "눈보라 속 근성",
+      "registered_skill": "눈보라 속 근성",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/bora_98_ultra.gd"
+    },
+    {
+      "hero_id": "bora",
+      "slot": "ultimate",
+      "reference_skill": "설산을 깨우는 주먹",
+      "registered_skill": "설산을 깨우는 주먹",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/bora_98_ultra.gd"
+    },
+    {
+      "hero_id": "bron",
+      "slot": "a1",
+      "reference_skill": "대지 분쇄",
+      "registered_skill": "대지 분쇄",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/bron_98_ultra.gd"
+    },
+    {
+      "hero_id": "bron",
+      "slot": "a2",
+      "reference_skill": "바위 어깨",
+      "registered_skill": "바위 어깨",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/bron_98_ultra.gd"
+    },
+    {
+      "hero_id": "bron",
+      "slot": "passive",
+      "reference_skill": "돌가죽 반향",
+      "registered_skill": "돌가죽 반향",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/bron_98_ultra.gd"
+    },
+    {
+      "hero_id": "bron",
+      "slot": "ultimate",
+      "reference_skill": "산맥의 수호자",
+      "registered_skill": "산맥의 수호자",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/bron_98_ultra.gd"
+    },
+    {
+      "hero_id": "caelum",
+      "slot": "a1",
+      "reference_skill": "태양검 낙하",
+      "registered_skill": "태양검 낙하",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/caelum_98_ultra.gd"
+    },
+    {
+      "hero_id": "caelum",
+      "slot": "a2",
+      "reference_skill": "여명 반월",
+      "registered_skill": "여명 반월",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/caelum_98_ultra.gd"
+    },
+    {
+      "hero_id": "caelum",
+      "slot": "passive",
+      "reference_skill": "타오르는 검심",
+      "registered_skill": "타오르는 검심",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/caelum_98_ultra.gd"
+    },
+    {
+      "hero_id": "caelum",
+      "slot": "ultimate",
+      "reference_skill": "태양왕의 검륜",
+      "registered_skill": "태양왕의 검륜",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/caelum_98_ultra.gd"
+    },
+    {
+      "hero_id": "corvin",
+      "slot": "a1",
+      "reference_skill": "황혼 공명",
+      "registered_skill": "황혼 공명",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/corvin_98_ultra.gd"
+    },
+    {
+      "hero_id": "corvin",
+      "slot": "a2",
+      "reference_skill": "잔향 파동",
+      "registered_skill": "잔향 파동",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/corvin_98_ultra.gd"
+    },
+    {
+      "hero_id": "corvin",
+      "slot": "passive",
+      "reference_skill": "겹치는 잔향",
+      "registered_skill": "겹치는 잔향",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/corvin_98_ultra.gd"
+    },
+    {
+      "hero_id": "corvin",
+      "slot": "ultimate",
+      "reference_skill": "황혼 교향곡",
+      "registered_skill": "황혼 교향곡",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/corvin_98_ultra.gd"
+    },
+    {
+      "hero_id": "darius",
+      "slot": "a1",
+      "reference_skill": "왕국 처단",
+      "registered_skill": "왕국 처단",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/darius_98_ultra.gd"
+    },
+    {
+      "hero_id": "darius",
+      "slot": "a2",
+      "reference_skill": "판결의 검흔",
+      "registered_skill": "판결의 검흔",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/darius_98_ultra.gd"
+    },
+    {
+      "hero_id": "darius",
+      "slot": "passive",
+      "reference_skill": "집행의 시간",
+      "registered_skill": "집행의 시간",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/darius_98_ultra.gd"
+    },
+    {
+      "hero_id": "darius",
+      "slot": "ultimate",
+      "reference_skill": "왕의 최종 판결",
+      "registered_skill": "왕의 최종 판결",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/darius_98_ultra.gd"
+    },
+    {
+      "hero_id": "elisia",
+      "slot": "a1",
+      "reference_skill": "숲의 치유",
+      "registered_skill": "숲의 치유",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/elisia_98_ultra.gd"
+    },
+    {
+      "hero_id": "elisia",
+      "slot": "a2",
+      "reference_skill": "생명의 씨앗",
+      "registered_skill": "생명의 씨앗",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/elisia_98_ultra.gd"
+    },
+    {
+      "hero_id": "elisia",
+      "slot": "passive",
+      "reference_skill": "숲이 품은 약속",
+      "registered_skill": "숲이 품은 약속",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/elisia_98_ultra.gd"
+    },
+    {
+      "hero_id": "elisia",
+      "slot": "ultimate",
+      "reference_skill": "세계수의 숨결",
+      "registered_skill": "세계수의 숨결",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/elisia_98_ultra.gd"
+    },
+    {
+      "hero_id": "fenris",
+      "slot": "a1",
+      "reference_skill": "회색 발톱",
+      "registered_skill": "회색 발톱",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/fenris_98_ultra.gd"
+    },
+    {
+      "hero_id": "fenris",
+      "slot": "a2",
+      "reference_skill": "은빛 질주참",
+      "registered_skill": "은빛 질주참",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/fenris_98_ultra.gd"
+    },
+    {
+      "hero_id": "fenris",
+      "slot": "passive",
+      "reference_skill": "회색 무리의 박자",
+      "registered_skill": "회색 무리의 박자",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/fenris_98_ultra.gd"
+    },
+    {
+      "hero_id": "fenris",
+      "slot": "ultimate",
+      "reference_skill": "회색 폭풍발톱",
+      "registered_skill": "회색 폭풍발톱",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/fenris_98_ultra.gd"
+    },
+    {
+      "hero_id": "garm",
+      "slot": "a1",
+      "reference_skill": "철갑 포효",
+      "registered_skill": "철갑 포효",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/garm_98_ultra.gd"
+    },
+    {
+      "hero_id": "garm",
+      "slot": "a2",
+      "reference_skill": "등을 맡겨라",
+      "registered_skill": "등을 맡겨라",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/garm_98_ultra.gd"
+    },
+    {
+      "hero_id": "garm",
+      "slot": "passive",
+      "reference_skill": "무리의 버팀목",
+      "registered_skill": "무리의 버팀목",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/garm_98_ultra.gd"
+    },
+    {
+      "hero_id": "garm",
+      "slot": "ultimate",
+      "reference_skill": "철갑 무리의 심장",
+      "registered_skill": "철갑 무리의 심장",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/garm_98_ultra.gd"
+    },
+    {
+      "hero_id": "isolde",
+      "slot": "a1",
+      "reference_skill": "붉은 성찬",
+      "registered_skill": "붉은 성찬",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/isolde_98_ultra.gd"
+    },
+    {
+      "hero_id": "isolde",
+      "slot": "a2",
+      "reference_skill": "장미 수혈",
+      "registered_skill": "장미 수혈",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/isolde_98_ultra.gd"
+    },
+    {
+      "hero_id": "isolde",
+      "slot": "passive",
+      "reference_skill": "장미의 헌신",
+      "registered_skill": "장미의 헌신",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/isolde_98_ultra.gd"
+    },
+    {
+      "hero_id": "isolde",
+      "slot": "ultimate",
+      "reference_skill": "생명을 잇는 장미",
+      "registered_skill": "생명을 잇는 장미",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/isolde_98_ultra.gd"
+    },
+    {
+      "hero_id": "kairen",
+      "slot": "a1",
+      "reference_skill": "별빛 속박",
+      "registered_skill": "별빛 속박",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/kairen_98_ultra.gd"
+    },
+    {
+      "hero_id": "kairen",
+      "slot": "a2",
+      "reference_skill": "별궤도 붕괴",
+      "registered_skill": "별궤도 붕괴",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/kairen_98_ultra.gd"
+    },
+    {
+      "hero_id": "kairen",
+      "slot": "passive",
+      "reference_skill": "별의 연산",
+      "registered_skill": "별의 연산",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/kairen_98_ultra.gd"
+    },
+    {
+      "hero_id": "kairen",
+      "slot": "ultimate",
+      "reference_skill": "천체 정지",
+      "registered_skill": "천체 정지",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/kairen_98_ultra.gd"
+    },
+    {
+      "hero_id": "leonhardt",
+      "slot": "a1",
+      "reference_skill": "철벽 방패",
+      "registered_skill": "철벽 방패",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/leonhardt_98_ultra.gd"
+    },
+    {
+      "hero_id": "leonhardt",
+      "slot": "a2",
+      "reference_skill": "동료의 방벽",
+      "registered_skill": "동료의 방벽",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/leonhardt_98_ultra.gd"
+    },
+    {
+      "hero_id": "leonhardt",
+      "slot": "passive",
+      "reference_skill": "꺾이지 않는 기치",
+      "registered_skill": "꺾이지 않는 기치",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/leonhardt_98_ultra.gd"
+    },
+    {
+      "hero_id": "leonhardt",
+      "slot": "ultimate",
+      "reference_skill": "왕국의 마지막 성벽",
+      "registered_skill": "왕국의 마지막 성벽",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/leonhardt_98_ultra.gd"
+    },
+    {
+      "hero_id": "lucien",
+      "slot": "a1",
+      "reference_skill": "붉은 맹약 찌르기",
+      "registered_skill": "붉은 맹약 찌르기",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/lucien_98_ultra.gd"
+    },
+    {
+      "hero_id": "lucien",
+      "slot": "a2",
+      "reference_skill": "혈약 회수",
+      "registered_skill": "혈약 회수",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/lucien_98_ultra.gd"
+    },
+    {
+      "hero_id": "lucien",
+      "slot": "passive",
+      "reference_skill": "살아 있는 맹약",
+      "registered_skill": "살아 있는 맹약",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/lucien_98_ultra.gd"
+    },
+    {
+      "hero_id": "lucien",
+      "slot": "ultimate",
+      "reference_skill": "진홍의 서약창",
+      "registered_skill": "진홍의 서약창",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/lucien_98_ultra.gd"
+    },
+    {
+      "hero_id": "lunea",
+      "slot": "a1",
+      "reference_skill": "안개 봉인",
+      "registered_skill": "안개 봉인",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/lunea_98_ultra.gd"
+    },
+    {
+      "hero_id": "lunea",
+      "slot": "a2",
+      "reference_skill": "길 잃은 메아리",
+      "registered_skill": "길 잃은 메아리",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/lunea_98_ultra.gd"
+    },
+    {
+      "hero_id": "lunea",
+      "slot": "passive",
+      "reference_skill": "안개 속 길잡이",
+      "registered_skill": "안개 속 길잡이",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/lunea_98_ultra.gd"
+    },
+    {
+      "hero_id": "lunea",
+      "slot": "ultimate",
+      "reference_skill": "영원의 안개숲",
+      "registered_skill": "영원의 안개숲",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/lunea_98_ultra.gd"
+    },
+    {
+      "hero_id": "mira",
+      "slot": "a1",
+      "reference_skill": "정밀 사격",
+      "registered_skill": "정밀 사격",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/mira_98_ultra.gd"
+    },
+    {
+      "hero_id": "mira",
+      "slot": "a2",
+      "reference_skill": "방진 관통탄",
+      "registered_skill": "방진 관통탄",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/mira_98_ultra.gd"
+    },
+    {
+      "hero_id": "mira",
+      "slot": "passive",
+      "reference_skill": "흔들림 없는 조준",
+      "registered_skill": "흔들림 없는 조준",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/mira_98_ultra.gd"
+    },
+    {
+      "hero_id": "mira",
+      "slot": "ultimate",
+      "reference_skill": "단 하나의 궤적",
+      "registered_skill": "단 하나의 궤적",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/mira_98_ultra.gd"
+    },
+    {
+      "hero_id": "morgas",
+      "slot": "a1",
+      "reference_skill": "핏빛 저주",
+      "registered_skill": "핏빛 저주",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/morgas_98_ultra.gd"
+    },
+    {
+      "hero_id": "morgas",
+      "slot": "a2",
+      "reference_skill": "무력화 증류액",
+      "registered_skill": "무력화 증류액",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/morgas_98_ultra.gd"
+    },
+    {
+      "hero_id": "morgas",
+      "slot": "passive",
+      "reference_skill": "저주 재활용",
+      "registered_skill": "저주 재활용",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/morgas_98_ultra.gd"
+    },
+    {
+      "hero_id": "morgas",
+      "slot": "ultimate",
+      "reference_skill": "대현자의 혈식",
+      "registered_skill": "대현자의 혈식",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/morgas_98_ultra.gd"
+    },
+    {
+      "hero_id": "naia",
+      "slot": "a1",
+      "reference_skill": "초신성 조준",
+      "registered_skill": "초신성 조준",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/naia_98_ultra.gd"
+    },
+    {
+      "hero_id": "naia",
+      "slot": "a2",
+      "reference_skill": "낙성 쐐기",
+      "registered_skill": "낙성 쐐기",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/naia_98_ultra.gd"
+    },
+    {
+      "hero_id": "naia",
+      "slot": "passive",
+      "reference_skill": "거성 관측",
+      "registered_skill": "거성 관측",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/naia_98_ultra.gd"
+    },
+    {
+      "hero_id": "naia",
+      "slot": "ultimate",
+      "reference_skill": "황도 일점 붕괴",
+      "registered_skill": "황도 일점 붕괴",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/naia_98_ultra.gd"
+    },
+    {
+      "hero_id": "nyx",
+      "slot": "a1",
+      "reference_skill": "밤의 낙인",
+      "registered_skill": "밤의 낙인",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/nyx_98_ultra.gd"
+    },
+    {
+      "hero_id": "nyx",
+      "slot": "a2",
+      "reference_skill": "예언의 종막",
+      "registered_skill": "예언의 종막",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/nyx_98_ultra.gd"
+    },
+    {
+      "hero_id": "nyx",
+      "slot": "passive",
+      "reference_skill": "예언의 실마리",
+      "registered_skill": "예언의 실마리",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/nyx_98_ultra.gd"
+    },
+    {
+      "hero_id": "nyx",
+      "slot": "ultimate",
+      "reference_skill": "칠야의 예언",
+      "registered_skill": "칠야의 예언",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/nyx_98_ultra.gd"
+    },
+    {
+      "hero_id": "odelia",
+      "slot": "a1",
+      "reference_skill": "쇠약의 문장",
+      "registered_skill": "쇠약의 문장",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/odelia_98_ultra.gd"
+    },
+    {
+      "hero_id": "odelia",
+      "slot": "a2",
+      "reference_skill": "균열의 문장",
+      "registered_skill": "균열의 문장",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/odelia_98_ultra.gd"
+    },
+    {
+      "hero_id": "odelia",
+      "slot": "passive",
+      "reference_skill": "문장 회수",
+      "registered_skill": "문장 회수",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/odelia_98_ultra.gd"
+    },
+    {
+      "hero_id": "odelia",
+      "slot": "ultimate",
+      "reference_skill": "왕실 이중 봉인",
+      "registered_skill": "왕실 이중 봉인",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/odelia_98_ultra.gd"
+    },
+    {
+      "hero_id": "orwin",
+      "slot": "a1",
+      "reference_skill": "황금 방진",
+      "registered_skill": "황금 방진",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/orwin_98_ultra.gd"
+    },
+    {
+      "hero_id": "orwin",
+      "slot": "a2",
+      "reference_skill": "전열 재정비",
+      "registered_skill": "전열 재정비",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/orwin_98_ultra.gd"
+    },
+    {
+      "hero_id": "orwin",
+      "slot": "passive",
+      "reference_skill": "방진의 중심",
+      "registered_skill": "방진의 중심",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/orwin_98_ultra.gd"
+    },
+    {
+      "hero_id": "orwin",
+      "slot": "ultimate",
+      "reference_skill": "불굴의 황금진",
+      "registered_skill": "불굴의 황금진",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/orwin_98_ultra.gd"
+    },
+    {
+      "hero_id": "ragna",
+      "slot": "a1",
+      "reference_skill": "달빛 돌진",
+      "registered_skill": "달빛 돌진",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/ragna_98_ultra.gd"
+    },
+    {
+      "hero_id": "ragna",
+      "slot": "a2",
+      "reference_skill": "무리의 급습",
+      "registered_skill": "무리의 급습",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/ragna_98_ultra.gd"
+    },
+    {
+      "hero_id": "ragna",
+      "slot": "passive",
+      "reference_skill": "사냥의 첫 걸음",
+      "registered_skill": "사냥의 첫 걸음",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/ragna_98_ultra.gd"
+    },
+    {
+      "hero_id": "ragna",
+      "slot": "ultimate",
+      "reference_skill": "만월의 포위망",
+      "registered_skill": "만월의 포위망",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/ragna_98_ultra.gd"
+    },
+    {
+      "hero_id": "rokan",
+      "slot": "a1",
+      "reference_skill": "송곳니 투창",
+      "registered_skill": "송곳니 투창",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/rokan_98_ultra.gd"
+    },
+    {
+      "hero_id": "rokan",
+      "slot": "a2",
+      "reference_skill": "추적자의 마무리",
+      "registered_skill": "추적자의 마무리",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/rokan_98_ultra.gd"
+    },
+    {
+      "hero_id": "rokan",
+      "slot": "passive",
+      "reference_skill": "물러서지 않는 추적",
+      "registered_skill": "물러서지 않는 추적",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/rokan_98_ultra.gd"
+    },
+    {
+      "hero_id": "rokan",
+      "slot": "ultimate",
+      "reference_skill": "무리의 마지막 표창",
+      "registered_skill": "무리의 마지막 표창",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/rokan_98_ultra.gd"
+    },
+    {
+      "hero_id": "sael",
+      "slot": "a1",
+      "reference_skill": "잎새 가르기",
+      "registered_skill": "잎새 가르기",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/sael_98_ultra.gd"
+    },
+    {
+      "hero_id": "sael",
+      "slot": "a2",
+      "reference_skill": "신록 회전검",
+      "registered_skill": "신록 회전검",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/sael_98_ultra.gd"
+    },
+    {
+      "hero_id": "sael",
+      "slot": "passive",
+      "reference_skill": "숲길의 리듬",
+      "registered_skill": "숲길의 리듬",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/sael_98_ultra.gd"
+    },
+    {
+      "hero_id": "sael",
+      "slot": "ultimate",
+      "reference_skill": "천 잎의 윤무",
+      "registered_skill": "천 잎의 윤무",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/sael_98_ultra.gd"
+    },
+    {
+      "hero_id": "selene",
+      "slot": "a1",
+      "reference_skill": "홍실 매듭",
+      "registered_skill": "홍실 매듭",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/selene_98_ultra.gd"
+    },
+    {
+      "hero_id": "selene",
+      "slot": "a2",
+      "reference_skill": "이어 붙인 온기",
+      "registered_skill": "이어 붙인 온기",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/selene_98_ultra.gd"
+    },
+    {
+      "hero_id": "selene",
+      "slot": "passive",
+      "reference_skill": "풀리지 않는 매듭",
+      "registered_skill": "풀리지 않는 매듭",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/selene_98_ultra.gd"
+    },
+    {
+      "hero_id": "selene",
+      "slot": "ultimate",
+      "reference_skill": "운명을 잇는 홍실",
+      "registered_skill": "운명을 잇는 홍실",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/selene_98_ultra.gd"
+    },
+    {
+      "hero_id": "seria",
+      "slot": "a1",
+      "reference_skill": "질풍 연사",
+      "registered_skill": "질풍 연사",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/seria_98_ultra.gd"
+    },
+    {
+      "hero_id": "seria",
+      "slot": "a2",
+      "reference_skill": "바람끝 추격",
+      "registered_skill": "바람끝 추격",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/seria_98_ultra.gd"
+    },
+    {
+      "hero_id": "seria",
+      "slot": "passive",
+      "reference_skill": "끝없는 시위",
+      "registered_skill": "끝없는 시위",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/seria_98_ultra.gd"
+    },
+    {
+      "hero_id": "seria",
+      "slot": "ultimate",
+      "reference_skill": "폭풍의 여섯 깃",
+      "registered_skill": "폭풍의 여섯 깃",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/seria_98_ultra.gd"
+    },
+    {
+      "hero_id": "tessa",
+      "slot": "a1",
+      "reference_skill": "쌍룬 탄착",
+      "registered_skill": "쌍룬 탄착",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/tessa_98_ultra.gd"
+    },
+    {
+      "hero_id": "tessa",
+      "slot": "a2",
+      "reference_skill": "냉각 룬탄",
+      "registered_skill": "냉각 룬탄",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/tessa_98_ultra.gd"
+    },
+    {
+      "hero_id": "tessa",
+      "slot": "passive",
+      "reference_skill": "압력 축적",
+      "registered_skill": "압력 축적",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/tessa_98_ultra.gd"
+    },
+    {
+      "hero_id": "tessa",
+      "slot": "ultimate",
+      "reference_skill": "대룬포 별비",
+      "registered_skill": "대룬포 별비",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/tessa_98_ultra.gd"
+    },
+    {
+      "hero_id": "ulric",
+      "slot": "a1",
+      "reference_skill": "월식 강습",
+      "registered_skill": "월식 강습",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/ulric_98_ultra.gd"
+    },
+    {
+      "hero_id": "ulric",
+      "slot": "a2",
+      "reference_skill": "사냥꾼의 압박",
+      "registered_skill": "사냥꾼의 압박",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/ulric_98_ultra.gd"
+    },
+    {
+      "hero_id": "ulric",
+      "slot": "passive",
+      "reference_skill": "놓치지 않는 추격",
+      "registered_skill": "놓치지 않는 추격",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/ulric_98_ultra.gd"
+    },
+    {
+      "hero_id": "ulric",
+      "slot": "ultimate",
+      "reference_skill": "월식을 찢는 발톱",
+      "registered_skill": "월식을 찢는 발톱",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/ulric_98_ultra.gd"
+    },
+    {
+      "hero_id": "valeria",
+      "slot": "a1",
+      "reference_skill": "혈월 베기",
+      "registered_skill": "혈월 베기",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/valeria_98_ultra.gd"
+    },
+    {
+      "hero_id": "valeria",
+      "slot": "a2",
+      "reference_skill": "귀족의 결의",
+      "registered_skill": "귀족의 결의",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/valeria_98_ultra.gd"
+    },
+    {
+      "hero_id": "valeria",
+      "slot": "passive",
+      "reference_skill": "고귀한 갈증",
+      "registered_skill": "고귀한 갈증",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/valeria_98_ultra.gd"
+    },
+    {
+      "hero_id": "valeria",
+      "slot": "ultimate",
+      "reference_skill": "붉은 왕좌의 맹세",
+      "registered_skill": "붉은 왕좌의 맹세",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/valeria_98_ultra.gd"
+    },
+    {
+      "hero_id": "veyra",
+      "slot": "a1",
+      "reference_skill": "그림자 흡혈검",
+      "registered_skill": "그림자 흡혈검",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/veyra_98_ultra.gd"
+    },
+    {
+      "hero_id": "veyra",
+      "slot": "a2",
+      "reference_skill": "장막 찌르기",
+      "registered_skill": "장막 찌르기",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/veyra_98_ultra.gd"
+    },
+    {
+      "hero_id": "veyra",
+      "slot": "passive",
+      "reference_skill": "마지막 춤의 보상",
+      "registered_skill": "마지막 춤의 보상",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/veyra_98_ultra.gd"
+    },
+    {
+      "hero_id": "veyra",
+      "slot": "ultimate",
+      "reference_skill": "흑장미의 끝무도",
+      "registered_skill": "흑장미의 끝무도",
+      "exact_match": true,
+      "reference_entry": "scripts/98_ultra/veyra_98_ultra.gd"
+    }
+  ]
+}

@@ -51,8 +51,7 @@ func sample(field,phase: String,time: float) -> void:
 		var state: Dictionary=pilot.debug_snapshot()
 		row.paints.append({'id':state.id,'action':state.action,'frame':state.frame,'height':state.height,'flip':state.flip})
 		if pilot._echoes!=null:
-			for echo in pilot._echoes.layers:
-				if echo.visible:row.visible_echoes.append({'id':state.id,'action':state.action,'phase':state.phase})
+			for instance_index in pilot._echoes.visible_count():row.visible_echoes.append({'id':state.id,'action':state.action,'phase':state.phase,'instance':instance_index,'opacity':pilot._echoes.instance_opacity(instance_index)})
 	observations[phase+'_samples'].append(row)
 func natural_hunt(faction: String) -> void:
 	game.selected_faction=faction;game.party_slot_legacy_cap=10

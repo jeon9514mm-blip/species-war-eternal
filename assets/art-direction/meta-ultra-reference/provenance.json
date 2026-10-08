@@ -1,0 +1,27 @@
+{
+  "reviewed_at": "2026-10-08",
+  "html_reference": "https://www.meta.ai/share/a/977ee1f5-a5b5-4d19-ac9d-38d01b1e6d8d",
+  "html_read": true,
+  "html_title": "98점 울트라 디테일",
+  "source_kind": "text design brief plus inspected ZIP parameter templates; no supplied rendered animation or original3D assets",
+  "zip_reference": "https://www.meta.ai/share/a/f24ae156-1d35-4db7-a404-c3cc193d8f8a",
+  "zip_filename": "ultra-v46-reference.zip",
+  "zip_read": true,
+  "requirements": "User supplied all fifteen Ultra specifications directly in the task. These are the implementation brief.",
+  "unverified_reference_claims": [
+    "98 points",
+    "AAA+",
+    "60fps",
+    "200MB"
+  ],
+  "implementation_basis": "Existing project code and original hero paintings; reference skill names verified 120/120 and all 96 literal parameter keys mapped with gates, approximation and unsupported notes. Integrated GPU measurements are separate evidence.",
+  "zip_original_filename": "Ultra_x5f_Detail_x5f_98_x5f_Final_x5f_v46.zip",
+  "zip_bytes": 95538,
+  "zip_sha256": "d0034aa66f4e876775a449c33158257e1bfd5828bdf7c625dd888eb6defec102",
+  "zip_download_method": "Direct HTTP download with PowerShell Invoke-WebRequest after obtaining the reference attachment URL.",
+  "zip_prior_browser_attempts": "The two browser attempts timed out; these prior failures do not describe the successful direct HTTP download.",
+  "zip_audit": "inventory.json: 32 UTF-8 entries read as data; 30 hero parameter scripts, 1 shared placeholder script, 1 HTML brief; 120 skill names exactly match; zero art assets.",
+  "reference_source_kind": "Both links are text/reference parameter briefs. ZIP shared VFX helpers are pass stubs; no inspected animation, original 3D models, shader programs, images or audio inside ZIP.",
+  "zip_import_policy": "Original ZIP archived intact; member .gd/HTML sources are data only, never executed or extracted into Godot.",
+  "implementation_mapping": "parameter-coverage.json"
+}

@@ -1,0 +1,2273 @@
+{
+  "actual_active_cast_count": 90,
+  "art_review_fixture": true,
+  "captures": [
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "leonhardt",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "leonhardt_a1",
+          "settled_damage": 0,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "mira",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "mira_a2",
+          "settled_damage": 1219,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "elisia",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "elisia_ultimate",
+          "settled_damage": 0,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 14709438,
+      "file": "aurelia-core10-charge.png",
+      "height": 630,
+      "lineup": "aurelia-core10",
+      "manual_visual_age": 0.045,
+      "memory_bytes": 153385873.0,
+      "natural_proc": false,
+      "phase": "charge",
+      "texture_bytes": 101288960,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "leonhardt",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "leonhardt_a1",
+          "settled_damage": 0,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "mira",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "mira_a2",
+          "settled_damage": 1219,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "elisia",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "elisia_ultimate",
+          "settled_damage": 0,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 14273138,
+      "file": "aurelia-core10-flight.png",
+      "height": 630,
+      "lineup": "aurelia-core10",
+      "manual_visual_age": 0.205,
+      "memory_bytes": 153536649.0,
+      "natural_proc": false,
+      "phase": "flight",
+      "texture_bytes": 101288960,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "leonhardt",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "leonhardt_a1",
+          "settled_damage": 0,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "mira",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "mira_a2",
+          "settled_damage": 1219,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "elisia",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "elisia_ultimate",
+          "settled_damage": 0,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 14541726,
+      "file": "aurelia-core10-impact.png",
+      "height": 630,
+      "lineup": "aurelia-core10",
+      "manual_visual_age": 0.5,
+      "memory_bytes": 153891473.0,
+      "natural_proc": false,
+      "phase": "impact",
+      "texture_bytes": 101288960,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "leonhardt",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "leonhardt_a1",
+          "settled_damage": 0,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "mira",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "mira_a2",
+          "settled_damage": 1219,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "elisia",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "elisia_ultimate",
+          "settled_damage": 0,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 14582114,
+      "file": "aurelia-core10-trail.png",
+      "height": 630,
+      "lineup": "aurelia-core10",
+      "manual_visual_age": 0.68,
+      "memory_bytes": 153770277.0,
+      "natural_proc": false,
+      "phase": "trail",
+      "texture_bytes": 101288960,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "leonhardt",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "leonhardt_a1",
+          "settled_damage": 0,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "mira",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "mira_a2",
+          "settled_damage": 1219,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "elisia",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "elisia_ultimate",
+          "settled_damage": 0,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 14518790,
+      "file": "aurelia-core10-afterglow.png",
+      "height": 630,
+      "lineup": "aurelia-core10",
+      "manual_visual_age": 1.01,
+      "memory_bytes": 153515177.0,
+      "natural_proc": false,
+      "phase": "afterglow",
+      "texture_bytes": 101288960,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "leonhardt",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "leonhardt_a1",
+          "settled_damage": 0,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "mira",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "mira_a2",
+          "settled_damage": 1219,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "elisia",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "elisia_ultimate",
+          "settled_damage": 0,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 14334518,
+      "file": "aurelia-core10-fade.png",
+      "height": 630,
+      "lineup": "aurelia-core10",
+      "manual_visual_age": 1.23,
+      "memory_bytes": 153489621.0,
+      "natural_proc": false,
+      "phase": "fade",
+      "texture_bytes": 101288960,
+      "width": 1120
+    },
+    {
+      "buffer_bytes": 14212262,
+      "casts": [
+        {
+          "hero": "leonhardt",
+          "method": "explicit registered passive visual fixture",
+          "natural_proc": false,
+          "registered_skill_id": "leonhardt_passive",
+          "slot": "passive",
+          "visual_accepted": true
+        },
+        {
+          "hero": "mira",
+          "method": "explicit registered passive visual fixture",
+          "natural_proc": false,
+          "registered_skill_id": "mira_passive",
+          "slot": "passive",
+          "visual_accepted": true
+        },
+        {
+          "hero": "elisia",
+          "method": "explicit registered passive visual fixture",
+          "natural_proc": false,
+          "registered_skill_id": "elisia_passive",
+          "slot": "passive",
+          "visual_accepted": true
+        }
+      ],
+      "file": "aurelia-core10-passive-fixture.png",
+      "height": 630,
+      "lineup": "aurelia-core10",
+      "manual_visual_age": 0.15,
+      "memory_bytes": 153617593.0,
+      "natural_proc": false,
+      "phase": "passive",
+      "texture_bytes": 101288960,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "adrien",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "adrien_a1",
+          "settled_damage": 1142,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "tessa",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "tessa_a2",
+          "settled_damage": 685,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "naia",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "naia_ultimate",
+          "settled_damage": 2133,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 12895686,
+      "file": "aurelia-reserve5-charge.png",
+      "height": 630,
+      "lineup": "aurelia-reserve5",
+      "manual_visual_age": 0.045,
+      "memory_bytes": 143303049.0,
+      "natural_proc": false,
+      "phase": "charge",
+      "texture_bytes": 95598080,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "adrien",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "adrien_a1",
+          "settled_damage": 1142,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "tessa",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "tessa_a2",
+          "settled_damage": 685,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "naia",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "naia_ultimate",
+          "settled_damage": 2133,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 12886370,
+      "file": "aurelia-reserve5-flight.png",
+      "height": 630,
+      "lineup": "aurelia-reserve5",
+      "manual_visual_age": 0.205,
+      "memory_bytes": 143439341.0,
+      "natural_proc": false,
+      "phase": "flight",
+      "texture_bytes": 95598080,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "adrien",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "adrien_a1",
+          "settled_damage": 1142,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "tessa",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "tessa_a2",
+          "settled_damage": 685,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "naia",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "naia_ultimate",
+          "settled_damage": 2133,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 13027182,
+      "file": "aurelia-reserve5-impact.png",
+      "height": 630,
+      "lineup": "aurelia-reserve5",
+      "manual_visual_age": 0.5,
+      "memory_bytes": 143677073.0,
+      "natural_proc": false,
+      "phase": "impact",
+      "texture_bytes": 95598080,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "adrien",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "adrien_a1",
+          "settled_damage": 1142,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "tessa",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "tessa_a2",
+          "settled_damage": 685,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "naia",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "naia_ultimate",
+          "settled_damage": 2133,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 13047426,
+      "file": "aurelia-reserve5-trail.png",
+      "height": 630,
+      "lineup": "aurelia-reserve5",
+      "manual_visual_age": 0.68,
+      "memory_bytes": 143637353.0,
+      "natural_proc": false,
+      "phase": "trail",
+      "texture_bytes": 95598080,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "adrien",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "adrien_a1",
+          "settled_damage": 1142,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "tessa",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "tessa_a2",
+          "settled_damage": 685,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "naia",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "naia_ultimate",
+          "settled_damage": 2133,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 12999254,
+      "file": "aurelia-reserve5-afterglow.png",
+      "height": 630,
+      "lineup": "aurelia-reserve5",
+      "manual_visual_age": 1.01,
+      "memory_bytes": 143404333.0,
+      "natural_proc": false,
+      "phase": "afterglow",
+      "texture_bytes": 95598080,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "adrien",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "adrien_a1",
+          "settled_damage": 1142,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "tessa",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "tessa_a2",
+          "settled_damage": 685,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "naia",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "naia_ultimate",
+          "settled_damage": 2133,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 12875558,
+      "file": "aurelia-reserve5-fade.png",
+      "height": 630,
+      "lineup": "aurelia-reserve5",
+      "manual_visual_age": 1.23,
+      "memory_bytes": 143396309.0,
+      "natural_proc": false,
+      "phase": "fade",
+      "texture_bytes": 95598080,
+      "width": 1120
+    },
+    {
+      "buffer_bytes": 12796310,
+      "casts": [
+        {
+          "hero": "adrien",
+          "method": "explicit registered passive visual fixture",
+          "natural_proc": false,
+          "registered_skill_id": "adrien_passive",
+          "slot": "passive",
+          "visual_accepted": true
+        },
+        {
+          "hero": "tessa",
+          "method": "explicit registered passive visual fixture",
+          "natural_proc": false,
+          "registered_skill_id": "tessa_passive",
+          "slot": "passive",
+          "visual_accepted": true
+        },
+        {
+          "hero": "naia",
+          "method": "explicit registered passive visual fixture",
+          "natural_proc": false,
+          "registered_skill_id": "naia_passive",
+          "slot": "passive",
+          "visual_accepted": true
+        }
+      ],
+      "file": "aurelia-reserve5-passive-fixture.png",
+      "height": 630,
+      "lineup": "aurelia-reserve5",
+      "manual_visual_age": 0.15,
+      "memory_bytes": 143540153.0,
+      "natural_proc": false,
+      "phase": "passive",
+      "texture_bytes": 95598080,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "valeria",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "valeria_a1",
+          "settled_damage": 1093,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "morgas",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "morgas_a2",
+          "settled_damage": 339,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "ragna",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "ragna_ultimate",
+          "settled_damage": 1418,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 14390550,
+      "file": "noxfera-core10-charge.png",
+      "height": 630,
+      "lineup": "noxfera-core10",
+      "manual_visual_age": 0.045,
+      "memory_bytes": 155810759.0,
+      "natural_proc": false,
+      "phase": "charge",
+      "texture_bytes": 105221120,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "valeria",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "valeria_a1",
+          "settled_damage": 1093,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "morgas",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "morgas_a2",
+          "settled_damage": 339,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "ragna",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "ragna_ultimate",
+          "settled_damage": 1418,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 14332298,
+      "file": "noxfera-core10-flight.png",
+      "height": 630,
+      "lineup": "noxfera-core10",
+      "manual_visual_age": 0.205,
+      "memory_bytes": 156062488.0,
+      "natural_proc": false,
+      "phase": "flight",
+      "texture_bytes": 105221120,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "valeria",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "valeria_a1",
+          "settled_damage": 1093,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "morgas",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "morgas_a2",
+          "settled_damage": 339,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "ragna",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "ragna_ultimate",
+          "settled_damage": 1418,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 14637630,
+      "file": "noxfera-core10-impact.png",
+      "height": 630,
+      "lineup": "noxfera-core10",
+      "manual_visual_age": 0.5,
+      "memory_bytes": 156394596.0,
+      "natural_proc": false,
+      "phase": "impact",
+      "texture_bytes": 105221120,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "valeria",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "valeria_a1",
+          "settled_damage": 1093,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "morgas",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "morgas_a2",
+          "settled_damage": 339,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "ragna",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "ragna_ultimate",
+          "settled_damage": 1418,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 14686790,
+      "file": "noxfera-core10-trail.png",
+      "height": 630,
+      "lineup": "noxfera-core10",
+      "manual_visual_age": 0.68,
+      "memory_bytes": 156313856.0,
+      "natural_proc": false,
+      "phase": "trail",
+      "texture_bytes": 105221120,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "valeria",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "valeria_a1",
+          "settled_damage": 1093,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "morgas",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "morgas_a2",
+          "settled_damage": 339,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "ragna",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "ragna_ultimate",
+          "settled_damage": 1418,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 14656790,
+      "file": "noxfera-core10-afterglow.png",
+      "height": 630,
+      "lineup": "noxfera-core10",
+      "manual_visual_age": 1.01,
+      "memory_bytes": 155925948.0,
+      "natural_proc": false,
+      "phase": "afterglow",
+      "texture_bytes": 105221120,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "valeria",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "valeria_a1",
+          "settled_damage": 1093,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "morgas",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "morgas_a2",
+          "settled_damage": 339,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "ragna",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "ragna_ultimate",
+          "settled_damage": 1418,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 14448326,
+      "file": "noxfera-core10-fade.png",
+      "height": 630,
+      "lineup": "noxfera-core10",
+      "manual_visual_age": 1.23,
+      "memory_bytes": 155912420.0,
+      "natural_proc": false,
+      "phase": "fade",
+      "texture_bytes": 105221120,
+      "width": 1120
+    },
+    {
+      "buffer_bytes": 14306534,
+      "casts": [
+        {
+          "hero": "valeria",
+          "method": "explicit registered passive visual fixture",
+          "natural_proc": false,
+          "registered_skill_id": "valeria_passive",
+          "slot": "passive",
+          "visual_accepted": true
+        },
+        {
+          "hero": "morgas",
+          "method": "explicit registered passive visual fixture",
+          "natural_proc": false,
+          "registered_skill_id": "morgas_passive",
+          "slot": "passive",
+          "visual_accepted": true
+        },
+        {
+          "hero": "ragna",
+          "method": "explicit registered passive visual fixture",
+          "natural_proc": false,
+          "registered_skill_id": "ragna_passive",
+          "slot": "passive",
+          "visual_accepted": true
+        }
+      ],
+      "file": "noxfera-core10-passive-fixture.png",
+      "height": 630,
+      "lineup": "noxfera-core10",
+      "manual_visual_age": 0.15,
+      "memory_bytes": 155925800.0,
+      "natural_proc": false,
+      "phase": "passive",
+      "texture_bytes": 105221120,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "lucien",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "lucien_a1",
+          "settled_damage": 1320,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "corvin",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "corvin_a2",
+          "settled_damage": 949,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "rokan",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "rokan_ultimate",
+          "settled_damage": 1524,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 13005198,
+      "file": "noxfera-reserve5-charge.png",
+      "height": 630,
+      "lineup": "noxfera-reserve5",
+      "manual_visual_age": 0.045,
+      "memory_bytes": 146482118.0,
+      "natural_proc": false,
+      "phase": "charge",
+      "texture_bytes": 99530240,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "lucien",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "lucien_a1",
+          "settled_damage": 1320,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "corvin",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "corvin_a2",
+          "settled_damage": 949,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "rokan",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "rokan_ultimate",
+          "settled_damage": 1524,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 12873986,
+      "file": "noxfera-reserve5-flight.png",
+      "height": 630,
+      "lineup": "noxfera-reserve5",
+      "manual_visual_age": 0.205,
+      "memory_bytes": 146597014.0,
+      "natural_proc": false,
+      "phase": "flight",
+      "texture_bytes": 99530240,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "lucien",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "lucien_a1",
+          "settled_damage": 1320,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "corvin",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "corvin_a2",
+          "settled_damage": 949,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "rokan",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "rokan_ultimate",
+          "settled_damage": 1524,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 13132878,
+      "file": "noxfera-reserve5-impact.png",
+      "height": 630,
+      "lineup": "noxfera-reserve5",
+      "manual_visual_age": 0.5,
+      "memory_bytes": 146850854.0,
+      "natural_proc": false,
+      "phase": "impact",
+      "texture_bytes": 99530240,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "lucien",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "lucien_a1",
+          "settled_damage": 1320,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "corvin",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "corvin_a2",
+          "settled_damage": 949,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "rokan",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "rokan_ultimate",
+          "settled_damage": 1524,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 13152134,
+      "file": "noxfera-reserve5-trail.png",
+      "height": 630,
+      "lineup": "noxfera-reserve5",
+      "manual_visual_age": 0.68,
+      "memory_bytes": 146763694.0,
+      "natural_proc": false,
+      "phase": "trail",
+      "texture_bytes": 99530240,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "lucien",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "lucien_a1",
+          "settled_damage": 1320,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "corvin",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "corvin_a2",
+          "settled_damage": 949,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "rokan",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "rokan_ultimate",
+          "settled_damage": 1524,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 13083302,
+      "file": "noxfera-reserve5-afterglow.png",
+      "height": 630,
+      "lineup": "noxfera-reserve5",
+      "manual_visual_age": 1.01,
+      "memory_bytes": 146470922.0,
+      "natural_proc": false,
+      "phase": "afterglow",
+      "texture_bytes": 99530240,
+      "width": 1120
+    },
+    {
+      "actual_casts": [
+        {
+          "cast_accepted": true,
+          "hero": "lucien",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "lucien_a1",
+          "settled_damage": 1320,
+          "slot": "a1",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "corvin",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "corvin_a2",
+          "settled_damage": 949,
+          "slot": "a2",
+          "visual_accepted": true
+        },
+        {
+          "cast_accepted": true,
+          "hero": "rokan",
+          "method": "HeroKitRuntime.cast",
+          "registered_skill_id": "rokan_ultimate",
+          "settled_damage": 1524,
+          "slot": "ultimate",
+          "visual_accepted": true
+        }
+      ],
+      "buffer_bytes": 12901526,
+      "file": "noxfera-reserve5-fade.png",
+      "height": 630,
+      "lineup": "noxfera-reserve5",
+      "manual_visual_age": 1.23,
+      "memory_bytes": 146461170.0,
+      "natural_proc": false,
+      "phase": "fade",
+      "texture_bytes": 99530240,
+      "width": 1120
+    },
+    {
+      "buffer_bytes": 12786422,
+      "casts": [
+        {
+          "hero": "lucien",
+          "method": "explicit registered passive visual fixture",
+          "natural_proc": false,
+          "registered_skill_id": "lucien_passive",
+          "slot": "passive",
+          "visual_accepted": true
+        },
+        {
+          "hero": "corvin",
+          "method": "explicit registered passive visual fixture",
+          "natural_proc": false,
+          "registered_skill_id": "corvin_passive",
+          "slot": "passive",
+          "visual_accepted": true
+        },
+        {
+          "hero": "rokan",
+          "method": "explicit registered passive visual fixture",
+          "natural_proc": false,
+          "registered_skill_id": "rokan_passive",
+          "slot": "passive",
+          "visual_accepted": true
+        }
+      ],
+      "file": "noxfera-reserve5-passive-fixture.png",
+      "height": 630,
+      "lineup": "noxfera-reserve5",
+      "manual_visual_age": 0.15,
+      "memory_bytes": 146522386.0,
+      "natural_proc": false,
+      "phase": "passive",
+      "texture_bytes": 99530240,
+      "width": 1120
+    }
+  ],
+  "coverage": [
+    {
+      "cast_accepted": true,
+      "hero": "leonhardt",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "leonhardt_a1",
+      "settled_damage": 0,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "leonhardt",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "leonhardt_a2",
+      "settled_damage": 0,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "leonhardt",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "leonhardt_ultimate",
+      "settled_damage": 0,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "leonhardt",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "leonhardt_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "mira",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "mira_a1",
+      "settled_damage": 1084,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "mira",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "mira_a2",
+      "settled_damage": 542,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "mira",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "mira_ultimate",
+      "settled_damage": 1552,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "mira",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "mira_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "elisia",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "elisia_a1",
+      "settled_damage": 0,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "elisia",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "elisia_a2",
+      "settled_damage": 0,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "elisia",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "elisia_ultimate",
+      "settled_damage": 0,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "elisia",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "elisia_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "kairen",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "kairen_a1",
+      "settled_damage": 254,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "kairen",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "kairen_a2",
+      "settled_damage": 293,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "kairen",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "kairen_ultimate",
+      "settled_damage": 710,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "kairen",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "kairen_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "orwin",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "orwin_a1",
+      "settled_damage": 0,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "orwin",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "orwin_a2",
+      "settled_damage": 0,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "orwin",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "orwin_ultimate",
+      "settled_damage": 0,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "orwin",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "orwin_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "seria",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "seria_a1",
+      "settled_damage": 1044,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "seria",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "seria_a2",
+      "settled_damage": 1020,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "seria",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "seria_ultimate",
+      "settled_damage": 1800,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "seria",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "seria_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "astel",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "astel_a1",
+      "settled_damage": 0,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "astel",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "astel_a2",
+      "settled_damage": 0,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "astel",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "astel_ultimate",
+      "settled_damage": 0,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "astel",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "astel_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "darius",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "darius_a1",
+      "settled_damage": 1631,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "darius",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "darius_a2",
+      "settled_damage": 1281,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "darius",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "darius_ultimate",
+      "settled_damage": 2446,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "darius",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "darius_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "lunea",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "lunea_a1",
+      "settled_damage": 0,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "lunea",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "lunea_a2",
+      "settled_damage": 345,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "lunea",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "lunea_ultimate",
+      "settled_damage": 758,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "lunea",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "lunea_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "caelum",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "caelum_a1",
+      "settled_damage": 1401,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "caelum",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "caelum_a2",
+      "settled_damage": 1155,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "caelum",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "caelum_ultimate",
+      "settled_damage": 1085,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "caelum",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "caelum_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "adrien",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "adrien_a1",
+      "settled_damage": 914,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "adrien",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "adrien_a2",
+      "settled_damage": 863,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "adrien",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "adrien_ultimate",
+      "settled_damage": 1422,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "adrien",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "adrien_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "tessa",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "tessa_a1",
+      "settled_damage": 660,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "tessa",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "tessa_a2",
+      "settled_damage": 685,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "tessa",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "tessa_ultimate",
+      "settled_damage": 1078,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "tessa",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "tessa_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "naia",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "naia_a1",
+      "settled_damage": 1507,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "naia",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "naia_a2",
+      "settled_damage": 1015,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "naia",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "naia_ultimate",
+      "settled_damage": 2666,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "naia",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "naia_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "sael",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "sael_a1",
+      "settled_damage": 832,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "sael",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "sael_a2",
+      "settled_damage": 571,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "sael",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "sael_ultimate",
+      "settled_damage": 920,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "sael",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "sael_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "odelia",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "odelia_a1",
+      "settled_damage": 258,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "odelia",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "odelia_a2",
+      "settled_damage": 285,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "odelia",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "odelia_ultimate",
+      "settled_damage": 985,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "odelia",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "odelia_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "valeria",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "valeria_a1",
+      "settled_damage": 875,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "valeria",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "valeria_a2",
+      "settled_damage": 691,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "valeria",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "valeria_ultimate",
+      "settled_damage": 1383,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "valeria",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "valeria_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "morgas",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "morgas_a1",
+      "settled_damage": 0,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "morgas",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "morgas_a2",
+      "settled_damage": 188,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "morgas",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "morgas_ultimate",
+      "settled_damage": 610,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "morgas",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "morgas_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "ragna",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "ragna_a1",
+      "settled_damage": 1030,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "ragna",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "ragna_a2",
+      "settled_damage": 1216,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "ragna",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "ragna_ultimate",
+      "settled_damage": 886,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "ragna",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "ragna_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "bron",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "bron_a1",
+      "settled_damage": 533,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "bron",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "bron_a2",
+      "settled_damage": 0,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "bron",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "bron_ultimate",
+      "settled_damage": 0,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "bron",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "bron_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "nyx",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "nyx_a1",
+      "settled_damage": 0,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "nyx",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "nyx_a2",
+      "settled_damage": 217,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "nyx",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "nyx_ultimate",
+      "settled_damage": 580,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "nyx",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "nyx_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "fenris",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "fenris_a1",
+      "settled_damage": 1032,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "fenris",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "fenris_a2",
+      "settled_damage": 974,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "fenris",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "fenris_ultimate",
+      "settled_damage": 944,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "fenris",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "fenris_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "isolde",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "isolde_a1",
+      "settled_damage": 0,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "isolde",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "isolde_a2",
+      "settled_damage": 0,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "isolde",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "isolde_ultimate",
+      "settled_damage": 0,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "isolde",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "isolde_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "garm",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "garm_a1",
+      "settled_damage": 0,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "garm",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "garm_a2",
+      "settled_damage": 0,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "garm",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "garm_ultimate",
+      "settled_damage": 0,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "garm",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "garm_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "veyra",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "veyra_a1",
+      "settled_damage": 1638,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "veyra",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "veyra_a2",
+      "settled_damage": 1525,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "veyra",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "veyra_ultimate",
+      "settled_damage": 2402,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "veyra",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "veyra_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "ulric",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "ulric_a1",
+      "settled_damage": 962,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "ulric",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "ulric_a2",
+      "settled_damage": 525,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "ulric",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "ulric_ultimate",
+      "settled_damage": 1342,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "ulric",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "ulric_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "lucien",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "lucien_a1",
+      "settled_damage": 1320,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "lucien",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "lucien_a2",
+      "settled_damage": 685,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "lucien",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "lucien_ultimate",
+      "settled_damage": 1828,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "lucien",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "lucien_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "corvin",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "corvin_a1",
+      "settled_damage": 965,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "corvin",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "corvin_a2",
+      "settled_damage": 431,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "corvin",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "corvin_ultimate",
+      "settled_damage": 1676,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "corvin",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "corvin_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "rokan",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "rokan_a1",
+      "settled_damage": 1016,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "rokan",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "rokan_a2",
+      "settled_damage": 838,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "rokan",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "rokan_ultimate",
+      "settled_damage": 1524,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "rokan",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "rokan_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "bora",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "bora_a1",
+      "settled_damage": 963,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "bora",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "bora_a2",
+      "settled_damage": 762,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "bora",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "bora_ultimate",
+      "settled_damage": 863,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "bora",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "bora_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "selene",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "selene_a1",
+      "settled_damage": 0,
+      "slot": "a1",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "selene",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "selene_a2",
+      "settled_damage": 0,
+      "slot": "a2",
+      "visual_accepted": true
+    },
+    {
+      "cast_accepted": true,
+      "hero": "selene",
+      "method": "HeroKitRuntime.cast",
+      "registered_skill_id": "selene_ultimate",
+      "settled_damage": 0,
+      "slot": "ultimate",
+      "visual_accepted": true
+    },
+    {
+      "hero": "selene",
+      "method": "explicit registered passive visual fixture",
+      "natural_proc": false,
+      "registered_skill_id": "selene_passive",
+      "slot": "passive",
+      "visual_accepted": true
+    }
+  ],
+  "device": "NVIDIA GeForce GTX 1050",
+  "engine": "4.7.2-stable (official)",
+  "explicit_passive_fixture_count": 30,
+  "fixture_rules": [
+    "Level60 and ready cooldowns/ultimate meters are review fixtures.",
+    "High-HP living enemies are moved into real cast range, allies are wounded.",
+    "Active/ultimate captures use actual HeroKitRuntime.cast.",
+    "Passive review calls the registered proc observer with an explicit fixture serial; not a natural proc.",
+    "Automatic timers/simulation and contact slowmo are disabled for deterministic phase review.",
+    "GPU particles run through the native renderer; PNG extraction is outside any timing measurement."
+  ],
+  "hero_count": 30,
+  "lineups": [
+    {
+      "faction": "aurelia",
+      "heroes": [
+        "leonhardt",
+        "mira",
+        "elisia",
+        "kairen",
+        "orwin",
+        "seria",
+        "astel",
+        "darius",
+        "lunea",
+        "caelum"
+      ],
+      "level_fixture": 60,
+      "name": "aurelia-core10"
+    },
+    {
+      "faction": "aurelia",
+      "heroes": [
+        "adrien",
+        "tessa",
+        "naia",
+        "sael",
+        "odelia"
+      ],
+      "level_fixture": 60,
+      "name": "aurelia-reserve5"
+    },
+    {
+      "faction": "noxfera",
+      "heroes": [
+        "valeria",
+        "morgas",
+        "ragna",
+        "bron",
+        "nyx",
+        "fenris",
+        "isolde",
+        "garm",
+        "veyra",
+        "ulric"
+      ],
+      "level_fixture": 60,
+      "name": "noxfera-core10"
+    },
+    {
+      "faction": "noxfera",
+      "heroes": [
+        "lucien",
+        "corvin",
+        "rokan",
+        "bora",
+        "selene"
+      ],
+      "level_fixture": 60,
+      "name": "noxfera-reserve5"
+    }
+  ],
+  "native_godot_pixels": true,
+  "natural_passive_proc_claim": false,
+  "performance_measurement": false,
+  "player_save_used": false,
+  "registered_identity_count": 120,
+  "renderer": "mobile",
+  "schema": 1
+}
