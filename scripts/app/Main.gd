@@ -3637,8 +3637,18 @@ func _raid_move_actors(delta: float) -> void:
 			destination = RAID_FIELD.escape_position(shape, current)
 		goals[id]=RAID_FIELD.clamp_to_floor(destination)
 		speeds[id]=205.0 if raid_rally_active else (158.0 if destination!=role_destination else 128.0)
-	goals=RAID_FIELD.spread_destinations(goals,shape if boss_telegraph_pending or followup else {})
-	RAID_FIELD.advance_positions(raid_positions,goals,speeds,raid_boss_position,delta,shape if boss_telegraph_pending or followup else {})
+	var clearance:=Vector2(80,110)
+	var spacing_metric:=Vector2(1,.65)
+	if is_instance_valid(content_root):
+		var view=content_root.get_node_or_null("PortraitRaidView")
+		if view!=null and is_instance_valid(view.battlefield_3d):
+			clearance=view.battlefield_3d.raid_clearances()
+			spacing_metric=view.battlefield_3d.raid_separation_metric()
+	var attack_origin:=Vector2(INF,INF) if raid_rally_active or boss_telegraph_pending or followup else raid_boss_position
+	goals['@boss']=raid_boss_position
+	goals=RAID_FIELD.spread_destinations(goals,shape if boss_telegraph_pending or followup else {},{'@boss':true},clearance.x,clearance.y,spacing_metric,attack_origin)
+	goals.erase('@boss')
+	RAID_FIELD.advance_positions(raid_positions,goals,speeds,raid_boss_position,delta,shape if boss_telegraph_pending or followup else {},clearance.x,clearance.y,spacing_metric,attack_origin)
 
 func _apply_raid_second_wave() -> void:
 	var profile: Dictionary=raid_second_wave_profile.duplicate(true)

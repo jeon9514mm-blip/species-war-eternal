@@ -1,0 +1,66 @@
+{
+  "fixtures": [
+    {
+      "fixture": "aurelia/gray_meadow",
+      "boss_min": 94.1715316772461,
+      "factor": 0.642739919084201,
+      "farthest_attack_distance": 327.923858642578,
+      "lowest_after_3s": 71.0918579101563,
+      "median": 236.383285522461,
+      "min": 72.3961029052734,
+      "p10": 78.0480117797852
+    },
+    {
+      "fixture": "aurelia/forgotten_mine",
+      "boss_min": 93.5266876220703,
+      "factor": 0.556933712202008,
+      "farthest_attack_distance": 328.776550292969,
+      "lowest_after_3s": 69.9673461914063,
+      "median": 152.840866088867,
+      "min": 72.0691223144531,
+      "p10": 72.5156555175781
+    },
+    {
+      "fixture": "aurelia/moonrest_forest",
+      "boss_min": 106.488555908203,
+      "factor": 0.734958473518471,
+      "farthest_attack_distance": 226.998107910156,
+      "lowest_after_3s": 70.7833251953125,
+      "median": 219.061141967773,
+      "min": 72.0212249755859,
+      "p10": 100.235992431641
+    },
+    {
+      "fixture": "noxfera/gray_meadow",
+      "boss_min": 95.5626449584961,
+      "factor": 0.701685016501495,
+      "farthest_attack_distance": 308.636993408203,
+      "lowest_after_3s": 70.8692398071289,
+      "median": 226.490478515625,
+      "min": 72.0822296142578,
+      "p10": 76.7461853027344
+    },
+    {
+      "fixture": "noxfera/forgotten_mine",
+      "boss_min": 100.221817016602,
+      "factor": 0.838004171472804,
+      "farthest_attack_distance": 295.006774902344,
+      "lowest_after_3s": 72.0262298583984,
+      "median": 172.503234863281,
+      "min": 73.4083251953125,
+      "p10": 79.987548828125
+    },
+    {
+      "fixture": "noxfera/moonrest_forest",
+      "boss_min": 126.680740356445,
+      "factor": 0.838004171472804,
+      "farthest_attack_distance": 293.336517333984,
+      "lowest_after_3s": 71.9993286132813,
+      "median": 162.05632019043,
+      "min": 72.6401519775391,
+      "p10": 80.7802886962891
+    }
+  ],
+  "source": "raid-spacing-gpu.json",
+  "count": 6
+}

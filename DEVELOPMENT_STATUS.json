@@ -1303,5 +1303,56 @@
     "source_region_pixels_identical": true,
     "skill_source": "HeroRosterCatalog actual four-slot definitions",
     "base_values_with_separate_identity_adjustments": true
+  },
+  "latest_raid_spacing": {
+    "status": "implemented_and_verified",
+    "hero_display_px": 86.4,
+    "ground_horizontal_projection": 2.0,
+    "projected_hero_clearance_px": 72,
+    "projected_boss_clearance_px": 90,
+    "auto_attack_candidate_radius": 330,
+    "existing_attack_range": 335,
+    "manual_rally_and_danger_escape_exempt": true,
+    "gpu_tests": {
+      "passed": 3,
+      "total": 3
+    },
+    "changed_source_parser": {
+      "passed": 6,
+      "total": 6
+    },
+    "performance": {
+      "android_measured": false,
+      "assets": [],
+      "device": "NVIDIA GeForce GTX 1050",
+      "engine": "4.7.2-stable (official)",
+      "profiles": [
+        {
+          "draw_calls": 286.0,
+          "frames": 358,
+          "held_walking_frames": 0,
+          "held_walking_ratio": 0.0,
+          "label": "raid",
+          "max_world_step": 0.4923095703125,
+          "mean_fps": 59.5453331261998,
+          "p95_frame_ms": 25.033,
+          "physics_ms_mean": 21.8599581005587,
+          "process_ms_mean": 12.2639245810056,
+          "seconds": 6.012226,
+          "slowed_frame_ratio": 0.0,
+          "slowed_frames": 0,
+          "texture_bytes": 108006400,
+          "walking_actor_frames": 119
+        }
+      ],
+      "raid_only": true,
+      "renderer": "mobile"
+    },
+    "capture": "checks/final-polish-2026-10-08/review-spacing/raid-final-review.png",
+    "limits": [
+      "Attack weapons and cape edges can contact during combat",
+      "Hunt60fps not achieved",
+      "Android and long-session heat unmeasured"
+    ]
   }
 }
