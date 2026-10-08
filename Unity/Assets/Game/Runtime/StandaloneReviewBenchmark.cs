@@ -92,7 +92,7 @@ namespace Eternal.UnityMigration
             {
                 int nonempty=0;for(int y=1;y<9;y++)for(int x=1;x<16;x++)
                 {var pixel=texture.GetPixel(texture.width*x/16,texture.height*y/9);if(Mathf.Max(pixel.r,Mathf.Max(pixel.g,pixel.b))>.03f)nonempty++;}
-                captures.Add(new JObject{{"file",filename},{"sampled_visible_pixels",nonempty},{"sample_count",120},{"painted_impact_quads",review.Feedback.PaintedImpactQuads}});
+                captures.Add(new JObject{{"file",filename},{"sampled_visible_pixels",nonempty},{"sample_count",120},{"painted_impact_quads",review.Feedback.PaintedImpactQuads},{"painted_ground_seal_visible",review.Feedback.PaintedGroundSealVisible}});
                 if(nonempty<12)errors.Add("Empty screen capture: "+filename+". Hidden/minimized players cannot establish rendered performance.");
                 File.WriteAllBytes(Path.Combine(Path.GetDirectoryName(destination),filename),texture.EncodeToPNG());
             }

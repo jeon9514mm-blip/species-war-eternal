@@ -11,6 +11,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UIElements;
 
 namespace Eternal.UnityMigration.Editor
 {
@@ -28,6 +29,8 @@ namespace Eternal.UnityMigration.Editor
         static float started,waitStarted;
         static int offense,attack,itemLevel,itemCost,huntTicks;
         static long gold;
+        static int rewardPacks,rewardGold,rewardXp;
+        static long walletXp;
         static string itemId;
         static ChainSkill[] chain;
         static int guardianCopies,heroShards;
@@ -44,6 +47,19 @@ namespace Eternal.UnityMigration.Editor
             if(Mouse.current==null&&Application.isBatchMode)qaMouse=InputSystem.AddDevice<Mouse>("Isolated review QA mouse");
             if(Mouse.current==null)throw new InvalidOperationException("An Input System mouse is required.");
             steps.Clear();trace.Clear();raids.Clear();index=delayFrames=checks=0;lastFrame=-1;startFrame=Time.frameCount;started=Time.realtimeSinceStartup;pressed=false;
+            Add("verify party labels do not overlap after font import",()=>
+            {
+                var ui=review.GetComponent<UnityEngine.UIElements.UIDocument>().rootVisualElement;
+                foreach(var hero in review.Simulation.Battle.Heroes)
+                {
+                    var card=ui.Q<UnityEngine.UIElements.Button>("party-card-"+hero.Id);
+                    var name=card.Q<UnityEngine.UIElements.Label>("party-name").worldBound;
+                    var hp=card.Q<UnityEngine.UIElements.Label>("party-health").worldBound;
+                    var skill=card.Q<UnityEngine.UIElements.Label>("party-skills").worldBound;
+                    Require(name.height>0&&hp.height>0&&skill.height>0,"visible party labels "+hero.Id);
+                    Require(name.yMax<=hp.yMin+.1f&&hp.yMax<=skill.yMin+.1f,"separate party text rows "+hero.Id);
+                }
+            });
             Add("open hero navigation",()=>ClickText("영웅"));
             Add("open original Leonhardt portrait",()=>ClickData("leonhardt"));
             Add("open growth panel",()=>ClickText("성장 · 장비"));
@@ -101,8 +117,14 @@ namespace Eternal.UnityMigration.Editor
                     var field=typeof(RaidSimulation).GetField("rallyGoal",BindingFlags.Instance|BindingFlags.NonPublic);var value=(Vector2)field.GetValue(review.Raid);
                     Require(Vector2.Distance(value,new Vector2(-3,0))<.05f,"ground rally projection");
                 });
-                if(zone=="moonrest_forest")
+                if(zone=="gray_meadow")
                 {
+                    Add("enter original-balance pattern training through pointer",()=>ClickText("패턴 훈련"));
+                    Add("verify training keeps boss balance and changes temporary party level",()=>{Require(review.Raid.ReviewLevel==50,"training party level");Require(review.Raid.Boss.MaxHp==36000,"original meadow boss hp");});
+                    Add("disable auto evasion through pointer for deliberate counter",()=>ClickText("자동 회피 ON"));
+                    Add("verify manual raid positioning mode",()=>Require(!review.Raid.AutoEvade,"manual evasion selection"));
+                    Add("start authored cone practice through pointer",()=>ClickText("카운터 연습"));
+                    Add("verify explicit counter practice route",()=>Require(review.Raid.CounterPractice,"counter practice active"));
                     waitStarted=0;counterRally=false;
                     steps.Add(("observe counter opportunity",()=>
                     {
@@ -113,11 +135,23 @@ namespace Eternal.UnityMigration.Editor
                         if(review.Raid.CounterReady&&button!=null){Click(button,"카운터");return true;}
                         if(!review.Raid.Running||Time.realtimeSinceStartup-waitStarted>20)return true;return false;
                     }));
+                    Add("verify native counter practice success",()=>{Require(review.Raid.CounterSuccesses>0,"native counter practice success");Require(!review.Raid.CounterPractice,"counter exits practice");});
+                    int captureFrame=0;steps.Add(("wait for the actual counter HUD refresh",()=>{if(captureFrame==0)captureFrame=Time.frameCount+10;return Time.frameCount>=captureFrame;}));
+                    Add("capture authored counter practice",()=>ScreenCapture.CaptureScreenshot(Path.Combine(Path.GetDirectoryName(ReportPath),"native-counter-practice.png")));
                 }
-                Add("record raid input evidence "+zone,()=>raids.Add(new JObject{{"zone",current},{"dodge_verified",true},{"rally_verified",true},{"native_ticks",review.Raid.Ticks},{"counter_successes",review.Raid.CounterSuccesses},{"counter_input_success_verified",review.Raid.CounterSuccesses>0}}));
+                Add("record raid input evidence "+zone,()=>raids.Add(new JObject{{"zone",current},{"dodge_verified",true},{"rally_verified",true},{"native_ticks",review.Raid.Ticks},{"counter_successes",review.Raid.CounterSuccesses},{"counter_input_success_verified",review.Raid.CounterSuccesses>0},{"counter_scope",current=="gray_meadow"?"explicit authored cone practice":"no scripted practice"}}));
                 Add("return to hunting through pointer "+zone,()=>ClickText("사냥"));
                 Add("verify retained hunting "+zone,()=>{Require(review.Raid==null,"return route");Require(review.Simulation.Ticks>=huntTicks,"retained hunt");});
             }
+            Add("capture continuing hunt rewards",()=>{rewardPacks=review.Simulation.PacksCleared;rewardGold=review.Simulation.Gold;rewardXp=review.Simulation.Xp;gold=review.ReviewState.WalletGold;walletXp=GameStateCommands.Integer(review.ReviewState.Snapshot()["wallet_xp"],0,0,GameStateCommands.CurrencyCap);waitStarted=Time.realtimeSinceStartup;});
+            steps.Add(("observe an actual hunted pack settlement",()=>{if(review.Simulation.PacksCleared>rewardPacks)return true;if(Time.realtimeSinceStartup-waitStarted>45)throw new InvalidOperationException("No live hunted pack reward in 45 seconds.");return false;}));
+            Add("verify actual hunt wallet and xp credit",()=>{var snapshot=review.ReviewState.Snapshot();Require((int)snapshot["native_review_settled_pack"]==review.Simulation.PacksCleared,"pack settlement cursor");Require(review.ReviewState.WalletGold==gold+review.Simulation.Gold-rewardGold,"live hunt gold");Require(GameStateCommands.Integer(snapshot["wallet_xp"],0,0,GameStateCommands.CurrencyCap)==walletXp+review.Simulation.Xp-rewardXp,"live hunt xp");});
+            Add("open quick growth through pointer",()=>ClickText("빠른 성장"));
+            Add("verify quick growth destination",()=>Require(Buttons().Any(b=>(string)b["text"]=="연구 +1"),"quick growth research"));
+            Add("close quick growth",()=>ClickText("닫기"));
+            Add("capture quick equipment wallet",()=>gold=review.ReviewState.WalletGold);
+            Add("quick equipment through pointer",()=>ClickText("장비 추천"));
+            Add("verify quick equipment preserves currency",()=>Require(review.ReviewState.WalletGold==gold,"quick equipment wallet"));
             running=true;
 #if UNITY_EDITOR
             EditorApplication.update+=Tick;
@@ -168,7 +202,7 @@ namespace Eternal.UnityMigration.Editor
             EditorApplication.update-=Tick;
 #endif
             if(pressed&&Mouse.current!=null){QueueMouse(false);pressed=false;}running=false;
-            var report=new JObject{{"passed",passed},{"error",error},{"comparisons",checks},{"steps_completed",index},{"steps_total",steps.Count},{"start_frame",startFrame},{"end_frame",Time.frameCount},{"elapsed_seconds",Time.realtimeSinceStartup-started},{"batch_editor",Application.isBatchMode},{"virtual_qa_mouse",qaMouse!=null},{"trace",trace.DeepClone()},{"raid_inputs",raids.DeepClone()},{"no_direct_ui_callbacks",true},{"real_player_io",false},{"note","Editor QA dispatches actual Input System mouse events across native frames. Batch Editor creates a virtual mouse when no hardware mouse exists and removes it afterward. Tests run only against the explicit memory-only review seed. Counter success is reported separately and may remain unverified if no eligible window occurred."}};
+            var report=new JObject{{"passed",passed},{"error",error},{"comparisons",checks},{"steps_completed",index},{"steps_total",steps.Count},{"start_frame",startFrame},{"end_frame",Time.frameCount},{"elapsed_seconds",Time.realtimeSinceStartup-started},{"batch_editor",Application.isBatchMode},{"virtual_qa_mouse",qaMouse!=null},{"trace",trace.DeepClone()},{"raid_inputs",raids.DeepClone()},{"no_direct_ui_callbacks",true},{"real_player_io",false},{"note","QA dispatches actual Input System mouse events across native frames against the explicit memory-only review seed. Meadow counter evidence uses the visible Lv50 authored-cone practice route, which temporarily suspends automatic hero attacks and rearms the window. It does not prove a naturally occurring counter in a full encounter. Ordinary original-balance raid parity is checked separately."}};
             report["development_player"]=!Application.isEditor&&Debug.isDebugBuild;
             File.WriteAllText(ReportPath,report.ToString());Debug.Log((passed?"ETERNAL_NATIVE_INPUT_PASSED ":"ETERNAL_NATIVE_INPUT_FAILED ")+error);
             if(qaMouse!=null){InputSystem.RemoveDevice(qaMouse);qaMouse=null;}

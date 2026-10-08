@@ -1,10 +1,10 @@
 {
   "status": "completed",
-  "buildId": "build_842b663fd4b0",
+  "buildId": "build_410cfc0f8d69",
   "result": "Succeeded",
   "platform": "StandaloneWindows64",
-  "totalSizeBytes": 288935737,
-  "buildTimeMs": 21516,
+  "totalSizeBytes": 292819865,
+  "buildTimeMs": 27463,
   "totalWarnings": 1,
   "totalErrors": 0,
   "warnings": [

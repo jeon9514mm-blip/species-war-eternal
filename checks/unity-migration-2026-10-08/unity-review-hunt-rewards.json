@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "comparisons": 16,
+  "memory_only": true,
+  "real_player_io": false,
+  "note": "New Unity preview settlement, not exhaustive Godot reward parity. Checks exact wallet/party XP, sequence/duplicate rejection, atomic snapshots, actual-payload exclusion and pending-store barrier."
+}

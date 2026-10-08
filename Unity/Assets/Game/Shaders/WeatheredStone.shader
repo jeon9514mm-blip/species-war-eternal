@@ -87,8 +87,10 @@ Shader "Eternal/WeatheredStone"
                     float luminance=dot(painting,float3(.3,.59,.11));
                     crack=1-smoothstep(.045,.12,luminance);
                     moss=saturate((painting.g-(painting.r+painting.b)*.5)*12)*crack;
-                    base=painting*_Tint.rgb;
-                    normal=normalize(float3(micro.x*.16,1,micro.y*.16));
+                    // Quieter ground colour/detail lets original hero colours
+                    // and elemental impacts remain the visual foreground.
+                    base=lerp(luminance.xxx,painting,.72)*.86*_Tint.rgb;
+                    normal=normalize(float3(micro.x*.08,1,micro.y*.08));
                     wet*=.45;
                 }
                 half alpha=1;BRDFData data;
