@@ -1,0 +1,42 @@
+{
+  "origin": "Original offline authored procedural PCM SFX; no third-party audio.",
+  "generator": "tools/generate_final_feedback_audio.py",
+  "tracks": {
+    "Hit": {
+      "file": "audio/final-feedback/Hit.wav",
+      "seconds": 0.16,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.4591806626550864,
+      "bytes": 7100,
+      "sha256": "aa7d0f7fe4f5e182fc7035a13f1de5e55cc3f390ad7f06b9bb0533f14ffb8662"
+    },
+    "Crit": {
+      "file": "audio/final-feedback/Crit.wav",
+      "seconds": 0.24,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.6162557123887561,
+      "bytes": 10628,
+      "sha256": "7e4e5c428ca187515a6153eb25159dd4f019de2d2d5e3aacc0290b601e47b407"
+    },
+    "Gold": {
+      "file": "audio/final-feedback/Gold.wav",
+      "seconds": 0.44997732426303855,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.3457489388066124,
+      "bytes": 19888,
+      "sha256": "4d28b0c09013f63486affea6151c15becd2ed618d6087b8213397e858abe236b"
+    },
+    "Skill": {
+      "file": "audio/final-feedback/Skill.wav",
+      "seconds": 0.34,
+      "sample_rate": 22050,
+      "channels": 1,
+      "peak": 0.47792031010952396,
+      "bytes": 15038,
+      "sha256": "88488c0e900e4fbe0ac3b5e55a42dc3e97a07f67e160217b5441fe1229d2c937"
+    }
+  }
+}

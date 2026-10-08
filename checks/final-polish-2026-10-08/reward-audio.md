@@ -1,0 +1,10 @@
+## Wallet and sound final polish
+
+- Hunting HUD gold and gem readouts use the actual wallet, a vector currency icon, subtle glow, a 0.38-second count, and a 1.2 reward pop. Spending updates immediately. Two persistent widgets reuse their labels and icons; effects opt-out and background changes remain static. Drawing is clipped to each header allocation.
+- Confirmed positive wallet changes retain the existing bronze loot beam, six loot particles, and a bounded reward popup with currency icon. No currency is granted by presentation.
+- `audio/final-feedback/Hit.wav`, `Crit.wav`, `Gold.wav`, and `Skill.wav` are original offline authored PCM cues, 52,654 bytes total. `tools/generate_final_feedback_audio.py` reproduces them; the manifest records hashes, length, peak, and provenance. Existing music and creature samples remain intact.
+- Contact and skill cues can use `GameAudioDirector.play_positional(event, field, world_point)`. Four reusable AudioStreamPlayer3D nodes live in the active battle's World3D. UI and spatial voices share an eight-active-voice budget and the existing event/window throttles. Volume variation is 0.92–1.0; combat pitch variation is 0.94–1.06 using a dedicated RNG.
+- Current battle-camera listening and distance/directional mixing follow [Godot's AudioStreamPlayer3D documentation](https://docs.godotengine.org/en/stable/classes/class_audiostreamplayer3d.html). The embedded SubViewport enables its own 3D listener.
+- Hit, critical, skill, and gold haptic cues share a bounded cooldown and preserve saved `off`/`light`/`normal` preferences. Desktop validation injects a sink; actual Android/iOS vibration and audible device quality still require device testing.
+
+Validation: `FinalRewardAudioSmokeTest`, `V82AudioSmokeTest`, and `V82SettingsSmokeTest` pass. Coverage includes accurate receipt/spending/background behavior, bounded widgets and audio nodes, shared voice budget, real decoded PCM streams, volume/pause opt-out, separate pitch RNG, and injected haptic throttling.

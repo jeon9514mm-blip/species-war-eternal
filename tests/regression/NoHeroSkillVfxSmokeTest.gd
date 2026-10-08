@@ -1,37 +1,64 @@
 extends 'res://tests/support/V83UpgradeTestBase.gd'
-## Actual portrait hunt/raid canvases must never recreate removed hero graphics.
+## The filename is retained for historical suites. The latest user request
+## enables real skill feedback; its opt-out must still remove every skill FX.
+const KITS = preload('res://scripts/heroes/HeroKitRuntime.gd')
+const SKILLS = preload('res://scripts/presentation/HeroSkillVfxPresenter.gd')
 func _init() -> void:run.call_deferred()
 func run() -> void:
 	var main=await make_main('aurelia',3)
-	main.combat_effects_enabled=true;main.combat_fx.enabled=true
+	root.content_scale_size=Vector2i(1280,720);root.size=Vector2i(1120,630)
 	for raid in [false,true]:
 		if raid:main._build_raid_screen();await settle();main._start_raid();await settle()
 		else:main._build_combat_screen();await settle();main.combat_running=true
-		main.combat_effects_enabled=true;main.combat_fx.enabled=true
 		if is_instance_valid(main.combat_timer):main.combat_timer.stop()
-		var children: int=main.skill_fx_layer.get_child_count()
+		main.combat_effects_enabled=true;main.combat_fx.enabled=true
+		var field=main.content_root.get_node('PortraitRaidView').battlefield_3d if raid else main.combat_labels.terrain
+		var skill=field.skill_overlay
+		skill.set_process(false)
+		var node_count: int=field.get_child_count()
 		var panels: int=main.content_root.get_child_count()
-		var state:=JSON.stringify([main.hero_battle_state,main.hero_skill_runtime,main.enemy_wave,main.raid_boss_hp])
-		var projectiles: int=main.combat_fx.projectile_sequence
-		var indicators: int=main.combat_fx.aoe_sequence
-		for id in ROSTER.HEROES:
-			for slot in ['a1','a2','passive','ultimate']:
-				var profile: Dictionary=ROSTER.skill(id,slot).duplicate(true)
-				profile.fx_targets=[-1 if raid else 0];profile.fx_allies=[{'hero_id':'mira','mode':'shield'}]
-				if slot=='passive':main._emit_passive_proc_fx(id,-1 if raid else 0,profile,'mira')
-				else:main._emit_skill_cast_fx(id,-1 if raid else 0,true,profile,slot=='ultimate')
-				if slot=='ultimate':main._emit_ultimate_cutin(id,str(profile.skill))
-				check(main.skill_fx_layer.get_child_count()==children and main.content_root.get_child_count()==panels,id+'/'+slot+' emits no graphics on '+('raid' if raid else 'hunt'))
-		main._emit_skill_cast_fx('mira',0,true,{'kind':'damage'})
-		main._emit_v11_skill_signature(Vector2(640,360),{'kind':'heal'},Color.GREEN)
-		check(main.combat_fx.projectile_sequence==projectiles and main.combat_fx.aoe_sequence==indicators,'legacy entry points emit no skill projectile or area')
-		check(main.skill_fx_layer.get_child_count()==children and main.content_root.get_child_count()==panels,'legacy entry points emit no overlay')
-		check(JSON.stringify([main.hero_battle_state,main.hero_skill_runtime,main.enemy_wave,main.raid_boss_hp])==state,'removed presentation does not touch battle state')
-		check(main.combat_effects_enabled and main.combat_fx.enabled,'general combat cosmetics remain independently enabled')
+		var visual_children: int=main.skill_fx_layer.get_child_count()
+		var serial: int=int(main.hero_skill_runtime.leonhardt.get('casts_a1',0))+1
+		main.hero_skill_runtime.leonhardt.remaining=0.0
+		main.hero_battle_state.leonhardt.guard=0.0
+		var accepted: int=skill.accepted_casts
+		KITS.cast(main,'leonhardt','a1',-1 if raid else 0)
+		check(float(main.hero_battle_state.leonhardt.guard)>0,'real cast settles guard before presentation')
+		check(skill.accepted_casts==accepted+1,'one settled cast emits exactly one skill on '+('raid' if raid else 'hunt'))
+		check(not skill.cast('leonhardt',0,false,{'fx_slot':'a1','fx_cast_serial':serial},false),'repeated settlement metadata cannot duplicate the cast')
+		var state:=JSON.stringify([main.hero_battle_state,main.hero_skill_runtime,main.enemy_wave,main.raid_boss_hp,main.wallet_gold,main.wallet_gems])
+		var rng_state: int=main.loot_rng.state
+		for i in 100:
+			main._emit_skill_cast_fx('mira',-1 if raid else 0,true,{'kind':'damage','slot':'a1','fx_targets':[-1 if raid else 0],'fx_cast_serial':i+1000},i%5==0)
+			check(skill.casts.size()<=SKILLS.MAX_CASTS,'burst is bounded without per-particle nodes')
+		check(field.get_child_count()==node_count and main.content_root.get_child_count()==panels and main.skill_fx_layer.get_child_count()==visual_children,'skill bursts allocate no canvas or particle nodes')
+		check(JSON.stringify([main.hero_battle_state,main.hero_skill_runtime,main.enemy_wave,main.raid_boss_hp,main.wallet_gold,main.wallet_gems])==state and main.loot_rng.state==rng_state,'skill drawing does not change HP/status/gauge/economy or combat RNG')
+		var ages:=[]
+		for item in skill.casts:ages.append(float(item.age))
+		main.combat_running=false;main.raid_running=false
+		skill.advance(.3)
+		for i in skill.casts.size():check(is_equal_approx(float(skill.casts[i].age),float(ages[i])),'pause freezes cast age')
+		check(not skill.cast('mira',0,false,{'kind':'damage'},false),'paused battle cannot emit a new skill')
+		main.combat_running=not raid;main.raid_running=raid
+		skill.advance(1.0)
+		check(skill.casts.is_empty(),'finished casts retire without holding the combat clock')
+		main.combat_effects_enabled=false
+		main._emit_skill_cast_fx('mira',0,true,{'kind':'damage'},true)
+		skill.advance(.01)
+		check(skill.casts.is_empty(),'effects opt-out clears skill feedback')
+		check(Engine.time_scale==1.0,'skills never restart global hitstop or slow the simulation')
+		main.combat_effects_enabled=true
 		if raid:
 			main.boss_telegraph_pending=true;main.boss_telegraph_remaining=1.0;main.boss_telegraph_skill='테스트 위험 경고'
 		main._emit_boss_telegraph('테스트 위험 경고',1.0)
-		if raid:check(main.content_root.get_node('PortraitRaidView').telegraph.active,'raid danger area remains active')
-		else:check(main.content_root.get_node_or_null('BossTelegraphWarning')!=null,'hunt danger warning remains visible')
+		if raid:check(main.content_root.get_node('PortraitRaidView').telegraph.active,'raid danger remains readable alongside skills')
 		main.combat_running=false;main.raid_running=false
-	await dispose(main);done('NO_HERO_SKILL_VFX')
+	var observed: Dictionary={}
+	for id in ROSTER.HEROES:observed[SKILLS.element_for(str(id),{})]=true
+	check(observed.size()==4,'the deployed roster supports fire/ice/light/dark paint')
+	var presenter=SKILLS.new()
+	check(presenter.hero_statuses({'guard':0,'shield':12,'shield_seconds':0}).is_empty(),'expired protection does not show a fake buff')
+	check(presenter.hero_statuses({'guard':.5,'shield':12,'shield_seconds':2})==['guard','shield'],'buff badges reflect active production protection')
+	check(presenter.enemy_statuses({'stun_seconds':1,'weaken_seconds':0,'vulnerable_seconds':2})==['stun','vulnerable'],'debuff badges omit expired statuses')
+	presenter.free()
+	await dispose(main);done('BOUNDED_HERO_SKILL_VFX')

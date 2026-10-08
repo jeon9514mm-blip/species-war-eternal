@@ -1,0 +1,56 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "gpu_mobile",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 7,
+  "total": 7,
+  "results": [
+    {
+      "test": "FinalEnvironmentSmokeTest.gd",
+      "passed": true,
+      "seconds": 12.2,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nFINAL_ENVIRONMENT checks=21 failures=[]\n"
+    },
+    {
+      "test": "FinalHeroFeedbackSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.5,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nFINAL_HERO_FEEDBACK checks=21 failures=[]\n"
+    },
+    {
+      "test": "FinalRewardAudioSmokeTest.gd",
+      "passed": true,
+      "seconds": 2.53,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nfinal_reward_audio checks=24 failures=[] actual_haptic_device_test=false\n"
+    },
+    {
+      "test": "Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "seconds": 14.11,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nMOBILE25D_SPEC checks=339 failures=[]\n"
+    },
+    {
+      "test": "NoHeroSkillVfxSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.83,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nBOUNDED_HERO_SKILL_VFX checks=239 failures=[]\n"
+    },
+    {
+      "test": "RaidBossPaintFramingSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.78,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nRAID_BOSS_PAINT_FRAMING checks=681 failures=[]\n"
+    },
+    {
+      "test": "RaidTouchLayoutSmokeTest.gd",
+      "passed": true,
+      "seconds": 55.66,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nRAID_TOUCH_LAYOUT checks=1044 failures=[]\n"
+    }
+  ]
+}

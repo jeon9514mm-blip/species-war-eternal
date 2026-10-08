@@ -3,7 +3,7 @@ extends RefCounted
 const FONT = preload('res://assets/fonts/combat/outfit/Outfit-ExtraBold.ttf')
 const PALETTES := {
 	'damage': [Color('#d8d5cc'), Color('#d8d5cc')],
-	'critical': [Color('#c4a484'), Color('#c4a484')],
+	'critical': [Color('#ffd700'), Color('#ffd700')],
 	'incoming': [Color('#fff1ea'), Color('#ff777b')],
 	'heal': [Color('#effff5'), Color('#72eac3')],
 }
@@ -27,8 +27,8 @@ static func parse(message: String) -> Dictionary:
 static func caption(amount: int, kind: String) -> String:
 	return ('+' if kind == 'heal' else '-' if kind == 'incoming' else '') + digits(amount)
 static func font_size(kind: String) -> int:
-	return 14
+	return 16
 static func extent(message: String, kind: String) -> Vector2:
-	return Vector2(maxf(28, FONT.get_string_size(message, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size(kind)).x + 10), 28 if kind == 'critical' else 22)
+	return Vector2(maxf(30, FONT.get_string_size(message, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size(kind)).x + 14), 32 if kind == 'critical' else 26)
 static func priority(kind: String) -> int:
 	return 3 if kind == 'critical' else 2 if kind == 'heal' else 1 if kind == 'incoming' else 0

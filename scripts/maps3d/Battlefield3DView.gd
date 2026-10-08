@@ -50,6 +50,7 @@ var _impact_strength:=0.0
 const RAID_PIVOT:=Vector2(519,383)
 const RAID_UNITS:=26.0
 const RAID_BOTTOM_CLEARANCE:=102.0
+const RAID_BOSS_PIXELS:=179.2 # Original 128px body x requested final 1.4.
 var presentation_visible := true
 var presentation_suspended := false
 var _render_profile := ""
@@ -69,11 +70,17 @@ var _paint_rects: Dictionary={}
 var mobile_camera:=CAMERA_MOTION.new()
 var _camera_base_v:=0.0
 var _rest_camera_size:=0.0
+var _raid_boss_top_cache: Dictionary={}
 var hunt_interpolation:=preload('res://scripts/maps3d/HuntRenderInterpolation.gd').new()
 var _hunt_before: Dictionary={}
 var _hunt_display: Dictionary={}
 var _render_hero_points: Dictionary={}
 var _render_enemy_indices: Dictionary={}
+var skill_overlay: Control
+var contact_flash: Control
+var _contact_holds: Dictionary={}
+var _contact_hold_cooldowns: Dictionary={}
+var _crit_visual_until_us:=0
 func _hunt_points() -> Dictionary:
 	var points: Dictionary={}
 	for i in mini(game.hero_map_sprites.size(),game.deployed_heroes.size()):
@@ -95,7 +102,7 @@ func display_world(source: AnimatedSprite2D,fallback: Vector2) -> Vector2:
 	return _hunt_display.get(source.get_instance_id(),fallback) if is_instance_valid(source) and not raid_mode else fallback
 func _prepare_hunt_display() -> void:
 	if raid_mode:return
-	var remainder: float=game._ordinary_hunt_accumulator+Engine.get_physics_interpolation_fraction()/maxi(1,Engine.physics_ticks_per_second)
+	var remainder: float=game._ordinary_hunt_accumulator+Engine.get_physics_interpolation_fraction()*Engine.time_scale/maxi(1,Engine.physics_ticks_per_second)
 	_hunt_display=hunt_interpolation.sample(_hunt_points(),_hunt_states(),remainder/hunt_interpolation.duration,battle_clock_running())
 	_render_hero_points.clear();_render_enemy_indices.clear()
 	for i in mini(game.hero_map_sprites.size(),game.deployed_heroes.size()):
@@ -151,6 +158,9 @@ func _ready() -> void:
 	hunt_overlay=HUNT_OVERLAY.new();hunt_overlay.name='HuntCombatOverlay';hunt_overlay.terrain=self
 	hunt_overlay.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(hunt_overlay)
 	hunt_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	skill_overlay=preload('res://scripts/presentation/HeroSkillVfxPresenter.gd').new();skill_overlay.name='HeroSkillVfx';skill_overlay.field=self
+	skill_overlay.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(skill_overlay);skill_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	contact_flash=preload('res://scripts/maps3d/ContactScreenFlash.gd').new();contact_flash.field=self;add_child(contact_flash);contact_flash.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var ambient_dust:=preload('res://scripts/maps3d/MobileAmbientDust.gd').new();ambient_dust.field=self;ambient_dust.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	add_child(ambient_dust);ambient_dust.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_health_overlay=HEALTH_OVERLAY.new();_health_overlay.mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -185,12 +195,12 @@ func _create_generated_map_root() -> Node3D:
 	reflection_sky.sky_material=sky_paint;environment.sky=reflection_sky
 	environment.tonemap_mode=Environment.TONE_MAPPER_ACES;environment.tonemap_exposure=1.02
 	environment.glow_enabled=RenderingServer.get_current_rendering_method()=='forward_plus'
-	environment.glow_intensity=.35;environment.glow_strength=.8;environment.glow_bloom=.06
+	environment.glow_intensity=.45;environment.glow_strength=.9;environment.glow_bloom=.06
 	if RenderingServer.get_current_rendering_method()=='forward_plus':
 		environment.sdfgi_enabled=true;environment.sdfgi_cascades=4;environment.sdfgi_min_cell_size=.8;environment.sdfgi_bounce_feedback=0.0
 	environment_node.environment=environment;arena_root.add_child(environment_node)
 	var sun:=DirectionalLight3D.new();sun.name='AutoMapSun';sun.rotation_degrees=Vector3(-55,-28,0)
-	sun.light_energy=.85;sun.light_color=palette.sun
+	sun.light_energy=.9;sun.light_color=palette.sun
 	sun.shadow_enabled=true;sun.directional_shadow_mode=DirectionalLight3D.SHADOW_PARALLEL_2_SPLITS
 	arena_root.add_child(sun)
 	var model_path: String='res://assets/models3d-v1/environments/'+zone_id+('_raid' if raid_mode else '_hunt')+'.glb'
@@ -246,12 +256,33 @@ func _resize_world() -> void:
 		var excess:=project_world(raid_to_world(floor_end)).y-(size.y-RAID_BOTTOM_CLEARANCE)
 		if excess>0.0:camera.v_offset-=excess/(RAID_UNITS*raid_factor)
 		var boss: Vector2=raid_to_world(game.raid_boss_position) if is_instance_valid(game) else raid_to_world(Vector2(650,383))
-		camera.v_offset+=maxf(0,166.4+2-project_world(boss).y)*camera.size/size.y
+		camera.v_offset+=maxf(0,_raid_boss_top_pixels()-project_world(boss).y)*camera.size/size.y
 		_camera_base_v=camera.v_offset
 	else:
 		_update_hunt_camera(0.0,true)
 		_camera_base_v=0.0
 	_rest_camera_size=camera.size
+
+func _raid_boss_top_pixels() -> float:
+	# A fixed 179.2px native height does not bound the raised weapon/wing in
+	# every attack pose. Reserve the whole atlas above its foot pivot, without
+	# changing the original's scale. The existing catalog and this three-boss
+	# identity cache avoid reading/parsing frame JSON in the render loop.
+	if not is_instance_valid(game) or not is_instance_valid(game.raid_boss_sprite):return RAID_BOSS_PIXELS+2.0
+	var identity: String=FRAME_PILOT.CATALOG.identity(game.raid_boss_sprite,false)
+	if _raid_boss_top_cache.has(identity):return float(_raid_boss_top_cache[identity])
+	var top:=RAID_BOSS_PIXELS
+	var entry: Dictionary=_frame_catalog.load_entry(identity)
+	for kind in ['attack','motion']:
+		var sheet: Dictionary=entry.get(kind,{})
+		var native_height:=float(sheet.get('native_height',0))
+		if native_height<=0:continue
+		for frame: Dictionary in sheet.get('frames',[]):
+			var anchor: Array=frame.get('anchor',[])
+			if anchor.size()==2:top=maxf(top,float(anchor[1])/native_height*RAID_BOSS_PIXELS)
+	top+=2.0 # The boss's maximum breathing displacement.
+	if not identity.is_empty():_raid_boss_top_cache[identity]=top
+	return top
 
 func _set_focus(point: Vector2) -> void:
 	focus=point
@@ -360,23 +391,26 @@ func _process(delta: float) -> void:
 		if speed>0:_impact_age+=maxf(0,delta)*speed
 	var camera_active: bool=battle_clock_running()
 	var offsets:=mobile_camera.advance(delta/maxf(.001,Engine.time_scale),camera_active,game.combat_effects_enabled)
+	var punch: float=mobile_camera.zoom_punch(game.combat_effects_enabled)
 	if _rest_camera_size<=0:_rest_camera_size=camera.size
 	if not raid_mode:_rest_camera_size=camera.size
 	elif is_instance_valid(game.raid_boss_sprite):
 		camera.size=_rest_camera_size
 		var boss_point: Vector2=raid_to_world(game.raid_boss_sprite.position)
+		var desired:=Vector2(16,10).lerp(boss_point,.22)
+		if battle_clock_running():_set_focus(focus.lerp(desired,1-exp(-maxf(0,delta)*2.0)))
 		var floor_point: Vector2=raid_to_world(preload('res://scripts/raid/RaidBattlefield.gd').FLOOR.end)
 		var below_boss: float=project_world(floor_point).y-project_world(boss_point).y
-		var available: float=maxf(1,size.y-RAID_BOTTOM_CLEARANCE-12-168.4)
-		if below_boss>available:
-			var fit: float=below_boss/available
+		var available: float=maxf(1,size.y-RAID_BOTTOM_CLEARANCE-12-_raid_boss_top_pixels())
+		if below_boss*punch>available:
+			var fit: float=below_boss*punch/available
 			_rest_camera_size*=fit;raid_factor/=fit
-	camera.size=_rest_camera_size/mobile_camera.zoom_punch(game.combat_effects_enabled)
+	camera.size=_rest_camera_size/punch
 	var units: float=camera.size/size.y
 	camera.h_offset=offsets.x*units;camera.v_offset=_camera_base_v-offsets.y*units
 	if raid_mode and is_instance_valid(game.raid_boss_sprite):
 		# The boss is positioned after initial layout; guard its actual head too.
-		var head: float=project_world(raid_to_world(game.raid_boss_sprite.position)).y-166.4-2.0
+		var head: float=project_world(raid_to_world(game.raid_boss_sprite.position)).y-_raid_boss_top_pixels()
 		var padding: float=maxf(0,12.0-head)*units
 		_camera_base_v+=padding;camera.v_offset+=padding
 		var end: float=project_world(raid_to_world(preload('res://scripts/raid/RaidBattlefield.gd').FLOOR.end)).y
@@ -443,6 +477,8 @@ func _process(delta: float) -> void:
 	for key in actors.keys():
 		if not live.has(key):
 			actors[key].free();actors.erase(key);_last_footstep.erase(key);_last_death.erase(key);_frame_events.erase(key)
+			_contact_holds.erase(key)
+			_contact_hold_cooldowns.erase(key)
 	_health_overlay.links=_health_links
 	_health_overlay.queue_redraw()
 	if is_instance_valid(diorama):diorama.update_foreground()
@@ -451,17 +487,37 @@ func _process(delta: float) -> void:
 func hunt_hit(point: Vector2,source: Vector2,tint: Color,critical: bool) -> void:
 	if is_instance_valid(hunt_overlay):
 		var height:=ENEMY_HEIGHT
+		var victim: AnimatedSprite2D
+		var nearest:=.36
 		for index in mini(game.enemy_wave.size(),game.enemy_wave_sprites.size()):
-			if game.roaming_hunt.enemy_position(index).distance_squared_to(point)<.36:
-				height=_actor_height(game.enemy_wave_sprites[index],false);break
+			var distance: float=game.roaming_hunt.enemy_position(index).distance_squared_to(point)
+			if distance<nearest:
+				nearest=distance;height=_actor_height(game.enemy_wave_sprites[index],false);victim=game.enemy_wave_sprites[index]
+				if distance<.00001:break
 		hunt_overlay.hit(point,source,tint,critical,height)
-		if game.combat_effects_enabled:
-			mobile_camera.impact(critical)
+		contact_feedback(critical,point,victim)
 		if critical and game.combat_effects_enabled:
 			for actor in game.hero_map_sprites:
 				if is_instance_valid(actor) and actor.position.distance_to(position+project_world(source))<30:
 					if not _uses_frame_pilot(actor,true):hunt_overlay.afterimage(actor,source,(point-source).normalized())
 					break
+
+func contact_feedback(critical: bool,point: Vector2,victim: AnimatedSprite2D=null) -> void:
+	if not battle_clock_running():return
+	if is_instance_valid(game.presentation_runtime):
+		game.presentation_runtime.audio.play_positional('critical' if critical else 'hit',self,point)
+		game.presentation_runtime.haptics.pulse('critical' if critical else 'hit')
+	if not game.combat_effects_enabled:return
+	mobile_camera.impact(critical)
+	if is_instance_valid(victim) and victim.state!='death':
+		var id:=victim.get_instance_id();var now:=Time.get_ticks_usec()
+		if now>=int(_contact_hold_cooldowns.get(id,0)):
+			_contact_holds[id]=now+80000
+			_contact_hold_cooldowns[id]=now+200000
+	if critical and Time.get_ticks_usec()>=_crit_visual_until_us:
+		_crit_visual_until_us=Time.get_ticks_usec()+1500000
+		contact_flash.flash()
+		if is_instance_valid(game.presentation_runtime):game.presentation_runtime.contact_time.request(true)
 
 func _uses_frame_pilot(source: AnimatedSprite2D,hero: bool) -> bool:
 	if not frame_pilot_enabled:return false
@@ -542,7 +598,7 @@ func _base_actor_height(source: AnimatedSprite2D,hero: bool) -> float:
 	if is_instance_valid(camera) and size.y>1:
 		if hero:return 86.4*camera.size/size.y/(RAID_BODY_SCALE if raid_mode else HUNT_BODY_SCALE)
 		if not raid_mode:return 40.0*camera.size/size.y/HUNT_BODY_SCALE
-		return 166.4*camera.size/size.y/RAID_BODY_SCALE
+		return RAID_BOSS_PIXELS*camera.size/size.y/RAID_BODY_SCALE
 	if raid_mode:
 		# All hero originals share one height, independent of old sprite margins.
 		return RAID_HERO_HEIGHT if hero else RAID_BOSS_HEIGHT
@@ -687,7 +743,9 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 			if source.state=='death' and not _last_death.has(id):
 				_last_death[id]=true;hunt_overlay.soul(point,hero)
 	sprite.position=Vector3(point.x,.10,point.y)+motion;sprite.flip_h=source.flip_h
-	sprite.modulate=source.modulate*Color(source.self_modulate.r,source.self_modulate.g,source.self_modulate.b,1)
+	# The 3D paint owns its 40ms flash. The source controller's legacy red
+	# blink would otherwise tint the painting a second time for 180ms.
+	sprite.modulate=source.modulate if frame_active else source.modulate*Color(source.self_modulate.r,source.self_modulate.g,source.self_modulate.b,1)
 	sprite.visible=source.visible
 	sprite.scale=Vector3(presentation_shape.x,presentation_shape.y,1)
 	var inactive=sprite.get_node_or_null('HuntFramePilot' if real_models_enabled else 'Model3DPilot')
@@ -720,13 +778,14 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 			if pending.has('hit'):pilot.timeline.hit(pending.hit)
 			_frame_events.erase(id);pilot.show()
 			pilot.fur_layers=0 if str(game.presentation_options.get('performance','balanced'))=='battery' else 4
-			if not real_models_enabled:pilot.echo_layers=1
+			if not real_models_enabled:pilot.echo_layers=2
 			pilot.effects_enabled=game.combat_effects_enabled and str(game.presentation_options.get('performance','balanced'))!='battery'
 			# The complete original painting casts into the modeled battle floor.
 			pilot.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF # Baked contact footprint; avoid a second dense billboard shadow pass.
 			var runtime:=_frame_runtime(source,hero)
 			runtime.merge(_paint_facing_target(source,point,hero))
-			pilot.present(camera,height,sprite.modulate,_actor_delta,visual_running(),point,runtime,_frame_dead(source,hero))
+			var active:=visual_running() and Time.get_ticks_usec()>=int(_contact_holds.get(id,0))
+			pilot.present(camera,height,sprite.modulate,_actor_delta,active,point,runtime,_frame_dead(source,hero))
 			var old_skin=sprite.get_node_or_null('HeroSkeletalBillboard')
 			if old_skin!=null:old_skin.hide()
 			sprite.texture=null
@@ -750,7 +809,7 @@ func sync_actor(source: AnimatedSprite2D,point: Vector2,hero: bool,live: Diction
 	source.self_modulate.a=0
 	for child in source.get_children():
 		if child is CanvasItem:child.visible=false
-	var shadow: MeshInstance3D=sprite.get_node('ContactShadow');shadow.position=Vector3(0,-.02,12*camera.size/size.y/absf(camera.global_basis.z.y))-motion
+	var shadow: MeshInstance3D=sprite.get_node('ContactShadow');shadow.position=Vector3(0,-.02,14*camera.size/size.y/absf(camera.global_basis.z.y))-motion
 	shadow.visible=source.modulate.a>.15
 	var breathing_lift: float=pilot.position.length() if frame_active and pilot!=null else motion.y
 	var lift_scale:=1.0-clampf(breathing_lift*3.0,0,.6)

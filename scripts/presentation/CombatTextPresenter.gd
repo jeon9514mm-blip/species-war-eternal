@@ -35,7 +35,7 @@ static func hunt(main, data: Dictionary, origin: Vector2) -> void:
 	var center := target_foot - Vector2(0, 38)
 	var key := 'unknown:' + str(Vector2i(target_foot / 20))
 	if is_instance_valid(source):
-		center = source.position - Vector2(0, 32)
+		center = source.position - Vector2(0, 36)
 		key = str(source.get_instance_id())
 	var field: Rect2 = main.combat_field_rect
 	var bounds := Rect2(field.position + Vector2(12, 62), field.size - Vector2(24, 82))
@@ -49,10 +49,10 @@ static func raid(main, amount: int, kind: String, hero_id := '') -> void:
 	var actor: Node2D = view.hero_actors.get(hero_id) if not hero_id.is_empty() else main.raid_boss_sprite
 	var height: float = field.actor_world_height(actor, not hero_id.is_empty()) if is_instance_valid(actor) else 2.0
 	var offset: Vector2 = view.stage.global_position - main.content_root.global_position
-	var center: Vector2 = offset + field.project_world(field.raid_to_world(point)) - Vector2(0, 32)
+	var center: Vector2 = offset + field.project_world(field.raid_to_world(point)) - Vector2(0, 36)
 	if kind in ['damage','critical']:
-		field.hunt_overlay.hit(field.raid_to_world(point),field.raid_to_world(point),Color('#c4a484') if kind=='critical' else Color('#d8d5cc'),kind=='critical',height)
-		field.mobile_camera.impact(kind=='critical')
+		field.hunt_overlay.hit(field.raid_to_world(point),field.raid_to_world(point),Color('#ffd700') if kind=='critical' else Color('#d8d5cc'),kind=='critical',height)
+		field.contact_feedback(kind=='critical',field.raid_to_world(point),actor)
 	var bounds := Rect2(offset + Vector2(12, 62), view.stage.size - Vector2(24, 120))
 	emit(main, amount, kind, center, bounds, 'raid:' + (hero_id if not hero_id.is_empty() else 'boss'))
 static func legacy(main, message: String, color: Color, origin: Vector2) -> void:

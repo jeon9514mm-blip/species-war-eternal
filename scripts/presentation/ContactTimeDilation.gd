@@ -1,17 +1,17 @@
 extends Node
-## Optional cinematic slowdown. Ordinary battle contacts never enable it.
+## Crit-only 80ms slowdown, restored on wall time and spaced by 1.5 seconds.
 var game: Node
-var enabled:=false
+var enabled:=true
 var deadline_us:=0
 var cooldown_us:=0
 var previous_scale:=1.0
 func _ready() -> void:process_mode=Node.PROCESS_MODE_ALWAYS;process_priority=-100
-func request() -> void:
-	if not enabled or not is_instance_valid(game) or not game.combat_effects_enabled or game._application_suspended:return
+func request(critical:=true) -> void:
+	if not critical or not enabled or not is_instance_valid(game) or not game.combat_effects_enabled or game._application_suspended:return
 	if not ((game.active_screen=='combat' and game.combat_running) or (game.active_screen=='raid' and game.raid_running)):return
 	var now:=Time.get_ticks_usec()
 	if now<cooldown_us or deadline_us>0:return
-	previous_scale=Engine.time_scale;Engine.time_scale=previous_scale*.1;deadline_us=now+60000;cooldown_us=now+160000
+	previous_scale=Engine.time_scale;Engine.time_scale=previous_scale*.15;deadline_us=now+80000;cooldown_us=now+1500000
 func restore() -> void:
 	if deadline_us>0:Engine.time_scale=previous_scale
 	deadline_us=0

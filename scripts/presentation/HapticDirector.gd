@@ -8,7 +8,8 @@ var _last_ms: int = -10000
 var accepted: int = 0
 const PULSES := {"ui_click": [12, 0.22], "equip": [18, 0.32], "upgrade": [25, 0.4],
 	"reward": [22, 0.3], "summon": [40, 0.5], "victory": [55, 0.55], "ultimate": [30, 0.45],
-	"boss_warning": [50, 0.65], "shield_break": [35, 0.5], "critical": [12, 0.22]}
+	"boss_warning": [50, 0.65], "shield_break": [35, 0.5], "critical": [18, 0.34],
+	"hit": [10, 0.14], "skill": [25, 0.36], "gold": [22, 0.3]}
 
 func pulse(event: String, now_ms: int = -1) -> bool:
 	if mode == "off" or suspended or not PULSES.has(event): return false

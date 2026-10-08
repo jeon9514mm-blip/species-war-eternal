@@ -1,0 +1,15 @@
+{
+  "art_review_fixture": true,
+  "raid_entry_wait_seconds": 0.9,
+  "showcase_uses_actual_skill_cast": true,
+  "skills": [
+    "leonhardt",
+    "mira",
+    "elisia",
+    "kairen"
+  ],
+  "wallet_start": [
+    48260,
+    840
+  ]
+}

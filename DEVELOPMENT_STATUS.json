@@ -1,7 +1,7 @@
 {
   "project": "Species War: Eternal",
   "development_step": "v83-6.5",
-  "workstream": "battle_movement_pacing_and_cpu_optimization",
+  "workstream": "user_final_11_item_visual_combat_feedback_polish",
   "status": "implemented_with_documented_quality_and_performance_limits",
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "save_version": 37,
@@ -960,5 +960,348 @@
     "hunt_sixty_fps_verified": false,
     "review": "checks/movement-pacing-2026-10-08/README.md",
     "evidence": "checks/movement-pacing-2026-10-08/validation.json"
+  },
+  "latest_final_polish": {
+    "date": "2026-10-08",
+    "status": "implemented_with_documented_quality_and_performance_limits",
+    "review": "checks/final-polish-2026-10-08/README.md",
+    "supersedes": [
+      "latest_mobile25d visual values",
+      "latest_movement_pacing crit slowdown policy",
+      "historical hero skill VFX removal"
+    ],
+    "historical_objects_preserved": [
+      "latest_mobile25d",
+      "latest_movement_pacing"
+    ],
+    "hero_display_pixels": 86.4,
+    "hero_count": 30,
+    "ordinary_monster_count": 13,
+    "raid_boss_count": 3,
+    "fully_skinned_anatomical_3d": false,
+    "foreground_hunt_simulation_hz": 20,
+    "render_interpolation": true,
+    "raid_steps_distributed": true,
+    "floor": {
+      "texture_size": 1024,
+      "runtime_texture_reads": 2,
+      "moss_fraction": 0.15,
+      "moss_outside_cracks": 0,
+      "patina_fraction_in_crack_candidates": 0.2,
+      "edge_wear": 0.6,
+      "crack_dark": 0.35,
+      "ao_strength": 0.5,
+      "moss_glow": 0.15,
+      "roughness": 0.58,
+      "metallic": 0.32,
+      "dust": 0.15,
+      "ao_packed_in_albedo_alpha": true
+    },
+    "circle": {
+      "glow": 0.5,
+      "inner_glow": 0.35,
+      "pulse_seconds": 0.8,
+      "rotation_rad_per_second": 0.12,
+      "runes": 8,
+      "rune_brightness": 0.7,
+      "bronze_color": "#E8C99A",
+      "falling_leaves": 12,
+      "ground_cracks": "bounded shader inlay",
+      "moss_point_light_energy": 0.6,
+      "point_light_shadows": false
+    },
+    "heroes": {
+      "shadow_alpha": 0.5,
+      "shadow_offset_y_pixels": 14,
+      "outline_pixels": 2,
+      "outline_black_alpha": 0.6,
+      "breathing_pixels": 2,
+      "breathing_seconds": 2,
+      "cape_points": 3,
+      "trail_seconds": 0.2,
+      "afterimages": 2,
+      "afterimage_start_alpha": 0.5,
+      "level_particle_count": 12,
+      "real_level_change_detection": true,
+      "decorative_glint_probability": 0.01,
+      "decorative_glint_interval_seconds": 4,
+      "decorative_glint_grants_xp": false,
+      "visual_rng_separate_from_combat_rng": true
+    },
+    "damage": {
+      "font": "Outfit-ExtraBold 800",
+      "font_pixels": 16,
+      "scale": 1.3,
+      "outline_requested_pixels": 2.5,
+      "outline_integer_layers": [
+        2,
+        3
+      ],
+      "outline_black_alpha": 0.8,
+      "outline_implementation": "2px base plus lower-alpha 3px outer blend",
+      "offset_y_pixels": -36,
+      "duration_seconds": 0.65,
+      "chromatic_opacity": 0.015,
+      "normal_color": "#D8D5CC",
+      "critical_color": "#FFD700",
+      "critical_particles": 12,
+      "critical_screen_flash_wall_seconds": 0.05,
+      "critical_screen_flash_low_alpha": true
+    },
+    "lighting": {
+      "directional_energy": 0.9,
+      "bloom": 0.45,
+      "bloom_strength": 0.9,
+      "vignette": 0.7,
+      "light_shafts": 0.15,
+      "sss": 0.2,
+      "rim": 0.18,
+      "mobile_native_sss": false,
+      "mobile_native_sdfgi": false,
+      "mobile_light_shafts": "three analytic shader shafts",
+      "mobile_sss": "warm transmission emission approximation",
+      "mobile_bloom": "bounded post shader approximation",
+      "forward_plus_native_sss": true
+    },
+    "contact": {
+      "trail_seconds": 0.2,
+      "slash_color": "#FFFFFF",
+      "slash_alpha": 0.8,
+      "slash_width_pixels": 4,
+      "particles": 16,
+      "impact_scale": 1.2,
+      "impact_seconds": 0.08,
+      "victim_pose_hold_wall_seconds": 0.08,
+      "victim_pose_hold_cooldown_seconds": 0.2,
+      "normal_global_hitstop": false,
+      "white_actor_flash_wall_seconds": 0.04,
+      "white_actor_flash_cooldown_seconds": 0.12
+    },
+    "camera": {
+      "zoom": 1.3,
+      "offset_y_pixels": -20,
+      "angle_degrees": 45,
+      "breathing_seconds": 8,
+      "breathing_pixels": 2.5,
+      "normal_shake_pixels": 3,
+      "critical_shake_pixels": 5,
+      "zoom_punch": 1.08,
+      "zoom_punch_seconds": 0.1,
+      "normal_impact_cooldown_seconds": 0.75,
+      "critical_impact_cooldown_seconds": 1.5,
+      "boss_focus": true,
+      "parallax_dust_particles": 12,
+      "critical_global_time_scale_multiplier": 0.15,
+      "critical_slowdown_wall_seconds": 0.08,
+      "critical_slowdown_cooldown_seconds": 1.5,
+      "restore_on_pause_background_effects_off_and_exit": true
+    },
+    "raid": {
+      "boss_baseline_pixels": 128,
+      "boss_scale": 1.4,
+      "boss_display_pixels": 179.2,
+      "seal_glow": 0.6,
+      "seal_pulse_seconds": 1,
+      "warning_red_alpha": 0.6,
+      "timer_uses_actual_cast": true,
+      "phase_and_enrage_feedback": true,
+      "touch_inverse_projection_preserved": true,
+      "entrance_curtain_separated_from_review_capture": true
+    },
+    "skills": {
+      "enabled_by_latest_explicit_user_request": true,
+      "elements": [
+        "fire",
+        "ice",
+        "light",
+        "dark"
+      ],
+      "buff_debuff_icons_use_live_state": true,
+      "ultimate_gauge_uses_live_state": true,
+      "settled_casts_only": true,
+      "canvas_nodes": 1,
+      "max_casts": 8,
+      "max_targets_per_cast": 4,
+      "deduplication_keys": 64,
+      "full_screen_cutins": false,
+      "damage_resistance_rewards_and_combat_rng_changed_by_vfx": false
+    },
+    "rewards_ui": {
+      "source": "authoritative positive wallet deltas",
+      "persistent_widgets": 2,
+      "gold_gem_vector_icons": true,
+      "count_seconds": 0.38,
+      "pop_scale": 1.2,
+      "spending_updates_immediately": true,
+      "background_and_effects_off_static": true,
+      "max_popups": 8,
+      "max_loot_beams": 4,
+      "beam_particle_count": 6,
+      "presentation_grants_currency": false
+    },
+    "audio_haptics": {
+      "new_cues": [
+        "Hit.wav",
+        "Crit.wav",
+        "Gold.wav",
+        "Skill.wav"
+      ],
+      "original_offline_pcm": true,
+      "new_cue_bytes": 52654,
+      "spatial_voice_nodes": 4,
+      "max_active_effect_voices_shared_with_ui": 8,
+      "low_priority_events_per_second": 18,
+      "combat_pitch_range": [
+        0.94,
+        1.06
+      ],
+      "volume_variation_range": [
+        0.92,
+        1
+      ],
+      "dedicated_rng": true,
+      "haptics_default": "off",
+      "haptic_modes": [
+        "off",
+        "light",
+        "normal"
+      ],
+      "hardware_haptic_verified": false,
+      "audible_device_quality_verified": false
+    },
+    "bounded_presentation_pools": {
+      "hits": 12,
+      "canvas_echoes": 24,
+      "dust": 48,
+      "souls": 16,
+      "loot_beams": 4,
+      "celebrations": 4
+    },
+    "combat_damage_rewards_and_saves_changed_by_presentation": false,
+    "validation": {
+      "headless_reports": [
+        "combined-headless.json",
+        "environment-headless.json",
+        "skills-headless.json",
+        "hero-feedback-headless.json",
+        "canvas-batching-headless.json",
+        "reward-audio-tests.json"
+      ],
+      "headless_reports_directory": "checks/final-polish-2026-10-08",
+      "report_rows_may_repeat_tests": true,
+      "historical_full_suite_all_green_claimed": false,
+      "changed_gdscript_parser": {
+        "passed": 42,
+        "total": 42
+      },
+      "gpu_report": "checks/final-polish-2026-10-08/final-gpu-tests.json",
+      "distinct_selected_tests": 14
+    },
+    "performance": {
+      "status": "measured_actual_gpu_below_sixty_fps",
+      "device": "NVIDIA GeForce GTX 1050",
+      "renderer": "mobile",
+      "latest_report": "checks/final-polish-2026-10-08/review-final/performance.json",
+      "final_profiles": [
+        {
+          "draw_calls": 551.0,
+          "frames": 262,
+          "held_walking_frames": 43,
+          "held_walking_ratio": 0.0316409124356144,
+          "label": "hunt-aurelia",
+          "max_world_step": 0.0950000807642937,
+          "mean_fps": 32.6736987450057,
+          "p95_frame_ms": 50.543,
+          "physics_ms_mean": 42.3022633587788,
+          "process_ms_mean": 28.6347824427481,
+          "seconds": 8.018682,
+          "slowed_frame_ratio": 0.0,
+          "slowed_frames": 0,
+          "texture_bytes": 112070656,
+          "walking_actor_frames": 1359
+        },
+        {
+          "draw_calls": 620.0,
+          "frames": 275,
+          "held_walking_frames": 30,
+          "held_walking_ratio": 0.0181598062953995,
+          "label": "hunt-noxfera",
+          "max_world_step": 0.108241386711597,
+          "mean_fps": 34.337130437269,
+          "p95_frame_ms": 48.001,
+          "physics_ms_mean": 45.3903854545454,
+          "process_ms_mean": 28.9538981818181,
+          "seconds": 8.008823,
+          "slowed_frame_ratio": 0.0,
+          "slowed_frames": 0,
+          "texture_bytes": 115740672,
+          "walking_actor_frames": 1652
+        },
+        {
+          "draw_calls": 311.0,
+          "frames": 349,
+          "held_walking_frames": 0,
+          "held_walking_ratio": 0.0,
+          "label": "raid",
+          "max_world_step": 2.1997058391571,
+          "mean_fps": 58.0829014423033,
+          "p95_frame_ms": 33.328,
+          "physics_ms_mean": 33.620441260745,
+          "process_ms_mean": 11.797687679083,
+          "seconds": 6.008653,
+          "slowed_frame_ratio": 0.0,
+          "slowed_frames": 0,
+          "texture_bytes": 111283200,
+          "walking_actor_frames": 59
+        },
+        {
+          "draw_calls": 614.0,
+          "frames": 323,
+          "held_walking_frames": 31,
+          "held_walking_ratio": 0.0139013452914798,
+          "label": "hunt-natural-crits",
+          "max_world_step": 0.199136406183243,
+          "mean_fps": 32.2465899730277,
+          "p95_frame_ms": 53.011,
+          "physics_ms_mean": 49.6388544891641,
+          "process_ms_mean": 29.5183622291022,
+          "seconds": 10.016563,
+          "slowed_frame_ratio": 0.0340557275541796,
+          "slowed_frames": 11,
+          "texture_bytes": 124571648,
+          "walking_actor_frames": 2230
+        }
+      ],
+      "hunt_sixty_fps_verified": false,
+      "android_measured": false,
+      "android_thermal_and_memory_measured": false
+    },
+    "graphics_reference_quality_approved": false,
+    "publication": {
+      "target_branch": "jeon9514mm-blip/species-war-eternal",
+      "base_commit": "4411a3dd35b91ca7f49d3ff8240c4356cf036a0a",
+      "verification_result_location": "Final task response and attached GitHub pull request; confirm remote commit and exact tree after publication."
+    },
+    "raid_additional_fixes": {
+      "legacy_ground_ring_removed": true,
+      "legacy_2d_hit_effects_replaced_in_3d_view": true,
+      "second_red_controller_blink_removed": true,
+      "whole_attack_pose_reserved_by_camera": {
+        "grun": 218.3058,
+        "morgul": 237.4333,
+        "selene_boss": 186.3949
+      },
+      "standing_native_height_pixels": 179.2,
+      "touch_projection_retained": true
+    }
+  },
+  "hero_catalog_delivery": {
+    "heroes": 30,
+    "skills": 120,
+    "gallery": "docs/hero-catalog-2026-10-08/hero-gallery.html",
+    "images_directory": "docs/hero-catalog-2026-10-08/art",
+    "source_region_pixels_identical": true,
+    "skill_source": "HeroRosterCatalog actual four-slot definitions",
+    "base_values_with_separate_identity_adjustments": true
   }
 }

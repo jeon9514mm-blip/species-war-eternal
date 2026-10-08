@@ -8,13 +8,18 @@ var surface: MeshInstance3D
 var stone_material: ShaderMaterial
 var elapsed:=0.0
 var arrow: MeshInstance3D
+var moss_light: OmniLight3D
 func _ready() -> void:
 	name='RuneStoneGround'
 	surface=MeshInstance3D.new();surface.name='ArtistStoneSurface'
 	var plane:=PlaneMesh.new();plane.size=Vector2(3,4.243);surface.mesh=plane
 	surface.position=Vector3(16,.016,10)
 	stone_material=ShaderMaterial.new();stone_material.shader=SURFACE_SHADER
-	stone_material.set_shader_parameter('moss',Color('#a8b89e'));stone_material.set_shader_parameter('bronze',Color('#c4a484'))
+	stone_material.set_shader_parameter('moss',Color('#a8b89e'));stone_material.set_shader_parameter('bronze',Color('#e8c99a'))
+	stone_material.set_shader_parameter('glow',.5);stone_material.set_shader_parameter('inner_glow',.35)
+	stone_material.set_shader_parameter('pulse_period',.8);stone_material.set_shader_parameter('rotation_speed',.12)
+	stone_material.set_shader_parameter('rune_count',8);stone_material.set_shader_parameter('rune_brightness',.7)
+	set_meta('falling_leaves',12);set_meta('ground_cracks','bounded shader inlay')
 	stone_material.set_shader_parameter('artist_circle',load('res://assets/mobile25d/vfx/moss_bronze_circle.png'))
 	surface.material_override=stone_material;add_child(surface)
 	surface.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
@@ -29,10 +34,12 @@ func _ready() -> void:
 		var j: int=(i+1)%polygon.size();triangles.append_array(PackedInt32Array([i,j,j+7,i,j+7,i+7]))
 	var arrays: Array=[];arrays.resize(Mesh.ARRAY_MAX);arrays[Mesh.ARRAY_VERTEX]=vertices;arrays[Mesh.ARRAY_NORMAL]=normals;arrays[Mesh.ARRAY_INDEX]=triangles
 	var arrow_mesh:=ArrayMesh.new();arrow_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays);arrow.mesh=arrow_mesh
-	var bronze:=StandardMaterial3D.new();bronze.albedo_color=Color('#c4a484');bronze.metallic=.32;bronze.roughness=.58;bronze.emission_enabled=true;bronze.emission=Color('#c4a484')*.35;bronze.cull_mode=BaseMaterial3D.CULL_DISABLED
-	bronze.emission=Color('#c4a484')*.04
+	var bronze:=StandardMaterial3D.new();bronze.albedo_color=Color('#e8c99a');bronze.metallic=.32;bronze.roughness=.58;bronze.emission_enabled=true;bronze.emission=Color('#e8c99a')*.12;bronze.cull_mode=BaseMaterial3D.CULL_DISABLED
 	arrow.scale=Vector3.ONE*.45
 	arrow.material_override=bronze;arrow.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;add_child(arrow)
+	moss_light=OmniLight3D.new();moss_light.name='MossPointLight';moss_light.light_color=Color('#a8b89e')
+	moss_light.light_energy=.6;moss_light.omni_range=4.5;moss_light.omni_attenuation=1.4;moss_light.shadow_enabled=false
+	moss_light.position=surface.position+Vector3(0,1.0,0);add_child(moss_light)
 	process_priority=101
 func _process(delta: float) -> void:
 	if not is_instance_valid(field):
@@ -50,6 +57,7 @@ func _process(delta: float) -> void:
 		center+=point
 	center=center/maxi(1,alive.size()) if not alive.is_empty() else field.game.expedition_position
 	surface.position=Vector3(center.x,.026,center.y)
+	moss_light.position=Vector3(center.x,maxf(.3,radius*.30),center.y);moss_light.omni_range=maxf(.5,radius*1.35)
 	var direction: Vector2=(field.game.expedition_target-center).normalized()
 	arrow.position=Vector3(center.x+direction.x*radius,.06+sin(elapsed*TAU/2)*.025,center.y+direction.y*radius)
 	arrow.rotation.y=-direction.angle()

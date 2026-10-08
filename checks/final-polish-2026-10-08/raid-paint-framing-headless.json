@@ -1,0 +1,20 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 1,
+  "total": 1,
+  "results": [
+    {
+      "test": "RaidBossPaintFramingSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.52,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_BOSS_PAINT_FRAMING checks=681 failures=[]\n"
+    }
+  ]
+}

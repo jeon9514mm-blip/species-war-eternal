@@ -1,0 +1,83 @@
+{
+  "android_measured": false,
+  "assets": [],
+  "crit_fixture": {
+    "copies": 7,
+    "guardian": "eclipse",
+    "natural_crit_chance": 0.084,
+    "seed": 20261008
+  },
+  "device": "NVIDIA GeForce GTX 1050",
+  "engine": "4.7.2-stable (official)",
+  "profiles": [
+    {
+      "draw_calls": 551.0,
+      "frames": 262,
+      "held_walking_frames": 42,
+      "held_walking_ratio": 0.0308370044052863,
+      "label": "hunt-aurelia",
+      "max_world_step": 0.101055838167667,
+      "mean_fps": 32.725059414094,
+      "p95_frame_ms": 51.063,
+      "physics_ms_mean": 40.8960992366413,
+      "process_ms_mean": 28.0112442748092,
+      "seconds": 8.006097,
+      "slowed_frame_ratio": 0.0,
+      "slowed_frames": 0,
+      "texture_bytes": 112070656,
+      "walking_actor_frames": 1362
+    },
+    {
+      "draw_calls": 570.0,
+      "frames": 275,
+      "held_walking_frames": 32,
+      "held_walking_ratio": 0.0196198651134273,
+      "label": "hunt-noxfera",
+      "max_world_step": 0.15908981859684,
+      "mean_fps": 34.2706971332749,
+      "p95_frame_ms": 47.998,
+      "physics_ms_mean": 45.138701818182,
+      "process_ms_mean": 28.1153018181819,
+      "seconds": 8.024348,
+      "slowed_frame_ratio": 0.0,
+      "slowed_frames": 0,
+      "texture_bytes": 115740672,
+      "walking_actor_frames": 1631
+    },
+    {
+      "draw_calls": 312.0,
+      "frames": 350,
+      "held_walking_frames": 0,
+      "held_walking_ratio": 0.0,
+      "label": "raid",
+      "max_world_step": 2.1997058391571,
+      "mean_fps": 58.1964746238429,
+      "p95_frame_ms": 33.533,
+      "physics_ms_mean": 31.2402971428572,
+      "process_ms_mean": 12.6865771428571,
+      "seconds": 6.01411,
+      "slowed_frame_ratio": 0.0,
+      "slowed_frames": 0,
+      "texture_bytes": 111283200,
+      "walking_actor_frames": 59
+    },
+    {
+      "draw_calls": 613.0,
+      "frames": 320,
+      "held_walking_frames": 38,
+      "held_walking_ratio": 0.0172648796001817,
+      "label": "hunt-natural-crits",
+      "max_world_step": 0.178385674953461,
+      "mean_fps": 31.9304490957796,
+      "p95_frame_ms": 52.019,
+      "physics_ms_mean": 49.701384375,
+      "process_ms_mean": 29.2291281250001,
+      "seconds": 10.021782,
+      "slowed_frame_ratio": 0.034375,
+      "slowed_frames": 11,
+      "texture_bytes": 124571648,
+      "walking_actor_frames": 2201
+    }
+  ],
+  "renderer": "mobile"
+}

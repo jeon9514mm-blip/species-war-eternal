@@ -8,6 +8,7 @@ var _ordinary_hunt_accumulator:=0.0
 var _raid_accumulator:=0.0
 var _raid_realtime_loop:=false
 var _raid_damage_at_hud:=0
+var _skill_audio_tokens: Dictionary={}
 var hunt_autosave: Node
 var background_hunt := preload("res://scripts/persistence/BackgroundHunt.gd").new()
 
@@ -2884,9 +2885,24 @@ func _notify_hunt_frame_release(index: int, hero: bool, action: String, windup: 
 	if index >= 0 and index < sources.size() and is_instance_valid(terrain) and terrain.has_method("frame_release"):
 		terrain.frame_release(sources[index], hero, action, windup)
 
-func _emit_skill_cast_fx(_hero_id: String, _target_index: int, _aoe: bool, _profile: Dictionary, ultimate := false) -> void:
-	# Retain ultimate audio without beams, rings, flashes or camera effects.
-	if ultimate: _presentation_event("ultimate")
+func _emit_skill_cast_fx(hero_id: String, target_index: int, aoe: bool, profile: Dictionary, ultimate := false) -> void:
+	var field: Control
+	if active_screen=='combat':field=combat_labels.get('terrain')
+	elif active_screen=='raid' and is_instance_valid(content_root):
+		var view=content_root.get_node_or_null('PortraitRaidView')
+		if is_instance_valid(view):field=view.battlefield_3d
+	if is_instance_valid(field) and is_instance_valid(field.skill_overlay):
+		field.skill_overlay.cast(hero_id,target_index,aoe,profile,ultimate)
+		var serial: int=int(profile.get('fx_cast_serial',0))
+		var token: String='%s:%s:%s:%s' % [raid_encounter_serial if field.raid_mode else hunt_ai.encounter_id,hero_id,profile.get('fx_slot',profile.get('slot','a1')),serial]
+		var play_audio: bool=field.battle_clock_running() and (serial<=0 or not _skill_audio_tokens.has(token))
+		if play_audio and is_instance_valid(presentation_runtime):
+			if _skill_audio_tokens.size()>=64:_skill_audio_tokens.clear()
+			_skill_audio_tokens[token]=true
+			var point: Vector2=field.raid_to_world(raid_positions.get(hero_id,Vector2.ZERO)) if field.raid_mode else _hero_field_position(hero_id)
+			presentation_runtime.audio.play_positional('ultimate' if ultimate else 'skill',field,point)
+			presentation_runtime.haptics.pulse('ultimate' if ultimate else 'skill')
+	elif ultimate:_presentation_event('ultimate')
 
 func _emit_passive_proc_fx(_hero_id: String, _target_index: int, _profile: Dictionary, _lowest_id: String) -> void:
 	# Passive gameplay is applied by HeroKitRuntime; no visual badge is emitted.
@@ -2919,7 +2935,7 @@ func _damage_enemy(enemy_index: int, damage: int, source_index := 0) -> int:
 	if critical:multiplier *= 1.5
 	# Clamp in floating point before converting to avoid int64 overflow.
 	var actual := int(minf(float(enemy["hp"]), minf(float(damage), 1000000000.0) * multiplier))
-	if critical and actual > 0: _presentation_event("critical")
+	if critical and actual>0 and (challenge_session!=null or not is_instance_valid(combat_labels.get('terrain'))):_presentation_event('critical')
 	var hp_before: int = int(enemy["hp"])
 	enemy["hp"] = maxi(0, hp_before - actual)
 	if int(enemy["hp"])<=0:preload("res://scripts/hunting/HuntEfficiency.gd").kill(self)
@@ -2937,16 +2953,17 @@ func _damage_enemy(enemy_index: int, damage: int, source_index := 0) -> int:
 			sprite.play_death()
 		else:
 			sprite.play_hit()
-		combat_fx.hit_flash(sprite, Color("#fff0e2") if critical else Color("#ffd4d4"))
 		var terrain: Control = combat_labels.get("terrain")
-		if active_screen == "combat" and challenge_session == null and is_instance_valid(terrain) and terrain.has_method("hunt_hit"):
+		var field_feedback: bool=active_screen == "combat" and challenge_session == null and is_instance_valid(terrain) and terrain.has_method("hunt_hit")
+		if field_feedback:
 			var source_id := str(deployed_heroes[source_index].get("id", "")) if source_index >= 0 and source_index < deployed_heroes.size() else ""
 			terrain.hunt_hit(roaming_hunt.enemy_position(enemy_index), _hero_field_position(source_id), GOLD if critical else _hero_accent_color(source_id), critical)
 			if actual > 0 and terrain.has_method("frame_hit"):
 				terrain.frame_hit(sprite, false, roaming_hunt.enemy_position(enemy_index) - _hero_field_position(source_id))
 		else:
+			combat_fx.hit_flash(sprite, Color("#fff0e2") if critical else Color("#ffd4d4"))
 			combat_fx.impact(sprite.position - Vector2(0, 12), GOLD if critical else RED, 24.0 if critical else 16.0)
-		if critical:
+		if critical and not field_feedback:
 			combat_fx.hit_spark(sprite.position - Vector2(0, 12), GOLD, true, false)
 			combat_fx.camera_impact(2.2, 0.10, 0.004)
 		if killed and bool(enemy.get("treasure", false)) and not bool(enemy.get("treasure_expired", false)) and not bool(enemy.get("treasure_captured", false)):
@@ -3029,10 +3046,14 @@ func _incoming_damage_to_hero(hero_id: String, base_damage: int, enemy_index: in
 	var slot := int(state.get("slot", 0))
 	if slot < hero_map_sprites.size() and is_instance_valid(hero_map_sprites[slot]):
 		var sprite: HeroSpriteController = hero_map_sprites[slot]
-		combat_fx.hit_flash(sprite, Color("#ffd0d0"))
-		combat_fx.impact(sprite.position - Vector2(0, 8), RED, 15.0)
-		if received >= maxi(8, int(float(state.get("max_hp", 1)) * 0.08)):
-			combat_fx.camera_impact(2.4, 0.11, 0.004)
+		var render_field: Control=combat_labels.get('terrain')
+		if active_screen!='combat' or challenge_session!=null or not is_instance_valid(render_field) or not render_field.has_method('contact_feedback'):
+			combat_fx.hit_flash(sprite, Color("#ffd0d0"))
+			combat_fx.impact(sprite.position - Vector2(0, 8), RED, 15.0)
+			if received >= maxi(8, int(float(state.get("max_hp", 1)) * 0.08)):
+				combat_fx.camera_impact(2.4, 0.11, 0.004)
+		elif received>0:
+			render_field.contact_feedback(false,_hero_field_position(hero_id),sprite)
 		_spawn_floating_combat_text("-%d HP" % received, RED, sprite.position - Vector2(90, 78))
 		if int(state["hp"]) <= 0:
 			sprite.play_death()
@@ -3773,11 +3794,15 @@ func _apply_raid_damage(raw_damage: int, source_id: String = "") -> int:
 		else:
 			raid_boss_sprite.play_hit()
 		if combat_effects_enabled and raid_hit_fx_remaining <= 0.0:
-			var accent: Color = preload("res://scripts/raid/RaidBossDesign.gd").raid(raid_encounter_zone)["accent"]
-			combat_fx.hit_flash(raid_boss_sprite, Color.WHITE)
-			combat_fx.impact(raid_boss_sprite.position - Vector2(0, 60), accent, 27.0)
-			if actual >= maxi(30, int(raid_boss_max_hp * .018)):
-				combat_fx.camera_impact(3.2, 0.11, 0.007)
+			var raid_view: Node=content_root.get_node_or_null('PortraitRaidView')
+			if is_instance_valid(raid_view) and is_instance_valid(raid_view.battlefield_3d):
+				raid_view.battlefield_3d.frame_hit(raid_boss_sprite,false,Vector2.LEFT)
+			else:
+				var accent: Color = preload("res://scripts/raid/RaidBossDesign.gd").raid(raid_encounter_zone)["accent"]
+				combat_fx.hit_flash(raid_boss_sprite, Color.WHITE)
+				combat_fx.impact(raid_boss_sprite.position - Vector2(0, 60), accent, 27.0)
+				if actual >= maxi(30, int(raid_boss_max_hp * .018)):
+					combat_fx.camera_impact(3.2, 0.11, 0.007)
 			raid_hit_fx_remaining = 0.14
 	_spawn_floating_combat_text(("치명! " if critical else "")+"-%d"%(actual+mechanic_damage),GOLD,raid_boss_position)
 	return actual + mechanic_damage
