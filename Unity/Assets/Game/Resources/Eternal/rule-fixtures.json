@@ -1,0 +1,3901 @@
+{
+  "growth": [
+    {
+      "level": 1,
+      "xp_cost": 100
+    },
+    {
+      "level": 2,
+      "xp_cost": 175
+    },
+    {
+      "level": 20,
+      "xp_cost": 1525
+    },
+    {
+      "level": 21,
+      "xp_cost": 1608
+    },
+    {
+      "level": 50,
+      "xp_cost": 10975
+    },
+    {
+      "level": 100,
+      "xp_cost": 58725
+    },
+    {
+      "gold": 300,
+      "rations": 43,
+      "stage": 1,
+      "xp": 125
+    },
+    {
+      "gold": 1500,
+      "rations": 115,
+      "stage": 25,
+      "xp": 725
+    },
+    {
+      "gold": 1550,
+      "rations": 118,
+      "stage": 26,
+      "xp": 750
+    },
+    {
+      "gold": 1933,
+      "rations": 140,
+      "stage": 100,
+      "xp": 941
+    },
+    {
+      "gold": 6493,
+      "rations": 414,
+      "stage": 10000,
+      "xp": 3221
+    }
+  ],
+  "schema": 1,
+  "skills": [
+    {
+      "damage": 0,
+      "heal": 4000,
+      "hp": 0,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 100,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 350,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 1000,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "leonhardt",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 500,
+      "hp": 0,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 100,
+      "heal": 500,
+      "hp": 100,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 100,
+      "heal": 500,
+      "hp": 350,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 100,
+      "heal": 500,
+      "hp": 1000,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 2200,
+      "hp": 0,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 528,
+      "heal": 2200,
+      "hp": 100,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 528,
+      "heal": 2200,
+      "hp": 350,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 528,
+      "heal": 2200,
+      "hp": 1000,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1100,
+      "hp": 0,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 220,
+      "heal": 1100,
+      "hp": 100,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 220,
+      "heal": 1100,
+      "hp": 350,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 220,
+      "heal": 1100,
+      "hp": 1000,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 3150,
+      "hp": 0,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 756,
+      "heal": 3150,
+      "hp": 100,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 756,
+      "heal": 3150,
+      "hp": 350,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 756,
+      "heal": 3150,
+      "hp": 1000,
+      "id": "mira",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 650,
+      "hp": 0,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 130,
+      "heal": 650,
+      "hp": 100,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 130,
+      "heal": 650,
+      "hp": 350,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 130,
+      "heal": 650,
+      "hp": 1000,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 297,
+      "hp": 0,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 44,
+      "heal": 297,
+      "hp": 100,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 44,
+      "heal": 297,
+      "hp": 350,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 44,
+      "heal": 220,
+      "hp": 1000,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 70,
+      "hp": 0,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 14,
+      "heal": 70,
+      "hp": 100,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 14,
+      "heal": 70,
+      "hp": 350,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 14,
+      "heal": 70,
+      "hp": 1000,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 270,
+      "hp": 0,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 40,
+      "heal": 270,
+      "hp": 100,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 40,
+      "heal": 270,
+      "hp": 350,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 40,
+      "heal": 200,
+      "hp": 1000,
+      "id": "elisia",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 4000,
+      "hp": 0,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 100,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 350,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 1000,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 650,
+      "hp": 0,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 130,
+      "heal": 650,
+      "hp": 100,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 130,
+      "heal": 650,
+      "hp": 350,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 130,
+      "heal": 650,
+      "hp": 1000,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 600,
+      "hp": 0,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 120,
+      "heal": 600,
+      "hp": 100,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 120,
+      "heal": 600,
+      "hp": 350,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 120,
+      "heal": 600,
+      "hp": 1000,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1450,
+      "hp": 0,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 290,
+      "heal": 1450,
+      "hp": 100,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 290,
+      "heal": 1450,
+      "hp": 350,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 290,
+      "heal": 1450,
+      "hp": 1000,
+      "id": "kairen",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 50,
+      "hp": 0,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 10,
+      "heal": 50,
+      "hp": 100,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 10,
+      "heal": 50,
+      "hp": 350,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 10,
+      "heal": 50,
+      "hp": 1000,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 100,
+      "hp": 0,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 20,
+      "heal": 100,
+      "hp": 100,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 20,
+      "heal": 100,
+      "hp": 350,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 20,
+      "heal": 100,
+      "hp": 1000,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "orwin",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 1000,
+      "hp": 0,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 200,
+      "heal": 1000,
+      "hp": 100,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 200,
+      "heal": 1000,
+      "hp": 350,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 200,
+      "heal": 1000,
+      "hp": 1000,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1750,
+      "hp": 0,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 350,
+      "heal": 1750,
+      "hp": 100,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 350,
+      "heal": 1750,
+      "hp": 350,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 350,
+      "heal": 1750,
+      "hp": 1000,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1700,
+      "hp": 0,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 408,
+      "heal": 1700,
+      "hp": 100,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 408,
+      "heal": 1700,
+      "hp": 350,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 1000,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 3000,
+      "hp": 0,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 600,
+      "heal": 3000,
+      "hp": 100,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 600,
+      "heal": 3000,
+      "hp": 350,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 600,
+      "heal": 3000,
+      "hp": 1000,
+      "id": "seria",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 35,
+      "hp": 0,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 7,
+      "heal": 35,
+      "hp": 100,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 7,
+      "heal": 35,
+      "hp": 350,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 7,
+      "heal": 35,
+      "hp": 1000,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 99,
+      "hp": 0,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 32,
+      "heal": 99,
+      "hp": 100,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 32,
+      "heal": 99,
+      "hp": 350,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 32,
+      "heal": 99,
+      "hp": 1000,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 160,
+      "hp": 0,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 32,
+      "heal": 160,
+      "hp": 100,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 32,
+      "heal": 160,
+      "hp": 350,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 32,
+      "heal": 160,
+      "hp": 1000,
+      "id": "astel",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 250,
+      "hp": 0,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 50,
+      "heal": 250,
+      "hp": 100,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 50,
+      "heal": 250,
+      "hp": 350,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 50,
+      "heal": 250,
+      "hp": 1000,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 2100,
+      "hp": 0,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 672,
+      "heal": 2100,
+      "hp": 100,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 672,
+      "heal": 2100,
+      "hp": 350,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 420,
+      "heal": 2100,
+      "hp": 1000,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1650,
+      "hp": 0,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 330,
+      "heal": 1650,
+      "hp": 100,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 330,
+      "heal": 1650,
+      "hp": 350,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 330,
+      "heal": 1650,
+      "hp": 1000,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 3150,
+      "hp": 0,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1008,
+      "heal": 3150,
+      "hp": 100,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1008,
+      "heal": 3150,
+      "hp": 350,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 630,
+      "heal": 3150,
+      "hp": 1000,
+      "id": "darius",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 4000,
+      "hp": 0,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 100,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 350,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 1000,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 550,
+      "hp": 0,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 110,
+      "heal": 550,
+      "hp": 100,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 110,
+      "heal": 550,
+      "hp": 350,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 110,
+      "heal": 550,
+      "hp": 1000,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1450,
+      "hp": 0,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 290,
+      "heal": 1450,
+      "hp": 100,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 290,
+      "heal": 1450,
+      "hp": 350,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 290,
+      "heal": 1450,
+      "hp": 1000,
+      "id": "lunea",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 4000,
+      "hp": 0,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 100,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 350,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 1000,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 2000,
+      "hp": 0,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 400,
+      "heal": 2000,
+      "hp": 100,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 400,
+      "heal": 2000,
+      "hp": 350,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 400,
+      "heal": 2000,
+      "hp": 1000,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1650,
+      "hp": 0,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 330,
+      "heal": 1650,
+      "hp": 100,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 330,
+      "heal": 1650,
+      "hp": 350,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 330,
+      "heal": 1650,
+      "hp": 1000,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1550,
+      "hp": 0,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 310,
+      "heal": 1550,
+      "hp": 100,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 310,
+      "heal": 1550,
+      "hp": 350,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 310,
+      "heal": 1550,
+      "hp": 1000,
+      "id": "caelum",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 18,
+      "hp": 0,
+      "id": "valeria",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 3,
+      "heal": 18,
+      "hp": 100,
+      "id": "valeria",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 3,
+      "heal": 18,
+      "hp": 350,
+      "id": "valeria",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 3,
+      "heal": 18,
+      "hp": 1000,
+      "id": "valeria",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1900,
+      "hp": 0,
+      "id": "valeria",
+      "lifesteal": 30,
+      "slot": "a1"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 100,
+      "id": "valeria",
+      "lifesteal": 30,
+      "slot": "a1"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 350,
+      "id": "valeria",
+      "lifesteal": 30,
+      "slot": "a1"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 1000,
+      "id": "valeria",
+      "lifesteal": 19,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1500,
+      "hp": 0,
+      "id": "valeria",
+      "lifesteal": 39,
+      "slot": "a2"
+    },
+    {
+      "damage": 300,
+      "heal": 1500,
+      "hp": 100,
+      "id": "valeria",
+      "lifesteal": 39,
+      "slot": "a2"
+    },
+    {
+      "damage": 300,
+      "heal": 1500,
+      "hp": 350,
+      "id": "valeria",
+      "lifesteal": 39,
+      "slot": "a2"
+    },
+    {
+      "damage": 300,
+      "heal": 1500,
+      "hp": 1000,
+      "id": "valeria",
+      "lifesteal": 24,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 3000,
+      "hp": 0,
+      "id": "valeria",
+      "lifesteal": 39,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 600,
+      "heal": 3000,
+      "hp": 100,
+      "id": "valeria",
+      "lifesteal": 39,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 600,
+      "heal": 3000,
+      "hp": 350,
+      "id": "valeria",
+      "lifesteal": 39,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 600,
+      "heal": 3000,
+      "hp": 1000,
+      "id": "valeria",
+      "lifesteal": 24,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 25,
+      "hp": 0,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 100,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 350,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 1000,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 450,
+      "hp": 0,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 90,
+      "heal": 450,
+      "hp": 100,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 90,
+      "heal": 450,
+      "hp": 350,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 90,
+      "heal": 450,
+      "hp": 1000,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1450,
+      "hp": 0,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 290,
+      "heal": 1450,
+      "hp": 100,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 290,
+      "heal": 1450,
+      "hp": 350,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 290,
+      "heal": 1450,
+      "hp": 1000,
+      "id": "morgas",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 250,
+      "hp": 0,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 50,
+      "heal": 250,
+      "hp": 100,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 50,
+      "heal": 250,
+      "hp": 350,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 50,
+      "heal": 250,
+      "hp": 1000,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1800,
+      "hp": 0,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 360,
+      "heal": 1800,
+      "hp": 100,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 360,
+      "heal": 1800,
+      "hp": 350,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 360,
+      "heal": 1800,
+      "hp": 1000,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1700,
+      "hp": 0,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 100,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 350,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 1000,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1550,
+      "hp": 0,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 310,
+      "heal": 1550,
+      "hp": 100,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 310,
+      "heal": 1550,
+      "hp": 350,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 310,
+      "heal": 1550,
+      "hp": 1000,
+      "id": "ragna",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 350,
+      "hp": 0,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 70,
+      "heal": 350,
+      "hp": 100,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 70,
+      "heal": 350,
+      "hp": 350,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 70,
+      "heal": 350,
+      "hp": 1000,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1400,
+      "hp": 0,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 280,
+      "heal": 1400,
+      "hp": 100,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 280,
+      "heal": 1400,
+      "hp": 350,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 280,
+      "heal": 1400,
+      "hp": 1000,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "bron",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 4000,
+      "hp": 0,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 100,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 350,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 800,
+      "heal": 4000,
+      "hp": 1000,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 450,
+      "hp": 0,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 90,
+      "heal": 450,
+      "hp": 100,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 90,
+      "heal": 450,
+      "hp": 350,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 90,
+      "heal": 450,
+      "hp": 1000,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1200,
+      "hp": 0,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 240,
+      "heal": 1200,
+      "hp": 100,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 240,
+      "heal": 1200,
+      "hp": 350,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 240,
+      "heal": 1200,
+      "hp": 1000,
+      "id": "nyx",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 5000,
+      "hp": 0,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 1000,
+      "heal": 5000,
+      "hp": 100,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 1000,
+      "heal": 5000,
+      "hp": 350,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 1000,
+      "heal": 5000,
+      "hp": 1000,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1700,
+      "hp": 0,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 100,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 350,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 1000,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1600,
+      "hp": 0,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 320,
+      "heal": 1600,
+      "hp": 100,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 320,
+      "heal": 1600,
+      "hp": 350,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 320,
+      "heal": 1600,
+      "hp": 1000,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1550,
+      "hp": 0,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 310,
+      "heal": 1550,
+      "hp": 100,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 310,
+      "heal": 1550,
+      "hp": 350,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 310,
+      "heal": 1550,
+      "hp": 1000,
+      "id": "fenris",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 5000,
+      "hp": 0,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 1000,
+      "heal": 5000,
+      "hp": 100,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 1000,
+      "heal": 5000,
+      "hp": 350,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 1000,
+      "heal": 5000,
+      "hp": 1000,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 118,
+      "hp": 0,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 34,
+      "heal": 118,
+      "hp": 100,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 34,
+      "heal": 118,
+      "hp": 350,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 34,
+      "heal": 118,
+      "hp": 1000,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 187,
+      "hp": 0,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 30,
+      "heal": 187,
+      "hp": 100,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 30,
+      "heal": 187,
+      "hp": 350,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 30,
+      "heal": 150,
+      "hp": 1000,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 220,
+      "hp": 0,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 44,
+      "heal": 220,
+      "hp": 100,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 44,
+      "heal": 220,
+      "hp": 350,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 44,
+      "heal": 220,
+      "hp": 1000,
+      "id": "isolde",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 60,
+      "hp": 0,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 12,
+      "heal": 60,
+      "hp": 100,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 12,
+      "heal": 60,
+      "hp": 350,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 12,
+      "heal": 60,
+      "hp": 1000,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "garm",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 25,
+      "hp": 0,
+      "id": "veyra",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 100,
+      "id": "veyra",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 350,
+      "id": "veyra",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 1000,
+      "id": "veyra",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 2150,
+      "hp": 0,
+      "id": "veyra",
+      "lifesteal": 12,
+      "slot": "a1"
+    },
+    {
+      "damage": 623,
+      "heal": 2150,
+      "hp": 100,
+      "id": "veyra",
+      "lifesteal": 12,
+      "slot": "a1"
+    },
+    {
+      "damage": 623,
+      "heal": 2150,
+      "hp": 350,
+      "id": "veyra",
+      "lifesteal": 12,
+      "slot": "a1"
+    },
+    {
+      "damage": 430,
+      "heal": 2150,
+      "hp": 1000,
+      "id": "veyra",
+      "lifesteal": 12,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1600,
+      "hp": 0,
+      "id": "veyra",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 320,
+      "heal": 1600,
+      "hp": 100,
+      "id": "veyra",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 320,
+      "heal": 1600,
+      "hp": 350,
+      "id": "veyra",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 320,
+      "heal": 1600,
+      "hp": 1000,
+      "id": "veyra",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 3150,
+      "hp": 0,
+      "id": "veyra",
+      "lifesteal": 12,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 913,
+      "heal": 3150,
+      "hp": 100,
+      "id": "veyra",
+      "lifesteal": 12,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 913,
+      "heal": 3150,
+      "hp": 350,
+      "id": "veyra",
+      "lifesteal": 12,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 630,
+      "heal": 3150,
+      "hp": 1000,
+      "id": "veyra",
+      "lifesteal": 12,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 1000,
+      "hp": 0,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 200,
+      "heal": 1000,
+      "hp": 100,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 200,
+      "heal": 1000,
+      "hp": 350,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 200,
+      "heal": 1000,
+      "hp": 1000,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1650,
+      "hp": 0,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 330,
+      "heal": 1650,
+      "hp": 100,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 330,
+      "heal": 1650,
+      "hp": 350,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 330,
+      "heal": 1650,
+      "hp": 1000,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 900,
+      "hp": 0,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 180,
+      "heal": 900,
+      "hp": 100,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 180,
+      "heal": 900,
+      "hp": 350,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 180,
+      "heal": 900,
+      "hp": 1000,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 2300,
+      "hp": 0,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 459,
+      "heal": 2300,
+      "hp": 100,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 459,
+      "heal": 2300,
+      "hp": 350,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 459,
+      "heal": 2300,
+      "hp": 1000,
+      "id": "ulric",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 350,
+      "hp": 0,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 70,
+      "heal": 350,
+      "hp": 100,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 70,
+      "heal": 350,
+      "hp": 350,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 70,
+      "heal": 350,
+      "hp": 1000,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1800,
+      "hp": 0,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 360,
+      "heal": 1800,
+      "hp": 100,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 360,
+      "heal": 1800,
+      "hp": 350,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 360,
+      "heal": 1800,
+      "hp": 1000,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1700,
+      "hp": 0,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 100,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 350,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 1000,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 2800,
+      "hp": 0,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 560,
+      "heal": 2800,
+      "hp": 100,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 560,
+      "heal": 2800,
+      "hp": 350,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 560,
+      "heal": 2800,
+      "hp": 1000,
+      "id": "adrien",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 25,
+      "hp": 0,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 100,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 350,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 1000,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1300,
+      "hp": 0,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 260,
+      "heal": 1300,
+      "hp": 100,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 260,
+      "heal": 1300,
+      "hp": 350,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 260,
+      "heal": 1300,
+      "hp": 1000,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1350,
+      "hp": 0,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 270,
+      "heal": 1350,
+      "hp": 100,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 270,
+      "heal": 1350,
+      "hp": 350,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 270,
+      "heal": 1350,
+      "hp": 1000,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1700,
+      "hp": 0,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 100,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 350,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 1000,
+      "id": "tessa",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 200,
+      "hp": 0,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 40,
+      "heal": 200,
+      "hp": 100,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 40,
+      "heal": 200,
+      "hp": 350,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 40,
+      "heal": 200,
+      "hp": 1000,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1900,
+      "hp": 0,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 100,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 350,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 1000,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1600,
+      "hp": 0,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 416,
+      "heal": 1600,
+      "hp": 100,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 416,
+      "heal": 1600,
+      "hp": 350,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 416,
+      "heal": 1600,
+      "hp": 1000,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 3500,
+      "hp": 0,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 700,
+      "heal": 3500,
+      "hp": 100,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 700,
+      "heal": 3500,
+      "hp": 350,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 700,
+      "heal": 3500,
+      "hp": 1000,
+      "id": "naia",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 3000,
+      "hp": 0,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 600,
+      "heal": 3000,
+      "hp": 100,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 600,
+      "heal": 3000,
+      "hp": 350,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 600,
+      "heal": 3000,
+      "hp": 1000,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1050,
+      "hp": 0,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 210,
+      "heal": 1050,
+      "hp": 100,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 210,
+      "heal": 1050,
+      "hp": 350,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 210,
+      "heal": 1050,
+      "hp": 1000,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 900,
+      "hp": 0,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 180,
+      "heal": 900,
+      "hp": 100,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 180,
+      "heal": 900,
+      "hp": 350,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 180,
+      "heal": 900,
+      "hp": 1000,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1450,
+      "hp": 0,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 290,
+      "heal": 1450,
+      "hp": 100,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 290,
+      "heal": 1450,
+      "hp": 350,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 290,
+      "heal": 1450,
+      "hp": 1000,
+      "id": "sael",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 25,
+      "hp": 0,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 100,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 350,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 1000,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 500,
+      "hp": 0,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 100,
+      "heal": 500,
+      "hp": 100,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 100,
+      "heal": 500,
+      "hp": 350,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 100,
+      "heal": 500,
+      "hp": 1000,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 550,
+      "hp": 0,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 110,
+      "heal": 550,
+      "hp": 100,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 110,
+      "heal": 550,
+      "hp": 350,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 110,
+      "heal": 550,
+      "hp": 1000,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1900,
+      "hp": 0,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 100,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 350,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 1000,
+      "id": "odelia",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 5000,
+      "hp": 0,
+      "id": "lucien",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 1000,
+      "heal": 5000,
+      "hp": 100,
+      "id": "lucien",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 1000,
+      "heal": 5000,
+      "hp": 350,
+      "id": "lucien",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 1000,
+      "heal": 5000,
+      "hp": 1000,
+      "id": "lucien",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 2600,
+      "hp": 0,
+      "id": "lucien",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 520,
+      "heal": 2600,
+      "hp": 100,
+      "id": "lucien",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 520,
+      "heal": 2600,
+      "hp": 350,
+      "id": "lucien",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 520,
+      "heal": 2600,
+      "hp": 1000,
+      "id": "lucien",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1350,
+      "hp": 0,
+      "id": "lucien",
+      "lifesteal": 30,
+      "slot": "a2"
+    },
+    {
+      "damage": 270,
+      "heal": 1350,
+      "hp": 100,
+      "id": "lucien",
+      "lifesteal": 30,
+      "slot": "a2"
+    },
+    {
+      "damage": 270,
+      "heal": 1350,
+      "hp": 350,
+      "id": "lucien",
+      "lifesteal": 30,
+      "slot": "a2"
+    },
+    {
+      "damage": 270,
+      "heal": 1350,
+      "hp": 1000,
+      "id": "lucien",
+      "lifesteal": 30,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 3600,
+      "hp": 0,
+      "id": "lucien",
+      "lifesteal": 10,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 720,
+      "heal": 3600,
+      "hp": 100,
+      "id": "lucien",
+      "lifesteal": 10,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 720,
+      "heal": 3600,
+      "hp": 350,
+      "id": "lucien",
+      "lifesteal": 10,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 720,
+      "heal": 3600,
+      "hp": 1000,
+      "id": "lucien",
+      "lifesteal": 10,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 180,
+      "hp": 0,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 36,
+      "heal": 180,
+      "hp": 100,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 36,
+      "heal": 180,
+      "hp": 350,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 36,
+      "heal": 180,
+      "hp": 1000,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1900,
+      "hp": 0,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 100,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 350,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 1000,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 850,
+      "hp": 0,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 170,
+      "heal": 850,
+      "hp": 100,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 170,
+      "heal": 850,
+      "hp": 350,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 170,
+      "heal": 850,
+      "hp": 1000,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 3300,
+      "hp": 0,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 660,
+      "heal": 3300,
+      "hp": 100,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 660,
+      "heal": 3300,
+      "hp": 350,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 660,
+      "heal": 3300,
+      "hp": 1000,
+      "id": "corvin",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 800,
+      "hp": 0,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 160,
+      "heal": 800,
+      "hp": 100,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 160,
+      "heal": 800,
+      "hp": 350,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 160,
+      "heal": 800,
+      "hp": 1000,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 2000,
+      "hp": 0,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 400,
+      "heal": 2000,
+      "hp": 100,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 400,
+      "heal": 2000,
+      "hp": 350,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 400,
+      "heal": 2000,
+      "hp": 1000,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1650,
+      "hp": 0,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 412,
+      "heal": 1650,
+      "hp": 100,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 412,
+      "heal": 1650,
+      "hp": 350,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 330,
+      "heal": 1650,
+      "hp": 1000,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 3000,
+      "hp": 0,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 600,
+      "heal": 3000,
+      "hp": 100,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 600,
+      "heal": 3000,
+      "hp": 350,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 600,
+      "heal": 3000,
+      "hp": 1000,
+      "id": "rokan",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 750,
+      "hp": 0,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 150,
+      "heal": 750,
+      "hp": 100,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 150,
+      "heal": 750,
+      "hp": 350,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 150,
+      "heal": 750,
+      "hp": 1000,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1900,
+      "hp": 0,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 100,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 350,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 380,
+      "heal": 1900,
+      "hp": 1000,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 1500,
+      "hp": 0,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 300,
+      "heal": 1500,
+      "hp": 100,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 300,
+      "heal": 1500,
+      "hp": 350,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 300,
+      "heal": 1500,
+      "hp": 1000,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1700,
+      "hp": 0,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 100,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 350,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 340,
+      "heal": 1700,
+      "hp": 1000,
+      "id": "bora",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 0,
+      "heal": 25,
+      "hp": 0,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 100,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 350,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 5,
+      "heal": 25,
+      "hp": 1000,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "passive"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "a1"
+    },
+    {
+      "damage": 0,
+      "heal": 80,
+      "hp": 0,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 16,
+      "heal": 80,
+      "hp": 100,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 16,
+      "heal": 80,
+      "hp": 350,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 16,
+      "heal": 80,
+      "hp": 1000,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "a2"
+    },
+    {
+      "damage": 0,
+      "heal": 1,
+      "hp": 0,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 100,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 350,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    },
+    {
+      "damage": 1,
+      "heal": 1,
+      "hp": 1000,
+      "id": "selene",
+      "lifesteal": 13,
+      "slot": "ultimate"
+    }
+  ]
+}
