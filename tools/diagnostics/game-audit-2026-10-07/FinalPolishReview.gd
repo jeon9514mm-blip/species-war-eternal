@@ -8,15 +8,19 @@ func run() -> void:
 	game.sound_effects_enabled=false;game.combat_effects_enabled=true;game.combat_fx.enabled=true;game.tutorial_completed=true;game._set_presentation_option('music_enabled',false,false);game._set_presentation_option('performance','balanced',false)
 	report.renderer=RenderingServer.get_current_rendering_method();report.device=RenderingServer.get_video_adapter_name();report.engine=Engine.get_version_info().string;report.assets=[]
 	if OS.get_environment('FINAL_CAPTURES_ONLY')!='1':
-		for faction in ['aurelia','noxfera']:
-			await fixture(faction);game.combat_running=true;await measure('hunt-'+faction,8)
+		if OS.get_environment('FINAL_RAID_ONLY')!='1':
+			for faction in ['aurelia','noxfera']:
+				await fixture(faction);game.combat_running=true;await measure('hunt-'+faction,8)
+		else:await fixture('noxfera')
 		game.selected_raid_id='gray_meadow';game._build_raid_screen();await settle();game._start_raid();await measure('raid',6)
 		game.raid_running=false;game.combat_running=false;game.presentation_runtime.contact_time.restore()
 		# A valid equipped guardian enables natural critical rolls. Its bonuses
 		# are unchanged; this additional fixture measures the bounded slowdown.
-		game.guardian_collection['eclipse']={'copies':7};game.guardian_equipped='eclipse';game.loot_rng.seed=20261008
-		await fixture('noxfera');game.combat_running=true;await measure('hunt-natural-crits',10)
-		report.crit_fixture={'guardian':'eclipse','copies':7,'seed':20261008,'natural_crit_chance':game._guardian_bonus('crit')}
+		if OS.get_environment('FINAL_RAID_ONLY')!='1':
+			game.guardian_collection['eclipse']={'copies':7};game.guardian_equipped='eclipse';game.loot_rng.seed=20261008
+			await fixture('noxfera');game.combat_running=true;await measure('hunt-natural-crits',10)
+			report.crit_fixture={'guardian':'eclipse','copies':7,'seed':20261008,'natural_crit_chance':game._guardian_bonus('crit')}
+		report.raid_only=OS.get_environment('FINAL_RAID_ONLY')=='1'
 		game.combat_running=false;game.presentation_runtime.contact_time.restore()
 		var timing_file=FileAccess.open(output.path_join('performance.json'),FileAccess.WRITE);timing_file.store_string(JSON.stringify(report,'  '));timing_file.close()
 	# Wallet/levels here are review fixtures, not rewards or a player's save.
@@ -68,7 +72,10 @@ func run() -> void:
 	# Freeze simulation while waiting for its .77 second opening to finish.
 	await create_timer(.9,true,false,true).timeout
 	notes.raid_entry_wait_seconds=.9
-	for i in 30:game._advance_raid_encounter(.05)
+	for i in 30:
+		game._advance_raid_encounter(.05)
+		field.raid_view._process(.05);field._process(.05)
+	notes.raid_manual_steps=30;notes.raid_step_seconds=.05
 	field._process(.02)
 	await create_timer(.25,true,false,true).timeout
 	field._process(.02);await process_frame;await capture('raid-final-review')

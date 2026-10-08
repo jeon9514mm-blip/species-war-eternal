@@ -315,7 +315,7 @@ func _layout_arena() -> void:
 	# Keep the original combat coordinates; all sprite and FX transforms share
 	# this one arena so their hits remain aligned at every viewport height.
 	battlefield_3d._resize_world()
-	arena.scale=Vector2.ONE*battlefield_3d.raid_projection_factor()
+	arena.scale=battlefield_3d.raid_projection_scale()
 	arena.position=battlefield_3d.raid_origin()
 
 func _on_stage_input(event: InputEvent) -> void:

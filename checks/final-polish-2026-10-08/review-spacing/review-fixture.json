@@ -1,0 +1,83 @@
+{
+  "art_review_fixture": true,
+  "element_casts": [
+    {
+      "accepted": true,
+      "element": "fire",
+      "hero": "valeria"
+    },
+    {
+      "accepted": true,
+      "element": "dark",
+      "hero": "morgas"
+    },
+    {
+      "accepted": true,
+      "element": "ice",
+      "hero": "fenris"
+    },
+    {
+      "accepted": true,
+      "element": "light",
+      "hero": "isolde"
+    }
+  ],
+  "element_layout_fixture": true,
+  "raid_entry_wait_seconds": 0.9,
+  "raid_manual_steps": 30,
+  "raid_paint": {
+    "flash": 0.0,
+    "id": "grun",
+    "snapshot": {
+      "action": "hit",
+      "anchor": [
+        91.1458333333333,
+        172.270042194093
+      ],
+      "atlas": "res://assets/mobile25d/grun/poses_1024.png",
+      "atlas_size": 1024,
+      "body_parts": 1,
+      "bones": 0,
+      "distance": 3.67205239832401,
+      "duration": 0.22,
+      "flip": true,
+      "frame": 6,
+      "fur_layers": 4,
+      "height": 8.74015187999429,
+      "id": "grun",
+      "native_height": 189.940119760479,
+      "paused": true,
+      "phase": 0.0,
+      "renderer": "one_complete_painted_pose",
+      "sequence": 1,
+      "sheet": "motion",
+      "time": 0.0,
+      "triangles": 3000
+    },
+    "tint": "(1.0, 1.0, 1.0, 1.0)"
+  },
+  "raid_step_seconds": 0.05,
+  "showcase_uses_actual_skill_cast": true,
+  "skills": [
+    {
+      "accepted": true,
+      "hero": "leonhardt"
+    },
+    {
+      "accepted": false,
+      "hero": "mira"
+    },
+    {
+      "accepted": false,
+      "hero": "elisia"
+    },
+    {
+      "accepted": false,
+      "hero": "kairen"
+    }
+  ],
+  "wallet_start": [
+    48260,
+    840
+  ]
+}

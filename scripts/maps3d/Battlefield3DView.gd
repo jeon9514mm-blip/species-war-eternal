@@ -24,6 +24,7 @@ const RAID_BOSS_HEIGHT=5.10
 const ENEMY_HEIGHT=1.20
 const HUNT_BODY_SCALE=.28
 const RAID_BODY_SCALE=.46
+const RAID_GROUND_STRETCH=2.0
 var game: Node
 var raid_view: Node
 var raid_mode:=false
@@ -246,7 +247,7 @@ func _resize_world() -> void:
 		# Keep every reachable floor point and the boss's head inside the stage.
 		# The original combat-coordinate transform remains shared with warnings.
 		var safe_size:=Vector2(maxf(1,size.x-36),maxf(1,size.y-RAID_BOTTOM_CLEARANCE))
-		raid_factor=minf(safe_size.x/674.0,safe_size.y/340.0)*CAMERA_MOTION.ZOOM
+		raid_factor=minf(safe_size.x/(674.0*RAID_GROUND_STRETCH*1.08),safe_size.y/340.0*CAMERA_MOTION.ZOOM)
 		_set_focus(Vector2(16,10))
 		camera.size=size.y/(RAID_UNITS*raid_factor)
 		camera.v_offset=(-5.0+57.0*raid_factor)/(RAID_UNITS*raid_factor)
@@ -285,6 +286,14 @@ func _raid_boss_top_pixels() -> float:
 	return top
 
 func _set_focus(point: Vector2) -> void:
+	if raid_mode and size.y>1 and is_instance_valid(camera):
+		var floor_rect: Rect2=preload('res://scripts/raid/RaidBattlefield.gd').FLOOR
+		var left:=raid_to_world(floor_rect.position).x
+		var right:=raid_to_world(floor_rect.end).x
+		var middle: float=(left+right)*.5
+		var half_width: float=camera.size/1.08*(size.x-32)/size.y*.5
+		var slack:=maxf(0,half_width-(right-left)*.5)
+		point.x=clampf(point.x,middle-slack,middle+slack)
 	focus=point
 	var target:=Vector3(point.x,0,point.y)
 	# Orthographic framing changes angle, not distance. Preserve enough camera
@@ -366,12 +375,19 @@ func visible_world_rect() -> Rect2:
 	return Rect2(a,b-a).abs()
 func raid_to_world(point: Vector2) -> Vector2:
 	var sin_pitch: float=absf(camera.global_basis.z.y)
-	return Vector2(16,10)+(point-RAID_PIVOT)/Vector2(RAID_UNITS,RAID_UNITS*sin_pitch)
+	return Vector2(16,10)+(point-RAID_PIVOT)/Vector2(RAID_UNITS/RAID_GROUND_STRETCH,RAID_UNITS*sin_pitch)
 func world_to_raid(point: Vector2) -> Vector2:
-	return RAID_PIVOT+(point-Vector2(16,10))*Vector2(RAID_UNITS,RAID_UNITS*absf(camera.global_basis.z.y))
+	return RAID_PIVOT+(point-Vector2(16,10))*Vector2(RAID_UNITS/RAID_GROUND_STRETCH,RAID_UNITS*absf(camera.global_basis.z.y))
 func raid_projection_factor() -> float:return size.y/maxf(.001,camera.size*RAID_UNITS)
+func raid_projection_scale() -> Vector2:return Vector2(RAID_GROUND_STRETCH,1)*raid_projection_factor()
+func raid_separation_metric() -> Vector2:return Vector2(RAID_GROUND_STRETCH,.65)
+func raid_clearances() -> Vector2:
+	# Fixed 86.4px originals need display-space gaps when boss framing zooms
+	# the floor out. The rest camera keeps zoom punches from moving feet.
+	var factor: float=size.y/maxf(.001,_rest_camera_size*RAID_UNITS) if _rest_camera_size>0 else raid_projection_factor()
+	return Vector2(maxf(80.0,72.0/factor),maxf(110.0,90.0/factor))
 func raid_origin() -> Vector2:
-	return project_world(Vector2(16,10))-RAID_PIVOT*raid_projection_factor()
+	return project_world(Vector2(16,10))-RAID_PIVOT*raid_projection_scale()
 func _process(delta: float) -> void:
 	# A deferred resize can briefly leave the replacement viewport at zero size.
 	# Wait for layout before projection/crowd fitting can produce 0/0 transforms.
@@ -402,8 +418,8 @@ func _process(delta: float) -> void:
 		var floor_point: Vector2=raid_to_world(preload('res://scripts/raid/RaidBattlefield.gd').FLOOR.end)
 		var below_boss: float=project_world(floor_point).y-project_world(boss_point).y
 		var available: float=maxf(1,size.y-RAID_BOTTOM_CLEARANCE-12-_raid_boss_top_pixels())
-		if below_boss*punch>available:
-			var fit: float=below_boss*punch/available
+		if below_boss*1.08>available:
+			var fit: float=below_boss*1.08/available
 			_rest_camera_size*=fit;raid_factor/=fit
 	camera.size=_rest_camera_size/punch
 	var units: float=camera.size/size.y
@@ -417,7 +433,7 @@ func _process(delta: float) -> void:
 		var lift: float=minf(maxf(0,end-(size.y-RAID_BOTTOM_CLEARANCE)),maxf(0,head+padding/units-12))
 		_camera_base_v-=lift*units;camera.v_offset-=lift*units
 	if raid_mode and is_instance_valid(raid_view) and is_instance_valid(raid_view.arena):
-		raid_view.arena.scale=Vector2.ONE*raid_projection_factor()
+		raid_view.arena.scale=raid_projection_scale()
 		raid_view.arena.position=raid_origin()
 	var live: Dictionary={}
 	_health_entries.clear()

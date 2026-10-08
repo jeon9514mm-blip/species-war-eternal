@@ -1,0 +1,43 @@
+{
+  "scope": "Every new and changed GDScript",
+  "passed": 6,
+  "total": 6,
+  "results": [
+    {
+      "script": "scripts/app/Main.gd",
+      "passed": true,
+      "sha256": "aac7f713aa5cdd815dc86689fd4d5bd65186bf84e37d0c85214a40a76dca6039",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/Battlefield3DView.gd",
+      "passed": true,
+      "sha256": "4246c58befbf83488de5c3b1a28c705ce7007344bcdc43be2f4a95c60c304930",
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitRaid.gd",
+      "passed": true,
+      "sha256": "836a950f2d7dcfb733fca25979cd3ba17166b92d53e8f64ed5eecda5df03a369",
+      "output": ""
+    },
+    {
+      "script": "scripts/raid/RaidBattlefield.gd",
+      "passed": true,
+      "sha256": "d5938c76760bc43d79cc0503bef59d333a6795b43a853febb80596fa66048204",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/RaidProjectedSpacingSmokeTest.gd",
+      "passed": true,
+      "sha256": "062b3fbf9bfb0cbd79ae6c43ad0af7eef5a6dd52dc5e984b6105f349c36b0fc2",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/game-audit-2026-10-07/FinalPolishReview.gd",
+      "passed": true,
+      "sha256": "6b157064b14b618d3f580af598629e5afd7553943f33f3550c1c7ca3dbf77d57",
+      "output": ""
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "android_measured": false,
+  "assets": [],
+  "device": "NVIDIA GeForce GTX 1050",
+  "engine": "4.7.2-stable (official)",
+  "profiles": [
+    {
+      "draw_calls": 286.0,
+      "frames": 358,
+      "held_walking_frames": 0,
+      "held_walking_ratio": 0.0,
+      "label": "raid",
+      "max_world_step": 0.4923095703125,
+      "mean_fps": 59.5453331261998,
+      "p95_frame_ms": 25.033,
+      "physics_ms_mean": 21.8599581005587,
+      "process_ms_mean": 12.2639245810056,
+      "seconds": 6.012226,
+      "slowed_frame_ratio": 0.0,
+      "slowed_frames": 0,
+      "texture_bytes": 108006400,
+      "walking_actor_frames": 119
+    }
+  ],
+  "raid_only": true,
+  "renderer": "mobile"
+}

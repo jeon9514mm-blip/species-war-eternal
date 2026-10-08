@@ -8,7 +8,7 @@ const ENTRY := Vector2(635.0, 397.0)
 static func hero_entry(slot: int) -> Vector2:
 	return Vector2(340.0 + float(slot % 5) * 48.0, 338.0 + float(slot / 5) * 88.0)
 
-static func spread_destinations(goals: Dictionary, danger: Dictionary = {}, fixed: Dictionary = {}) -> Dictionary:
+static func spread_destinations(goals: Dictionary, danger: Dictionary = {}, fixed: Dictionary = {}, hero_clearance: float = 80.0, boss_clearance: float = 110.0, metric: Vector2 = Vector2(1,.65), attack_origin: Vector2 = Vector2(INF,INF)) -> Dictionary:
 	# Resolve role/rally crowding in simulation coordinates, never visual offsets.
 	var result: Dictionary=goals.duplicate()
 	var ids: Array=result.keys();ids.sort()
@@ -16,12 +16,12 @@ static func spread_destinations(goals: Dictionary, danger: Dictionary = {}, fixe
 		for i in ids.size():
 			for j in range(i+1,ids.size()):
 				var a: Vector2=result[ids[i]];var b: Vector2=result[ids[j]]
-				var away:=(a-b)*Vector2(1,.65);var distance:=away.length()
-				var clearance:=110.0 if fixed.has(ids[i]) or fixed.has(ids[j]) else 80.0
+				var away:=(a-b)*metric;var distance:=away.length()
+				var clearance:=boss_clearance if fixed.has(ids[i]) or fixed.has(ids[j]) else hero_clearance
 				if distance>=clearance:continue
 				if distance<.01:away=Vector2.from_angle(float(absi((str(ids[i])+str(ids[j])).hash())%6283)/1000.0)
 				else:away/=distance
-				var shift:=away*(clearance-distance)/Vector2(1,.65)
+				var shift:=away*(clearance-distance)/metric
 				if not fixed.has(ids[i]) and not fixed.has(ids[j]):shift*=.5
 				var left:=clamp_to_floor(a+shift);var right:=clamp_to_floor(b-shift)
 				# A floor boundary must not swallow half the separation impulse.
@@ -33,7 +33,7 @@ static func spread_destinations(goals: Dictionary, danger: Dictionary = {}, fixe
 					if fixed.has(pair[0]):continue
 					var candidate:=clamp_to_floor(pair[2])
 					# A chosen safe escape must stay outside the damage footprint.
-					if danger.is_empty() or contains(danger,pair[1]) or not contains(danger,candidate):result[pair[0]]=candidate
+					if _attack_candidate(candidate,pair[1],attack_origin) and (danger.is_empty() or contains(danger,pair[1]) or not contains(danger,candidate)):result[pair[0]]=candidate
 	# Resolve rare boundary jams by finding the nearest clear floor spot. This
 	# moves actual combat feet, so warnings and touch targeting remain aligned.
 	for id in ids:
@@ -41,24 +41,32 @@ static func spread_destinations(goals: Dictionary, danger: Dictionary = {}, fixe
 		var current: Vector2=result[id];var crowded:=false
 		for other in ids:
 			if other==id:continue
-			var required:=110.0 if fixed.has(other) else 80.0
-			if ((current-Vector2(result[other]))*Vector2(1,.65)).length()<required-.05:crowded=true;break
+			var required:=boss_clearance if fixed.has(other) else hero_clearance
+			if ((current-Vector2(result[other]))*metric).length()<required-.05:crowded=true;break
 		if not crowded:continue
 		var found:=false
-		for radius in [12.0,24.0,40.0,60.0,80.0,110.0,150.0]:
+		for radius in [12.0,24.0,40.0,60.0,80.0,110.0,150.0,220.0,280.0,360.0]:
 			for angle in 24:
 				var candidate:=clamp_to_floor(current+Vector2.from_angle(TAU*float(angle)/24.0)*radius)
+				if not _attack_candidate(candidate,current,attack_origin):continue
 				if not danger.is_empty() and not contains(danger,current) and contains(danger,candidate):continue
 				var clear:=true
 				for other in ids:
 					if other==id:continue
-					var required:=110.0 if fixed.has(other) else 80.0
-					if ((candidate-Vector2(result[other]))*Vector2(1,.65)).length()<required-.05:clear=false;break
+					var required:=boss_clearance if fixed.has(other) else hero_clearance
+					if ((candidate-Vector2(result[other]))*metric).length()<required-.05:clear=false;break
 				if clear:result[id]=candidate;found=true;break
 			if found:break
 	return result
 
-static func advance_positions(positions: Dictionary, goals: Dictionary, speeds: Dictionary, boss_position: Vector2, delta: float, danger: Dictionary = {}) -> void:
+static func _attack_candidate(candidate: Vector2, current: Vector2, origin: Vector2) -> bool:
+	if not is_finite(origin.x):return true
+	var distance:=candidate.distance_to(origin)
+	# Automatic formation stays within the existing 335px attack range. A hero
+	# returning from an explicit retreat can approach it without teleporting.
+	return distance<=330.0 or (current.distance_to(origin)>330.0 and distance<current.distance_to(origin))
+
+static func advance_positions(positions: Dictionary, goals: Dictionary, speeds: Dictionary, boss_position: Vector2, delta: float, danger: Dictionary = {}, hero_clearance: float = 80.0, boss_clearance: float = 110.0, metric: Vector2 = Vector2(1,.65), attack_origin: Vector2 = Vector2(INF,INF)) -> void:
 	# Paths to separated goals can cross. Resolve the actual feet too, with
 	# the boss fixed and safe escape positions outside active warnings.
 	var actual: Dictionary={}
@@ -66,7 +74,7 @@ static func advance_positions(positions: Dictionary, goals: Dictionary, speeds: 
 		var current: Vector2=positions[id]
 		actual[id]=clamp_to_floor(current.move_toward(goals[id],delta*float(speeds[id])))
 	actual['@boss']=boss_position
-	actual=spread_destinations(actual,danger,{'@boss':true})
+	actual=spread_destinations(actual,danger,{'@boss':true},hero_clearance,boss_clearance,metric,attack_origin)
 	for id in goals:positions[id]=actual[id]
 
 static func clamp_to_floor(point: Vector2) -> Vector2:
