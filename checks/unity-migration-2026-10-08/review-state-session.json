@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "comparisons": 29,
+  "simulated_seconds": 59.999999999998728,
+  "hunt_packs": 5,
+  "commands_saved_in_memory": 6,
+  "native_seed_preserved": true,
+  "no_file_io": true,
+  "note": "Isolated runtime seed/session command integration. UI layout and pointer input require separate native review; no player-save persistence or full hunting rewards implied."
+}

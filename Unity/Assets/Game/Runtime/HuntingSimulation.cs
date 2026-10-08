@@ -16,6 +16,7 @@ namespace Eternal.UnityMigration
         static readonly float[] slideAngles={0f,.45f,-.45f,.9f,-.9f,1.35f,-1.35f};
         public readonly CombatEncounter Battle;
         public readonly OriginalCombatCatalog Catalog;
+        public readonly GameStateCommands PlayerState;
         public PartySkillChain Chain {get;private set;}
         public int PacksCleared, Kills, Stage=1, Gold, Xp, Ticks;
         public double Elapsed, NextPack;
@@ -34,19 +35,21 @@ namespace Eternal.UnityMigration
         readonly HashSet<int> meleeHeroes=new();
         int serial;
         public Action<BattleEvent> OnEvent;
-        public HuntingSimulation(int reviewLevel=20,int seed=9514)
+        public HuntingSimulation(int reviewLevel=20,int seed=9514,GameStateCommands playerState=null)
         {
             ReviewLevel=reviewLevel;
+            PlayerState=playerState;
             Catalog=catalogCache.Value;
             legacy=Canonical;
             Battle=new CombatEncounter(seed);
             Battle.OnEvent=HandleEvent;
-            SetParty(Catalog.HeroIds.Take(10).ToArray());
+            var party=playerState?.DeployedHeroes();
+            SetParty(party!=null&&party.Count>0?party:playerState!=null?Catalog.HeroIds.Where(playerState.IsFactionHero).Take(3).ToArray():Catalog.HeroIds.Take(10).ToArray());
             SpawnPack();
         }
         public void SetParty(IReadOnlyList<string> ids)
         {
-            if(ids.Count<1||ids.Count>10||ids.Distinct().Count()!=ids.Count||ids.Any(id=>!Catalog.HeroIds.Contains(id)))throw new ArgumentException("Party requires 1–10 distinct original heroes.");
+            if(ids.Count<1||ids.Count>10||ids.Distinct().Count()!=ids.Count||ids.Any(id=>!Catalog.HeroIds.Contains(id)||PlayerState!=null&&!PlayerState.IsFactionHero(id)))throw new ArgumentException("Party requires 1–10 distinct original faction-valid heroes.");
             Battle.Heroes.Clear();Battle.Kits.Clear();homes.Clear();intents.Clear();movementPlans.Clear();meleeHeroes.Clear();
             for(int i=0;i<ids.Count;i++)
             {
@@ -63,11 +66,23 @@ namespace Eternal.UnityMigration
                 double angle=i*Math.PI*2/ids.Count;
                 var origin=new Vector2(-3+(float)Math.Cos(angle)*3.2f,(float)Math.Sin(angle)*4.8f);
                 var a=new Combatant{Id=id,Serial=++serial,Slot=i,Hp=hp,MaxHp=hp,Attack=attack,Defense=defense+(int)LegacyCombatRules.Number(identity,"defense_bonus"),Role=role,Style=(string)identity["ai_style"]??"balanced",Row=row,Position=origin,PreviousPosition=origin,Range=LegacyHeroLayout.Range(h,i),AttackIntervalMultiplier=LegacyCombatRules.Number(identity,"attack_interval_mult",1)/LegacyCombatRules.Number(formation,"speed",1),UltimateGainMultiplier=LegacyCombatRules.Number(identity,"ult_gain_mult",1),AttackRemaining=.1+i*.11};
+                if(PlayerState!=null)GameStateCommands.RefreshCombatant(a,PlayerState.CombatProfile(id,i,ids));
                 Battle.Heroes.Add(a);homes[id]=origin;if((string)h["reach"]=="melee")meleeHeroes.Add(a.Serial);
-                Battle.Kits[id]=new HeroKitState(Catalog,id,0,origin);
+                Battle.Kits[id]=new HeroKitState(Catalog,id,PlayerState?.HeroTree(id).utility??0,origin);
                 Battle.Kits[id].Cooldowns["a1"]=i*.12;Battle.Kits[id].Cooldowns["a2"]=1.2+i*.12;
             }
             Chain=new PartySkillChain(Battle);Chain.ConfigureDefault();
+            if(PlayerState!=null){Formation=PlayerState.Formation;Battle.CriticalChance=PlayerState.GuardianBonus("crit");}
+        }
+        public void RefreshHeroGrowth()
+        {
+            if(PlayerState==null)return;var ids=Battle.Heroes.Select(h=>h.Id).ToArray();
+            foreach(var actor in Battle.Heroes)
+            {
+                GameStateCommands.RefreshCombatant(actor,PlayerState.CombatProfile(actor.Id,actor.Slot,ids));var kit=Battle.Kits[actor.Id];kit.Utility=PlayerState.HeroTree(actor.Id).utility;
+                foreach(string slot in new[]{"a1","a2","ultimate"})kit.Profiles[slot]=Catalog.AdjustedSkill(actor.Id,slot,kit.Utility);
+            }
+            Formation=PlayerState.Formation;Battle.CriticalChance=PlayerState.GuardianBonus("crit");
         }
         void HandleEvent(BattleEvent e)
         {

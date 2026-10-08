@@ -10,6 +10,7 @@ namespace Eternal.UnityMigration
     public sealed class ReviewLaunchSettings
     {
         public string initialRaidZone="";
+        public string initialPanel="";
         public float pauseAfterSeconds;
         public static ReviewLaunchSettings Load()
         {

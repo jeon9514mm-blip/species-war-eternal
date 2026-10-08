@@ -7,3 +7,6 @@
 .hero-roster-card > .hero-art { width: 48px; height: 54px; margin-right: 12px; }
 .hero-roster-name { font-size: 16px; -unity-text-align: middle-left; }
 .hero-roster-detail { font-size: 12px; color: rgb(168, 184, 158); -unity-text-align: middle-left; }
+.inventory-card { height: 61px; margin: 2px 1px; padding: 6px 10px; flex-direction: column; align-items: flex-start; justify-content: center; background-color: rgb(24, 34, 36); border-width: 1px; border-color: rgb(61, 78, 74); border-radius: 6px; }
+.inventory-card:hover { background-color: rgb(34, 47, 44); border-color: rgb(196, 164, 132); }
+.growth-gear-card { margin-top: 9px; padding: 9px; background-color: rgb(24, 34, 36); border-width: 1px; border-color: rgb(61, 78, 74); border-radius: 6px; }

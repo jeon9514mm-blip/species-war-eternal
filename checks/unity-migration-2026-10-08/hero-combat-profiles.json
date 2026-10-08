@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "comparisons": 13320,
+  "original_heroes": 30,
+  "production_stat_cases": 360,
+  "growth_preserves_hp_ratio_and_live_status": true,
+  "read_only_queries": true,
+  "hunting_state_binding": {
+    "passed": true,
+    "comparisons": 6145,
+    "production_stat_bound_cases": 360,
+    "ten_second_hunts": 8,
+    "growth_commands": 3,
+    "foreign_faction_replacement_is_atomic": true,
+    "review_ledger_does_not_credit_player_wallet": true,
+    "live_growth_retains_cooldowns_passives_hp_ratio_and_dead_state": true
+  },
+  "note": "Production Main combat-stat oracle with original equipment/progression/guardian/formation/collection helpers, bound into native hunting. This does not complete player-save startup, hunt reward authority or all guardian combat actions."
+}

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "comparisons": 2976,
+  "production_gain_cases": 720,
+  "production_full_recommendation_cases": 24,
+  "set_bonuses_and_protected_items_preserved": true,
+  "read_only_queries": true,
+  "one_save_per_recommendation": true,
+  "note": "Healthy original snapshots and canonical party order; workshop/market, corruption variants and native button input are not verified here."
+}

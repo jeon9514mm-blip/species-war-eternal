@@ -1,0 +1,23 @@
+{
+  "generator": "built-in image_gen",
+  "date_kst": "2026-10-09",
+  "purpose": "Painted rectangular slab albedo for native Unity hunting",
+  "file": "painted-slabs-v1.png",
+  "source_resolution": [
+    1254,
+    1254
+  ],
+  "sha256": "d71ce940d4fb3895eaa4ad1ebb887ccf8313fb7d69f1e6de82754b48e9866ec6",
+  "source_png_bytes": 3694765,
+  "native_review": {
+    "resolution": [
+      1024,
+      1024
+    ],
+    "format": "DXT1",
+    "wrap": "Repeat",
+    "runtime_texture_bytes": 1399056
+  },
+  "prompt": "Use case: stylized-concept. Asset type: production seamless albedo floor texture for an original painted 2.5D fantasy auto-battle game, sampled on a flat ground plane in Unity. Create a square 1024-scale material swatch, a perfectly orthographic overhead view of large weathered rectangular limestone slabs laid in irregular offset courses. Each slab approximately twice as wide as deep, five courses across the square, alternating varying lengths. Premium hand-painted fantasy material with restrained realistic PBR micro detail: warm gray-brown stone, chipped and brightly worn thin edges, shallow dark joints, hairline cracks, fine pores and scratches, small flecks of moss sage #A8B89E occupying about 18 percent mainly inside cracks and joints, muted bronze-green patina #6B8A7A about 25 percent of chipped edge areas, pale dusty scuffs on the slab tops, only a few tiny damp patches. Precise rich surface variation at game distance, strong legible slab silhouettes, muted medium value under colorful character sprites. Flat neutral diffuse lighting, no directional cast shadows, no perspective, no volumetric light. Seamlessly tileable horizontally and vertically, continuous texture at all four boundaries. Entire image filled with the stone material. No characters, no text, no symbols, no runes, no circles, no UI, no border, no vignette, no dramatic glow. This is a floor albedo texture only, not a scene or game screenshot.",
+  "limitations": "This is an albedo painting sampled by WeatheredStone with the existing 1024 micro normal. Moss/patina percentages are prompt intent, not measured pixel coverage. Tiling reviewed in the actual hunt; no perfect seamless-boundary assertion, parallax occlusion, 4K micro normal or complete device-budget proof."
+}

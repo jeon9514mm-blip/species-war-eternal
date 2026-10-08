@@ -4,6 +4,8 @@ Shader "Eternal/WeatheredStone"
     {
         _BaseMap("1024 stone grain",2D)="white" {}
         _MicroNormal("1024 micro normal",2D)="bump" {}
+        _PaintedMap("Painted slab albedo",2D)="white" {}
+        _PaintedSlabs("Use painted slabs",Range(0,1))=0
         _Roughness("Roughness",Range(0,1))=.58
         _Metallic("Metallic",Range(0,1))=.32
         _Moss("Moss crack coverage",Range(0,1))=.18
@@ -28,8 +30,9 @@ Shader "Eternal/WeatheredStone"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
             TEXTURE2D(_BaseMap);SAMPLER(sampler_BaseMap);
             TEXTURE2D(_MicroNormal);SAMPLER(sampler_MicroNormal);
+            TEXTURE2D(_PaintedMap);SAMPLER(sampler_PaintedMap);
             CBUFFER_START(UnityPerMaterial)
-            float _Roughness,_Metallic,_Moss,_Patina,_Wear,_MossGlow;
+            float _Roughness,_Metallic,_Moss,_Patina,_Wear,_MossGlow,_PaintedSlabs;
             float4 _Tint,_TileSize;
             CBUFFER_END
             struct A {float4 p:POSITION;};
@@ -74,6 +77,20 @@ Shader "Eternal/WeatheredStone"
                 float2 pitting=float2(Noise((uv+float2(.025,0))*7)-Noise((uv-float2(.025,0))*7),Noise((uv+float2(0,.025))*7)-Noise((uv-float2(0,.025))*7));
                 float3 normal=normalize(float3(bevel.x+micro.x*.35+pitting.x*.25,1,bevel.y+micro.y*.35+pitting.y*.25));
                 float wet=smoothstep(.80,.93,Noise(uv*.30))*(1-crack);
+                if(_PaintedSlabs>.5)
+                {
+                    // The source already contains slab edges and fine cracks.
+                    // Keep its colour and joint layout rather than laying a
+                    // second procedural grid across the painting.
+                    float2 paintedUV=uv/float2(9.8,18.0);
+                    float3 painting=SAMPLE_TEXTURE2D(_PaintedMap,sampler_PaintedMap,paintedUV).rgb;
+                    float luminance=dot(painting,float3(.3,.59,.11));
+                    crack=1-smoothstep(.045,.12,luminance);
+                    moss=saturate((painting.g-(painting.r+painting.b)*.5)*12)*crack;
+                    base=painting*_Tint.rgb;
+                    normal=normalize(float3(micro.x*.16,1,micro.y*.16));
+                    wet*=.45;
+                }
                 half alpha=1;BRDFData data;
                 InitializeBRDFData(base,_Metallic,float3(.04,.04,.04),lerp(1-_Roughness,.72,wet*.35),alpha,data);
                 Light sun=GetMainLight(TransformWorldToShadowCoord(i.world));
