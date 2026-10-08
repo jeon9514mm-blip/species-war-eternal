@@ -1,9 +1,9 @@
 {
   "passed": true,
-  "comparisons": 293696,
+  "comparisons": 293712,
   "maximum_tick_movement": 0.090004101395607,
   "minimum_normalized_body_clearance": 0.9994998574256897,
-  "verification_elapsed_ms": 2949,
+  "verification_elapsed_ms": 5244,
   "scenarios": [
     {
       "zone": "gray_meadow",
@@ -30,5 +30,15 @@
       "damage": 117672
     }
   ],
+  "skill_chain": {
+    "enabled_simulated_seconds": 119.99999999999532,
+    "cycles": 2,
+    "confirmed_casts": 15,
+    "packs_cleared": 17,
+    "reorder_and_replacement": true,
+    "triage_bypass": true,
+    "failed_cast_preserves_resources": true,
+    "dead_owner_skip": true
+  },
   "note": "Isolated domain verification; not a renderer FPS benchmark or full economy parity."
 }

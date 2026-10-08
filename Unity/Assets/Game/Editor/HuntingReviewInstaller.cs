@@ -23,6 +23,7 @@ namespace Eternal.UnityMigration.Editor
                 return material;
             }
             Material("OriginalPaint","Eternal/OriginalPaint");Material("Particles","Eternal/EffectParticles");
+            Material("ReliefPaint","Eternal/OriginalRelief");
             var stone=Material("Stone","Eternal/WeatheredStone");stone.shader=Shader.Find("Eternal/WeatheredStone");
             stone.SetTexture("_BaseMap",Resources.Load<Texture2D>("Eternal/Floor/stone_1024_albedo_ao"));stone.SetTexture("_MicroNormal",Resources.Load<Texture2D>("Eternal/Floor/stone_1024_micro_normal"));EditorUtility.SetDirty(stone);
             EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);

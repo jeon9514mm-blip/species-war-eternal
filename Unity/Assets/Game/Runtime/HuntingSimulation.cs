@@ -10,8 +10,13 @@ namespace Eternal.UnityMigration
     // mutation. A single simulation remains alive when inspecting other panels.
     public sealed class HuntingSimulation
     {
+        static readonly Lazy<OriginalCombatCatalog> catalogCache=new(()=>new OriginalCombatCatalog(OriginalCatalog.Required("hero-catalog").text));
+        static readonly Lazy<JObject> legacyCache=new(()=>JObject.Parse(OriginalCatalog.Required("legacy-catalogs").text));
+        internal static JObject Canonical=>legacyCache.Value;
+        static readonly float[] slideAngles={0f,.45f,-.45f,.9f,-.9f,1.35f,-1.35f};
         public readonly CombatEncounter Battle;
         public readonly OriginalCombatCatalog Catalog;
+        public PartySkillChain Chain {get;private set;}
         public int PacksCleared, Kills, Stage=1, Gold, Xp, Ticks;
         public double Elapsed, NextPack;
         public string Zone="gray_meadow",Formation="balanced";
@@ -29,8 +34,8 @@ namespace Eternal.UnityMigration
         public HuntingSimulation(int reviewLevel=20,int seed=9514)
         {
             ReviewLevel=reviewLevel;
-            Catalog=new OriginalCombatCatalog(OriginalCatalog.Required("hero-catalog").text);
-            legacy=JObject.Parse(OriginalCatalog.Required("legacy-catalogs").text);
+            Catalog=catalogCache.Value;
+            legacy=Canonical;
             Battle=new CombatEncounter(seed);
             Battle.OnEvent=HandleEvent;
             SetParty(Catalog.HeroIds.Take(10).ToArray());
@@ -59,10 +64,12 @@ namespace Eternal.UnityMigration
                 Battle.Kits[id]=new HeroKitState(Catalog,id,0,origin);
                 Battle.Kits[id].Cooldowns["a1"]=i*.12;Battle.Kits[id].Cooldowns["a2"]=1.2+i*.12;
             }
+            Chain=new PartySkillChain(Battle);Chain.ConfigureDefault();
         }
         void HandleEvent(BattleEvent e)
         {
             if(e.Kind=="death"&&Battle.Enemies.Any(a=>a.Serial==e.TargetSerial))Kills++;
+            Chain?.Observe(e);
             OnEvent?.Invoke(e);
         }
         public void SpawnPack()
@@ -143,7 +150,7 @@ namespace Eternal.UnityMigration
             assignedTargets.Clear();
             foreach(var h in Battle.Heroes.Where(a=>a.Alive))
             {
-                if(intents.ContainsKey(h.Serial)){h.Velocity=Vector2.zero;continue;}
+                if(h.Stun>0||intents.ContainsKey(h.Serial)){h.Velocity=Vector2.zero;continue;}
                 var candidates=CombatTargeting.Rank(Battle,h,null,null,false);
                 var target=candidates.OrderBy(e=>Vector2.SqrMagnitude(h.Position-e.Position)*.16+CombatTargeting.BaseScore(h,e,e.Slot)+assignedTargets.GetValueOrDefault(e.Serial)*1.25).FirstOrDefault();
                 if(target!=null)assignedTargets[target.Serial]=assignedTargets.GetValueOrDefault(target.Serial)+1;
@@ -184,6 +191,7 @@ namespace Eternal.UnityMigration
         }
         void AdvanceHero(Combatant h,double dt)
         {
+            if(h.Stun>0){intents.Remove(h.Serial);h.Windup=-1;h.AttackRemaining=Math.Max(h.AttackRemaining,.18);return;}
             if(intents.TryGetValue(h.Serial,out var intent))
             {
                 h.Windup-=dt;if(h.Windup>0)return;intents.Remove(h.Serial);
@@ -196,7 +204,7 @@ namespace Eternal.UnityMigration
                 h.AttackRemaining=(.78+h.Slot%3*.08)*h.AttackIntervalMultiplier;h.Windup=-1;return;
             }
             if(h.AttackRemaining>0)return;
-            string action=HeroKitExecution.PreferredSlot(Battle,h);var p=action=="basic"?null:Battle.Kits[h.Id].Profiles[action];
+            string action=Chain.Choose(h,HeroKitExecution.PreferredSlot(Battle,h));var p=action=="basic"?null:Battle.Kits[h.Id].Profiles[action];
             var target=CombatTargeting.Rank(Battle,h,p).FirstOrDefault();
             if(target==null&&(action=="basic"||LegacyCombatRules.NeedsEnemy(p)))return;
             intents[h.Serial]=(target,action);h.Windup=.18;Battle.Emit("windup",h,action,target);
@@ -233,7 +241,7 @@ namespace Eternal.UnityMigration
         Vector2 MoveLegally(Combatant actor,Vector2 step)
         {
             if(step.sqrMagnitude<.00000001f)return actor.Position;
-            foreach(float angle in new[]{0f,.45f,-.45f,.9f,-.9f,1.35f,-1.35f})
+            foreach(float angle in slideAngles)
             {
                 float c=Mathf.Cos(angle),s=Mathf.Sin(angle);var rotated=new Vector2(step.x*c-step.y*s,step.x*s+step.y*c);
                 var goal=Clamp(actor.Position+rotated);

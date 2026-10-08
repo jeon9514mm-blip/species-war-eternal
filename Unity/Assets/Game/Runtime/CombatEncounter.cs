@@ -95,8 +95,13 @@ namespace Eternal.UnityMigration
         public int DamageEnemy(Combatant source,Combatant enemy,int raw,string slot)
         {
             if(enemy==null || !enemy.Alive || enemy.Returning || raw<=0)return 0;
-            if(IsRaid && enemy.Elite && RaidDamageSettlement!=null)return RaidDamageSettlement(enemy,raw);
             bool crit=CriticalChance>0 && Random.NextDouble()<CriticalChance;
+            if(IsRaid && enemy.Elite && RaidDamageSettlement!=null)
+            {
+                int settled=RaidDamageSettlement(enemy,(int)(Math.Min(raw,1000000000d)*(crit?1.5:1)));
+                if(settled>0)Emit(crit?"critical":"damage",source,slot,enemy,settled);
+                if(!enemy.Alive)Emit("death",source,slot,enemy);return settled;
+            }
             double multiplier=(enemy.Vulnerable>0?1.25:1)*(crit?1.5:1);
             int actual=(int)Math.Min(enemy.Hp,Math.Min(raw,1000000000d)*multiplier);
             enemy.Hp-=actual;Emit(crit?"critical":"damage",source,slot,enemy,actual);

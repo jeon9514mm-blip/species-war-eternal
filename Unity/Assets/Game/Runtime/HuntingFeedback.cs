@@ -22,6 +22,11 @@ namespace Eternal.UnityMigration
         Camera cameraView;
         Material particleMaterial,shadowMaterial,runeMaterial;
         Mesh particleMesh;
+        Mesh glyphMesh;
+        readonly Vector3[] glyphVertices=new Vector3[12*7*4];
+        readonly Color[] glyphColors=new Color[12*7*4];
+        Vector2 expeditionCenter=new(-3,0),targetCenter=new(-3,0);
+        bool raidMode;
         Texture2D shadowTexture;
         Font outfit;
         GUIStyle damageStyle;
@@ -30,6 +35,9 @@ namespace Eternal.UnityMigration
         int sparkCursor,popupCursor,voiceCursor;
         public int ActiveParticles {get;private set;}
         public int EventsPresented {get;private set;}
+        public void SetRaidMode(bool raid)
+        {raidMode=raid;foreach(var ring in rings)ring.gameObject.SetActive(!raid);if(glyphMesh!=null)transform.Find("Twelve bronze rune batch").gameObject.SetActive(!raid);Array.Clear(popups,0,popups.Length);Array.Clear(sparks,0,sparks.Length);}
+        public void SetExpeditionCenter(Vector2 center){targetCenter=center;}
         public void Initialize(Camera camera)
         {
             cameraView=camera;baseCamera=camera.transform.position;baseSize=camera.orthographicSize;
@@ -61,9 +69,35 @@ namespace Eternal.UnityMigration
             for(int ring=0;ring<3;ring++)
             {
                 var line=new GameObject("Moss bronze expedition rune "+ring).AddComponent<LineRenderer>();line.transform.SetParent(transform,false);
-                line.sharedMaterial=runeMaterial;line.useWorldSpace=true;line.loop=true;line.positionCount=96;line.widthMultiplier=ring==1?.028f:.055f;
-                var color=ring==1?new Color(.91f,.79f,.6f,.65f):new Color(.66f,.72f,.62f,.38f);line.startColor=line.endColor=color;rings.Add(line);
+                line.sharedMaterial=runeMaterial;line.useWorldSpace=true;line.loop=true;line.positionCount=96;line.widthMultiplier=ring==1?.036f:.075f;
+                var color=ring==1?new Color(.91f,.79f,.6f,.8f):new Color(.66f,.72f,.62f,.65f);line.startColor=line.endColor=color;rings.Add(line);
             }
+            glyphMesh=new Mesh{name="Twelve rotating rune glyphs"};glyphMesh.MarkDynamic();var uv=new Vector2[glyphVertices.Length];var indices=new int[glyphVertices.Length/4*6];
+            for(int i=0;i<glyphVertices.Length/4;i++){int v=i*4,t=i*6;uv[v]=Vector2.zero;uv[v+1]=Vector2.up;uv[v+2]=Vector2.one;uv[v+3]=Vector2.right;indices[t]=v;indices[t+1]=v+1;indices[t+2]=v+2;indices[t+3]=v;indices[t+4]=v+2;indices[t+5]=v+3;}
+            glyphMesh.vertices=glyphVertices;glyphMesh.colors=glyphColors;glyphMesh.uv=uv;glyphMesh.triangles=indices;glyphMesh.bounds=new Bounds(Vector3.zero,new Vector3(50,4,30));
+            var batch=new GameObject("Twelve bronze rune batch");batch.transform.SetParent(transform,false);batch.AddComponent<MeshFilter>().sharedMesh=glyphMesh;batch.AddComponent<MeshRenderer>().sharedMaterial=runeMaterial;
+        }
+        static readonly Vector2[] glyphStrokeStart={new(0,-.20f),new(0,.10f),new(0,.04f),new(-.11f,.13f),new(.09f,-.13f),new(-.08f,-.04f),new(0,-.15f)};
+        static readonly Vector2[] glyphStrokeEnd={new(0,.20f),new(.12f,.19f),new(.13f,-.02f),new(0,.04f),new(0,-.04f),new(0,.07f),new(-.11f,-.08f)};
+        void UpdateRunes(float now,float dt)
+        {
+            if(raidMode)return;expeditionCenter=Vector2.Lerp(expeditionCenter,targetCenter,1-Mathf.Exp(-dt*3));
+            float pulse=.85f+Mathf.Sin(now*.8f)*.15f;
+            for(int ring=0;ring<rings.Count;ring++)for(int i=0;i<96;i++)
+            {float a=i*Mathf.PI*2/96+now*.12f*(ring%2==0?1:-1),radius=3.0f+ring*.13f;rings[ring].SetPosition(i,new Vector3(expeditionCenter.x+Mathf.Cos(a)*radius,.015f+ring*.002f,expeditionCenter.y+Mathf.Sin(a)*radius*1.42f));}
+            for(int rune=0;rune<12;rune++)
+            {
+                float a=rune*Mathf.PI*2/12+now*.12f;var radial=new Vector2(Mathf.Cos(a),Mathf.Sin(a));var tangent=new Vector2(-radial.y,radial.x);var origin=expeditionCenter+new Vector2(radial.x*3.55f,radial.y*3.55f*1.42f);
+                for(int line=0;line<7;line++)
+                {
+                    int index=(rune*7+line)*4;var from=glyphStrokeStart[line];var to=glyphStrokeEnd[line];
+                    if((line+rune)%4==0&&line>1){glyphColors[index]=glyphColors[index+1]=glyphColors[index+2]=glyphColors[index+3]=Color.clear;continue;}
+                    var start=origin+tangent*from.x+radial*from.y;var end=origin+tangent*to.x+radial*to.y;var axis=(end-start).normalized;var side=new Vector2(-axis.y,axis.x)*.018f;
+                    glyphVertices[index]=new Vector3(start.x-side.x,.027f,start.y-side.y);glyphVertices[index+1]=new Vector3(start.x+side.x,.027f,start.y+side.y);glyphVertices[index+2]=new Vector3(end.x+side.x,.027f,end.y+side.y);glyphVertices[index+3]=new Vector3(end.x-side.x,.027f,end.y-side.y);
+                    var color=new Color(.91f,.79f,.60f,pulse*.8f);glyphColors[index]=glyphColors[index+1]=glyphColors[index+2]=glyphColors[index+3]=color;
+                }
+            }
+            glyphMesh.vertices=glyphVertices;glyphMesh.colors=glyphColors;
         }
         static Color Parse(JObject p,string key,Color fallback)=>ColorUtility.TryParseHtmlString((string)p?[key]??"",out var color)?color:fallback;
         public void Observe(BattleEvent e,HuntingSimulation simulation)
@@ -86,11 +120,15 @@ namespace Eternal.UnityMigration
                 Burst(position,critical?color:new Color(.77f,.64f,.52f),critical?20:5,.55f,"spark");
                 float now=Time.unscaledTime;if(now>=nextStrongImpact)
                 {shakePixels=critical?5:2;shakeUntil=now+.08f;nextStrongImpact=now+.20f;if(critical){zoomUntil=now+.1f;screenFlash=.04f;}}
-                Play(critical?"crit":"hit",position,.08f);
+                Play(critical?"critical":"sword",position,.08f);
             }
             else if(e.Kind=="loot")
-            {Burst(new Vector3(0,.5f,0),new Color(.77f,.64f,.52f),20,1.4f,"beam");Play("loot",Vector3.zero,.17f);}
+            {Burst(new Vector3(0,.5f,0),new Color(.77f,.64f,.52f),20,1.4f,"beam");Play("reward",Vector3.zero,.17f);}
             else if(e.Kind=="heal"||e.Kind=="shield")Burst(position,new Color(.66f,.78f,.65f),6,.5f,e.Kind);
+            else if(e.Kind=="warning")Play("boss_warning",position,.22f);
+            else if(e.Kind=="interrupt"||e.Kind=="counter"||e.Kind=="shield_break")
+            {Burst(position,new Color(.84f,.74f,.51f),32,1.6f,"burst");Play(e.Kind=="shield_break"?"shield_break":"control",position,.18f);}
+            else if(e.Kind=="victory"||e.Kind=="defeat")Play(e.Kind,position,.25f);
         }
         void Burst(Vector3 origin,Color color,int count,float power,string motif)
         {
@@ -99,7 +137,8 @@ namespace Eternal.UnityMigration
                 double angle=i*Math.PI*2/count+rng.NextDouble()*.16;
                 bool beam=motif=="beam",slash=motif=="lunge"||motif=="cleave"||motif=="fang";
                 var direction=beam?Vector3.up:slash?new Vector3((float)Math.Cos(angle)*2,.25f,(float)Math.Sin(angle)*.3f):new Vector3((float)Math.Cos(angle),.4f+(float)rng.NextDouble(),(float)Math.Sin(angle));
-                sparks[sparkCursor++%sparks.Length]=new Spark{position=origin,velocity=direction*power,color=color,total=beam?.85f:.35f+(float)rng.NextDouble()*.25f,remaining=beam?.85f:.35f+(float)rng.NextDouble()*.25f,size=beam?.05f:.025f+(float)rng.NextDouble()*.035f};
+                float lifetime=beam?.85f:.35f+(float)rng.NextDouble()*.25f;
+                sparks[sparkCursor++%sparks.Length]=new Spark{position=origin,velocity=direction*power,color=color,total=lifetime,remaining=lifetime,size=beam?.05f:.025f+(float)rng.NextDouble()*.035f};
             }
         }
         void Play(string key,Vector3 position,float volume)
@@ -127,8 +166,7 @@ namespace Eternal.UnityMigration
             cameraView.transform.position=baseCamera+cameraView.transform.up*breathe+shake;
             cameraView.orthographicSize=Mathf.Lerp(cameraView.orthographicSize,now<zoomUntil?baseSize/1.08f:baseSize,dt*15);
             screenFlash=Mathf.Max(0,screenFlash-dt);
-            for(int ring=0;ring<rings.Count;ring++)for(int i=0;i<96;i++)
-            {float angle=i*Mathf.PI*2/96+now*.12f*(ring%2==0?1:-1);float radius=3.0f+ring*.13f;rings[ring].SetPosition(i,new Vector3(-3+Mathf.Cos(angle)*radius,.015f+ring*.002f,Mathf.Sin(angle)*radius*1.42f));}
+            UpdateRunes(now,dt);
         }
         void OnGUI()
         {
@@ -145,6 +183,6 @@ namespace Eternal.UnityMigration
             GUI.color=Color.white;
         }
         void OnDestroy()
-        {if(particleMesh!=null)Destroy(particleMesh);if(shadowTexture!=null)Destroy(shadowTexture);if(shadowMaterial!=null)Destroy(shadowMaterial);if(runeMaterial!=null)Destroy(runeMaterial);}
+        {if(particleMesh!=null)Destroy(particleMesh);if(glyphMesh!=null)Destroy(glyphMesh);if(shadowTexture!=null)Destroy(shadowTexture);if(shadowMaterial!=null)Destroy(shadowMaterial);if(runeMaterial!=null)Destroy(runeMaterial);}
     }
 }

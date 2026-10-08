@@ -20,7 +20,7 @@ namespace Eternal.UnityMigration
     [Serializable] public sealed class ActorEntry { public string id; public bool hero; }
     [Serializable] public sealed class AtlasDefinition { public string id; public PoseSet attack, motion; }
     [Serializable] public sealed class PoseSet { public float native_height; public PoseFrame[] frames; }
-    [Serializable] public sealed class PoseFrame { public float[] region, anchor; }
+    [Serializable] public sealed class PoseFrame { public float[] region, anchor, hair_rect; }
 
     public static class OriginalCatalog
     {

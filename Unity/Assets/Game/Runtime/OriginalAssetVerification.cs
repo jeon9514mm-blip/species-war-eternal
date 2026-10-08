@@ -43,7 +43,7 @@ namespace Eternal.UnityMigration
             {
                 var actor = new GameObject(entries[i].id).AddComponent<PaintedActor>();
                 actor.transform.position = new Vector3((i%10-4.5f)*4,0,(i/10-2)*6);
-                actor.Initialize(entries[i].id, entries[i].hero ? 2.4f : 2.0f, cameraView);
+                actor.Initialize(entries[i].id, entries[i].hero ? 2.4f : 2.0f, cameraView,entries[i].hero);
                 actors.Add(actor);
             }
             VerifiedActorCount=actors.Count;
@@ -71,19 +71,42 @@ namespace Eternal.UnityMigration
         public Vector2 Facing=Vector2.right;
         public float MovingSpeed,AttackSeconds,HitSeconds;
         float traveled;
+        bool relief,heroSurface;
+        float displayHeight;
+        MeshFilter hairFilter;
+        MeshRenderer hairRenderer;
+        readonly CapeChainMotion cape=new();
+        static readonly int[] capeProperties={Shader.PropertyToID("_Cape0"),Shader.PropertyToID("_Cape1"),Shader.PropertyToID("_Cape2"),Shader.PropertyToID("_Cape3"),Shader.PropertyToID("_Cape4")};
+        public bool UsesRelief=>relief;
+        public int BodyTriangles=>meshFilter?.sharedMesh?.triangles.Length/3??0;
+        public int HairCards=>hairFilter?.sharedMesh?.triangles.Length/6??0;
 
-        public void Initialize(string id,float height,Camera camera)
+        public void Initialize(string id,float height,Camera camera,bool hero=false)
         {
-            cameraView=camera; atlas=OriginalCatalog.Atlas(id);
+            cameraView=camera; atlas=OriginalCatalog.Atlas(id);displayHeight=height;heroSurface=hero;
             var art = new GameObject("Original painted body");
             art.transform.SetParent(transform,false);
             meshFilter=art.AddComponent<MeshFilter>(); meshRenderer=art.AddComponent<MeshRenderer>();
-            var template=Resources.Load<Material>("Eternal/Materials/OriginalPaint");
+            var reliefTemplate=Resources.Load<Material>("Eternal/Materials/ReliefPaint");
+            var surfaces=reliefTemplate!=null?OriginalReliefMesh.Load(id):null;relief=surfaces!=null;
+            var template=relief?reliefTemplate:Resources.Load<Material>("Eternal/Materials/OriginalPaint");
             var shader=Shader.Find("Eternal/OriginalPaint") ?? throw new InvalidOperationException("Original paint shader missing");
             var material=template!=null?new Material(template):new Material(shader);
             material.mainTexture=Resources.Load<Texture2D>("Eternal/Actors/"+id+"/poses") ?? throw new InvalidOperationException("Atlas missing: "+id);
             meshRenderer.sharedMaterial=material;
             meshRenderer.sortingOrder=1000-Mathf.RoundToInt(transform.position.z*10);
+            if(relief)
+            {
+                meshFilter.sharedMesh=surfaces.Body;meshRenderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.On;
+                material.SetFloat("_CapeEnabled",hero?1:0);
+                if(hero&&surfaces.Hair!=null)
+                {
+                    var hair=new GameObject("600 original Blender hair cards");hair.transform.SetParent(art.transform,false);
+                    hairFilter=hair.AddComponent<MeshFilter>();hairFilter.sharedMesh=surfaces.Hair;hairRenderer=hair.AddComponent<MeshRenderer>();
+                    var hairMaterial=new Material(material);hairMaterial.SetFloat("_HairCards",1);hairMaterial.SetFloat("_Outline",0);hairMaterial.SetFloat("_CapeEnabled",0);hairRenderer.sharedMaterial=hairMaterial;
+                }
+                SetReliefPose(0);phase=(transform.position.x+20)*.08f;return;
+            }
             frames=new Mesh[atlas.attack.frames.Length+atlas.motion.frames.Length];
             int index=0;
             foreach(var set in new[]{atlas.attack,atlas.motion})
@@ -104,23 +127,51 @@ namespace Eternal.UnityMigration
         }
         void LateUpdate()
         {
-            if(frames==null)return;
+            if(frames==null&&!relief)return;
             AttackSeconds=Mathf.Max(0,AttackSeconds-Time.unscaledDeltaTime);HitSeconds=Mathf.Max(0,HitSeconds-Time.unscaledDeltaTime);
             traveled+=MovingSpeed*Time.unscaledDeltaTime;
-            int next=Driven?(AttackSeconds>0?(int)((.32f-AttackSeconds)*25)%atlas.attack.frames.Length:atlas.attack.frames.Length+(MovingSpeed>.05f?(int)(traveled*5)%atlas.motion.frames.Length:0)):(int)((Time.time+phase)*5)%frames.Length;
-            next=Mathf.Clamp(next,0,frames.Length-1);
-            if(next!=frame){frame=next;meshFilter.sharedMesh=frames[frame];}
+            int next=Driven?PoseIndex(atlas,MovingSpeed,traveled,AttackSeconds,HitSeconds,Time.unscaledTime+phase):(int)((Time.time+phase)*5)%(atlas.attack.frames.Length+atlas.motion.frames.Length);
+            next=Mathf.Clamp(next,0,atlas.attack.frames.Length+atlas.motion.frames.Length-1);
+            if(next!=frame){frame=next;if(relief)SetReliefPose(frame);else meshFilter.sharedMesh=frames[frame];}
             // Feet and body scale never pulse; breathing is a small position offset.
             meshFilter.transform.rotation=cameraView.transform.rotation;
             meshFilter.transform.localPosition=new Vector3(0,Mathf.Sin((Time.unscaledTime+phase)*Mathf.PI)*.045f,0);
             if(Driven&&Mathf.Abs(Facing.x)>.08f)meshFilter.transform.localScale=new Vector3(Facing.x<0?-1:1,1,1);
             meshRenderer.sortingOrder=1000-Mathf.RoundToInt(transform.position.z*10);
             meshRenderer.sharedMaterial.SetColor("_Tint",HitSeconds>0?new Color(1.5f,1.5f,1.5f,1):Color.white);
+            if(relief)
+            {
+                var material=meshRenderer.sharedMaterial;material.SetFloat("_VisualTime",Time.unscaledTime);
+                if(heroSurface)
+                {cape.Advance(Time.unscaledDeltaTime,Time.unscaledTime,Mathf.Clamp01(MovingSpeed/2.2f),phase);for(int i=0;i<5;i++){var p=cape.Points[i]*displayHeight/86.4f;material.SetVector(capeProperties[i],new Vector4(p.x,-p.y,0,0));}}
+                if(hairRenderer!=null){hairRenderer.sharedMaterial.SetFloat("_VisualTime",Time.unscaledTime);hairRenderer.sharedMaterial.SetColor("_Tint",material.GetColor("_Tint"));}
+            }
+        }
+        void SetReliefPose(int index)
+        {
+            var set=index<atlas.attack.frames.Length?atlas.attack:atlas.motion;var f=set.frames[index<atlas.attack.frames.Length?index:index-atlas.attack.frames.Length];
+            float k=displayHeight/set.native_height;
+            void Configure(Material material)
+            {
+                material.SetVector("_AtlasRect",new Vector4(f.region[0]/1024,1-f.region[1]/1024,f.region[2]/1024,f.region[3]/1024));
+                material.SetVector("_PaintSize",new Vector4(f.region[2]*k,f.region[3]*k,displayHeight/86.4f,0));material.SetVector("_Anchor",new Vector4(f.anchor[0]*k,f.anchor[1]*k,0,0));
+                var h=f.hair_rect;material.SetVector("_HairRect",h?.Length==4?new Vector4(h[0],h[1],h[2],h[3]):new Vector4(.1f,0,.8f,.3f));
+            }
+            Configure(meshRenderer.sharedMaterial);meshRenderer.sharedMaterial.SetFloat("_Outline",heroSurface?3*f.region[3]/86.4f:0);
+            if(hairRenderer!=null)Configure(hairRenderer.sharedMaterial);
+        }
+        public static int PoseIndex(AtlasDefinition data,float movingSpeed,float distance,float attack,float hit,float idleTime)
+        {
+            if(hit>0)return data.attack.frames.Length+Mathf.Min(6,data.motion.frames.Length-1);
+            if(attack>0)return Mathf.Clamp((int)((.32f-attack)/.32f*data.attack.frames.Length),0,data.attack.frames.Length-1);
+            int motion=movingSpeed>.05f?2+(int)(distance*5)%4:(int)(idleTime*2)%2;
+            return data.attack.frames.Length+Mathf.Min(motion,data.motion.frames.Length-1);
         }
         void OnDestroy()
         {
             if(frames!=null)foreach(var mesh in frames)Destroy(mesh);
             if(meshRenderer!=null)Destroy(meshRenderer.sharedMaterial);
+            if(hairRenderer!=null)Destroy(hairRenderer.sharedMaterial);
         }
     }
 }
