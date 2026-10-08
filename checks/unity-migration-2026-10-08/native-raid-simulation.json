@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "comparisons": 33392,
+  "original_damage_cases": 216,
+  "original_control_cases": 32,
+  "original_geometry_cases": 2340,
+  "maximum_tick_movement": 0.220000461,
+  "minimum_normalized_clearance": 0.999501765,
+  "hero_relief_meshes": 30,
+  "hair_cards_per_hero": 600,
+  "analytic_cape_controls": 5,
+  "runs": [
+    {
+      "zone": "gray_meadow",
+      "outcome": "victory",
+      "seconds": 7.2999999999999821,
+      "phase": 3,
+      "damage": 44640,
+      "patterns": 2,
+      "interrupts": 0,
+      "survivors": 10
+    },
+    {
+      "zone": "forgotten_mine",
+      "outcome": "victory",
+      "seconds": 12.450000000000042,
+      "phase": 3,
+      "damage": 85680,
+      "patterns": 2,
+      "interrupts": 1,
+      "survivors": 10
+    },
+    {
+      "zone": "moonrest_forest",
+      "outcome": "victory",
+      "seconds": 18.300000000000125,
+      "phase": 3,
+      "damage": 133437,
+      "patterns": 3,
+      "interrupts": 2,
+      "survivors": 10
+    }
+  ],
+  "note": "Production raid math/geometry oracle and isolated domain runs; mesh decoding and bounded analytic cape checks. Not full player-economy parity, visual acceptance, native SSS or an FPS measurement."
+}

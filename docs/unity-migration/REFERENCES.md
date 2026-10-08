@@ -11,6 +11,15 @@ User clarification: **all four requested games must inform the implementation**,
 
 These adaptation decisions are our design choices informed by the linked sources. Limited reviewed frames do not establish every mechanic, numerical parameter or current balance of those games.
 
+## Native implementation update — 2026-10-09
+
+- CookieRun: one continuing hunt clock, stage/pack progress, party HP and hero inspection are implemented in an isolated review. Real growth/claims/wallet/save remain pending.
+- Soul Strike: original skill cooldown/ultimate/role feedback is live; guardian combat, gear categories, presets and quick equip still need porting. Full channel/dash/VFX silhouettes are pending.
+- Pixel Wizard: editable ordered existing-party skill chain, next/readiness display and safe failure/triage/dead-owner behavior are implemented and domain-tested. Live chain editor input is still pending.
+- Lost Ark: the same community guide was additionally inspected at its stagger (0:51) and part-destruction (1:50) chapters; frames showed stagger-gauge instructions and a part target/destruction cue. Chapter times are labels, not proof of full-video viewing. Native raid rule port includes frozen warnings, stagger/immunity, guard destruction, add interception, DPS checks and an adapted blue cone/front-counter window. Dedicated map/UI code is connected but its actual rendering/input acceptance remains pending.
+
+Both latest Meta AI links were rechecked in Chrome: [Ultra design brief](https://www.meta.ai/share/a/977ee1f5-a5b5-4d19-ac9d-38d01b1e6d8d) and [v46 ZIP](https://www.meta.ai/share/a/f24ae156-1d35-4db7-a404-c3cc193d8f8a). The web reader could not open them; Chrome exposed the brief and download. The browser download call timed out, but the completed 95,538-byte file was found and read as data. It contains one HTML brief, 30 hero parameter scripts and one shared script; the three shared spawn helpers are `pass` stubs, and there are no supplied art/model/shader/audio assets. Existing original ZIP provenance in `assets/art-direction/meta-ultra-reference` remains applicable. The labels “98”, “AAA+”, “60fps” and “200MB” are reference claims, not measured results. Earlier Meta AI art/effect links still require rechecking before complete-reference coverage is claimed.
+
 ## Cross-cutting requested requirements
 
 - All 30 heroes and all 120 skills; hero/monster/boss art preserved, stable 86.4px base hero size at the reference layout, eight-direction facing and movement, readable shadows/outlines/breathing, cape/hair secondary motion.
