@@ -1,6 +1,7 @@
 extends RefCounted
 ## Stable IDs are persisted. Bonuses are applied once to freshly calculated stats.
 const DEFAULT := "balanced"
+const BODY=preload('res://scripts/hunting/HuntBodyCollision.gd')
 const PROFILES := {
 	"balanced": {"name":"균형 진형", "description":"공격력 +10% · 최대 체력 +10%", "attack":1.10, "hp":1.10, "speed":1.0},
 	"assault": {"name":"돌격 진형", "description":"부대 공격력 +20%", "attack":1.20, "hp":1.0, "speed":1.0},
@@ -17,15 +18,33 @@ static func offsets(heroes: Array, id: String) -> Dictionary:
 		return _rank(a) < _rank(b))
 	var result: Dictionary = {}
 	for i in ordered.size():
-		var column: int = i / 4
-		var lane: int = i % 4
-		var point := Vector2(2.0 - column * 2.3, (lane - 1.5) * 2.1)
+		# At most three depth lanes leave room for fixed 86.4px originals and
+		# impact zooms. Incomplete columns center their members instead of leaning.
+		var column: int = i / 3
+		var members:=mini(3,ordered.size()-column*3)
+		var lane: float=i%3-(members-1)*.5
+		var point := Vector2(2.0 - column * 2.3, lane * 2.95)
 		match sanitize(id):
 			"assault": point.x += 1.2 - absf(point.y) * 0.40
-			"bulwark": point = Vector2(1.8 - (i / 5) * 2.8, (i % 5 - 2) * 1.95)
-			"volley": point = Vector2(1.0 - column * 2.5, (lane - 1.5) * 2.3)
+			"bulwark": point = Vector2(1.8 - column * 2.1, lane * 3.0)
+			"volley": point = Vector2(1.0 - column * 2.7, lane * 3.5+(0.9 if column%2==1 else 0.0))
 		result[str(ordered[i].get("id", ""))] = point
 	return result
+static func projected_offsets(heroes: Array,id: String,gap_pixels: float=72.0) -> Dictionary:
+	# The menu diagram and hunting feet share the same layout and role order.
+	# Center partial parties too; scaling preserves each preset's exact shape.
+	var layout:=offsets(heroes,id)
+	if layout.is_empty():return layout
+	var points: Array=layout.values()
+	var low: Vector2=points[0];var high:=low;var nearest:=INF
+	var clearance_axes:=Vector2(gap_pixels,BODY.HERO_HEIGHT_PIXELS+maxf(0,gap_pixels-BODY.HERO_PIXELS))
+	for a in points.size():
+		low=low.min(points[a]);high=high.max(points[a])
+		for b in range(a+1,points.size()):nearest=minf(nearest,((Vector2(points[a])-Vector2(points[b]))/clearance_axes).length())
+	var middle: Vector2=(low+high)*.5
+	var scale: float=1.0/nearest if is_finite(nearest) and nearest>.0001 else 1.0
+	for hero_id in layout:layout[hero_id]=(Vector2(layout[hero_id])-middle)*scale
+	return layout
 static func _rank(hero: Dictionary) -> int:
 	var role: String = str(hero.get("role_group", ""))
 	if role == "탱커": return 0

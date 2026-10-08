@@ -90,6 +90,10 @@ var _hunt_before: Dictionary={}
 var _hunt_display: Dictionary={}
 var _render_hero_points: Dictionary={}
 var _render_enemy_indices: Dictionary={}
+var raid_interpolation:=preload('res://scripts/maps3d/HuntRenderInterpolation.gd').new()
+var _raid_before: Dictionary={}
+var _raid_display: Dictionary={}
+var _raid_display_serial: int=-1
 var skill_overlay: Control
 var contact_flash: Control
 var _contact_holds: Dictionary={}
@@ -124,6 +128,38 @@ func _prepare_hunt_display() -> void:
 		if int(game.hero_battle_state.get(id,{}).get('hp',0))>0:_render_hero_points[id]=display_world(game.hero_map_sprites[i],game._hero_field_position(id))
 	for i in game.enemy_wave_sprites.size():
 		if is_instance_valid(game.enemy_wave_sprites[i]):_render_enemy_indices[game.enemy_wave_sprites[i].get_instance_id()]=i
+func _raid_points() -> Dictionary:
+	var points: Dictionary={}
+	if not is_instance_valid(raid_view):return points
+	for id in raid_view.hero_actors:
+		var actor=raid_view.hero_actors[id]
+		if is_instance_valid(actor):points[actor.get_instance_id()]=raid_to_world(game.raid_positions.get(id,actor.position))
+	if is_instance_valid(game.raid_boss_sprite):points[game.raid_boss_sprite.get_instance_id()]=raid_to_world(game.raid_boss_position)
+	return points
+func _raid_states() -> Dictionary:
+	var states: Dictionary={}
+	if not is_instance_valid(raid_view):return states
+	for id in raid_view.hero_actors:
+		var actor=raid_view.hero_actors[id]
+		if is_instance_valid(actor):states[actor.get_instance_id()]=int(game.hero_battle_state.get(id,{}).get('hp',0))<=0
+	if is_instance_valid(game.raid_boss_sprite):states[game.raid_boss_sprite.get_instance_id()]=game.raid_boss_hp<=0
+	return states
+func begin_raid_step() -> void:
+	if _raid_display_serial!=game.raid_encounter_serial:
+		raid_interpolation.reset();_raid_display.clear();_raid_display_serial=game.raid_encounter_serial
+	_raid_before=_raid_points()
+	if not raid_interpolation.enabled:raid_interpolation.sample(_raid_before,_raid_states(),0,battle_clock_running())
+func finish_raid_step(seconds: float) -> void:
+	raid_interpolation.capture(_raid_before,_raid_points(),_raid_states(),seconds)
+func _prepare_raid_display() -> void:
+	if not raid_mode:return
+	if not game._raid_realtime_loop:
+		_raid_display.clear();return
+	var speed: float=clampf(game.battle_speed,1,2) if is_finite(game.battle_speed) else 1.0
+	var remainder: float=game._raid_accumulator+Engine.get_physics_interpolation_fraction()*Engine.time_scale*speed/maxi(1,Engine.physics_ticks_per_second)
+	_raid_display=raid_interpolation.sample(_raid_points(),_raid_states(),remainder/raid_interpolation.duration,battle_clock_running())
+func raid_display_world(source: AnimatedSprite2D,combat_point: Vector2) -> Vector2:
+	return _raid_display.get(source.get_instance_id(),raid_to_world(combat_point))
 func apply_render_profile() -> void:
 	if not is_instance_valid(viewport_3d) or not is_instance_valid(game):return
 	var key: String=str(game.presentation_options.get('performance','balanced'))
@@ -271,6 +307,11 @@ func _resize_world() -> void:
 		# The original combat-coordinate transform remains shared with warnings.
 		var safe_size:=Vector2(maxf(1,size.x-36),maxf(1,size.y-RAID_BOTTOM_CLEARANCE))
 		raid_factor=minf(safe_size.x/(674.0*RAID_GROUND_STRETCH*MAX_CAMERA_PUNCH),safe_size.y/340.0*CAMERA_MOTION.ZOOM)
+		# Reserve the full attack painting even when the boss reaches the far
+		# edge. A stable rest zoom keeps combat spacing from changing mid-fight.
+		var reachable: Rect2=preload('res://scripts/raid/RaidBattlefield.gd').FLOOR
+		var headroom:=maxf(1,size.y-RAID_BOTTOM_CLEARANCE-12-_raid_boss_top_pixels())
+		raid_factor=minf(raid_factor,headroom/((reachable.end.y-preload('res://scripts/raid/RaidBattlefield.gd').BOSS_MIN_Y)*MAX_CAMERA_PUNCH))
 		_set_focus(Vector2(16,10))
 		camera.size=size.y/(RAID_UNITS*raid_factor)
 		camera.v_offset=(-5.0+57.0*raid_factor)/(RAID_UNITS*raid_factor)
@@ -397,13 +438,15 @@ func visible_world_rect() -> Rect2:
 	var a:=local_to_world(Vector2.ZERO);var b:=local_to_world(size)
 	return Rect2(a,b-a).abs()
 func raid_to_world(point: Vector2) -> Vector2:
-	var sin_pitch: float=absf(camera.global_basis.z.y)
+	# The pitch is fixed. look_at's rounded basis can change equal feet by one
+	# ULP per frame, accidentally discarding a valid interpolation snapshot.
+	var sin_pitch: float=HUNT_CAMERA_OFFSET.normalized().y
 	return Vector2(16,10)+(point-RAID_PIVOT)/Vector2(RAID_UNITS/RAID_GROUND_STRETCH,RAID_UNITS*sin_pitch)
 func world_to_raid(point: Vector2) -> Vector2:
-	return RAID_PIVOT+(point-Vector2(16,10))*Vector2(RAID_UNITS/RAID_GROUND_STRETCH,RAID_UNITS*absf(camera.global_basis.z.y))
+	return RAID_PIVOT+(point-Vector2(16,10))*Vector2(RAID_UNITS/RAID_GROUND_STRETCH,RAID_UNITS*HUNT_CAMERA_OFFSET.normalized().y)
 func raid_projection_factor() -> float:return size.y/maxf(.001,camera.size*RAID_UNITS)
 func raid_projection_scale() -> Vector2:return Vector2(RAID_GROUND_STRETCH,1)*raid_projection_factor()
-func raid_separation_metric() -> Vector2:return Vector2(RAID_GROUND_STRETCH,.65)
+func raid_separation_metric() -> Vector2:return Vector2(RAID_GROUND_STRETCH,1.0)
 func raid_clearances() -> Vector2:
 	# Fixed 86.4px originals need display-space gaps when boss framing zooms
 	# the floor out. The rest camera keeps zoom punches from moving feet.
@@ -418,6 +461,7 @@ func _process(delta: float) -> void:
 	_actor_delta=maxf(0.0,delta)
 	apply_render_profile()
 	_prepare_hunt_display()
+	_prepare_raid_display()
 	if visual_running():_presentation_clock+=maxf(0,delta)*visual_speed()
 	_update_ultra_post()
 	if not raid_mode:_update_hunt_camera(delta)
@@ -439,13 +483,14 @@ func _process(delta: float) -> void:
 		var boss_point: Vector2=raid_to_world(game.raid_boss_sprite.position)
 		var desired:=Vector2(16,10).lerp(boss_point,.22)
 		if battle_clock_running():_set_focus(focus.lerp(desired,1-exp(-maxf(0,delta)*2.0)))
-		var floor_point: Vector2=raid_to_world(preload('res://scripts/raid/RaidBattlefield.gd').FLOOR.end)
-		var below_boss: float=project_world(floor_point).y-project_world(boss_point).y
-		var available: float=maxf(1,size.y-RAID_BOTTOM_CLEARANCE-12-_raid_boss_top_pixels())
-		if below_boss*MAX_CAMERA_PUNCH>available:
-			var fit: float=below_boss*MAX_CAMERA_PUNCH/available
-			_rest_camera_size*=fit;raid_factor/=fit
-	camera.size=_rest_camera_size/punch
+		# Old/debug positions beyond the authored boss lane still fit safely.
+		# This fallback affects this frame only, never permanent combat spacing.
+		if game.raid_boss_sprite.position.y<preload('res://scripts/raid/RaidBattlefield.gd').BOSS_MIN_Y:
+			var floor_point:=raid_to_world(preload('res://scripts/raid/RaidBattlefield.gd').FLOOR.end)
+			var below_boss: float=project_world(floor_point).y-project_world(boss_point).y
+			var available:=maxf(1,size.y-RAID_BOTTOM_CLEARANCE-12-_raid_boss_top_pixels())
+			camera.size*=maxf(1,below_boss*MAX_CAMERA_PUNCH/available)
+	camera.size/=punch
 	var units: float=camera.size/size.y
 	camera.h_offset=offsets.x*units;camera.v_offset=_camera_base_v-offsets.y*units
 	if raid_mode and is_instance_valid(game.raid_boss_sprite):
@@ -481,8 +526,8 @@ func _process(delta: float) -> void:
 			mood.set_battle_mood(int(game.raid_phase),bool(game.raid_enraged))
 		for id in raid_view.hero_actors:
 			var actor: AnimatedSprite2D=raid_view.hero_actors[id]
-			if is_instance_valid(actor):sync_actor(actor,raid_to_world(actor.position),true,live)
-		if is_instance_valid(game.raid_boss_sprite):sync_actor(game.raid_boss_sprite,raid_to_world(game.raid_boss_sprite.position),false,live)
+			if is_instance_valid(actor):sync_actor(actor,raid_display_world(actor,actor.position),true,live)
+		if is_instance_valid(game.raid_boss_sprite):sync_actor(game.raid_boss_sprite,raid_display_world(game.raid_boss_sprite,game.raid_boss_sprite.position),false,live)
 	else:
 		for i in game.hero_map_sprites.size():
 			if i<game.deployed_heroes.size():
@@ -673,8 +718,8 @@ func _update_body_layout(_delta: float) -> void:
 	# below are replaced by actual atlas margins/paint extents after binding.
 	var sources: Array=[];var points: Array[Vector2]=[];var heroes: Array[bool]=[]
 	if raid_mode and is_instance_valid(raid_view):
-		for actor in raid_view.hero_actors.values():sources.append(actor);points.append(raid_to_world(actor.position));heroes.append(true)
-		if is_instance_valid(game.raid_boss_sprite):sources.append(game.raid_boss_sprite);points.append(raid_to_world(game.raid_boss_sprite.position));heroes.append(false)
+		for actor in raid_view.hero_actors.values():sources.append(actor);points.append(raid_display_world(actor,actor.position));heroes.append(true)
+		if is_instance_valid(game.raid_boss_sprite):sources.append(game.raid_boss_sprite);points.append(raid_display_world(game.raid_boss_sprite,game.raid_boss_sprite.position));heroes.append(false)
 	elif not raid_mode:
 		for i in mini(game.hero_map_sprites.size(),game.deployed_heroes.size()):sources.append(game.hero_map_sprites[i]);points.append(display_world(game.hero_map_sprites[i],game._hero_field_position(str(game.deployed_heroes[i].id))));heroes.append(true)
 		for i in mini(game.enemy_wave_sprites.size(),game.enemy_wave.size()):sources.append(game.enemy_wave_sprites[i]);points.append(display_world(game.enemy_wave_sprites[i],game.roaming_hunt.enemy_position(i)));heroes.append(false)

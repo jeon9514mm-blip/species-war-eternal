@@ -1,6 +1,7 @@
 extends SceneTree
 
 const KITS = preload("res://scripts/heroes/HeroKitRuntime.gd")
+const BODY = preload('res://scripts/hunting/HuntBodyCollision.gd')
 var checks := 0
 var failures: Array[String] = []
 
@@ -25,9 +26,16 @@ func _prepare(main, hp := 600) -> void:
 	main.combat_effects_enabled = false
 	main.combat_fx.enabled = false
 	main.enemy_wave.clear()
-	main.party_movement.positions.clear()
-	main.roaming_hunt.configure(Vector2(1, 2), 5303)
+	main.expedition_position = Vector2(16, 10)
+	main.party_movement.independent_hunt = true
+	main.party_movement.configure(main.deployed_heroes, main.hero_battle_state, main.expedition_position)
+	main.roaming_hunt.invasion_enabled = true
+	main.roaming_hunt.configure(main.expedition_position, 5303)
 	main.roaming_hunt.clear_enemies()
+	# Support tests start between real invasion admissions. A stale habitat
+	# cooldown does not postpone current admission scheduling.
+	main.invasion.reset()
+	main.invasion.last_entry = main.invasion.clock
 	main.roaming_wave_spawn_cooldown = 10.0
 	main.hunt_ai.set_state(AutoHuntController.State.MOVING)
 	main._skill_spacing = 0.0
@@ -43,6 +51,7 @@ func _prepare(main, hp := 600) -> void:
 		runtime["passive_remaining"] = 1000.0
 	main.hero_skill_runtime["elisia"]["remaining"] = 0.0
 	main._sync_party_hp_from_heroes()
+	_check(BODY.clear(BODY.actors(main)), 'support fixture starts with separate legal hero bodies')
 
 func _steps(main, seconds: float) -> void:
 	for _tick in int(round(seconds / .05)):
@@ -131,16 +140,22 @@ func _test_secondary_support(main) -> void:
 func _close_enemy(main, target: String, attack := 1) -> void:
 	main.enemy_wave = [{"hp":10000, "max_hp":10000, "attack":attack, "row":0, "archetype":"brute", "target_id":target, "attack_remaining":0.0}]
 	main.roaming_hunt.spawn_group(main.enemy_wave)
-	main.roaming_hunt.enemy_positions.assign([Vector2(1.4, 2.0)])
-	main.roaming_hunt.enemy_home_positions.assign([Vector2(1.4, 2.0)])
-	main.roaming_hunt.party_position = Vector2(1, 2)
+	main.roaming_hunt.enemy_positions.assign([Vector2(16.9, 10)])
+	main.roaming_hunt.enemy_home_positions.assign([Vector2(16.9, 10)])
+	main.roaming_hunt.party_position = Vector2(16, 10)
 	main.expedition_position = main.roaming_hunt.party_position
-	for id in main.hero_battle_state: main.party_movement.positions[id] = Vector2(1, 2)
+	# Contact sits inside .95 reach and outside .76 body clearance. Fixed
+	# support/casters need separate legal bodies before committing a skill.
+	var others := 0
+	for id in main.hero_battle_state:
+		main.party_movement.positions[id] = Vector2(16, 10) if id == target else Vector2(16, 7.7 if others == 0 else 12.3)
+		if id != target: others += 1
 	main.roaming_hunt.aggro_active = true
 	main.roaming_hunt.current_target = 0
 	main.roaming_hunt.mode = RoamingHuntDirector.Mode.ENGAGED
 	main.hunt_ai.set_state(AutoHuntController.State.FIGHTING)
 	main._sync_enemy_wave_summary()
+	_check(BODY.clear(BODY.actors(main)) and BODY.can_commit(main,true,target), 'combat support fixture keeps the tank and healer free to commit')
 
 func _test_support_during_fight(main) -> void:
 	_prepare(main, 180)
@@ -148,7 +163,7 @@ func _test_support_during_fight(main) -> void:
 	main.hero_skill_runtime["elisia"]["attack_remaining"] = 0.0
 	_close_enemy(main, "leonhardt")
 	main._advance_auto_hunt(.05)
-	_check(main.enemy_wave[0]["attack_remaining"] > 0.5, "emergency support does not freeze the enemy's attack clock")
+	_check(main.enemy_wave[0].has('attack_intent') or main.enemy_wave[0]["attack_remaining"] > 0.5, "emergency support does not freeze the enemy's committed attack clock")
 	_check(main.hero_skill_runtime["elisia"]["windup"] >= .10, "support and combat loops cannot advance the same new windup twice in one tick")
 	_steps(main, .35)
 	_check(int(main.hero_skill_runtime["elisia"].get("casts_a1", 0)) == 1, "emergency support in live combat settles once across both loops")
@@ -160,8 +175,9 @@ func _test_support_during_fight(main) -> void:
 
 func _test_support_encounter_transitions(main) -> void:
 	_prepare(main, 180)
-	main.roaming_wave_spawn_cooldown = 0.0
+	main.invasion.last_entry = -main.invasion.ENTRY_INTERVAL
 	_steps(main, .4)
+	_check(main.invasion.serial > 0 and main._enemy_wave_alive_count() > 0, 'transition fixture actually admits a current invasion corps')
 	_check(int(main.hero_skill_runtime["elisia"].get("casts_a1", 0)) == 1, "spawning the next pack preserves an already scheduled ally heal")
 	_check(main.hunt_ai.state != AutoHuntController.State.RECOVERING and main.party_hp > 540, "pack respawn cannot cancel a viable emergency rescue")
 	_prepare(main, 180)
@@ -176,6 +192,10 @@ func _test_support_encounter_transitions(main) -> void:
 
 func _test_disengaged_actions_resume_support(main) -> void:
 	_prepare(main)
+	# The retained habitat director releases distant targets. Current ordinary
+	# invasions keep approaching; their strict no-remote-damage contract has its
+	# own HuntGoalReservation regression instead of expecting a habitat retreat.
+	main.roaming_hunt.invasion_enabled = false
 	main.hero_battle_state["leonhardt"]["hp"] = 300
 	main._sync_party_hp_from_heroes()
 	main.roaming_hunt.configure(Vector2(16, 10), 53032)
@@ -199,7 +219,7 @@ func _test_disengaged_actions_resume_support(main) -> void:
 	main.hero_skill_runtime["mira"]["cast"] = true
 	var origin: Vector2 = main.party_movement.positions["elisia"]
 	_steps(main, 1.0)
-	_check(main.hunt_ai.state == AutoHuntController.State.MOVING, "distant enemy naturally releases combat into patrol")
+	_check(main.hunt_ai.state == AutoHuntController.State.MOVING, "retained habitat hunting releases distant combat into patrol")
 	_check(main.hero_skill_runtime["elisia"]["windup"] < 0.0 and main.hero_skill_runtime["mira"]["windup"] < 0.0, "disengagement clears stale basic and offensive skill windups")
 	_check(main.hero_battle_state["leonhardt"]["hp"] > 300 and int(main.hero_skill_runtime["elisia"].get("casts_a1", 0)) == 1, "released healer can schedule and settle patrol healing")
 	_check(Vector2(main.party_movement.positions["elisia"]).distance_to(origin) > .1, "released healer rejoins movement instead of remaining frozen in attack anticipation")

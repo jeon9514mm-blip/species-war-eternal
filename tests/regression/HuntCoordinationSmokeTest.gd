@@ -46,7 +46,13 @@ func run() -> void:
 		var target: int=main.party_movement.hunt_slots[id].target
 		var goal: Vector2=main.party_movement.combat_goals[id].goal
 		check(main.field_navigation.is_walkable(goal),'attack goal is on walkable terrain')
-		check(goal.distance_to(main.roaming_hunt.enemy_position(target))<=main.combat_decisions.spatial_range(int(main.hero_battle_state[id].range))+.01,'reserved goal remains inside real attack reach')
+		var planned: Vector2=main.party_movement.combat_goals[id].planned_attack_goal
+		check(planned.distance_to(main.roaming_hunt.enemy_position(target))<=main.combat_decisions.spatial_range(int(main.hero_battle_state[id].range))+.01,'planned firing stance remains inside real attack reach')
+		check(goal.is_equal_approx(main.roaming_hunt.enemy_position(target)+Vector2(main.party_movement.hunt_slots[id].offset)) and goal==main.party_movement.goal_reservations[id],'reservation records the actual final movement destination')
+		if bool(main.party_movement.hunt_slots[id].in_range):
+			check(goal.distance_to(main.roaming_hunt.enemy_position(target))<=main.combat_decisions.spatial_range(int(main.hero_battle_state[id].range))+.01,'firing goal remains inside real attack reach')
+		else:
+			check(goal.distance_to(main.party_movement.formation_station(id,main.expedition_position))<=main.party_movement.formation_pursuit(id)+.01,'approach goal waits within its formation lane')
 	# Deliberately coincident walkers must yield to a fixed caster on both teams.
 	for id in ids:main.hero_skill_runtime[id].windup=-1;main.party_movement.positions[id]=Vector2(16,10)
 	main.hero_skill_runtime[ids[0]].windup=.2

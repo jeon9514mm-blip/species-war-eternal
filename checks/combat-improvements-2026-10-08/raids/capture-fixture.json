@@ -1,0 +1,99 @@
+{
+	"captures": [
+		{
+			"arena": "sky_court",
+			"boss_hp": 0,
+			"boss_max_hp": 0,
+			"file": "gray_meadow-ready.png",
+			"phase": 1,
+			"running": false,
+			"size": [
+				1280,
+				720
+			],
+			"zone": "gray_meadow"
+		},
+		{
+			"arena": "sky_court",
+			"boss_hp": 33989,
+			"boss_max_hp": 36000,
+			"file": "gray_meadow-running.png",
+			"phase": 1,
+			"running": true,
+			"size": [
+				1280,
+				720
+			],
+			"zone": "gray_meadow"
+		},
+		{
+			"arena": "amber_quarry",
+			"boss_hp": 33989,
+			"boss_max_hp": 36000,
+			"file": "forgotten_mine-ready.png",
+			"phase": 1,
+			"running": false,
+			"size": [
+				1280,
+				720
+			],
+			"zone": "forgotten_mine"
+		},
+		{
+			"arena": "amber_quarry",
+			"boss_hp": 69989,
+			"boss_max_hp": 72000,
+			"file": "forgotten_mine-running.png",
+			"phase": 1,
+			"running": true,
+			"size": [
+				1280,
+				720
+			],
+			"zone": "forgotten_mine"
+		},
+		{
+			"arena": "lunar_sanctum",
+			"boss_hp": 69989,
+			"boss_max_hp": 72000,
+			"file": "moonrest_forest-ready.png",
+			"phase": 1,
+			"running": false,
+			"size": [
+				1280,
+				720
+			],
+			"zone": "moonrest_forest"
+		},
+		{
+			"arena": "lunar_sanctum",
+			"boss_hp": 121989,
+			"boss_max_hp": 124000,
+			"file": "moonrest_forest-running.png",
+			"phase": 1,
+			"running": true,
+			"size": [
+				1280,
+				720
+			],
+			"zone": "moonrest_forest"
+		},
+		{
+			"arena": "lunar_sanctum",
+			"boss_hp": 121989,
+			"boss_max_hp": 124000,
+			"file": "moonrest_forest-small.png",
+			"phase": 1,
+			"running": true,
+			"size": [
+				960,
+				540
+			],
+			"zone": "moonrest_forest"
+		}
+	],
+	"fixture": "Actual PortraitMain/raid routes, 10 Aurelia heroes, Level60, Stage154; 0.60 seconds of actual raid simulation. Effects/sound disabled only in this UI/map review.",
+	"native_godot_pixels": true,
+	"performance_measurement": false,
+	"player_save_used": false
+}

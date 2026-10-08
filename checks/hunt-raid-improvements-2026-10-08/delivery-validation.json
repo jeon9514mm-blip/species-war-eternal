@@ -1,0 +1,98 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "gpu_mobile",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 14,
+  "total": 14,
+  "results": [
+    {
+      "test": "CompactRaidUiSmokeTest.gd",
+      "passed": true,
+      "seconds": 15.38,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nCOMPACT_RAID_UI checks=114 failures=[]\n"
+    },
+    {
+      "test": "GameplayReliabilitySmokeTest.gd",
+      "passed": true,
+      "seconds": 61.34,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nWARNING: 사냥 상태를 저장하지 못했습니다: injected_gameplay_write_failure\n   at: push_warning (core/variant/variant_utility.cpp:1033)\n   GDScript backtrace (most recent call first):\n       [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n       [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n       [2] _save_idle_state (res://scripts/app/Main.gd:1291)\n       [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:31)\n       [4] summon_once (res://scripts/progression/SummonService.gd:27)\n       [5] _summon_once (res://scripts/app/Main.gd:4986)\n       [6] _test_save_barrier (res://tests/regression/GameplayReliabilitySmokeTest.gd:53)\n       [7] _run (res://tests/regression/GameplayReliabilitySmokeTest.gd:19)\n       [8] make_main (res://tests/support/V83UpgradeTestBase.gd:35)\n       [9] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nnatural-productivity faction=aurelia packs=15 game_seconds=51.20 seconds_per_pack=3.413\nWARNING: 사냥 상태를 저장하지 못했습니다: injected_gameplay_write_failure\n   at: push_warning (core/variant/variant_utility.cpp:1033)\n   GDScript backtrace (most recent call first):\n       [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n       [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n       [2] _save_idle_state (res://scripts/app/Main.gd:1291)\n       [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:31)\n       [4] summon_once (res://scripts/progression/SummonService.gd:27)\n       [5] _summon_once (res://scripts/app/Main.gd:4986)\n       [6] _test_save_barrier (res://tests/regression/GameplayReliabilitySmokeTest.gd:53)\n       [7] _run (res://tests/regression/GameplayReliabilitySmokeTest.gd:19)\n       [8] make_main (res://tests/support/V83UpgradeTestBase.gd:35)\n       [9] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nnatural-productivity faction=noxfera packs=15 game_seconds=53.60 seconds_per_pack=3.573\ngameplay_reliability checks=137 failures=[]\n"
+    },
+    {
+      "test": "HuntFormationSpacingSmokeTest.gd",
+      "passed": true,
+      "seconds": 16.09,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nHUNT_FORMATION_SPACING checks=259 failures=[]\n"
+    },
+    {
+      "test": "HuntGoalReservationSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.28,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nHUNT_GOAL_RESERVATION checks=12 failures=[]\n"
+    },
+    {
+      "test": "Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "seconds": 15.56,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nMOBILE25D_SPEC checks=369 failures=[]\n"
+    },
+    {
+      "test": "MovementPacingSmokeTest.gd",
+      "passed": true,
+      "seconds": 12.34,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nMOVEMENT_PACING checks=38 failures=[]\n"
+    },
+    {
+      "test": "PresentationWallClockSmokeTest.gd",
+      "passed": true,
+      "seconds": 2.11,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\npresentation_wall_clock checks=11 failures=[]\n"
+    },
+    {
+      "test": "RaidBossPaintFramingSmokeTest.gd",
+      "passed": true,
+      "seconds": 13.52,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nRAID_BOSS_PAINT_FRAMING checks=681 failures=[]\n"
+    },
+    {
+      "test": "RaidContinuousMovementSmokeTest.gd",
+      "passed": true,
+      "seconds": 24.03,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nRAID_CROSSING {\"a\":[480.0,380.0],\"a_distance\":0.0,\"b\":[379.992797851563,380.006011962891],\"b_distance\":0.00938161183148623}\nRAID_CONTINUOUS aurelia/gray_meadow {\"max_rally_step\":10.25,\"natural_minimum\":71.9914474487305,\"natural_swept_minimum\":71.9914542404442,\"natural_traveled\":285.749926805496,\"rally_final_distance\":0.0,\"rally_initial_distance\":75.0}\nRAID_CONTINUOUS aurelia/forgotten_mine {\"max_rally_step\":10.25,\"natural_minimum\":71.9965515136719,\"natural_swept_minimum\":71.996552086275,\"natural_traveled\":0.0,\"rally_final_distance\":0.000030517578125,\"rally_initial_distance\":75.0}\nRAID_CONTINUOUS aurelia/moonrest_forest {\"max_rally_step\":10.25,\"natural_minimum\":71.9364852905273,\"natural_swept_minimum\":71.936490906273,\"natural_traveled\":169.660767316818,\"rally_final_distance\":0.0013427734375,\"rally_initial_distance\":75.0}\nRAID_CONTINUOUS noxfera/gray_meadow {\"max_rally_step\":10.25,\"natural_minimum\":71.9556350708008,\"natural_swept_minimum\":71.9556326049116,\"natural_traveled\":348.963948965073,\"rally_final_distance\":0.930044889450073,\"rally_initial_distance\":75.0}\nRAID_CONTINUOUS noxfera/forgotten_mine {\"max_rally_step\":10.25,\"natural_minimum\":71.9424438476563,\"natural_swept_minimum\":71.9424372970809,\"natural_traveled\":558.897811889648,\"rally_final_distance\":0.0,\"rally_initial_distance\":75.0}\nRAID_CONTINUOUS noxfera/moonrest_forest {\"max_rally_step\":10.2500038146973,\"natural_minimum\":71.9363784790039,\"natural_swept_minimum\":71.9269861042199,\"natural_traveled\":960.886901855469,\"rally_final_distance\":0.00659186765551567,\"rally_initial_distance\":75.0}\nRAID_CONTINUOUS_MOVEMENT checks=50 failures=[]\n"
+    },
+    {
+      "test": "RaidDedicatedArenaSmokeTest.gd",
+      "passed": true,
+      "seconds": 16.58,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nRAID_DEDICATED_ARENA checks=264 failures=[]\n"
+    },
+    {
+      "test": "RaidInputLifecycleSmokeTest.gd",
+      "passed": true,
+      "seconds": 18.88,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nRAID_INPUT_LIFECYCLE checks=54 failures=[]\n"
+    },
+    {
+      "test": "RaidProjectedSpacingSmokeTest.gd",
+      "passed": true,
+      "seconds": 21.5,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nRAID_PROJECTED_SPACING aurelia/gray_meadow {\"boss_min\":144.154830932617,\"factor\":0.786995208269458,\"farthest_attack_distance\":281.501312255859,\"lowest_after_3s\":71.9914855957031,\"median\":135.752059936523,\"min\":71.9914855957031,\"p10\":72.1097412109375}\nRAID_PROJECTED_SPACING aurelia/forgotten_mine {\"boss_min\":192.453063964844,\"factor\":0.710145539573338,\"farthest_attack_distance\":334.999237060547,\"lowest_after_3s\":71.9965515136719,\"median\":143.998291015625,\"min\":71.9965515136719,\"p10\":71.9983215332031}\nRAID_PROJECTED_SPACING aurelia/moonrest_forest {\"boss_min\":161.977157592773,\"factor\":0.786995208269458,\"farthest_attack_distance\":273.838958740234,\"lowest_after_3s\":71.9365081787109,\"median\":133.339553833008,\"min\":71.99365234375,\"p10\":71.9999694824219}\nRAID_PROJECTED_SPACING noxfera/gray_meadow {\"boss_min\":89.3017425537109,\"factor\":0.786995208269458,\"farthest_attack_distance\":276.123413085938,\"lowest_after_3s\":71.9556427001953,\"median\":138.265884399414,\"min\":71.9556427001953,\"p10\":72.0247802734375}\nRAID_PROJECTED_SPACING noxfera/forgotten_mine {\"boss_min\":122.417915344238,\"factor\":0.710145539573338,\"farthest_attack_distance\":312.531677246094,\"lowest_after_3s\":71.9423980712891,\"median\":139.104797363281,\"min\":71.9903106689453,\"p10\":72.1221237182617}\nRAID_PROJECTED_SPACING noxfera/moonrest_forest {\"boss_min\":147.325469970703,\"factor\":0.786995208269458,\"farthest_attack_distance\":313.375885009766,\"lowest_after_3s\":71.9363861083984,\"median\":168.043869018555,\"min\":71.9477005004883,\"p10\":72.2932281494141}\nRAID_PROJECTED_SPACING checks=342 failures=[]\n"
+    },
+    {
+      "test": "RaidRenderInterpolationSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.52,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nRAID_INTERPOLATION_SAMPLE {\"active\":true,\"after\":\"(8.841492, 4.941467)\",\"before\":\"(8.379953, 4.941467)\",\"engine_fraction\":0.158780000000027,\"fraction\":0.0,\"paused\":false,\"pending\":false,\"shown\":\"(8.404381, 4.941467)\",\"suspended\":false,\"visible\":true}\nRAID_INTERPOLATION_SAMPLE {\"active\":true,\"after\":\"(8.841492, 4.941467)\",\"before\":\"(8.379953, 4.941467)\",\"engine_fraction\":0.158780000000027,\"fraction\":0.33,\"paused\":false,\"pending\":false,\"shown\":\"(8.556688, 4.941467)\",\"suspended\":false,\"visible\":true}\nRAID_INTERPOLATION_SAMPLE {\"active\":true,\"after\":\"(8.841492, 4.941467)\",\"before\":\"(8.379953, 4.941467)\",\"engine_fraction\":0.158780000000027,\"fraction\":0.66,\"paused\":false,\"pending\":false,\"shown\":\"(8.708997, 4.941467)\",\"suspended\":false,\"visible\":true}\nRAID_INTERPOLATION_SAMPLE {\"active\":true,\"after\":\"(8.841492, 4.941467)\",\"before\":\"(8.379953, 4.941467)\",\"engine_fraction\":0.158780000000027,\"fraction\":1.0,\"paused\":false,\"pending\":false,\"shown\":\"(8.841492, 4.941467)\",\"suspended\":false,\"visible\":true}\nRAID_RENDER_INTERPOLATION checks=16 failures=[]\n"
+    },
+    {
+      "test": "V53HuntSupportSmokeTest.gd",
+      "passed": true,
+      "seconds": 7.98,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nv53_hunt_support checks=73 failures=0\n"
+    }
+  ]
+}

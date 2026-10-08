@@ -1,0 +1,20 @@
+{
+  "player_save_used": false,
+  "performance_measurement": false,
+  "results": [
+    {
+      "script": "res://tests/regression/RaidBossPaintFramingSmokeTest.gd",
+      "native": false,
+      "passed": true,
+      "seconds": 8.969,
+      "returncode": 0
+    },
+    {
+      "script": "res://tests/regression/RaidDedicatedArenaSmokeTest.gd",
+      "native": false,
+      "passed": true,
+      "seconds": 10.468,
+      "returncode": 0
+    }
+  ]
+}

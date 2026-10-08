@@ -1,0 +1,21 @@
+{
+  "sources": {
+    "scripts/app/Main.gd": "71fa144515626ac22d4d48fbc84ee9067864c30b7c7c14117b7211d4cd090218",
+    "scripts/art/RaidArenaBattlefield.gd": "c68caa81d420e9d365425a0312287c041e8d67f7d8a222aff04b613ce79c5323",
+    "scripts/maps3d/RaidEncounterArena.gd": "08a4e3b7c97df5629cc23aa67f6eca45d435a34c19733d2bbc62868e6066c6fa",
+    "shaders/RaidArenaPBR.gdshader": "1951bcb01e6a5a9d6fec4cd6fe1f2d46bc7d301e3e14fd3466e789fbafc1d589",
+    "scripts/maps3d/Battlefield3DView.gd": "3848d810ba7fa1ca4102d94a9875c60cf05abf7263166ec16db57a276a19f2e6",
+    "scripts/maps3d/HeroCircleFormation.gd": "0650de732d3feab1894ee4d1508793382468652841ce0de011db577fcd919dad",
+    "scripts/raid/RaidBattlefield.gd": "e26583c7102ca374762c4820ed902fba7e46b9a30db4df0eb11a36f5d8667bc1",
+    "scripts/portrait/PortraitRaid.gd": "d0d64102882dcbdfb9b518c58cebc14dd8ec81564c5acde7b8ba471b3ef93b2f"
+  },
+  "native_images": {
+    "forgotten_mine-ready.png": "fe01618aedd13a5d309af9cf0d641f5fd0f0aacbdc19869c6a64cd0af47f11c1",
+    "forgotten_mine-running.png": "99ae27403483bfb56bf584f212acfe3d8f398fd37be993976fa922d8d9c3d8df",
+    "gray_meadow-ready.png": "993ba8a6c985b18c5e189ec4ac3417d62eca65ce06dd273016d4b09323477901",
+    "gray_meadow-running.png": "f12650ac691db3a3751c69fafd64429a47e78918290942110ca18ac3720cdbc3",
+    "moonrest_forest-ready.png": "6c494c6582bfd288ecfecb7f4043c9b16f4e7bde42c54961f673df296b516756",
+    "moonrest_forest-running.png": "2db746cb84f166d884b2b7c5ab4197b8de905a3e464f0c76ac3efbb0f7fedad7",
+    "moonrest_forest-small.png": "ad2cd9f62dfe059b0e4c42e498ab7108e361f21541036f0c06233565dfaa68ab"
+  }
+}

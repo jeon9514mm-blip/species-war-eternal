@@ -1,0 +1,26 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 0,
+  "total": 2,
+  "results": [
+    {
+      "test": "RaidContinuousMovementSmokeTest.gd",
+      "passed": false,
+      "seconds": 22.09,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: noxfera/moonrest_forest manual rally makes progress instead of freezing a crowded party\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] run (res://tests/regression/RaidContinuousMovementSmokeTest.gd:100)\n       [2] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nRAID_CONTINUOUS_MOVEMENT checks=44 failures=[\"noxfera/moonrest_forest manual rally makes progress instead of freezing a crowded party\"]\n"
+    },
+    {
+      "test": "RaidProjectedSpacingSmokeTest.gd",
+      "passed": false,
+      "seconds": 16.44,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_PROJECTED_SPACING aurelia/gray_meadow {\"boss_min\":143.45588684082,\"factor\":0.786995208269458,\"farthest_attack_distance\":263.032867431641,\"lowest_after_3s\":71.99365234375,\"median\":136.906204223633,\"min\":71.99365234375,\"p10\":72.0268783569336}\nRAID_PROJECTED_SPACING aurelia/forgotten_mine {\"boss_min\":208.674285888672,\"factor\":0.710145539573338,\"farthest_attack_distance\":339.887756347656,\"lowest_after_3s\":71.9473037719727,\"median\":132.227264404297,\"min\":71.9473037719727,\"p10\":71.9984588623047}\nERROR: aurelia/forgotten_mine all ten heroes remain able to attack instead of being parked out of range\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] run (res://tests/regression/RaidProjectedSpacingSmokeTest.gd:54)\n       [2] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nRAID_PROJECTED_SPACING aurelia/moonrest_forest {\"boss_min\":161.977157592773,\"factor\":0.786995208269458,\"farthest_attack_distance\":274.343811035156,\"lowest_after_3s\":71.956169128418,\"median\":138.771362304688,\"min\":71.99365234375,\"p10\":71.9999542236328}\nRAID_PROJECTED_SPACING noxfera/gray_meadow {\"boss_min\":82.6148300170898,\"factor\":0.786995208269458,\"farthest_attack_distance\":272.310211181641,\"lowest_after_3s\":71.9358673095703,\"median\":140.638702392578,\"min\":71.9358673095703,\"p10\":71.9819259643555}\nRAID_PROJECTED_SPACING noxfera/forgotten_mine {\"boss_min\":122.364212036133,\"factor\":0.710145539573338,\"farthest_attack_distance\":322.182250976563,\"lowest_after_3s\":71.9431915283203,\"median\":140.735870361328,\"min\":71.9436111450195,\"p10\":72.1143264770508}\nRAID_PROJECTED_SPACING noxfera/moonrest_forest {\"boss_min\":146.799057006836,\"factor\":0.786995208269458,\"farthest_attack_distance\":295.689239501953,\"lowest_after_3s\":71.9537658691406,\"median\":141.24446105957,\"min\":71.9537658691406,\"p10\":72.1730041503906}\nRAID_PROJECTED_SPACING checks=342 failures=[\"aurelia/forgotten_mine all ten heroes remain able to attack instead of being parked out of range\"]\n"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 3,
+  "total": 3,
+  "results": [
+    {
+      "test": "CompactRaidUiSmokeTest.gd",
+      "passed": true,
+      "seconds": 10.45,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nCOMPACT_RAID_UI checks=114 failures=[]\n"
+    },
+    {
+      "test": "RaidCombatQualitySmokeTest.gd",
+      "passed": true,
+      "seconds": 8.88,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nraid_combat_quality checks=35 failures=[]\n"
+    },
+    {
+      "test": "RaidInputLifecycleSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.41,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRAID_INPUT_LIFECYCLE checks=54 failures=[]\n"
+    }
+  ]
+}

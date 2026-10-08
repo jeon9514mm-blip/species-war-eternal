@@ -96,7 +96,8 @@ def main():
             # Two full 180-second simulated 10-hero runs include live UI and save updates.
             # The pattern audit runs twelve natural battles, including six full
             # 90-second weekly rotations; keep their complete simulation steps.
-            timeout_seconds = 600 if script.stem in {"V26CombatSoakSmokeTest", "V27BalanceMatrixSmokeTest", "V27BossLifecycleSmokeTest", "V835PatternBattleSmokeTest"} else 180
+            # Six 120-second hunt fixtures also need the long-running allowance.
+            timeout_seconds = 600 if script.stem in {"V26CombatSoakSmokeTest", "V27BalanceMatrixSmokeTest", "V27BossLifecycleSmokeTest", "V835PatternBattleSmokeTest", "HuntCrowdFlowSmokeTest"} else 180
             command = [binary] + (['--rendering-method', args.rendering_method, '--audio-driver', 'Dummy'] if args.gpu else ['--headless']) + ['--path', str(project), '--script', resource_path(project, script)]
             startup = None
             if args.gpu and sys.platform == 'win32':

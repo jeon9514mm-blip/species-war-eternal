@@ -1,0 +1,223 @@
+{
+  "scope": "Every new and changed GDScript at final review",
+  "passed": 36,
+  "total": 36,
+  "results": [
+    {
+      "script": "scripts/app/Main.gd",
+      "passed": true,
+      "sha256": "71fa144515626ac22d4d48fbc84ee9067864c30b7c7c14117b7211d4cd090218",
+      "output": ""
+    },
+    {
+      "script": "scripts/art/RaidArenaBattlefield.gd",
+      "passed": true,
+      "sha256": "c68caa81d420e9d365425a0312287c041e8d67f7d8a222aff04b613ce79c5323",
+      "output": ""
+    },
+    {
+      "script": "scripts/art/RaidPresentationV2.gd",
+      "passed": true,
+      "sha256": "adc6fdbdfb0d654a03f2ce76f9f17be9ba390f5a98576a7bf89f22fd417117f9",
+      "output": ""
+    },
+    {
+      "script": "scripts/combat/BattleFormation.gd",
+      "passed": true,
+      "sha256": "70ba055108e58abceba5e98cc96f4555f637f4fb09a1ef0f7786269a77c2dd9e",
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/HuntBodyCollision.gd",
+      "passed": true,
+      "sha256": "23e1ed271a7c6bbfd5e018ec459048b35e2406c79fd10d0d5fb85fa14898dc36",
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/HuntPositionPlanner.gd",
+      "passed": true,
+      "sha256": "63939e82735a4eff0d354632d73afe20fac5787809505f4caaba760a8b106065",
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/HuntProductivity.gd",
+      "passed": true,
+      "sha256": "01b23ae80afa0a6d7ae58972db2a8ae0fd4d4f912d22dfc2727c8f372c5369c9",
+      "output": ""
+    },
+    {
+      "script": "scripts/hunting/PartyMovementDirector.gd",
+      "passed": true,
+      "sha256": "17e98ba9eac2e3f97eef72f99a5070203201980de4b3e8362463d27518587ce3",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/Battlefield3DView.gd",
+      "passed": true,
+      "sha256": "3848d810ba7fa1ca4102d94a9875c60cf05abf7263166ec16db57a276a19f2e6",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/HeroCircleFormation.gd",
+      "passed": true,
+      "sha256": "0650de732d3feab1894ee4d1508793382468652841ce0de011db577fcd919dad",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/RaidEncounterArena.gd",
+      "passed": true,
+      "sha256": "08a4e3b7c97df5629cc23aa67f6eca45d435a34c19733d2bbc62868e6066c6fa",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/RaidFinalAtmosphere.gd",
+      "passed": true,
+      "sha256": "94c0c941b94fb9b3069184f4c5021c6dbef3580de710c103b2efa9c181f90a30",
+      "output": ""
+    },
+    {
+      "script": "scripts/persistence/BackgroundHunt.gd",
+      "passed": true,
+      "sha256": "47fa12e8cdfd8e437db2c1d80cc6d9a622e2687e68a5fd9d031fd9f4ee596434",
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitRaid.gd",
+      "passed": true,
+      "sha256": "d0d64102882dcbdfb9b518c58cebc14dd8ec81564c5acde7b8ba471b3ef93b2f",
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/RaidSelectionIndicator.gd",
+      "passed": true,
+      "sha256": "b5d5a4095bc5be3cadc90b0942780e56986a5f2657e4fc634d7dd13439bacef5",
+      "output": ""
+    },
+    {
+      "script": "scripts/presentation/PresentationRuntime.gd",
+      "passed": true,
+      "sha256": "9dbfd5d7f820516872e1daab31e944e6646aa81c944b8f48a642d42ed67368f4",
+      "output": ""
+    },
+    {
+      "script": "scripts/raid/RaidBattlefield.gd",
+      "passed": true,
+      "sha256": "e26583c7102ca374762c4820ed902fba7e46b9a30db4df0eb11a36f5d8667bc1",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/GameplayReliabilitySmokeTest.gd",
+      "passed": true,
+      "sha256": "9cd2065d3482c26bb76da1573779e13bc685b08bbfabdeef1ae39714eca9ff04",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HuntActorLifetimeSmokeTest.gd",
+      "passed": true,
+      "sha256": "b70fc056729be6c26a5a98b9edede7806b6133eae1ebea51324bddaca844d7be",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HuntCoordinationSmokeTest.gd",
+      "passed": true,
+      "sha256": "72c7b13cb98170424ac290ceed5c0133dc5d959973358b0b6f73b3b24ad00964",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HuntCrowdFlowSmokeTest.gd",
+      "passed": true,
+      "sha256": "1cc7f405720fd707b2918909d6f5c7f606f4a632dc0881dab98708dfa187e2e9",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HuntFormationSpacingSmokeTest.gd",
+      "passed": true,
+      "sha256": "6a43f67447ba07f2440a0839cd64613b35c811d9474ba538592a6565732bd723",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HuntGoalReservationSmokeTest.gd",
+      "passed": true,
+      "sha256": "69f519d96287e6dfcb4c1458d0c29c3bb31a6d8b7ddf5ce46318df92d7412d9a",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/Mobile25dSpecSmokeTest.gd",
+      "passed": true,
+      "sha256": "f1c52896990c531eea72a954ec94e37d53a0cdce7405971b4138f6d7eed61728",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/PresentationWallClockSmokeTest.gd",
+      "passed": true,
+      "sha256": "3b402fd774743fbc33f2f80473f522b8bb962b5f837c72446f4bdd8adc696e3f",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/RaidCombatQualitySmokeTest.gd",
+      "passed": true,
+      "sha256": "ee3c77b24c36e27122e69d41cd30dbba675fac2ff373434d002343b58144583e",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/RaidContinuousMovementSmokeTest.gd",
+      "passed": true,
+      "sha256": "b63dfb112847057b5059e093d9af355f25e1e2dae1d76a3e19d5fe5206b58fd2",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/RaidDedicatedArenaSmokeTest.gd",
+      "passed": true,
+      "sha256": "45a5fdda107bc966cba70b91e2c396cf428b73d3b1d578b34e6a64b28fc0e89b",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/RaidInputLifecycleSmokeTest.gd",
+      "passed": true,
+      "sha256": "d35f523e237693e8886a7369722f767f7d0d6da9a2dbc86508648e10fe206ebe",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/RaidRenderInterpolationSmokeTest.gd",
+      "passed": true,
+      "sha256": "13bf8695fdff531854e740c59833415aa07af04585663089ee717bf40680d7ba",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/V53HuntSupportSmokeTest.gd",
+      "passed": true,
+      "sha256": "57be657c16d230322090de9df7b336ea9dbf92b067c44318e650216540c9b298",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/combat-improvements-2026-10-08/CaptureRaidArenas.gd",
+      "passed": true,
+      "sha256": "2eae9f2b701d742061444fa11e8549e601359fd5498ccf905f7afd5b7eb95dbf",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/gameplay-field-2026-10-08/HuntHealthBarProbe.gd",
+      "passed": true,
+      "sha256": "3eeffc966fb72cf5ffae98c2d4064143d942b2b8bbfe1079c4eea8f7bc3a8bd5",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/gameplay-field-2026-10-08/HuntNativeHealthProbe.gd",
+      "passed": true,
+      "sha256": "b3b39c308f09b6266c3901dcf6584a65c848e86cfc5f82303f2a9868a52298b7",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/gameplay-field-2026-10-08/RaidMovementPacingProbe.gd",
+      "passed": true,
+      "sha256": "59c8dc7c25dc516882f25c922dbf2d76050eed49c43469c83b97ce1f53bd1915",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/hunt-raid-improvements-2026-10-08/CaptureHuntFormations.gd",
+      "passed": true,
+      "sha256": "d85a47aec0d6d1449e424e31aa40f19ac65ef7da15952a606018e5e3eeeb8206",
+      "output": ""
+    }
+  ]
+}

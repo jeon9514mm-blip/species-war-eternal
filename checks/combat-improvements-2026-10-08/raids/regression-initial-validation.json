@@ -1,0 +1,41 @@
+{
+  "player_save_used": false,
+  "performance_measurement": false,
+  "results": [
+    {
+      "script": "res://tests/regression/RaidDedicatedArenaSmokeTest.gd",
+      "native": false,
+      "passed": true,
+      "seconds": 10.282,
+      "returncode": 0
+    },
+    {
+      "script": "res://tests/regression/RaidTouchLayoutSmokeTest.gd",
+      "native": false,
+      "passed": true,
+      "seconds": 36.218,
+      "returncode": 0
+    },
+    {
+      "script": "res://tests/regression/RaidBossPaintFramingSmokeTest.gd",
+      "native": false,
+      "passed": true,
+      "seconds": 9.547,
+      "returncode": 0
+    },
+    {
+      "script": "res://tests/regression/RaidDesignSmokeTest.gd",
+      "native": false,
+      "passed": false,
+      "seconds": 5.906,
+      "returncode": 2
+    },
+    {
+      "script": "res://tests/regression/FinalEnvironmentSmokeTest.gd",
+      "native": false,
+      "passed": true,
+      "seconds": 8.625,
+      "returncode": 0
+    }
+  ]
+}

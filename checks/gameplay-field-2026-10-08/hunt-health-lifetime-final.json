@@ -1,0 +1,26 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 2,
+  "total": 2,
+  "results": [
+    {
+      "test": "HuntActorLifetimeSmokeTest.gd",
+      "passed": true,
+      "seconds": 13.88,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_ACTOR_LIFETIME checks=34 failures=[]\n"
+    },
+    {
+      "test": "MenuHuntReliabilitySmokeTest.gd",
+      "passed": true,
+      "seconds": 24.09,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nWARNING: 사냥 상태를 저장하지 못했습니다: injected_menu_save_failure\n   at: push_warning (core/variant/variant_utility.cpp:1033)\n   GDScript backtrace (most recent call first):\n       [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n       [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n       [2] _save_idle_state (res://scripts/app/Main.gd:1291)\n       [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:31)\n       [4] run (res://tests/regression/MenuHuntReliabilitySmokeTest.gd:62)\n       [5] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nWARNING: 사냥 상태를 저장하지 못했습니다: injected_menu_save_failure\n   at: push_warning (core/variant/variant_utility.cpp:1033)\n   GDScript backtrace (most recent call first):\n       [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n       [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n       [2] _save_idle_state (res://scripts/app/Main.gd:1291)\n       [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:31)\n       [4] run (res://tests/regression/MenuHuntReliabilitySmokeTest.gd:62)\n       [5] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nMENU_HUNT_RELIABILITY checks=40 failures=[]\n"
+    }
+  ]
+}

@@ -8,7 +8,7 @@ func _draw() -> void:
 	var actor: Node2D=raid.hero_actors.get(raid.selected_hero_id)
 	if not is_instance_valid(actor) or float(raid.game.hero_battle_state.get(raid.selected_hero_id,{}).get('hp',0))<=0:return
 	var view=raid.battlefield_3d
-	var foot: Vector2=view.project_world(view.raid_to_world(actor.position))
+	var foot: Vector2=view.project_world(view.raid_display_world(actor,actor.position))
 	var head: Vector2=foot+view.actor_head_offset(actor)-Vector2(0,12)
 	var gold:=Color('#ffe1a0')
 	var arrow:=PackedVector2Array([head+Vector2(-9,-8),head+Vector2(9,-8),head+Vector2(0,3)])

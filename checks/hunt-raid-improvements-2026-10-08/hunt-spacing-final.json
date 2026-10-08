@@ -1,0 +1,48 @@
+{
+  "passed": 6,
+  "total": 7,
+  "rows": [
+    {
+      "script": "tests/regression/HuntFormationSpacingSmokeTest.gd",
+      "passed": true,
+      "seconds": 11.125,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_FORMATION_SPACING checks=251 failures=[]\n"
+    },
+    {
+      "script": "tests/regression/HuntCrowdFlowSmokeTest.gd",
+      "passed": true,
+      "seconds": 216.125,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_CROWD_FLOW_METRICS [{\"actions\":{\"astel\":44,\"caelum\":36,\"darius\":39,\"elisia\":37,\"kairen\":45,\"leonhardt\":60,\"lunea\":36,\"mira\":18,\"orwin\":55,\"seria\":35},\"corner_max_world_shift\":0.059999942779541,\"corps_cleared\":12,\"enemy_target_heroes\":10,\"faction\":\"aurelia\",\"formation\":\"balanced\",\"healing\":14353,\"heroes_with_actions\":10,\"minimum_living_heroes\":10,\"overlap_frames\":0,\"seconds\":120,\"zone\":\"gray_meadow\"},{\"actions\":{\"astel\":55,\"caelum\":46,\"darius\":49,\"elisia\":47,\"kairen\":50,\"leonhardt\":65,\"lunea\":43,\"mira\":33,\"orwin\":62,\"seria\":36},\"corner_max_world_shift\":0.059999942779541,\"corps_cleared\":9,\"enemy_target_heroes\":10,\"faction\":\"aurelia\",\"formation\":\"assault\",\"healing\":13707,\"heroes_with_actions\":10,\"minimum_living_heroes\":10,\"overlap_frames\":0,\"seconds\":120,\"zone\":\"forgotten_mine\"},{\"actions\":{\"astel\":69,\"caelum\":64,\"darius\":60,\"elisia\":61,\"kairen\":73,\"leonhardt\":77,\"lunea\":60,\"mira\":46,\"orwin\":68,\"seria\":54},\"corner_max_world_shift\":0.059999942779541,\"corps_cleared\":7,\"enemy_target_heroes\":10,\"faction\":\"aurelia\",\"formation\":\"bulwark\",\"healing\":18416,\"heroes_with_actions\":10,\"minimum_living_heroes\":10,\"overlap_frames\":0,\"seconds\":120,\"zone\":\"moonrest_forest\"},{\"actions\":{\"bron\":75,\"fenris\":31,\"garm\":70,\"isolde\":57,\"morgas\":42,\"nyx\":38,\"ragna\":32,\"ulric\":41,\"valeria\":24,\"veyra\":29},\"corner_max_world_shift\":0.059999942779541,\"corps_cleared\":11,\"enemy_target_heroes\":10,\"faction\":\"noxfera\",\"formation\":\"volley\",\"healing\":12831,\"heroes_with_actions\":10,\"minimum_living_heroes\":10,\"overlap_frames\":0,\"seconds\":120,\"zone\":\"gray_meadow\"},{\"actions\":{\"bron\":73,\"fenris\":51,\"garm\":68,\"isolde\":47,\"morgas\":40,\"nyx\":42,\"ragna\":46,\"ulric\":51,\"valeria\":33,\"veyra\":36},\"corner_max_world_shift\":0.059999942779541,\"corps_cleared\":8,\"enemy_target_heroes\":10,\"faction\":\"noxfera\",\"formation\":\"balanced\",\"healing\":15401,\"heroes_with_actions\":10,\"minimum_living_heroes\":10,\"overlap_frames\":0,\"seconds\":120,\"zone\":\"forgotten_mine\"},{\"actions\":{\"bron\":87,\"fenris\":62,\"garm\":73,\"isolde\":58,\"morgas\":60,\"nyx\":45,\"ragna\":49,\"ulric\":65,\"valeria\":34,\"veyra\":41},\"corner_max_world_shift\":0.059999942779541,\"corps_cleared\":7,\"enemy_target_heroes\":10,\"faction\":\"noxfera\",\"formation\":\"assault\",\"healing\":17293,\"heroes_with_actions\":10,\"minimum_living_heroes\":10,\"overlap_frames\":0,\"seconds\":120,\"zone\":\"moonrest_forest\"}]\nHUNT_CROWD_FLOW checks=108 failures=[]\n"
+    },
+    {
+      "script": "tests/regression/HuntBodyCollisionMathSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.812,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nhunt_body_collision_math_smoke_test_ok checks=10 pair_samples=75000 failures=[]\n"
+    },
+    {
+      "script": "tests/regression/HuntCoordinationSmokeTest.gd",
+      "passed": false,
+      "seconds": 9.266,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHUNT_COORDINATION checks=49 failures=[\"reserved goal remains inside real attack reach\",\"reserved goal remains inside real attack reach\"]\nERROR: reserved goal remains inside real attack reach\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] run (res://tests/regression/HuntCoordinationSmokeTest.gd:49)\n       [2] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nERROR: reserved goal remains inside real attack reach\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] run (res://tests/regression/HuntCoordinationSmokeTest.gd:49)\n       [2] settle (res://tests/support/V83UpgradeTestBase.gd:13)\n"
+    },
+    {
+      "script": "tests/regression/IndependentHuntSmokeTest.gd",
+      "passed": true,
+      "seconds": 26.562,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nINDEPENDENT_HUNT_METRICS [{\"constrained\":{\"farthest\":1.97129797935486,\"spread\":1.90923018124368,\"targets\":8},\"faction\":\"aurelia\",\"individual\":{\"farthest\":4.00000095367432,\"spread\":3.84712345997492,\"targets\":9},\"natural\":{\"cycles\":2,\"enemy_contacts\":1,\"hero_hp_removed\":0,\"monster_targets\":3}},{\"constrained\":{\"farthest\":1.98084592819214,\"spread\":2.0275086581707,\"targets\":8},\"faction\":\"noxfera\",\"individual\":{\"farthest\":3.99999952316284,\"spread\":3.97688612937927,\"targets\":8},\"natural\":{\"cycles\":2,\"enemy_contacts\":9,\"hero_hp_removed\":77,\"monster_targets\":3}}]\nINDEPENDENT_HUNT checks=111 failures=[]\n"
+    },
+    {
+      "script": "tests/regression/V8362FormationDisplaySmokeTest.gd",
+      "passed": true,
+      "seconds": 14.375,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv8362_formation_display checks=90 failures=[]\n"
+    },
+    {
+      "script": "tests/regression/MultiDirectionHuntSmokeTest.gd",
+      "passed": true,
+      "seconds": 53.532,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nmultidirection_hunt checks=4391 failures=[]\n"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 2,
+  "total": 3,
+  "results": [
+    {
+      "test": "MovementPacingSmokeTest.gd",
+      "passed": true,
+      "seconds": 8.62,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nMOVEMENT_PACING checks=38 failures=[]\n"
+    },
+    {
+      "test": "PresentationWallClockSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.44,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\npresentation_wall_clock checks=11 failures=[]\n"
+    },
+    {
+      "test": "RaidRenderInterpolationSmokeTest.gd",
+      "passed": false,
+      "seconds": 8.05,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nERROR: movement progresses between fixed physics steps 0.33\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] run (res://tests/regression/RaidRenderInterpolationSmokeTest.gd:33)\n       [2] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nERROR: movement progresses between fixed physics steps 0.66\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] run (res://tests/regression/RaidRenderInterpolationSmokeTest.gd:33)\n       [2] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nRAID_RENDER_INTERPOLATION checks=16 failures=[\"movement progresses between fixed physics steps 0.33\",\"movement progresses between fixed physics steps 0.66\"]\n"
+    }
+  ]
+}

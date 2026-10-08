@@ -1,0 +1,611 @@
+{
+	"fastest_allowed_combat_coordinate_step": 10.25,
+	"gpu_fps_measurement": false,
+	"maximum_rally_speed": 205,
+	"normal_role_speed": 128,
+	"real_production_raid_geometry": true,
+	"renderer": "headless_dummy",
+	"results": [
+		{
+			"boss_clearance": 114.359016418457,
+			"faction": "aurelia",
+			"factor": 0.786995208269458,
+			"final_boss": [
+				593.594055175781,
+				380.0
+			],
+			"final_min_logical_gap": 71.991455078125,
+			"final_positions": {
+				"astel": {
+					"attack_distance": 259.7177734375,
+					"position": [
+						352.269958496094,
+						476.0
+					]
+				},
+				"caelum": {
+					"attack_distance": 233.562362670898,
+					"position": [
+						374.417724609375,
+						299.296142578125
+					]
+				},
+				"darius": {
+					"attack_distance": 236.45295715332,
+					"position": [
+						357.178192138672,
+						384.188049316406
+					]
+				},
+				"elisia": {
+					"attack_distance": 99.370979309082,
+					"position": [
+						504.755096435547,
+						335.477752685547
+					]
+				},
+				"kairen": {
+					"attack_distance": 100.519668579102,
+					"position": [
+						504.718658447266,
+						426.961334228516
+					]
+				},
+				"leonhardt": {
+					"attack_distance": 184.343383789063,
+					"position": [
+						418.793365478516,
+						321.457672119141
+					]
+				},
+				"lunea": {
+					"attack_distance": 281.501312255859,
+					"position": [
+						315.269683837891,
+						422.172760009766
+					]
+				},
+				"mira": {
+					"attack_distance": 154.415832519531,
+					"position": [
+						463.079315185547,
+						297.476348876953
+					]
+				},
+				"orwin": {
+					"attack_distance": 156.024932861328,
+					"position": [
+						463.053527832031,
+						465.457305908203
+					]
+				},
+				"seria": {
+					"attack_distance": 170.984100341797,
+					"position": [
+						425.680633544922,
+						412.259033203125
+					]
+				}
+			},
+			"hero_clearance": 91.4872131347656,
+			"largest": {
+				"after": [
+					373.752838134766,
+					338.657897949219
+				],
+				"before": [
+					372.621826171875,
+					332.358612060547
+				],
+				"id": "caelum",
+				"logical_pixels": 5.26746225357056,
+				"step": 24
+			},
+			"max_combat_coordinate_step": 6.40001487731934,
+			"max_logical_pixel_step": 10.0523071289063,
+			"max_step_after_3_seconds": 0.0,
+			"seconds": 6.0,
+			"steps_above_fastest_205px_per_second": 0,
+			"zone": "gray_meadow"
+		},
+		{
+			"boss_clearance": 126.734580993652,
+			"faction": "aurelia",
+			"factor": 0.710145539573338,
+			"final_boss": [
+				651.290100097656,
+				400.722717285156
+			],
+			"final_min_logical_gap": 71.9965515136719,
+			"final_positions": {
+				"astel": {
+					"attack_distance": 291.781311035156,
+					"position": [
+						369.386474609375,
+						476.0
+					]
+				},
+				"caelum": {
+					"attack_distance": 303.015655517578,
+					"position": [
+						369.228118896484,
+						290.0
+					]
+				},
+				"darius": {
+					"attack_distance": 329.768341064453,
+					"position": [
+						323.218566894531,
+						434.132751464844
+					]
+				},
+				"elisia": {
+					"attack_distance": 151.066421508789,
+					"position": [
+						516.744445800781,
+						332.031158447266
+					]
+				},
+				"kairen": {
+					"attack_distance": 138.428771972656,
+					"position": [
+						516.777099609375,
+						433.414886474609
+					]
+				},
+				"leonhardt": {
+					"attack_distance": 256.499267578125,
+					"position": [
+						419.919525146484,
+						290.0
+					]
+				},
+				"lunea": {
+					"attack_distance": 334.999237060547,
+					"position": [
+						323.260314941406,
+						332.7451171875
+					]
+				},
+				"mira": {
+					"attack_distance": 211.904693603516,
+					"position": [
+						470.613372802734,
+						290.0
+					]
+				},
+				"orwin": {
+					"attack_distance": 195.584014892578,
+					"position": [
+						470.77294921875,
+						476.0
+					]
+				},
+				"seria": {
+					"attack_distance": 243.156692504883,
+					"position": [
+						420.079132080078,
+						476.0
+					]
+				}
+			},
+			"hero_clearance": 101.387664794922,
+			"largest": {},
+			"max_combat_coordinate_step": 0.0,
+			"max_logical_pixel_step": 0.0,
+			"max_step_after_3_seconds": 0.0,
+			"seconds": 6.0,
+			"steps_above_fastest_205px_per_second": 0,
+			"zone": "forgotten_mine"
+		},
+		{
+			"boss_clearance": 114.359016418457,
+			"faction": "aurelia",
+			"factor": 0.786995208269458,
+			"final_boss": [
+				605.33642578125,
+				381.960632324219
+			],
+			"final_min_logical_gap": 71.9936370849609,
+			"final_positions": {
+				"astel": {
+					"attack_distance": 234.18049621582,
+					"position": [
+						382.377716064453,
+						453.584106445313
+					]
+				},
+				"caelum": {
+					"attack_distance": 248.758941650391,
+					"position": [
+						374.199554443359,
+						290.0
+					]
+				},
+				"darius": {
+					"attack_distance": 271.239410400391,
+					"position": [
+						338.205993652344,
+						428.994232177734
+					]
+				},
+				"elisia": {
+					"attack_distance": 110.006874084473,
+					"position": [
+						504.905334472656,
+						337.070678710938
+					]
+				},
+				"kairen": {
+					"attack_distance": 110.706535339355,
+					"position": [
+						504.910400390625,
+						428.5498046875
+					]
+				},
+				"leonhardt": {
+					"attack_distance": 206.951248168945,
+					"position": [
+						419.939392089844,
+						290.0
+					]
+				},
+				"lunea": {
+					"attack_distance": 273.838958740234,
+					"position": [
+						335.122100830078,
+						337.553497314453
+					]
+				},
+				"mira": {
+					"attack_distance": 167.211959838867,
+					"position": [
+						465.682983398438,
+						290.0
+					]
+				},
+				"orwin": {
+					"attack_distance": 151.317276000977,
+					"position": [
+						458.903350830078,
+						420.095550537109
+					]
+				},
+				"seria": {
+					"attack_distance": 189.778579711914,
+					"position": [
+						415.717437744141,
+						389.741973876953
+					]
+				}
+			},
+			"hero_clearance": 91.4872131347656,
+			"largest": {
+				"after": [
+					423.821136474609,
+					429.817810058594
+				],
+				"before": [
+					422.722381591797,
+					436.122802734375
+				],
+				"id": "seria",
+				"logical_pixels": 5.25471448898315,
+				"step": 7
+			},
+			"max_combat_coordinate_step": 6.40001535415649,
+			"max_logical_pixel_step": 7.96532344818115,
+			"max_step_after_3_seconds": 6.4000129699707,
+			"seconds": 6.0,
+			"steps_above_fastest_205px_per_second": 0,
+			"zone": "moonrest_forest"
+		},
+		{
+			"boss_clearance": 114.359016418457,
+			"faction": "noxfera",
+			"factor": 0.786995208269458,
+			"final_boss": [
+				607.641357421875,
+				387.819091796875
+			],
+			"final_min_logical_gap": 71.9556350708008,
+			"final_positions": {
+				"bron": {
+					"attack_distance": 98.4675827026367,
+					"position": [
+						510.95654296875,
+						406.471496582031
+					]
+				},
+				"fenris": {
+					"attack_distance": 201.350997924805,
+					"position": [
+						425.831604003906,
+						474.349090576172
+					]
+				},
+				"garm": {
+					"attack_distance": 274.612152099609,
+					"position": [
+						336.652557373047,
+						432.281433105469
+					]
+				},
+				"isolde": {
+					"attack_distance": 235.182876586914,
+					"position": [
+						381.335906982422,
+						451.825561523438
+					]
+				},
+				"morgas": {
+					"attack_distance": 148.441986083984,
+					"position": [
+						463.172058105469,
+						353.706878662109
+					]
+				},
+				"nyx": {
+					"attack_distance": 149.683364868164,
+					"position": [
+						469.103607177734,
+						444.497131347656
+					]
+				},
+				"ragna": {
+					"attack_distance": 59.8185501098633,
+					"position": [
+						551.970947265625,
+						365.931549072266
+					]
+				},
+				"ulric": {
+					"attack_distance": 232.856491088867,
+					"position": [
+						381.132873535156,
+						333.818572998047
+					]
+				},
+				"valeria": {
+					"attack_distance": 187.821243286133,
+					"position": [
+						419.874053955078,
+						383.317779541016
+					]
+				},
+				"veyra": {
+					"attack_distance": 276.123413085938,
+					"position": [
+						335.550872802734,
+						340.798797607422
+					]
+				}
+			},
+			"hero_clearance": 91.4872131347656,
+			"largest": {
+				"after": [
+					526.441711425781,
+					336.915924072266
+				],
+				"before": [
+					520.4423828125,
+					334.686950683594
+				],
+				"id": "ragna",
+				"logical_pixels": 9.60443210601807,
+				"step": 3
+			},
+			"max_combat_coordinate_step": 6.40002059936523,
+			"max_logical_pixel_step": 9.9323844909668,
+			"max_step_after_3_seconds": 0.0,
+			"seconds": 6.0,
+			"steps_above_fastest_205px_per_second": 0,
+			"zone": "gray_meadow"
+		},
+		{
+			"boss_clearance": 126.734580993652,
+			"faction": "noxfera",
+			"factor": 0.710145539573338,
+			"final_boss": [
+				629.6044921875,
+				413.044006347656
+			],
+			"final_min_logical_gap": 71.9902648925781,
+			"final_positions": {
+				"bron": {
+					"attack_distance": 145.005920410156,
+					"position": [
+						543.408874511719,
+						296.437683105469
+					]
+				},
+				"fenris": {
+					"attack_distance": 222.272888183594,
+					"position": [
+						416.433715820313,
+						476.0
+					]
+				},
+				"garm": {
+					"attack_distance": 303.296264648438,
+					"position": [
+						327.821319580078,
+						443.301940917969
+					]
+				},
+				"isolde": {
+					"attack_distance": 254.364898681641,
+					"position": [
+						375.296661376953,
+						407.655883789063
+					]
+				},
+				"morgas": {
+					"attack_distance": 179.304306030273,
+					"position": [
+						470.118347167969,
+						331.103759765625
+					]
+				},
+				"nyx": {
+					"attack_distance": 168.64030456543,
+					"position": [
+						461.941101074219,
+						431.169616699219
+					]
+				},
+				"ragna": {
+					"attack_distance": 101.988616943359,
+					"position": [
+						549.365966796875,
+						476.0
+					]
+				},
+				"ulric": {
+					"attack_distance": 277.142730712891,
+					"position": [
+						373.833190917969,
+						306.324157714844
+					]
+				},
+				"valeria": {
+					"attack_distance": 212.084609985352,
+					"position": [
+						422.574157714844,
+						367.018768310547
+					]
+				},
+				"veyra": {
+					"attack_distance": 312.531677246094,
+					"position": [
+						325.505310058594,
+						340.934753417969
+					]
+				}
+			},
+			"hero_clearance": 101.387664794922,
+			"largest": {
+				"after": [
+					542.846313476563,
+					432.425201416016
+				],
+				"before": [
+					537.084838867188,
+					435.2119140625
+				],
+				"id": "bron",
+				"logical_pixels": 8.41882133483887,
+				"step": 4
+			},
+			"max_combat_coordinate_step": 6.40002775192261,
+			"max_logical_pixel_step": 9.08990478515625,
+			"max_step_after_3_seconds": 6.4000244140625,
+			"seconds": 6.0,
+			"steps_above_fastest_205px_per_second": 0,
+			"zone": "forgotten_mine"
+		},
+		{
+			"boss_clearance": 114.359016418457,
+			"faction": "noxfera",
+			"factor": 0.786995208269458,
+			"final_boss": [
+				651.475158691406,
+				402.668029785156
+			],
+			"final_min_logical_gap": 71.9476699829102,
+			"final_positions": {
+				"bron": {
+					"attack_distance": 140.928207397461,
+					"position": [
+						550.762268066406,
+						304.089782714844
+					]
+				},
+				"fenris": {
+					"attack_distance": 209.542633056641,
+					"position": [
+						455.183197021484,
+						476.0
+					]
+				},
+				"garm": {
+					"attack_distance": 313.375885009766,
+					"position": [
+						338.224243164063,
+						393.818176269531
+					]
+				},
+				"isolde": {
+					"attack_distance": 267.647369384766,
+					"position": [
+						383.855895996094,
+						406.547424316406
+					]
+				},
+				"morgas": {
+					"attack_distance": 162.049026489258,
+					"position": [
+						501.082122802734,
+						463.015533447266
+					]
+				},
+				"nyx": {
+					"attack_distance": 195.861511230469,
+					"position": [
+						479.030792236328,
+						309.798919677734
+					]
+				},
+				"ragna": {
+					"attack_distance": 113.111167907715,
+					"position": [
+						565.355712890625,
+						476.0
+					]
+				},
+				"ulric": {
+					"attack_distance": 249.163330078125,
+					"position": [
+						412.135772705078,
+						333.393005371094
+					]
+				},
+				"valeria": {
+					"attack_distance": 202.181076049805,
+					"position": [
+						450.053863525391,
+						385.156646728516
+					]
+				},
+				"veyra": {
+					"attack_distance": 296.143707275391,
+					"position": [
+						366.569183349609,
+						321.861572265625
+					]
+				}
+			},
+			"hero_clearance": 91.4872131347656,
+			"largest": {
+				"after": [
+					521.961608886719,
+					427.995361328125
+				],
+				"before": [
+					515.564208984375,
+					427.812225341797
+				],
+				"id": "bron",
+				"logical_pixels": 10.0704889297485,
+				"step": 3
+			},
+			"max_combat_coordinate_step": 6.40002059936523,
+			"max_logical_pixel_step": 10.0727500915527,
+			"max_step_after_3_seconds": 6.40001916885376,
+			"seconds": 6.0,
+			"steps_above_fastest_205px_per_second": 0,
+			"zone": "moonrest_forest"
+		}
+	],
+	"step_seconds": 0.05
+}

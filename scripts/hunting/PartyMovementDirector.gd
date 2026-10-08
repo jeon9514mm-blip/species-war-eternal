@@ -13,8 +13,10 @@ const FLANK_ANGLE := 1.10
 const SUPPORT_REAR_MARGIN := 0.18
 const CONTROLLER_LATERAL_OFFSET := 0.72
 const ROSTER = preload("res://scripts/heroes/HeroRosterCatalog.gd")
+const BODY = preload("res://scripts/hunting/HuntBodyCollision.gd")
 
 var independent_hunt := false
+var body_pixel_scale := 0.0
 var holding_formation := false
 var stalled_seconds: Dictionary = {}
 var blocked_targets: Dictionary = {}
@@ -31,6 +33,7 @@ var field_navigation: RefCounted
 var movement_profiles: Dictionary = {}
 var combat_goals: Dictionary = {}
 var hunt_slots: Dictionary = {}
+var goal_reservations: Dictionary = {}
 var _decisions := CombatDecisionEngine.new()
 var _planning_time: Dictionary={}
 
@@ -46,6 +49,7 @@ func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
 	movement_profiles.clear()
 	combat_goals.clear()
 	hunt_slots.clear()
+	goal_reservations.clear()
 	stalled_seconds.clear()
 	blocked_targets.clear()
 	_planning_time.clear()
@@ -87,10 +91,14 @@ func configure(heroes: Array, states: Dictionary, origin: Vector2) -> void:
 func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictionary, anchor: Vector2, enemies: Array, enemy_positions: Array[Vector2], returning: Array[bool], engaged: bool, paused := false, enemy_homes: Array[Vector2] = []) -> void:
 	if delta <= 0.0 or not is_finite(delta):
 		return
-	if holding_formation and not paused and engaged:
+	if paused:
+		for id in velocities:velocities[id]=Vector2.ZERO
+		return
+	if not paused and engaged and (holding_formation or (independent_hunt and body_pixel_scale>0)):
 		_face_threat(delta,anchor,enemies,enemy_positions,returning)
 	var before_positions := positions.duplicate()
-	var reserved := positions.duplicate()
+	goal_reservations=positions.duplicate()
+	var reserved: Dictionary=goal_reservations
 	for hero in heroes:
 		var id := str(hero.get("id", ""))
 		var state: Dictionary = states.get(id, {})
@@ -103,12 +111,14 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 			combat_goals.erase(id)
 			hunt_slots.erase(id)
 			continue
-		if paused: continue
 		target_locks[id] = maxf(0.0, float(target_locks.get(id, 0.0)) - delta)
 		var runtime: Dictionary = runtimes.get(id, {})
 		if float(runtime.get("windup", -1.0)) >= 0.0:
+			# A committed actor reserves its current body, not its old travel goal.
+			if independent_hunt:hunt_slots.erase(id);combat_goals.erase(id);_planning_time.erase(id)
 			continue
 		var goal: Vector2 = formation_station(id,anchor)
+		var planned_attack_goal: Vector2=goal
 		if engaged:
 			var previous_target: int=int(targets.get(id,-1))
 			var remaining: float=maxf(0,float(_planning_time.get(id,0))-delta)
@@ -118,20 +128,39 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 			targets[id] = target
 			if target >= 0:
 				if plan:goal = _combat_goal(id, start, target, state, runtime, states, before_positions, enemies, enemy_positions, returning, enemy_homes)
-				else:goal=enemy_positions[target]+Vector2(hunt_slots.get(id,{}).get('offset',start-enemy_positions[target]))
+				else:
+					var slot: Dictionary=hunt_slots.get(id,{})
+					var held: bool=bool(slot.get('holding',false)) and start.distance_to(enemy_positions[target])<=_decisions.spatial_range(int(state.get('range',1)))
+					goal=start if held else enemy_positions[target]+Vector2(slot.get('offset',start-enemy_positions[target]))
+					planned_attack_goal=start if held else enemy_positions[target]+Vector2(slot.get('attack_offset',slot.get('offset',start-enemy_positions[target])))
 				if independent_hunt and plan:
 					goal = preload("res://scripts/hunting/HuntPositionPlanner.gd").choose(self,id,start,target,goal,state,states,before_positions,reserved,enemies,enemy_positions,runtimes)
+				if plan:planned_attack_goal=goal
 		else:
 			targets[id] = -1
 		if independent_hunt:
 			# A role leash permits individual pursuit without abandoning the field.
 			goal = clamp_hunt_position(id,goal,anchor)
+			var holding_stance: bool=engaged and int(targets.get(id,-1))>=0 and bool(hunt_slots.get(id,{}).get('holding',false)) and goal.distance_squared_to(start)<.0000001
+			if body_pixel_scale>0 and not holding_stance:
+				# Keep a personal lane within the chosen formation. Front-line and
+				# flank kits can intercept farther; support does not join the same pile.
+				var station: Vector2=formation_station(id,anchor)
+				var pursuit: float=formation_pursuit(id)
+				goal=station+(goal-station).limit_length(pursuit)
 		elif holding_formation:
 			var station: Vector2 = formation_station(id,anchor)
 			var intercept: float=1.35 if bool(movement_profiles.get(id,{}).get('frontline_screen',false)) else 0.85
 			goal = station + (goal - station).limit_length(intercept)
 		goal = _clamp(goal)
-		if independent_hunt and not engaged and start.distance_to(goal)<.114:continue
+		if independent_hunt and engaged and int(targets.get(id,-1))>=0:
+			var target: int=targets[id]
+			# Reserve the destination that movement actually uses, including its
+			# formation/terrain clamp. Never score an unreachable phantom slot.
+			var in_range: bool=goal.distance_to(enemy_positions[target])<=_decisions.spatial_range(int(state.get('range',1)))
+			hunt_slots[id]={'target':target,'offset':goal-enemy_positions[target],'attack_offset':planned_attack_goal-enemy_positions[target],'in_range':in_range,'holding':bool(hunt_slots.get(id,{}).get('holding',false)) and goal.distance_squared_to(start)<.0000001}
+			combat_goals[id]={'target':target,'goal':goal,'planned_attack_goal':planned_attack_goal,'kind':'firing' if in_range else 'approach'}
+		if independent_hunt and not engaged and start.distance_to(goal)<maxf(.01,body_pixel_scale*2.0):continue
 		reserved[id] = goal
 		var step_speed:=WALK_SPEED
 		if independent_hunt:
@@ -141,11 +170,12 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 		var next := _move("hero_%s" % id, start, goal, step_speed * delta)
 		# Separation is a local steering force; global navigation always sees the full goal.
 		var separation := Vector2.ZERO
-		var spacing := 1.15 if independent_hunt else SEPARATION_RADIUS
+		var spacing := hero_clearance() if independent_hunt else SEPARATION_RADIUS
 		for other_id in before_positions:
 			if other_id == id or int(states.get(other_id, {}).get("hp", 0)) <= 0:
 				continue
 			var away: Vector2 = start - Vector2(before_positions[other_id])
+			if independent_hunt:away=BODY.body_vector(away)
 			var distance := away.length()
 			if distance <= 0.001:
 				# Give coincident actors opposite, deterministic directions; zero vectors cannot separate.
@@ -154,6 +184,7 @@ func advance(delta: float, heroes: Array, states: Dictionary, runtimes: Dictiona
 				separation += direction if id < str(other_id) else -direction
 			elif distance < spacing:
 				separation += away / distance * (1.0 - distance / spacing)
+		if independent_hunt:separation.y/=BODY.DEPTH_SCALE
 		var movement := next - start
 		var steered := movement + separation * (3.4 if independent_hunt else .85) * delta
 		steered = steered.limit_length(WALK_SPEED * delta)
@@ -514,15 +545,19 @@ func _move(key: String, start: Vector2, target: Vector2, distance: float) -> Vec
 func apply_formation(heroes: Array, id: String) -> void:
 	formation_id = preload("res://scripts/combat/BattleFormation.gd").sanitize(id)
 	travel_offsets = preload("res://scripts/combat/BattleFormation.gd").offsets(heroes, formation_id)
-	if independent_hunt:
-		# Applying a saved formation must not restore the old wide four-lane grid.
-		# Keep its role order and stat bonuses, using the compact hunting stations.
-		var ordered: Array=heroes.duplicate()
-		ordered.sort_custom(func(a: Dictionary,b: Dictionary) -> bool:return preload('res://scripts/combat/BattleFormation.gd')._rank(a)<preload('res://scripts/combat/BattleFormation.gd')._rank(b))
-		var columns:=mini(ordered.size(),5)
-		var rows:=ceili(float(ordered.size())/maxi(1,columns))
-		for index in ordered.size():
-			travel_offsets[str(ordered[index].id)]=Vector2((index%columns-(columns-1)*.5)*1.22,(int(index/columns)-(rows-1)*.5)*2.30)
+	if independent_hunt and body_pixel_scale>0:
+		var projected: Dictionary=preload('res://scripts/combat/BattleFormation.gd').projected_offsets(heroes,formation_id,BODY.HERO_PIXELS+6.0)
+		for hero_id in projected:
+			travel_offsets[hero_id]=Vector2(projected[hero_id])*Vector2(1.0,1.0/BODY.PROJECTED_DEPTH)*body_pixel_scale
+	# Old target-relative reservations belong to the previous layout. New choices
+	# still move gradually, and a committed cast retains its actual position.
+	hunt_slots.clear();combat_goals.clear();goal_reservations.clear();_planning_time.clear()
+
+func hero_clearance() -> float:return BODY.radius(true,true,body_pixel_scale)
+func contact_clearance() -> float:return BODY.radius(true,false,body_pixel_scale)
+func formation_pursuit(id: String) -> float:
+	var profile: Dictionary=movement_profiles.get(id,{})
+	return hero_clearance()*(2.0 if bool(profile.get('flanker',false)) else (1.75 if bool(profile.get('frontline_screen',false)) else (1.1 if bool(profile.get('rear_support',false)) else 1.35)))
 
 func place_formation(origin: Vector2) -> void:
 	# Only used when creating a battlefield; live changes keep gradual movement.
@@ -531,6 +566,12 @@ func place_formation(origin: Vector2) -> void:
 
 func formation_station(id: String, anchor: Vector2) -> Vector2:
 	var offset: Vector2=travel_offsets.get(id,Vector2.ZERO)
+	if independent_hunt and body_pixel_scale>0:
+		# Turn in clearance space: upright paintings retain their elliptical
+		# body gaps while the defensive front slowly faces the incoming pressure.
+		var station: Vector2=BODY.body_vector(offset).rotated(BODY.body_vector(formation_facing).angle())
+		station.y/=BODY.DEPTH_SCALE
+		return anchor+station
 	return anchor+offset.rotated(formation_facing.angle()) if holding_formation else anchor+offset
 
 func _face_threat(delta: float,anchor: Vector2,enemies: Array,enemy_positions: Array[Vector2],returning: Array[bool]) -> void:

@@ -1,0 +1,12 @@
+{
+  "passed": 1,
+  "total": 1,
+  "rows": [
+    {
+      "script": "tests/regression/V53HuntSupportSmokeTest.gd",
+      "passed": true,
+      "seconds": 6.11,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nv53_hunt_support checks=73 failures=0\n"
+    }
+  ]
+}

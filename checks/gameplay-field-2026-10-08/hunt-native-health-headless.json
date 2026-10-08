@@ -1,0 +1,3186 @@
+{
+	"display": "headless",
+	"renderer": "mobile",
+	"snapshots": [
+		{
+			"bars": [
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4805,
+					"id": "leonhardt",
+					"max_hp": 4805,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						793.206848144531,
+						340.65869140625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 3841,
+					"id": "mira",
+					"max_hp": 3841,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						726.418518066406,
+						427.21728515625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4149,
+					"id": "elisia",
+					"max_hp": 4149,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						638.280090332031,
+						519.030700683594
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4325,
+					"id": "kairen",
+					"max_hp": 4325,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						727.897399902344,
+						525.640625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5283,
+					"id": "orwin",
+					"max_hp": 5283,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						822.713806152344,
+						418.119079589844
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4104,
+					"id": "seria",
+					"max_hp": 4104,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						651.164123535156,
+						339.824035644531
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4572,
+					"id": "astel",
+					"max_hp": 4572,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						562.507202148438,
+						426.028289794922
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4580,
+					"id": "darius",
+					"max_hp": 4580,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						817.237426757813,
+						504.031555175781
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4774,
+					"id": "lunea",
+					"max_hp": 4774,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						655.24462890625,
+						435.370513916016
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4918,
+					"id": "caelum",
+					"max_hp": 4918,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						719.455200195313,
+						339.960052490234
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				}
+			],
+			"health_entries": 1,
+			"label": "aurelia-ready-0",
+			"physics_frame": 52,
+			"process_frame": 24
+		},
+		{
+			"bars": [
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4805,
+					"id": "leonhardt",
+					"max_hp": 4805,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						793.206848144531,
+						340.65869140625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 3841,
+					"id": "mira",
+					"max_hp": 3841,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						726.418518066406,
+						427.21728515625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4149,
+					"id": "elisia",
+					"max_hp": 4149,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						638.280090332031,
+						519.030700683594
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4325,
+					"id": "kairen",
+					"max_hp": 4325,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						727.897399902344,
+						525.640625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5283,
+					"id": "orwin",
+					"max_hp": 5283,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						822.713806152344,
+						418.119079589844
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4104,
+					"id": "seria",
+					"max_hp": 4104,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						651.164123535156,
+						339.824035644531
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4572,
+					"id": "astel",
+					"max_hp": 4572,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						562.507202148438,
+						426.028289794922
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4580,
+					"id": "darius",
+					"max_hp": 4580,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						817.237426757813,
+						504.031555175781
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4774,
+					"id": "lunea",
+					"max_hp": 4774,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						655.24462890625,
+						435.370513916016
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4918,
+					"id": "caelum",
+					"max_hp": 4918,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						719.455200195313,
+						339.960052490234
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				}
+			],
+			"health_entries": 1,
+			"label": "aurelia-ready-1",
+			"physics_frame": 52,
+			"process_frame": 25
+		},
+		{
+			"bars": [
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4805,
+					"id": "leonhardt",
+					"max_hp": 4805,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						793.206848144531,
+						340.65869140625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 3841,
+					"id": "mira",
+					"max_hp": 3841,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						726.418518066406,
+						427.21728515625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4149,
+					"id": "elisia",
+					"max_hp": 4149,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						638.280090332031,
+						519.030700683594
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4325,
+					"id": "kairen",
+					"max_hp": 4325,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						727.897399902344,
+						525.640625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5283,
+					"id": "orwin",
+					"max_hp": 5283,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						822.713806152344,
+						418.119079589844
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4104,
+					"id": "seria",
+					"max_hp": 4104,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						651.164123535156,
+						339.824035644531
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4572,
+					"id": "astel",
+					"max_hp": 4572,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						562.507202148438,
+						426.028289794922
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4580,
+					"id": "darius",
+					"max_hp": 4580,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						817.237426757813,
+						504.031555175781
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4774,
+					"id": "lunea",
+					"max_hp": 4774,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						655.24462890625,
+						435.370513916016
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4918,
+					"id": "caelum",
+					"max_hp": 4918,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						719.455200195313,
+						339.960052490234
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				}
+			],
+			"health_entries": 1,
+			"label": "aurelia-ready-2",
+			"physics_frame": 53,
+			"process_frame": 26
+		},
+		{
+			"bars": [
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4805,
+					"id": "leonhardt",
+					"max_hp": 4805,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						793.206848144531,
+						340.65869140625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 3841,
+					"id": "mira",
+					"max_hp": 3841,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						726.418518066406,
+						427.21728515625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4149,
+					"id": "elisia",
+					"max_hp": 4149,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						638.280090332031,
+						519.030700683594
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4325,
+					"id": "kairen",
+					"max_hp": 4325,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						727.897399902344,
+						525.640625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5283,
+					"id": "orwin",
+					"max_hp": 5283,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						822.713806152344,
+						418.119079589844
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4104,
+					"id": "seria",
+					"max_hp": 4104,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						651.164123535156,
+						339.824035644531
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4572,
+					"id": "astel",
+					"max_hp": 4572,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						562.507202148438,
+						426.028289794922
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4580,
+					"id": "darius",
+					"max_hp": 4580,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						817.237426757813,
+						504.031555175781
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4774,
+					"id": "lunea",
+					"max_hp": 4774,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						655.24462890625,
+						435.370513916016
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4918,
+					"id": "caelum",
+					"max_hp": 4918,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						719.455200195313,
+						339.960052490234
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				}
+			],
+			"health_entries": 1,
+			"label": "aurelia-ready-3",
+			"physics_frame": 53,
+			"process_frame": 27
+		},
+		{
+			"bars": [
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4805,
+					"id": "leonhardt",
+					"max_hp": 4805,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						770.188171386719,
+						337.5751953125
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 3841,
+					"id": "mira",
+					"max_hp": 3841,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						669.019409179688,
+						433.234252929688
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4149,
+					"id": "elisia",
+					"max_hp": 4149,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						586.013854980469,
+						520.839416503906
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4325,
+					"id": "kairen",
+					"max_hp": 4325,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						673.51416015625,
+						534.309692382813
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5283,
+					"id": "orwin",
+					"max_hp": 5283,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						771.350341796875,
+						423.798461914063
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4104,
+					"id": "seria",
+					"max_hp": 4104,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						601.355895996094,
+						343.937805175781
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4572,
+					"id": "astel",
+					"max_hp": 4572,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						503.241943359375,
+						435.017761230469
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4580,
+					"id": "darius",
+					"max_hp": 4580,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						774.442993164063,
+						510.261169433594
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.00006103515625
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4774,
+					"id": "lunea",
+					"max_hp": 4774,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						603.235900878906,
+						437.269836425781
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4918,
+					"id": "caelum",
+					"max_hp": 4918,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						673.524719238281,
+						345.086242675781
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				}
+			],
+			"health_entries": 1,
+			"label": "aurelia-hunt",
+			"physics_frame": 116,
+			"process_frame": 60
+		},
+		{
+			"bars": [
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4046,
+					"id": "valeria",
+					"max_hp": 4046,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						743.603637695313,
+						522.586181640625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4046,
+					"id": "morgas",
+					"max_hp": 4046,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						603.755187988281,
+						425.288818359375
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4168,
+					"id": "ragna",
+					"max_hp": 4168,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						704.677612304688,
+						338.581146240234
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5095,
+					"id": "bron",
+					"max_hp": 5095,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						766.695251464844,
+						368.595947265625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4280,
+					"id": "nyx",
+					"max_hp": 4280,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						607.188720703125,
+						529.562866210938
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4060,
+					"id": "fenris",
+					"max_hp": 4060,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						715.8583984375,
+						441.348052978516
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4481,
+					"id": "isolde",
+					"max_hp": 4481,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						518.574462890625,
+						427.511779785156
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5825,
+					"id": "garm",
+					"max_hp": 5825,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						782.165283203125,
+						452.273345947266
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4388,
+					"id": "veyra",
+					"max_hp": 4388,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						677.466247558594,
+						524.980712890625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4872,
+					"id": "ulric",
+					"max_hp": 4872,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						605.988220214844,
+						338.780944824219
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				}
+			],
+			"health_entries": 1,
+			"label": "noxfera-ready-0",
+			"physics_frame": 162,
+			"process_frame": 77
+		},
+		{
+			"bars": [
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4046,
+					"id": "valeria",
+					"max_hp": 4046,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						743.603637695313,
+						522.586181640625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4046,
+					"id": "morgas",
+					"max_hp": 4046,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						603.755187988281,
+						425.288818359375
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4168,
+					"id": "ragna",
+					"max_hp": 4168,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						704.677612304688,
+						338.581146240234
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5095,
+					"id": "bron",
+					"max_hp": 5095,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						766.695251464844,
+						368.595947265625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4280,
+					"id": "nyx",
+					"max_hp": 4280,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						607.188720703125,
+						529.562866210938
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4060,
+					"id": "fenris",
+					"max_hp": 4060,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						715.8583984375,
+						441.348052978516
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4481,
+					"id": "isolde",
+					"max_hp": 4481,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						518.574462890625,
+						427.511779785156
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5825,
+					"id": "garm",
+					"max_hp": 5825,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						782.165283203125,
+						452.273345947266
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4388,
+					"id": "veyra",
+					"max_hp": 4388,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						677.466247558594,
+						524.980712890625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4872,
+					"id": "ulric",
+					"max_hp": 4872,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						605.988220214844,
+						338.780944824219
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				}
+			],
+			"health_entries": 1,
+			"label": "noxfera-ready-1",
+			"physics_frame": 162,
+			"process_frame": 78
+		},
+		{
+			"bars": [
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4046,
+					"id": "valeria",
+					"max_hp": 4046,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						743.603637695313,
+						522.586181640625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4046,
+					"id": "morgas",
+					"max_hp": 4046,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						603.755187988281,
+						425.288818359375
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4168,
+					"id": "ragna",
+					"max_hp": 4168,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						704.677612304688,
+						338.581146240234
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5095,
+					"id": "bron",
+					"max_hp": 5095,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						766.695251464844,
+						368.595947265625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4280,
+					"id": "nyx",
+					"max_hp": 4280,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						607.188720703125,
+						529.562866210938
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4060,
+					"id": "fenris",
+					"max_hp": 4060,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						715.8583984375,
+						441.348052978516
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4481,
+					"id": "isolde",
+					"max_hp": 4481,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						518.574462890625,
+						427.511779785156
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5825,
+					"id": "garm",
+					"max_hp": 5825,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						782.165283203125,
+						452.273345947266
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4388,
+					"id": "veyra",
+					"max_hp": 4388,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						677.466247558594,
+						524.980712890625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4872,
+					"id": "ulric",
+					"max_hp": 4872,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						605.988220214844,
+						338.780944824219
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				}
+			],
+			"health_entries": 1,
+			"label": "noxfera-ready-2",
+			"physics_frame": 163,
+			"process_frame": 79
+		},
+		{
+			"bars": [
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4046,
+					"id": "valeria",
+					"max_hp": 4046,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						743.603637695313,
+						522.586181640625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4046,
+					"id": "morgas",
+					"max_hp": 4046,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						603.755187988281,
+						425.288818359375
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4168,
+					"id": "ragna",
+					"max_hp": 4168,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						704.677612304688,
+						338.581146240234
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5095,
+					"id": "bron",
+					"max_hp": 5095,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						766.695251464844,
+						368.595947265625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4280,
+					"id": "nyx",
+					"max_hp": 4280,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						607.188720703125,
+						529.562866210938
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4060,
+					"id": "fenris",
+					"max_hp": 4060,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						715.8583984375,
+						441.348052978516
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4481,
+					"id": "isolde",
+					"max_hp": 4481,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						518.574462890625,
+						427.511779785156
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5825,
+					"id": "garm",
+					"max_hp": 5825,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						782.165283203125,
+						452.273345947266
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4388,
+					"id": "veyra",
+					"max_hp": 4388,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						677.466247558594,
+						524.980712890625
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4872,
+					"id": "ulric",
+					"max_hp": 4872,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						605.988220214844,
+						338.780944824219
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				}
+			],
+			"health_entries": 1,
+			"label": "noxfera-ready-3",
+			"physics_frame": 163,
+			"process_frame": 80
+		},
+		{
+			"bars": [
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4046,
+					"id": "valeria",
+					"max_hp": 4046,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						734.941040039063,
+						521.572448730469
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4046,
+					"id": "morgas",
+					"max_hp": 4046,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						596.447570800781,
+						430.521881103516
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4168,
+					"id": "ragna",
+					"max_hp": 4168,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						705.91064453125,
+						342.019714355469
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5095,
+					"id": "bron",
+					"max_hp": 5095,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						769.258361816406,
+						366.821166992188
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4280,
+					"id": "nyx",
+					"max_hp": 4280,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						599.368225097656,
+						534.844970703125
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4060,
+					"id": "fenris",
+					"max_hp": 4060,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						709.514526367188,
+						439.605621337891
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4481,
+					"id": "isolde",
+					"max_hp": 4481,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						511.1591796875,
+						431.788604736328
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 5825,
+					"id": "garm",
+					"max_hp": 5825,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						775.102172851563,
+						452.811187744141
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4388,
+					"id": "veyra",
+					"max_hp": 4388,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						669.465759277344,
+						529.832153320313
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				},
+				{
+					"bg": "151a1eff",
+					"fill": "328263ff",
+					"fill_draw_center": true,
+					"fill_min_size": [
+						0.0,
+						0.0
+					],
+					"hp": 4872,
+					"id": "ulric",
+					"max_hp": 4872,
+					"max_value": 100.0,
+					"min_size": [
+						1.0,
+						1.0
+					],
+					"min_value": 0.0,
+					"modulate": "ffffffff",
+					"position": [
+						600.106567382813,
+						344.097229003906
+					],
+					"self_modulate": "ffffffff",
+					"size": [
+						32.0,
+						4.0
+					],
+					"tree_visible": false,
+					"value": 100.0,
+					"visible": false
+				}
+			],
+			"health_entries": 1,
+			"label": "noxfera-hunt",
+			"physics_frame": 223,
+			"process_frame": 107
+		}
+	]
+}

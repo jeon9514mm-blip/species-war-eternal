@@ -1,0 +1,20 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "headless_dummy",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 1,
+  "total": 1,
+  "results": [
+    {
+      "test": "PresentationWallClockSmokeTest.gd",
+      "passed": true,
+      "seconds": 0.44,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\npresentation_wall_clock checks=10 failures=[]\n"
+    }
+  ]
+}

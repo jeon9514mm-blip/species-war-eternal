@@ -13,7 +13,9 @@ static func party_signature(main: Node) -> Dictionary:
 			"levels":main.hero_equipment.get(hero_id, {}), "rarities":main.hero_equipment_rarity.get(hero_id, {}),
 			"sets":main.hero_equipment_sets.get(hero_id, {}), "research":main.hero_skill_tree.get(hero_id, {})}
 	# JSON parsing normalizes int/float representations across a save round trip.
-	var build := JSON.stringify(JSON.parse_string(JSON.stringify(loadout))).sha256_text()
+	# The new lane/clearance policy changes real pack throughput. Old measurements
+	# remain readable, but must be relearned rather than reused after this update.
+	var build := (JSON.stringify(JSON.parse_string(JSON.stringify(loadout))) + ':formation-lanes-v2').sha256_text()
 	return {"hero_ids":ids, "formation":str(main.formation_id), "guardian":str(main.guardian_equipped),
 		"build":build, "skill_auto":bool(main.skill_auto), "ultimate_auto":bool(main.ultimate_auto)}
 

@@ -9,6 +9,7 @@ var arena_body: Control
 var header_title: Label
 var time_readout: Label
 var _action_state := ''
+var _options_return_focus: WeakRef
 func _new_battlefield() -> Control:
 	return preload("res://scripts/art/RaidArenaBattlefield.gd").new()
 
@@ -111,7 +112,8 @@ func _wide_layout(body: Control,summary: Control,status: Control,actions: Contro
 	telegraph.accent=Color("#ff7569")
 
 func _make_options(summary: Control,status: Control) -> void:
-	options_sheet=Control.new();options_sheet.name="RaidOptionsSheet";options_sheet.z_index=110
+	options_sheet=RaidOptionsModal.new();options_sheet.name="RaidOptionsSheet";options_sheet.z_index=110
+	options_sheet.close_action=func():_set_options_visible(false)
 	add_child(options_sheet);options_sheet.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var shade:=ColorRect.new();shade.color=Color(0,0,0,.72)
 	options_sheet.add_child(shade);shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -120,10 +122,10 @@ func _make_options(summary: Control,status: Control) -> void:
 		# Keep the modal in place until both release events have been consumed.
 		if event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT:
 			shade.accept_event()
-			if not event.pressed:options_sheet.hide.call_deferred()
+			if not event.pressed:_set_options_visible.call_deferred(false)
 		elif event is InputEventScreenTouch:
 			shade.accept_event()
-			if not event.pressed and not event.canceled:options_sheet.hide.call_deferred())
+			if not event.pressed and not event.canceled:_set_options_visible.call_deferred(false))
 	var panel:=PanelContainer.new();panel.name="RaidOptionsPanel"
 	panel.add_theme_stylebox_override("panel",SKIN.elevated(SKIN.SURFACE))
 	SKIN.place(options_sheet,panel,Rect2(size.x*.50,20,size.x*.50-20,size.y-40))
@@ -134,12 +136,13 @@ func _make_options(summary: Control,status: Control) -> void:
 	column.add_theme_constant_override("separation",12);scroll.add_child(column)
 	var sheet_heading:=_text('레이드 안내',23,SKIN.INK)
 	column.add_child(sheet_heading)
-	var close:=SKIN.button("닫기",options_sheet.hide)
+	var close:=SKIN.button("닫기",func():_set_options_visible(false))
 	close.name="RaidOptionsClose";close.custom_minimum_size.y=48;column.add_child(close)
 	summary.reparent(column,false);status.reparent(column,false);status.custom_minimum_size.y=220
 	for button in [skill_auto_button,ultimate_auto_button]:
 		button.reparent(column,false);button.custom_minimum_size=Vector2(0,56)
 	options_sheet.hide()
+	options_sheet.visibility_changed.connect(_options_visibility_changed)
 
 func _style_command(button: Button,accent: Color,primary: bool) -> void:
 	# A restrained semantic tint distinguishes casts without adding full-screen FX.
@@ -154,7 +157,52 @@ func _style_command(button: Button,accent: Color,primary: bool) -> void:
 	button.add_theme_color_override('font_focus_color',SKIN.DARK if primary else SKIN.INK)
 
 func _open_options() -> void:
-	options_sheet.show()
+	_set_options_visible(true)
+
+func _set_options_visible(shown: bool) -> void:
+	if not is_instance_valid(options_sheet):return
+	if shown:
+		if not options_sheet.visible:
+			var previous:=get_viewport().gui_get_focus_owner()
+			_options_return_focus=weakref(previous) if is_instance_valid(previous) else weakref(get_node('RaidOptionsButton'))
+		_clear_stage_pointer()
+		options_sheet.show()
+		var close: Button=options_sheet.find_child('RaidOptionsClose',true,false)
+		if close!=null:close.grab_focus()
+	else:options_sheet.hide()
+
+func _options_visibility_changed() -> void:
+	# Also cover direct presenter hide calls and inherited Android-back handling.
+	if options_sheet.visible or _options_return_focus==null:return
+	var previous: Control=_options_return_focus.get_ref() as Control
+	_options_return_focus=null
+	if is_instance_valid(previous) and previous.is_inside_tree() and previous.is_visible_in_tree():previous.grab_focus()
+
+class RaidOptionsModal extends Control:
+	var close_action: Callable
+	func _input(event: InputEvent) -> void:
+		if not is_visible_in_tree():return
+		if event.is_action_pressed('ui_cancel'):
+			get_viewport().set_input_as_handled();close_action.call();return
+		if event is InputEventKey and event.pressed and event.keycode==KEY_TAB:
+			var choices: Array[Button]=[]
+			for button in find_children('*','Button',true,false):
+				if button.is_visible_in_tree() and not button.disabled and button.focus_mode!=Control.FOCUS_NONE:choices.append(button)
+			if choices.is_empty():get_viewport().set_input_as_handled();return
+			var index:=choices.find(get_viewport().gui_get_focus_owner())
+			var next: Button=choices[posmod(index+(-1 if event.shift_pressed else 1),choices.size())]
+			next.grab_focus()
+			var scroll: ScrollContainer=get_node('RaidOptionsPanel/Margin/Scroll')
+			if scroll.is_ancestor_of(next):scroll.ensure_control_visible(next)
+			get_viewport().set_input_as_handled()
+		elif event.is_action('ui_accept'):
+			var focused:=get_viewport().gui_get_focus_owner()
+			if not is_instance_valid(focused) or not is_ancestor_of(focused):
+				# A live presenter may change focus while the sheet is open. Consume
+				# that key before Godot dispatches it to a button behind the modal.
+				get_viewport().set_input_as_handled()
+				var close: Button=find_child('RaidOptionsClose',true,false)
+				if close!=null:close.grab_focus()
 
 func _settle_stage_layout(body: Control,w: float,h: float) -> void:
 	await get_tree().process_frame

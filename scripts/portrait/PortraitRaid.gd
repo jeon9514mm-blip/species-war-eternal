@@ -330,13 +330,15 @@ func _on_stage_input(event: InputEvent) -> void:
 	if not game.raid_running:return
 	if event is InputEventMouseButton:
 		if event.button_index==MOUSE_BUTTON_LEFT:
+			if _stage_pointer>=0:return
 			_dragging=event.pressed
 			_stage_pointer=-1 if event.pressed else -2
 			if event.pressed:_on_move_input(event.position)
-	elif event is InputEventMouseMotion and _dragging:
-		_on_move_input(event.position)
+	elif event is InputEventMouseMotion and _dragging and _stage_pointer==-1:
+		if event.button_mask&MOUSE_BUTTON_MASK_LEFT:_on_move_input(event.position)
+		else:_clear_stage_pointer()
 	elif event is InputEventScreenTouch:
-		if event.pressed and _stage_pointer==-2:
+		if event.pressed and not event.canceled and _stage_pointer==-2:
 			_stage_pointer=event.index;_dragging=true;_on_move_input(event.position)
 		elif not event.pressed and _stage_pointer==event.index:
 			_stage_pointer=-2;_dragging=false
@@ -345,14 +347,21 @@ func _on_stage_input(event: InputEvent) -> void:
 
 func _input(event: InputEvent) -> void:
 	# ScrollContainer can consume drag/release events before the hero card.
+	# A held floor pointer can finish over a command/modal instead of the stage.
+	# Observe that release globally so an unpressed hover cannot move the party.
+	if event is InputEventScreenTouch and not event.pressed and event.index==_stage_pointer:_clear_stage_pointer()
+	elif event is InputEventMouseButton and not event.pressed and event.button_index==MOUSE_BUTTON_LEFT and _stage_pointer==-1:_clear_stage_pointer()
 	if event is InputEventScreenDrag and event.index==_slot_pointer:_slot_drag_distance+=event.relative.length()
 	elif event is InputEventMouseMotion and _slot_pointer==-1:_slot_drag_distance+=event.relative.length()
 	elif event is InputEventScreenTouch and not event.pressed and event.index==_slot_pointer:set_deferred('_slot_pointer',-2)
 	elif event is InputEventMouseButton and not event.pressed and event.button_index==MOUSE_BUTTON_LEFT and _slot_pointer==-1:set_deferred('_slot_pointer',-2)
 
 func _notification(what: int) -> void:
-	if what==NOTIFICATION_WM_WINDOW_FOCUS_OUT:
-		_slot_pointer=-2;_stage_pointer=-2;_dragging=false
+	if what in [NOTIFICATION_WM_WINDOW_FOCUS_OUT,NOTIFICATION_APPLICATION_PAUSED]:
+		_slot_pointer=-2;_clear_stage_pointer()
+
+func _clear_stage_pointer() -> void:
+	_stage_pointer=-2;_dragging=false
 
 func _on_move_input(local_point: Vector2) -> void:
 	var world: Vector2=battlefield_3d.world_to_raid(battlefield_3d.local_to_world(local_point))
@@ -396,6 +405,9 @@ func _on_follow_pressed() -> void:
 func start_entry() -> void:
 	if not is_instance_valid(stage):return
 	last_phase=1;last_enraged=false
+	# Resolve the new boss's complete atlas framing before staging the party.
+	# These initial positions are hidden by the entry curtain, then walk normally.
+	battlefield_3d._resize_world()
 	preload('res://scripts/maps3d/HeroCircleFormation.gd').raid(game,self)
 	# Retrying reuses this view: revive its actors as soon as combat HP resets.
 	for id in hero_actors:
