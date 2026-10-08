@@ -1,0 +1,122 @@
+name: Hunt dock validation
+on:
+  push:
+    branches:
+      - 'codex/hunt-unified-dock-*'
+      - 'jeon9514mm-blip/species-war-eternal'
+    paths:
+      - 'scripts/portrait/LandscapeHuntHud.gd'
+      - 'scripts/portrait/LandscapeHuntLayout.gd'
+      - 'tests/regression/HuntCompactHudSmokeTest.gd'
+      - 'tests/regression/HuntDockGeometryTest.gd'
+      - 'tests/regression/HuntDockCapture.gd'
+      - '.github/workflows/hunt-dock-validation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: hunt-dock-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  godot-ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GODOT_VERSION: '4.7.2'
+      LIBGL_ALWAYS_SOFTWARE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Download official Godot and verify release digest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, urllib.request, zipfile
+          version = os.environ['GODOT_VERSION']
+          tag = version + '-stable'
+          name = 'Godot_v' + tag + '_linux.x86_64.zip'
+          headers = {'User-Agent': 'SpeciesWar-HuntDock-CI'}
+          url = 'https://api.github.com/repos/godotengine/godot-builds/releases/tags/' + tag
+          release = json.load(urllib.request.urlopen(urllib.request.Request(url, headers=headers)))
+          asset = next(x for x in release['assets'] if x['name'] == name)
+          digest = asset.get('digest', '')
+          if not digest.startswith('sha256:'):
+              raise RuntimeError('Official release SHA-256 digest is required')
+          archive = pathlib.Path(os.environ['RUNNER_TEMP']) / name
+          urllib.request.urlretrieve(asset['browser_download_url'], archive)
+          if hashlib.sha256(archive.read_bytes()).hexdigest() != digest.split(':', 1)[1]:
+              raise RuntimeError('Godot archive checksum mismatch')
+          target = pathlib.Path(os.environ['RUNNER_TEMP']) / 'godot'
+          target.mkdir()
+          with zipfile.ZipFile(archive) as z:
+              for entry in z.infolist():
+                  if pathlib.PurePosixPath(entry.filename).name != entry.filename:
+                      raise RuntimeError('Unexpected nested archive entry')
+              z.extractall(target)
+          binary = target / name.removesuffix('.zip')
+          binary.chmod(0o755)
+          (target / 'godot').symlink_to(binary)
+          with open(os.environ['GITHUB_PATH'], 'a') as f:
+              f.write(str(target) + '\n')
+          PY
+      - name: Install software-rendering display dependencies
+        run: |
+          sudo apt-get update -qq > /tmp/hunt-apt.log 2>&1
+          sudo apt-get install -y xvfb libgl1-mesa-dri libegl1 >> /tmp/hunt-apt.log 2>&1 || { tail -40 /tmp/hunt-apt.log; exit 1; }
+      - name: Run bounded native validation and summarize first errors
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib, re, subprocess, sys
+          out = pathlib.Path('checks/hunt-unified-dock/runtime').resolve()
+          out.mkdir(parents=True, exist_ok=True)
+          version = subprocess.check_output(['godot', '--version'], text=True).strip()
+          (out / 'engine.txt').write_text(version + '\n')
+          print('ENGINE', version, flush=True)
+          summary = []
+          def run(name, args, seconds=180):
+              env = os.environ.copy()
+              for suffix in ['DATA', 'CONFIG', 'CACHE']:
+                  env['XDG_' + suffix + '_HOME'] = os.environ['RUNNER_TEMP'] + '/' + name + '-' + suffix.lower()
+              env['HUNT_UI_CAPTURE_DIR'] = str(out)
+              path = out / (name + '.log')
+              with path.open('w') as log:
+                  result = subprocess.run(['timeout', str(seconds)] + args, stdout=log, stderr=subprocess.STDOUT, env=env)
+              text = path.read_text(errors='replace')
+              lines = text.splitlines()
+              errors = [i for i, line in enumerate(lines) if re.search(r'SCRIPT ERROR|Parse Error|^ERROR:|Assertion failed', line)]
+              excerpt = []
+              seen = set()
+              for i in errors:
+                  block = '\n'.join(lines[max(0, i):i+3])
+                  if block in seen: continue
+                  seen.add(block)
+                  if len(excerpt) < 16: excerpt.append(block[:800])
+              markers = [line[:1500] for line in lines if 'HUNT_' in line or 'failures' in line][-8:]
+              entry = {'phase': name, 'exit': result.returncode, 'error_count': len(errors), 'first_errors': excerpt, 'markers': markers}
+              summary.append(entry)
+              print(json.dumps(entry, ensure_ascii=False, indent=2), flush=True)
+              return result.returncode == 0 and not errors
+          geometry = run('geometry', ['godot', '--headless', '--path', '.', '--script', 'tests/regression/HuntDockGeometryTest.gd'])
+          imported = run('import', ['godot', '--headless', '--path', '.', '--editor', '--import', '--quit'], 300)
+          smoke = run('smoke', ['godot', '--headless', '--path', '.', '--script', 'tests/regression/HuntCompactHudSmokeTest.gd'])
+          captured = False
+          # Review screenshots are independent evidence, not a claim that all tests passed.
+          # Keep the failed regression status below while still rendering an imported build.
+          if imported:
+              captured = run('capture', ['xvfb-run', '-a', 'godot', '--path', '.', '--rendering-method', 'gl_compatibility', '--script', 'tests/regression/HuntDockCapture.gd'])
+          (out / 'summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+              f.write('## Hunt dock validation\n```json\n' + json.dumps(summary, ensure_ascii=False, indent=2) + '\n```\n')
+          sys.exit(0 if geometry and imported and smoke and captured else 1)
+          PY
+      - name: Upload raw validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hunt-dock-validation-${{ github.sha }}
+          path: checks/hunt-unified-dock/runtime/
+          retention-days: 7
+          if-no-files-found: warn
