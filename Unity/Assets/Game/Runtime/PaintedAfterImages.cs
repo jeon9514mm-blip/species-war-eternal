@@ -32,6 +32,7 @@ namespace Eternal.UnityMigration
         readonly Material shared;
         readonly GameObject root;
         int cursor;
+        bool disposed;
         public int ActiveCount {get;private set;}
         public PaintedAfterImages(Transform owner)
         {
@@ -48,6 +49,7 @@ namespace Eternal.UnityMigration
         }
         public void Capture(PaintedPoseSnapshot pose)
         {
+            if(disposed||root==null)return;
             var g=ghosts[cursor++%ghosts.Length];g.Remaining=.4f;
             g.Vertices[0]=pose.BottomLeft;g.Vertices[1]=pose.TopLeft;g.Vertices[2]=pose.TopRight;g.Vertices[3]=pose.BottomRight;
             var uv=pose.Uv;g.Uv[0]=new Vector2(uv.x,uv.y);g.Uv[1]=new Vector2(uv.x,uv.y+uv.w);g.Uv[2]=new Vector2(uv.x+uv.z,uv.y+uv.w);g.Uv[3]=new Vector2(uv.x+uv.z,uv.y);
@@ -56,6 +58,7 @@ namespace Eternal.UnityMigration
         }
         public void Advance(float dt)
         {
+            if(disposed||root==null){ActiveCount=0;return;}
             ActiveCount=0;
             foreach(var g in ghosts)
             {
@@ -64,8 +67,8 @@ namespace Eternal.UnityMigration
                 g.Properties.SetColor("_Tint",new Color(.8f,.88f,1,.5f*g.Remaining/.4f));g.Renderer.SetPropertyBlock(g.Properties);
             }
         }
-        public void Clear(){foreach(var g in ghosts){g.Remaining=0;g.Renderer.enabled=false;}ActiveCount=0;}
-        public void Dispose(){foreach(var g in ghosts)Release(g.Mesh);Release(shared);Release(root);}
+        public void Clear(){foreach(var g in ghosts){g.Remaining=0;if(g.Renderer!=null)g.Renderer.enabled=false;}ActiveCount=0;}
+        public void Dispose(){if(disposed)return;disposed=true;Clear();foreach(var g in ghosts)Release(g.Mesh);Release(shared);Release(root);}
         static void Release(Object value){if(value==null)return;if(Application.isPlaying)Object.Destroy(value);else Object.DestroyImmediate(value);}
     }
 }

@@ -1,11 +1,11 @@
 {
   "passed": true,
-  "comparisons": 33392,
+  "comparisons": 33569,
   "original_damage_cases": 216,
   "original_control_cases": 32,
   "original_geometry_cases": 2340,
-  "maximum_tick_movement": 0.220000461,
-  "minimum_normalized_clearance": 0.999501765,
+  "maximum_tick_movement": 0.220000356,
+  "minimum_normalized_clearance": 0.9995022,
   "hero_relief_meshes": 30,
   "hair_cards_per_hero": 600,
   "analytic_cape_controls": 5,
@@ -13,7 +13,7 @@
     {
       "zone": "gray_meadow",
       "outcome": "victory",
-      "seconds": 7.2999999999999821,
+      "seconds": 7.6499999999999808,
       "phase": 3,
       "damage": 44640,
       "patterns": 2,
@@ -35,7 +35,7 @@
       "outcome": "victory",
       "seconds": 18.300000000000125,
       "phase": 3,
-      "damage": 133437,
+      "damage": 133219,
       "patterns": 3,
       "interrupts": 2,
       "survivors": 10

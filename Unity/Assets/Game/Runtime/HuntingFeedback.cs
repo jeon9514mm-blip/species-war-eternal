@@ -17,10 +17,11 @@ namespace Eternal.UnityMigration
         readonly Dictionary<string,JObject> profiles=new();
         readonly Dictionary<string,AudioClip> audio=new();
         readonly List<LineRenderer> rings=new();
+        readonly List<LineRenderer> ringHalos=new();
         readonly AudioSource[] voices=new AudioSource[8];
         readonly System.Random rng=new(74013);
         Camera cameraView;
-        Material particleMaterial,shadowMaterial,runeMaterial;
+        Material particleMaterial,shadowMaterial,runeMaterial,runeGlowMaterial;
         Mesh particleMesh;
         Mesh glyphMesh;
         SkillVfxBatch skillBatch;
@@ -41,7 +42,7 @@ namespace Eternal.UnityMigration
         public int ActiveParticles {get;private set;}
         public int EventsPresented {get;private set;}
         public void SetRaidMode(bool raid)
-        {raidMode=raid;RaidWarningVisible=false;skillBatch?.Clear();foreach(var ring in rings)ring.gameObject.SetActive(!raid);if(glyphMesh!=null)transform.Find("Twelve bronze rune batch").gameObject.SetActive(!raid);Array.Clear(popups,0,popups.Length);Array.Clear(sparks,0,sparks.Length);}
+        {raidMode=raid;RaidWarningVisible=false;skillBatch?.Clear();foreach(var ring in rings)ring.gameObject.SetActive(!raid);foreach(var halo in ringHalos)halo.gameObject.SetActive(!raid);if(glyphMesh!=null)transform.Find("Twelve bronze rune batch").gameObject.SetActive(!raid);Array.Clear(popups,0,popups.Length);Array.Clear(sparks,0,sparks.Length);}
         public void SetExpeditionCenter(Vector2 center){targetCenter=center;}
         public void Initialize(Camera camera)
         {
@@ -72,12 +73,18 @@ namespace Eternal.UnityMigration
         void CreateCircle()
         {
             runeMaterial=new Material(particleMaterial);runeMaterial.SetFloat("_SoftDot",0);
-            runeMaterial.SetColor("_Tint",new Color(1.65f,1.65f,1.65f,1));
+            // Preserve moss/bronze hue. Raising every channel above 1 without
+            // tone mapping clipped the previous circles to plain white.
+            runeMaterial.SetColor("_Tint",new Color(1.15f,1.15f,1.15f,1));runeMaterial.renderQueue=2988;
+            runeGlowMaterial=new Material(particleMaterial);runeGlowMaterial.SetFloat("_SoftDot",0);runeGlowMaterial.SetFloat("_SoftLine",1);runeGlowMaterial.renderQueue=2987;
             for(int ring=0;ring<3;ring++)
             {
                 var line=new GameObject("Moss bronze expedition rune "+ring).AddComponent<LineRenderer>();line.transform.SetParent(transform,false);
                 line.sharedMaterial=runeMaterial;line.useWorldSpace=true;line.loop=true;line.positionCount=96;line.widthMultiplier=ring==1?.036f:.075f;
                 var color=ring==1?new Color(.91f,.79f,.6f,.8f):new Color(.66f,.72f,.62f,.65f);line.startColor=line.endColor=color;rings.Add(line);
+                var halo=new GameObject("Soft moss bronze ring glow "+ring).AddComponent<LineRenderer>();halo.transform.SetParent(transform,false);
+                halo.sharedMaterial=runeGlowMaterial;halo.useWorldSpace=true;halo.loop=true;halo.positionCount=96;halo.widthMultiplier=ring==1?.18f:.28f;
+                color.a=ring==1?.20f:.28f;halo.startColor=halo.endColor=color;ringHalos.Add(halo);
             }
             glyphMesh=new Mesh{name="Twelve rotating rune glyphs"};glyphMesh.MarkDynamic();var uv=new Vector2[glyphVertices.Length];var indices=new int[glyphVertices.Length/4*6];
             for(int i=0;i<glyphVertices.Length/4;i++){int v=i*4,t=i*6;uv[v]=Vector2.zero;uv[v+1]=Vector2.up;uv[v+2]=Vector2.one;uv[v+3]=Vector2.right;indices[t]=v;indices[t+1]=v+1;indices[t+2]=v+2;indices[t+3]=v;indices[t+4]=v+2;indices[t+5]=v+3;}
@@ -91,7 +98,7 @@ namespace Eternal.UnityMigration
             if(raidMode)return;expeditionCenter=Vector2.Lerp(expeditionCenter,targetCenter,1-Mathf.Exp(-dt*3));
             float pulse=.85f+Mathf.Sin(now*.8f)*.15f;
             for(int ring=0;ring<rings.Count;ring++)for(int i=0;i<96;i++)
-            {float a=i*Mathf.PI*2/96+now*.12f*(ring%2==0?1:-1),radius=3.0f+ring*.13f;rings[ring].SetPosition(i,new Vector3(expeditionCenter.x+Mathf.Cos(a)*radius,.015f+ring*.002f,expeditionCenter.y+Mathf.Sin(a)*radius*1.42f));}
+            {float a=i*Mathf.PI*2/96+now*.12f*(ring%2==0?1:-1),radius=3.0f+ring*.13f;var position=new Vector3(expeditionCenter.x+Mathf.Cos(a)*radius,.015f+ring*.002f,expeditionCenter.y+Mathf.Sin(a)*radius*1.42f);rings[ring].SetPosition(i,position);ringHalos[ring].SetPosition(i,position-Vector3.up*.001f);}
             for(int rune=0;rune<12;rune++)
             {
                 float a=rune*Mathf.PI*2/12+now*.12f;var radial=new Vector2(Mathf.Cos(a),Mathf.Sin(a));var tangent=new Vector2(-radial.y,radial.x);var origin=expeditionCenter+new Vector2(radial.x*3.55f,radial.y*3.55f*1.42f);
@@ -195,6 +202,6 @@ namespace Eternal.UnityMigration
             GUI.color=Color.white;
         }
         void OnDestroy()
-        {skillBatch?.Dispose();if(particleMesh!=null)Destroy(particleMesh);if(glyphMesh!=null)Destroy(glyphMesh);if(shadowTexture!=null)Destroy(shadowTexture);if(shadowMaterial!=null)Destroy(shadowMaterial);if(runeMaterial!=null)Destroy(runeMaterial);}
+        {skillBatch?.Dispose();if(particleMesh!=null)Destroy(particleMesh);if(glyphMesh!=null)Destroy(glyphMesh);if(shadowTexture!=null)Destroy(shadowTexture);if(shadowMaterial!=null)Destroy(shadowMaterial);if(runeMaterial!=null)Destroy(runeMaterial);if(runeGlowMaterial!=null)Destroy(runeGlowMaterial);}
     }
 }

@@ -1,40 +1,40 @@
 {
   "passed": true,
-  "comparisons": 293712,
-  "maximum_tick_movement": 0.090004101395607,
-  "minimum_normalized_body_clearance": 0.9994998574256897,
-  "verification_elapsed_ms": 6148,
+  "comparisons": 298001,
+  "maximum_tick_movement": 0.090011149644851685,
+  "minimum_normalized_body_clearance": 0.99950027465820313,
+  "verification_elapsed_ms": 14359,
   "scenarios": [
     {
       "zone": "gray_meadow",
       "simulated_seconds": 119.99999999999532,
-      "packs_cleared": 14,
-      "kills": 177,
-      "casts": 166,
-      "damage": 56066
+      "packs_cleared": 15,
+      "kills": 185,
+      "casts": 175,
+      "damage": 58561
     },
     {
       "zone": "forgotten_mine",
       "simulated_seconds": 119.99999999999532,
       "packs_cleared": 10,
-      "kills": 120,
-      "casts": 180,
-      "damage": 88572
+      "kills": 130,
+      "casts": 190,
+      "damage": 97029
     },
     {
       "zone": "moonrest_forest",
       "simulated_seconds": 119.99999999999532,
-      "packs_cleared": 8,
-      "kills": 102,
-      "casts": 199,
-      "damage": 117672
+      "packs_cleared": 7,
+      "kills": 84,
+      "casts": 169,
+      "damage": 94309
     }
   ],
   "skill_chain": {
     "enabled_simulated_seconds": 119.99999999999532,
-    "cycles": 2,
-    "confirmed_casts": 15,
-    "packs_cleared": 17,
+    "cycles": 1,
+    "confirmed_casts": 10,
+    "packs_cleared": 15,
     "reorder_and_replacement": true,
     "triage_bypass": true,
     "failed_cast_preserves_resources": true,
@@ -43,7 +43,7 @@
   "note": "Isolated domain verification; not a renderer FPS benchmark or full economy parity.",
   "skill_vfx": {
     "passed": true,
-    "comparisons": 852,
+    "comparisons": 853,
     "skill_profiles": 120,
     "hero_motifs": 30,
     "pool_capacity": 50,
@@ -90,5 +90,96 @@
     "precise_numbers_and_unknown_fields_preserved": true,
     "reward_reload_no_duplicate_claim": true,
     "note": "Named temporary repository fixture directory only; no player save path was accessed. Native game startup and production migration UI acceptance remain unverified."
+  },
+  "equipment": {
+    "passed": true,
+    "comparisons": 4783,
+    "production_cases": 513,
+    "types": {
+      "normalize": 56,
+      "sets": 343,
+      "command": 114
+    },
+    "note": "Production equipment normalization/set rules and selected actual commands with isolated healthy snapshots; workshop/market/auto-equip, native UI and all corrupt legacy variants remain incomplete."
+  },
+  "movement_planner": {
+    "passed": true,
+    "comparisons": 264792,
+    "production_standoff_cases": 192,
+    "all_30_hero_party_scenarios": [
+      {
+        "group": 0,
+        "faction": "aurelia",
+        "hero_ids": [
+          "leonhardt",
+          "mira",
+          "elisia",
+          "kairen",
+          "orwin",
+          "seria",
+          "astel",
+          "darius",
+          "lunea",
+          "caelum"
+        ],
+        "packs_cleared": 7,
+        "casts": 85
+      },
+      {
+        "group": 1,
+        "faction": "aurelia",
+        "hero_ids": [
+          "seria",
+          "astel",
+          "darius",
+          "lunea",
+          "caelum",
+          "adrien",
+          "tessa",
+          "naia",
+          "sael",
+          "odelia"
+        ],
+        "packs_cleared": 9,
+        "casts": 64
+      },
+      {
+        "group": 2,
+        "faction": "noxfera",
+        "hero_ids": [
+          "valeria",
+          "morgas",
+          "ragna",
+          "bron",
+          "nyx",
+          "fenris",
+          "isolde",
+          "garm",
+          "veyra",
+          "ulric"
+        ],
+        "packs_cleared": 7,
+        "casts": 82
+      },
+      {
+        "group": 3,
+        "faction": "noxfera",
+        "hero_ids": [
+          "fenris",
+          "isolde",
+          "garm",
+          "veyra",
+          "ulric",
+          "lucien",
+          "corvin",
+          "rokan",
+          "bora",
+          "selene"
+        ],
+        "packs_cleared": 6,
+        "casts": 76
+      }
+    ],
+    "note": "Role distances match original source. The bounded angular/reservation planner is an adaptation; body clearance is not proof of complete painted silhouette separation."
   }
 }

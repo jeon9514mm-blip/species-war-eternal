@@ -4,7 +4,7 @@ User instruction: defer newly required execution approvals until 2026-10-09 08:0
 
 Prepared work requiring a newly allowed execution command, if its exact operation is not already permitted:
 
-- Native raid and chain UI pointer testing at newly observed coordinates; inspect all three map roots, verify warnings/counter/dodge/rally, and capture actual raid screenshots. Compiled code/domain tests do not substitute for this.
+- Native raid and chain UI pointer testing at newly observed coordinates; verify counter/dodge/rally and chain editing through actual input. All three painted raid maps have now been captured through the isolated launch configuration, including mine rockfall and meadow donut warnings; those captures do not substitute for actual input acceptance.
 - Applying and reviewing new desktop/mobile texture compression settings through the asset importer. Current actor imports are uncompressed; the 200MB target is not verified.
 - Running a standalone Unity build and target-device FPS/memory profiling after the playable paths are connected.
 - Any new installation/dependency or scheduling command which actually requests access. No overnight scheduler was created successfully.

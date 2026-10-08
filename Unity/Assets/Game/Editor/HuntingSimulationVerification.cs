@@ -45,11 +45,15 @@ namespace Eternal.UnityMigration.Editor
             var saveReport=SaveCompatibilityVerification.Verify();
             var progressionReport=ProgressionCommandVerification.Verify();
             var snapshotReport=UnitySnapshotVerification.Verify();
+            var equipmentReport=EquipmentRuleVerification.Verify();
+            var movementReport=MovementPlannerVerification.Verify();
             var result=new JObject{{"passed",true},{"comparisons",comparisons},{"maximum_tick_movement",worstMove},{"minimum_normalized_body_clearance",minClearance},{"verification_elapsed_ms",timer.ElapsedMilliseconds},{"scenarios",report},{"skill_chain",chainReport},{"note","Isolated domain verification; not a renderer FPS benchmark or full economy parity."}};
             result["skill_vfx"]=vfxReport;
             result["legacy_save"]=saveReport;
             result["progression"]=progressionReport;
             result["unity_snapshot_store"]=snapshotReport;
+            result["equipment"]=equipmentReport;
+            result["movement_planner"]=movementReport;
             Directory.CreateDirectory("../checks/unity-migration-2026-10-08");File.WriteAllText("../checks/unity-migration-2026-10-08/native-hunt-simulation.json",result.ToString());return result.ToString();
         }
         static JObject VerifyChain(ref int comparisons)
@@ -65,7 +69,7 @@ namespace Eternal.UnityMigration.Editor
             for(int tick=0;tick<2400&&!sim.Defeated;tick++)sim.Step(.05);
             comparisons+=3;
             if(chain.CompletedCycles<1||sim.PacksCleared<2||matched!=chain.ConfirmedCasts)
-                throw new InvalidOperationException("Skill chain stalled or advanced without confirmed casts: cycles="+chain.CompletedCycles+" matched="+matched+" confirmed="+chain.ConfirmedCasts);
+                throw new InvalidOperationException("Skill chain stalled or advanced without confirmed casts: cycles="+chain.CompletedCycles+" matched="+matched+" confirmed="+chain.ConfirmedCasts+" current="+chain.Current+" packs="+sim.PacksCleared+" positions="+string.Join(" / ",sim.Battle.Heroes.Select(h=>h.Id+":"+h.Position+" HP="+h.Hp+" reach="+CombatTargeting.Reach(h)))+" enemies="+string.Join(" / ",sim.Battle.Enemies.Where(e=>e.Alive).Select(e=>e.Id+":"+e.Position)));
             var snapshot=chain.Entries.ToArray();
             if(chain.Set(0,new ChainSkill(snapshot[0].Hero,"passive"))||chain.Set(-1,snapshot[0])||chain.Move(0,-1))throw new InvalidOperationException("Invalid chain edit accepted.");
             if(!snapshot.SequenceEqual(chain.Entries))throw new InvalidOperationException("Rejected chain edit changed order.");comparisons+=4;

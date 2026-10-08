@@ -1,0 +1,3151 @@
+{
+  "cases": [
+    {
+      "expected": 1.14,
+      "melee": false,
+      "range": 1,
+      "role": "탱커",
+      "style": "balanced"
+    },
+    {
+      "expected": 1.14,
+      "melee": false,
+      "range": 2,
+      "role": "탱커",
+      "style": "balanced"
+    },
+    {
+      "expected": 1.46,
+      "melee": false,
+      "range": 3,
+      "role": "탱커",
+      "style": "balanced"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 1,
+      "role": "탱커",
+      "style": "balanced"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 2,
+      "role": "탱커",
+      "style": "balanced"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 3,
+      "role": "탱커",
+      "style": "balanced"
+    },
+    {
+      "expected": 1.14,
+      "melee": false,
+      "range": 1,
+      "role": "탱커",
+      "style": "protector"
+    },
+    {
+      "expected": 1.14,
+      "melee": false,
+      "range": 2,
+      "role": "탱커",
+      "style": "protector"
+    },
+    {
+      "expected": 1.46,
+      "melee": false,
+      "range": 3,
+      "role": "탱커",
+      "style": "protector"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 1,
+      "role": "탱커",
+      "style": "protector"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 2,
+      "role": "탱커",
+      "style": "protector"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 3,
+      "role": "탱커",
+      "style": "protector"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 1,
+      "role": "탱커",
+      "style": "controller"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 2,
+      "role": "탱커",
+      "style": "controller"
+    },
+    {
+      "expected": 1.52,
+      "melee": false,
+      "range": 3,
+      "role": "탱커",
+      "style": "controller"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 1,
+      "role": "탱커",
+      "style": "controller"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 2,
+      "role": "탱커",
+      "style": "controller"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 3,
+      "role": "탱커",
+      "style": "controller"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 1,
+      "role": "탱커",
+      "style": "control"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 2,
+      "role": "탱커",
+      "style": "control"
+    },
+    {
+      "expected": 1.52,
+      "melee": false,
+      "range": 3,
+      "role": "탱커",
+      "style": "control"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 1,
+      "role": "탱커",
+      "style": "control"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 2,
+      "role": "탱커",
+      "style": "control"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 3,
+      "role": "탱커",
+      "style": "control"
+    },
+    {
+      "expected": 1.1,
+      "melee": false,
+      "range": 1,
+      "role": "탱커",
+      "style": "aggressive"
+    },
+    {
+      "expected": 1.1,
+      "melee": false,
+      "range": 2,
+      "role": "탱커",
+      "style": "aggressive"
+    },
+    {
+      "expected": 1.38,
+      "melee": false,
+      "range": 3,
+      "role": "탱커",
+      "style": "aggressive"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 1,
+      "role": "탱커",
+      "style": "aggressive"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 2,
+      "role": "탱커",
+      "style": "aggressive"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 3,
+      "role": "탱커",
+      "style": "aggressive"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "탱커",
+      "style": "finisher"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "탱커",
+      "style": "finisher"
+    },
+    {
+      "expected": 1.62,
+      "melee": false,
+      "range": 3,
+      "role": "탱커",
+      "style": "finisher"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 1,
+      "role": "탱커",
+      "style": "finisher"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 2,
+      "role": "탱커",
+      "style": "finisher"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 3,
+      "role": "탱커",
+      "style": "finisher"
+    },
+    {
+      "expected": 1.14,
+      "melee": false,
+      "range": 1,
+      "role": "탱커",
+      "style": "sustain"
+    },
+    {
+      "expected": 1.14,
+      "melee": false,
+      "range": 2,
+      "role": "탱커",
+      "style": "sustain"
+    },
+    {
+      "expected": 1.46,
+      "melee": false,
+      "range": 3,
+      "role": "탱커",
+      "style": "sustain"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 1,
+      "role": "탱커",
+      "style": "sustain"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 2,
+      "role": "탱커",
+      "style": "sustain"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 3,
+      "role": "탱커",
+      "style": "sustain"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "탱커",
+      "style": "support"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "탱커",
+      "style": "support"
+    },
+    {
+      "expected": 1.6,
+      "melee": false,
+      "range": 3,
+      "role": "탱커",
+      "style": "support"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 1,
+      "role": "탱커",
+      "style": "support"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 2,
+      "role": "탱커",
+      "style": "support"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 3,
+      "role": "탱커",
+      "style": "support"
+    },
+    {
+      "expected": 1.14,
+      "melee": false,
+      "range": 1,
+      "role": "딜러",
+      "style": "balanced"
+    },
+    {
+      "expected": 1.14,
+      "melee": false,
+      "range": 2,
+      "role": "딜러",
+      "style": "balanced"
+    },
+    {
+      "expected": 1.46,
+      "melee": false,
+      "range": 3,
+      "role": "딜러",
+      "style": "balanced"
+    },
+    {
+      "expected": 0.62,
+      "melee": true,
+      "range": 1,
+      "role": "딜러",
+      "style": "balanced"
+    },
+    {
+      "expected": 0.62,
+      "melee": true,
+      "range": 2,
+      "role": "딜러",
+      "style": "balanced"
+    },
+    {
+      "expected": 0.62,
+      "melee": true,
+      "range": 3,
+      "role": "딜러",
+      "style": "balanced"
+    },
+    {
+      "expected": 1.14,
+      "melee": false,
+      "range": 1,
+      "role": "딜러",
+      "style": "protector"
+    },
+    {
+      "expected": 1.14,
+      "melee": false,
+      "range": 2,
+      "role": "딜러",
+      "style": "protector"
+    },
+    {
+      "expected": 1.46,
+      "melee": false,
+      "range": 3,
+      "role": "딜러",
+      "style": "protector"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 1,
+      "role": "딜러",
+      "style": "protector"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 2,
+      "role": "딜러",
+      "style": "protector"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 3,
+      "role": "딜러",
+      "style": "protector"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 1,
+      "role": "딜러",
+      "style": "controller"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 2,
+      "role": "딜러",
+      "style": "controller"
+    },
+    {
+      "expected": 1.52,
+      "melee": false,
+      "range": 3,
+      "role": "딜러",
+      "style": "controller"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 1,
+      "role": "딜러",
+      "style": "controller"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 2,
+      "role": "딜러",
+      "style": "controller"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 3,
+      "role": "딜러",
+      "style": "controller"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 1,
+      "role": "딜러",
+      "style": "control"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 2,
+      "role": "딜러",
+      "style": "control"
+    },
+    {
+      "expected": 1.52,
+      "melee": false,
+      "range": 3,
+      "role": "딜러",
+      "style": "control"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 1,
+      "role": "딜러",
+      "style": "control"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 2,
+      "role": "딜러",
+      "style": "control"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 3,
+      "role": "딜러",
+      "style": "control"
+    },
+    {
+      "expected": 1.1,
+      "melee": false,
+      "range": 1,
+      "role": "딜러",
+      "style": "aggressive"
+    },
+    {
+      "expected": 1.1,
+      "melee": false,
+      "range": 2,
+      "role": "딜러",
+      "style": "aggressive"
+    },
+    {
+      "expected": 1.38,
+      "melee": false,
+      "range": 3,
+      "role": "딜러",
+      "style": "aggressive"
+    },
+    {
+      "expected": 0.7,
+      "melee": true,
+      "range": 1,
+      "role": "딜러",
+      "style": "aggressive"
+    },
+    {
+      "expected": 0.7,
+      "melee": true,
+      "range": 2,
+      "role": "딜러",
+      "style": "aggressive"
+    },
+    {
+      "expected": 0.7,
+      "melee": true,
+      "range": 3,
+      "role": "딜러",
+      "style": "aggressive"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "딜러",
+      "style": "finisher"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "딜러",
+      "style": "finisher"
+    },
+    {
+      "expected": 1.62,
+      "melee": false,
+      "range": 3,
+      "role": "딜러",
+      "style": "finisher"
+    },
+    {
+      "expected": 0.7,
+      "melee": true,
+      "range": 1,
+      "role": "딜러",
+      "style": "finisher"
+    },
+    {
+      "expected": 0.7,
+      "melee": true,
+      "range": 2,
+      "role": "딜러",
+      "style": "finisher"
+    },
+    {
+      "expected": 0.7,
+      "melee": true,
+      "range": 3,
+      "role": "딜러",
+      "style": "finisher"
+    },
+    {
+      "expected": 1.14,
+      "melee": false,
+      "range": 1,
+      "role": "딜러",
+      "style": "sustain"
+    },
+    {
+      "expected": 1.14,
+      "melee": false,
+      "range": 2,
+      "role": "딜러",
+      "style": "sustain"
+    },
+    {
+      "expected": 1.46,
+      "melee": false,
+      "range": 3,
+      "role": "딜러",
+      "style": "sustain"
+    },
+    {
+      "expected": 0.6,
+      "melee": true,
+      "range": 1,
+      "role": "딜러",
+      "style": "sustain"
+    },
+    {
+      "expected": 0.6,
+      "melee": true,
+      "range": 2,
+      "role": "딜러",
+      "style": "sustain"
+    },
+    {
+      "expected": 0.6,
+      "melee": true,
+      "range": 3,
+      "role": "딜러",
+      "style": "sustain"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "딜러",
+      "style": "support"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "딜러",
+      "style": "support"
+    },
+    {
+      "expected": 1.6,
+      "melee": false,
+      "range": 3,
+      "role": "딜러",
+      "style": "support"
+    },
+    {
+      "expected": 0.62,
+      "melee": true,
+      "range": 1,
+      "role": "딜러",
+      "style": "support"
+    },
+    {
+      "expected": 0.62,
+      "melee": true,
+      "range": 2,
+      "role": "딜러",
+      "style": "support"
+    },
+    {
+      "expected": 0.62,
+      "melee": true,
+      "range": 3,
+      "role": "딜러",
+      "style": "support"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "서포터",
+      "style": "balanced"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "서포터",
+      "style": "balanced"
+    },
+    {
+      "expected": 1.6,
+      "melee": false,
+      "range": 3,
+      "role": "서포터",
+      "style": "balanced"
+    },
+    {
+      "expected": 0.62,
+      "melee": true,
+      "range": 1,
+      "role": "서포터",
+      "style": "balanced"
+    },
+    {
+      "expected": 0.62,
+      "melee": true,
+      "range": 2,
+      "role": "서포터",
+      "style": "balanced"
+    },
+    {
+      "expected": 0.62,
+      "melee": true,
+      "range": 3,
+      "role": "서포터",
+      "style": "balanced"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "서포터",
+      "style": "protector"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "서포터",
+      "style": "protector"
+    },
+    {
+      "expected": 1.6,
+      "melee": false,
+      "range": 3,
+      "role": "서포터",
+      "style": "protector"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 1,
+      "role": "서포터",
+      "style": "protector"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 2,
+      "role": "서포터",
+      "style": "protector"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 3,
+      "role": "서포터",
+      "style": "protector"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "서포터",
+      "style": "controller"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "서포터",
+      "style": "controller"
+    },
+    {
+      "expected": 1.6,
+      "melee": false,
+      "range": 3,
+      "role": "서포터",
+      "style": "controller"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 1,
+      "role": "서포터",
+      "style": "controller"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 2,
+      "role": "서포터",
+      "style": "controller"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 3,
+      "role": "서포터",
+      "style": "controller"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "서포터",
+      "style": "control"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "서포터",
+      "style": "control"
+    },
+    {
+      "expected": 1.6,
+      "melee": false,
+      "range": 3,
+      "role": "서포터",
+      "style": "control"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 1,
+      "role": "서포터",
+      "style": "control"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 2,
+      "role": "서포터",
+      "style": "control"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 3,
+      "role": "서포터",
+      "style": "control"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "서포터",
+      "style": "aggressive"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "서포터",
+      "style": "aggressive"
+    },
+    {
+      "expected": 1.6,
+      "melee": false,
+      "range": 3,
+      "role": "서포터",
+      "style": "aggressive"
+    },
+    {
+      "expected": 0.7,
+      "melee": true,
+      "range": 1,
+      "role": "서포터",
+      "style": "aggressive"
+    },
+    {
+      "expected": 0.7,
+      "melee": true,
+      "range": 2,
+      "role": "서포터",
+      "style": "aggressive"
+    },
+    {
+      "expected": 0.7,
+      "melee": true,
+      "range": 3,
+      "role": "서포터",
+      "style": "aggressive"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "서포터",
+      "style": "finisher"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "서포터",
+      "style": "finisher"
+    },
+    {
+      "expected": 1.6,
+      "melee": false,
+      "range": 3,
+      "role": "서포터",
+      "style": "finisher"
+    },
+    {
+      "expected": 0.7,
+      "melee": true,
+      "range": 1,
+      "role": "서포터",
+      "style": "finisher"
+    },
+    {
+      "expected": 0.7,
+      "melee": true,
+      "range": 2,
+      "role": "서포터",
+      "style": "finisher"
+    },
+    {
+      "expected": 0.7,
+      "melee": true,
+      "range": 3,
+      "role": "서포터",
+      "style": "finisher"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "서포터",
+      "style": "sustain"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "서포터",
+      "style": "sustain"
+    },
+    {
+      "expected": 1.6,
+      "melee": false,
+      "range": 3,
+      "role": "서포터",
+      "style": "sustain"
+    },
+    {
+      "expected": 0.6,
+      "melee": true,
+      "range": 1,
+      "role": "서포터",
+      "style": "sustain"
+    },
+    {
+      "expected": 0.6,
+      "melee": true,
+      "range": 2,
+      "role": "서포터",
+      "style": "sustain"
+    },
+    {
+      "expected": 0.6,
+      "melee": true,
+      "range": 3,
+      "role": "서포터",
+      "style": "sustain"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "서포터",
+      "style": "support"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "서포터",
+      "style": "support"
+    },
+    {
+      "expected": 1.6,
+      "melee": false,
+      "range": 3,
+      "role": "서포터",
+      "style": "support"
+    },
+    {
+      "expected": 0.62,
+      "melee": true,
+      "range": 1,
+      "role": "서포터",
+      "style": "support"
+    },
+    {
+      "expected": 0.62,
+      "melee": true,
+      "range": 2,
+      "role": "서포터",
+      "style": "support"
+    },
+    {
+      "expected": 0.62,
+      "melee": true,
+      "range": 3,
+      "role": "서포터",
+      "style": "support"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "balanced"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "balanced"
+    },
+    {
+      "expected": 1.52,
+      "melee": false,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "balanced"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "balanced"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "balanced"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "balanced"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "protector"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "protector"
+    },
+    {
+      "expected": 1.52,
+      "melee": false,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "protector"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "protector"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "protector"
+    },
+    {
+      "expected": 0.56,
+      "melee": true,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "protector"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "controller"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "controller"
+    },
+    {
+      "expected": 1.52,
+      "melee": false,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "controller"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "controller"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "controller"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "controller"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "control"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "control"
+    },
+    {
+      "expected": 1.52,
+      "melee": false,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "control"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "control"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "control"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "control"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "aggressive"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "aggressive"
+    },
+    {
+      "expected": 1.52,
+      "melee": false,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "aggressive"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "aggressive"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "aggressive"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "aggressive"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "finisher"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "finisher"
+    },
+    {
+      "expected": 1.52,
+      "melee": false,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "finisher"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "finisher"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "finisher"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "finisher"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "sustain"
+    },
+    {
+      "expected": 1.16,
+      "melee": false,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "sustain"
+    },
+    {
+      "expected": 1.52,
+      "melee": false,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "sustain"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "sustain"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "sustain"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "sustain"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "support"
+    },
+    {
+      "expected": 1.18,
+      "melee": false,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "support"
+    },
+    {
+      "expected": 1.6,
+      "melee": false,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "support"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 1,
+      "role": "컨트롤러",
+      "style": "support"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 2,
+      "role": "컨트롤러",
+      "style": "support"
+    },
+    {
+      "expected": 0.66,
+      "melee": true,
+      "range": 3,
+      "role": "컨트롤러",
+      "style": "support"
+    }
+  ],
+  "layout": [
+    {
+      "hero": "leonhardt",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "leonhardt",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "leonhardt",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "leonhardt",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "leonhardt",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "leonhardt",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "leonhardt",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "leonhardt",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "leonhardt",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "leonhardt",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "mira",
+      "range": 2,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "mira",
+      "range": 2,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "mira",
+      "range": 2,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "mira",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "mira",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "mira",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "mira",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "mira",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "mira",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "mira",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "elisia",
+      "range": 3,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "elisia",
+      "range": 3,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "elisia",
+      "range": 3,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "elisia",
+      "range": 3,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "elisia",
+      "range": 3,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "elisia",
+      "range": 3,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "elisia",
+      "range": 3,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "elisia",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "elisia",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "elisia",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "kairen",
+      "range": 3,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "kairen",
+      "range": 3,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "kairen",
+      "range": 3,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "kairen",
+      "range": 3,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "kairen",
+      "range": 3,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "kairen",
+      "range": 3,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "kairen",
+      "range": 3,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "kairen",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "kairen",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "kairen",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "orwin",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "orwin",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "orwin",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "orwin",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "orwin",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "orwin",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "orwin",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "orwin",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "orwin",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "orwin",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "seria",
+      "range": 2,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "seria",
+      "range": 2,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "seria",
+      "range": 2,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "seria",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "seria",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "seria",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "seria",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "seria",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "seria",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "seria",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "astel",
+      "range": 3,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "astel",
+      "range": 3,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "astel",
+      "range": 3,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "astel",
+      "range": 3,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "astel",
+      "range": 3,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "astel",
+      "range": 3,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "astel",
+      "range": 3,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "astel",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "astel",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "astel",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "darius",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "darius",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "darius",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "darius",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "darius",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "darius",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "darius",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "darius",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "darius",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "darius",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "lunea",
+      "range": 3,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "lunea",
+      "range": 3,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "lunea",
+      "range": 3,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "lunea",
+      "range": 3,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "lunea",
+      "range": 3,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "lunea",
+      "range": 3,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "lunea",
+      "range": 3,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "lunea",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "lunea",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "lunea",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "caelum",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "caelum",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "caelum",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "caelum",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "caelum",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "caelum",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "caelum",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "caelum",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "caelum",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "caelum",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "valeria",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "valeria",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "valeria",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "valeria",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "valeria",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "valeria",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "valeria",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "valeria",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "valeria",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "valeria",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "morgas",
+      "range": 3,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "morgas",
+      "range": 3,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "morgas",
+      "range": 3,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "morgas",
+      "range": 3,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "morgas",
+      "range": 3,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "morgas",
+      "range": 3,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "morgas",
+      "range": 3,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "morgas",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "morgas",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "morgas",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "ragna",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "ragna",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "ragna",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "ragna",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "ragna",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "ragna",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "ragna",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "ragna",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "ragna",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "ragna",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "bron",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "bron",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "bron",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "bron",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "bron",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "bron",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "bron",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "bron",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "bron",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "bron",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "nyx",
+      "range": 3,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "nyx",
+      "range": 3,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "nyx",
+      "range": 3,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "nyx",
+      "range": 3,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "nyx",
+      "range": 3,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "nyx",
+      "range": 3,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "nyx",
+      "range": 3,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "nyx",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "nyx",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "nyx",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "fenris",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "fenris",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "fenris",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "fenris",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "fenris",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "fenris",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "fenris",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "fenris",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "fenris",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "fenris",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "isolde",
+      "range": 3,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "isolde",
+      "range": 3,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "isolde",
+      "range": 3,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "isolde",
+      "range": 3,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "isolde",
+      "range": 3,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "isolde",
+      "range": 3,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "isolde",
+      "range": 3,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "isolde",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "isolde",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "isolde",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "garm",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "garm",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "garm",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "garm",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "garm",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "garm",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "garm",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "garm",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "garm",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "garm",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "veyra",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "veyra",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "veyra",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "veyra",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "veyra",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "veyra",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "veyra",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "veyra",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "veyra",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "veyra",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "ulric",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "ulric",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "ulric",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "ulric",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "ulric",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "ulric",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "ulric",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "ulric",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "ulric",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "ulric",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "adrien",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "adrien",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "adrien",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "adrien",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "adrien",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "adrien",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "adrien",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "adrien",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "adrien",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "adrien",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "tessa",
+      "range": 2,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "tessa",
+      "range": 2,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "tessa",
+      "range": 2,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "tessa",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "tessa",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "tessa",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "tessa",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "tessa",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "tessa",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "tessa",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "naia",
+      "range": 2,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "naia",
+      "range": 2,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "naia",
+      "range": 2,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "naia",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "naia",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "naia",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "naia",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "naia",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "naia",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "naia",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "sael",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "sael",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "sael",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "sael",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "sael",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "sael",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "sael",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "sael",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "sael",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "sael",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "odelia",
+      "range": 3,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "odelia",
+      "range": 3,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "odelia",
+      "range": 3,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "odelia",
+      "range": 3,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "odelia",
+      "range": 3,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "odelia",
+      "range": 3,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "odelia",
+      "range": 3,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "odelia",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "odelia",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "odelia",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "lucien",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "lucien",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "lucien",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "lucien",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "lucien",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "lucien",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "lucien",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "lucien",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "lucien",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "lucien",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "corvin",
+      "range": 2,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "corvin",
+      "range": 2,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "corvin",
+      "range": 2,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "corvin",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "corvin",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "corvin",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "corvin",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "corvin",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "corvin",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "corvin",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "rokan",
+      "range": 2,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "rokan",
+      "range": 2,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "rokan",
+      "range": 2,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "rokan",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "rokan",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "rokan",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "rokan",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "rokan",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "rokan",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "rokan",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "bora",
+      "range": 1,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "bora",
+      "range": 1,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "bora",
+      "range": 1,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "bora",
+      "range": 2,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "bora",
+      "range": 2,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "bora",
+      "range": 2,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "bora",
+      "range": 2,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "bora",
+      "range": 2,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "bora",
+      "range": 2,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "bora",
+      "range": 2,
+      "row": "rear",
+      "slot": 9
+    },
+    {
+      "hero": "selene",
+      "range": 3,
+      "row": "front",
+      "slot": 0
+    },
+    {
+      "hero": "selene",
+      "range": 3,
+      "row": "front",
+      "slot": 1
+    },
+    {
+      "hero": "selene",
+      "range": 3,
+      "row": "front",
+      "slot": 2
+    },
+    {
+      "hero": "selene",
+      "range": 3,
+      "row": "middle",
+      "slot": 3
+    },
+    {
+      "hero": "selene",
+      "range": 3,
+      "row": "middle",
+      "slot": 4
+    },
+    {
+      "hero": "selene",
+      "range": 3,
+      "row": "middle",
+      "slot": 5
+    },
+    {
+      "hero": "selene",
+      "range": 3,
+      "row": "middle",
+      "slot": 6
+    },
+    {
+      "hero": "selene",
+      "range": 3,
+      "row": "rear",
+      "slot": 7
+    },
+    {
+      "hero": "selene",
+      "range": 3,
+      "row": "rear",
+      "slot": 8
+    },
+    {
+      "hero": "selene",
+      "range": 3,
+      "row": "rear",
+      "slot": 9
+    }
+  ],
+  "source": "PartyMovementDirector._preferred_standoff and Main formation/range functions"
+}

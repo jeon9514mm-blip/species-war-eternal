@@ -13,9 +13,20 @@ namespace Eternal.UnityMigration
         Mesh warningMesh;
         MeshRenderer warningRenderer;
         int shownVersion=-1;
+        public string PaintedMap {get;private set;}
         public void Initialize(RaidSimulation simulation,Material stone)
         {
             raid=simulation;bool meadow=raid.Zone=="gray_meadow",mine=raid.Zone=="forgotten_mine";
+            string painting=meadow?"sky-court":mine?"amber-quarry":"lunar-sanctum";
+            var art=Resources.Load<Texture2D>("Eternal/Environment/"+painting);
+            if(art!=null)
+            {
+                var material=new Material(Resources.Load<Material>("Eternal/Materials/PaintedArena"));
+                material.SetTexture("_MainTex",art);ownedMaterials.Add(material);PaintedMap=painting;
+                Primitive(PrimitiveType.Plane,"Original painted raid floor · "+painting,new Vector3(0,-.08f,0),new Vector3(6,1,4),material);
+            }
+            else
+            {
             var ground=new Material(stone);ownedMaterials.Add(ground);
             var stoneTint=meadow?new Color(.49f,.53f,.43f):mine?new Color(.35f,.37f,.42f):new Color(.37f,.40f,.49f);
             if(ground.HasProperty("_Tint"))ground.SetColor("_Tint",meadow?new Color(1.08f,1.10f,.91f):mine?new Color(.86f,.94f,1.06f):new Color(.88f,.88f,1.12f));
@@ -60,8 +71,10 @@ namespace Eternal.UnityMigration
                 var ring=new GameObject("Moon altar inlay").AddComponent<LineRenderer>();ring.transform.SetParent(transform,false);ring.sharedMaterial=accent;ring.useWorldSpace=false;ring.loop=true;ring.widthMultiplier=.035f;ring.positionCount=96;
                 for(int i=0;i<96;i++){float a=i*Mathf.PI*2/96;ring.SetPosition(i,new Vector3(8+Mathf.Cos(a)*2.4f,.14f,.5f+Mathf.Sin(a)*2.4f));}
             }
+            }
             warningMaterial=new Material(Resources.Load<Material>("Eternal/Materials/Particles"));warningMaterial.SetFloat("_SoftDot",0);ownedMaterials.Add(warningMaterial);
-            outlineMaterial=new Material(warningMaterial);ownedMaterials.Add(outlineMaterial);
+            warningMaterial.SetFloat("_ClipArena",1);warningMaterial.SetVector("_ArenaBounds",new Vector4(RaidFootprint.Floor.xMin,RaidFootprint.Floor.yMin,RaidFootprint.Floor.xMax,RaidFootprint.Floor.yMax));warningMaterial.renderQueue=2990;
+            outlineMaterial=new Material(warningMaterial);outlineMaterial.renderQueue=2991;ownedMaterials.Add(outlineMaterial);
             var warning=new GameObject("Shared geometry warning fill");warning.transform.SetParent(transform,false);
             warningMesh=new Mesh{name="Frozen raid warning"};warning.AddComponent<MeshFilter>().sharedMesh=warningMesh;warningRenderer=warning.AddComponent<MeshRenderer>();warningRenderer.sharedMaterial=warningMaterial;
             for(int i=0;i<4;i++){var line=new GameObject("Warning footprint "+i).AddComponent<LineRenderer>();line.transform.SetParent(transform,false);line.sharedMaterial=outlineMaterial;line.loop=true;line.useWorldSpace=false;line.widthMultiplier=.065f;warningLines.Add(line);}

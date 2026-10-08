@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "comparisons": 264792,
+  "production_standoff_cases": 192,
+  "all_30_hero_party_scenarios": [
+    {
+      "group": 0,
+      "faction": "aurelia",
+      "hero_ids": [
+        "leonhardt",
+        "mira",
+        "elisia",
+        "kairen",
+        "orwin",
+        "seria",
+        "astel",
+        "darius",
+        "lunea",
+        "caelum"
+      ],
+      "packs_cleared": 7,
+      "casts": 85
+    },
+    {
+      "group": 1,
+      "faction": "aurelia",
+      "hero_ids": [
+        "seria",
+        "astel",
+        "darius",
+        "lunea",
+        "caelum",
+        "adrien",
+        "tessa",
+        "naia",
+        "sael",
+        "odelia"
+      ],
+      "packs_cleared": 9,
+      "casts": 64
+    },
+    {
+      "group": 2,
+      "faction": "noxfera",
+      "hero_ids": [
+        "valeria",
+        "morgas",
+        "ragna",
+        "bron",
+        "nyx",
+        "fenris",
+        "isolde",
+        "garm",
+        "veyra",
+        "ulric"
+      ],
+      "packs_cleared": 7,
+      "casts": 82
+    },
+    {
+      "group": 3,
+      "faction": "noxfera",
+      "hero_ids": [
+        "fenris",
+        "isolde",
+        "garm",
+        "veyra",
+        "ulric",
+        "lucien",
+        "corvin",
+        "rokan",
+        "bora",
+        "selene"
+      ],
+      "packs_cleared": 6,
+      "casts": 76
+    }
+  ],
+  "note": "Role distances match original source. The bounded angular/reservation planner is an adaptation; body clearance is not proof of complete painted silhouette separation."
+}

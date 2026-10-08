@@ -12,7 +12,7 @@ namespace Eternal.UnityMigration.Editor
         {
             if(!Application.isPlaying)throw new InvalidOperationException("Native renderer inspection requires the running review.");
             var rows=new JArray();int missingBodies=0;
-            foreach(var actor in UnityEngine.Object.FindObjectsByType<PaintedActor>(FindObjectsSortMode.None))
+            foreach(var actor in UnityEngine.Object.FindObjectsByType<PaintedActor>())
             {
                 foreach(var mesh in actor.GetComponentsInChildren<MeshFilter>())
                 {
@@ -22,12 +22,19 @@ namespace Eternal.UnityMigration.Editor
                     rows.Add(new JObject{{"actor",actor.name},{"surface",mesh.name},{"vertices",mesh.sharedMesh?.vertexCount??0},{"shader",m.shader.name},{"shader_supported",m.shader.isSupported},{"shader_errors",ShaderUtil.ShaderHasError(m.shader)},{"texture",m.mainTexture?.name??"missing"},{"atlas",Vector("_AtlasRect")},{"size",Vector("_PaintSize")},{"anchor",Vector("_Anchor")},{"tint",Vector("_Tint")},{"bounds",renderer.bounds.ToString()},{"enabled",renderer.enabled},{"layer",renderer.gameObject.layer},{"queue",m.renderQueue}});
                 }
             }
-            var review=UnityEngine.Object.FindFirstObjectByType<HuntingMigrationReview>();var camera=review?.BattleCamera;
+            var review=UnityEngine.Object.FindAnyObjectByType<HuntingMigrationReview>();var camera=review?.BattleCamera;
             var report=new JObject{{"time_utc",DateTime.UtcNow},{"native_frames",Time.frameCount},{"surfaces",rows},{"camera_culling_mask",camera?.cullingMask??0},{"camera_position",camera?.transform.position.ToString()??"missing"},{"note","Read-only native renderer diagnostics; visibility is accepted through actual screenshot review, not these fields alone."}};
             report["empty_body_meshes"]=missingBodies;report["body_meshes_present"]=missingBodies==0;
             report["review_component_cost"]=review?.FrameCost.Snapshot();report["feedback_component_cost"]=review?.Feedback.FrameCost.Snapshot();
             report["catchup_limit_hits"]=review?.CatchupLimitHits??0;report["active_skill_effects"]=review?.Feedback.ActiveSkillEffects??0;report["skill_geometry_quads"]=review?.Feedback.SkillGeometryQuads??0;
             report["reused_enemy_views"]=review?.ReusedEnemyViews??0;
+            var arena=UnityEngine.Object.FindAnyObjectByType<RaidArenaPresentation>();
+            report["mode"]=review?.Raid==null?"hunt":"raid";report["raid_zone"]=review?.Raid?.Zone;
+            report["painted_arena"]=arena?.PaintedMap;report["review_paused"]=review?.Raid?.Paused??review?.Simulation.Paused??false;
+            int arenaSurfaces=0;
+            if(arena!=null)foreach(var renderer in arena.GetComponentsInChildren<Renderer>())
+            {var shader=renderer.sharedMaterial?.shader;if(shader==null||!shader.isSupported||ShaderUtil.ShaderHasError(shader))throw new InvalidOperationException("Native raid arena shader unavailable: "+renderer.name);arenaSurfaces++;}
+            report["verified_arena_surfaces"]=arenaSurfaces;
             File.WriteAllText("../checks/unity-migration-2026-10-08/native-renderer-diagnostics.json",report.ToString());if(missingBodies>0)throw new InvalidOperationException("Native actor bodies lost their mesh buffers: "+missingBodies);return report.ToString();
         }
     }

@@ -1,0 +1,9 @@
+.unity-scroller--vertical { width: 12px; margin-left: 6px; }
+.unity-scroller__low-button, .unity-scroller__high-button { background-color: rgb(24, 34, 36); -unity-background-image-tint-color: rgb(168, 184, 158); border-width: 0; }
+.unity-base-slider__dragger { background-color: rgb(106, 126, 113); border-width: 0; border-radius: 4px; }
+.hero-roster-card { height: 62px; margin: 2px 1px; padding: 3px 8px; flex-direction: row; align-items: center; background-color: rgb(24, 34, 36); color: rgb(216, 213, 204); border-width: 1px; border-color: rgb(61, 78, 74); border-radius: 6px; }
+.hero-roster-card:hover { background-color: rgb(34, 47, 44); border-color: rgb(196, 164, 132); }
+.hero-roster-card:focus { border-color: rgb(196, 164, 132); }
+.hero-roster-card > .hero-art { width: 48px; height: 54px; margin-right: 12px; }
+.hero-roster-name { font-size: 16px; -unity-text-align: middle-left; }
+.hero-roster-detail { font-size: 12px; color: rgb(168, 184, 158); -unity-text-align: middle-left; }

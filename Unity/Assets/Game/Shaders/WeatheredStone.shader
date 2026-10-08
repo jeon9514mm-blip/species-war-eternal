@@ -11,6 +11,7 @@ Shader "Eternal/WeatheredStone"
         _Wear("Edge wear",Range(0,1))=.8
         _MossGlow("Moss emission",Range(0,1))=.25
         _Tint("Regional stone tint",Color)=(1,1,1,1)
+        _TileSize("Slab world dimensions",Vector)=(3.05,3.6,0,0)
     }
     SubShader
     {
@@ -29,7 +30,7 @@ Shader "Eternal/WeatheredStone"
             TEXTURE2D(_MicroNormal);SAMPLER(sampler_MicroNormal);
             CBUFFER_START(UnityPerMaterial)
             float _Roughness,_Metallic,_Moss,_Patina,_Wear,_MossGlow;
-            float4 _Tint;
+            float4 _Tint,_TileSize;
             CBUFFER_END
             struct A {float4 p:POSITION;};
             struct V {float4 p:SV_POSITION;float3 world:TEXCOORD0;};
@@ -39,10 +40,13 @@ Shader "Eternal/WeatheredStone"
             half4 Frag(V i):SV_Target
             {
                 float2 uv=i.world.xz;
-                float row=floor(uv.y/1.65);
-                float2 grid=float2(uv.x/3.05+frac(row*.5),uv.y/1.65);
+                float2 tile=max(_TileSize.xy,float2(.5,.5));
+                float row=floor(uv.y/tile.y);
+                // Depth is foreshortened by the 45-degree camera. Larger slabs
+                // and varied row offsets avoid the former narrow brick courses.
+                float2 grid=float2(uv.x/tile.x+Hash(float2(row,7))*.70,uv.y/tile.y);
                 float2 f=frac(grid),edge=min(f,1-f);
-                float seam=min(edge.x*3.05,edge.y*1.65)+(Noise(uv*23)-.5)*.014;
+                float seam=min(edge.x*tile.x,edge.y*tile.y)+(Noise(uv*23)-.5)*.014;
                 float crack=1-smoothstep(.022,.058,seam);
                 float wear=(1-smoothstep(.04,.16,seam))*(1-crack);
                 float grain=Noise(uv*7)*.55+Noise(uv*37)*.3+Noise(uv*110)*.15;
@@ -58,12 +62,14 @@ Shader "Eternal/WeatheredStone"
                 base*=1-crack*.70;
                 float growth=Noise(uv*1.8)+Noise(uv*9)*.22;
                 float moss=crack*smoothstep(1-_Moss*1.8,1.06,growth);
+                float mossFringe=(1-smoothstep(.055,.26,seam))*smoothstep(.72,1.02,growth)*.60;
+                moss=max(moss,mossFringe);
                 float patina=wear*smoothstep(1-_Patina,1,Noise(uv*3.5));
                 base=lerp(base,float3(.27,.36,.225),moss*.88);
                 base=lerp(base,float3(.14,.245,.185),patina*.7);
                 base*=_Tint.rgb;
                 float2 signEdge=sign(.5-f);
-                float2 bevel=float2(edge.x*3.05<.13?signEdge.x*.15:0,edge.y*1.65<.13?signEdge.y*.15:0);
+                float2 bevel=float2(edge.x*tile.x<.13?signEdge.x*.15:0,edge.y*tile.y<.13?signEdge.y*.15:0);
                 float3 micro=UnpackNormal(SAMPLE_TEXTURE2D(_MicroNormal,sampler_MicroNormal,detailUV));
                 float2 pitting=float2(Noise((uv+float2(.025,0))*7)-Noise((uv-float2(.025,0))*7),Noise((uv+float2(0,.025))*7)-Noise((uv-float2(0,.025))*7));
                 float3 normal=normalize(float3(bevel.x+micro.x*.35+pitting.x*.25,1,bevel.y+micro.y*.35+pitting.y*.25));
