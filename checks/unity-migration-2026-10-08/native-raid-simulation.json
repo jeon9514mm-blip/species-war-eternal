@@ -1,9 +1,10 @@
 {
   "passed": true,
-  "comparisons": 33578,
+  "comparisons": 33593,
   "original_damage_cases": 216,
   "original_control_cases": 32,
   "original_geometry_cases": 2340,
+  "practice_scenarios": 3,
   "maximum_tick_movement": 0.220000356,
   "minimum_normalized_clearance": 0.9995022,
   "hero_relief_meshes": 30,
@@ -41,5 +42,5 @@
       "survivors": 10
     }
   ],
-  "note": "Production raid math/geometry oracle and isolated domain runs; mesh decoding and bounded analytic cape checks. Not full player-economy parity, visual acceptance, native SSS or an FPS measurement."
+  "note": "Production raid math/geometry oracle and isolated domain runs; explicit scripted counter-practice mode separately checks gating and attack suspension. Mesh decoding and bounded analytic cape checks. Not full player-economy parity, visual acceptance, native SSS or an FPS measurement."
 }

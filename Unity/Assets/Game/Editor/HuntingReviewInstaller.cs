@@ -18,6 +18,7 @@ namespace Eternal.UnityMigration.Editor
             if(SceneManager.GetActiveScene().isDirty)throw new InvalidOperationException("Save the current scene first.");
             Directory.CreateDirectory("Assets/Game/Resources/Eternal/Materials");AssetDatabase.Refresh();
             PaintedImpactInstaller.Apply();
+            PaintedGroundSealInstaller.Apply();
             Material Material(string name,string shader)
             {
                 string path="Assets/Game/Resources/Eternal/Materials/"+name+".mat";

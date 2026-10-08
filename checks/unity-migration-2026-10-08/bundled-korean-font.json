@@ -1,0 +1,9 @@
+{
+  "loaded": true,
+  "font_name": "EternalKR-Regular",
+  "dynamic": true,
+  "hangul_syllables_checked": 11172,
+  "missing_hangul_syllables": 0,
+  "passed": true,
+  "note": "Unity imported bundled font coverage; native player screenshots separately establish current UI rendering. Mobile text/memory acceptance remains open."
+}

@@ -24,6 +24,8 @@ namespace Eternal.UnityMigration
         Material particleMaterial,shadowMaterial,runeMaterial,runeGlowMaterial;
         Mesh particleMesh;
         Mesh glyphMesh;
+        GameObject paintedSeal;
+        public bool PaintedGroundSealVisible=>paintedSeal!=null&&paintedSeal.activeInHierarchy;
         SkillVfxBatch skillBatch;
         public bool RaidWarningVisible;
         public int ActiveSkillEffects=>skillBatch?.ActiveEffects??0;
@@ -37,13 +39,15 @@ namespace Eternal.UnityMigration
         Texture2D shadowTexture;
         Font outfit;
         GUIStyle damageStyle;
+        readonly Rect[] damageRects=new Rect[32];
+        readonly GUIContent damageContent=new();
         Vector3 baseCamera;
         float baseSize,shakeUntil,shakePixels,zoomUntil,nextStrongImpact,screenFlash;
         int sparkCursor,popupCursor,voiceCursor;
         public int ActiveParticles {get;private set;}
         public int EventsPresented {get;private set;}
         public void SetRaidMode(bool raid)
-        {raidMode=raid;RaidWarningVisible=false;skillBatch?.Clear();foreach(var ring in rings)ring.gameObject.SetActive(!raid);foreach(var halo in ringHalos)halo.gameObject.SetActive(!raid);if(glyphMesh!=null)transform.Find("Twelve bronze rune batch").gameObject.SetActive(!raid);Array.Clear(popups,0,popups.Length);Array.Clear(sparks,0,sparks.Length);}
+        {raidMode=raid;RaidWarningVisible=false;skillBatch?.Clear();if(paintedSeal!=null)paintedSeal.SetActive(!raid);foreach(var ring in rings)ring.gameObject.SetActive(!raid);foreach(var halo in ringHalos)halo.gameObject.SetActive(!raid);if(glyphMesh!=null)transform.Find("Twelve bronze rune batch").gameObject.SetActive(!raid);Array.Clear(popups,0,popups.Length);Array.Clear(sparks,0,sparks.Length);}
         public void SetExpeditionCenter(Vector2 center){targetCenter=center;}
         public void Initialize(Camera camera)
         {
@@ -73,6 +77,14 @@ namespace Eternal.UnityMigration
         }
         void CreateCircle()
         {
+            var painted=Resources.Load<Material>("Eternal/Materials/PaintedGroundSeal");
+            if(painted!=null&&painted.mainTexture!=null)
+            {
+                paintedSeal=GameObject.CreatePrimitive(PrimitiveType.Quad);paintedSeal.name="Painted moss bronze ground seal";Destroy(paintedSeal.GetComponent<Collider>());
+                paintedSeal.transform.SetParent(transform,false);paintedSeal.transform.localRotation=Quaternion.Euler(90,0,0);paintedSeal.transform.localScale=new Vector3(8.8f,8.8f*1.42f,1);
+                var renderer=paintedSeal.GetComponent<Renderer>();renderer.sharedMaterial=painted;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;renderer.receiveShadows=false;
+                return;
+            }
             runeMaterial=new Material(particleMaterial);runeMaterial.SetFloat("_SoftDot",0);
             // Preserve moss/bronze hue. Raising every channel above 1 without
             // tone mapping clipped the previous circles to plain white.
@@ -97,6 +109,7 @@ namespace Eternal.UnityMigration
         void UpdateRunes(float now,float dt)
         {
             if(raidMode)return;expeditionCenter=Vector2.Lerp(expeditionCenter,targetCenter,1-Mathf.Exp(-dt*3));
+            if(paintedSeal!=null){paintedSeal.transform.position=new Vector3(expeditionCenter.x,.018f,expeditionCenter.y);return;}
             float pulse=.85f+Mathf.Sin(now*.8f)*.15f;
             for(int ring=0;ring<rings.Count;ring++)for(int i=0;i<96;i++)
             {float a=i*Mathf.PI*2/96+now*.12f*(ring%2==0?1:-1),radius=3.0f+ring*.13f;var position=new Vector3(expeditionCenter.x+Mathf.Cos(a)*radius,.015f+ring*.002f,expeditionCenter.y+Mathf.Sin(a)*radius*1.42f);rings[ring].SetPosition(i,position);ringHalos[ring].SetPosition(i,position-Vector3.up*.001f);}
@@ -139,7 +152,11 @@ namespace Eternal.UnityMigration
                 Play(critical?"critical":"sword",position,.08f);
             }
             else if(e.Kind=="loot")
-            {Burst(new Vector3(0,.5f,0),new Color(.77f,.64f,.52f),20,1.4f,"beam");Play("reward",Vector3.zero,.17f);}
+            {
+                var rewardPosition=new Vector3(targetCenter.x,1.2f,targetCenter.y);var bronze=new Color(.77f,.64f,.52f);
+                Burst(rewardPosition,bronze,20,1.4f,"beam");Play("reward",rewardPosition,.17f);
+                popups[popupCursor++%popups.Length]=new Popup{position=rewardPosition,text="+"+e.Amount.ToString("N0")+" G",color=bronze,remaining=.8f,lastEvent=Time.unscaledTime};
+            }
             else if(e.Kind=="heal"||e.Kind=="shield")Burst(position,new Color(.66f,.78f,.65f),6,.5f,e.Kind);
             else if(e.Kind=="warning")Play("boss_warning",position,.22f);
             else if(e.Kind=="interrupt"||e.Kind=="counter"||e.Kind=="shield_break")
@@ -206,12 +223,30 @@ namespace Eternal.UnityMigration
         {
             if(cameraView==null)return;
             damageStyle??=new GUIStyle(GUI.skin.label){font=outfit,fontSize=24,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};
+            // Player GUI skins may use black label text. GUI.color multiplies
+            // that colour, so explicit white is required for coloured numbers.
+            damageStyle.normal.textColor=Color.white;
             float uiScale=Screen.height/900f;damageStyle.fontSize=Mathf.RoundToInt(18*uiScale);
+            int occupied=0;var viewport=cameraView.pixelRect;
+            var area=new Rect(viewport.x,Screen.height-viewport.yMax,viewport.width,viewport.height);
             foreach(var p in popups)
             {
                 if(p.remaining<=0)continue;var point=cameraView.WorldToScreenPoint(p.position);if(point.z<=0)continue;
                 bool critical=p.text.StartsWith("CRIT ",StringComparison.Ordinal);damageStyle.fontSize=Mathf.RoundToInt(18*uiScale*(critical?1.5f:1));
-                var rect=new Rect(point.x-100*uiScale,Screen.height-point.y-24*uiScale,200*uiScale,48*uiScale);float alpha=Mathf.Clamp01(p.remaining/.15f);
+                damageContent.text=p.text;var size=damageStyle.CalcSize(damageContent);
+                var rect=new Rect(point.x-size.x*.5f-5*uiScale,Screen.height-point.y-size.y*.5f,size.x+10*uiScale,size.y+6*uiScale);
+                rect.x=Mathf.Clamp(rect.x,area.xMin+4*uiScale,Mathf.Max(area.xMin+4*uiScale,area.xMax-rect.width-4*uiScale));
+                // Resolve overlaps in actual screen pixels, including larger
+                // crit labels. World-space lanes alone shrink under the camera.
+                bool clear=false;
+                for(int attempt=0;attempt<damageRects.Length;attempt++)
+                {
+                    bool collision=false;
+                    for(int i=0;i<occupied;i++)if(rect.Overlaps(damageRects[i])){rect.y=damageRects[i].yMin-rect.height-5*uiScale;collision=true;break;}
+                    if(rect.y<area.yMin+4*uiScale)break;
+                    if(!collision){clear=true;break;}
+                }
+                if(!clear)continue;damageRects[occupied++]=rect;float alpha=Mathf.Clamp01(p.remaining/.15f);
                 GUI.color=new Color(0,0,0,alpha*.8f);for(int i=0;i<4;i++){var outline=rect;outline.x+=(i%2==0?-3:3)*uiScale;outline.y+=(i<2?-3:3)*uiScale;GUI.Label(outline,p.text,damageStyle);}
                 var color=p.color;color.a=alpha;GUI.color=color;GUI.Label(rect,p.text,damageStyle);
             }

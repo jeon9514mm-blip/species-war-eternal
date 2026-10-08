@@ -1,0 +1,21 @@
+{
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGBA",
+  "source_bytes": 2034904,
+  "sha256": "8a183c44f71bbfde651d3dbf8c602ee6c3fac79902c3cd33803c7c6b0e6f13f9",
+  "alpha_min": 0,
+  "alpha_max": 254,
+  "transparent_pixels": 894254,
+  "center_alpha": 0,
+  "generator": "built-in image_gen",
+  "purpose": "Painterly transparent ground decal for original 2.5D hunting; replaces thin procedural circle when imported.",
+  "initial_prompt": "Production game texture asset, one circular ancient forest magic seal viewed perfectly straight from above, isolated on a genuinely transparent background. Painterly high detail fantasy 2.5D aesthetic, natural aged bronze engraved rings and dense irregular velvety moss vines, muted sage moss #A8B89E and patinated bronze #C4A484 with controlled warm bronze highlights #E8C99A. Three concentric irregular engraved rings, twelve small distinct ancient rune glyphs spaced around the ring, some delicate ivy leaves, fine fissures and flecks of bronze. Organic believable brush painted material edges and tiny leaf detail rather than clean vector line art. Readable at a roughly 400 pixel diameter in a top-down game, border has material substance and softness but no overexposure. Outer diameter takes 84% of a square image leaving generous transparent margin for glow and a few leaves. All center area inside the innermost ring must be completely transparent with NO solid filled disk, no central symbol, no ground/floor/stone/background. Limited gentle pale sage glow only around moss edge, premium restrained illumination. No white rings, no arrows, no characters, no UI, no text labels, no logo, no watermark, no perspective, no drop shadow outside the seal. One complete uncut seal, centered and symmetrical in silhouette, flat overhead view suitable for a ground decal.",
+  "final_edit_prompt": "Edit this transparent fantasy game seal texture, preserving its painterly aged bronze, green moss, ivy details and perfectly overhead circular silhouette. Make it a delicate luminous ground spell circle rather than a heavy physical wreath. Enlarge the transparent central hole substantially to about 78% of the outer diameter, so the ring band is narrow and airy. Remove the twelve large circular solid medallions and replace them with twelve small thin individual bronze engraved rune strokes around the perimeter. Three narrow concentric bronze and moss rings with gentle imperfect material texture, scattered tiny leaves, small cracks, subtle pale sage emission. Muted moss #A8B89E, bronze #C4A484, warm rune accents #E8C99A. Keep the entire center completely transparent, keep all exterior background transparent and generous transparent outer margin. No stone disk, no floor background, no characters, no arrows, no central ornament, no white line art, no text, no logo. Preserve genuine alpha transparency. Premium painterly detail readable at 400 pixels; restrained green-gold glow.",
+  "import_maximum_size": 1024,
+  "standalone_format": "BC7 RGBA",
+  "android_format": "ASTC_6x6 (authored; not device-tested)",
+  "rotation_radians_per_second": 0.12,
+  "opacity": 0.58,
+  "notes": "One depth-tested transparent ground quad. Central hole and outer background retain source alpha. Shader animates UV and opacity; raid mode hides this hunting decal. Source PNG is unmodified generated output."
+}

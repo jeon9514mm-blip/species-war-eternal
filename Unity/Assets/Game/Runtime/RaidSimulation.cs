@@ -13,6 +13,7 @@ namespace Eternal.UnityMigration
         public readonly CombatEncounter Battle;
         public readonly OriginalCombatCatalog Catalog;
         public readonly string Zone;
+        public readonly int ReviewLevel;
         public readonly JObject Design,ZoneData;
         public readonly PartySkillChain Chain;
         public Combatant Boss=>Battle.Enemies[0];
@@ -21,6 +22,7 @@ namespace Eternal.UnityMigration
         public int GuardMax,GuardBreaks,AddHp,AddMax,AddCount,AddWaves,DpsTarget,DpsDamage,DpsPassed,DpsFailed,Interrupts,CounterSuccesses,Patterns,EvadedHits,DamageDealt,Ticks;
         public double Elapsed,TelegraphRemaining,SecondWaveRemaining,ControlImmunity,BreakGauge,DpsRemaining,DodgeCooldown,DodgeRemaining;
         public bool Paused,Enraged,AutoEvade=true;
+        public bool CounterPractice {get;private set;}
         public string Outcome {get;private set;}="running";
         public string EventText {get;private set;}="보스 패턴을 확인하고 안전 구역으로 이동하세요.";
         public bool Running=>Outcome=="running";
@@ -41,6 +43,7 @@ namespace Eternal.UnityMigration
         static readonly float[] slideFractions={1f,.5f,.25f};
         public RaidSimulation(string zone="gray_meadow",int reviewLevel=50,int seed=9514,IReadOnlyList<string> party=null)
         {
+            ReviewLevel=reviewLevel;
             var source=new HuntingSimulation(reviewLevel,seed);
             if(party!=null)source.SetParty(party);
             Battle=source.Battle;Catalog=source.Catalog;Chain=source.Chain;Battle.Enemies.Clear();Battle.IsRaid=true;
@@ -77,7 +80,7 @@ namespace Eternal.UnityMigration
             Boss.PreviousPosition=Boss.Position;foreach(var h in Battle.Heroes)h.PreviousPosition=h.Position;
             AdvanceMechanics(dt);if(!Battle.Heroes.Any(h=>h.Alive)){Finish("defeat");return;}
             MoveActors((float)dt);
-            foreach(var h in Battle.Heroes){if(!Boss.Alive)break;if(h.Alive)AdvanceHero(h,dt);}
+            if(!CounterPractice)foreach(var h in Battle.Heroes){if(!Boss.Alive)break;if(h.Alive)AdvanceHero(h,dt);}
             if(!Boss.Alive){Finish("victory");return;}
             AdvancePhase();
             if(!Enraged&&Elapsed>=180){Enraged=true;EventText="광폭화 · 공격력과 공격 속도 상승";Battle.Emit("enrage",Boss,"",Boss);}
@@ -87,7 +90,7 @@ namespace Eternal.UnityMigration
             {
                 if(Boss.Stun<=0)TelegraphRemaining=Math.Max(0,TelegraphRemaining-dt);
                 if(TelegraphRemaining<=.00001&&Boss.Stun<=0)
-                {var shape=Warning;var profile=CastProfile;Warning=null;CastProfile=null;BreakGauge=0;WarningVersion++;ResolvePattern(profile,shape,true);bossAttack=AttackInterval;}
+                {var shape=Warning;var profile=CastProfile;Warning=null;CastProfile=null;BreakGauge=0;WarningVersion++;ResolvePattern(profile,shape,true);bossAttack=AttackInterval;CounterPractice=false;}
             }
             else if(Boss.Stun<=0)
             {
@@ -102,7 +105,7 @@ namespace Eternal.UnityMigration
             Battle.RaidControlWindow=ControlWindow;Battle.BossTelegraph=Warning!=null||SecondWarning!=null;
         }
         void Finish(string outcome)
-        {if(!Running)return;Outcome=outcome;Warning=null;SecondWarning=null;CastProfile=null;SecondProfile=null;WarningVersion++;intents.Clear();EventText=outcome=="victory"?"레이드 성공 · 검수 전투 기록":outcome=="timeout"?"제한 시간 종료":"원정대 전멸";Battle.Emit(outcome,Boss,"",Boss);}
+        {if(!Running)return;Outcome=outcome;CounterPractice=false;Warning=null;SecondWarning=null;CastProfile=null;SecondProfile=null;WarningVersion++;intents.Clear();EventText=outcome=="victory"?"레이드 성공 · 검수 전투 기록":outcome=="timeout"?"제한 시간 종료":"원정대 전멸";Battle.Emit(outcome,Boss,"",Boss);}
         void ActivateMechanic()
         {
             GuardHp=GuardMax=AddHp=AddMax=AddCount=DpsTarget=DpsDamage=0;addAttack=DpsRemaining=0;var p=Mechanic;string kind=(string)p["kind"];
@@ -232,10 +235,28 @@ namespace Eternal.UnityMigration
             return candidate;
         }
         public bool CounterReady=>CounterCandidate()!=null;
+        public bool BeginCounterPractice()
+        {
+            if(ReviewLevel!=50||!Running||Paused||CounterPractice)return false;
+            JObject profile=null;
+            foreach(JObject phase in Design["phases"])
+            {
+                if((string)phase["kind"]=="cone"){profile=phase;break;}
+                if(phase["variants"] is JArray variants)foreach(JObject variant in variants)if((string)variant["kind"]=="cone"){profile=(JObject)phase.DeepClone();profile.Remove("variants");foreach(var p in variant)profile[p.Key]=p.Value.DeepClone();break;}
+                if(profile!=null)break;
+            }
+            if(profile==null)return false;
+            // Explicit isolated practice: use an authored cone, temporarily
+            // suspend automatic hero attacks and rearm its response window.
+            // Ordinary encounters never enter this mode or change balance.
+            CounterPractice=true;AutoEvade=false;ControlImmunity=0;Boss.Stun=0;SecondWarning=null;SecondProfile=null;SecondWaveRemaining=0;
+            intents.Clear();foreach(var hero in Battle.Heroes)hero.Windup=-1;
+            StartWarning(profile);EventText="카운터 훈련 · 보스 정면에서 파란 버튼이 켜지면 카운터";return true;
+        }
         public bool Counter(string selected=null)
         {
             var candidate=CounterCandidate(selected);
-            if(candidate==null)return false;counterUsed=true;if(!ApplyControl(1,candidate))return false;CounterSuccesses++;EventText="정면 카운터 성공 · 보스 공격 차단";Battle.Emit("counter",candidate,"",Boss);return true;
+            if(candidate==null)return false;counterUsed=true;if(!ApplyControl(1,candidate))return false;CounterPractice=false;CounterSuccesses++;EventText="정면 카운터 성공 · 보스 공격 차단";Battle.Emit("counter",candidate,"",Boss);return true;
         }
         public void Rally(Vector2 destination)
         {
