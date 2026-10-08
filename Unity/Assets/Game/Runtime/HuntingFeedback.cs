@@ -23,6 +23,11 @@ namespace Eternal.UnityMigration
         Material particleMaterial,shadowMaterial,runeMaterial;
         Mesh particleMesh;
         Mesh glyphMesh;
+        SkillVfxBatch skillBatch;
+        public bool RaidWarningVisible;
+        public int ActiveSkillEffects=>skillBatch?.ActiveEffects??0;
+        public int SkillGeometryQuads=>skillBatch?.Quads??0;
+        public readonly FrameBudgetProbe FrameCost=new();
         readonly Vector3[] glyphVertices=new Vector3[12*7*4];
         readonly Color[] glyphColors=new Color[12*7*4];
         Vector2 expeditionCenter=new(-3,0),targetCenter=new(-3,0);
@@ -36,7 +41,7 @@ namespace Eternal.UnityMigration
         public int ActiveParticles {get;private set;}
         public int EventsPresented {get;private set;}
         public void SetRaidMode(bool raid)
-        {raidMode=raid;foreach(var ring in rings)ring.gameObject.SetActive(!raid);if(glyphMesh!=null)transform.Find("Twelve bronze rune batch").gameObject.SetActive(!raid);Array.Clear(popups,0,popups.Length);Array.Clear(sparks,0,sparks.Length);}
+        {raidMode=raid;RaidWarningVisible=false;skillBatch?.Clear();foreach(var ring in rings)ring.gameObject.SetActive(!raid);if(glyphMesh!=null)transform.Find("Twelve bronze rune batch").gameObject.SetActive(!raid);Array.Clear(popups,0,popups.Length);Array.Clear(sparks,0,sparks.Length);}
         public void SetExpeditionCenter(Vector2 center){targetCenter=center;}
         public void Initialize(Camera camera)
         {
@@ -44,6 +49,7 @@ namespace Eternal.UnityMigration
             var legacy=JObject.Parse(OriginalCatalog.Required("legacy-catalogs").text);
             foreach(JObject p in legacy["skill_vfx"])profiles[(string)p["signature"]]=p;
             particleMaterial=Resources.Load<Material>("Eternal/Materials/Particles");
+            skillBatch=new SkillVfxBatch(transform,particleMaterial,(JArray)legacy["skill_vfx"]);
             particleMesh=new Mesh{name="Bounded skill particles"};particleMesh.MarkDynamic();
             var uv=new Vector2[1280];var triangles=new int[1920];
             for(int i=0;i<320;i++)
@@ -66,6 +72,7 @@ namespace Eternal.UnityMigration
         void CreateCircle()
         {
             runeMaterial=new Material(particleMaterial);runeMaterial.SetFloat("_SoftDot",0);
+            runeMaterial.SetColor("_Tint",new Color(1.65f,1.65f,1.65f,1));
             for(int ring=0;ring<3;ring++)
             {
                 var line=new GameObject("Moss bronze expedition rune "+ring).AddComponent<LineRenderer>();line.transform.SetParent(transform,false);
@@ -100,9 +107,10 @@ namespace Eternal.UnityMigration
             glyphMesh.vertices=glyphVertices;glyphMesh.colors=glyphColors;
         }
         static Color Parse(JObject p,string key,Color fallback)=>ColorUtility.TryParseHtmlString((string)p?[key]??"",out var color)?color:fallback;
-        public void Observe(BattleEvent e,HuntingSimulation simulation)
+        public void Observe(BattleEvent e,CombatEncounter battle)
         {
             EventsPresented++;
+            skillBatch.Observe(e,battle);
             var position=new Vector3(e.Position.x,.9f,e.Position.y);
             if(e.Kind=="cast"||e.Kind=="passive")
             {
@@ -110,7 +118,7 @@ namespace Eternal.UnityMigration
                 var color=Parse(p,"color",new Color(.66f,.72f,.62f));int particles=(int)(p["particles"]??16);
                 // Ultra identity data remains intact; concurrency is bounded so
                 // ten heroes cannot create unbounded particle/voice work.
-                Burst(position,color,Math.Min(particles,e.Slot=="ultimate"?40:16),e.Slot=="ultimate"?1.8f:.8f,(string)p["motif"]);
+                Burst(position,color,Math.Min(particles,e.Slot=="ultimate"?40:20),e.Slot=="ultimate"?1.8f:.8f,(string)p["motif"]);
                 Play("Skills/"+e.Source+"__"+e.Slot,position,.11f);
             }
             else if(e.Kind=="damage"||e.Kind=="critical"||e.Kind=="hero_hit")
@@ -119,7 +127,7 @@ namespace Eternal.UnityMigration
                 if(e.Amount>0)popups[popupCursor++%popups.Length]=new Popup{position=position+Vector3.up*.6f,text=(critical?"CRIT ":"")+e.Amount.ToString("N0"),color=color,remaining=.8f};
                 Burst(position,critical?color:new Color(.77f,.64f,.52f),critical?20:5,.55f,"spark");
                 float now=Time.unscaledTime;if(now>=nextStrongImpact)
-                {shakePixels=critical?5:2;shakeUntil=now+.08f;nextStrongImpact=now+.20f;if(critical){zoomUntil=now+.1f;screenFlash=.04f;}}
+                {shakePixels=RaidWarningVisible?0:critical?5:2;shakeUntil=now+.08f;nextStrongImpact=now+.20f;if(critical&&!RaidWarningVisible){zoomUntil=now+.1f;screenFlash=.04f;}}
                 Play(critical?"critical":"sword",position,.08f);
             }
             else if(e.Kind=="loot")
@@ -149,7 +157,8 @@ namespace Eternal.UnityMigration
         }
         void LateUpdate()
         {
-            if(cameraView==null)return;float dt=Time.unscaledDeltaTime,now=Time.unscaledTime;ActiveParticles=0;
+            if(cameraView==null)return;FrameCost.Begin();float dt=Time.unscaledDeltaTime,now=Time.unscaledTime;ActiveParticles=0;
+            skillBatch.Advance(dt,RaidWarningVisible);
             var right=cameraView.transform.right;var up=cameraView.transform.up;
             for(int i=0;i<sparks.Length;i++)
             {
@@ -167,22 +176,25 @@ namespace Eternal.UnityMigration
             cameraView.orthographicSize=Mathf.Lerp(cameraView.orthographicSize,now<zoomUntil?baseSize/1.08f:baseSize,dt*15);
             screenFlash=Mathf.Max(0,screenFlash-dt);
             UpdateRunes(now,dt);
+            FrameCost.End();
         }
         void OnGUI()
         {
             if(cameraView==null)return;
             damageStyle??=new GUIStyle(GUI.skin.label){font=outfit,fontSize=24,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};
+            float uiScale=Screen.height/900f;damageStyle.fontSize=Mathf.RoundToInt(18*uiScale);
             foreach(var p in popups)
             {
                 if(p.remaining<=0)continue;var point=cameraView.WorldToScreenPoint(p.position);if(point.z<=0)continue;
-                var rect=new Rect(point.x-65,Screen.height-point.y-20,130,40);float alpha=Mathf.Clamp01(p.remaining/.15f);
-                GUI.color=new Color(0,0,0,alpha*.8f);for(int i=0;i<4;i++){var outline=rect;outline.x+=i%2==0?-2:2;outline.y+=i<2?-2:2;GUI.Label(outline,p.text,damageStyle);}
+                bool critical=p.text.StartsWith("CRIT ",StringComparison.Ordinal);damageStyle.fontSize=Mathf.RoundToInt(18*uiScale*(critical?1.5f:1));
+                var rect=new Rect(point.x-100*uiScale,Screen.height-point.y-24*uiScale,200*uiScale,48*uiScale);float alpha=Mathf.Clamp01(p.remaining/.15f);
+                GUI.color=new Color(0,0,0,alpha*.8f);for(int i=0;i<4;i++){var outline=rect;outline.x+=(i%2==0?-3:3)*uiScale;outline.y+=(i<2?-3:3)*uiScale;GUI.Label(outline,p.text,damageStyle);}
                 var color=p.color;color.a=alpha;GUI.color=color;GUI.Label(rect,p.text,damageStyle);
             }
             if(screenFlash>0){GUI.color=new Color(1,.9f,.7f,screenFlash*.8f);GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height),Texture2D.whiteTexture);}
             GUI.color=Color.white;
         }
         void OnDestroy()
-        {if(particleMesh!=null)Destroy(particleMesh);if(glyphMesh!=null)Destroy(glyphMesh);if(shadowTexture!=null)Destroy(shadowTexture);if(shadowMaterial!=null)Destroy(shadowMaterial);if(runeMaterial!=null)Destroy(runeMaterial);}
+        {skillBatch?.Dispose();if(particleMesh!=null)Destroy(particleMesh);if(glyphMesh!=null)Destroy(glyphMesh);if(shadowTexture!=null)Destroy(shadowTexture);if(shadowMaterial!=null)Destroy(shadowMaterial);if(runeMaterial!=null)Destroy(runeMaterial);}
     }
 }

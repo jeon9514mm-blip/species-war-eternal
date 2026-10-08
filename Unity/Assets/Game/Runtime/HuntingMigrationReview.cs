@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 namespace Eternal.UnityMigration
 {
@@ -14,15 +16,24 @@ namespace Eternal.UnityMigration
         public int RenderedFrames {get;private set;}
         public int CatchupLimitHits {get;private set;}
         public Camera BattleCamera {get;private set;}
+        public readonly FrameBudgetProbe FrameCost=new();
+        public HuntingFeedback Feedback=>feedback;
         readonly Dictionary<int,PaintedActor> actors=new();
+        readonly Dictionary<string,Stack<PaintedActor>> enemyViews=new(StringComparer.Ordinal);
+        public int ReusedEnemyViews {get;private set;}
         readonly List<int> stale=new();
+        readonly List<Combatant> drawActors=new(24);
+        readonly HashSet<int> presentIds=new();
+        readonly Dictionary<int,(float remaining,float untilSample)> trails=new();
+        readonly List<int> finishedTrails=new();
+        PaintedAfterImages afterImages;
         readonly List<(Combatant actor,Label health,Label skills,VisualElement hp)> cards=new();
         readonly List<BattleEvent> visualQueue=new();
         readonly List<Sprite> portraits=new();
         VisualElement root,modal,chainRow,raidCommands,bossBar;
         Label raidInfo;
         Button dodgeButton,counterButton;
-        Label stageLabel,currencyLabel,statusLabel,chainLabel;
+        Label stageLabel,currencyLabel,statusLabel,chainLabel,fixtureLabel;
         double accumulator,hudTimer;
         float speed=1;
         Font korean;
@@ -47,12 +58,14 @@ namespace Eternal.UnityMigration
             // At the 1600x900 reference, the 648px battle viewport displays
             // normalized 1.9m originals at 86.4px: 1.9*648/(2*7.125).
             BattleCamera.orthographic=true;BattleCamera.orthographicSize=9.2625f/1.3f;
+            BattleCamera.allowHDR=true;BattleCamera.GetUniversalAdditionalCameraData().renderPostProcessing=true;
             BattleCamera.clearFlags=CameraClearFlags.SolidColor;
             BattleCamera.backgroundColor=new Color(.025f,.035f,.038f);cameraObject.AddComponent<AudioListener>();
             cameraObject.transform.position=new Vector3(0,24,-24);cameraObject.transform.LookAt(Vector3.zero);
             BattleCamera.rect=new Rect(0,.18f,1,.72f);
-            var sun=new GameObject("Warm directional light").AddComponent<Light>();sun.type=LightType.Directional;sun.intensity=.9f;sun.transform.rotation=Quaternion.Euler(50,-25,0);sun.shadows=LightShadows.Soft;
+            var sun=new GameObject("Warm directional light").AddComponent<Light>();sun.type=LightType.Directional;sun.intensity=1;sun.transform.rotation=Quaternion.Euler(50,-25,0);sun.shadows=LightShadows.Soft;
             sun.transform.SetParent(worldRoot.transform,false);
+            var post=new GameObject("Battle bloom and vignette").AddComponent<Volume>();post.transform.SetParent(worldRoot.transform,false);post.isGlobal=true;post.sharedProfile=Resources.Load<VolumeProfile>("Eternal/Materials/BattlePost");
             var floor=GameObject.CreatePrimitive(PrimitiveType.Plane);floor.name="Original stone hunting field";floor.transform.localScale=new Vector3(6,1,4);
             floor.transform.SetParent(worldRoot.transform,false);huntFloor=floor;
             var floorMaterial=Resources.Load<Material>("Eternal/Materials/Stone");
@@ -64,6 +77,7 @@ namespace Eternal.UnityMigration
             floor.GetComponent<Renderer>().sharedMaterial=ownedFloorMaterial;
             Destroy(floor.GetComponent<Collider>());
             feedback=new GameObject("Bounded hunting presentation").AddComponent<HuntingFeedback>();feedback.Initialize(BattleCamera);
+            afterImages=new PaintedAfterImages(feedback.transform);
         }
         void Receive(BattleEvent e)
         {
@@ -79,6 +93,7 @@ namespace Eternal.UnityMigration
         void Update()
         {
             if(Simulation==null)return;
+            FrameCost.Begin();
             RenderedFrames++;double frame=Math.Min(Time.unscaledDeltaTime,.25f);
             bool paused=Raid?.Paused??Simulation.Paused;
             bool running=Raid?.Running??!Simulation.Defeated;
@@ -86,39 +101,83 @@ namespace Eternal.UnityMigration
             int steps=0;
             while(accumulator>=.05&&steps<5){if(Raid!=null)Raid.Step(.05);else Simulation.Step(.05);accumulator-=.05;steps++;}
             if(accumulator>=.05){CatchupLimitHits++;accumulator%=.05;}
-            float alpha=paused?1:Mathf.Clamp01((float)(accumulator/.05));
+            float alpha=paused||!running?1:Mathf.Clamp01((float)(accumulator/.05));
             RebuildActors();
+            feedback.RaidWarningVisible=Raid!=null&&(Raid.Warning!=null||Raid.SecondWarning!=null);
             var center=Vector2.zero;int alive=0;foreach(var hero in ActiveBattle.Heroes)if(hero.Alive){center+=hero.Position;alive++;}if(alive>0)feedback.SetExpeditionCenter(center/alive);
-            foreach(var combatant in ActiveBattle.Heroes.Concat(ActiveBattle.Enemies))
+            foreach(var combatant in drawActors)
             {
                 if(!actors.TryGetValue(combatant.Serial,out var view))continue;
                 var position=Vector2.Lerp(combatant.PreviousPosition,combatant.Position,alpha);
                 view.transform.position=new Vector3(position.x,.04f,position.y);
-                view.MovingSpeed=combatant.Velocity.magnitude;
+                view.MovingSpeed=paused||!running?0:combatant.Velocity.magnitude*speed;
                 if(combatant.Velocity.sqrMagnitude>.015f)view.Facing=combatant.Velocity;
                 view.gameObject.SetActive(combatant.Alive);
             }
             foreach(var e in visualQueue)
             {
                 if(e.Kind=="windup"&&actors.TryGetValue(e.SourceSerial,out var source))
-                {source.AttackSeconds=.32f;var target=ActiveBattle.Enemies.Concat(ActiveBattle.Heroes).FirstOrDefault(a=>a.Serial==e.TargetSerial);if(target!=null)source.Facing=target.Position-new Vector2(source.transform.position.x,source.transform.position.z);}
+                {source.AttackSeconds=.32f;Combatant target=null;foreach(var a in drawActors)if(a.Serial==e.TargetSerial){target=a;break;}if(target!=null)source.Facing=target.Position-new Vector2(source.transform.position.x,source.transform.position.z);}
                 if((e.Kind=="damage"||e.Kind=="critical"||e.Kind=="hero_hit")&&actors.TryGetValue(e.TargetSerial,out var victim))victim.HitSeconds=.04f;
-                feedback.Observe(e,Simulation);
+                if(e.Kind=="cast"&&actors.ContainsKey(e.SourceSerial))trails[e.SourceSerial]=(.4f,0);
+                feedback.Observe(e,ActiveBattle);
             }
+            UpdateAfterImages((float)frame);
             visualQueue.Clear();hudTimer+=frame;if(hudTimer>=.10){hudTimer=0;RefreshHud();}
+            FrameCost.End();
+        }
+        void UpdateAfterImages(float dt)
+        {
+            afterImages.Advance(dt);finishedTrails.Clear();
+            // Enumerate stable rendered actors, not a dictionary being changed.
+            foreach(var actor in drawActors)
+            {
+                if(!trails.TryGetValue(actor.Serial,out var trail))continue;
+                if(!actor.Alive||!actors.TryGetValue(actor.Serial,out var view)){finishedTrails.Add(actor.Serial);continue;}
+                trail.remaining-=dt;trail.untilSample-=dt;
+                if(trail.remaining<=0){finishedTrails.Add(actor.Serial);continue;}
+                if(trail.untilSample<=0){afterImages.Capture(view.CapturePose());trail.untilSample=.08f;}
+                trails[actor.Serial]=trail;
+            }
+            foreach(int id in finishedTrails)trails.Remove(id);
         }
         void RebuildActors()
         {
-            var living=ActiveBattle.Heroes.Concat(ActiveBattle.Enemies).ToList();stale.Clear();
-            foreach(var pair in actors)if(!living.Any(a=>a.Serial==pair.Key))stale.Add(pair.Key);
-            foreach(int id in stale){Destroy(actors[id].gameObject);actors.Remove(id);}
-            foreach(var actor in living)
+            var battle=ActiveBattle;int count=battle.Heroes.Count+battle.Enemies.Count,index=0;
+            bool changed=drawActors.Count!=count;
+            if(!changed)
+            {foreach(var h in battle.Heroes)if(!ReferenceEquals(drawActors[index++],h)){changed=true;break;}
+             if(!changed)foreach(var e in battle.Enemies)if(!ReferenceEquals(drawActors[index++],e)){changed=true;break;}}
+            if(!changed)return;
+            drawActors.Clear();presentIds.Clear();foreach(var h in battle.Heroes){drawActors.Add(h);presentIds.Add(h.Serial);}foreach(var e in battle.Enemies){drawActors.Add(e);presentIds.Add(e.Serial);}
+            stale.Clear();foreach(var pair in actors)if(!presentIds.Contains(pair.Key))stale.Add(pair.Key);
+            foreach(int id in stale)
+            {
+                var view=actors[id];
+                if(view.IsHero)Destroy(view.gameObject);
+                else
+                {
+                    if(!enemyViews.TryGetValue(view.ActorId,out var pool)){pool=new Stack<PaintedActor>(4);enemyViews.Add(view.ActorId,pool);}
+                    if(pool.Count<4){view.gameObject.SetActive(false);view.AttackSeconds=view.HitSeconds=view.MovingSpeed=0;pool.Push(view);}
+                    else Destroy(view.gameObject);
+                }
+                actors.Remove(id);
+            }
+            foreach(int id in stale)trails.Remove(id);
+            foreach(var actor in drawActors)
             {
                 if(actors.ContainsKey(actor.Serial))continue;
                 bool hero=ActiveBattle.Kits.ContainsKey(actor.Id);
-                var painted=new GameObject(actor.Id+" #"+actor.Serial).AddComponent<PaintedActor>();
-                painted.Initialize(actor.Id,hero?1.9f:Raid!=null?4.6f:1.35f,BattleCamera,hero);painted.Driven=true;
-                actors[actor.Serial]=painted;feedback.AddShadow(painted.transform,hero?.7f:Raid!=null?1.75f:.5f);
+                PaintedActor painted;
+                if(!hero&&enemyViews.TryGetValue(actor.Id,out var available)&&available.Count>0)
+                {painted=available.Pop();painted.gameObject.SetActive(true);ReusedEnemyViews++;}
+                else
+                {
+                    painted=new GameObject(actor.Id+" #"+actor.Serial).AddComponent<PaintedActor>();painted.transform.SetParent(worldRoot.transform,false);
+                    painted.Initialize(actor.Id,hero?1.9f:Raid!=null?4.6f:1.35f,BattleCamera,hero);painted.Driven=true;
+                    feedback.AddShadow(painted.transform,hero?.7f:Raid!=null?1.75f:.5f);
+                }
+                painted.name=actor.Id+" #"+actor.Serial;actors[actor.Serial]=painted;
             }
         }
         static readonly Color Ink=new(.055f,.075f,.083f,.96f),Bronze=new(.77f,.64f,.52f),Parchment=new(.85f,.84f,.80f),Moss=new(.66f,.72f,.62f);
@@ -135,7 +194,7 @@ namespace Eternal.UnityMigration
             currencyLabel=Text(row,"",17);currencyLabel.style.marginRight=28;
             Button(row,"일시정지",()=>{if(Raid!=null)Raid.Paused=!Raid.Paused;else Simulation.Paused=!Simulation.Paused;});
             Button(row,"속도",()=>speed=speed==1?2:1);
-            var subtitle=Text(top,"UNITY 전환 검수 · Lv20 독립 테스트 · 기존 저장 데이터 유지",12);subtitle.style.color=Moss;subtitle.style.marginBottom=12;
+            fixtureLabel=Text(top,"UNITY 전환 검수 · Lv20 독립 테스트 · 기존 저장 데이터 유지",12);fixtureLabel.style.color=Moss;fixtureLabel.style.marginBottom=12;
             var battleSpace=new VisualElement();battleSpace.style.flexGrow=1;battleSpace.pickingMode=PickingMode.Ignore;root.Add(battleSpace);
             var foot=Box(root,"foot",Ink);foot.style.height=174;foot.style.paddingLeft=14;foot.style.paddingRight=14;
             var statusRow=Row(foot);statusRow.style.height=29;statusRow.style.alignItems=Align.Center;
@@ -199,6 +258,7 @@ namespace Eternal.UnityMigration
         }
         void RefreshHud()
         {
+            fixtureLabel.text=Raid!=null?"UNITY 레이드 검수 · Lv100 독립 원정대 · 기존 저장 데이터 유지":"UNITY 사냥 검수 · Lv20 독립 원정대 · 기존 저장 데이터 유지";
             stageLabel.text=Raid!=null?(string)Raid.ZoneData["boss"]+" · PHASE "+Raid.Phase:"사냥터 1  ·  "+Simulation.Stage+" 스테이지";
             currencyLabel.text=Raid!=null?"HP "+Raid.Boss.Hp.ToString("N0")+" / "+Raid.Boss.MaxHp.ToString("N0")+" · "+TimeSpan.FromSeconds(Math.Max(0,240-Raid.Elapsed)).ToString(@"mm\:ss"):"◈ 골드 "+Simulation.Gold.ToString("N0")+"   ·   성장 경험치 "+Simulation.Xp.ToString("N0");
             statusLabel.text=Raid!=null?(Raid.Paused?"일시정지":Raid.Running?"레이드 전투":Raid.EventText)+" · 원정대 "+ActiveBattle.Heroes.Count(h=>h.Alive)+"/10 · 피해 "+Raid.DamageDealt.ToString("N0"):(Simulation.Defeated?"원정대 전멸":Simulation.Paused?"일시정지":"자동 사냥")+" · "+Simulation.Battle.Heroes.Count(h=>h.Alive)+"/10  ·  적 "+Simulation.Battle.Enemies.Count(e=>e.Alive)+"  ·  무리 "+Simulation.PacksCleared+"  ·  ×"+speed;
@@ -298,8 +358,8 @@ namespace Eternal.UnityMigration
             if(Raid==null)return;Raid=null;ResetViews();if(raidMap!=null)Destroy(raidMap.gameObject);raidMap=null;
             accumulator=0;visualQueue.Clear();huntFloor.SetActive(true);feedback.SetRaidMode(false);raidCommands.style.display=DisplayStyle.None;BuildParty();RebuildActors();RefreshHud();
         }
-        void ResetViews(){foreach(var actor in actors.Values)if(actor!=null)Destroy(actor.gameObject);actors.Clear();}
+        void ResetViews(){foreach(var actor in actors.Values)if(actor!=null)Destroy(actor.gameObject);actors.Clear();drawActors.Clear();presentIds.Clear();trails.Clear();afterImages?.Clear();}
         void OnDestroy()
-        {ResetViews();foreach(var p in portraits)Destroy(p);if(panel!=null)Destroy(panel);if(korean!=null)Destroy(korean);if(ownedFloorMaterial!=null)Destroy(ownedFloorMaterial);if(worldRoot!=null)Destroy(worldRoot);if(raidMap!=null)Destroy(raidMap.gameObject);if(feedback!=null)Destroy(feedback.gameObject);OriginalReliefMesh.Clear();}
+        {ResetViews();foreach(var pool in enemyViews.Values)foreach(var view in pool)if(view!=null)Destroy(view.gameObject);enemyViews.Clear();afterImages?.Dispose();foreach(var p in portraits)Destroy(p);if(panel!=null)Destroy(panel);if(korean!=null)Destroy(korean);if(ownedFloorMaterial!=null)Destroy(ownedFloorMaterial);if(worldRoot!=null)Destroy(worldRoot);if(raidMap!=null)Destroy(raidMap.gameObject);if(feedback!=null)Destroy(feedback.gameObject);OriginalReliefMesh.Clear();}
     }
 }

@@ -8,6 +8,7 @@ Shader "Eternal/OriginalRelief"
         _Wind("Hair wind",Float)=.15
         _Outline("Source texel outline",Float)=0
         _CapeEnabled("Analytic cape",Float)=0
+        _Breath("Foot pinned breathing",Float)=0
         _AtlasRect("Atlas top origin",Vector)=(0,1,1,1)
         _PaintSize("World width height pixel",Vector)=(1,1,.02,0)
         _Anchor("World foot anchor",Vector)=(.5,1,0,0)

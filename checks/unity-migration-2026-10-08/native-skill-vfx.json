@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "comparisons": 852,
+  "skill_profiles": 120,
+  "hero_motifs": 30,
+  "pool_capacity": 50,
+  "afterimage_pool_capacity": 50,
+  "afterimage_lifetime": 0.4,
+  "empty_body_cache_recovery": true,
+  "saturated_quad_count": 3700,
+  "max_quads_per_effect": 96,
+  "renderer_errors_during_fixture": 0,
+  "note": "Bounded CPU mesh timelines; not GPU particles or proof that all 120 skills have been visually reviewed."
+}

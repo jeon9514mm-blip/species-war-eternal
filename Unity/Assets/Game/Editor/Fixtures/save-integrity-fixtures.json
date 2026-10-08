@@ -1,0 +1,437 @@
+{
+	"cases": [
+		{
+			"canonical": "{\"hero_levels\":{\"레온하르트\":20.0},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":0.0,\"save_version\":37.0,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+			"expected": {
+				"data": {
+					"hero_levels": {
+						"레온하르트": 20.0
+					},
+					"nested": [
+						true,
+						false,
+						null,
+						"quote \" slash / backslash \\ newline\n tab\t"
+					],
+					"number": 0.0,
+					"save_version": 37.0,
+					"한글": "영웅 원정대",
+					"": "private",
+					"🌹": "bloodrose"
+				},
+				"migrated": false,
+				"ok": true,
+				"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"bc87e4f4925c0f30923c4d5b27fdbfe2c7e7fefaa6182f120fe088cf6e8860eb\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":0,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+				"status": "loaded"
+			},
+			"name": "numeric-0",
+			"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"bc87e4f4925c0f30923c4d5b27fdbfe2c7e7fefaa6182f120fe088cf6e8860eb\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":0,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}"
+		},
+		{
+			"canonical": "{\"hero_levels\":{\"레온하르트\":20.0},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":1.0,\"save_version\":37.0,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+			"expected": {
+				"data": {
+					"hero_levels": {
+						"레온하르트": 20.0
+					},
+					"nested": [
+						true,
+						false,
+						null,
+						"quote \" slash / backslash \\ newline\n tab\t"
+					],
+					"number": 1.0,
+					"save_version": 37.0,
+					"한글": "영웅 원정대",
+					"": "private",
+					"🌹": "bloodrose"
+				},
+				"migrated": false,
+				"ok": true,
+				"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"ef6f0fe3220d59ef6a4d4f490aa40021d03509e491a8723cd770fd0f98b08b63\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":1,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+				"status": "loaded"
+			},
+			"name": "numeric-1",
+			"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"ef6f0fe3220d59ef6a4d4f490aa40021d03509e491a8723cd770fd0f98b08b63\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":1,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}"
+		},
+		{
+			"canonical": "{\"hero_levels\":{\"레온하르트\":20.0},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":-1.0,\"save_version\":37.0,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+			"expected": {
+				"data": {
+					"hero_levels": {
+						"레온하르트": 20.0
+					},
+					"nested": [
+						true,
+						false,
+						null,
+						"quote \" slash / backslash \\ newline\n tab\t"
+					],
+					"number": -1.0,
+					"save_version": 37.0,
+					"한글": "영웅 원정대",
+					"": "private",
+					"🌹": "bloodrose"
+				},
+				"migrated": false,
+				"ok": true,
+				"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"968ad101bba5d5a58b7fa5d17f97b03d1a308a36584f61f1384e278b5d1a127b\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":-1,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+				"status": "loaded"
+			},
+			"name": "numeric-2",
+			"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"968ad101bba5d5a58b7fa5d17f97b03d1a308a36584f61f1384e278b5d1a127b\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":-1,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}"
+		},
+		{
+			"canonical": "{\"hero_levels\":{\"레온하르트\":20.0},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":1.5,\"save_version\":37.0,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+			"expected": {
+				"data": {
+					"hero_levels": {
+						"레온하르트": 20.0
+					},
+					"nested": [
+						true,
+						false,
+						null,
+						"quote \" slash / backslash \\ newline\n tab\t"
+					],
+					"number": 1.5,
+					"save_version": 37.0,
+					"한글": "영웅 원정대",
+					"": "private",
+					"🌹": "bloodrose"
+				},
+				"migrated": false,
+				"ok": true,
+				"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"abdae6d119130607152e5f153f17708e61b315fb9ff7251ea5811e763b7be68b\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":1.5,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+				"status": "loaded"
+			},
+			"name": "numeric-3",
+			"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"abdae6d119130607152e5f153f17708e61b315fb9ff7251ea5811e763b7be68b\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":1.5,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}"
+		},
+		{
+			"canonical": "{\"hero_levels\":{\"레온하르트\":20.0},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":0.000001,\"save_version\":37.0,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+			"expected": {
+				"data": {
+					"hero_levels": {
+						"레온하르트": 20.0
+					},
+					"nested": [
+						true,
+						false,
+						null,
+						"quote \" slash / backslash \\ newline\n tab\t"
+					],
+					"number": 0.000001,
+					"save_version": 37.0,
+					"한글": "영웅 원정대",
+					"": "private",
+					"🌹": "bloodrose"
+				},
+				"migrated": false,
+				"ok": true,
+				"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"fd80681c439d9e205aaa48bae850e5fcd689d0782fd534bcbe4b0f27f476eff8\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":0.000001,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+				"status": "loaded"
+			},
+			"name": "numeric-4",
+			"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"fd80681c439d9e205aaa48bae850e5fcd689d0782fd534bcbe4b0f27f476eff8\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":0.000001,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}"
+		},
+		{
+			"canonical": "{\"hero_levels\":{\"레온하르트\":20.0},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":0.000000000001,\"save_version\":37.0,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+			"expected": {
+				"data": {
+					"hero_levels": {
+						"레온하르트": 20.0
+					},
+					"nested": [
+						true,
+						false,
+						null,
+						"quote \" slash / backslash \\ newline\n tab\t"
+					],
+					"number": 0.000000000001,
+					"save_version": 37.0,
+					"한글": "영웅 원정대",
+					"": "private",
+					"🌹": "bloodrose"
+				},
+				"migrated": false,
+				"ok": true,
+				"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"5b73f813ddddf39d310011147d5b04b64b7c8ca82f13f539a93b711a25c02993\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":0.000000000001,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+				"status": "loaded"
+			},
+			"name": "numeric-5",
+			"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"5b73f813ddddf39d310011147d5b04b64b7c8ca82f13f539a93b711a25c02993\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":0.000000000001,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}"
+		},
+		{
+			"canonical": "{\"hero_levels\":{\"레온하르트\":20.0},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":123456789.12345,\"save_version\":37.0,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+			"expected": {
+				"data": {
+					"hero_levels": {
+						"레온하르트": 20.0
+					},
+					"nested": [
+						true,
+						false,
+						null,
+						"quote \" slash / backslash \\ newline\n tab\t"
+					],
+					"number": 123456789.12345,
+					"save_version": 37.0,
+					"한글": "영웅 원정대",
+					"": "private",
+					"🌹": "bloodrose"
+				},
+				"migrated": false,
+				"ok": true,
+				"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"681b681167fcf37018225653a86142db82ed213a8d3e2b4e1bcdda0c8c4320a6\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":123456789.12345,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+				"status": "loaded"
+			},
+			"name": "numeric-6",
+			"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"681b681167fcf37018225653a86142db82ed213a8d3e2b4e1bcdda0c8c4320a6\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":123456789.12345,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}"
+		},
+		{
+			"canonical": "{\"hero_levels\":{\"레온하르트\":20.0},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":100000000000000000000.0,\"save_version\":37.0,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+			"expected": {
+				"data": {
+					"hero_levels": {
+						"레온하르트": 20.0
+					},
+					"nested": [
+						true,
+						false,
+						null,
+						"quote \" slash / backslash \\ newline\n tab\t"
+					],
+					"number": 100000000000000000000.0,
+					"save_version": 37.0,
+					"한글": "영웅 원정대",
+					"": "private",
+					"🌹": "bloodrose"
+				},
+				"migrated": false,
+				"ok": true,
+				"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"612329f3ea0ad49e250b35826304f5cad93d4c3a209c07cd24847a375742564c\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":100000000000000000000.0,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+				"status": "loaded"
+			},
+			"name": "numeric-7",
+			"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"612329f3ea0ad49e250b35826304f5cad93d4c3a209c07cd24847a375742564c\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":100000000000000000000.0,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}"
+		},
+		{
+			"canonical": "{\"hero_levels\":{\"레온하르트\":20.0},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":0.0,\"save_version\":37.0,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+			"expected": {
+				"data": {
+					"hero_levels": {
+						"레온하르트": 20.0
+					},
+					"nested": [
+						true,
+						false,
+						null,
+						"quote \" slash / backslash \\ newline\n tab\t"
+					],
+					"number": 0.0,
+					"save_version": 37.0,
+					"한글": "영웅 원정대",
+					"": "private",
+					"🌹": "bloodrose"
+				},
+				"migrated": false,
+				"ok": true,
+				"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"bc87e4f4925c0f30923c4d5b27fdbfe2c7e7fefaa6182f120fe088cf6e8860eb\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":0.0,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+				"status": "loaded"
+			},
+			"name": "numeric-8",
+			"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"bc87e4f4925c0f30923c4d5b27fdbfe2c7e7fefaa6182f120fe088cf6e8860eb\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":0.0,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}"
+		},
+		{
+			"canonical": "{\"hero_levels\":{\"레온하르트\":20.0},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":999999999999999.0,\"save_version\":37.0,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+			"expected": {
+				"data": {
+					"hero_levels": {
+						"레온하르트": 20.0
+					},
+					"nested": [
+						true,
+						false,
+						null,
+						"quote \" slash / backslash \\ newline\n tab\t"
+					],
+					"number": 999999999999999.0,
+					"save_version": 37.0,
+					"한글": "영웅 원정대",
+					"": "private",
+					"🌹": "bloodrose"
+				},
+				"migrated": false,
+				"ok": true,
+				"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"b37fc820ccc1aa2391b3557ad009a05bc44409234611c654c2c3332af8f5bb10\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":999999999999999,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+				"status": "loaded"
+			},
+			"name": "numeric-9",
+			"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"b37fc820ccc1aa2391b3557ad009a05bc44409234611c654c2c3332af8f5bb10\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":999999999999999,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}"
+		},
+		{
+			"canonical": "{\"hero_levels\":{\"레온하르트\":20.0},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":3.14159265358979,\"save_version\":37.0,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+			"expected": {
+				"data": {
+					"hero_levels": {
+						"레온하르트": 20.0
+					},
+					"nested": [
+						true,
+						false,
+						null,
+						"quote \" slash / backslash \\ newline\n tab\t"
+					],
+					"number": 3.14159265358979,
+					"save_version": 37.0,
+					"한글": "영웅 원정대",
+					"": "private",
+					"🌹": "bloodrose"
+				},
+				"migrated": false,
+				"ok": true,
+				"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"f7fdd08b5195a677a934ba94c1827fdf32fccdf51d8c6908dda86ba9d5d58d24\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":3.14159265358979,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}",
+				"status": "loaded"
+			},
+			"name": "numeric-10",
+			"raw": "{\"_save_integrity\":{\"format\":1,\"sha256\":\"f7fdd08b5195a677a934ba94c1827fdf32fccdf51d8c6908dda86ba9d5d58d24\"},\"hero_levels\":{\"레온하르트\":20},\"nested\":[true,false,null,\"quote \\\" slash / backslash \\\\ newline\\n tab\\t\"],\"number\":3.14159265358979,\"save_version\":37,\"한글\":\"영웅 원정대\",\"\":\"private\",\"🌹\":\"bloodrose\"}"
+		},
+		{
+			"expected": {
+				"data": {
+					"gold": 120.0,
+					"save_version": 26.0
+				},
+				"migrated": true,
+				"ok": true,
+				"raw": "{\"save_version\":26,\"gold\":120}",
+				"status": "loaded"
+			},
+			"name": "old_without_hash",
+			"raw": "{\"save_version\":26,\"gold\":120}"
+		},
+		{
+			"expected": {
+				"data": {
+					"gold": 12.0
+				},
+				"migrated": true,
+				"ok": true,
+				"raw": "{\"gold\":12}",
+				"status": "loaded"
+			},
+			"name": "unversioned",
+			"raw": "{\"gold\":12}"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "unsupported_version",
+				"unsupported": true
+			},
+			"name": "unsupported",
+			"raw": "{\"save_version\":38,\"gold\":2}"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "missing_integrity"
+			},
+			"name": "missing_integrity",
+			"raw": "{\"save_version\":37,\"gold\":5}"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "invalid_json"
+			},
+			"name": "empty",
+			"raw": "{}"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "invalid_json"
+			},
+			"name": "array",
+			"raw": "[]"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "invalid_json"
+			},
+			"name": "broken",
+			"raw": "{bad"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "invalid_version"
+			},
+			"name": "version_string",
+			"raw": "{\"save_version\":\"37\"}"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "invalid_version"
+			},
+			"name": "version_bool",
+			"raw": "{\"save_version\":true}"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "invalid_version"
+			},
+			"name": "version_fraction",
+			"raw": "{\"save_version\":1.5}"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "invalid_version"
+			},
+			"name": "version_zero",
+			"raw": "{\"save_version\":0}"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "invalid_version"
+			},
+			"name": "version_null",
+			"raw": "{\"save_version\":null}"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "invalid_integrity"
+			},
+			"name": "integrity_array",
+			"raw": "{\"save_version\":37,\"_save_integrity\":[]}"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "invalid_integrity"
+			},
+			"name": "integrity_format_string",
+			"raw": "{\"save_version\":37,\"_save_integrity\":{\"format\":\"1\",\"sha256\":\"abc\"}}"
+		},
+		{
+			"expected": {
+				"ok": false,
+				"status": "checksum_mismatch"
+			},
+			"name": "integrity_wrong_hash",
+			"raw": "{\"save_version\":37,\"_save_integrity\":{\"format\":1,\"sha256\":\"abc\"}}"
+		}
+	],
+	"integrity_required_version": 27,
+	"note": "Synthetic fixture paths only. No user:// save path or real player data was accessed.",
+	"save_version": 37,
+	"source": "scripts/persistence/SaveStore.gd"
+}
