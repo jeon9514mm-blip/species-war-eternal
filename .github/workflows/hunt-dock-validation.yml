@@ -103,7 +103,9 @@ jobs:
           imported = run('import', ['godot', '--headless', '--path', '.', '--editor', '--import', '--quit'], 300)
           smoke = run('smoke', ['godot', '--headless', '--path', '.', '--script', 'tests/regression/HuntCompactHudSmokeTest.gd'])
           captured = False
-          if smoke:
+          # Review screenshots are independent evidence, not a claim that all tests passed.
+          # Keep the failed regression status below while still rendering an imported build.
+          if imported:
               captured = run('capture', ['xvfb-run', '-a', 'godot', '--path', '.', '--rendering-method', 'gl_compatibility', '--script', 'tests/regression/HuntDockCapture.gd'])
           (out / 'summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2))
           with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
