@@ -28,9 +28,13 @@ namespace Eternal.UnityMigration
         public bool PaintedGroundSealVisible=>paintedSeal!=null&&paintedSeal.activeInHierarchy;
         SkillVfxBatch skillBatch;
         public bool RaidWarningVisible;
+        public bool SuppressCombatPopups;
         public int ActiveSkillEffects=>skillBatch?.ActiveEffects??0;
         public int SkillGeometryQuads=>skillBatch?.Quads??0;
-        public int PaintedImpactQuads=>skillBatch?.PaintedQuads??0;
+        public int PaintedImpactQuads=>skillBatch?.PaintedImpactQuads??0;
+        public int PaintedChargeQuads=>skillBatch?.PaintedChargeQuads??0;
+        public int PaintedFlightQuads=>skillBatch?.PaintedFlightQuads??0;
+        public int PaintedTailQuads=>skillBatch?.PaintedTailQuads??0;
         public readonly FrameBudgetProbe FrameCost=new();
         readonly Vector3[] glyphVertices=new Vector3[12*7*4];
         readonly Color[] glyphColors=new Color[12*7*4];
@@ -221,7 +225,7 @@ namespace Eternal.UnityMigration
         }
         void OnGUI()
         {
-            if(cameraView==null)return;
+            if(cameraView==null||SuppressCombatPopups)return;
             damageStyle??=new GUIStyle(GUI.skin.label){font=outfit,fontSize=24,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};
             // Player GUI skins may use black label text. GUI.color multiplies
             // that colour, so explicit white is required for coloured numbers.

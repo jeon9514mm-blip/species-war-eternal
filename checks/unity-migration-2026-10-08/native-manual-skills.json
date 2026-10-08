@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "comparisons": 15,
+  "actual_original_skill_execution": true,
+  "failed_input_spends_nothing": true,
+  "pending_automatic_intent_replaced_once": true,
+  "real_player_io": false
+}

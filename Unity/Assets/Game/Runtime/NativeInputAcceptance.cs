@@ -32,11 +32,14 @@ namespace Eternal.UnityMigration.Editor
         static int rewardPacks,rewardGold,rewardXp;
         static long walletXp;
         static string itemId;
+        static string manualHero,manualSlot;
+        static int manualBefore;
         static ChainSkill[] chain;
         static int guardianCopies,heroShards;
         static string equipGuardian;
         static Mouse qaMouse;
         static bool counterRally;
+        static bool counterWindowCaptured;
         public static string ReportPath = "../checks/unity-migration-2026-10-08/native-ui-input.json";
         public static bool Running => running;
         public static string Begin()
@@ -59,7 +62,27 @@ namespace Eternal.UnityMigration.Editor
                     Require(name.height>0&&hp.height>0&&skill.height>0,"visible party labels "+hero.Id);
                     Require(name.yMax<=hp.yMin+.1f&&hp.yMax<=skill.yMin+.1f,"separate party text rows "+hero.Id);
                 }
+                for(int i=0;i<review.Simulation.Chain.Entries.Count;i++)
+                {
+                    var tile=ui.Q<Button>("manual-chain-"+i);var title=tile.Q<Label>("chain-title").worldBound;var readiness=tile.Q<Label>("chain-ready").worldBound;
+                    Require(title.yMax<=readiness.yMin+.1f&&readiness.yMax<=tile.worldBound.yMax+.1f,"chain labels remain inside tile "+i);
+                }
             });
+            Add("observe manual chain input availability",()=>waitStarted=Time.realtimeSinceStartup);
+            steps.Add(("cast a ready chain tile through native pointer",()=>
+            {
+                var ui=review.GetComponent<UIDocument>().rootVisualElement;
+                for(int i=0;i<review.Simulation.Chain.Entries.Count;i++)
+                {
+                    var entry=review.Simulation.Chain.Entries[i];var actor=review.Simulation.Battle.Heroes.First(h=>h.Id==entry.Hero);
+                    var card=ui.Q<Button>("manual-chain-"+i);
+                    if(actor.Windup>=0||!review.Simulation.CanManualCast(entry.Hero,entry.Slot)||!card.enabledInHierarchy)continue;
+                    manualHero=entry.Hero;manualSlot=entry.Slot;manualBefore=review.Simulation.ManualSkillCasts;ClickData("manual-chain-"+i);return true;
+                }
+                if(Time.realtimeSinceStartup-waitStarted>20)throw new InvalidOperationException("No ready manual chain tile within 20 seconds.");return false;
+            }));
+            Add("verify exact manual route played an original skill",()=>{Require(review.Simulation.ManualSkillCasts==manualBefore+1,"native manual skill count");Require(review.Simulation.Battle.Kits[manualHero].Casts.GetValueOrDefault(manualSlot)>0,"native original skill execution");});
+            Add("capture actual manual skill strip",()=>ScreenCapture.CaptureScreenshot(Path.Combine(Path.GetDirectoryName(ReportPath),"native-chain-strip.png")));
             Add("open hero navigation",()=>ClickText("영웅"));
             Add("open original Leonhardt portrait",()=>ClickData("leonhardt"));
             Add("open growth panel",()=>ClickText("성장 · 장비"));
@@ -125,14 +148,18 @@ namespace Eternal.UnityMigration.Editor
                     Add("verify manual raid positioning mode",()=>Require(!review.Raid.AutoEvade,"manual evasion selection"));
                     Add("start authored cone practice through pointer",()=>ClickText("카운터 연습"));
                     Add("verify explicit counter practice route",()=>Require(review.Raid.CounterPractice,"counter practice active"));
-                    waitStarted=0;counterRally=false;
+                    waitStarted=0;counterRally=false;counterWindowCaptured=false;
                     steps.Add(("observe counter opportunity",()=>
                     {
                         if(waitStarted==0)waitStarted=Time.realtimeSinceStartup;
                         if(!counterRally&&review.Raid.Warning?.Shape=="cone"&&review.Raid.TelegraphRemaining>.55)
                         {ClickGround(review.Raid.Warning.Center+review.Raid.Warning.Direction*4.5f);counterRally=true;return false;}
                         var button=Buttons().FirstOrDefault(b=>(string)b["text"]=="카운터"&&(bool)b["enabled"]);
-                        if(review.Raid.CounterReady&&button!=null){Click(button,"카운터");return true;}
+                        if(review.Raid.CounterReady&&button!=null)
+                        {
+                            if(!counterWindowCaptured){ScreenCapture.CaptureScreenshot(Path.Combine(Path.GetDirectoryName(ReportPath),"native-counter-window.png"));counterWindowCaptured=true;return false;}
+                            Click(button,"카운터");return true;
+                        }
                         if(!review.Raid.Running||Time.realtimeSinceStartup-waitStarted>20)return true;return false;
                     }));
                     Add("verify native counter practice success",()=>{Require(review.Raid.CounterSuccesses>0,"native counter practice success");Require(!review.Raid.CounterPractice,"counter exits practice");});
@@ -152,6 +179,33 @@ namespace Eternal.UnityMigration.Editor
             Add("capture quick equipment wallet",()=>gold=review.ReviewState.WalletGold);
             Add("quick equipment through pointer",()=>ClickText("장비 추천"));
             Add("verify quick equipment preserves currency",()=>Require(review.ReviewState.WalletGold==gold,"quick equipment wallet"));
+            Add("open a fresh raid for natural result flow",()=>ClickText("도전"));
+            Add("enter original meadow boss for natural victory",()=>ClickText((string)zones["gray_meadow"]["boss"]));
+            Add("capture isolated raid wallet and retained hunt",()=>{gold=review.ReviewState.WalletGold;huntTicks=review.Simulation.Ticks;waitStarted=Time.realtimeSinceStartup;});
+            steps.Add(("observe natural raid completion",()=>{if(!review.Raid.Running)return true;if(Time.realtimeSinceStartup-waitStarted>45)throw new InvalidOperationException("Natural meadow result did not arrive within 45 seconds.");return false;}));
+            Add("verify actual raid result and unchanged hunt wallet",()=>{Require(review.Raid.Outcome=="victory","natural raid victory");Require(review.RaidResultVisible,"visible raid result");Require(review.ReviewState.WalletGold==gold,"isolated raid wallet unchanged");Require(review.Simulation.Ticks==huntTicks,"hunt stays suspended through result");Require(review.Feedback.SuppressCombatPopups,"combat numbers suppressed over result");Require(review.GetComponent<UIDocument>().rootVisualElement.Query<Label>().ToList().Any(l=>l.text.StartsWith("HP 0 /",StringComparison.Ordinal)),"boss header refreshed for final hp");});
+            Add("capture actual native raid result",()=>ScreenCapture.CaptureScreenshot(Path.Combine(Path.GetDirectoryName(ReportPath),"native-raid-result.png")));
+            Add("retry natural raid through pointer",()=>ClickText("다시 도전"));
+            Add("verify retry clears prior result",()=>{Require(review.Raid.Running&&review.Raid.Elapsed<1.5,"fresh retry encounter");Require(!review.RaidResultVisible,"result cleared on retry");});
+            Add("return to retained hunt after retry",()=>ClickText("사냥"));
+            Add("verify new route returns to hunting",()=>Require(review.Raid==null,"hunt after result retry"));
+            Add("start observing a real ultimate presentation",()=>waitStarted=Time.realtimeSinceStartup);
+            steps.Add(("observe confirmed ultimate cut-in during live hunting",()=>
+            {
+                var ui=review.GetComponent<UIDocument>().rootVisualElement;var cue=ui.Q<VisualElement>("skill-cut-in");
+                if(review.UltimateCueVisible&&cue.style.opacity.value>.3f&&review.Feedback.PaintedImpactQuads>0)return true;
+                if(Time.realtimeSinceStartup-waitStarted>50)throw new InvalidOperationException("No live ultimate cut-in with a painted impact in 50 seconds.");return false;
+            }));
+            Add("verify original ultimate identity and nonblocking cut-in",()=>
+            {
+                Require(review.Simulation.Catalog.HeroIds.Contains(review.LastUltimateHero),"original ultimate caster");
+                var original=review.Simulation.Catalog.Skill(review.LastUltimateHero,"ultimate");Require((string)original["skill"]==review.LastUltimateSkill,"original ultimate name");
+                var ui=review.GetComponent<UIDocument>().rootVisualElement;var cue=ui.Q<VisualElement>("skill-cut-in");
+                Require(cue.pickingMode==PickingMode.Ignore&&cue.Query<VisualElement>().ToList().All(e=>e.pickingMode==PickingMode.Ignore),"cut-in does not consume ground input");
+                Require(cue.worldBound.yMin>=ui.Q<VisualElement>("top").worldBound.yMax,"cut-in below header");
+                Require(!review.Feedback.RaidWarningVisible&&Time.timeScale==1,"ultimate does not freeze combat or cover a raid warning");
+            });
+            Add("capture confirmed native ultimate",()=>ScreenCapture.CaptureScreenshot(Path.Combine(Path.GetDirectoryName(ReportPath),"native-ultimate.png")));
             running=true;
 #if UNITY_EDITOR
             EditorApplication.update+=Tick;
@@ -204,6 +258,8 @@ namespace Eternal.UnityMigration.Editor
             if(pressed&&Mouse.current!=null){QueueMouse(false);pressed=false;}running=false;
             var report=new JObject{{"passed",passed},{"error",error},{"comparisons",checks},{"steps_completed",index},{"steps_total",steps.Count},{"start_frame",startFrame},{"end_frame",Time.frameCount},{"elapsed_seconds",Time.realtimeSinceStartup-started},{"batch_editor",Application.isBatchMode},{"virtual_qa_mouse",qaMouse!=null},{"trace",trace.DeepClone()},{"raid_inputs",raids.DeepClone()},{"no_direct_ui_callbacks",true},{"real_player_io",false},{"note","QA dispatches actual Input System mouse events across native frames against the explicit memory-only review seed. Meadow counter evidence uses the visible Lv50 authored-cone practice route, which temporarily suspends automatic hero attacks and rearms the window. It does not prove a naturally occurring counter in a full encounter. Ordinary original-balance raid parity is checked separately."}};
             report["development_player"]=!Application.isEditor&&Debug.isDebugBuild;
+            report["ultimate_presentations"]=review.UltimatePresentations;report["last_ultimate_hero"]=review.LastUltimateHero;report["last_ultimate_skill"]=review.LastUltimateSkill;
+            report["manual_skill_casts"]=review.Simulation.ManualSkillCasts;
             File.WriteAllText(ReportPath,report.ToString());Debug.Log((passed?"ETERNAL_NATIVE_INPUT_PASSED ":"ETERNAL_NATIVE_INPUT_FAILED ")+error);
             if(qaMouse!=null){InputSystem.RemoveDevice(qaMouse);qaMouse=null;}
         }
