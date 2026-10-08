@@ -1,0 +1,236 @@
+{
+  "completed": true,
+  "unity": "6000.6.4f1",
+  "development_player": true,
+  "width": 1920,
+  "height": 1080,
+  "graphics_api": "Direct3D11",
+  "gpu": "NVIDIA GeForce GTX 1050",
+  "target_fps": 60,
+  "segments": [
+    {
+      "mode": "hunting",
+      "samples": 1790,
+      "elapsed_seconds": 30.015333799999997,
+      "rendered_frames": 1791,
+      "mean_frame_ms": 16.75922055865922,
+      "median_frame_ms": 16.6959,
+      "p95_frame_ms": 17.9737,
+      "p99_frame_ms": 18.6146,
+      "maximum_frame_ms": 19.7697,
+      "frames_over_25_ms": 0,
+      "frames_over_50_ms": 0,
+      "unity_allocated_bytes": 191374642,
+      "unity_reserved_bytes": 569966592,
+      "process_working_set_bytes": null,
+      "reused_hero_views": 0,
+      "catchup_limit_hits": 0,
+      "raid_restarts": 0,
+      "packs_cleared": 3,
+      "review_component": {
+        "samples": 1024,
+        "source_cpu_ms_median": 0.0546,
+        "source_cpu_ms_p95": 1.0684,
+        "source_cpu_ms_max": 2.9354,
+        "managed_byte_counter_verified": false,
+        "source_allocated_bytes_median": null,
+        "source_allocated_bytes_p95": null,
+        "source_allocated_bytes_max": null,
+        "note": "Measures this component's synchronous code only; excludes GPU, Editor overhead and other components. A managed-byte counter that fails a known allocation probe reports null, not zero. Diagnostic snapshot allocation is outside sampled code."
+      },
+      "feedback_component": {
+        "samples": 1024,
+        "source_cpu_ms_median": 0.215,
+        "source_cpu_ms_p95": 0.3149,
+        "source_cpu_ms_max": 0.7408,
+        "managed_byte_counter_verified": false,
+        "source_allocated_bytes_median": null,
+        "source_allocated_bytes_p95": null,
+        "source_allocated_bytes_max": null,
+        "note": "Measures this component's synchronous code only; excludes GPU, Editor overhead and other components. A managed-byte counter that fails a known allocation probe reports null, not zero. Diagnostic snapshot allocation is outside sampled code."
+      }
+    },
+    {
+      "mode": "gray_meadow",
+      "samples": 1074,
+      "elapsed_seconds": 18.0116978,
+      "rendered_frames": 1075,
+      "mean_frame_ms": 16.755248789571706,
+      "median_frame_ms": 16.7142,
+      "p95_frame_ms": 17.6346,
+      "p99_frame_ms": 18.0743,
+      "maximum_frame_ms": 27.1596,
+      "frames_over_25_ms": 2,
+      "frames_over_50_ms": 0,
+      "unity_allocated_bytes": 192401702,
+      "unity_reserved_bytes": 569966592,
+      "process_working_set_bytes": null,
+      "reused_hero_views": 30,
+      "catchup_limit_hits": 0,
+      "raid_restarts": 2,
+      "packs_cleared": 3,
+      "review_component": {
+        "samples": 1024,
+        "source_cpu_ms_median": 0.0483,
+        "source_cpu_ms_p95": 0.5847,
+        "source_cpu_ms_max": 3.17,
+        "managed_byte_counter_verified": false,
+        "source_allocated_bytes_median": null,
+        "source_allocated_bytes_p95": null,
+        "source_allocated_bytes_max": null,
+        "note": "Measures this component's synchronous code only; excludes GPU, Editor overhead and other components. A managed-byte counter that fails a known allocation probe reports null, not zero. Diagnostic snapshot allocation is outside sampled code."
+      },
+      "feedback_component": {
+        "samples": 1024,
+        "source_cpu_ms_median": 0.1936,
+        "source_cpu_ms_p95": 0.2816,
+        "source_cpu_ms_max": 0.434,
+        "managed_byte_counter_verified": false,
+        "source_allocated_bytes_median": null,
+        "source_allocated_bytes_p95": null,
+        "source_allocated_bytes_max": null,
+        "note": "Measures this component's synchronous code only; excludes GPU, Editor overhead and other components. A managed-byte counter that fails a known allocation probe reports null, not zero. Diagnostic snapshot allocation is outside sampled code."
+      }
+    },
+    {
+      "mode": "forgotten_mine",
+      "samples": 1074,
+      "elapsed_seconds": 18.015305899999998,
+      "rendered_frames": 1075,
+      "mean_frame_ms": 16.757836219739314,
+      "median_frame_ms": 16.7219,
+      "p95_frame_ms": 17.6424,
+      "p99_frame_ms": 18.0837,
+      "maximum_frame_ms": 22.328,
+      "frames_over_25_ms": 0,
+      "frames_over_50_ms": 0,
+      "unity_allocated_bytes": 193325020,
+      "unity_reserved_bytes": 569966592,
+      "process_working_set_bytes": null,
+      "reused_hero_views": 50,
+      "catchup_limit_hits": 0,
+      "raid_restarts": 1,
+      "packs_cleared": 3,
+      "review_component": {
+        "samples": 1024,
+        "source_cpu_ms_median": 0.0674,
+        "source_cpu_ms_p95": 0.5482,
+        "source_cpu_ms_max": 2.0692,
+        "managed_byte_counter_verified": false,
+        "source_allocated_bytes_median": null,
+        "source_allocated_bytes_p95": null,
+        "source_allocated_bytes_max": null,
+        "note": "Measures this component's synchronous code only; excludes GPU, Editor overhead and other components. A managed-byte counter that fails a known allocation probe reports null, not zero. Diagnostic snapshot allocation is outside sampled code."
+      },
+      "feedback_component": {
+        "samples": 1024,
+        "source_cpu_ms_median": 0.1871,
+        "source_cpu_ms_p95": 0.2981,
+        "source_cpu_ms_max": 0.6235,
+        "managed_byte_counter_verified": false,
+        "source_allocated_bytes_median": null,
+        "source_allocated_bytes_p95": null,
+        "source_allocated_bytes_max": null,
+        "note": "Measures this component's synchronous code only; excludes GPU, Editor overhead and other components. A managed-byte counter that fails a known allocation probe reports null, not zero. Diagnostic snapshot allocation is outside sampled code."
+      }
+    },
+    {
+      "mode": "moonrest_forest",
+      "samples": 1074,
+      "elapsed_seconds": 18.016151,
+      "rendered_frames": 1075,
+      "mean_frame_ms": 16.75968016759772,
+      "median_frame_ms": 16.7374,
+      "p95_frame_ms": 17.6074,
+      "p99_frame_ms": 17.9946,
+      "maximum_frame_ms": 26.0344,
+      "frames_over_25_ms": 1,
+      "frames_over_50_ms": 0,
+      "unity_allocated_bytes": 194891746,
+      "unity_reserved_bytes": 569966592,
+      "process_working_set_bytes": null,
+      "reused_hero_views": 70,
+      "catchup_limit_hits": 0,
+      "raid_restarts": 1,
+      "packs_cleared": 3,
+      "review_component": {
+        "samples": 1024,
+        "source_cpu_ms_median": 0.0733,
+        "source_cpu_ms_p95": 0.5187,
+        "source_cpu_ms_max": 3.8441,
+        "managed_byte_counter_verified": false,
+        "source_allocated_bytes_median": null,
+        "source_allocated_bytes_p95": null,
+        "source_allocated_bytes_max": null,
+        "note": "Measures this component's synchronous code only; excludes GPU, Editor overhead and other components. A managed-byte counter that fails a known allocation probe reports null, not zero. Diagnostic snapshot allocation is outside sampled code."
+      },
+      "feedback_component": {
+        "samples": 1024,
+        "source_cpu_ms_median": 0.2077,
+        "source_cpu_ms_p95": 0.3372,
+        "source_cpu_ms_max": 1.1433,
+        "managed_byte_counter_verified": false,
+        "source_allocated_bytes_median": null,
+        "source_allocated_bytes_p95": null,
+        "source_allocated_bytes_max": null,
+        "note": "Measures this component's synchronous code only; excludes GPU, Editor overhead and other components. A managed-byte counter that fails a known allocation probe reports null, not zero. Diagnostic snapshot allocation is outside sampled code."
+      }
+    }
+  ],
+  "captures": [
+    {
+      "file": "hunting.png",
+      "sampled_visible_pixels": 120,
+      "sample_count": 120,
+      "painted_impact_quads": 3
+    },
+    {
+      "file": "hunting-painted-skills.png",
+      "sampled_visible_pixels": 120,
+      "sample_count": 120,
+      "painted_impact_quads": 0
+    },
+    {
+      "file": "gray_meadow.png",
+      "sampled_visible_pixels": 120,
+      "sample_count": 120,
+      "painted_impact_quads": 1
+    },
+    {
+      "file": "gray_meadow-painted-skills.png",
+      "sampled_visible_pixels": 119,
+      "sample_count": 120,
+      "painted_impact_quads": 0
+    },
+    {
+      "file": "forgotten_mine.png",
+      "sampled_visible_pixels": 119,
+      "sample_count": 120,
+      "painted_impact_quads": 2
+    },
+    {
+      "file": "forgotten_mine-painted-skills.png",
+      "sampled_visible_pixels": 119,
+      "sample_count": 120,
+      "painted_impact_quads": 1
+    },
+    {
+      "file": "moonrest_forest.png",
+      "sampled_visible_pixels": 120,
+      "sample_count": 120,
+      "painted_impact_quads": 1
+    },
+    {
+      "file": "moonrest_forest-painted-skills.png",
+      "sampled_visible_pixels": 120,
+      "sample_count": 120,
+      "painted_impact_quads": 1
+    }
+  ],
+  "errors": [],
+  "real_player_io": false,
+  "note": "Whole rendered frame intervals measured with Stopwatch in a standalone Windows development player; includes frame pacing. This is one desktop, not mobile performance proof. Memory values are Unity allocated/reserved bytes plus process working set, not texture-only GPU usage. Screenshot capture and initial scene warmup are excluded. Raid restarts after victory are deliberately included. Empty screenshot samples fail acceptance; manual pixel review is still required.",
+  "host_peak_process_working_set_bytes": 471539712,
+  "host_memory_sample_interval_ms": 500,
+  "visible_review_window": true
+}

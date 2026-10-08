@@ -18,6 +18,7 @@ namespace Eternal.UnityMigration.Editor
             try
             {
                 var catalog=JObject.Parse(OriginalCatalog.Required("legacy-catalogs").text);
+                if(Resources.Load<Material>("Eternal/Materials/PaintedImpact")==null)throw new InvalidOperationException("Painted impact atlas/material has not been imported.");
                 batch=new SkillVfxBatch(owner.transform,Resources.Load<Material>("Eternal/Materials/Particles"),(JArray)catalog["skill_vfx"]);
                 var motifs=new HashSet<string>();var identities=new HashSet<string>();var sim=new HuntingSimulation(50);int comparisons=0;
                 if(batch.Profiles.Count!=120)throw new InvalidOperationException("Missing original VFX profiles.");
@@ -32,18 +33,18 @@ namespace Eternal.UnityMigration.Editor
                     batch.Clear();
                     if(!batch.Observe(new BattleEvent("windup",hero,profile.Slot,target),battle))throw new InvalidOperationException("Missing charge timeline.");
                     batch.Advance(.1f,false);
-                    if(batch.ActiveEffects!=1||batch.Quads<=0)throw new InvalidOperationException("Charge geometry missing.");
+                    if(batch.ActiveEffects!=1||batch.Quads<=0||batch.PaintedQuads!=0)throw new InvalidOperationException("Charge geometry missing or premature painted impact.");
                     batch.Advance(.1f,false);
                     if(batch.ActiveEffects!=0||batch.Quads!=0)throw new InvalidOperationException("Interrupted charge produced an impact.");
                     batch.Observe(new BattleEvent("cast",hero,profile.Slot,target),battle);batch.Advance(.03f,false);
-                    if(batch.ActiveEffects!=1||batch.Quads<=0||batch.Quads>SkillVfxBatch.QuadsPerEffect)throw new InvalidOperationException("Settled VFX geometry exceeds budget.");
-                    batch.Advance(2,false);if(batch.ActiveEffects!=0||batch.Quads!=0)throw new InvalidOperationException("VFX timeline leaked.");comparisons+=4;
+                    if(batch.ActiveEffects!=1||batch.Quads<=0||batch.Quads>SkillVfxBatch.QuadsPerEffect||batch.PaintedQuads!=1)throw new InvalidOperationException("Settled VFX geometry exceeds budget or painted impact is missing.");
+                    batch.Advance(2,false);if(batch.ActiveEffects!=0||batch.Quads!=0||batch.PaintedQuads!=0)throw new InvalidOperationException("VFX timeline leaked.");comparisons+=4;
                 }
                 if(motifs.Count!=30||identities.Count!=30)throw new InvalidOperationException("Hero VFX identity collapsed.");comparisons+=2;
                 var source=sim.Battle.Heroes[0];var victim=sim.Battle.Enemies[0];int hp=victim.Hp;double time=sim.Elapsed;
                 for(int i=0;i<200;i++)batch.Observe(new BattleEvent("cast",source,"ultimate",victim),sim.Battle);
                 batch.Advance(.04f,true);
-                if(batch.ActiveEffects!=50||batch.Quads>50*96||victim.Hp!=hp||sim.Elapsed!=time||Time.timeScale!=1)
+                if(batch.ActiveEffects!=50||batch.Quads>50*96||batch.PaintedQuads!=50||victim.Hp!=hp||sim.Elapsed!=time||Time.timeScale!=1)
                     throw new InvalidOperationException("VFX pool overflow or simulation authority violation.");comparisons+=5;
                 int peak=batch.Quads;batch.Advance(2,false);if(batch.ActiveEffects!=0)throw new InvalidOperationException("Saturated pool did not expire.");comparisons++;
                 echoes=new PaintedAfterImages(owner.transform);
@@ -60,7 +61,7 @@ namespace Eternal.UnityMigration.Editor
                 var restored=OriginalReliefMesh.Load(source.Id).Body;
                 if(restored==null||restored.vertexCount==0||restored.triangles.Length/3!=6000)throw new InvalidOperationException("Empty cached original body was reused.");comparisons++;
                 if(errors.Count>0)throw new InvalidOperationException("VFX fixture logged renderer errors: "+string.Join(" / ",errors));comparisons++;
-                var result=new JObject{{"passed",true},{"comparisons",comparisons},{"skill_profiles",120},{"hero_motifs",30},{"pool_capacity",50},{"afterimage_pool_capacity",50},{"afterimage_lifetime",.4},{"empty_body_cache_recovery",true},{"saturated_quad_count",peak},{"max_quads_per_effect",96},{"renderer_errors_during_fixture",errors.Count},{"note","Bounded CPU mesh timelines; not GPU particles or proof that all 120 skills have been visually reviewed."}};
+                var result=new JObject{{"passed",true},{"comparisons",comparisons},{"skill_profiles",120},{"hero_motifs",30},{"pool_capacity",50},{"painted_impact_cells",4},{"painted_impact_max_quads",50},{"afterimage_pool_capacity",50},{"afterimage_lifetime",.4},{"empty_body_cache_recovery",true},{"saturated_quad_count",peak},{"max_quads_per_effect",96},{"renderer_errors_during_fixture",errors.Count},{"note","Bounded CPU mesh timelines plus four shared painted elemental cells; not GPU particles, 120 bespoke painted textures or proof that all 120 skills have been visually reviewed."}};
                 File.WriteAllText("../checks/unity-migration-2026-10-08/native-skill-vfx.json",result.ToString());return result;
             }
             finally{Application.logMessageReceived-=Log;batch?.Dispose();echoes?.Dispose();UnityEngine.Object.DestroyImmediate(owner);}

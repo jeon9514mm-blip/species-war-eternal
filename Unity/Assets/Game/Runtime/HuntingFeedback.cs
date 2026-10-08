@@ -9,7 +9,7 @@ namespace Eternal.UnityMigration
     public sealed class HuntingFeedback : MonoBehaviour
     {
         struct Spark {public Vector3 position,velocity;public Color color;public float remaining,total,size;}
-        struct Popup {public Vector3 position;public string text;public Color color;public float remaining;}
+        struct Popup {public Vector3 position;public string text;public Color color;public float remaining,lastEvent;public int target,amount;public bool critical;}
         readonly Spark[] sparks=new Spark[320];
         readonly Popup[] popups=new Popup[32];
         readonly Vector3[] vertices=new Vector3[1280];
@@ -28,6 +28,7 @@ namespace Eternal.UnityMigration
         public bool RaidWarningVisible;
         public int ActiveSkillEffects=>skillBatch?.ActiveEffects??0;
         public int SkillGeometryQuads=>skillBatch?.Quads??0;
+        public int PaintedImpactQuads=>skillBatch?.PaintedQuads??0;
         public readonly FrameBudgetProbe FrameCost=new();
         readonly Vector3[] glyphVertices=new Vector3[12*7*4];
         readonly Color[] glyphColors=new Color[12*7*4];
@@ -50,7 +51,7 @@ namespace Eternal.UnityMigration
             var legacy=JObject.Parse(OriginalCatalog.Required("legacy-catalogs").text);
             foreach(JObject p in legacy["skill_vfx"])profiles[(string)p["signature"]]=p;
             particleMaterial=Resources.Load<Material>("Eternal/Materials/Particles");
-            skillBatch=new SkillVfxBatch(transform,particleMaterial,(JArray)legacy["skill_vfx"]);
+            skillBatch=new SkillVfxBatch(transform,particleMaterial,(JArray)legacy["skill_vfx"],camera);
             particleMesh=new Mesh{name="Bounded skill particles"};particleMesh.MarkDynamic();
             var uv=new Vector2[1280];var triangles=new int[1920];
             for(int i=0;i<320;i++)
@@ -131,7 +132,7 @@ namespace Eternal.UnityMigration
             else if(e.Kind=="damage"||e.Kind=="critical"||e.Kind=="hero_hit")
             {
                 bool critical=e.Kind=="critical";var color=critical?new Color(1,.84f,0):e.Kind=="hero_hit"?new Color(.86f,.54f,.48f):new Color(.85f,.84f,.8f);
-                if(e.Amount>0)popups[popupCursor++%popups.Length]=new Popup{position=position+Vector3.up*.6f,text=(critical?"CRIT ":"")+e.Amount.ToString("N0"),color=color,remaining=.8f};
+                if(e.Amount>0)AddDamagePopup(e.TargetSerial,e.Amount,critical,position,color);
                 Burst(position,critical?color:new Color(.77f,.64f,.52f),critical?20:5,.55f,"spark");
                 float now=Time.unscaledTime;if(now>=nextStrongImpact)
                 {shakePixels=RaidWarningVisible?0:critical?5:2;shakeUntil=now+.08f;nextStrongImpact=now+.20f;if(critical&&!RaidWarningVisible){zoomUntil=now+.1f;screenFlash=.04f;}}
@@ -144,6 +145,22 @@ namespace Eternal.UnityMigration
             else if(e.Kind=="interrupt"||e.Kind=="counter"||e.Kind=="shield_break")
             {Burst(position,new Color(.84f,.74f,.51f),32,1.6f,"burst");Play(e.Kind=="shield_break"?"shield_break":"control",position,.18f);}
             else if(e.Kind=="victory"||e.Kind=="defeat")Play(e.Kind,position,.25f);
+        }
+        void AddDamagePopup(int target,int amount,bool critical,Vector3 position,Color color)
+        {
+            float now=Time.unscaledTime;int neighbors=0;
+            for(int i=0;i<popups.Length;i++)
+            {
+                var popup=popups[i];if(popup.remaining<=0||popup.target!=target)continue;neighbors++;
+                // Very short simultaneous hits share one readable number. This
+                // affects presentation only; individual damage events remain intact.
+                if(now-popup.lastEvent>.10f||popup.critical!=critical||popup.color!=color)continue;
+                popup.amount=(int)Math.Min(int.MaxValue,(long)popup.amount+amount);popup.lastEvent=now;
+                popup.text=(critical?"CRIT ":"")+popup.amount.ToString("N0");popups[i]=popup;return;
+            }
+            int lane=neighbors%6;float horizontal=lane switch{1=>-.6f,2=>.6f,3=>-1.1f,4=>1.1f,_=>0};
+            var anchor=position+Vector3.up*.6f+cameraView.transform.right*horizontal+cameraView.transform.up*(lane/3*.45f);
+            popups[popupCursor++%popups.Length]=new Popup{position=anchor,text=(critical?"CRIT ":"")+amount.ToString("N0"),color=color,remaining=.8f,lastEvent=now,target=target,amount=amount,critical=critical};
         }
         void Burst(Vector3 origin,Color color,int count,float power,string motif)
         {

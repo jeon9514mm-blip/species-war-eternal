@@ -1,6 +1,8 @@
 # 종의전쟁: 이터널
 
-Godot **4.7.2** 기반 가로형 자동사냥 RPG입니다. `project.godot`를 가져온 뒤 첫 임포트가 끝나면 **F5**로 실행합니다. 시작 장면은 `scenes/PortraitMain.tscn`, 기준 화면은 **1280×720**입니다.
+가로형 자동사냥 RPG이며 **Unity 6000.6.4f1 / URP로 엔진 전환 작업 중**입니다. Unity에서 `Unity/` 폴더를 열고 **Eternal > Import original assets**, **Eternal > Create native hunting review** 순서로 실행한 뒤 Play를 누릅니다. 영웅 원화·성장·장비·소환·사냥·세 레이드를 확인할 수 있는 독립 검수 버전이며, 실제 저장·보상·전체 콘텐츠 이관은 아직 완료되지 않았습니다. [검증 범위와 남은 작업](docs/unity-migration/STATUS.md)을 확인하세요.
+
+기존 Godot **4.7.2** 프로젝트와 저장 기록은 전환 검증을 위해 보존합니다. 기존 게임은 `project.godot`를 가져온 뒤 **F5**로 실행하며, 시작 장면은 `scenes/PortraitMain.tscn`, 기준 화면은 **1280×720**입니다. 아래 기존 구현 설명은 Godot 버전을 기준으로 합니다.
 
 ## 시작과 개발
 

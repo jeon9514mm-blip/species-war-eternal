@@ -119,12 +119,13 @@ namespace Eternal.UnityMigration
         {
             PanelHeader("원정대 메뉴");var scroll=new ScrollView();scroll.style.flexGrow=1;modal.Add(scroll);Text(scroll,"골드 "+ReviewState.WalletGold.ToString("N0")+" · 젬 "+ReviewState.WalletGems.ToString("N0"),17).style.marginTop=14;GrowthNotice(scroll);
             Text(scroll,(string)ReviewState.PartySynergy()["summary"],13).style.whiteSpace=WhiteSpace.Normal;Text(scroll,"수호신 · "+(string)HuntingSimulation.Canonical["catalogs"]["guardian"]["data"]["DEFINITIONS"][ReviewState.EquippedGuardian]["name"],15).style.marginTop=12;
+            Button(scroll,"소환 · 수호신",ShowSummons).style.marginLeft=0;
             GrowthButton(scroll,"일일 보상 · 젬 30 / 골드 100",()=>ReviewState.ClaimDaily(DateTime.Now.ToString("yyyy-MM-dd")),ShowStateMenu).style.marginTop=16;
             var snapshot=ReviewState.Snapshot();long claim=GameStateCommands.Integer(snapshot["unclaimed_gold"],0,0,GameStateCommands.CurrencyCap)+GameStateCommands.Integer(snapshot["idle_chest_gold"],0,0,GameStateCommands.CurrencyCap);
             long claimXp=GameStateCommands.Integer(snapshot["unclaimed_xp"],0,0,GameStateCommands.CurrencyCap)+GameStateCommands.Integer(snapshot["idle_chest_xp"],0,0,GameStateCommands.CurrencyCap);
             GrowthButton(scroll,"보관 보상 수령 · 골드 "+claim.ToString("N0"),ReviewState.ClaimHuntingRewards,ShowStateMenu,claim>0||claimXp>0).style.marginTop=8;
             Text(scroll,"사냥 연출 검수 · 골드 "+Simulation.Gold.ToString("N0")+" / 경험치 "+Simulation.Xp.ToString("N0"),13).style.marginTop=20;
-            Text(scroll,"독립 검수 기록입니다. 성장·장비 변경은 이번 실행에 유지되며 기존 저장 기록에는 반영되지 않습니다.",13).style.whiteSpace=WhiteSpace.Normal;Text(scroll,"사냥 보상·소환·수호신 전투·콘텐츠 저장 이관은 계속 진행 중입니다.",12).style.whiteSpace=WhiteSpace.Normal;
+            Text(scroll,"독립 검수 기록입니다. 성장·장비·소환 변경은 이번 실행에 유지되며 기존 저장 기록에는 반영되지 않습니다.",13).style.whiteSpace=WhiteSpace.Normal;Text(scroll,"사냥 보상·수호신 전투·콘텐츠 저장 이관은 계속 진행 중입니다.",12).style.whiteSpace=WhiteSpace.Normal;
         }
     }
 }

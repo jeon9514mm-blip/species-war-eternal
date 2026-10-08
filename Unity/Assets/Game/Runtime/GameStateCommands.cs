@@ -11,6 +11,7 @@ namespace Eternal.UnityMigration
         public bool Ok,SavePending;
         public string Message;
         public long Gold,Xp;
+        public JObject Details=new();
         public static StateCommandResult Fail(string message)=>new(){Message=message};
         public static StateCommandResult Success(string message,long gold=0,long xp=0)=>new(){Ok=true,Message=message,Gold=gold,Xp=xp};
     }

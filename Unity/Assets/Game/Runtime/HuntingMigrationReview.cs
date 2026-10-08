@@ -22,7 +22,9 @@ namespace Eternal.UnityMigration
         public HuntingFeedback Feedback=>feedback;
         readonly Dictionary<int,PaintedActor> actors=new();
         readonly Dictionary<string,Stack<PaintedActor>> enemyViews=new(StringComparer.Ordinal);
+        readonly Dictionary<string,PaintedActor> heroViews=new(StringComparer.Ordinal);
         public int ReusedEnemyViews {get;private set;}
+        public int ReusedHeroViews {get;private set;}
         readonly List<int> stale=new();
         readonly List<Combatant> drawActors=new(24);
         readonly HashSet<int> presentIds=new();
@@ -45,6 +47,7 @@ namespace Eternal.UnityMigration
         Material ownedFloorMaterial;
         GameObject worldRoot,huntFloor;
         RaidArenaPresentation raidMap;
+        readonly Dictionary<string,RaidArenaPresentation> raidMaps=new(StringComparer.Ordinal);
         string lastChain="제어 → 약화 → 추가 피해",selectedHero;
         ReviewLaunchSettings launch;
 
@@ -136,6 +139,9 @@ namespace Eternal.UnityMigration
             }
             UpdateAfterImages((float)frame);
             visualQueue.Clear();hudTimer+=frame;if(hudTimer>=.10){hudTimer=0;RefreshHud();}
+            // Counter windows are shorter than the ordinary text refresh. Keep
+            // actionable buttons current on every rendered frame.
+            if(Raid!=null)RefreshRaidActions();
             FrameCost.End();
         }
         void UpdateAfterImages(float dt)
@@ -166,7 +172,7 @@ namespace Eternal.UnityMigration
             foreach(int id in stale)
             {
                 var view=actors[id];
-                if(view.IsHero)Destroy(view.gameObject);
+                if(view.IsHero){view.gameObject.SetActive(false);view.AttackSeconds=view.HitSeconds=view.MovingSpeed=0;heroViews[view.ActorId]=view;}
                 else
                 {
                     if(!enemyViews.TryGetValue(view.ActorId,out var pool)){pool=new Stack<PaintedActor>(4);enemyViews.Add(view.ActorId,pool);}
@@ -181,7 +187,9 @@ namespace Eternal.UnityMigration
                 if(actors.ContainsKey(actor.Serial))continue;
                 bool hero=ActiveBattle.Kits.ContainsKey(actor.Id);
                 PaintedActor painted;
-                if(!hero&&enemyViews.TryGetValue(actor.Id,out var available)&&available.Count>0)
+                if(hero&&heroViews.Remove(actor.Id,out var retained)&&retained!=null)
+                {painted=retained;painted.gameObject.SetActive(true);ReusedHeroViews++;}
+                else if(!hero&&enemyViews.TryGetValue(actor.Id,out var available)&&available.Count>0)
                 {painted=available.Pop();painted.gameObject.SetActive(true);ReusedEnemyViews++;}
                 else
                 {
@@ -252,6 +260,8 @@ namespace Eternal.UnityMigration
         }
         void BuildParty()
         {
+            if(cards.Count==ActiveBattle.Heroes.Count&&cards.Select(c=>c.actor.Id).SequenceEqual(ActiveBattle.Heroes.Select(h=>h.Id)))
+            {for(int i=0;i<cards.Count;i++){var card=cards[i];cards[i]=(ActiveBattle.Heroes[i],card.health,card.skills,card.hp);}return;}
             chainRow.Clear();cards.Clear();foreach(var portrait in portraits)Destroy(portrait);portraits.Clear();
             foreach(var h in ActiveBattle.Heroes)
             {
@@ -261,8 +271,7 @@ namespace Eternal.UnityMigration
                 card.style.borderTopColor=card.style.borderBottomColor=card.style.borderLeftColor=card.style.borderRightColor=new Color(.25f,.31f,.31f);
                 chainRow.Add(card);string name=(string)Simulation.Catalog.Hero(h.Id)["name"];
                 var header=Row(card);var image=new Image();image.style.width=38;image.style.height=43;image.scaleMode=ScaleMode.ScaleToFit;
-                var f=OriginalCatalog.Atlas(h.Id).attack.frames[0];var texture=Resources.Load<Texture2D>("Eternal/Actors/"+h.Id+"/poses");
-                var portrait=Sprite.Create(texture,new Rect(f.region[0],1024-f.region[1]-f.region[3],f.region[2],f.region[3]),new Vector2(.5f,.5f));portraits.Add(portrait);image.sprite=portrait;header.Add(image);
+                image.sprite=InspectionPortrait(h.Id);header.Add(image);
                 var desc=new VisualElement();header.Add(desc);desc.style.flexGrow=1;
                 Text(desc,name.Split(' ')[0],14);var hp=Text(desc,Raid!=null?"Lv.100":"Lv.20",11);hp.style.color=Moss;
                 var skills=Text(card,"",11);skills.style.marginTop=2;skills.style.color=Bronze;
@@ -288,8 +297,7 @@ namespace Eternal.UnityMigration
             {
                 string mechanic=Raid.Warning!=null?"무력화 잔여 "+(100-Raid.BreakGauge).ToString("F0")+"% · "+Raid.TelegraphRemaining.ToString("F1")+"초":Raid.SecondWarning!=null?"후속 충격 · "+Raid.SecondWaveRemaining.ToString("F1")+"초":Raid.GuardHp>0?"갑주 "+Raid.GuardHp.ToString("N0"):Raid.AddHp>0?"수정핵 "+Raid.AddCount+"개 · "+Raid.AddHp.ToString("N0"):Raid.DpsRemaining>0?"의식 "+Raid.DpsRemaining.ToString("F1")+"초 · "+Raid.DpsDamage+" / "+Raid.DpsTarget:"";
                 raidInfo.text=Raid.EventText+(mechanic.Length>0?" · "+mechanic:"");bossBar.style.width=Length.Percent((float)Raid.Boss.HpRatio*100);
-                dodgeButton.text=Raid.DodgeCooldown>0?"회피 "+Raid.DodgeCooldown.ToString("F1")+"초":"긴급 회피";dodgeButton.SetEnabled(Raid.Running&&!Raid.Paused&&Raid.DodgeCooldown<=0);
-                counterButton.SetEnabled(Raid.CounterReady);counterButton.style.backgroundColor=Raid.CounterReady?new Color(.12f,.36f,.54f):new Color(.10f,.14f,.15f);
+                RefreshRaidActions();
             }
         }
         void PanelHeader(string title)
@@ -396,19 +404,37 @@ namespace Eternal.UnityMigration
         }
         public void StartRaid(string zone)
         {
-            if(Simulation==null)return;if(raidMap!=null)Destroy(raidMap.gameObject);
+            if(Simulation==null)return;if(raidMap!=null)raidMap.gameObject.SetActive(false);
             Raid=new RaidSimulation(zone,100,9514,Simulation.Battle.Heroes.Select(h=>h.Id).ToArray());Raid.OnEvent=Receive;
             ResetViews();accumulator=0;visualQueue.Clear();huntFloor.SetActive(false);feedback.SetRaidMode(true);
-            raidMap=new GameObject("Dedicated raid arena · "+zone).AddComponent<RaidArenaPresentation>();raidMap.Initialize(Raid,ownedFloorMaterial);
+            if(raidMaps.TryGetValue(zone,out var retained)&&retained!=null){raidMap=retained;raidMap.Rebind(Raid);raidMap.gameObject.SetActive(true);}
+            else{raidMap=new GameObject("Dedicated raid arena · "+zone).AddComponent<RaidArenaPresentation>();raidMap.Initialize(Raid,ownedFloorMaterial);raidMaps[zone]=raidMap;}
             raidCommands.style.display=DisplayStyle.Flex;modal.style.display=DisplayStyle.None;speed=1;BuildParty();RebuildActors();RefreshHud();
         }
         public void EndRaid()
         {
-            if(Raid==null)return;Raid=null;ResetViews();if(raidMap!=null)Destroy(raidMap.gameObject);raidMap=null;
+            if(Raid==null)return;Raid=null;ResetViews();if(raidMap!=null)raidMap.gameObject.SetActive(false);raidMap=null;
             accumulator=0;visualQueue.Clear();huntFloor.SetActive(true);feedback.SetRaidMode(false);raidCommands.style.display=DisplayStyle.None;BuildParty();RebuildActors();RefreshHud();
         }
-        void ResetViews(){foreach(var actor in actors.Values)if(actor!=null)Destroy(actor.gameObject);actors.Clear();drawActors.Clear();presentIds.Clear();trails.Clear();afterImages?.Clear();}
+        void RefreshRaidActions()
+        {
+            if(Raid==null)return;
+            dodgeButton.text=Raid.DodgeCooldown>0?"회피 "+Raid.DodgeCooldown.ToString("F1")+"초":"긴급 회피";dodgeButton.SetEnabled(Raid.Running&&!Raid.Paused&&Raid.DodgeCooldown<=0);
+            bool ready=Raid.CounterReady;counterButton.SetEnabled(ready);counterButton.style.backgroundColor=ready?new Color(.12f,.36f,.54f):new Color(.10f,.14f,.15f);
+            counterButton.tooltip=ready?"정면 카운터로 보스 공격 차단":Raid.CounterWindowOpen?"보스 정면에 움직일 수 있는 영웅이 필요합니다.":"부채꼴 공격 직전 정면에서 사용";
+        }
+        void ResetViews(bool dispose=false)
+        {
+            foreach(var actor in actors.Values)if(actor!=null)
+            {
+                if(dispose)Destroy(actor.gameObject);
+                else if(actor.IsHero){actor.gameObject.SetActive(false);actor.AttackSeconds=actor.HitSeconds=actor.MovingSpeed=0;heroViews[actor.ActorId]=actor;}
+                else
+                {if(!enemyViews.TryGetValue(actor.ActorId,out var pool)){pool=new Stack<PaintedActor>(4);enemyViews.Add(actor.ActorId,pool);}if(pool.Count<4){actor.gameObject.SetActive(false);actor.AttackSeconds=actor.HitSeconds=actor.MovingSpeed=0;pool.Push(actor);}else Destroy(actor.gameObject);}
+            }
+            actors.Clear();drawActors.Clear();presentIds.Clear();trails.Clear();afterImages?.Clear();
+        }
         void OnDestroy()
-        {ResetViews();foreach(var pool in enemyViews.Values)foreach(var view in pool)if(view!=null)Destroy(view.gameObject);enemyViews.Clear();afterImages?.Dispose();foreach(var p in portraits)Destroy(p);foreach(var p in inspectionPortraits.Values)if(p!=null)Destroy(p);if(panel!=null)Destroy(panel);if(korean!=null)Destroy(korean);if(ownedFloorMaterial!=null)Destroy(ownedFloorMaterial);if(worldRoot!=null)Destroy(worldRoot);if(raidMap!=null)Destroy(raidMap.gameObject);if(feedback!=null)Destroy(feedback.gameObject);OriginalReliefMesh.Clear();}
+        {ResetViews(true);foreach(var pool in enemyViews.Values)foreach(var view in pool)if(view!=null)Destroy(view.gameObject);enemyViews.Clear();foreach(var view in heroViews.Values)if(view!=null)Destroy(view.gameObject);heroViews.Clear();afterImages?.Dispose();foreach(var p in portraits)Destroy(p);foreach(var p in inspectionPortraits.Values)if(p!=null)Destroy(p);if(panel!=null)Destroy(panel);if(korean!=null)Destroy(korean);if(ownedFloorMaterial!=null)Destroy(ownedFloorMaterial);if(worldRoot!=null)Destroy(worldRoot);foreach(var arena in raidMaps.Values)if(arena!=null)Destroy(arena.gameObject);raidMaps.Clear();if(feedback!=null)Destroy(feedback.gameObject);OriginalReliefMesh.Clear();}
     }
 }

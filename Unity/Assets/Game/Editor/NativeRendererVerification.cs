@@ -28,7 +28,9 @@ namespace Eternal.UnityMigration.Editor
             report["empty_body_meshes"]=missingBodies;report["body_meshes_present"]=missingBodies==0;
             report["review_component_cost"]=review?.FrameCost.Snapshot();report["feedback_component_cost"]=review?.Feedback.FrameCost.Snapshot();
             report["catchup_limit_hits"]=review?.CatchupLimitHits??0;report["active_skill_effects"]=review?.Feedback.ActiveSkillEffects??0;report["skill_geometry_quads"]=review?.Feedback.SkillGeometryQuads??0;
+            report["painted_impact_quads"]=review?.Feedback.PaintedImpactQuads??0;
             report["reused_enemy_views"]=review?.ReusedEnemyViews??0;
+            report["reused_hero_views"]=review?.ReusedHeroViews??0;
             if(review?.ReviewState!=null)
             {
                 var state=review.ReviewState;

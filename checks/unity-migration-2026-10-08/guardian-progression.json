@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "comparisons": 21604,
+  "guardian_production_cases": 600,
+  "hero_production_cases": 360,
+  "pet_xp_production_cases": 210,
+  "source_random_outputs_replayed": true,
+  "pcg_stream_migrated": false,
+  "real_player_io": false,
+  "note": "Production services are executed on healthy isolated snapshots, including free/purchased draws, both pity boundaries, duplicate caps and pet levels/evolution. Recorded Godot RNG draws verify selection and state results; Unity System.Random does not reproduce a saved Godot PCG stream. Pet XP helper state is compared, not its enclosing reward/save workflow."
+}

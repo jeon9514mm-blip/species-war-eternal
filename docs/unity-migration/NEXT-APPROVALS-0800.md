@@ -1,15 +1,12 @@
-# Morning execution queue
+# Overnight execution status
 
-User instruction: defer newly required execution approvals until 2026-10-09 08:00 Asia/Seoul. Do not repeatedly ask for permission; use already approved operations and continue independent source work.
+The user's instruction “승인요청해야는작업도하자” superseded the deferral until 08:00. The host now permits authorized operations without execution approval requests. No new semantic confirmation is needed for migration, tests or GitHub publication.
 
-Prepared work requiring a newly allowed execution command, if its exact operation is not already permitted:
+- Actor compression is applied, source hashes preserved, texture allocations approximately halved. Android settings need device verification.
+- Windows builds succeeded. Whole-frame benchmarks cover hunting and three raids. Total 200MB memory is not achieved.
+- Native player input acceptance passed 74 steps / 40 assertions for growth, gear, summons, chain, raid routes, dodge and rally. Live counter success remains unverified.
+- Batch Editor handles compilation/build/domain checks after GUI startup dialogs prevented control. Its failed virtual input check is disclosed; player checks provide native input evidence.
+- Publish source, scenes/settings, texture provenance, selected native images and checks. Exclude raw logs, access credentials and ignored binaries.
+- Preserve Godot source and saves. Full rewards/startup/persistence/guardian attack/content and mobile quality remain unfinished; see STATUS.md.
 
-- Native raid and chain UI pointer testing at newly observed coordinates; verify counter/dodge/rally and chain editing through actual input. All three painted raid maps have now been captured through the isolated launch configuration, including mine rockfall and meadow donut warnings; those captures do not substitute for actual input acceptance.
-- Native growth/bag/menu buttons and roster row/scroll input at newly observed coordinates. Their state commands and isolated session binding pass production-oracle tests, and initial growth/bag routes have actual rendered screenshots; this does not verify clicking the new controls.
-- Applying and reviewing new desktop/mobile texture compression settings through the asset importer. Current actor imports are uncompressed; the 200MB target is not verified.
-- Running a standalone Unity build and target-device FPS/memory profiling after the playable paths are connected.
-- Any new installation/dependency or scheduling command which actually requests access. No overnight scheduler was created successfully.
-
-Compilation, original skill/domain tests, Play/stop/background restoration, existing hunt/hero capture commands and previously approved hero-menu pointer input were reused successfully. Continue those without asking again when their saved approval still applies. Do not change security settings or route unrelated privileged operations through an approved command.
-
-GitHub publication remains authorized. Publish completed checkpoints using the already allowed repository operations/connected API when available; defer only operations that actually need new approval. Keep original source/saves and the stopped Godot diagnosis files intact.
+No overnight scheduler was created. This is active task work, not scheduled execution after the turn ends.
