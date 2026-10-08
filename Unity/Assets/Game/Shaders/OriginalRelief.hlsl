@@ -4,7 +4,7 @@ TEXTURE2D(_MainTex);SAMPLER(sampler_MainTex);
 CBUFFER_START(UnityPerMaterial)
 float4 _Tint,_AtlasRect,_PaintSize,_Anchor,_HairRect;
 float4 _Cape0,_Cape1,_Cape2,_Cape3,_Cape4;
-float _HairCards,_VisualTime,_Wind,_Outline,_CapeEnabled;
+float _HairCards,_VisualTime,_Wind,_Outline,_CapeEnabled,_Breath;
 CBUFFER_END
 struct A {float4 p:POSITION;float3 n:NORMAL;float2 uv:TEXCOORD0;};
 struct V {float4 p:SV_POSITION;float3 world:TEXCOORD0;float3 normal:TEXCOORD1;float2 uv:TEXCOORD2;float2 local:TEXCOORD3;float2 card:TEXCOORD4;};
@@ -32,6 +32,7 @@ float3 Pose(A input,out float2 local)
         float2 drift=segment<1?lerp(_Cape0.xy,_Cape1.xy,segment):segment<2?lerp(_Cape1.xy,_Cape2.xy,segment-1):segment<3?lerp(_Cape2.xy,_Cape3.xy,segment-2):lerp(_Cape3.xy,_Cape4.xy,segment-3);
         p.xy+=drift*cape;
     }
+    p.y+=_Breath*smoothstep(0,_PaintSize.y*.55,max(0,p.y));
     return p;
 }
 V ReliefVert(A input)

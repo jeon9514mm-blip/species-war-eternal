@@ -73,17 +73,26 @@ namespace Eternal.UnityMigration
         float traveled;
         bool relief,heroSurface;
         float displayHeight;
+        string actorId;
         MeshFilter hairFilter;
         MeshRenderer hairRenderer;
         readonly CapeChainMotion cape=new();
         static readonly int[] capeProperties={Shader.PropertyToID("_Cape0"),Shader.PropertyToID("_Cape1"),Shader.PropertyToID("_Cape2"),Shader.PropertyToID("_Cape3"),Shader.PropertyToID("_Cape4")};
         public bool UsesRelief=>relief;
+        public string ActorId=>actorId;
+        public bool IsHero=>heroSurface;
         public int BodyTriangles=>meshFilter?.sharedMesh?.triangles.Length/3??0;
         public int HairCards=>hairFilter?.sharedMesh?.triangles.Length/6??0;
+        public PaintedPoseSnapshot CapturePose()
+        {
+            var set=frame<atlas.attack.frames.Length?atlas.attack:atlas.motion;
+            var pose=set.frames[frame<atlas.attack.frames.Length?frame:frame-atlas.attack.frames.Length];
+            return new PaintedPoseSnapshot(meshRenderer.sharedMaterial.mainTexture,meshFilter.transform,pose,displayHeight/set.native_height,meshRenderer.sortingOrder);
+        }
 
         public void Initialize(string id,float height,Camera camera,bool hero=false)
         {
-            cameraView=camera; atlas=OriginalCatalog.Atlas(id);displayHeight=height;heroSurface=hero;
+            actorId=id;cameraView=camera; atlas=OriginalCatalog.Atlas(id);displayHeight=height;heroSurface=hero;
             var art = new GameObject("Original painted body");
             art.transform.SetParent(transform,false);
             meshFilter=art.AddComponent<MeshFilter>(); meshRenderer=art.AddComponent<MeshRenderer>();
@@ -133,18 +142,22 @@ namespace Eternal.UnityMigration
             int next=Driven?PoseIndex(atlas,MovingSpeed,traveled,AttackSeconds,HitSeconds,Time.unscaledTime+phase):(int)((Time.time+phase)*5)%(atlas.attack.frames.Length+atlas.motion.frames.Length);
             next=Mathf.Clamp(next,0,atlas.attack.frames.Length+atlas.motion.frames.Length-1);
             if(next!=frame){frame=next;if(relief)SetReliefPose(frame);else meshFilter.sharedMesh=frames[frame];}
-            // Feet and body scale never pulse; breathing is a small position offset.
+            // Relief breathing is applied above the foot anchor in the shader.
+            // The root, silhouette scale and ground contact never bob together.
             meshFilter.transform.rotation=cameraView.transform.rotation;
-            meshFilter.transform.localPosition=new Vector3(0,Mathf.Sin((Time.unscaledTime+phase)*Mathf.PI)*.045f,0);
+            meshFilter.transform.localPosition=Vector3.zero;
             if(Driven&&Mathf.Abs(Facing.x)>.08f)meshFilter.transform.localScale=new Vector3(Facing.x<0?-1:1,1,1);
             meshRenderer.sortingOrder=1000-Mathf.RoundToInt(transform.position.z*10);
             meshRenderer.sharedMaterial.SetColor("_Tint",HitSeconds>0?new Color(1.5f,1.5f,1.5f,1):Color.white);
             if(relief)
             {
                 var material=meshRenderer.sharedMaterial;material.SetFloat("_VisualTime",Time.unscaledTime);
+                float period=heroSurface?2:actorId.Contains("boar")?2.2f:actorId.Contains("crow")?1.5f:1.2f;
+                float breath=MovingSpeed>.05f||AttackSeconds>0?0:Mathf.Sin((Time.unscaledTime+phase)*Mathf.PI*2/period)*2.5f*displayHeight/86.4f;
+                material.SetFloat("_Breath",breath);
                 if(heroSurface)
                 {cape.Advance(Time.unscaledDeltaTime,Time.unscaledTime,Mathf.Clamp01(MovingSpeed/2.2f),phase);for(int i=0;i<5;i++){var p=cape.Points[i]*displayHeight/86.4f;material.SetVector(capeProperties[i],new Vector4(p.x,-p.y,0,0));}}
-                if(hairRenderer!=null){hairRenderer.sharedMaterial.SetFloat("_VisualTime",Time.unscaledTime);hairRenderer.sharedMaterial.SetColor("_Tint",material.GetColor("_Tint"));}
+                if(hairRenderer!=null){hairRenderer.sharedMaterial.SetFloat("_VisualTime",Time.unscaledTime);hairRenderer.sharedMaterial.SetFloat("_Breath",breath);hairRenderer.sharedMaterial.SetColor("_Tint",material.GetColor("_Tint"));}
             }
         }
         void SetReliefPose(int index)

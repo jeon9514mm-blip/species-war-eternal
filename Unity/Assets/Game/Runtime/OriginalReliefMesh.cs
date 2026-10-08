@@ -14,9 +14,20 @@ namespace Eternal.UnityMigration
         public sealed class Surfaces
         {public Mesh Body,BodyLod,Hair,HairLod;}
         static readonly Dictionary<string,Surfaces> cache=new();
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetForPlaySession()
+        {
+            // Enter Play Mode may skip domain reload. Meshes made by an edit-mode
+            // fixture cannot be trusted across scene reload or unused-asset unload.
+            Clear();
+        }
         public static Surfaces Load(string id)
         {
-            if(cache.TryGetValue(id,out var loaded))return loaded;
+            if(cache.TryGetValue(id,out var loaded))
+            {
+                if(loaded.Body!=null&&loaded.Body.vertexCount>0)return loaded;
+                Release(loaded);cache.Remove(id);
+            }
             var asset=Resources.Load<TextAsset>("Eternal/Actors/"+id+"/billboard.glb");if(asset==null)return null;
             byte[] data=asset.bytes;
             if(data.Length<28||BitConverter.ToUInt32(data,0)!=0x46546c67||BitConverter.ToUInt32(data,4)!=2||BitConverter.ToUInt32(data,8)!=data.Length)throw new InvalidOperationException("Invalid original GLB header: "+id);
@@ -68,6 +79,8 @@ namespace Eternal.UnityMigration
             if(result.Body==null)throw new InvalidOperationException("Original relief body missing: "+id);cache[id]=result;return result;
         }
         public static void Clear()
-        {foreach(var s in cache.Values)foreach(var mesh in new[]{s.Body,s.BodyLod,s.Hair,s.HairLod})if(mesh!=null)UnityEngine.Object.Destroy(mesh);cache.Clear();}
+        {foreach(var s in cache.Values)Release(s);cache.Clear();}
+        static void Release(Surfaces s)
+        {foreach(var mesh in new[]{s.Body,s.BodyLod,s.Hair,s.HairLod})if(mesh!=null){if(Application.isPlaying)UnityEngine.Object.Destroy(mesh);else UnityEngine.Object.DestroyImmediate(mesh);}}
     }
 }
