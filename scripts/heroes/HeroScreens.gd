@@ -48,7 +48,7 @@ static func _portrait(main, hero: Dictionary, rect: Rect2, large: bool = false) 
 		texture.texture = VISUALS.portrait_texture(hero_id) if VISUALS.has_hero(hero_id) else HeroSpriteFactory.portrait_texture(hero_id)
 		texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		texture.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		texture.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 		texture.position = Vector2(12, 10) if large else Vector2(5, 4)
 		texture.size = rect.size - texture.position * 2
 		texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -82,7 +82,7 @@ static func roster(main) -> void:
 	summary.name = "StatusDashboard"
 	summary.add_theme_constant_override("separation", 12)
 	_place(main.content_root, summary, Rect2(55, 188, 775, 56))
-	for item in [["원정대 전투력", str(main._calculate_party_power())], ["진영 영웅", "%d명" % heroes.size()], ["성장 구성", "딜러 8 · 수호/지원 4 · 약화 3"]]:
+	for item in [["원정대 전투력", str(main._calculate_party_power())], ["진영 영웅", "%d명" % heroes.size()], ["현재 편성", "%d / %d명" % [main.deployed_heroes.size(), main._party_slot_cap()]]]:
 		var summary_card := PanelContainer.new()
 		summary_card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var style := UI.panel(UI.SURFACE, UI.BORDER, 12)
@@ -96,9 +96,11 @@ static func roster(main) -> void:
 		vbox.add_theme_constant_override("separation", 2)
 		summary_card.add_child(vbox)
 		vbox.add_child(_label(main, str(item[0]), 11, UI.MUTED))
-		var value_label := _label(main, str(item[1]), 16 if item[0] != "성장 구성" else 13, UI.INK)
+		var value_label := _label(main, str(item[1]), 16, UI.INK)
 		if item[0] == "원정대 전투력":
 			value_label.name = "PartyPowerValue"
+		elif item[0] == "현재 편성":
+			value_label.name = "RosterPartyCountValue"
 		vbox.add_child(value_label)
 
 	var actions := HBoxContainer.new()
@@ -124,7 +126,7 @@ static func roster(main) -> void:
 	scroll.add_child(grid)
 	for hero: Dictionary in visible:
 		grid.add_child(card(main, hero, accent))
-	main.hero_hint = _label(main, "영웅의 상세 정보를 살펴보고 원정대에 배치하세요.", 13, UI.MUTED, true)
+	main.hero_hint = _label(main, "상세 보기에서 스킬과 성장을 확인할 수 있어요.", 13, UI.MUTED, true)
 	_place(main.content_root, main.hero_hint, Rect2(55, 600, 775, 30))
 
 	var party := _panel(Rect2(854, 188, 372, 442))
@@ -167,7 +169,7 @@ static func roster(main) -> void:
 
 static func card(main, hero: Dictionary, accent: Color) -> PanelContainer:
 	var result := PanelContainer.new()
-	result.custom_minimum_size = Vector2(375, 188)
+	result.custom_minimum_size = Vector2(375, 166)
 	result.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var hero_id := str(hero["id"])
 	var locked: bool = main.idle_stage < int(hero.get("unlock_stage", 1))
@@ -175,26 +177,31 @@ static func card(main, hero: Dictionary, accent: Color) -> PanelContainer:
 	var grade_color: Color = UI.text_color(main._hero_grade_color(hero_id))
 	result.add_theme_stylebox_override("panel", UI.panel(UI.SURFACE, accent if selected else UI.BORDER, 14, 2 if selected else 1))
 	var canvas := Control.new()
-	canvas.custom_minimum_size = Vector2(370, 184)
+	canvas.custom_minimum_size = Vector2(370, 162)
 	result.add_child(canvas)
-	canvas.add_child(_portrait(main, hero, Rect2(12, 12, 72, 82)))
-	_place(canvas, _label(main, str(hero["name"]), 18), Rect2(96, 11, 264, 27))
+	canvas.add_child(_portrait(main, hero, Rect2(12, 12, 72, 76)))
+	_place(canvas, _label(main, str(hero["name"]), 18), Rect2(96, 11, 208, 27))
+	var selected_badge := _label(main, "출전", 11, UI.GREEN)
+	selected_badge.name = "HeroDeploymentBadge"
+	selected_badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	selected_badge.visible = selected
+	_place(canvas, selected_badge, Rect2(310, 13, 48, 24))
 	_place(canvas, _label(main, "%s · %s" % [hero["race"], hero["class"]], 12, UI.MUTED), Rect2(96, 39, 264, 21))
 	_place(canvas, _label(main, "%s  ·  %s" % [main._hero_grade(hero_id), main._hero_role_group(hero_id)], 12, grade_color), Rect2(96, 62, 250, 21))
 	var progress: Dictionary = main._get_hero_progress(hero_id)
 	var growth_text := "스테이지 %d에서 합류" % int(hero.get("unlock_stage", 1)) if locked else "Lv.%d   ·   %s" % [int(progress.get("level", 1)), str(hero.get("identity", hero["role"]))]
 	var growth := _label(main, growth_text, 12, UI.MUTED if locked else UI.PRIMARY)
 	growth.tooltip_text = str(hero.get("identity", hero["role"]))
-	_place(canvas, growth, Rect2(12, 100, 348, 21))
+	_place(canvas, growth, Rect2(12, 92, 348, 21))
 	var details := _button(main, "상세 보기", 110, 44, Callable(main, "_build_hero_detail_screen").bind(hero_id))
-	_place(canvas, details, Rect2(12, 130, 110, 44))
+	_place(canvas, details, Rect2(12, 114, 110, 44))
 	var select := _button(main, "영웅 배치", 228, 44, func():
 		main._deploy_hero(hero)
 		_refresh_roster_view(main, accent)
-	, not locked)
+	, not locked and not selected)
 	select.disabled = locked
 	select.add_theme_font_size_override("font_size", 13)
-	_place(canvas, select, Rect2(132, 130, 228, 44))
+	_place(canvas, select, Rect2(132, 114, 228, 44))
 	main.hero_select_buttons[hero_id] = select
 	return result
 
@@ -230,12 +237,18 @@ static func _refresh_roster_view(main, accent: Color) -> void:
 	var count_label: Node = main.content_root.find_child("PartyCountValue", true, false)
 	if count_label is Label:
 		count_label.text = "%d / %d명" % [main.deployed_heroes.size(), main._party_slot_cap()]
+	var roster_count: Node = main.content_root.find_child("RosterPartyCountValue", true, false)
+	if roster_count is Label:
+		roster_count.text = "%d / %d명" % [main.deployed_heroes.size(), main._party_slot_cap()]
 	for hero_id in main.hero_select_buttons:
 		var button: Button = main.hero_select_buttons[hero_id]
 		if is_instance_valid(button):
 			var selected: bool = main._is_hero_deployed(str(hero_id))
 			var hero_card: PanelContainer = button.get_parent().get_parent()
 			hero_card.add_theme_stylebox_override("panel", UI.panel(UI.SURFACE, accent if selected else UI.BORDER, 14, 2 if selected else 1))
+			var badge: Label = hero_card.find_child("HeroDeploymentBadge", true, false)
+			if badge != null:
+				badge.visible = selected
 
 static func detail(main, hero_id: String, scroll_position: int = 0) -> void:
 	var hero: Dictionary = {}
@@ -309,7 +322,7 @@ static func detail(main, hero_id: String, scroll_position: int = 0) -> void:
 		var skill_panel := PanelContainer.new()
 		skill_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var is_ultimate: bool = str(kit["slot"]) == "ultimate"
-		var skill_style := UI.panel(Color("#f5efdd") if is_ultimate else UI.SOFT, Color("#d6c69d") if is_ultimate else UI.BORDER, 12)
+		var skill_style := UI.panel(UI.SURFACE.lerp(UI.PRIMARY, 0.08) if is_ultimate else UI.SOFT, Color(UI.PRIMARY, 0.5) if is_ultimate else UI.BORDER, 12)
 		skill_style.content_margin_left = 15
 		skill_style.content_margin_right = 15
 		skill_style.content_margin_top = 12

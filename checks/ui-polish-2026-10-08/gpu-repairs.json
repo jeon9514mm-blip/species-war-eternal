@@ -1,0 +1,44 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "gpu_mobile",
+  "syntax": {
+    "requested": false,
+    "passed": 0,
+    "total": 0,
+    "results": []
+  },
+  "passed": 3,
+  "total": 5,
+  "results": [
+    {
+      "test": "HeroMenuUxSmokeTest.gd",
+      "passed": false,
+      "seconds": 31.09,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nERROR: The object does not have any 'meta' values with the key 'formation_return_focus'.\n   at: get_meta (core/object/object.cpp:1053)\n   GDScript backtrace (most recent call first):\n       [0] _close (res://scripts/ui/FormationScreen.gd:83)\n       [1] click (res://tests/regression/HeroMenuUxSmokeTest.gd:16)\n       [2] press (res://tests/regression/HeroMenuUxSmokeTest.gd:29)\n       [3] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nhero_menu_ux checks=1645 failures=[]\n"
+    },
+    {
+      "test": "HuntMenuStateSmokeTest.gd",
+      "passed": true,
+      "seconds": 46.09,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nWARNING: 사냥 상태를 저장하지 못했습니다: injected_live_menu_failure\n   at: push_warning (core/variant/variant_utility.cpp:1033)\n   GDScript backtrace (most recent call first):\n       [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n       [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n       [2] _save_idle_state (res://scripts/app/Main.gd:1286)\n       [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:31)\n       [4] check_live_menu (res://tests/regression/HuntMenuStateSmokeTest.gd:91)\n       [5] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nWARNING: 사냥 상태를 저장하지 못했습니다: injected_live_menu_failure\n   at: push_warning (core/variant/variant_utility.cpp:1033)\n   GDScript backtrace (most recent call first):\n       [0] accept_result (res://scripts/persistence/GameSaveCoordinator.gd:127)\n       [1] save_idle_state (res://scripts/persistence/GameSaveCoordinator.gd:109)\n       [2] _save_idle_state (res://scripts/app/Main.gd:1286)\n       [3] _save_idle_state (res://scripts/portrait/PortraitMain.gd:31)\n       [4] check_live_menu (res://tests/regression/HuntMenuStateSmokeTest.gd:91)\n       [5] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nHUNT_MENU_STATE checks=94 failures=[]\n"
+    },
+    {
+      "test": "SimpleHudUiSmokeTest.gd",
+      "passed": false,
+      "seconds": 14.33,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nERROR: Escape dismisses formation without navigating away\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] run (res://tests/regression/SimpleHudUiSmokeTest.gd:48)\n       [2] key (res://tests/regression/SimpleHudUiSmokeTest.gd:9)\n       [3] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nERROR: formation restores focus and live screen\n   at: push_error (core/variant/variant_utility.cpp:1023)\n   GDScript backtrace (most recent call first):\n       [0] check (res://tests/support/V83UpgradeTestBase.gd:11)\n       [1] run (res://tests/regression/SimpleHudUiSmokeTest.gd:49)\n       [2] key (res://tests/regression/SimpleHudUiSmokeTest.gd:9)\n       [3] settle (res://tests/support/V83UpgradeTestBase.gd:13)\nSIMPLE_HUD_UI checks=66 failures=[\"Escape dismisses formation without navigating away\",\"formation restores focus and live screen\"]\n"
+    },
+    {
+      "test": "UltraSkillGpuLifecycleSmokeTest.gd",
+      "passed": true,
+      "seconds": 2.19,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nULTRA_SKILL_GPU_LIFECYCLE checks=233 failures=[]\n"
+    },
+    {
+      "test": "UltraSkillIdentitySmokeTest.gd",
+      "passed": true,
+      "seconds": 10.88,
+      "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\nVulkan 1.3.280 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce GTX 1050\n\nULTRA_SKILL_IDENTITIES checks=376 failures=[]\n"
+    }
+  ]
+}

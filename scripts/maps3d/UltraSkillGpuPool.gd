@@ -36,31 +36,60 @@ func _emitter(amount: int) -> GPUParticles3D:
 	emitter.process_material=material
 	return emitter
 func burst(point: Vector2,height: float,profile: Dictionary) -> bool:
-	if not is_instance_valid(field) or not field.battle_clock_running() or not field.game.combat_effects_enabled:return false
-	if str(field.game.presentation_options.get('performance','balanced'))=='battery':return false
+	var host: Node=_live_host()
+	if host==null or not _presentation_enabled(host):
+		_stop_all();return false
+	if bursts.size()!=LIMIT or not field.battle_clock_running():return false
 	var selected: int=-1
 	for step in LIMIT:
 		var index: int=(_cursor+step)%LIMIT
 		if not bursts[index].busy:selected=index;break
 	if selected<0:return false
 	_cursor=(selected+1)%LIMIT;var item: Dictionary=bursts[selected]
+	var speed: float=field.visual_speed()
 	for emitter: GPUParticles3D in [item.main,item.secondary]:
 		emitter.position=Vector3(point.x,height,point.y)
 		var material: ParticleProcessMaterial=emitter.process_material
 		material.color=profile.color if emitter==item.main else profile.core
 		material.initial_velocity_max=1.8*float(profile.power)
 		material.angle_min=float(profile.seed)*7;material.angle_max=material.angle_min+70
-		emitter.restart();emitter.emitting=true;emitter.visible=true
+		emitter.restart();emitter.speed_scale=speed;emitter.emitting=true;emitter.visible=true
 	item.age=0.0;item.busy=true;accepted+=1
 	return true
 func _process(delta: float) -> void:
-	if not is_instance_valid(field):return
-	var visible_now: bool=field.presentation_visible and field.game.combat_effects_enabled
-	var running: bool=visible_now and field.battle_clock_running()
+	# Retained background fields and replacement views can outlive their host.
+	# Stop native emitters as well as admission before reading host properties.
+	var host: Node=_live_host()
+	if host==null or not _presentation_enabled(host):
+		_stop_all();return
+	var running: bool=field.battle_clock_running()
+	var speed: float=field.visual_speed() if running else 0.0
 	for item in bursts:
+		if running:item.age+=maxf(0,delta)*speed
+		if item.age>=.75:item.busy=false
 		for emitter: GPUParticles3D in [item.main,item.secondary]:
-			emitter.visible=visible_now and item.busy
-			emitter.speed_scale=field.visual_speed() if running else 0.0
-			if not visible_now:emitter.emitting=false
-		if running:item.age+=maxf(0,delta)*field.visual_speed()
-		if not visible_now or item.age>=.75:item.busy=false
+			if not is_instance_valid(emitter):continue
+			emitter.visible=item.busy
+			emitter.speed_scale=speed if item.busy else 0.0
+			if not item.busy:emitter.emitting=false
+
+func _live_host() -> Node:
+	if not is_inside_tree() or is_queued_for_deletion():return null
+	if not is_instance_valid(field) or field.is_queued_for_deletion() or not field.is_inside_tree():return null
+	var candidate=field.game
+	if not is_instance_valid(candidate):return null
+	var host: Node=candidate
+	return host if host.is_inside_tree() and not host.is_queued_for_deletion() else null
+
+func _presentation_enabled(host: Node) -> bool:
+	return field.presentation_visible and not field.presentation_suspended and host.combat_effects_enabled and not host._application_suspended and str(host.presentation_options.get('performance','balanced'))!='battery'
+
+func _stop_all() -> void:
+	for item in bursts:
+		item.busy=false;item.age=1.0
+		for emitter: GPUParticles3D in [item.main,item.secondary]:
+			if not is_instance_valid(emitter):continue
+			emitter.emitting=false;emitter.visible=false;emitter.speed_scale=0.0
+
+func _exit_tree() -> void:
+	_stop_all()

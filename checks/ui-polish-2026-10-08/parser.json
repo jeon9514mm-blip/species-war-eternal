@@ -1,0 +1,121 @@
+{
+  "scope": "Every new and changed GDScript",
+  "passed": 19,
+  "total": 19,
+  "results": [
+    {
+      "script": "scripts/art/RaidPresentationV2.gd",
+      "passed": true,
+      "sha256": "12a42e8d93caf01a2bfc8fe712f8a6ed4067ec9ec33b46c2286ba43329f93b4e",
+      "output": ""
+    },
+    {
+      "script": "scripts/heroes/HeroScreens.gd",
+      "passed": true,
+      "sha256": "b3135ee9ac836fa71470e075d25d9e6093a0034834d10dc2e8a5950ebc909f3e",
+      "output": ""
+    },
+    {
+      "script": "scripts/heroes/HeroShowcaseView.gd",
+      "passed": true,
+      "sha256": "5dc6043a1d06ac68a677e4674592917a165b4d35f28da75f021e353b5b3a14c5",
+      "output": ""
+    },
+    {
+      "script": "scripts/maps3d/UltraSkillGpuPool.gd",
+      "passed": true,
+      "sha256": "c38223ae6de0f9119add186f0f79b3d145ac0b2cf2cec9bb30756751635097a1",
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/LandscapeHuntHud.gd",
+      "passed": true,
+      "sha256": "c957854ab7e38a3bdd56213983fdc0324ec8c9ac0b57073e207f09ed0432f44a",
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/LandscapeHuntLayout.gd",
+      "passed": true,
+      "sha256": "c9858ae48cb6fe73342ea5e9d3e674192d3435295ef6e6c0028dcfb93bb7d698",
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitHud.gd",
+      "passed": true,
+      "sha256": "82f95c6a64ddf0fd7f0385794004dff12846e00649506f745a68f4db1789fc1c",
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitMain.gd",
+      "passed": true,
+      "sha256": "520358a7fdbc26d043f7653f633d7979e961619efa1150f7c14c360ffb9a84eb",
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitRaid.gd",
+      "passed": true,
+      "sha256": "c3eff456c21dea8d35f05a9e6340ea1be78497a3592cb0e0b0254a3bd2c74606",
+      "output": ""
+    },
+    {
+      "script": "scripts/portrait/PortraitSkin.gd",
+      "passed": true,
+      "sha256": "a31cd58d4b057c445956be7a68f4f6e43e3ada744ca6a8e70490aa2025ff51fd",
+      "output": ""
+    },
+    {
+      "script": "scripts/ui/FormationScreen.gd",
+      "passed": true,
+      "sha256": "ce54e8e53151bb0156e7811011cfd83e088beb58032b1111775bf5a49aee99f1",
+      "output": ""
+    },
+    {
+      "script": "scripts/ui/GameUiTheme.gd",
+      "passed": true,
+      "sha256": "a8300fb047bf0ea9ca8aa80ea56e5317de6625d207311f8a9191a1d367bf7a3e",
+      "output": ""
+    },
+    {
+      "script": "scripts/ui/UiChrome.gd",
+      "passed": true,
+      "sha256": "0736f4d5e7850d54a9f2eb295f12cfdc2c0377e663e175c161d44c730192ab63",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/CompactRaidUiSmokeTest.gd",
+      "passed": true,
+      "sha256": "2f719fbf1a9d6316a019bfbd567fce18e249f8d902a6db322dcfe71d83ff64bc",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/HeroMenuUxSmokeTest.gd",
+      "passed": true,
+      "sha256": "66c8d597b312558a1ed9b1607a1cc34b916472c9ac1105318791ff07e3b453ea",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/SimpleHudUiSmokeTest.gd",
+      "passed": true,
+      "sha256": "6a750d5a5d244d804311e12421a50e503458f52ae649db60379f6636490e072f",
+      "output": ""
+    },
+    {
+      "script": "tests/regression/UltraSkillGpuLifecycleSmokeTest.gd",
+      "passed": true,
+      "sha256": "6a87ac52d220173590d46029b9ed103a844133faa73abe6c5dfacde82f2d847b",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/ui-polish-2026-10-08/CaptureBattleUi.gd",
+      "passed": true,
+      "sha256": "cc48d39882a97f9df5733917df902625c2e5a04aef67e5ddbc5412b625396d9d",
+      "output": ""
+    },
+    {
+      "script": "tools/diagnostics/ui-polish-2026-10-08/CaptureHeroUi.gd",
+      "passed": true,
+      "sha256": "6ca85f65429661eb3590728ebecddcc4273a029639eda0b0b20cf897a080536a",
+      "output": ""
+    }
+  ]
+}
