@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "comparisons": 137,
+  "production_fixture_cases": 26,
+  "exact_canonical_cases": 11,
+  "primary_backup_temporary_read_only": true,
+  "future_version_guard": true,
+  "note": "Synthetic repository fixture files only; no real player save was accessed. This verifies compatibility parsing, not a completed gameplay state migration or Unity write transaction."
+}
