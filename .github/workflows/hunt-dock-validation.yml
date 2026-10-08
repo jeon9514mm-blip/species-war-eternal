@@ -62,36 +62,54 @@ jobs:
               f.write(str(target) + '\n')
           PY
       - name: Install software-rendering display dependencies
-        run: sudo apt-get update -qq && sudo apt-get install -y xvfb libgl1-mesa-dri libegl1
-      - name: Import project in isolated user data directory
+        run: |
+          sudo apt-get update -qq > /tmp/hunt-apt.log 2>&1
+          sudo apt-get install -y xvfb libgl1-mesa-dri libegl1 >> /tmp/hunt-apt.log 2>&1 || { tail -40 /tmp/hunt-apt.log; exit 1; }
+      - name: Run bounded native validation and summarize first errors
         shell: bash
         run: |
-          set -euo pipefail
-          mkdir -p checks/hunt-unified-dock/runtime
-          export XDG_DATA_HOME="$RUNNER_TEMP/hunt-dock-data"
-          export XDG_CONFIG_HOME="$RUNNER_TEMP/hunt-dock-config"
-          export XDG_CACHE_HOME="$RUNNER_TEMP/hunt-dock-cache"
-          godot --version | tee checks/hunt-unified-dock/runtime/engine.txt
-          timeout 300 godot --headless --path . --editor --import --quit 2>&1 | tee checks/hunt-unified-dock/runtime/import.log
-      - name: Native geometry and touch/state regression
-        shell: bash
-        run: |
-          set -euo pipefail
-          for suite in HuntDockGeometryTest HuntCompactHudSmokeTest; do
-            export XDG_DATA_HOME="$RUNNER_TEMP/$suite-data"
-            export XDG_CONFIG_HOME="$RUNNER_TEMP/$suite-config"
-            export XDG_CACHE_HOME="$RUNNER_TEMP/$suite-cache"
-            timeout 180 godot --headless --path . --script "tests/regression/$suite.gd" 2>&1 | tee "checks/hunt-unified-dock/runtime/$suite.log"
-          done
-      - name: Render actual Godot UI captures (software OpenGL, not an Android performance test)
-        shell: bash
-        run: |
-          set -euo pipefail
-          export XDG_DATA_HOME="$RUNNER_TEMP/capture-data"
-          export XDG_CONFIG_HOME="$RUNNER_TEMP/capture-config"
-          export XDG_CACHE_HOME="$RUNNER_TEMP/capture-cache"
-          export HUNT_UI_CAPTURE_DIR="$GITHUB_WORKSPACE/checks/hunt-unified-dock/runtime"
-          timeout 180 xvfb-run -a godot --path . --rendering-method gl_compatibility --script tests/regression/HuntDockCapture.gd 2>&1 | tee checks/hunt-unified-dock/runtime/capture.log
+          python3 - <<'PY'
+          import json, os, pathlib, re, subprocess, sys
+          out = pathlib.Path('checks/hunt-unified-dock/runtime').resolve()
+          out.mkdir(parents=True, exist_ok=True)
+          version = subprocess.check_output(['godot', '--version'], text=True).strip()
+          (out / 'engine.txt').write_text(version + '\n')
+          print('ENGINE', version, flush=True)
+          summary = []
+          def run(name, args, seconds=180):
+              env = os.environ.copy()
+              for suffix in ['DATA', 'CONFIG', 'CACHE']:
+                  env['XDG_' + suffix + '_HOME'] = os.environ['RUNNER_TEMP'] + '/' + name + '-' + suffix.lower()
+              env['HUNT_UI_CAPTURE_DIR'] = str(out)
+              path = out / (name + '.log')
+              with path.open('w') as log:
+                  result = subprocess.run(['timeout', str(seconds)] + args, stdout=log, stderr=subprocess.STDOUT, env=env)
+              text = path.read_text(errors='replace')
+              lines = text.splitlines()
+              errors = [i for i, line in enumerate(lines) if re.search(r'SCRIPT ERROR|Parse Error|^ERROR:|Assertion failed', line)]
+              excerpt = []
+              seen = set()
+              for i in errors:
+                  block = '\n'.join(lines[max(0, i):i+3])
+                  if block in seen: continue
+                  seen.add(block)
+                  if len(excerpt) < 16: excerpt.append(block[:800])
+              markers = [line[:1500] for line in lines if 'HUNT_' in line or 'failures' in line][-8:]
+              entry = {'phase': name, 'exit': result.returncode, 'error_count': len(errors), 'first_errors': excerpt, 'markers': markers}
+              summary.append(entry)
+              print(json.dumps(entry, ensure_ascii=False, indent=2), flush=True)
+              return result.returncode == 0 and not errors
+          geometry = run('geometry', ['godot', '--headless', '--path', '.', '--script', 'tests/regression/HuntDockGeometryTest.gd'])
+          imported = run('import', ['godot', '--headless', '--path', '.', '--editor', '--import', '--quit'], 300)
+          smoke = run('smoke', ['godot', '--headless', '--path', '.', '--script', 'tests/regression/HuntCompactHudSmokeTest.gd'])
+          captured = False
+          if smoke:
+              captured = run('capture', ['xvfb-run', '-a', 'godot', '--path', '.', '--rendering-method', 'gl_compatibility', '--script', 'tests/regression/HuntDockCapture.gd'])
+          (out / 'summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+              f.write('## Hunt dock validation\n```json\n' + json.dumps(summary, ensure_ascii=False, indent=2) + '\n```\n')
+          sys.exit(0 if geometry and imported and smoke and captured else 1)
+          PY
       - name: Upload raw validation evidence
         if: always()
         uses: actions/upload-artifact@v4
