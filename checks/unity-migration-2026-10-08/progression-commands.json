@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "comparisons": 2621,
+  "production_command_cases": 130,
+  "commands": {
+    "xp": 29,
+    "ascend": 60,
+    "research": 12,
+    "breakthrough": 12,
+    "daily": 4,
+    "support": 12,
+    "claim": 1
+  },
+  "storage_failure_retains_state": true,
+  "retry_does_not_replay_rewards": true,
+  "note": "Production progression/reward oracle with isolated snapshots; no real player IO, inventory/guardian completeness or live progression UI acceptance is implied."
+}

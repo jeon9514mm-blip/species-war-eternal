@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "comparisons": 23,
+  "separate_unity_envelope": true,
+  "atomic_primary_backup_replacement": true,
+  "legacy_destination_rejected": true,
+  "precise_numbers_and_unknown_fields_preserved": true,
+  "reward_reload_no_duplicate_claim": true,
+  "note": "Named temporary repository fixture directory only; no player save path was accessed. Native game startup and production migration UI acceptance remain unverified."
+}
