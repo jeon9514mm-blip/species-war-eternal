@@ -1,0 +1,22 @@
+{
+  "tool": "built-in image_gen",
+  "mode": "generation followed by referenced-image edit",
+  "initial_prompt": "Use case: stylized-concept. Asset type: ONE transparent RGBA game VFX texture atlas, 15 painted magical hero sigils in an EXACT 5 columns x 3 rows equal-cell layout. Landscape 1600x960 preferred. This is one atlas artwork, not a UI, not icons with frames. Transparent background everywhere between isolated motifs, no grid lines, no numbers, no lettering, no watermarks. Each luminous painted motif centered precisely in its equal cell, about 65% of cell width and height, at least 12% transparent safe padding on every edge, including soft glow. No motif crosses into another cell. Painterly high fantasy 2.5D combat art: layered hand-painted luminous ribbons, carved bronze/ivory tracery, rich translucent color, sharp readable silhouette, fine sparkle texture, elegant contained bloom; not flat vector line drawings, no black backdrop. Use distinguishable colored cores and silhouettes. Exact row-major subjects: Row 1: 1 Leonhardt golden fortress shield with three battlements (#EBC878); 2 Mira cyan archery reticle and single piercing star-arrow (#79CBE8); 3 Elisia green world tree with branching root halo (#91D291); 4 Kairen blue-violet orrery with interlocked celestial arcs (#8CABF8); 5 Orwin bronze phalanx shield with three upright spears (#DDB875). Row 2: 6 Seria turquoise spiral of six feather blades (#87E3D4); 7 Astel warm ivory dawn wings around a radiating sun (#F2D5AA); 8 Darius amber judgement sword descending through scales of light (#F1AB78); 9 Lunea silver-blue mist labyrinth with winding crescent paths (#93BCCB); 10 Caelum orange-gold solar blade wheel (#F7B454). Row 3: 11 Adrien ice-blue duelling crest of two crossed narrow blades (#A9CDE7); 12 Tessa copper rune cannon muzzle and diamond sparks (#E3AE76); 13 Naia lavender supernova with eight long sharp rays (#B3B8F7); 14 Sael jade whirlwind of tiny leaves forming an open ring (#8DCBB3); 15 Odelia mauve royal double seal with crown and two interlocking circles (#C29BCA). Keep every cell unique, centered and similarly sized. Sigils should feel painted effects in an actual dark fantasy battle, with deliberate readable negative spaces, not opaque shields that hide characters.",
+  "edit_prompt": "Edit target: the supplied Aurelia fifteen-sigil atlas. Keep ALL fifteen original painted motif designs, colors, count and exact row-major order unchanged. Change ONLY scale and spacing: repaint EACH sigil at 55% of its current linear width and height, still centered in its original equal cell of the exact 5-column x 3-row grid. Symbol centers at x=10%,30%,50%,70%,90% and y=16.667%,50%,83.333%. The entirety of each motif including every soft glow and sparkle must fit within the CENTRAL 65% width/height of its cell. Leave at least 17.5% of EVERY cell edge as completely empty true transparent alpha, making broad continuous transparent gutters between all rows/columns and a transparent outer margin. Do not shrink the atlas as a whole; shrink the fifteen motifs individually at their fifteen fixed centers. Preserve painterly detail and luminous colors. No solid black/white/background, no grid lines, no frames, no numbers, no text, no extra motifs. This is a transparent production texture atlas and clipped/neighboring cells are unacceptable.",
+  "original_selected_file": "exec-7fdd54af-9fcd-4e84-b303-6e82d9088424.png",
+  "atlas": "aurelia-v1.png",
+  "layout": "5 columns x 3 rows, row-major; actual RGBA copied unchanged. Runtime UV crops 3% inside each cell. One shared hero motif per hero, four original slot profiles; not 120 bespoke images.",
+  "acceptance": "Windows runtime visual samples and alpha inspection; mobile rendering acceptance pending.",
+  "inspection": {
+    "atlas": "aurelia-v1.png",
+    "size": [
+      1619,
+      971
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 939603,
+    "pixels": 1572049,
+    "bytes": 1633232,
+    "sha256": "d612d5226db5bf1325804f2a4aea684c292157f5f5e2605411ea05b2c1f15034"
+  }
+}

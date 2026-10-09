@@ -9,6 +9,12 @@ Shader "Eternal/OriginalRelief"
         _Outline("Source texel outline",Float)=0
         _CapeEnabled("Analytic cape",Float)=0
         _Breath("Foot pinned breathing",Float)=0
+        _HairClump("Hair cluster strength",Float)=.3
+        _HairFrizz("Hair loose tips",Float)=.1
+        _MicroStrength("Painted material micro weave",Float)=.12
+        _Rim("Painted rim strength",Float)=.25
+        _Scatter("Painted thin surface backlight approximation",Float)=.25
+        _FurShell("Sparse painted silhouette fur layer",Float)=0
         _AtlasRect("Atlas top origin",Vector)=(0,1,1,1)
         _PaintSize("World width height pixel",Vector)=(1,1,.02,0)
         _Anchor("World foot anchor",Vector)=(.5,1,0,0)

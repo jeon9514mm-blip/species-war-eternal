@@ -4,7 +4,7 @@ TEXTURE2D(_MainTex);SAMPLER(sampler_MainTex);
 CBUFFER_START(UnityPerMaterial)
 float4 _Tint,_AtlasRect,_PaintSize,_Anchor,_HairRect;
 float4 _Cape0,_Cape1,_Cape2,_Cape3,_Cape4;
-float _HairCards,_VisualTime,_Wind,_Outline,_CapeEnabled,_Breath;
+float _HairCards,_VisualTime,_Wind,_Outline,_CapeEnabled,_Breath,_HairClump,_HairFrizz,_MicroStrength,_Rim,_Scatter,_FurShell;
 CBUFFER_END
 struct A {float4 p:POSITION;float3 n:NORMAL;float2 uv:TEXCOORD0;};
 struct V {float4 p:SV_POSITION;float3 world:TEXCOORD0;float3 normal:TEXCOORD1;float2 uv:TEXCOORD2;float2 local:TEXCOORD3;float2 card:TEXCOORD4;};
@@ -18,10 +18,12 @@ float3 Pose(A input,out float2 local)
     {
         p.z=-.005;
         float cluster=floor(input.uv.x*12)/12;
-        float phase=lerp(input.uv.x,cluster,.3)*11;
+        float phase=lerp(input.uv.x,cluster,_HairClump)*11;
         float sway=sin(_VisualTime*2.3+phase+input.uv.y*4)*_Wind*2.5;
-        float loose=sin(_VisualTime*4.2+input.uv.x*91+input.uv.y*37)*.1*.45;
-        p.x+=(sway+loose)*smoothstep(.12,.8,input.uv.y)*_PaintSize.z;
+        float loose=sin(_VisualTime*4.2+input.uv.x*91+input.uv.y*37)*_HairFrizz*.45;
+        // Roots stay pinned. Clamp the tip displacement to the authored hair region.
+        float drift=(sway+loose)*smoothstep(.12,.8,input.uv.y)*_PaintSize.z;
+        p.x+=clamp(drift,-.55*_PaintSize.z,.55*_PaintSize.z);
     }
     else if(_CapeEnabled>.5)
     {
@@ -31,6 +33,13 @@ float3 Pose(A input,out float2 local)
         float segment=saturate((local.y-.3)/.6)*4;
         float2 drift=segment<1?lerp(_Cape0.xy,_Cape1.xy,segment):segment<2?lerp(_Cape1.xy,_Cape2.xy,segment-1):segment<3?lerp(_Cape2.xy,_Cape3.xy,segment-2):lerp(_Cape3.xy,_Cape4.xy,segment-3);
         p.xy+=drift*cape;
+    }
+    if(_FurShell>0)
+    {
+        float2 outward=normalize(local-float2(.5,.55)+float2(.0001,.0001));
+        float flutter=sin(_VisualTime*2.3+local.y*31)*.15+sin(local.x*91)*.1;
+        p.xy+=float2(outward.x,-outward.y)*(2.4+flutter)*_FurShell*_PaintSize.z;
+        p.z-=.001*_FurShell;
     }
     p.y+=_Breath*smoothstep(0,_PaintSize.y*.55,max(0,p.y));
     return p;
@@ -53,17 +62,34 @@ half4 ReliefFrag(V i):SV_Target
         edge*=.6*(1-smoothstep(.08,.35,ink.a));
     }
     clip(max(ink.a,edge)*_Tint.a-(_HairCards>.5?.2:.12));
+    if(_FurShell>0)
+    {
+        // Only sparse cutout-edge strands, never an opaque copy of the body.
+        float2 stepUV=float2(1.5,1.5)/1024;
+        float inner=min(min(SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,ClampUV(i.uv+float2(stepUV.x,0))).a,SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,ClampUV(i.uv-float2(stepUV.x,0))).a),min(SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,ClampUV(i.uv+float2(0,stepUV.y))).a,SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,ClampUV(i.uv-float2(0,stepUV.y))).a));
+        float edgeMask=saturate((ink.a-inner)*3);
+        float strand=frac(sin(dot(floor(i.local*float2(180,120)),float2(12.9898,78.233))+_FurShell*21)*43758.5453);
+        clip(edgeMask-.05);clip(strand-(.35+_FurShell*.45));
+        return half4(ink.rgb*_Tint.rgb,edgeMask*.16*(1-_FurShell*.55));
+    }
     half3 base=lerp(ink.rgb*_Tint.rgb,0,edge);
     half warm=smoothstep(.05,.2,ink.r-ink.b)*smoothstep(.4,.7,ink.g);
     half armor=warm*smoothstep(.25,.38,i.local.y)*(1-smoothstep(.8,.96,i.local.y));
     half metallic=_HairCards>.5?0:armor*.32;
     half3 normal=normalize(i.normal),view=GetWorldSpaceNormalizeViewDir(i.world);if(dot(normal,view)<0)normal=-normal;
+    // Screen-filtered fabric micro weave in local UVs, preserving the painting.
+    float2 weaveUV=i.local*240;
+    float fade=saturate(1-max(length(ddx(weaveUV)),length(ddy(weaveUV))));
+    float weave=sin(weaveUV.x*6.28318)*sin(weaveUV.y*6.28318)*fade*_MicroStrength;
+    normal=normalize(normal+TransformObjectToWorldDir(float3(weave*.12,weave*.08,0))*(1-armor));
     half alpha=1;BRDFData data;InitializeBRDFData(base,metallic,half3(.04,.04,.04),_HairCards>.5?.26:lerp(.18,.42,armor),alpha,data);
     Light light=GetMainLight(TransformWorldToShadowCoord(i.world));
     // The original painting already contains art lighting. Preserve that base
     // while adding relief illumination; do not let ambient shadow turn it black.
     half3 color=base*.60+LightingPhysicallyBased(data,light,normal,view)*.40+SampleSH(normal)*data.diffuse*.20;
-    half rim=pow(1-saturate(dot(normal,view)),3)*.25;color+=base*rim+base*warm*.0375;
+    half rim=pow(1-saturate(dot(normal,view)),3)*_Rim;color+=base*rim+base*warm*.0375;
+    // Thin-surface backlight tint approximation, not native screen-space SSS.
+    color+=base*saturate(dot(-normal,light.direction))*_Scatter*.16*light.shadowAttenuation;
     if(_HairCards>.5)
     {
         // Directional hair highlight approximation; this is not native URP SSS.

@@ -1,0 +1,13 @@
+{
+  "status": "completed",
+  "buildId": "build_7a8629599cc8",
+  "result": "Succeeded",
+  "totalErrors": 0,
+  "totalWarnings": 1,
+  "buildTimeMs": 24568,
+  "warnings": [
+    {
+      "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+    }
+  ]
+}

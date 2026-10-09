@@ -59,6 +59,7 @@ namespace Eternal.UnityMigration
         readonly Material paintedMaterial;
         readonly GameObject paintedRoot;
         readonly Camera camera;
+        readonly PaintedHeroSigils heroSigils;
         readonly List<Vector3> paintedVertices=new(Capacity*PaintedQuadsPerEffect*4);
         readonly List<Color> paintedColors=new(Capacity*PaintedQuadsPerEffect*4);
         readonly List<Vector2> paintedUvs=new(Capacity*PaintedQuadsPerEffect*4);
@@ -72,6 +73,8 @@ namespace Eternal.UnityMigration
         public int PaintedImpactQuads {get;private set;}
         public int PaintedTailQuads {get;private set;}
         public int AccentQuads {get;private set;}
+        public int HeroSigilQuads=>heroSigils.Quads;
+        public int HeroSigilImpactQuads=>heroSigils.ImpactQuads;
         int cursor,effectQuads,paintedEffectQuads;
         public int ActiveEffects {get;private set;}
         public int PresentedSkills {get;private set;}
@@ -86,6 +89,7 @@ namespace Eternal.UnityMigration
             root.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=root.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.sortingOrder=1100;
             renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;renderer.receiveShadows=false;
             this.camera=camera;var paintedTemplate=Resources.Load<Material>("Eternal/Materials/PaintedSkillShapes");
+            heroSigils=new PaintedHeroSigils(owner,camera);
             shapeAtlas=paintedTemplate!=null;
             if(paintedTemplate==null)paintedTemplate=Resources.Load<Material>("Eternal/Materials/PaintedImpact");
             if(paintedTemplate!=null)
@@ -123,19 +127,22 @@ namespace Eternal.UnityMigration
         public static float FlightDuration(SkillVfxProfile profile,float distance,bool recipient=false)=>!recipient&&(profile.Family==2||profile.Slot=="ultimate")&&profile.Kind!="heal"&&profile.Kind!="barrier"&&profile.Kind!="guard"&&distance>.4f?Mathf.Clamp(profile.Flight,.08f,.24f):0;
         public static float ImpactDuration(SkillVfxProfile profile)=>Mathf.Clamp(profile.Impact+.12f,.22f,.40f);
         static float ImpactAge(Effect e)=>e.age-FlightDuration(e.profile,Vector3.Distance(e.from,e.to),e.recipient);
-        public void Clear(){Array.Clear(effects,0,effects.Length);mesh.Clear();paintedMesh?.Clear();paintedVertices.Clear();ActiveEffects=0;PaintedChargeQuads=PaintedFlightQuads=PaintedImpactQuads=PaintedTailQuads=AccentQuads=0;}
+        public void Clear(){Array.Clear(effects,0,effects.Length);mesh.Clear();paintedMesh?.Clear();paintedVertices.Clear();heroSigils.Clear();ActiveEffects=0;PaintedChargeQuads=PaintedFlightQuads=PaintedImpactQuads=PaintedTailQuads=AccentQuads=0;}
         public void Advance(float dt,bool warning)
         {
             vertices.Clear();colors.Clear();uvs.Clear();triangles.Clear();ActiveEffects=0;
             paintedVertices.Clear();paintedColors.Clear();paintedUvs.Clear();paintedTriangles.Clear();
             PaintedChargeQuads=PaintedFlightQuads=PaintedImpactQuads=PaintedTailQuads=AccentQuads=0;
+            heroSigils.BeginFrame();
             for(int i=0;i<effects.Length;i++)
             {
                 var e=effects[i];if(e.profile==null)continue;e.age+=Mathf.Max(0,dt);
                 if(e.age>=e.lifetime){effects[i]=default;continue;}effects[i]=e;ActiveEffects++;effectQuads=paintedEffectQuads=0;
                 Draw(e,warning);
                 DrawPainted(e,warning);
+                heroSigils.Draw(e.profile,e.from,e.to,e.age,e.lifetime,e.charge,e.recipient,warning);
             }
+            heroSigils.Flush();
             // The next timeline can have fewer vertices than the previous one.
             // Drop stale indices before resizing, including the zero-effect frame.
             mesh.Clear(true);mesh.SetVertices(vertices);mesh.SetColors(colors);mesh.SetUVs(0,uvs);mesh.SetTriangles(triangles,0,false);
@@ -179,6 +186,7 @@ namespace Eternal.UnityMigration
             {
                 float t=impactAge/duration;float height=(ultimate?3.35f:2.25f)*(.84f+Mathf.Sin(t*Mathf.PI)*.19f);
                 color.a=Mathf.Pow(1-t,1.1f)*(ultimate?.86f:.70f)*attenuation;
+                if(heroSigils.Has(p.Hero))color.a*=.48f;
                 if(e.recipient)
                 {
                     // Ten party-wide recipients should read as small temporary
@@ -327,7 +335,7 @@ namespace Eternal.UnityMigration
             uvs.Add(Vector2.zero);uvs.Add(Vector2.up);uvs.Add(Vector2.one);uvs.Add(Vector2.right);
             triangles.Add(v);triangles.Add(v+1);triangles.Add(v+2);triangles.Add(v);triangles.Add(v+2);triangles.Add(v+3);
         }
-        public void Dispose(){Release(root);Release(mesh);Release(material);Release(paintedRoot);Release(paintedMesh);Release(paintedMaterial);}
+        public void Dispose(){heroSigils.Dispose();Release(root);Release(mesh);Release(material);Release(paintedRoot);Release(paintedMesh);Release(paintedMaterial);}
         static void Release(UnityEngine.Object value){if(value==null)return;if(Application.isPlaying)UnityEngine.Object.Destroy(value);else UnityEngine.Object.DestroyImmediate(value);}
     }
 }

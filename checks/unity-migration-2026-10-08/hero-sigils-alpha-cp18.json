@@ -1,0 +1,26 @@
+[
+  {
+    "atlas": "aurelia-v1.png",
+    "size": [
+      1619,
+      971
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 939603,
+    "pixels": 1572049,
+    "bytes": 1633232,
+    "sha256": "d612d5226db5bf1325804f2a4aea684c292157f5f5e2605411ea05b2c1f15034"
+  },
+  {
+    "atlas": "noxfera-v1.png",
+    "size": [
+      1619,
+      972
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 899569,
+    "pixels": 1573668,
+    "bytes": 1699025,
+    "sha256": "e04cd74d1cc8b4634b0f304ecd8467f224509ba772aef0205f49830a5ffe633f"
+  }
+]

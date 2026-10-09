@@ -1,0 +1,22 @@
+{
+  "tool": "built-in image_gen",
+  "mode": "generation followed by referenced-image edit",
+  "initial_prompt": "Use case: stylized-concept. Asset type: ONE transparent RGBA game VFX texture atlas, fifteen original painted Noxfera hero magical sigils. Exact 5 columns x 3 rows of equal square cells on a landscape 1600x960 canvas. Every motif centered at x=10%,30%,50%,70%,90% and y=16.667%,50%,83.333%. Each entire motif INCLUDING glow occupies only the CENTRAL 60% width and height of its cell, with the remaining broad gutters and outer margins completely transparent alpha. This spacing is mandatory for safe game UV sampling: do not fill cells edge to edge, do not touch or join neighboring motifs. No frames, grid lines, writing, numbers or watermarks; no opaque black/white backdrop. High-fantasy painterly 2.5D battle VFX, detailed hand-painted translucent colored energy, fine metal/ivory tracery, tiny light flecks, crisp distinct negative-space silhouettes, restrained contained bloom. Match an elegant ornate painted magic effect, not a flat vector logo. Row-major exact subjects: Row 1: 1 Valeria crimson bloodmoon crescent embracing a thorned royal crown (#E66A8B); 2 Morgas violet alchemical double triangle with red droplets (#AD81D4); 3 Ragna indigo wolf profile howling inside a full lunar ring (#9BA5F2); 4 Bron bronze layered mountain peaks over a shield (#C9AC80); 5 Nyx purple arc of seven small watching eyes around an eclipse pupil (#B78BE7). Row 2: 6 Fenris pale cyan three icy claw slashes and frost shards (#A6D9E7); 7 Isolde pink blood rose with thorn petals and a healing light center (#EC93AB); 8 Garm copper two crossed metal fangs in a broken armor ring (#C89978); 9 Veyra violet dancing curved blades circling a dark rose (#BA7AE0); 10 Ulric silver-violet eclipsed moon split by a diagonal claw (#9D9BCB). Row 3: 11 Lucien red upright oath spear with a ribbon wrapping its shaft (#D97E88); 12 Corvin muted amethyst dusk choir wings and a tiny twilight star (#A596CC); 13 Rokan silver-blue curved throwing fang with wind trail (#B9CEE0); 14 Bora pale ice-blue clenched fist emerging from snowy cracked shards (#AADCE5); 15 Selene rose-pink three fine red threads linking three luminous knots (#ECA8AE). Keep all fifteen designs unique, similarly scaled, isolated, and centered. Preserve negative spaces so the effects overlay game actors without opaque cards.",
+  "edit_prompt": "Edit target: the supplied Noxfera fifteen-sigil atlas. Preserve ALL fifteen original painted motif designs, colors, count and exact row-major order. Change ONLY scale and spacing: shrink EACH individual sigil to 55% of its current linear width and height, centered in its original equal cell of the exact 5-column x 3-row grid. Centers at x=10%,30%,50%,70%,90% and y=16.667%,50%,83.333%. Each entire symbol INCLUDING every glow and sparkle must fit within the CENTRAL 65% width/height of its cell. Broad continuous completely transparent alpha gutters between all rows and columns and transparent outer margin are mandatory. Do not shrink the entire atlas into the center; individually shrink the fifteen symbols while maintaining their fifteen fixed centers. No other modifications, no solid black/white background, no grid lines, no frames, no text, no numbers. Preserve detailed brushwork and distinct silhouettes. Production texture sampling must never touch neighboring sigils.",
+  "original_selected_file": "exec-f2ddb520-c2f1-4b21-90ea-f5dc02835c96.png",
+  "atlas": "noxfera-v1.png",
+  "layout": "5 columns x 3 rows, row-major; actual RGBA copied unchanged. Runtime UV crops 3% inside each cell. One shared hero motif per hero, four original slot profiles; not 120 bespoke images.",
+  "acceptance": "Windows runtime visual samples and alpha inspection; mobile rendering acceptance pending.",
+  "inspection": {
+    "atlas": "noxfera-v1.png",
+    "size": [
+      1619,
+      972
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 899569,
+    "pixels": 1573668,
+    "bytes": 1699025,
+    "sha256": "e04cd74d1cc8b4634b0f304ecd8467f224509ba772aef0205f49830a5ffe633f"
+  }
+}
