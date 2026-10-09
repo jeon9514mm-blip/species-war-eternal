@@ -1,0 +1,27 @@
+name: Publish verified Android APK CP20
+on:
+  push:
+    branches: ['jeon9514mm-blip/species-war-eternal']
+    paths:
+      - 'releases/android/cp20/**'
+      - 'tools/unity/publish-android-release.py'
+      - '.github/workflows/android-apk-cp20.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: android-apk-cp20
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/jeon9514mm-blip/species-war-eternal'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Verify parts and publish exact signed APK
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 tools/unity/publish-android-release.py publish

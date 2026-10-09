@@ -1,0 +1,20 @@
+{
+  "result": "Succeeded",
+  "stage": "Gradle packaging of Unity-generated Android/IL2CPP project",
+  "gradle_exit_code": 0,
+  "gradle_version": "9.3.1",
+  "java_heap_mb": 1024,
+  "max_workers": 2,
+  "parallel": false,
+  "daemon": false,
+  "duration_seconds": 22.692346,
+  "output": "Unity/Builds/Android/EternalUnity-0.1.20-arm64.apk",
+  "bytes": 72753387,
+  "sha256": "2b6ff9a69eae664567b07c7fc5cb78384d750fd3aa011195f8ba9651669df069",
+  "package": "com.specieswar.eternal",
+  "version": "0.1.20",
+  "version_code": 20,
+  "apk_validation_passed": true,
+  "device_run_verified": false,
+  "note": "The earlier integrated Editor build ran out of disk space during Gradle packaging. This finishes its generated project after closing the Editor. APK gameplay has not been tested on an Android device."
+}

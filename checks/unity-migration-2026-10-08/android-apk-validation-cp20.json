@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "file": "EternalUnity-0.1.20-arm64.apk",
+  "bytes": 72753387,
+  "sha256": "2b6ff9a69eae664567b07c7fc5cb78384d750fd3aa011195f8ba9651669df069",
+  "package": "com.specieswar.eternal",
+  "version": "0.1.20",
+  "version_code": 20,
+  "min_sdk": 26,
+  "target_sdk": 36,
+  "arm64_only": true,
+  "signature_verified": true,
+  "alignment_16kb_verified": true,
+  "structure": {
+    "zip_crc_passed": true,
+    "entry_count": 398,
+    "arm64_elf_libraries": [
+      "lib/arm64-v8a/lib_burst_generated.so",
+      "lib/arm64-v8a/libc++_shared.so",
+      "lib/arm64-v8a/libgame.so",
+      "lib/arm64-v8a/libil2cpp.so",
+      "lib/arm64-v8a/libmain.so",
+      "lib/arm64-v8a/libunity.so"
+    ],
+    "elf_load_alignments": {
+      "lib/arm64-v8a/lib_burst_generated.so": [
+        16384,
+        16384,
+        16384,
+        16384
+      ],
+      "lib/arm64-v8a/libc++_shared.so": [
+        16384,
+        16384,
+        16384,
+        16384
+      ],
+      "lib/arm64-v8a/libgame.so": [
+        16384,
+        16384,
+        16384
+      ],
+      "lib/arm64-v8a/libil2cpp.so": [
+        16384,
+        16384,
+        16384,
+        16384
+      ],
+      "lib/arm64-v8a/libmain.so": [
+        16384,
+        16384,
+        16384,
+        16384
+      ],
+      "lib/arm64-v8a/libunity.so": [
+        16384,
+        16384,
+        16384,
+        16384
+      ]
+    },
+    "elf_16kb_alignment_passed": true,
+    "unity_data_present": true,
+    "private_key_absent": true
+  },
+  "badging": "package: name='com.specieswar.eternal' versionCode='20' versionName='0.1.20' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'\r\ninstall-location:'preferExternal'\r\nminSdkVersion:'26'\r\ntargetSdkVersion:'36'\r\nuses-permission: name='android.permission.INTERNET'\r\nuses-permission: name='com.specieswar.eternal.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'\r\napplication-label:'종의전쟁: 이터널'\r\napplication-label-af:'종의전쟁: 이터널'\r\napplication-label-am:'종의전쟁: 이터널'\r\napplication-label-ar:'종의전쟁: 이터널'\r\napplication-label-as:'종의전쟁: 이터널'\r\napplication-label-az:'종의전쟁: 이터널'\r\napplication-label-be:'종의전쟁: 이터널'\r\napplication-label-bg:'종의전쟁: 이터널'\r\napplication-label-bn:'종의전쟁: 이터널'\r\napplication-label-bs:'종의전쟁: 이터널'\r\napplication-label-ca:'종의전쟁: 이터널'\r\napplication-label-cs:'종의전쟁: 이터널'\r\napplication-label-da:'종의전쟁: 이터널'\r\napplication-label-de:'종의전쟁: 이터널'\r\napplication-label-el:'종의전쟁: 이터널'\r\napplication-label-en-AU:'종의전쟁: 이터널'\r\napplication-label-en-CA:'종의전쟁: 이터널'\r\napplication-label-en-GB:'종의전쟁: 이터널'\r\napplication-label-en-IN:'종의전쟁: 이터널'\r\napplication-label-en-XC:'종의전쟁: 이터널'\r\napplication-label-es:'종의전쟁: 이터널'\r\napplication-label-es-US:'종의전쟁: 이터널'\r\napplication-label-et:'종의전쟁: 이터널'\r\napplication-label-eu:'종의전쟁: 이터널'\r\napplication-label-fa:'종의전쟁: 이터널'\r\napplication-label-fi:'종의전쟁: 이터널'\r\napplication-label-fr:'종의전쟁: 이터널'\r\napplication-label-fr-CA:'종의전쟁: 이터널'\r\napplication-label-gl:'종의전쟁: 이터널'\r\napplication-label-gu:'종의전쟁: 이터널'\r\napplication-label-hi:'종의전쟁: 이터널'\r\napplication-label-hr:'종의전쟁: 이터널'\r\napplication-label-hu:'종의전쟁: 이터널'\r\napplication-label-hy:'종의전쟁: 이터널'\r\napplication-label-in:'종의전쟁: 이터널'\r\napplication-label-is:'종의전쟁: 이터널'\r\napplication-label-it:'종의전쟁: 이터널'\r\napplication-label-iw:'종의전쟁: 이터널'\r\napplication-label-ja:'종의전쟁: 이터널'\r\napplication-label-ka:'종의전쟁: 이터널'\r\napplication-label-kk:'종의전쟁: 이터널'\r\napplication-label-km:'종의전쟁: 이터널'\r\napplication-label-kn:'종의전쟁: 이터널'\r\napplication-label-ko:'종의전쟁: 이터널'\r\napplication-label-ky:'종의전쟁: 이터널'\r\napplication-label-lo:'종의전쟁: 이터널'\r\napplication-label-lt:'종의전쟁: 이터널'\r\napplication-label-lv:'종의전쟁: 이터널'\r\napplication-label-mk:'종의전쟁: 이터널'\r\napplication-label-ml:'종의전쟁: 이터널'\r\napplication-label-mn:'종의전쟁: 이터널'\r\napplication-label-mr:'종의전쟁: 이터널'\r\napplication-label-ms:'종의전쟁: 이터널'\r\napplication-label-my:'종의전쟁: 이터널'\r\napplication-label-nb:'종의전쟁: 이터널'\r\napplication-label-ne:'종의전쟁: 이터널'\r\napplication-label-nl:'종의전쟁: 이터널'\r\napplication-label-or:'종의전쟁: 이터널'\r\napplication-label-pa:'종의전쟁: 이터널'\r\napplication-label-pl:'종의전쟁: 이터널'\r\napplication-label-pt:'종의전쟁: 이터널'\r\napplication-label-pt-BR:'종의전쟁: 이터널'\r\napplication-label-pt-PT:'종의전쟁: 이터널'\r\napplication-label-ro:'종의전쟁: 이터널'\r\napplication-label-ru:'종의전쟁: 이터널'\r\napplication-label-si:'종의전쟁: 이터널'\r\napplication-label-sk:'종의전쟁: 이터널'\r\napplication-label-sl:'종의전쟁: 이터널'\r\napplication-label-sq:'종의전쟁: 이터널'\r\napplication-label-sr:'종의전쟁: 이터널'\r\napplication-label-sr-Latn:'종의전쟁: 이터널'\r\napplication-label-sv:'종의전쟁: 이터널'\r\napplication-label-sw:'종의전쟁: 이터널'\r\napplication-label-ta:'종의전쟁: 이터널'\r\napplication-label-te:'종의전쟁: 이터널'\r\napplication-label-th:'종의전쟁: 이터널'\r\napplication-label-tl:'종의전쟁: 이터널'\r\napplication-label-tr:'종의전쟁: 이터널'\r\napplication-label-uk:'종의전쟁: 이터널'\r\napplication-label-ur:'종의전쟁: 이터널'\r\napplication-label-uz:'종의전쟁: 이터널'\r\napplication-label-vi:'종의전쟁: 이터널'\r\napplication-label-zh-CN:'종의전쟁: 이터널'\r\napplication-label-zh-HK:'종의전쟁: 이터널'\r\napplication-label-zh-TW:'종의전쟁: 이터널'\r\napplication-label-zu:'종의전쟁: 이터널'\r\napplication-icon-160:'res/Qu.xml'\r\napplication-icon-240:'res/Qu.xml'\r\napplication-icon-320:'res/Qu.xml'\r\napplication-icon-480:'res/Qu.xml'\r\napplication-icon-640:'res/Qu.xml'\r\napplication-icon-65534:'res/Qu.xml'\r\napplication: label='종의전쟁: 이터널' icon='res/Qu.xml'\r\nlaunchable-activity: name='com.unity3d.player.UnityPlayerGameActivity'  label='' icon=''\r\nfeature-group: label=''\r\n  uses-gl-es: '0x30001'\r\n  uses-feature-not-required: name='android.hardware.touchscreen'\r\n  uses-feature-not-required: name='android.hardware.touchscreen.multitouch'\r\n  uses-feature-not-required: name='android.hardware.touchscreen.multitouch.distinct'\r\n  uses-feature-not-required: name='android.hardware.vulkan.version'\r\nmain\r\nsupports-screens: 'small' 'normal' 'large' 'xlarge'\r\nsupports-any-density: 'true'\r\nlocales: '--_--' 'af' 'am' 'ar' 'as' 'az' 'be' 'bg' 'bn' 'bs' 'ca' 'cs' 'da' 'de' 'el' 'en-AU' 'en-CA' 'en-GB' 'en-IN' 'en-XC' 'es' 'es-US' 'et' 'eu' 'fa' 'fi' 'fr' 'fr-CA' 'gl' 'gu' 'hi' 'hr' 'hu' 'hy' 'in' 'is' 'it' 'iw' 'ja' 'ka' 'kk' 'km' 'kn' 'ko' 'ky' 'lo' 'lt' 'lv' 'mk' 'ml' 'mn' 'mr' 'ms' 'my' 'nb' 'ne' 'nl' 'or' 'pa' 'pl' 'pt' 'pt-BR' 'pt-PT' 'ro' 'ru' 'si' 'sk' 'sl' 'sq' 'sr' 'sr-Latn' 'sv' 'sw' 'ta' 'te' 'th' 'tl' 'tr' 'uk' 'ur' 'uz' 'vi' 'zh-CN' 'zh-HK' 'zh-TW' 'zu'\r\ndensities: '160' '240' '320' '480' '640' '65534'\r\nnative-code: 'arm64-v8a'",
+  "signature": "Verifies\r\nVerified using v1 scheme (JAR signing): false\r\nVerified using v2 scheme (APK Signature Scheme v2): true\r\nVerified using v3 scheme (APK Signature Scheme v3): false\r\nVerified using v3.1 scheme (APK Signature Scheme v3.1): false\r\nVerified using v4 scheme (APK Signature Scheme v4): false\r\nVerified for SourceStamp: false\r\nNumber of signers: 1\r\nSigner #1 certificate DN: C=US, O=Android, CN=Android Debug\r\nSigner #1 certificate SHA-256 digest: 8366cc170f2630827d4c5de2587fb6347f66f63fcbcdd8400ac1b3a72881c8d4\r\nSigner #1 certificate SHA-1 digest: ca6d7fde4f51bf5cc559b55a1bf3d3036c3437ff\r\nSigner #1 certificate MD5 digest: 4a85671e6f612603a85ae8c9179257ee\r\nSigner #1 key algorithm: RSA\r\nSigner #1 key size (bits): 2048\r\nSigner #1 public key SHA-256 digest: 73fe450403251a8e807b13fa0ee4831b3806917892a35585ad1b42480bb737f0\r\nSigner #1 public key SHA-1 digest: a119d993a28316dc17f697322faa44fb2a6a74c1\r\nSigner #1 public key MD5 digest: 44c82299161a043353bd26926fd340db",
+  "device_run_verified": false,
+  "note": "Signed sideload test APK. ZIP, manifest, native ELF headers, signature and alignment checks do not establish Android gameplay or FPS."
+}
