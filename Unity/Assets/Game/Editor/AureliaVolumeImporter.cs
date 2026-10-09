@@ -5,7 +5,7 @@ namespace Eternal.UnityMigration.Editor
 {
     public sealed class AureliaVolumeImporter : AssetPostprocessor
     {
-        const string Prefix="Assets/Game/Resources/Eternal/GraphicsRebuild/Heroes/";
+        const string Prefix="Assets/Game/Resources/Eternal/GraphicsRebuild/";
         void OnPreprocessModel()
         {
             if(!assetPath.StartsWith(Prefix,StringComparison.Ordinal)||!assetPath.EndsWith(".fbx",StringComparison.OrdinalIgnoreCase))return;

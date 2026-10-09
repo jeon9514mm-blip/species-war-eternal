@@ -1,0 +1,68 @@
+{
+  "id": "fallen_dwarf",
+  "materials": [
+    {
+      "name": "Fallen_Dwarf_RuddySkin",
+      "color": "#99745E",
+      "metallic": 0,
+      "roughness": 0.77,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Obsidian_Armor.001",
+      "color": "#303847",
+      "metallic": 0.72,
+      "roughness": 0.37,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Tarnished_Bronze.001",
+      "color": "#AA8A55",
+      "metallic": 0.8,
+      "roughness": 0.4,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Weathered_Leather.001",
+      "color": "#332C34",
+      "metallic": 0,
+      "roughness": 0.88,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Deep_Seams.001",
+      "color": "#171D27",
+      "metallic": 0,
+      "roughness": 0.81,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Corruption_Crystal.001",
+      "color": "#AE69CE",
+      "metallic": 0.12,
+      "roughness": 0.3,
+      "emission": 0.65
+    },
+    {
+      "name": "Fallen_Corruption_Eyes.001",
+      "color": "#EAAF65",
+      "metallic": 0,
+      "roughness": 0.24,
+      "emission": 1.5
+    },
+    {
+      "name": "Fallen_Dwarf_IronBeard",
+      "color": "#615E68",
+      "metallic": 0,
+      "roughness": 0.7,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Sclera.001",
+      "color": "#D2CCB7",
+      "metallic": 0,
+      "roughness": 0.32,
+      "emission": 0.0
+    }
+  ]
+}
