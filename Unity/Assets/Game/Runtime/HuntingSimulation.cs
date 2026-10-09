@@ -17,6 +17,8 @@ namespace Eternal.UnityMigration
         public readonly CombatEncounter Battle;
         public readonly OriginalCombatCatalog Catalog;
         public readonly GameStateCommands PlayerState;
+        readonly HuntEncounterOptions encounterOptions;
+        bool ExpandedWorld=>encounterOptions!=null||PlayerState?.UnityPlayer==true;
         public PartySkillChain Chain {get;private set;}
         public int ManualSkillCasts {get;private set;}
         public int PacksCleared, Kills, Stage=1, Gold, Xp, Ticks;
@@ -58,8 +60,9 @@ namespace Eternal.UnityMigration
         }
         int serial;
         public Action<BattleEvent> OnEvent;
-        public HuntingSimulation(int reviewLevel=20,int seed=9514,GameStateCommands playerState=null)
+        public HuntingSimulation(int reviewLevel=20,int seed=9514,GameStateCommands playerState=null,HuntEncounterOptions encounterOptions=null)
         {
+            this.encounterOptions=encounterOptions;
             ReviewLevel=reviewLevel;
             PlayerState=playerState;
             Catalog=catalogCache.Value;
@@ -146,8 +149,9 @@ namespace Eternal.UnityMigration
             var zone=(JObject)legacy["zones"][Zone];int power=(int)zone["power"],difficulty=(int)zone["difficulty"];
             string[] ids=Zone=="gray_meadow"?new[]{"goblin","wild_dog","bristle_boar","wind_crow"}:Zone=="forgotten_mine"?new[]{"mine_orc","iron_mole","crystal_spider","lava_bat"}:new[]{"moon_wolf","forest_wraith","mushroom","night_raven","frost_deer"};
             if(PlayerState?.UnityPlayer==true)ids=FallenMonsterCatalog.Wave(Zone);
+            if(encounterOptions!=null)ids=encounterOptions.Monsters.ToArray();
             var roles=(JArray)zone["wave_pattern"];
-            bool expanded=PlayerState?.UnityPlayer==true;int population=expanded?FallenMonsterCatalog.Population(Stage):12;
+            bool expanded=ExpandedWorld;int population=encounterOptions?.Population??(expanded?FallenMonsterCatalog.Population(Stage):12);
             for(int i=0;i<population;i++)
             {
                 string role=(string)roles[(i+Battle.EncounterSerial)%roles.Count];
@@ -327,7 +331,7 @@ namespace Eternal.UnityMigration
                 e.AttackRemaining=e.Id=="fallen_ogre"?1.9:e.Id=="fallen_lich"?1.6:e.Id=="fallen_dwarf"?1.65:e.Id=="fallen_werewolf"?1.0:1.2;e.Windup=-1;return;
             }
             if(e.AttackRemaining>0)return;var target=EnemyTarget(e,true);if(target==null)return;
-            bool skill=PlayerState?.UnityPlayer==true&&Stage>=100&&FallenMonsterCatalog.Contains(e.Id)&&enemyHits.GetValueOrDefault(e.Serial)>=2&&Elapsed>=enemySkillNext.GetValueOrDefault(e.Serial);
+            bool skill=ExpandedWorld&&Stage>=100&&FallenMonsterCatalog.Contains(e.Id)&&enemyHits.GetValueOrDefault(e.Serial)>=2&&Elapsed>=enemySkillNext.GetValueOrDefault(e.Serial);
             string action=skill?FallenMonsterCatalog.Skill(e.Id):"basic";
             intents[e.Serial]=(target,action);e.Windup=skill?(e.Id=="fallen_ogre"?1.05:.75):e.Id=="fallen_dwarf"||e.Id=="fallen_ogre"?.38:e.Id=="fallen_werewolf"?.32:.22;Battle.Emit("windup",e,action,target);
         }
@@ -357,11 +361,17 @@ namespace Eternal.UnityMigration
                 if(dot.remaining<=.00001||!dot.target.Alive)bleeds.Remove(serial);else bleeds[serial]=dot;
             }
         }
-        Vector2 Clamp(Vector2 p)=>PlayerState?.UnityPlayer==true?HuntStageWorld.Clamp(p):new Vector2(Mathf.Clamp(p.x,-11.5f,11.5f),Mathf.Clamp(p.y,-6.5f,6.5f));
+        Vector2 Clamp(Vector2 p)=>ExpandedWorld?HuntStageWorld.Clamp(p):new Vector2(Mathf.Clamp(p.x,-11.5f,11.5f),Mathf.Clamp(p.y,-6.5f,6.5f));
         bool IsHero(Combatant actor)=>Battle.Heroes.Contains(actor);
         public Vector2 BodyAxes(Combatant left,Combatant right)
         {
             bool a=IsHero(left),b=IsHero(right);
+            if(encounterOptions?.VolumeBodies==true)
+            {
+                float clearance=a && b ? 1.20f : (a || b ? .95f : .90f);
+                if(left.Id=="fallen_werewolf"||right.Id=="fallen_werewolf")clearance+=.16f;
+                return new Vector2(clearance,clearance);
+            }
             if(left.Id=="fallen_ogre"||right.Id=="fallen_ogre")return new Vector2(1.1f,1.65f);
             if(left.Id=="fallen_harpy"||right.Id=="fallen_harpy")return new Vector2(.9f,1.25f);
             return a&&b?new Vector2(1.50f,2.65f):a||b?new Vector2(.68f,1.15f):new Vector2(.62f,1.05f);

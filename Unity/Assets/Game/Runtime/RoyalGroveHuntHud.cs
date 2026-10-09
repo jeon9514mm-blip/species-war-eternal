@@ -1,0 +1,354 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+namespace Eternal.UnityMigration
+{
+    // A transparent, live combat overlay. Original portraits are used only for
+    // identity buttons; the world, actions and values all come from the stage.
+    public sealed class RoyalGroveHuntHud : MonoBehaviour
+    {
+        static readonly Color Ink=new(.035f,.052f,.064f,.88f),Bronze=new(.74f,.59f,.36f),Pale=new(.95f,.90f,.78f);
+        static readonly Color Moss=new(.44f,.72f,.47f),Blue=new(.39f,.67f,.91f),Muted=new(.65f,.69f,.69f);
+        static readonly string[] Slots={"a1","a2","ultimate"};
+        readonly Dictionary<string,HeroTile> heroes=new();
+        readonly Dictionary<string,SkillTile> skills=new();
+        readonly Dictionary<float,Button> zoomButtons=new();
+        HuntingSimulation simulation;
+        Action<string> select,cast;
+        Action<Vector2> movement;
+        Action stopMovement,resumeMovement,togglePause,restart;
+        Action<float> zoom;
+        Camera battleCamera;
+        PanelSettings panel;
+        UIDocument document;
+        VisualElement root,safe,header,rail,identity,healthFill,ultimateFill,stick,knob,defeat,gemBadge;
+        Label stage,progress,gold,gems,heroName,hp,ultimate,noticeText,stickCaption,identityRole;
+        Button pauseButton,autoButton;
+        Image identityPortrait;
+        int pointer=-1;
+        float currentZoom=1;
+        string selected="",lastPortrait="";
+        bool initialized,ownsFont;
+        Font font;
+
+        sealed class HeroTile
+        {
+            internal Button Button;
+            internal VisualElement Health,Selection;
+            internal Label Status;
+        }
+        sealed class SkillTile
+        {
+            internal Button Button;
+            internal Label Title,State;
+            internal Sigil Icon;
+            internal VisualElement Shade,Fill;
+        }
+
+        public void Initialize(Camera camera,HuntingSimulation simulation,Action<string> select,Action<string> cast,
+            Action<Vector2> movement,Action stopMovement,Action resumeMovement,Action<float> zoom,Action togglePause,Action restart)
+        {
+            if(initialized)throw new InvalidOperationException("Royal grove HUD is already initialized.");
+            this.simulation=simulation??throw new ArgumentNullException(nameof(simulation));
+            battleCamera=camera;this.select=select;this.cast=cast;this.movement=movement;this.stopMovement=stopMovement;
+            this.resumeMovement=resumeMovement;this.zoom=zoom;this.togglePause=togglePause;this.restart=restart;
+            panel=ScriptableObject.CreateInstance<PanelSettings>();panel.name="Royal grove compact hunting panel";
+            panel.scaleMode=PanelScaleMode.ScaleWithScreenSize;panel.referenceResolution=new Vector2Int(1600,900);panel.match=1;
+            panel.themeStyleSheet=Resources.Load<ThemeStyleSheet>("Eternal/UI/RuntimeTheme");
+            document=gameObject.AddComponent<UIDocument>();document.panelSettings=panel;root=document.rootVisualElement;
+            root.name="royal-grove-hunt-hud";root.style.flexGrow=1;root.pickingMode=PickingMode.Ignore;
+            font=Resources.Load<Font>("Eternal/Fonts/EternalKR-Regular");
+            if(font==null){font=Font.CreateDynamicFontFromOSFont(new[]{"Malgun Gothic","맑은 고딕","Arial"},16);ownsFont=true;}
+            root.style.unityFont=font;root.style.color=Pale;root.style.fontSize=14;
+            safe=new VisualElement{name="grove-safe-area",pickingMode=PickingMode.Ignore};Absolute(safe,0,0,0,0);root.Add(safe);
+            BuildHeader();BuildHeroes();BuildIdentity();BuildSkills();BuildJoystick();BuildZoom();BuildOutcome();
+            noticeText=Text(safe,"",14);noticeText.name="grove-battle-notice";noticeText.style.position=Position.Absolute;
+            noticeText.style.top=84;noticeText.style.left=Length.Percent(28);noticeText.style.right=178;
+            noticeText.style.unityTextAlign=TextAnchor.MiddleCenter;noticeText.style.whiteSpace=WhiteSpace.Normal;
+            root.RegisterCallback<GeometryChangedEvent>(_=>LayoutSafeArea());
+            initialized=true;Refresh(simulation.Battle.Heroes.Count>0?simulation.Battle.Heroes[0].Id:"");
+        }
+
+        void BuildHeader()
+        {
+            header=Plate(safe,"grove-hunt-title");header.style.position=Position.Absolute;header.style.left=18;header.style.top=14;
+            header.style.width=420;header.style.height=60;header.style.paddingLeft=60;
+            var crest=new Sigil("crest",Bronze);crest.style.position=Position.Absolute;crest.style.left=9;crest.style.top=7;crest.style.width=42;crest.style.height=42;header.Add(crest);
+            stage=Text(header,"",21);stage.name="grove-stage";stage.style.height=27;
+            progress=Text(header,"",12);progress.name="grove-wave-status";progress.style.color=Muted;progress.style.marginTop=3;
+            var caption=Text(safe,"개발 사냥 · 보상 미저장",11);caption.name="grove-development-caption";
+            caption.style.position=Position.Absolute;caption.style.left=22;caption.style.top=78;caption.style.color=Muted;
+            var actions=Row(safe,"grove-top-actions");actions.style.position=Position.Absolute;actions.style.right=18;actions.style.top=16;
+            gold=Currency(actions,"coin",Bronze,out _);gems=Currency(actions,"gem",Blue,out gemBadge);
+            autoButton=ActionButton(actions,"자동 사냥",()=>{ReleaseStick();this.resumeMovement?.Invoke();Refresh(selected);});
+            autoButton.name="grove-resume-auto";autoButton.style.width=92;autoButton.tooltip="직접 이동을 끝내고 자동 추적을 재개합니다.";
+            pauseButton=ActionButton(actions,"일시정지",()=>{ReleaseStick();this.togglePause?.Invoke();Refresh(selected);});
+            pauseButton.name="grove-pause";pauseButton.style.width=88;
+        }
+
+        Label Currency(VisualElement parent,string icon,Color color,out VisualElement badge)
+        {
+            badge=Plate(parent,"grove-currency-"+icon);badge.style.height=40;badge.style.minWidth=86;
+            badge.style.flexDirection=FlexDirection.Row;badge.style.alignItems=Align.Center;badge.style.marginRight=8;
+            var glyph=new GodotHudIcon(icon,color);glyph.style.width=glyph.style.height=23;glyph.style.marginRight=6;badge.Add(glyph);
+            var value=Text(badge,"",15);value.name="grove-"+icon+"-value";return value;
+        }
+
+        void BuildHeroes()
+        {
+            rail=Row(safe,"grove-hero-rail");rail.style.position=Position.Absolute;rail.style.right=18;rail.style.top=92;
+            rail.style.width=142;rail.style.flexWrap=Wrap.Wrap;
+            for(int i=0;i<10;i++)
+            {
+                string id=i<simulation.Battle.Heroes.Count?simulation.Battle.Heroes[i].Id:null;
+                var container=new VisualElement{name="grove-hero-cell-"+i,pickingMode=PickingMode.Ignore};container.style.width=71;container.style.height=81;rail.Add(container);
+                var button=new Button(()=>{if(id!=null){select?.Invoke(id);Refresh(id);}}){name="grove-hero-"+(id??"inactive-"+i)};
+                CleanButton(button);Round(button,62);Border(button,Bronze,1.5f);button.style.backgroundColor=Ink;button.style.overflow=Overflow.Hidden;container.Add(button);
+                if(id==null)
+                {
+                    var silhouette=new Sigil("empty",new Color(.35f,.40f,.42f));silhouette.style.width=34;silhouette.style.height=38;button.Add(silhouette);
+                    button.SetEnabled(false);button.tooltip="미편성";button.style.opacity=.5f;continue;
+                }
+                var portrait=new Image{image=Portrait(id),scaleMode=ScaleMode.ScaleAndCrop,pickingMode=PickingMode.Ignore};portrait.style.width=portrait.style.height=56;
+                if(portrait.image!=null)button.Add(portrait);else{var fallback=Text(button,HeroName(id),11);fallback.style.whiteSpace=WhiteSpace.Normal;}
+                var selection=new VisualElement{pickingMode=PickingMode.Ignore};Absolute(selection,2,2,2,2);RoundCorners(selection,28);Border(selection,new Color(1,.85f,.46f),1);button.Add(selection);
+                var track=Track(container,"grove-hero-hp-"+id,54,3);track.style.marginLeft=4;track.style.marginTop=4;
+                var fill=Fill(track,Moss);var status=Text(container,"",10);status.style.width=62;status.style.height=12;status.style.unityTextAlign=TextAnchor.MiddleCenter;
+                button.tooltip=HeroName(id);heroes[id]=new HeroTile{Button=button,Health=fill,Selection=selection,Status=status};
+            }
+        }
+
+        void BuildIdentity()
+        {
+            identity=Plate(safe,"grove-selected-hero");identity.style.position=Position.Absolute;identity.style.left=Length.Percent(29);
+            identity.style.bottom=22;identity.style.width=350;identity.style.height=72;identity.style.paddingLeft=73;
+            var portraitFrame=new VisualElement{pickingMode=PickingMode.Ignore};Round(portraitFrame,62);Border(portraitFrame,Bronze,2);
+            portraitFrame.style.position=Position.Absolute;portraitFrame.style.left=2;portraitFrame.style.top=4;portraitFrame.style.overflow=Overflow.Hidden;
+            identityPortrait=new Image{scaleMode=ScaleMode.ScaleAndCrop,pickingMode=PickingMode.Ignore};identityPortrait.style.width=identityPortrait.style.height=58;portraitFrame.Add(identityPortrait);identity.Add(portraitFrame);
+            var nameRow=Row(identity,"grove-identity-title");nameRow.style.alignItems=Align.Center;
+            heroName=Text(nameRow,"",16);heroName.style.flexGrow=1;heroName.name="grove-selected-name";
+            identityRole=Text(nameRow,"",10);identityRole.style.color=Bronze;
+            var health=Track(identity,"grove-selected-hp",0,17);health.style.width=Length.Percent(100);health.style.marginTop=5;RoundCorners(health,7);
+            healthFill=Fill(health,Moss);hp=Text(health,"",11);Absolute(hp,0,0,0,0);hp.style.unityTextAlign=TextAnchor.MiddleCenter;hp.name="grove-selected-hp-value";
+            var awaken=Track(identity,"grove-selected-ultimate",0,5);awaken.style.width=Length.Percent(100);awaken.style.marginTop=4;ultimateFill=Fill(awaken,Bronze);
+            ultimate=Text(identity,"",10);ultimate.style.marginTop=1;ultimate.style.color=Muted;
+        }
+
+        void BuildSkills()
+        {
+            var row=Row(safe,"grove-skills");row.style.position=Position.Absolute;row.style.right=20;row.style.bottom=16;
+            foreach(string slot in Slots)
+            {
+                string captured=slot;var column=new VisualElement{pickingMode=PickingMode.Ignore};column.style.width=92;column.style.alignItems=Align.Center;row.Add(column);
+                var button=new Button(()=>{if(simulation.CanManualCast(selected,captured))cast?.Invoke(captured);Refresh(selected);}){name="grove-cast-"+slot};
+                CleanButton(button);Round(button,76);Border(button,Bronze,2);button.style.backgroundColor=Ink;button.style.overflow=Overflow.Hidden;column.Add(button);
+                var inner=new VisualElement{pickingMode=PickingMode.Ignore};Absolute(inner,5,5,5,5);RoundCorners(inner,35);Border(inner,new Color(.50f,.58f,.60f,.5f),1);button.Add(inner);
+                var icon=new Sigil("crest",Pale);icon.style.width=50;icon.style.height=50;button.Add(icon);
+                var shade=new VisualElement{pickingMode=PickingMode.Ignore};shade.style.position=Position.Absolute;shade.style.left=shade.style.right=shade.style.bottom=0;shade.style.height=0;
+                shade.style.backgroundColor=new Color(.015f,.025f,.04f,.78f);button.Add(shade);
+                var state=Text(button,"",15);Absolute(state,0,0,0,0);state.style.unityTextAlign=TextAnchor.MiddleCenter;
+                var title=Text(column,"",11);title.style.width=90;title.style.height=18;title.style.marginTop=3;title.style.unityTextAlign=TextAnchor.MiddleCenter;
+                title.style.overflow=Overflow.Hidden;title.style.textOverflow=TextOverflow.Ellipsis;
+                var track=Track(column,"grove-skill-ready-"+slot,56,2);var fill=Fill(track,Bronze);
+                skills[slot]=new SkillTile{Button=button,Title=title,State=state,Icon=icon,Shade=shade,Fill=fill};
+            }
+        }
+
+        void BuildJoystick()
+        {
+            stick=new VisualElement{name="grove-movement-stick"};Round(stick,130);Border(stick,new Color(.50f,.64f,.70f,.6f),2);
+            stick.style.backgroundColor=new Color(.025f,.045f,.06f,.38f);stick.style.position=Position.Absolute;stick.style.left=26;stick.style.bottom=36;safe.Add(stick);
+            stick.tooltip="드래그로 원정대를 이동합니다. 손을 떼면 정지하고 자동 사냥을 누르면 추적을 재개합니다.";
+            var compass=new Sigil("compass",new Color(.72f,.79f,.81f,.65f));Absolute(compass,7,7,7,7);stick.Add(compass);
+            knob=new VisualElement{name="grove-movement-knob",pickingMode=PickingMode.Ignore};Round(knob,48);Border(knob,Bronze,2);
+            knob.style.position=Position.Absolute;knob.style.left=knob.style.top=39;knob.style.backgroundColor=new Color(.52f,.49f,.42f,.82f);stick.Add(knob);
+            stickCaption=Text(safe,"드래그 이동",11);stickCaption.style.position=Position.Absolute;stickCaption.style.left=18;stickCaption.style.bottom=17;
+            stickCaption.style.width=146;stickCaption.style.unityTextAlign=TextAnchor.MiddleCenter;stickCaption.style.color=Muted;
+            stick.RegisterCallback<PointerDownEvent>(e=>
+            {
+                if(pointer>=0||e.button!=0||!MovementEnabled())return;
+                pointer=e.pointerId;stick.CapturePointer(pointer);ReadStick(e.localPosition);e.StopPropagation();
+            });
+            stick.RegisterCallback<PointerMoveEvent>(e=>{if(e.pointerId!=pointer)return;ReadStick(e.localPosition);e.StopPropagation();});
+            stick.RegisterCallback<PointerUpEvent>(e=>{if(e.pointerId!=pointer)return;ReleaseStick();e.StopPropagation();});
+            stick.RegisterCallback<PointerCancelEvent>(e=>{if(e.pointerId==pointer)ReleaseStick();});
+            stick.RegisterCallback<PointerCaptureOutEvent>(e=>{if(e.pointerId==pointer)ReleaseStick();});
+        }
+
+        void BuildZoom()
+        {
+            var row=Row(safe,"grove-zoom");row.style.position=Position.Absolute;row.style.right=24;row.style.bottom=125;
+            foreach(float factor in new[]{1f,1.5f,2f,3f})
+            {
+                float value=factor;var button=new Button(()=>{currentZoom=value;zoom?.Invoke(value);RefreshZoom();}){text="×"+value.ToString("0.#",CultureInfo.InvariantCulture),name="grove-zoom-"+value.ToString("0.#",CultureInfo.InvariantCulture)};
+                CleanButton(button);Round(button,38);Border(button,Bronze,1);button.style.backgroundColor=Ink;button.style.marginLeft=7;button.style.fontSize=12;row.Add(button);
+                button.tooltip=value==1?"넓게 보기":"현재 중심에서 "+value.ToString("0.#",CultureInfo.InvariantCulture)+"배 확대";zoomButtons[value]=button;
+            }
+            RefreshZoom();
+        }
+
+        void BuildOutcome()
+        {
+            defeat=Plate(safe,"grove-defeat");defeat.style.position=Position.Absolute;defeat.style.left=Length.Percent(38);defeat.style.top=Length.Percent(39);
+            defeat.style.width=310;defeat.style.paddingTop=defeat.style.paddingBottom=16;defeat.style.alignItems=Align.Center;defeat.style.display=DisplayStyle.None;
+            var title=Text(defeat,"원정대 전투 불능",21);title.style.color=Pale;
+            var detail=Text(defeat,"대열을 정비하고 다시 출전합니다.",12);detail.style.marginTop=8;detail.style.color=Muted;
+            var button=ActionButton(defeat,"다시 출전",()=>{ReleaseStick();restart?.Invoke();});button.name="grove-restart";button.style.width=150;button.style.marginTop=14;
+        }
+
+        public void Refresh(string selectedHeroId,string notice="")
+        {
+            if(!initialized)return;
+            Combatant actor=null;foreach(var hero in simulation.Battle.Heroes)if(hero.Id==selectedHeroId){actor=hero;break;}
+            if(actor==null&&simulation.Battle.Heroes.Count>0)actor=simulation.Battle.Heroes[0];
+            selected=actor?.Id??"";
+            int alive=0;foreach(var enemy in simulation.Battle.Enemies)if(enemy.Alive)alive++;
+            stage.text="왕립 수림  ·  "+simulation.Stage+" 스테이지";
+            progress.text="무리 "+(simulation.PacksCleared+1)+"  ·  남은 적 "+alive+(simulation.Paused?"  ·  일시정지":simulation.NextPack>0?"  ·  다음 무리 진입":"  ·  교전 중");
+            gold.text=(simulation.PlayerState?.WalletGold??simulation.Gold).ToString("N0",CultureInfo.InvariantCulture);
+            gemBadge.style.display=simulation.PlayerState==null?DisplayStyle.None:DisplayStyle.Flex;
+            if(simulation.PlayerState!=null)gems.text=simulation.PlayerState.WalletGems.ToString("N0",CultureInfo.InvariantCulture);
+            pauseButton.text=simulation.Paused?"계속 사냥":"일시정지";pauseButton.SetEnabled(!simulation.Defeated);
+            autoButton.text=simulation.ManualMovementActive?"자동 복귀":"자동 사냥";autoButton.SetEnabled(simulation.ManualMovementActive&&!simulation.Paused&&!simulation.Defeated);
+            autoButton.style.borderBottomColor=autoButton.style.borderTopColor=autoButton.style.borderLeftColor=autoButton.style.borderRightColor=simulation.ManualMovementActive?Bronze:new Color(.28f,.42f,.35f);
+            noticeText.text=notice??"";noticeText.style.display=string.IsNullOrWhiteSpace(notice)?DisplayStyle.None:DisplayStyle.Flex;
+            defeat.style.display=simulation.Defeated?DisplayStyle.Flex:DisplayStyle.None;
+            foreach(var hero in simulation.Battle.Heroes)
+            {
+                if(!heroes.TryGetValue(hero.Id,out var tile))continue;
+                tile.Selection.style.display=hero.Id==selected?DisplayStyle.Flex:DisplayStyle.None;
+                tile.Button.style.opacity=hero.Alive?1:.42f;tile.Health.style.width=Length.Percent(Mathf.Clamp01((float)hero.HpRatio)*100);
+                tile.Status.text=!hero.Alive?"전투 불능":hero.Stun>0?"기절":hero.Ultimate>=100?"각성 준비":"";
+                tile.Status.style.color=hero.Ultimate>=100?Bronze:Muted;
+            }
+            identity.style.display=actor==null?DisplayStyle.None:DisplayStyle.Flex;
+            if(actor!=null)
+            {
+                heroName.text=HeroName(actor.Id);identityRole.text=actor.Role;
+                if(lastPortrait!=actor.Id){identityPortrait.image=Portrait(actor.Id);lastPortrait=actor.Id;}
+                healthFill.style.width=Length.Percent(Mathf.Clamp01((float)actor.HpRatio)*100);
+                healthFill.style.backgroundColor=actor.HpRatio<.25?new Color(.80f,.30f,.25f):Moss;
+                hp.text=Math.Max(0,actor.Hp).ToString("N0")+" / "+actor.MaxHp.ToString("N0");
+                ultimateFill.style.width=Length.Percent(Mathf.Clamp01((float)actor.Ultimate/100)*100);
+                ultimate.text="각성 "+Mathf.Clamp((int)actor.Ultimate,0,100)+"%"+(actor.Shield>0?"  ·  보호막 "+actor.Shield.ToString("N0"):"");
+            }
+            foreach(string slot in Slots)RefreshSkill(actor,slot);
+            bool moveEnabled=MovementEnabled();if(!moveEnabled)ReleaseStick();stick.SetEnabled(moveEnabled);stick.style.opacity=moveEnabled?1:.4f;
+            stickCaption.text=simulation.ManualMovementActive?"직접 이동 · 놓으면 정지":"드래그 이동";
+        }
+
+        public void BindSimulation(HuntingSimulation next)
+        {
+            if(next==null)throw new ArgumentNullException(nameof(next));
+            ReleaseStick();simulation=next;
+            Refresh(selected);
+        }
+
+        void RefreshSkill(Combatant actor,string slot)
+        {
+            var tile=skills[slot];
+            if(actor==null||!simulation.Battle.Kits.TryGetValue(actor.Id,out var kit)||!kit.Profiles.TryGetValue(slot,out var profile))
+            {tile.Button.SetEnabled(false);tile.Title.text="";tile.State.text="—";return;}
+            string name=(string)profile["skill"]??(slot=="ultimate"?"각성":slot=="a1"?"스킬 1":"스킬 2");
+            double cooldown=kit.Cooldowns.TryGetValue(slot,out var remaining)?Math.Max(0,remaining):0;
+            bool awakening=slot=="ultimate",ready=simulation.CanManualCast(actor.Id,slot);
+            float completion=awakening?Mathf.Clamp01((float)actor.Ultimate/100):1-Mathf.Clamp01((float)(cooldown/Math.Max(.01,LegacyCombatRules.Number(profile,"cooldown",7))));
+            tile.Button.SetEnabled(ready);tile.Button.style.opacity=!actor.Alive?.45f:1;
+            tile.Title.text=name;tile.Button.tooltip=name+(awakening?" · 각성 게이지 100%":" · 재사용 "+LegacyCombatRules.Number(profile,"cooldown",7).ToString("0.#")+"초");
+            tile.Icon.Set(actor.Id+"-"+slot,actor.Id=="elisia"?Moss:actor.Id=="mira"?new Color(.95f,.60f,.40f):awakening?Bronze:Blue);
+            tile.Fill.style.width=Length.Percent(completion*100);tile.Shade.style.height=Length.Percent((1-completion)*100);
+            tile.State.text=!actor.Alive?"불능":simulation.Paused?"정지":actor.Stun>0?"기절":ready?"":awakening&&actor.Ultimate<100?((int)actor.Ultimate)+"%":cooldown>0?cooldown.ToString("0.0"):"대기";
+            Border(tile.Button,ready?new Color(.94f,.78f,.44f):new Color(.42f,.44f,.44f),ready?2:1.5f);
+        }
+
+        bool MovementEnabled()=>simulation!=null&&!simulation.Paused&&!simulation.Defeated&&battleCamera!=null;
+        void ReadStick(Vector2 local)
+        {
+            if(!MovementEnabled()){ReleaseStick();return;}
+            var offset=Vector2.ClampMagnitude((local-new Vector2(63,63))/39,1);float length=offset.magnitude;
+            offset=length<.10f?Vector2.zero:offset.normalized*((length-.10f)/.90f);
+            knob.style.left=39+offset.x*39;knob.style.top=39+offset.y*39;
+            // UI Toolkit has downward-positive y. The public callback is
+            // normalized screen coordinates, upward-positive y, not world axes.
+            movement?.Invoke(new Vector2(offset.x,-offset.y));
+        }
+        void ReleaseStick()
+        {
+            int captured=pointer;pointer=-1;
+            if(captured>=0)stopMovement?.Invoke();
+            if(stick!=null&&captured>=0&&stick.HasPointerCapture(captured))stick.ReleasePointer(captured);
+            if(knob!=null)knob.style.left=knob.style.top=39;
+        }
+        void RefreshZoom()
+        {
+            foreach(var pair in zoomButtons)
+            {bool active=Mathf.Approximately(pair.Key,currentZoom);pair.Value.style.color=active?Pale:Muted;Border(pair.Value,active?Bronze:new Color(.36f,.41f,.43f),active?2:1);}
+        }
+        void LayoutSafeArea()
+        {
+            if(root==null||Screen.width<=0||Screen.height<=0)return;
+            var rect=Screen.safeArea;float sx=root.resolvedStyle.width/Screen.width,sy=root.resolvedStyle.height/Screen.height;
+            if(!float.IsFinite(sx)||!float.IsFinite(sy))return;
+            safe.style.left=rect.xMin*sx;safe.style.right=(Screen.width-rect.xMax)*sx;
+            safe.style.top=(Screen.height-rect.yMax)*sy;safe.style.bottom=rect.yMin*sy;
+            bool narrow=rect.width*sx<1260;header.style.width=narrow?345:420;stage.style.fontSize=narrow?17:21;
+            identity.style.width=narrow?302:350;identity.style.left=Length.Percent(narrow?23:29);
+        }
+        string HeroName(string id)=>(string)simulation.Catalog.Hero(id)["name"]??id;
+        static Texture2D Portrait(string id)=>Resources.Load<Texture2D>("Eternal/GraphicsRebuild/Portraits/"+id);
+        static Label Text(VisualElement parent,string value,int size)
+        {var label=new Label(value){pickingMode=PickingMode.Ignore};label.style.fontSize=size;label.style.marginLeft=label.style.marginRight=label.style.marginTop=label.style.marginBottom=0;parent.Add(label);return label;}
+        static VisualElement Row(VisualElement parent,string name)
+        {var row=new VisualElement{name=name,pickingMode=PickingMode.Ignore};row.style.flexDirection=FlexDirection.Row;parent.Add(row);return row;}
+        static VisualElement Plate(VisualElement parent,string name)
+        {var box=new VisualElement{name=name,pickingMode=PickingMode.Ignore};box.style.backgroundColor=Ink;box.style.paddingLeft=box.style.paddingRight=10;box.style.paddingTop=box.style.paddingBottom=6;RoundCorners(box,9);Border(box,new Color(.45f,.38f,.26f,.7f),1);parent.Add(box);return box;}
+        static Button ActionButton(VisualElement parent,string text,Action action)
+        {var button=new Button(action){text=text};CleanButton(button);button.style.height=40;button.style.marginLeft=7;button.style.fontSize=13;button.style.backgroundColor=Ink;RoundCorners(button,8);Border(button,Bronze,1);parent.Add(button);return button;}
+        static VisualElement Track(VisualElement parent,string name,float width,float height)
+        {var track=new VisualElement{name=name,pickingMode=PickingMode.Ignore};track.style.width=width;track.style.height=height;track.style.flexShrink=0;track.style.backgroundColor=new Color(.025f,.04f,.05f,.95f);track.style.overflow=Overflow.Hidden;RoundCorners(track,3);parent.Add(track);return track;}
+        static VisualElement Fill(VisualElement parent,Color color)
+        {var fill=new VisualElement{pickingMode=PickingMode.Ignore};fill.style.width=Length.Percent(100);fill.style.height=Length.Percent(100);fill.style.backgroundColor=color;parent.Add(fill);return fill;}
+        static void CleanButton(Button button)
+        {button.style.marginTop=button.style.marginBottom=button.style.marginLeft=button.style.marginRight=0;button.style.paddingLeft=button.style.paddingRight=button.style.paddingTop=button.style.paddingBottom=0;button.style.minWidth=button.style.minHeight=0;button.style.alignItems=Align.Center;button.style.justifyContent=Justify.Center;button.style.color=Pale;button.style.backgroundImage=StyleKeyword.None;}
+        static void Round(VisualElement element,float size){element.style.width=element.style.height=size;element.style.flexShrink=0;RoundCorners(element,size*.5f);}
+        static void RoundCorners(VisualElement element,float radius){element.style.borderTopLeftRadius=element.style.borderTopRightRadius=element.style.borderBottomLeftRadius=element.style.borderBottomRightRadius=radius;}
+        static void Border(VisualElement element,Color color,float width){element.style.borderTopWidth=element.style.borderBottomWidth=element.style.borderLeftWidth=element.style.borderRightWidth=width;element.style.borderTopColor=element.style.borderBottomColor=element.style.borderLeftColor=element.style.borderRightColor=color;}
+        static void Absolute(VisualElement e,float left,float top,float right,float bottom){e.style.position=Position.Absolute;e.style.left=left;e.style.top=top;e.style.right=right;e.style.bottom=bottom;}
+        void OnApplicationFocus(bool focused){if(!focused)ReleaseStick();}
+        void OnApplicationPause(bool paused){if(paused)ReleaseStick();}
+        void OnDisable(){ReleaseStick();}
+        void OnDestroy(){ReleaseStick();if(document!=null)Destroy(document);if(panel!=null)Destroy(panel);if(ownsFont&&font!=null)Destroy(font);}
+
+        // Small, resolution-independent skill emblems, not a pasted concept UI.
+        sealed class Sigil : VisualElement
+        {
+            string key;Color ink;
+            internal Sigil(string key,Color ink){this.key=key;this.ink=ink;pickingMode=PickingMode.Ignore;generateVisualContent+=Draw;}
+            internal void Set(string value,Color color){if(value==key&&color==ink)return;key=value;ink=color;MarkDirtyRepaint();}
+            void Draw(MeshGenerationContext context)
+            {
+                float scale=Mathf.Min(contentRect.width,contentRect.height)/48;if(scale<=0)return;
+                var p=context.painter2D;var origin=new Vector2((contentRect.width-48*scale)/2,(contentRect.height-48*scale)/2);p.strokeColor=ink;p.lineWidth=1.6f*scale;
+                void Line(params float[] xy){p.BeginPath();p.MoveTo(origin+new Vector2(xy[0],xy[1])*scale);for(int i=2;i<xy.Length;i+=2)p.LineTo(origin+new Vector2(xy[i],xy[i+1])*scale);p.Stroke();}
+                void Ring(float x,float y,float radius){p.BeginPath();for(int i=0;i<=36;i++){float angle=i*Mathf.PI/18;var at=origin+new Vector2(x+Mathf.Cos(angle)*radius,y+Mathf.Sin(angle)*radius)*scale;if(i==0)p.MoveTo(at);else p.LineTo(at);}p.Stroke();}
+                if(key=="compass"){Line(22,5,24,2,26,5);Line(22,43,24,46,26,43);Line(5,22,2,24,5,26);Line(43,22,46,24,43,26);Ring(24,24,21);return;}
+                if(key=="empty"){Ring(24,15,7);Line(10,40,12,30,20,26,28,26,36,30,38,40);return;}
+                if(key=="crest"||key.EndsWith("ultimate",StringComparison.Ordinal))
+                {
+                    Ring(24,24,17);Line(24,2,28,19,44,24,28,29,24,46,20,29,4,24,20,19,24,2);
+                    Line(10,9,24,19,38,9,29,24,38,39,24,29,10,39,19,24,10,9);Ring(24,24,4);return;
+                }
+                if(key.StartsWith("elisia",StringComparison.Ordinal))
+                {Line(24,43,24,17,18,11,24,4,30,11,24,17);Line(24,30,11,23,8,11,18,14,24,24);Line(24,34,37,25,41,14,29,19,24,28);Ring(24,11,3);return;}
+                if(key.StartsWith("mira",StringComparison.Ordinal))
+                {Line(12,5,27,12,33,24,27,36,12,43,20,24,12,5);Line(3,24,45,24,37,17);Line(45,24,37,31);Line(5,19,10,24,5,29);if(key.EndsWith("a2",StringComparison.Ordinal)){Line(6,13,38,13);Line(6,35,38,35);}return;}
+                if(key.EndsWith("a2",StringComparison.Ordinal))
+                {Line(24,4,41,11,38,29,32,38,24,44,16,38,10,29,7,11,24,4);Line(24,11,24,35);Line(15,21,33,21);Line(13,13,24,9,35,13);return;}
+                Line(10,36,35,6,43,4,41,13,15,40);Line(9,27,22,39);Line(12,36,5,44);Line(4,39,9,44);Line(16,29,35,8);
+            }
+        }
+    }
+}

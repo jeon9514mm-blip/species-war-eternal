@@ -1,0 +1,118 @@
+{
+  "id": "fallen_werewolf",
+  "display_name": "타락한 늑대인간",
+  "status": "native rigged volume development asset; visual acceptance and runtime validation deferred",
+  "source": "assets/graphics-rebuild-v1/monsters/fallen_werewolf.blend",
+  "resource": "Eternal/GraphicsRebuild/Monsters/fallen_werewolf",
+  "fbx": "Unity/Assets/Game/Resources/Eternal/GraphicsRebuild/Monsters/fallen_werewolf.fbx",
+  "nominal_height_m": 2.55,
+  "forward": "Blender -Y; FBX export -Z forward / Y up",
+  "triangles": 5588,
+  "bones": 23,
+  "clips": [
+    "Idle",
+    "Walk",
+    "Attack",
+    "Death"
+  ],
+  "clip_fps": 30,
+  "materials": [
+    {
+      "name": "Fallen_Wolf_Undercoat",
+      "color": "#55535E",
+      "metallic": 0,
+      "roughness": 0.77,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Obsidian_Armor.002",
+      "color": "#303847",
+      "metallic": 0.72,
+      "roughness": 0.37,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Tarnished_Bronze.002",
+      "color": "#AA8A55",
+      "metallic": 0.8,
+      "roughness": 0.4,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Weathered_Leather.002",
+      "color": "#332C34",
+      "metallic": 0,
+      "roughness": 0.88,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Deep_Seams.002",
+      "color": "#171D27",
+      "metallic": 0,
+      "roughness": 0.81,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Corruption_Crystal.002",
+      "color": "#AE69CE",
+      "metallic": 0.12,
+      "roughness": 0.3,
+      "emission": 0.65
+    },
+    {
+      "name": "Fallen_Corruption_Eyes.002",
+      "color": "#EAAF65",
+      "metallic": 0,
+      "roughness": 0.24,
+      "emission": 1.5
+    },
+    {
+      "name": "Fallen_Dwarf_IronBeard.001",
+      "color": "#615E68",
+      "metallic": 0,
+      "roughness": 0.7,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Wolf_GuardFur",
+      "color": "#313744",
+      "metallic": 0,
+      "roughness": 0.84,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Wolf_PaleFur",
+      "color": "#A6A6A1",
+      "metallic": 0,
+      "roughness": 0.83,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Wolf_BoneClaws",
+      "color": "#C9C4A7",
+      "metallic": 0,
+      "roughness": 0.46,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Wolf_Scar",
+      "color": "#755060",
+      "metallic": 0,
+      "roughness": 0.91,
+      "emission": 0.0
+    },
+    {
+      "name": "Fallen_Broken_Iron",
+      "color": "#3F4549",
+      "metallic": 0.75,
+      "roughness": 0.55,
+      "emission": 0.0
+    }
+  ],
+  "limitations": [
+    "Material-color anatomy pass; final PBR texture painting remains.",
+    "Bone animation authored; final combat-timing and foot-contact acceptance deferred.",
+    "Fur is closed sculpted clumps, not simulated strands.",
+    "The source/reference quality target is not claimed achieved."
+  ]
+}

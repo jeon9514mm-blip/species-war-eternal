@@ -3,48 +3,75 @@
   "heroes": [
     {
       "hero": "leonhardt",
-      "triangles": 10146,
-      "mesh_parts": 121,
+      "triangles": 19388,
+      "mesh_parts": 247,
+      "bones": 38,
+      "continuously_weighted_parts": 8,
+      "uv_meshes": 247,
       "fbx": "Unity/Assets/Game/Resources/Eternal/GraphicsRebuild/Heroes/leonhardt.fbx",
       "source": "assets/graphics-rebuild-v1/models/leonhardt-volume-pass.blend",
-      "status": "first rigged volume-mesh development pass; concept quality acceptance deferred",
+      "materials": "Unity/Assets/Game/Resources/Eternal/GraphicsRebuild/Heroes/leonhardt-materials.json",
+      "status": "second articulated mesh craft development pass; visual acceptance deferred",
       "animations": [
         "Idle",
         "Walk",
-        "Attack"
+        "Attack",
+        "Skill1",
+        "Skill2",
+        "Ultimate",
+        "Death"
       ],
-      "hair": "sculpted locks; final hair-card pass pending",
-      "cloth": "five deform bones; final physical simulation pending"
+      "hair": "closed sculpted locks with three deform bones; no claimed 600-card simulation",
+      "cloth": "five cape bones and independent front/side skirt chains; authored motion, not physical cloth simulation",
+      "uv": "cylindrical/seam-aware, grid and box-projected UVs; no baked albedo/normal atlas yet"
     },
     {
       "hero": "elisia",
-      "triangles": 12068,
-      "mesh_parts": 118,
+      "triangles": 18248,
+      "mesh_parts": 202,
+      "bones": 38,
+      "continuously_weighted_parts": 51,
+      "uv_meshes": 202,
       "fbx": "Unity/Assets/Game/Resources/Eternal/GraphicsRebuild/Heroes/elisia.fbx",
       "source": "assets/graphics-rebuild-v1/models/elisia-volume-pass.blend",
-      "status": "first rigged volume-mesh development pass; concept quality acceptance deferred",
+      "materials": "Unity/Assets/Game/Resources/Eternal/GraphicsRebuild/Heroes/elisia-materials.json",
+      "status": "second articulated mesh craft development pass; visual acceptance deferred",
       "animations": [
         "Idle",
         "Walk",
-        "Attack"
+        "Attack",
+        "Skill1",
+        "Skill2",
+        "Ultimate",
+        "Death"
       ],
-      "hair": "sculpted locks; final hair-card pass pending",
-      "cloth": "five deform bones; final physical simulation pending"
+      "hair": "closed sculpted locks with three deform bones; no claimed 600-card simulation",
+      "cloth": "five cape bones and independent front/side skirt chains; authored motion, not physical cloth simulation",
+      "uv": "cylindrical/seam-aware, grid and box-projected UVs; no baked albedo/normal atlas yet"
     },
     {
       "hero": "mira",
-      "triangles": 12216,
-      "mesh_parts": 142,
+      "triangles": 19660,
+      "mesh_parts": 246,
+      "bones": 38,
+      "continuously_weighted_parts": 35,
+      "uv_meshes": 246,
       "fbx": "Unity/Assets/Game/Resources/Eternal/GraphicsRebuild/Heroes/mira.fbx",
       "source": "assets/graphics-rebuild-v1/models/mira-volume-pass.blend",
-      "status": "first rigged volume-mesh development pass; concept quality acceptance deferred",
+      "materials": "Unity/Assets/Game/Resources/Eternal/GraphicsRebuild/Heroes/mira-materials.json",
+      "status": "second articulated mesh craft development pass; visual acceptance deferred",
       "animations": [
         "Idle",
         "Walk",
-        "Attack"
+        "Attack",
+        "Skill1",
+        "Skill2",
+        "Ultimate",
+        "Death"
       ],
-      "hair": "sculpted locks; final hair-card pass pending",
-      "cloth": "five deform bones; final physical simulation pending"
+      "hair": "closed sculpted locks with three deform bones; no claimed 600-card simulation",
+      "cloth": "five cape bones and independent front/side skirt chains; authored motion, not physical cloth simulation",
+      "uv": "cylindrical/seam-aware, grid and box-projected UVs; no baked albedo/normal atlas yet"
     }
   ],
   "quality_acceptance": "deferred; no claim of final concept equivalence"

@@ -17,7 +17,7 @@ def metadata(path):
     if path.is_dir():text+='folderAsset: yes\nDefaultImporter:\n  externalObjects: {}\n  userData: \n  assetBundleName: \n  assetBundleVariant: \n'
     meta.write_text(text,encoding='utf-8')
 
-for file in [ASSETS/'Game/Runtime/RoyalGroveEnvironment.cs',ASSETS/'Game/Runtime/AureliaVolumeActor.cs',ASSETS/'Game/Runtime/RoyalGroveDevelopmentStage.cs',ASSETS/'Game/Editor/GraphicsRebuildInstaller.cs',ASSETS/'Game/Editor/AureliaVolumeImporter.cs']:
+for file in [ASSETS/'Game/Runtime/RoyalGroveEnvironment.cs',ASSETS/'Game/Runtime/AureliaVolumeActor.cs',ASSETS/'Game/Runtime/RoyalGroveDevelopmentStage.cs',ASSETS/'Game/Runtime/RoyalGroveCombatFeedback.cs',ASSETS/'Game/Runtime/RoyalGroveHuntHud.cs',ASSETS/'Game/Runtime/HuntEncounterOptions.cs',ASSETS/'Game/Editor/GraphicsRebuildInstaller.cs',ASSETS/'Game/Editor/AureliaVolumeImporter.cs']:
     metadata(file)
 folder=ASSETS/'Game/Resources/Eternal/GraphicsRebuild'
 for file in [folder,*folder.rglob('*')]:

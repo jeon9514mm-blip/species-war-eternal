@@ -1,0 +1,145 @@
+{
+  "hero": "leonhardt",
+  "materials": [
+    {
+      "name": "Aurelia engraved gold",
+      "color": "#c39a48",
+      "metallic": 0.8,
+      "roughness": 0.3,
+      "emission": 0
+    },
+    {
+      "name": "Ivory enamel plate",
+      "color": "#e9e3cf",
+      "metallic": 0.55,
+      "roughness": 0.35,
+      "emission": 0
+    },
+    {
+      "name": "Dark leather",
+      "color": "#30272c",
+      "metallic": 0,
+      "roughness": 0.82,
+      "emission": 0
+    },
+    {
+      "name": "Dark eye and seams",
+      "color": "#171922",
+      "metallic": 0,
+      "roughness": 0.64,
+      "emission": 0
+    },
+    {
+      "name": "Skin",
+      "color": "#f2cab0",
+      "metallic": 0,
+      "roughness": 0.7,
+      "emission": 0
+    },
+    {
+      "name": "Royal blue cloth",
+      "color": "#21418b",
+      "metallic": 0,
+      "roughness": 0.82,
+      "emission": 0
+    },
+    {
+      "name": "Forest silk",
+      "color": "#547c3e",
+      "metallic": 0,
+      "roughness": 0.75,
+      "emission": 0
+    },
+    {
+      "name": "Royal crimson cloth",
+      "color": "#8e242a",
+      "metallic": 0,
+      "roughness": 0.82,
+      "emission": 0
+    },
+    {
+      "name": "Hero hair",
+      "color": "#d9a64d",
+      "metallic": 0,
+      "roughness": 0.52,
+      "emission": 0
+    },
+    {
+      "name": "Hair highlights",
+      "color": "#f2cc7e",
+      "metallic": 0,
+      "roughness": 0.5,
+      "emission": 0
+    },
+    {
+      "name": "Iris",
+      "color": "#3b80b4",
+      "metallic": 0,
+      "roughness": 0.24,
+      "emission": 0
+    },
+    {
+      "name": "Warm eyelid skin",
+      "color": "#d4a18f",
+      "metallic": 0,
+      "roughness": 0.7,
+      "emission": 0
+    },
+    {
+      "name": "Eye ivory",
+      "color": "#f8f1df",
+      "metallic": 0,
+      "roughness": 0.3,
+      "emission": 0
+    },
+    {
+      "name": "Eye light",
+      "color": "#ffffff",
+      "metallic": 0,
+      "roughness": 0.2,
+      "emission": 0
+    },
+    {
+      "name": "Lip rose",
+      "color": "#ae7770",
+      "metallic": 0,
+      "roughness": 0.62,
+      "emission": 0
+    },
+    {
+      "name": "Recessed armor steel",
+      "color": "#5d6573",
+      "metallic": 0.8,
+      "roughness": 0.39,
+      "emission": 0
+    },
+    {
+      "name": "Ivory silk",
+      "color": "#eee5cf",
+      "metallic": 0,
+      "roughness": 0.82,
+      "emission": 0
+    },
+    {
+      "name": "Crown sapphire",
+      "color": "#2e67b7",
+      "metallic": 0.5,
+      "roughness": 0.2,
+      "emission": 0
+    },
+    {
+      "name": "Sword polished steel",
+      "color": "#b8cbd4",
+      "metallic": 0.92,
+      "roughness": 0.2,
+      "emission": 0
+    },
+    {
+      "name": "Blue enamel shield",
+      "color": "#29468b",
+      "metallic": 0.45,
+      "roughness": 0.4,
+      "emission": 0
+    }
+  ]
+}
