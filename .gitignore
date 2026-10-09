@@ -49,6 +49,8 @@ export_credentials.cfg
 /Unity/[Ll]ogs/
 /Unity/[Uu]ser[Ss]ettings/
 /Unity/[Bb]uilds/
+/Unity/build/
+/Unity/.utmp/
 /Unity/.vs/
 /Unity/*.csproj
 /Unity/*.sln

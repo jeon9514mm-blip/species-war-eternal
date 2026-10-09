@@ -1,0 +1,102 @@
+"""Verify exact signed APK parts, then publish that APK from GitHub Actions."""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import urllib.error
+import urllib.request
+
+ROOT = Path(__file__).resolve().parents[2]
+PARTS = ROOT / 'releases/android/cp20'
+OUTPUT = ROOT / 'Unity/Builds/Android/EternalUnity-0.1.20-arm64.apk'
+REPOSITORY = 'jeon9514mm-blip/species-war-eternal'
+BRANCH = 'jeon9514mm-blip/species-war-eternal'
+TAG = 'android-v0.1.20-cp20'
+
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
+
+def prepare(source):
+    data = Path(source).read_bytes()
+    PARTS.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for i, offset in enumerate(range(0, len(data), 36_000_000), 1):
+        content = data[offset:offset + 36_000_000]
+        name = f'EternalUnity-0.1.20-arm64.apk.part{i:02d}'
+        (PARTS / name).write_bytes(content)
+        rows.append({'file': name, 'bytes': len(content), 'sha256': digest(content)})
+    manifest = {'file': OUTPUT.name, 'bytes': len(data), 'sha256': digest(data), 'parts': rows,
+                'release_tag': TAG, 'package': 'com.specieswar.eternal', 'version': '0.1.20',
+                'signing': 'Android debug signing for sideload tests', 'device_run_verified': False}
+    (PARTS / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
+    print(json.dumps(manifest))
+
+def reconstruct():
+    manifest = json.loads((PARTS / 'manifest.json').read_text(encoding='utf-8'))
+    assert manifest['file'] == OUTPUT.name and manifest['release_tag'] == TAG
+    content = bytearray()
+    for row in manifest['parts']:
+        assert re.fullmatch(r'EternalUnity-0\.1\.20-arm64\.apk\.part\d{2}', row['file'])
+        data = (PARTS / row['file']).read_bytes()
+        assert len(data) == row['bytes'] and digest(data) == row['sha256'], 'APK part mismatch'
+        content.extend(data)
+    assert len(content) == manifest['bytes'] and digest(content) == manifest['sha256'], 'APK mismatch'
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_bytes(content)
+    print(json.dumps({'reconstructed': True, 'bytes': len(content), 'sha256': digest(content)}))
+    return manifest
+
+def publish():
+    manifest = reconstruct()
+    assert os.environ.get('GITHUB_ACTIONS') == 'true', 'Publication runs in GitHub Actions only'
+    assert os.environ.get('GITHUB_REPOSITORY') == REPOSITORY
+    assert os.environ.get('GITHUB_REF') == 'refs/heads/' + BRANCH
+    sha = os.environ['GITHUB_SHA']
+    assert re.fullmatch('[0-9a-f]{40}', sha)
+    token = os.environ['GITHUB_TOKEN']
+
+    def request(url, method='GET', payload=None, binary=False):
+        body = payload if binary else (json.dumps(payload).encode() if payload is not None else None)
+        headers = {'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json',
+                   'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'SpeciesWar-APK-CP20'}
+        if body is not None:
+            headers['Content-Type'] = 'application/vnd.android.package-archive' if binary else 'application/json'
+        req = urllib.request.Request(url, data=body, headers=headers, method=method)
+        with urllib.request.urlopen(req, timeout=240) as response:
+            return json.load(response)
+
+    api = 'https://api.github.com/repos/' + REPOSITORY
+    try:
+        release = request(api + '/releases/tags/' + TAG)
+    except urllib.error.HTTPError as error:
+        if error.code != 404:
+            raise
+        release = request(api + '/releases', 'POST', {
+            'tag_name': TAG, 'target_commitish': sha, 'name': '종의전쟁 Unity Android APK 0.1.20 · CP20',
+            'body': 'Android 8.0+ / ARM64 테스트 APK. 기본 디버그 서명. 서명·ZIP CRC·16KB ELF 정렬 검수 완료. 실제 Android 기기 플레이는 아직 검수하지 않았습니다.\n\nSHA-256: `' + manifest['sha256'] + '`',
+            'draft': False, 'prerelease': True})
+    existing = next((a for a in release['assets'] if a['name'] == manifest['file']), None)
+    if existing:
+        assert existing['size'] == manifest['bytes'] and existing.get('digest') == 'sha256:' + manifest['sha256'], 'Existing release APK differs; refusing to replace it'
+        asset = existing
+    else:
+        upload = release['upload_url'].split('{', 1)[0] + '?name=' + manifest['file']
+        assert upload.startswith('https://uploads.github.com/repos/' + REPOSITORY + '/releases/')
+        asset = request(upload, 'POST', OUTPUT.read_bytes(), binary=True)
+        assert asset['size'] == manifest['bytes']
+        assert asset.get('digest') == 'sha256:' + manifest['sha256'], 'Uploaded APK digest mismatch'
+    print(json.dumps({'release': release['html_url'], 'download': asset['browser_download_url'], 'bytes': asset['size'], 'digest': asset.get('digest')}))
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('mode', choices=['prepare', 'reconstruct', 'publish'])
+    parser.add_argument('source', nargs='?', default=str(OUTPUT))
+    args = parser.parse_args()
+    if args.mode == 'prepare':
+        prepare(args.source)
+    elif args.mode == 'reconstruct':
+        reconstruct()
+    else:
+        publish()

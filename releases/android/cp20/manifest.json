@@ -1,0 +1,27 @@
+{
+  "file": "EternalUnity-0.1.20-arm64.apk",
+  "bytes": 72753387,
+  "sha256": "2b6ff9a69eae664567b07c7fc5cb78384d750fd3aa011195f8ba9651669df069",
+  "parts": [
+    {
+      "file": "EternalUnity-0.1.20-arm64.apk.part01",
+      "bytes": 36000000,
+      "sha256": "2bb08a13670071f75010aa4875a31bf47cfde6fa79ad3ddd4c2a9e91e3e8c3fd"
+    },
+    {
+      "file": "EternalUnity-0.1.20-arm64.apk.part02",
+      "bytes": 36000000,
+      "sha256": "266e073470c66ecd2c02f79ebf1c4278e6918b631b9c389fd9a33316a71c1f16"
+    },
+    {
+      "file": "EternalUnity-0.1.20-arm64.apk.part03",
+      "bytes": 753387,
+      "sha256": "c6a3704dfb8b0ca556b0ba5885621522eb2f64231b3a590e8ac75011481b493d"
+    }
+  ],
+  "release_tag": "android-v0.1.20-cp20",
+  "package": "com.specieswar.eternal",
+  "version": "0.1.20",
+  "signing": "Android debug signing for sideload tests",
+  "device_run_verified": false
+}

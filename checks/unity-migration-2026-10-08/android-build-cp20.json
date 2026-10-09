@@ -1,0 +1,28 @@
+{
+  "result": "Failed",
+  "errors": 3,
+  "warnings": 1,
+  "duration_seconds": 135.2382816,
+  "output": "Builds/Android/EternalUnity-0.1.20-arm64.apk",
+  "package": "com.specieswar.eternal",
+  "version": "0.1.20",
+  "version_code": 20,
+  "architecture": "arm64-v8a",
+  "scripting_backend": "IL2CPP",
+  "min_sdk": 26,
+  "target_sdk": 36,
+  "development_build": false,
+  "signing": "Android default debug signing; sideload test only",
+  "texture_target": "ASTC",
+  "messages": [
+    {
+      "type": "Error",
+      "message": "Gradle packaging failed because the build drive ran out of space. Generated Android/IL2CPP project was completed afterwards by finish-android-apk.ps1; see android-gradle-recovery-cp20.json."
+    },
+    {
+      "type": "Warning",
+      "message": "No RuntimePipelineConfig asset found; the Editor automation Pipeline is disabled in Player builds."
+    }
+  ],
+  "device_run_verified": false
+}
