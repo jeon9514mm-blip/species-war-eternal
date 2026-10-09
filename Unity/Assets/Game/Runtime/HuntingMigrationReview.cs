@@ -104,7 +104,8 @@ namespace Eternal.UnityMigration
             floor.GetComponent<Renderer>().sharedMaterial=ownedFloorMaterial;
             huntEnvironment=worldRoot.AddComponent<HuntEnvironmentPresentation>();huntEnvironment.Initialize(BattleCamera,floor.GetComponent<Renderer>(),ownedFloorMaterial,Simulation.Zone,PersistentPlayer);
             Destroy(floor.GetComponent<Collider>());
-            feedback=new GameObject("Bounded hunting presentation").AddComponent<HuntingFeedback>();feedback.Initialize(BattleCamera);feedback.ConfigureExpandedHunt(PersistentPlayer);
+            feedback=new GameObject("Bounded hunting presentation").AddComponent<HuntingFeedback>();feedback.Initialize(BattleCamera);feedback.HitPresented=serial=>{if(actors.TryGetValue(serial,out var view))view.HitSeconds=.04f;};feedback.ConfigureExpandedHunt(PersistentPlayer);
+            feedback.Lens=feedback.gameObject.AddComponent<BattleLensPresentation>();feedback.Lens.Initialize(BattleCamera,post);
             afterImages=new PaintedAfterImages(feedback.transform);
         }
         void Receive(BattleEvent e)
@@ -112,11 +113,12 @@ namespace Eternal.UnityMigration
             if(e.Kind=="pack"&&Raid==null&&huntEnvironment!=null)huntEnvironment.Bind(Simulation.Zone);
             if(e.Kind=="loot"&&Raid==null&&Simulation?.PlayerState!=null)
             {
+                var levels=Simulation.Battle.Heroes.ToDictionary(h=>h.Id,h=>ReviewState.HeroProgress(h.Id).level);
                 int xp=(int)HuntingSimulation.Canonical["zones"][Simulation.Zone]["xp"];
                 var settled=playerSession!=null?ReviewState.SettleUnityPack(Simulation.PacksCleared,e.Amount,xp,Simulation.Battle.Enemies.Count):ReviewState.SettleReviewHuntPack(Simulation.PacksCleared,e.Amount,xp);
                 huntNotice=settled.Message;huntNoticeUntil=Time.unscaledTime+3;
                 if(settled.Ok&&playerSession!=null)playerPartyRefresh|=!ReviewState.DeployedHeroes().SequenceEqual(Simulation.Battle.Heroes.Select(h=>h.Id))||ReviewState.Formation!=Simulation.Formation;
-                if(settled.Ok)Simulation.RefreshHeroGrowth();
+                if(settled.Ok){Simulation.RefreshHeroGrowth();foreach(var hero in Simulation.Battle.Heroes)if(ReviewState.HeroProgress(hero.Id).level>levels[hero.Id]&&visualQueue.Count<256)visualQueue.Add(new BattleEvent("level_up",hero,"progress",hero));}
                 if(playerSession!=null)
                 {
                     PauseForSaveFailure();
@@ -149,6 +151,7 @@ namespace Eternal.UnityMigration
             float alpha=paused||!running?1:Mathf.Clamp01((float)(accumulator/.05));
             RebuildActors();
             feedback.RaidWarningVisible=Raid!=null&&(Raid.Warning!=null||Raid.SecondWarning!=null);
+            feedback.Lens.Warning=feedback.RaidWarningVisible;
             feedback.SuppressCombatPopups=Raid!=null&&!Raid.Running;
             var center=Vector2.zero;int alive=0;foreach(var hero in ActiveBattle.Heroes)if(hero.Alive){center+=hero.Position;alive++;}if(alive>0)feedback.SetExpeditionCenter(center/alive);
             foreach(var combatant in drawActors)
@@ -164,11 +167,10 @@ namespace Eternal.UnityMigration
             {
                 if(e.Kind=="windup"&&actors.TryGetValue(e.SourceSerial,out var source))
                 {source.AttackSeconds=.32f;Combatant target=null;foreach(var a in drawActors)if(a.Serial==e.TargetSerial){target=a;break;}if(target!=null)source.Facing=target.Position-new Vector2(source.transform.position.x,source.transform.position.z);}
-                if((e.Kind=="damage"||e.Kind=="critical"||e.Kind=="hero_hit")&&actors.TryGetValue(e.TargetSerial,out var victim))victim.HitSeconds=.04f;
                 if(e.Kind=="cast"&&actors.ContainsKey(e.SourceSerial))trails[e.SourceSerial]=(.4f,0);
                 feedback.Observe(e,ActiveBattle);
                 if(e.Kind=="monster_skill")ObserveSkillFeed(e,FallenMonsterCatalog.Skill(e.Source),"monster");
-                ObserveCastPresentation(e);
+                ObserveCastPresentation(e);ObserveRaidResolution(e);
             }
             UpdateAfterImages((float)frame);
             visualQueue.Clear();hudTimer+=frame;if(hudTimer>=.10){hudTimer=0;RefreshHud();}
@@ -447,7 +449,10 @@ namespace Eternal.UnityMigration
             foreach(var skill in h["skills"])
             {
                 var block=new VisualElement();block.style.marginTop=18;scroll.Add(block);
-                var title=Text(block,(string)skill["skill"],18);title.style.color=Bronze;
+                var skillHeader=Row(block);skillHeader.style.alignItems=Align.Center;
+                if(PaintedHeroSigils.TryIcon(id,out var sigil,out var uv))
+                {var icon=new Image{image=sigil,uv=uv,scaleMode=ScaleMode.ScaleToFit};icon.style.width=42;icon.style.height=42;icon.style.marginRight=10;skillHeader.Add(icon);}
+                var title=Text(skillHeader,(string)skill["skill"],18);title.style.color=Bronze;title.style.whiteSpace=WhiteSpace.Normal;title.style.flexShrink=1;
                 var detail=Text(block,(string)skill["effect"],14);detail.style.whiteSpace=WhiteSpace.Normal;
                 string slot=(string)skill["slot"];string label=slot=="passive"?"패시브":slot=="a1"?"주력 스킬":slot=="a2"?"보조 스킬":"궁극기";
                 Text(block,label+" · "+(slot=="passive"?"조건 발동":slot=="ultimate"?"궁극기 게이지 100%":skill["cooldown"]+"초"),12);

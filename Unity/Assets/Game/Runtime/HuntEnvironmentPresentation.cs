@@ -13,8 +13,8 @@ namespace Eternal.UnityMigration
         Camera view;
         Mesh motes;
         MeshRenderer moteRenderer;
-        readonly Vector3[] moteVertices=new Vector3[48];
-        readonly Color[] moteColors=new Color[48];
+        readonly Vector3[] moteVertices=new Vector3[80];
+        readonly Color[] moteColors=new Color[80];
         Color moteTint;
         public string Zone {get;private set;}
         public string ArtResource {get;private set;}
@@ -33,8 +33,8 @@ namespace Eternal.UnityMigration
             float scale=expanded?2f:1;
             painting.SetVector("_PaintingRight",new Vector4(right.x,right.y,right.z,camera.orthographicSize*2*camera.aspect*scale));
             painting.SetVector("_PaintingUp",new Vector4(up.x,up.y,up.z,camera.orthographicSize*2*scale));Bind(zone);
-            motes=new Mesh{name="Twelve regional atmosphere motes"};motes.MarkDynamic();var uv=new Vector2[48];var indices=new int[72];
-            for(int i=0;i<12;i++){int v=i*4,t=i*6;uv[v]=Vector2.zero;uv[v+1]=Vector2.up;uv[v+2]=Vector2.one;uv[v+3]=Vector2.right;indices[t]=v;indices[t+1]=v+1;indices[t+2]=v+2;indices[t+3]=v;indices[t+4]=v+2;indices[t+5]=v+3;}
+            motes=new Mesh{name="Twenty layered regional atmosphere motes"};motes.MarkDynamic();var uv=new Vector2[80];var indices=new int[120];
+            for(int i=0;i<20;i++){int v=i*4,t=i*6;uv[v]=Vector2.zero;uv[v+1]=Vector2.up;uv[v+2]=Vector2.one;uv[v+3]=Vector2.right;indices[t]=v;indices[t+1]=v+1;indices[t+2]=v+2;indices[t+3]=v;indices[t+4]=v+2;indices[t+5]=v+3;}
             motes.vertices=moteVertices;motes.colors=moteColors;motes.uv=uv;motes.triangles=indices;motes.bounds=new Bounds(Vector3.zero,new Vector3(40,8,30));
             var atmosphere=new GameObject("Regional atmosphere");atmosphere.transform.SetParent(transform,false);atmosphere.AddComponent<MeshFilter>().sharedMesh=motes;moteRenderer=atmosphere.AddComponent<MeshRenderer>();moteRenderer.sharedMaterial=Resources.Load<Material>("Eternal/Materials/Particles");
         }
@@ -49,10 +49,12 @@ namespace Eternal.UnityMigration
         {
             if(motes==null||surface==null)return;moteRenderer.enabled=surface.gameObject.activeSelf;if(!moteRenderer.enabled)return;
             float now=Time.unscaledTime;var right=view.transform.right;var up=view.transform.up;
-            for(int i=0;i<12;i++)
+            for(int i=0;i<20;i++)
             {
                 float phase=Mathf.Repeat(now*.025f+i*.618034f,1);var center=new Vector3(-13+i%6*4.8f+Mathf.Sin(now*.23f+i)*.55f,.2f+phase*.65f,-6+i/6*10+Mathf.Sin(now*.16f+i)*.8f);
-                float size=.023f+i%3*.006f;int v=i*4;moteVertices[v]=center-right*size-up*size;moteVertices[v+1]=center-right*size+up*size;moteVertices[v+2]=center+right*size+up*size;moteVertices[v+3]=center+right*size-up*size;
+                int layer=i%3;float depth=layer==0?.2f:layer==1?.5f:1f;
+                center.y+=layer*.6f;center.x+=Mathf.Sin(now*.19f+i)*depth*.55f;
+                float size=(.015f+layer*.009f);int v=i*4;moteVertices[v]=center-right*size-up*size;moteVertices[v+1]=center-right*size+up*size;moteVertices[v+2]=center+right*size+up*size;moteVertices[v+3]=center+right*size-up*size;
                 var color=moteTint;color.a*=Mathf.Sin(phase*Mathf.PI);moteColors[v]=moteColors[v+1]=moteColors[v+2]=moteColors[v+3]=color;
             }
             motes.vertices=moteVertices;motes.colors=moteColors;

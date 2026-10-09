@@ -27,6 +27,11 @@ namespace Eternal.UnityMigration
         GameObject paintedSeal;
         public bool PaintedGroundSealVisible=>paintedSeal!=null&&paintedSeal.activeInHierarchy;
         SkillVfxBatch skillBatch;
+        CombatHitFeedbackTimeline hitTimeline;
+        public BattleLensPresentation Lens;
+        public Action<int> HitPresented;
+        public int PendingHitFeedback=>hitTimeline?.Count??0;
+        public int HeroSigilQuads=>skillBatch?.HeroSigilQuads??0;
         public bool RaidWarningVisible;
         public bool SuppressCombatPopups;
         public int ActiveSkillEffects=>skillBatch?.ActiveEffects??0;
@@ -57,7 +62,7 @@ namespace Eternal.UnityMigration
         public int ActiveParticles {get;private set;}
         public int EventsPresented {get;private set;}
         public void SetRaidMode(bool raid)
-        {raidMode=raid;RaidWarningVisible=false;skillBatch?.Clear();if(paintedSeal!=null)paintedSeal.SetActive(!raid);foreach(var ring in rings)ring.gameObject.SetActive(!raid);foreach(var halo in ringHalos)halo.gameObject.SetActive(!raid);if(glyphMesh!=null)transform.Find("Twelve bronze rune batch").gameObject.SetActive(!raid);Array.Clear(popups,0,popups.Length);Array.Clear(sparks,0,sparks.Length);}
+        {raidMode=raid;RaidWarningVisible=false;hitTimeline?.Clear();skillBatch?.Clear();if(paintedSeal!=null)paintedSeal.SetActive(!raid);foreach(var ring in rings)ring.gameObject.SetActive(!raid);foreach(var halo in ringHalos)halo.gameObject.SetActive(!raid);if(glyphMesh!=null)transform.Find("Twelve bronze rune batch").gameObject.SetActive(!raid);Array.Clear(popups,0,popups.Length);Array.Clear(sparks,0,sparks.Length);}
         public void SetExpeditionCenter(Vector2 center){targetCenter=center;}
         public void Initialize(Camera camera)
         {
@@ -65,7 +70,7 @@ namespace Eternal.UnityMigration
             var legacy=JObject.Parse(OriginalCatalog.Required("legacy-catalogs").text);
             foreach(JObject p in legacy["skill_vfx"])profiles[(string)p["signature"]]=p;
             particleMaterial=Resources.Load<Material>("Eternal/Materials/Particles");
-            skillBatch=new SkillVfxBatch(transform,particleMaterial,(JArray)legacy["skill_vfx"],camera);
+            skillBatch=new SkillVfxBatch(transform,particleMaterial,(JArray)legacy["skill_vfx"],camera);hitTimeline=new CombatHitFeedbackTimeline(skillBatch.Profiles);
             particleMesh=new Mesh{name="Bounded skill particles"};particleMesh.MarkDynamic();
             var uv=new Vector2[1280];var triangles=new int[1920];
             for(int i=0;i<320;i++)
@@ -155,14 +160,7 @@ namespace Eternal.UnityMigration
             else if(e.Kind=="monster_skill")
             {Burst(position,e.Source=="fallen_elf"?new Color(.5f,.75f,.48f):new Color(.84f,.30f,.37f),10,.65f,"spark");Play("sword",position,.09f);}
             else if(e.Kind=="damage"||e.Kind=="critical"||e.Kind=="hero_hit")
-            {
-                bool critical=e.Kind=="critical";var color=critical?new Color(1,.84f,0):e.Kind=="hero_hit"?new Color(.86f,.54f,.48f):new Color(.85f,.84f,.8f);
-                if(e.Amount>0)AddDamagePopup(e.TargetSerial,e.Amount,critical,position,color);
-                Burst(position,critical?color:new Color(.77f,.64f,.52f),critical?20:5,.55f,"spark");
-                float now=Time.unscaledTime;if(now>=nextStrongImpact)
-                {shakePixels=RaidWarningVisible?0:critical?5:2;shakeUntil=now+.08f;nextStrongImpact=now+.20f;if(critical&&!RaidWarningVisible){zoomUntil=now+.1f;screenFlash=.04f;}}
-                Play(critical?"critical":"sword",position,.08f);
-            }
+            {if(!SuppressCombatPopups)hitTimeline.Enqueue(e,battle,PresentDamage);}
             else if(e.Kind=="loot")
             {
                 var rewardPosition=new Vector3(targetCenter.x,1.2f,targetCenter.y);var bronze=new Color(.77f,.64f,.52f);
@@ -170,10 +168,23 @@ namespace Eternal.UnityMigration
                 popups[popupCursor++%popups.Length]=new Popup{position=rewardPosition,text="+"+e.Amount.ToString("N0")+" G",color=bronze,remaining=.8f,lastEvent=Time.unscaledTime};
             }
             else if(e.Kind=="heal"||e.Kind=="shield")Burst(position,new Color(.66f,.78f,.65f),6,.5f,e.Kind);
+            else if(e.Kind=="level_up"){Burst(position,new Color(.91f,.80f,.58f),20,1.2f,"beam");Play("reward",position,.15f);}
+            else if(e.Kind=="death"){Burst(position,new Color(.54f,.17f,.22f),12,.4f,"spark");if(rng.NextDouble()<.5)Play("sword",position,.08f);}
             else if(e.Kind=="warning")Play("boss_warning",position,.22f);
             else if(e.Kind=="interrupt"||e.Kind=="counter"||e.Kind=="shield_break")
             {Burst(position,new Color(.84f,.74f,.51f),32,1.6f,"burst");Play(e.Kind=="shield_break"?"shield_break":"control",position,.18f);}
             else if(e.Kind=="victory"||e.Kind=="defeat")Play(e.Kind,position,.25f);
+        }
+        void PresentDamage(BattleEvent e)
+        {
+            if(SuppressCombatPopups)return;
+            var position=new Vector3(e.Position.x,.9f,e.Position.y);HitPresented?.Invoke(e.TargetSerial);
+                bool critical=e.Kind=="critical";var color=critical?new Color(1,.84f,0):e.Kind=="hero_hit"?new Color(.86f,.54f,.48f):new Color(.85f,.84f,.8f);
+                if(e.Amount>0)AddDamagePopup(e.TargetSerial,e.Amount,critical,position,color);
+                Burst(position,critical?color:new Color(.77f,.64f,.52f),critical?20:5,.55f,"spark");
+                float now=Time.unscaledTime;if(now>=nextStrongImpact)
+                {shakePixels=RaidWarningVisible?0:critical?10:5;shakeUntil=now+.25f;nextStrongImpact=now+.20f;if(critical&&!RaidWarningVisible){zoomUntil=now+.20f;screenFlash=.08f;Lens?.Critical();}}
+                Play(critical?"critical":"sword",position,.08f);
         }
         void AddDamagePopup(int target,int amount,bool critical,Vector3 position,Color color)
         {
@@ -211,6 +222,7 @@ namespace Eternal.UnityMigration
         void LateUpdate()
         {
             if(cameraView==null)return;FrameCost.Begin();float dt=Time.unscaledDeltaTime,now=Time.unscaledTime;ActiveParticles=0;
+            if(SuppressCombatPopups)hitTimeline.Clear();else hitTimeline.Advance(dt,PresentDamage);
             skillBatch.Advance(dt,RaidWarningVisible);
             var right=cameraView.transform.right;var up=cameraView.transform.up;
             for(int i=0;i<sparks.Length;i++)
@@ -224,10 +236,12 @@ namespace Eternal.UnityMigration
             for(int i=0;i<popups.Length;i++){var p=popups[i];p.remaining=Mathf.Max(0,p.remaining-dt);p.position+=Vector3.up*.55f*dt;popups[i]=p;}
             float wantedSize=expandedHunt&&!raidMode?baseSize*2f/huntZoom:baseSize;
             float unit=wantedSize*2/Mathf.Max(1,Screen.height*.72f);
-            float breathe=Mathf.Sin(now*Mathf.PI*2/8)*2.5f*unit;
+            float breathe=Mathf.Sin(now*Mathf.PI*2/10)*3f*unit;
             var shake=now<shakeUntil?new Vector3((Mathf.PerlinNoise(now*41,0)-.5f)*shakePixels*unit,(Mathf.PerlinNoise(0,now*43)-.5f)*shakePixels*unit,0):Vector3.zero;
-            cameraView.transform.position=baseCamera+cameraView.transform.up*breathe+shake;
-            cameraView.orthographicSize=Mathf.Lerp(cameraView.orthographicSize,now<zoomUntil?wantedSize/1.08f:wantedSize,dt*15);
+            // Screen-space drift travels with the map; warnings keep their ground readable.
+            float side=Mathf.Sin(now*Mathf.PI*2/10+1.7f)*3f*unit;
+            cameraView.transform.position=baseCamera+cameraView.transform.up*breathe+cameraView.transform.right*side+shake;
+            cameraView.orthographicSize=Mathf.Lerp(cameraView.orthographicSize,now<zoomUntil?wantedSize/1.15f:wantedSize,dt*15);
             screenFlash=Mathf.Max(0,screenFlash-dt);
             UpdateRunes(now,dt);
             FrameCost.End();

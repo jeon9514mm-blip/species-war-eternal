@@ -1,0 +1,687 @@
+{
+  "passed": true,
+  "phase": "second_process_reload",
+  "error": "",
+  "comparisons": 7,
+  "elapsed_seconds": 3.95045424,
+  "scratch_name": "qa-profiles-b904f13b025c49eb9a14a5200a7128ae",
+  "expected": {
+    "save_version": 37,
+    "unity_player_profile": true,
+    "selected_faction": "aurelia",
+    "formation_id": "balanced",
+    "deployed_hero_ids": [
+      "mira",
+      "leonhardt",
+      "elisia",
+      "kairen",
+      "orwin",
+      "seria",
+      "astel",
+      "lunea",
+      "caelum"
+    ],
+    "hero_progress": {
+      "leonhardt": {
+        "level": 1,
+        "xp": 3
+      },
+      "mira": {
+        "level": 1,
+        "xp": 3
+      },
+      "elisia": {
+        "level": 1,
+        "xp": 2
+      },
+      "kairen": {
+        "level": 1,
+        "xp": 2
+      },
+      "orwin": {
+        "level": 1,
+        "xp": 2
+      },
+      "seria": {
+        "level": 1,
+        "xp": 2
+      },
+      "astel": {
+        "level": 1,
+        "xp": 2
+      },
+      "darius": {
+        "level": 1,
+        "xp": 2
+      },
+      "lunea": {
+        "level": 1,
+        "xp": 2
+      },
+      "caelum": {
+        "level": 1,
+        "xp": 2
+      },
+      "adrien": {
+        "level": 1,
+        "xp": 0
+      },
+      "tessa": {
+        "level": 1,
+        "xp": 0
+      },
+      "naia": {
+        "level": 1,
+        "xp": 0
+      },
+      "sael": {
+        "level": 1,
+        "xp": 0
+      },
+      "odelia": {
+        "level": 1,
+        "xp": 0
+      }
+    },
+    "hero_shards": {},
+    "wallet_gold": 360,
+    "wallet_gems": 100,
+    "wallet_xp": 22,
+    "loot_inventory": [
+      {
+        "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_0",
+        "item_type": "equipment",
+        "slot": "armor",
+        "level": 1,
+        "rarity": "일반",
+        "name": "초원 방어 가죽갑옷",
+        "set": "개척자",
+        "zone": "사냥터 1",
+        "origin": "hunt",
+        "source_id": "gray_meadow",
+        "hunt_role": "defender",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 16
+      },
+      {
+        "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_1",
+        "item_type": "equipment",
+        "slot": "weapon",
+        "level": 1,
+        "rarity": "일반",
+        "name": "초원 보조 사냥검",
+        "set": "개척자",
+        "zone": "사냥터 1",
+        "origin": "hunt",
+        "source_id": "gray_meadow",
+        "hunt_role": "support",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 22
+      },
+      {
+        "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_3",
+        "item_type": "equipment",
+        "slot": "armor",
+        "level": 1,
+        "rarity": "희귀",
+        "name": "초원 방어 비늘갑옷",
+        "set": "개척자",
+        "zone": "사냥터 1",
+        "origin": "hunt",
+        "source_id": "gray_meadow",
+        "hunt_role": "defender",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [
+          {
+            "stat": "hp_pct",
+            "value": 6
+          }
+        ],
+        "focus": 0,
+        "proposal": {},
+        "power": 23
+      },
+      {
+        "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_4",
+        "item_type": "equipment",
+        "slot": "weapon",
+        "level": 1,
+        "rarity": "일반",
+        "name": "초원 방어 사냥검",
+        "set": "개척자",
+        "zone": "사냥터 1",
+        "origin": "hunt",
+        "source_id": "gray_meadow",
+        "hunt_role": "defender",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 22
+      },
+      {
+        "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_5",
+        "item_type": "equipment",
+        "slot": "accessory",
+        "level": 1,
+        "rarity": "일반",
+        "name": "초원 딜러 부적",
+        "set": "개척자",
+        "zone": "사냥터 1",
+        "origin": "hunt",
+        "source_id": "gray_meadow",
+        "hunt_role": "dealer",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 12
+      },
+      {
+        "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_6",
+        "item_type": "equipment",
+        "slot": "armor",
+        "level": 1,
+        "rarity": "일반",
+        "name": "초원 보조 가죽갑옷",
+        "set": "개척자",
+        "zone": "사냥터 1",
+        "origin": "hunt",
+        "source_id": "gray_meadow",
+        "hunt_role": "support",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 16
+      },
+      {
+        "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_7",
+        "item_type": "equipment",
+        "slot": "accessory",
+        "level": 1,
+        "rarity": "일반",
+        "name": "초원 딜러 부적",
+        "set": "개척자",
+        "zone": "사냥터 1",
+        "origin": "hunt",
+        "source_id": "gray_meadow",
+        "hunt_role": "dealer",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 12
+      },
+      {
+        "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_8",
+        "item_type": "equipment",
+        "slot": "weapon",
+        "level": 1,
+        "rarity": "일반",
+        "name": "초원 딜러 사냥검",
+        "set": "개척자",
+        "zone": "사냥터 1",
+        "origin": "hunt",
+        "source_id": "gray_meadow",
+        "hunt_role": "dealer",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 22
+      },
+      {
+        "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_10",
+        "item_type": "equipment",
+        "slot": "accessory",
+        "level": 1,
+        "rarity": "전설",
+        "name": "초원 보조 심장석",
+        "set": "개척자",
+        "zone": "사냥터 1",
+        "origin": "hunt",
+        "source_id": "gray_meadow",
+        "hunt_role": "support",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [
+          {
+            "stat": "ultimate_pct",
+            "value": 3
+          }
+        ],
+        "focus": 0,
+        "proposal": {},
+        "power": 26
+      },
+      {
+        "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_11",
+        "item_type": "equipment",
+        "slot": "armor",
+        "level": 1,
+        "rarity": "일반",
+        "name": "초원 딜러 가죽갑옷",
+        "set": "개척자",
+        "zone": "사냥터 1",
+        "origin": "hunt",
+        "source_id": "gray_meadow",
+        "hunt_role": "dealer",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 16
+      }
+    ],
+    "guardian_equipped": "lumi",
+    "guardian_collection": {
+      "lumi": {
+        "copies": 1
+      }
+    },
+    "unity_pack_total": 1,
+    "unity_hunt_zone": "gray_meadow",
+    "hero_equipment_items": {
+      "leonhardt": {
+        "weapon": {
+          "id": "legacy_equipped_leonhardt_weapon",
+          "item_type": "equipment",
+          "slot": "weapon",
+          "level": 2,
+          "rarity": "일반",
+          "name": "초보자의 검",
+          "set": "초보자",
+          "zone": "알 수 없는 지역",
+          "origin": "legacy",
+          "source_id": "",
+          "hunt_role": "",
+          "bound": true,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 44
+        }
+      }
+    },
+    "hero_equipment": {
+      "leonhardt": {
+        "weapon": 2,
+        "armor": 1,
+        "accessory": 1
+      }
+    },
+    "hero_equipment_rarity": {
+      "leonhardt": {
+        "weapon": "일반",
+        "armor": "일반",
+        "accessory": "일반"
+      }
+    },
+    "hero_equipment_names": {
+      "leonhardt": {
+        "weapon": "초보자의 검",
+        "armor": "초보자의 가죽갑옷",
+        "accessory": "빛바랜 부적"
+      }
+    },
+    "hero_equipment_sets": {
+      "leonhardt": {
+        "weapon": "초보자",
+        "armor": "초보자",
+        "accessory": "초보자"
+      }
+    },
+    "unity_chain_enabled": false,
+    "unity_party_presets": {
+      "0": {
+        "heroes": [
+          "mira",
+          "leonhardt",
+          "elisia",
+          "kairen",
+          "orwin",
+          "seria",
+          "astel",
+          "darius",
+          "lunea",
+          "caelum"
+        ],
+        "formation": "balanced"
+      }
+    },
+    "unity_loot_salt": "575c3ae116104b75ad521472d2dc5689",
+    "unity_last_loot": {
+      "pack": 1,
+      "zone": "gray_meadow",
+      "items": [
+        {
+          "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_0",
+          "item_type": "equipment",
+          "slot": "armor",
+          "level": 1,
+          "rarity": "일반",
+          "name": "초원 방어 가죽갑옷",
+          "set": "개척자",
+          "zone": "사냥터 1",
+          "origin": "hunt",
+          "source_id": "gray_meadow",
+          "hunt_role": "defender",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 16
+        },
+        {
+          "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_1",
+          "item_type": "equipment",
+          "slot": "weapon",
+          "level": 1,
+          "rarity": "일반",
+          "name": "초원 보조 사냥검",
+          "set": "개척자",
+          "zone": "사냥터 1",
+          "origin": "hunt",
+          "source_id": "gray_meadow",
+          "hunt_role": "support",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 22
+        },
+        {
+          "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_3",
+          "item_type": "equipment",
+          "slot": "armor",
+          "level": 1,
+          "rarity": "희귀",
+          "name": "초원 방어 비늘갑옷",
+          "set": "개척자",
+          "zone": "사냥터 1",
+          "origin": "hunt",
+          "source_id": "gray_meadow",
+          "hunt_role": "defender",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [
+            {
+              "stat": "hp_pct",
+              "value": 6
+            }
+          ],
+          "focus": 0,
+          "proposal": {},
+          "power": 23
+        },
+        {
+          "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_4",
+          "item_type": "equipment",
+          "slot": "weapon",
+          "level": 1,
+          "rarity": "일반",
+          "name": "초원 방어 사냥검",
+          "set": "개척자",
+          "zone": "사냥터 1",
+          "origin": "hunt",
+          "source_id": "gray_meadow",
+          "hunt_role": "defender",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 22
+        },
+        {
+          "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_5",
+          "item_type": "equipment",
+          "slot": "accessory",
+          "level": 1,
+          "rarity": "일반",
+          "name": "초원 딜러 부적",
+          "set": "개척자",
+          "zone": "사냥터 1",
+          "origin": "hunt",
+          "source_id": "gray_meadow",
+          "hunt_role": "dealer",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 12
+        },
+        {
+          "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_6",
+          "item_type": "equipment",
+          "slot": "armor",
+          "level": 1,
+          "rarity": "일반",
+          "name": "초원 보조 가죽갑옷",
+          "set": "개척자",
+          "zone": "사냥터 1",
+          "origin": "hunt",
+          "source_id": "gray_meadow",
+          "hunt_role": "support",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 16
+        },
+        {
+          "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_7",
+          "item_type": "equipment",
+          "slot": "accessory",
+          "level": 1,
+          "rarity": "일반",
+          "name": "초원 딜러 부적",
+          "set": "개척자",
+          "zone": "사냥터 1",
+          "origin": "hunt",
+          "source_id": "gray_meadow",
+          "hunt_role": "dealer",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 12
+        },
+        {
+          "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_8",
+          "item_type": "equipment",
+          "slot": "weapon",
+          "level": 1,
+          "rarity": "일반",
+          "name": "초원 딜러 사냥검",
+          "set": "개척자",
+          "zone": "사냥터 1",
+          "origin": "hunt",
+          "source_id": "gray_meadow",
+          "hunt_role": "dealer",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 22
+        },
+        {
+          "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_10",
+          "item_type": "equipment",
+          "slot": "accessory",
+          "level": 1,
+          "rarity": "전설",
+          "name": "초원 보조 심장석",
+          "set": "개척자",
+          "zone": "사냥터 1",
+          "origin": "hunt",
+          "source_id": "gray_meadow",
+          "hunt_role": "support",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [
+            {
+              "stat": "ultimate_pct",
+              "value": 3
+            }
+          ],
+          "focus": 0,
+          "proposal": {},
+          "power": 26
+        },
+        {
+          "id": "unity_hunt_575c3ae116104b75ad521472d2dc5689_1_11",
+          "item_type": "equipment",
+          "slot": "armor",
+          "level": 1,
+          "rarity": "일반",
+          "name": "초원 딜러 가죽갑옷",
+          "set": "개척자",
+          "zone": "사냥터 1",
+          "origin": "hunt",
+          "source_id": "gray_meadow",
+          "hunt_role": "dealer",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 16
+        }
+      ]
+    },
+    "unity_raid_attempt": 1,
+    "unity_raid_active": {
+      "zone": "gray_meadow",
+      "attempt": 1
+    },
+    "unity_raid_chains": {
+      "gray_meadow": {
+        "enabled": true,
+        "entries": [
+          {
+            "hero": "lunea",
+            "slot": "a1"
+          },
+          {
+            "hero": "kairen",
+            "slot": "a1"
+          },
+          {
+            "hero": "kairen",
+            "slot": "a2"
+          },
+          {
+            "hero": "lunea",
+            "slot": "a2"
+          },
+          {
+            "hero": "mira",
+            "slot": "a2"
+          },
+          {
+            "hero": "mira",
+            "slot": "a1"
+          }
+        ]
+      }
+    }
+  },
+  "trace": [
+    {
+      "check": "real native faction entry",
+      "frame": 45
+    },
+    {
+      "input": "아우렐리아 이어하기",
+      "frame": 54,
+      "x": 750.000061,
+      "y": 379.999969
+    },
+    {
+      "check": "persistent player excludes review seed",
+      "frame": 83
+    },
+    {
+      "input": "일시정지",
+      "frame": 85,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "hunt paused through pointer",
+      "frame": 90
+    },
+    {
+      "check": "exact saved state restored in a second process",
+      "frame": 90
+    },
+    {
+      "check": "restored stage theme and hunt cursor",
+      "frame": 90
+    },
+    {
+      "check": "restored party drives actual actors",
+      "frame": 90
+    },
+    {
+      "check": "restored chain toggle",
+      "frame": 90
+    }
+  ],
+  "environments": [
+    {
+      "capture": "native-continued-hunt",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    }
+  ],
+  "note": "Development-only scratch profiles. Actual pointer zoom, ordered party preset, natural monster drops, naturally cleared 499/999 boundary waves, authored counter practice and a second process reload; no real user files or performance benchmark."
+}

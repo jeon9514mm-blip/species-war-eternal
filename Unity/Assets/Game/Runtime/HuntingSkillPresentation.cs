@@ -74,7 +74,7 @@ namespace Eternal.UnityMigration
             }
             endedHighlights.Clear();foreach(var pair in castHighlights)if(pair.Value<=now)endedHighlights.Add(pair.Key);
             foreach(string id in endedHighlights)castHighlights.Remove(id);
-            bool protectedArea=feedback.RaidWarningVisible||modal.style.display.value!=DisplayStyle.None||Raid!=null&&!Raid.Running;
+            bool protectedArea=feedback.RaidWarningVisible||RaidResolutionPending||modal.style.display.value!=DisplayStyle.None||Raid!=null&&!Raid.Running;
             while(ultimateNotices.Count>0&&ultimateNotices.Peek().expires<now)ultimateNotices.Dequeue();
             if(now>=castCueUntil)
             {
@@ -107,6 +107,7 @@ namespace Eternal.UnityMigration
         void ResetSkillPresentation()
         {
             ResetCombatReadability();
+            resolutionRaid=null;resolutionUntil=0;if(raidResolution!=null)raidResolution.style.display=DisplayStyle.None;
             ultimateNotices.Clear();castHighlights.Clear();castCueUntil=0;shownRaidOutcome="";
             if(castCue!=null)castCue.style.display=DisplayStyle.None;if(raidResult!=null)raidResult.style.display=DisplayStyle.None;
         }

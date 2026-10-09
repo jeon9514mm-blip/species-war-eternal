@@ -77,6 +77,9 @@ namespace Eternal.UnityMigration
         MeshFilter hairFilter;
         MeshRenderer hairRenderer;
         readonly CapeChainMotion cape=new();
+        HeroDeepPresentation deep;
+        Mesh ownedHair;
+        public int CapePoints=>heroSurface?deep.CapePoints:0;
         static readonly int[] capeProperties={Shader.PropertyToID("_Cape0"),Shader.PropertyToID("_Cape1"),Shader.PropertyToID("_Cape2"),Shader.PropertyToID("_Cape3"),Shader.PropertyToID("_Cape4")};
         public bool UsesRelief=>relief;
         public string ActorId=>actorId;
@@ -92,7 +95,7 @@ namespace Eternal.UnityMigration
 
         public void Initialize(string id,float height,Camera camera,bool hero=false)
         {
-            actorId=id;cameraView=camera; atlas=OriginalCatalog.Atlas(id);displayHeight=height;heroSurface=hero;
+            actorId=id;if(hero){deep=HeroDeepPresentation.For(id);cape.Configure(deep.CapePoints);}cameraView=camera; atlas=OriginalCatalog.Atlas(id);displayHeight=height;heroSurface=hero;
             var art = new GameObject("Original painted body");
             art.transform.SetParent(transform,false);
             meshFilter=art.AddComponent<MeshFilter>(); meshRenderer=art.AddComponent<MeshRenderer>();
@@ -107,14 +110,14 @@ namespace Eternal.UnityMigration
             if(relief)
             {
                 meshFilter.sharedMesh=surfaces.Body;meshRenderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.On;
-                material.SetFloat("_CapeEnabled",hero?1:0);
+                material.SetFloat("_CapeEnabled",hero?1:0);if(hero)deep.Apply(material);
                 if(hero&&surfaces.Hair!=null)
                 {
                     var hair=new GameObject("600 original Blender hair cards");hair.transform.SetParent(art.transform,false);
-                    hairFilter=hair.AddComponent<MeshFilter>();hairFilter.sharedMesh=surfaces.Hair;hairRenderer=hair.AddComponent<MeshRenderer>();
+                    hairFilter=hair.AddComponent<MeshFilter>();hairFilter.sharedMesh=deep.SelectHair(surfaces.Hair);if(hairFilter.sharedMesh!=surfaces.Hair)ownedHair=hairFilter.sharedMesh;hairRenderer=hair.AddComponent<MeshRenderer>();
                     var hairMaterial=new Material(material);hairMaterial.SetFloat("_HairCards",1);hairMaterial.SetFloat("_Outline",0);hairMaterial.SetFloat("_CapeEnabled",0);hairRenderer.sharedMaterial=hairMaterial;
                 }
-                SetReliefPose(0);phase=(transform.position.x+20)*.08f;return;
+                SetReliefPose(0);if(PaintedFurShells.Suitable(id))art.AddComponent<PaintedFurShells>().Initialize(meshFilter,meshRenderer);phase=(transform.position.x+20)*.08f;return;
             }
             frames=new Mesh[atlas.attack.frames.Length+atlas.motion.frames.Length];
             int index=0;
@@ -152,11 +155,11 @@ namespace Eternal.UnityMigration
             if(relief)
             {
                 var material=meshRenderer.sharedMaterial;material.SetFloat("_VisualTime",Time.unscaledTime);
-                float period=heroSurface?2:actorId.Contains("boar")?2.2f:actorId.Contains("crow")?1.5f:1.2f;
+                float period=heroSurface?deep.BreathPeriod:actorId.Contains("boar")?2.2f:actorId.Contains("crow")?1.5f:1.2f;
                 float breath=MovingSpeed>.05f||AttackSeconds>0?0:Mathf.Sin((Time.unscaledTime+phase)*Mathf.PI*2/period)*2.5f*displayHeight/86.4f;
                 material.SetFloat("_Breath",breath);
                 if(heroSurface)
-                {cape.Advance(Time.unscaledDeltaTime,Time.unscaledTime,Mathf.Clamp01(MovingSpeed/2.2f),phase);for(int i=0;i<5;i++){var p=cape.Points[i]*displayHeight/86.4f;material.SetVector(capeProperties[i],new Vector4(p.x,-p.y,0,0));}}
+                {cape.Advance(Time.unscaledDeltaTime,Time.unscaledTime,Mathf.Clamp01(MovingSpeed/2.2f),phase);for(int i=0;i<5;i++){var p=cape.Sample(i/4f)*displayHeight/86.4f;material.SetVector(capeProperties[i],new Vector4(p.x,-p.y,0,0));}}
                 if(hairRenderer!=null){hairRenderer.sharedMaterial.SetFloat("_VisualTime",Time.unscaledTime);hairRenderer.sharedMaterial.SetFloat("_Breath",breath);hairRenderer.sharedMaterial.SetColor("_Tint",material.GetColor("_Tint"));}
             }
         }
@@ -190,7 +193,7 @@ namespace Eternal.UnityMigration
         {
             if(frames!=null)foreach(var mesh in frames)Destroy(mesh);
             if(meshRenderer!=null)Destroy(meshRenderer.sharedMaterial);
-            if(hairRenderer!=null)Destroy(hairRenderer.sharedMaterial);
+            if(hairRenderer!=null)Destroy(hairRenderer.sharedMaterial);if(ownedHair!=null)Destroy(ownedHair);
         }
     }
 }
