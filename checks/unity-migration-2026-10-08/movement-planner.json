@@ -18,8 +18,8 @@
         "lunea",
         "caelum"
       ],
-      "packs_cleared": 7,
-      "casts": 85
+      "packs_cleared": 8,
+      "casts": 93
     },
     {
       "group": 1,
@@ -37,7 +37,7 @@
         "odelia"
       ],
       "packs_cleared": 9,
-      "casts": 64
+      "casts": 94
     },
     {
       "group": 2,
@@ -54,8 +54,8 @@
         "veyra",
         "ulric"
       ],
-      "packs_cleared": 7,
-      "casts": 82
+      "packs_cleared": 8,
+      "casts": 110
     },
     {
       "group": 3,
@@ -72,8 +72,8 @@
         "bora",
         "selene"
       ],
-      "packs_cleared": 6,
-      "casts": 76
+      "packs_cleared": 8,
+      "casts": 102
     }
   ],
   "note": "Role distances match original source. The bounded angular/reservation planner is an adaptation; body clearance is not proof of complete painted silhouette separation."

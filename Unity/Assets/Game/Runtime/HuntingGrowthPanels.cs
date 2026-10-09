@@ -8,7 +8,7 @@ namespace Eternal.UnityMigration
 {
     public sealed partial class HuntingMigrationReview
     {
-        string growthMessage="",growthSection="";
+        string growthMessage="",growthSection="장비";
         bool GrowthAllowed=>Raid==null&&ReviewState.MutationError.Length==0;
         static string SlotName(string slot)=>slot=="weapon"?"무기":slot=="armor"?"갑옷":"장신구";
         void StateCommand(Func<StateCommandResult> command,Action refresh)
@@ -28,52 +28,55 @@ namespace Eternal.UnityMigration
             if(!ReviewState.IsFactionHero(id)){ShowHero(id);return;}
             var hero=Simulation.Catalog.Hero(id);PanelHeader((string)hero["name"]+" · 성장");
             var wallet=Text(modal,"골드 "+ReviewState.WalletGold.ToString("N0")+"  ·  젬 "+ReviewState.WalletGems.ToString("N0"),12);wallet.name="growth-wallet";wallet.style.color=Bronze;wallet.style.marginTop=8;
-            var party=new ScrollView(ScrollViewMode.Horizontal){name="growth-party-selector"};party.style.height=70;party.style.flexShrink=0;party.horizontalScrollerVisibility=ScrollerVisibility.Auto;party.verticalScrollerVisibility=ScrollerVisibility.Hidden;party.contentContainer.style.flexDirection=FlexDirection.Row;modal.Add(party);
+            var party=new ScrollView(ScrollViewMode.Horizontal){name="growth-party-selector"};party.style.height=76;party.style.flexShrink=0;party.horizontalScrollerVisibility=ScrollerVisibility.Auto;party.verticalScrollerVisibility=ScrollerVisibility.Hidden;party.contentContainer.style.flexDirection=FlexDirection.Row;modal.Add(party);
             foreach(string deployed in ReviewState.DeployedHeroes())
             {
                 string chosen=deployed;var select=new Button(()=>ShowGrowth(chosen)){name="growth-select-"+chosen,tooltip=(string)Simulation.Catalog.Hero(chosen)["name"]};select.style.width=50;select.style.height=50;select.style.flexShrink=0;select.style.marginTop=5;select.style.marginRight=5;select.style.paddingLeft=select.style.paddingRight=select.style.paddingTop=select.style.paddingBottom=0;select.style.borderTopLeftRadius=select.style.borderTopRightRadius=select.style.borderBottomLeftRadius=select.style.borderBottomRightRadius=25;select.style.overflow=Overflow.Hidden;select.style.backgroundColor=chosen==id?Bronze:Ink;
                 var portrait=new Image{sprite=InspectionPortrait(chosen),scaleMode=ScaleMode.ScaleToFit,pickingMode=PickingMode.Ignore};portrait.style.width=46;portrait.style.height=46;select.Add(portrait);party.Add(select);
             }
-            var jumps=Row(modal);jumps.style.marginTop=3;jumps.style.marginBottom=6;
-            var scroll=new ScrollView();scroll.style.flexGrow=1;modal.Add(scroll);
-            var top=Row(scroll);top.style.marginTop=12;top.style.alignItems=Align.Center;
-            var art=new Image{sprite=InspectionPortrait(id),scaleMode=ScaleMode.ScaleToFit};art.style.width=74;art.style.height=94;art.style.marginRight=10;top.Add(art);
+            var top=Row(modal);top.name="growth-summary";top.style.marginTop=7;top.style.marginBottom=5;top.style.alignItems=Align.Center;top.style.flexShrink=0;
+            var art=new Image{sprite=InspectionPortrait(id),scaleMode=ScaleMode.ScaleToFit};art.style.width=58;art.style.height=80;art.style.marginRight=10;top.Add(art);
             var info=new VisualElement();top.Add(info);var progress=ReviewState.HeroProgress(id);var profile=ReviewState.CombatProfile(id);
             Text(info,"Lv."+progress.level+" · "+ReviewState.Grade(id)+" · "+(string)hero["role_group"],17).style.color=Bronze;
             Text(info,"공격 "+profile["attack"]+"  방어 "+profile["defense"],14);
             Text(info,"최대 체력 "+profile["max_hp"],14);Text(info,"경험치 "+progress.xp+" / "+(progress.level>=100?"MAX":LegacyGrowthEconomy.XpCost(progress.level,100).ToString()),12).style.color=Moss;
+            foreach(var line in info.Query<Label>().ToList()){line.style.marginTop=line.style.marginBottom=line.style.paddingTop=line.style.paddingBottom=0;line.style.height=20;line.style.flexShrink=0;}
             var xpTrack=new VisualElement{name="growth-xp-track"};xpTrack.style.height=5;xpTrack.style.marginTop=6;xpTrack.style.backgroundColor=Ink;info.style.flexGrow=1;info.style.minWidth=0;info.Add(xpTrack);var xpFill=new VisualElement{name="growth-xp-fill"};xpFill.style.height=5;xpFill.style.backgroundColor=Moss;xpFill.style.width=Length.Percent(progress.level>=100?100:Mathf.Clamp01((float)progress.xp/Math.Max(1,LegacyGrowthEconomy.XpCost(progress.level,100)))*100);xpTrack.Add(xpFill);
-            Button(scroll,"스킬 보기",()=>ShowHero(id)).style.marginLeft=0;
-            GrowthNotice(scroll);
-            var tree=ReviewState.HeroTree(id);var research=Text(scroll,"연구 · 남은 포인트 "+tree.available,17);research.style.marginTop=12;
+            var details=Row(modal);details.style.justifyContent=Justify.SpaceBetween;details.style.flexShrink=0;
+            var skillLink=Button(details,"스킬 보기",()=>ShowHero(id));skillLink.style.height=25;skillLink.style.fontSize=11;skillLink.style.marginLeft=0;
+            if(growthMessage.Length>0){var result=Text(details,growthMessage,11);result.name="growth-result";result.style.color=Moss;result.style.flexGrow=1;result.style.minWidth=0;result.style.whiteSpace=WhiteSpace.Normal;}
+            var jumps=Row(modal);jumps.style.marginTop=6;jumps.style.marginBottom=6;jumps.style.flexShrink=0;
+            var scroll=new ScrollView{name="growth-section-scroll"};scroll.style.flexGrow=1;modal.Add(scroll);
+            var researchPanel=new VisualElement{name="growth-section-research"};var gearPanel=new VisualElement{name="growth-section-gear"};var rankPanel=new VisualElement{name="growth-section-rank"};
+            foreach(var panel in new[]{researchPanel,gearPanel,rankPanel})scroll.Add(panel);
+            researchPanel.style.display=growthSection=="연구"?DisplayStyle.Flex:DisplayStyle.None;gearPanel.style.display=growthSection=="장비"?DisplayStyle.Flex:DisplayStyle.None;rankPanel.style.display=growthSection=="승급"?DisplayStyle.Flex:DisplayStyle.None;
+            var tree=ReviewState.HeroTree(id);var research=Text(researchPanel,"연구 · 남은 포인트 "+tree.available,17);research.style.marginTop=6;
             foreach(string branch in new[]{"offense","survival","utility"})
             {
                 string selected=branch;int rank=branch=="offense"?tree.offense:branch=="survival"?tree.survival:tree.utility;
                 string name=branch=="offense"?"공격":branch=="survival"?"생존":"유틸리티";
-                var row=Row(scroll);row.style.alignItems=Align.Center;row.style.marginTop=7;
+                var row=Row(researchPanel);row.style.alignItems=Align.Center;row.style.marginTop=7;
                 var label=Text(row,name+"  "+rank+" / 10",14);label.style.flexGrow=1;
                 GrowthButton(row,"연구 +1",()=>ReviewState.UpgradeResearch(id,selected),()=>ShowGrowth(id),tree.available>0&&rank<10);
             }
-            var gear=Text(scroll,"장착 장비",17);gear.style.marginTop=16;
-            Text(scroll,(string)ReviewState.EquipmentProfile(id)["summary"],12).style.whiteSpace=WhiteSpace.Normal;
+            var gear=Text(gearPanel,"장착 장비",17);gear.style.marginTop=6;
+            Text(gearPanel,(string)ReviewState.EquipmentProfile(id)["summary"],12).style.whiteSpace=WhiteSpace.Normal;
             foreach(string slot in OriginalEquipmentRules.Slots)
             {
                 string selected=slot;var item=ReviewState.EquippedItem(id,slot);int level=(int)item["level"];int cost=LegacyGrowthEconomy.EquipmentCost(slot,level);
-                var block=Box(scroll,"growth-gear-"+slot,new Color(.065f,.085f,.09f));block.AddToClassList("growth-gear-card");block.style.marginTop=9;block.style.paddingLeft=block.style.paddingRight=10;block.style.paddingTop=block.style.paddingBottom=9;
+                var block=Box(gearPanel,"growth-gear-"+slot,new Color(.065f,.085f,.09f));block.AddToClassList("growth-gear-card");block.style.marginTop=9;block.style.paddingLeft=block.style.paddingRight=10;block.style.paddingTop=block.style.paddingBottom=9;
                 Text(block,SlotName(slot)+" · "+item["name"]+" +"+level,14).style.whiteSpace=WhiteSpace.Normal;
                 Text(block,item["rarity"]+" · "+item["set"]+" · 전투력 "+item["power"],12).style.color=Moss;
+                foreach(var line in block.Query<Label>().ToList()){line.style.marginTop=line.style.marginBottom=2;line.style.paddingTop=line.style.paddingBottom=0;}
                 GrowthButton(block,level>=10?"최대 강화":"강화 · "+cost.ToString("N0")+" 골드",()=>ReviewState.EnhanceGear((string)item["id"],id,selected),()=>ShowGrowth(id),level<10&&ReviewState.WalletGold>=cost).style.marginTop=6;
             }
             var ranks=ReviewState.Snapshot();int asc=(int)GameStateCommands.Integer((ranks["hero_ascension"] as JObject)?[id],0,0,3),rankBreak=(int)GameStateCommands.Integer((ranks["hero_breakthrough"] as JObject)?[id],0,0,5),shards=(int)GameStateCommands.Integer((ranks["hero_shards"] as JObject)?[id],0,0,100000000);
             int ascCost=1200+asc*1800,requiredLevel=10+asc*10,breakCost=20+rankBreak*20;
-            var ascend=Text(scroll,"승급 · 돌파",17);ascend.style.marginTop=16;
-            Text(scroll,"조각 "+shards+" · 돌파 "+rankBreak+" / 5",13).style.color=Moss;
-            GrowthButton(scroll,ReviewState.Grade(id)=="UR"?"최고 등급 UR":"승급 · Lv."+requiredLevel+" / "+ascCost.ToString("N0")+" 골드",()=>ReviewState.Ascend(id),()=>ShowGrowth(id),ReviewState.Grade(id)!="UR"&&progress.level>=requiredLevel&&ReviewState.WalletGold>=ascCost).style.marginTop=6;
-            GrowthButton(scroll,rankBreak>=5?"최대 돌파":"돌파 · 조각 "+breakCost,()=>ReviewState.Breakthrough(id),()=>ShowGrowth(id),rankBreak<5&&shards>=breakCost).style.marginTop=6;
-            void RevealSection(VisualElement section)=>scroll.scrollOffset=new Vector2(0,section.layout.y);
-            foreach(var target in new[]{(label:"장비",section:gear),(label:"연구",section:research),(label:"승급",section:ascend)}){var section=target.section;string label=target.label;var jump=Button(jumps,label,()=>{growthSection=label;RevealSection(section);});jump.style.flexGrow=1;jump.style.marginLeft=0;jump.style.fontSize=12;jump.style.color=growthSection==label?Bronze:Parchment;}
-            var retained=growthSection=="장비"?gear:growthSection=="연구"?research:growthSection=="승급"?ascend:null;
-            if(retained!=null)scroll.schedule.Execute(()=>RevealSection(retained)).ExecuteLater(50);
+            var ascend=Text(rankPanel,"승급 · 돌파",17);ascend.style.marginTop=6;
+            Text(rankPanel,"조각 "+shards+" · 돌파 "+rankBreak+" / 5",13).style.color=Moss;
+            GrowthButton(rankPanel,ReviewState.Grade(id)=="UR"?"최고 등급 UR":"승급 · Lv."+requiredLevel+" / "+ascCost.ToString("N0")+" 골드",()=>ReviewState.Ascend(id),()=>ShowGrowth(id),ReviewState.Grade(id)!="UR"&&progress.level>=requiredLevel&&ReviewState.WalletGold>=ascCost).style.marginTop=6;
+            GrowthButton(rankPanel,rankBreak>=5?"최대 돌파":"돌파 · 조각 "+breakCost,()=>ReviewState.Breakthrough(id),()=>ShowGrowth(id),rankBreak<5&&shards>=breakCost).style.marginTop=6;
+            foreach(string label in new[]{"장비","연구","승급"}){string chosen=label;var jump=Button(jumps,label,()=>{growthSection=chosen;ShowGrowth(id);});jump.name="growth-tab-"+label;jump.style.flexGrow=1;jump.style.marginLeft=0;jump.style.fontSize=12;jump.style.color=growthSection==label?Ink:Parchment;jump.style.backgroundColor=growthSection==label?Bronze:Ink;}
         }
         void ShowInventory()
         {

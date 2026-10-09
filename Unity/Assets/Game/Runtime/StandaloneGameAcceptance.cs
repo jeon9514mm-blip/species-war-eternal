@@ -152,32 +152,50 @@ namespace Eternal.UnityMigration
             Check(UI.Q("growth-party-selector").Query<Button>().ToList().Count==10,"growth exposes ten current heroes");
             yield return Pointer(UI.Q<Button>("growth-select-mira"),"growth select Mira");
             Check(UI.Query<Label>().ToList().Any(l=>l.text==(string)Game.Simulation.Catalog.Hero("mira")["name"]+" · 성장")&&Game.ReviewState.WalletGold==gold,"hero navigation is read-only");
-            yield return Click("연구");yield return Capture("growth-research-native");yield return Click("장비");
+            Check(Visible(UI.Q("growth-summary"))&&UI.Q("growth-section-research").resolvedStyle.display==DisplayStyle.None,"fixed summary and exclusive gear tab");
+            yield return Click("연구");Check(UI.Q("growth-section-gear").resolvedStyle.display==DisplayStyle.None&&Visible(UI.Q("growth-section-research")),"research tab isolates its controls");yield return Capture("growth-research-native");
+            yield return Click("승급");Check(Visible(UI.Q("growth-section-rank"))&&!UI.Query<Button>().ToList().First(b=>(b.text??"").StartsWith("승급 · Lv.")).enabledInHierarchy&&Game.ReviewState.WalletGold==gold,"low-level ascension remains gated without spending");yield return Capture("growth-rank-native");
+            yield return Pointer(UI.Q<Button>("growth-select-orwin"),"growth select Orwin");Check(Visible(UI.Q("growth-section-rank"))&&Game.ReviewState.WalletGold==gold,"hero switch retains selected growth tab");yield return Pointer(UI.Q<Button>("growth-select-mira"),"growth return Mira");yield return Click("장비");
             int attack=Game.Simulation.Battle.Heroes.First(h=>h.Id=="mira").Attack;
+            Check(Visible(UI.Query<Button>().ToList().First(b=>(b.text??"").StartsWith("강화 ·"))),"weapon enhancement visible without wheel search");
             yield return Click("강화 ·",true);Check(Game.ReviewState.WalletGold<gold&&Game.Simulation.Battle.Heroes.First(h=>h.Id=="mira").Attack>attack,"selected hero enhancement drives combat profile");
             yield return new WaitForSecondsRealtime(.2f);
             Check(Visible(UI.Q("growth-gear-weapon")),"growth retains gear section after enhancement");
             yield return Capture("growth-gear-native");yield return Click("닫기");
             yield return Click("일시정지");yield return new WaitForSecondsRealtime(2);yield return Capture("hunt-coordinated-native");
-            Check(Game.Simulation.Battle.Heroes.Count==10&&Game.Simulation.EngagementEnemyCount>0&&Game.Simulation.EngagementEnemyCount<=6,"live ten-person coordinated engagement");
+            Check(Game.Simulation.Battle.Heroes.Count==10&&Game.Simulation.EngagementEnemyCount>0&&Game.Simulation.EngagementEnemyCount<=6&&Game.Simulation.EngagementHeading.sqrMagnitude>.99f,"live ten-person coordinated engagement and heading");
             float deadline=Time.realtimeSinceStartup+65;while(Game.Simulation.PacksCleared==0){if(Time.realtimeSinceStartup>deadline||Game.Simulation.Defeated)throw new InvalidOperationException("Coordinated hunt did not naturally settle a pack.");yield return null;}
             yield return Click("일시정지");Check(!Game.ReviewState.SavePending&&Game.ReviewState.Inventory().Any(i=>(string)i["origin"]=="hunt"),"coordinated natural reward persists");
             yield return Click("도전");yield return Click((string)HuntingSimulation.Canonical["zones"]["gray_meadow"]["boss"]);yield return Click("패턴 훈련");yield return Click("일시정지");
             var raid=Game.Raid;Check(!raid.StateBound,"break response fixture is unrewarded training");gold=Game.ReviewState.WalletGold;
             foreach(var hero in raid.Battle.Heroes){hero.AttackRemaining=1000;hero.Windup=-1;hero.Ultimate=100;foreach(string slot in new[]{"a1","a2"})raid.Battle.Kits[hero.Id].Cooldowns[slot]=0;}
             raid.ControlImmunity=0;raid.StartWarning((JObject)raid.Design["phases"][0]);yield return Click("일시정지");
-            Check(raid.BreakSkillReady,"authored warning exposes an original stun skill");yield return Capture("raid-break-ready-native");
+            Check(raid.BreakSkillReady,"authored warning exposes an original stun skill");Check(UI.Q<Label>("raid-response-situation").text.Contains("무력화 지원 가능"),"native warning names actionable break response");yield return Capture("raid-break-ready-native");
             int interrupts=raid.Interrupts;double gauge=raid.BreakGauge;yield return Click("무력화 지원");
             Check(raid.Interrupts>interrupts||raid.BreakGauge>gauge,"actual pointer original skill increases stagger or interrupts");
             Check(Game.ReviewState.WalletGold==gold&&raid.DodgeRemaining==0,"break support grants no reward or dodge immunity");
-            yield return Click("일시정지");var feedback=FindAnyObjectByType<HuntingFeedback>();
+            yield return Click("일시정지");Check(RaidResponseView.Read(raid).Kind=="opening","successful break exposes original attack opportunity");yield return Capture("raid-opening-native");
+            raid.ControlImmunity=6;raid.StartWarning((JObject)raid.Design["phases"][0]);for(int frame=0;frame<6;frame++)yield return null;
+            Check(UI.Q<Label>("raid-response-situation").text.Contains("제어 면역")&&!raid.BreakSkillReady,"paused immune fixture shows physical movement guidance");yield return Capture("raid-movement-guidance-native");
+            raid.ControlImmunity=0;raid.ApplyControl(1);
+            yield return new WaitForSecondsRealtime(.12f);
+            var feedback=FindAnyObjectByType<HuntingFeedback>();
             foreach(string id in new[]{"mira","orwin","kairen"})
             {
                 var source=raid.Battle.Heroes.First(h=>h.Id==id);int hp=raid.Boss.Hp;double time=raid.Elapsed;
                 // Explicit read-only presentation sample, not a rewarded cast.
                 string kind=(string)((JArray)HuntingSimulation.Canonical["skill_vfx"]).First(p=>(string)p["signature"]==id+":a1")["kind"];
                 bool support=kind=="heal"||kind=="barrier"||kind=="guard";
-                feedback.Observe(new BattleEvent(support?(kind=="barrier"?"shield":kind):"cast",source,"a1",support?source:raid.Boss),raid.Battle);yield return new WaitForSecondsRealtime(.05f);
+                feedback.SetRaidMode(true);
+                var sample=new BattleEvent(support?(kind=="barrier"?"shield":kind):"cast",source,"a1",support?source:raid.Boss);
+                var profile=new SkillVfxProfile((JObject)((JArray)HuntingSimulation.Canonical["skill_vfx"]).First(p=>(string)p["signature"]==id+":a1"));
+                float flight=SkillVfxBatch.FlightDuration(profile,Vector2.Distance(source.Position,raid.Boss.Position),support);
+                feedback.Observe(sample,raid.Battle);yield return new WaitForSecondsRealtime(.04f);
+                if(flight>0)
+                {
+                    Check(feedback.PaintedFlightQuads>0&&feedback.PaintedImpactQuads==0&&feedback.AccentSkillQuads==0&&raid.Boss.Hp==hp&&raid.Elapsed==time,"native flight precedes visual impact without changing combat "+id);yield return Capture("skill-flight-"+id+"-native");
+                    feedback.SetRaidMode(true);feedback.Observe(sample,raid.Battle);yield return new WaitForSecondsRealtime(flight+.04f);
+                }
                 Check(feedback.AccentSkillQuads>0&&raid.Boss.Hp==hp&&raid.Elapsed==time,"native original-profile silhouette preview "+id);
                 yield return Capture("skill-accent-"+id+"-native");yield return new WaitForSecondsRealtime(1.3f);
             }
@@ -276,7 +294,7 @@ namespace Eternal.UnityMigration
                 try{moved=stack.Peek().MoveNext();if(moved)next=stack.Peek().Current;}catch(Exception e){error=e.Message;stack.Clear();break;}
                 if(!moved){stack.Pop();continue;}if(next is IEnumerator nested){stack.Push(nested);continue;}yield return next;
             }
-            var result=new JObject{{"passed",error.Length==0},{"phase",featureFocus?"four_reference_cp16":raidMechanics?"raid_mechanics_cp15":bandStart>0?"stage_boundary_"+bandStart:resume?"second_process_reload":"first_process"},{"error",error},{"comparisons",checks},{"elapsed_seconds",Time.realtimeSinceStartup-started},{"scratch_name",Path.GetFileName(profile.TrimEnd(Path.DirectorySeparatorChar))},{"expected",saved},{"trace",trace},{"environments",environments},{"note",featureFocus?"Scratch-only real pointer hero selection, section shortcuts, actual enhancement and natural coordinated hunt reward. Explicit unrewarded training warning/resources test original-skill stagger. Paused VFX samples are read-only presentation events, not gameplay casts or 120-skill visual acceptance. No FPS benchmark.":raidMechanics?"Development-only scratch profile. Real pointer raid selection, spread/follow controls and returns. Explicit paused level-50 training phase/telegraph fixtures test rendering; not natural phase progression or victory. No real user files or FPS benchmark.":"Development-only scratch profiles. Actual pointer zoom, ordered party preset, natural monster drops, naturally cleared 499/999 boundary waves, authored counter practice and a second process reload; no real user files or performance benchmark."}};
+            var result=new JObject{{"passed",error.Length==0},{"phase",featureFocus?"four_reference_cp17":raidMechanics?"raid_mechanics_cp15":bandStart>0?"stage_boundary_"+bandStart:resume?"second_process_reload":"first_process"},{"error",error},{"comparisons",checks},{"elapsed_seconds",Time.realtimeSinceStartup-started},{"scratch_name",Path.GetFileName(profile.TrimEnd(Path.DirectorySeparatorChar))},{"expected",saved},{"trace",trace},{"environments",environments},{"note",featureFocus?"Scratch-only real pointer hero selection, exclusive growth tabs, actual enhancement and natural hunt reward. Explicit unrewarded training warning/resources test original-skill stagger and paused immune guidance. Paused VFX samples separately show flight and impact without modifying combat; not gameplay casts or 120-skill visual acceptance. No FPS benchmark.":raidMechanics?"Development-only scratch profile. Real pointer raid selection, spread/follow controls and returns. Explicit paused level-50 training phase/telegraph fixtures test rendering; not natural phase progression or victory. No real user files or FPS benchmark.":"Development-only scratch profiles. Actual pointer zoom, ordered party preset, natural monster drops, naturally cleared 499/999 boundary waves, authored counter practice and a second process reload; no real user files or performance benchmark."}};
             File.WriteAllText(report,result.ToString());yield return new WaitForSecondsRealtime(.3f);Application.Quit(error.Length==0?0:1);
         }
     }

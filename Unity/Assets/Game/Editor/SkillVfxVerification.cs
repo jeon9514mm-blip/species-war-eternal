@@ -40,10 +40,17 @@ namespace Eternal.UnityMigration.Editor
                     bool support=profile.Kind=="heal"||profile.Kind=="barrier"||profile.Kind=="guard";
                     if(support)batch.Observe(new BattleEvent(profile.Kind=="heal"?"heal":profile.Kind=="barrier"?"shield":"guard",hero,profile.Slot,hero),battle);
                     batch.Observe(new BattleEvent("cast",hero,profile.Slot,target),battle);batch.Advance(.03f,false);
+                    float flight=SkillVfxBatch.FlightDuration(profile,2,support);
+                    if(flight>0)
+                    {
+                        if(batch.PaintedFlightQuads<=0||batch.PaintedImpactQuads!=0||batch.AccentQuads!=0)throw new InvalidOperationException("Flight prematurely creates target impact: "+profile.Signature);comparisons++;
+                        batch.Advance(flight,false);
+                        if(batch.PaintedFlightQuads!=0)throw new InvalidOperationException("Flight persists into impact: "+profile.Signature);comparisons++;
+                    }
                     if(batch.ActiveEffects!=1||batch.Quads<=0||batch.Quads>SkillVfxBatch.QuadsPerEffect||batch.PaintedImpactQuads!=1||batch.PaintedQuads>SkillVfxBatch.PaintedQuadsPerEffect)throw new InvalidOperationException("Settled VFX geometry exceeds budget or painted impact is missing.");
                     if(batch.AccentQuads<=0)throw new InvalidOperationException("Missing crisp skill silhouette.");comparisons++;
                     if(support&&(Mathf.Abs(batch.PaintedBounds.center.x-hero.Position.x)>.01f||batch.PaintedFlightQuads!=0))throw new InvalidOperationException("Support painted on its enemy aim instead of actual recipient.");
-                    batch.Advance(.4f,false);
+                    batch.Advance(SkillVfxBatch.ImpactDuration(profile)-.01f,false);
                     if(batch.ActiveEffects!=1||batch.PaintedImpactQuads!=0||batch.PaintedFlightQuads!=0||batch.PaintedTailQuads!=1)throw new InvalidOperationException("Tail should retain a restrained shape after its impact and flight expire.");
                     batch.Advance(2,false);if(batch.ActiveEffects!=0||batch.Quads!=0||batch.PaintedQuads!=0)throw new InvalidOperationException("VFX timeline leaked.");comparisons+=4;
                     comparisons+=2;
@@ -53,6 +60,7 @@ namespace Eternal.UnityMigration.Editor
                 var source=sim.Battle.Heroes.First(h=>!new[]{"heal","barrier","guard"}.Contains(batch.Profiles[h.Id+":ultimate"].Kind));var victim=sim.Battle.Enemies[0];int hp=victim.Hp;double time=sim.Elapsed;
                 for(int i=0;i<200;i++)batch.Observe(new BattleEvent("cast",source,"ultimate",victim),sim.Battle);
                 batch.Advance(.04f,false);
+                batch.Advance(SkillVfxBatch.FlightDuration(batch.Profiles[source.Id+":ultimate"],Vector2.Distance(source.Position,victim.Position)),false);
                 var painted=owner.GetComponentsInChildren<MeshFilter>().First(f=>f.sharedMesh.name.StartsWith("Bounded painted",StringComparison.Ordinal)).sharedMesh;
                 float normalAlpha=painted.colors.Max(c=>c.a);batch.Advance(0,true);float warningAlpha=painted.colors.Max(c=>c.a);
                 if(normalAlpha<=0||warningAlpha>normalAlpha*.25f)throw new InvalidOperationException("Painted skills obscure authoritative raid warnings.");comparisons++;
@@ -82,7 +90,7 @@ namespace Eternal.UnityMigration.Editor
                 var restored=OriginalReliefMesh.Load(source.Id).Body;
                 if(restored==null||restored.vertexCount==0||restored.triangles.Length/3!=6000)throw new InvalidOperationException("Empty cached original body was reused.");comparisons++;
                 if(errors.Count>0)throw new InvalidOperationException("VFX fixture logged renderer errors: "+string.Join(" / ",errors));comparisons++;
-                var result=new JObject{{"passed",true},{"comparisons",comparisons},{"skill_profiles",120},{"hero_motifs",30},{"pool_capacity",50},{"painted_shape_cells",8},{"painted_max_quads",50*SkillVfxBatch.PaintedQuadsPerEffect},{"painted_charge_flight_impact_tail",true},{"actual_support_recipient_verified",true},{"raid_warning_opacity_verified",true},{"afterimage_pool_capacity",50},{"afterimage_lifetime",.4},{"empty_body_cache_recovery",true},{"saturated_quad_count",peak},{"max_quads_per_effect",96},{"renderer_errors_during_fixture",errors.Count},{"note","Bounded CPU mesh timelines plus eight shared painted shapes; not GPU particles, 120 bespoke painted textures or proof that all 120 skills have been visually reviewed. Actual original healing execution verifies recipient anchoring."}};
+                var result=new JObject{{"passed",true},{"comparisons",comparisons},{"skill_profiles",120},{"hero_motifs",30},{"pool_capacity",50},{"painted_shape_cells",8},{"painted_max_quads",50*SkillVfxBatch.PaintedQuadsPerEffect},{"painted_charge_flight_impact_tail",true},{"sequential_flight_impact",true},{"actual_support_recipient_verified",true},{"raid_warning_opacity_verified",true},{"afterimage_pool_capacity",50},{"afterimage_lifetime",.4},{"empty_body_cache_recovery",true},{"saturated_quad_count",peak},{"max_quads_per_effect",96},{"renderer_errors_during_fixture",errors.Count},{"note","Bounded CPU mesh timelines plus eight shared painted shapes; not GPU particles, 120 bespoke painted textures or proof that all 120 skills have been visually reviewed. Visual flight precedes impact without delaying authoritative combat damage. Actual original healing execution verifies recipient anchoring."}};
                 File.WriteAllText("../checks/unity-migration-2026-10-08/native-skill-vfx.json",result.ToString());return result;
             }
             finally{Application.logMessageReceived-=Log;batch?.Dispose();echoes?.Dispose();UnityEngine.Object.DestroyImmediate(owner);}

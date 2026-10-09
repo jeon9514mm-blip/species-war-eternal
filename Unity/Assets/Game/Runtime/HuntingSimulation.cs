@@ -46,6 +46,7 @@ namespace Eternal.UnityMigration
         readonly HashSet<int> engagementEnemies=new();
         Vector2 formationOrigin;
         public Vector2 ExpeditionCenter {get;private set;}
+        public Vector2 EngagementHeading {get;private set;}=Vector2.right;
         public int EngagementEnemyCount=>engagementEnemies.Count;
         readonly Dictionary<int,int> enemyHits=new();
         readonly Dictionary<int,double> enemySkillNext=new();
@@ -223,6 +224,7 @@ namespace Eternal.UnityMigration
             foreach(var hero in Battle.Heroes)if(hero.Alive){center+=hero.PreviousPosition;living++;reservations[hero.Serial]=hero.PreviousPosition;}
             if(living>0)center/=living;
             ExpeditionCenter=center;HuntExpeditionPlan.Select(Battle,center,engagementEnemies);
+            EngagementHeading=HuntExpeditionPlan.Direction(Battle,center,engagementEnemies);
             foreach(var h in Battle.Heroes.Where(a=>a.Alive))
             {
                 if(ManualMovementActive)

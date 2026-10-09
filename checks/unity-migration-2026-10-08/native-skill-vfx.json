@@ -1,19 +1,20 @@
 {
   "passed": true,
-  "comparisons": 1220,
+  "comparisons": 1288,
   "skill_profiles": 120,
   "hero_motifs": 30,
   "pool_capacity": 50,
   "painted_shape_cells": 8,
   "painted_max_quads": 400,
   "painted_charge_flight_impact_tail": true,
+  "sequential_flight_impact": true,
   "actual_support_recipient_verified": true,
   "raid_warning_opacity_verified": true,
   "afterimage_pool_capacity": 50,
   "afterimage_lifetime": 0.4,
   "empty_body_cache_recovery": true,
-  "saturated_quad_count": 2800,
+  "saturated_quad_count": 2550,
   "max_quads_per_effect": 96,
   "renderer_errors_during_fixture": 0,
-  "note": "Bounded CPU mesh timelines plus eight shared painted shapes; not GPU particles, 120 bespoke painted textures or proof that all 120 skills have been visually reviewed. Actual original healing execution verifies recipient anchoring."
+  "note": "Bounded CPU mesh timelines plus eight shared painted shapes; not GPU particles, 120 bespoke painted textures or proof that all 120 skills have been visually reviewed. Visual flight precedes impact without delaying authoritative combat damage. Actual original healing execution verifies recipient anchoring."
 }

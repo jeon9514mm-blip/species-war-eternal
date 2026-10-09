@@ -35,7 +35,7 @@ namespace Eternal.UnityMigration
             raidPhaseRow.style.display=visible?DisplayStyle.Flex:DisplayStyle.None;
             if(!visible){raidPhaseToast.style.display=raidMechanicTag.style.display=DisplayStyle.None;VisibleRaidMechanic="";if(Raid==null)presentedRaid=null;return;}
             if(presentedRaid!=Raid||presentedPhase!=Raid.Phase)
-            {presentedRaid=Raid;presentedPhase=Raid.Phase;phaseUntil=Raid.Elapsed+1.8;string name=(string)Raid.Mechanic["name"];raidPhaseTitle.text="PHASE "+Raid.Phase+" · "+(string.IsNullOrEmpty(name)?"전투 시작":name);raidPhaseDetail.text=(string)Raid.Mechanic["description"]??(string)Raid.Design["phases"][Raid.Phase-1]["counter"]??"보스 패턴을 확인하고 대응하세요.";}
+            {presentedRaid=Raid;presentedPhase=Raid.Phase;phaseUntil=Raid.Elapsed+1.8;string name=(string)Raid.Mechanic["name"];raidPhaseTitle.text="PHASE "+Raid.Phase+" · "+(string.IsNullOrEmpty(name)?"전투 시작":name);raidPhaseDetail.text=(string)Raid.Mechanic["description"]??"조이스틱으로 전조를 피하고 대응 안내를 확인하세요.";}
             for(int i=0;i<3;i++)
             {raidPhases[i].text="P"+(i+1)+" · "+(i==0?"100%":i==1?"60%":"30%");raidPhases[i].style.color=i+1==Raid.Phase?Ink:i+1<Raid.Phase?Moss:Parchment;raidPhases[i].style.backgroundColor=i+1==Raid.Phase?Bronze:Ink;raidPhases[i].tooltip=(string)Raid.Design["mechanics"][i]["name"];}
             bool warning=Raid.Warning!=null||Raid.SecondWarning!=null;
