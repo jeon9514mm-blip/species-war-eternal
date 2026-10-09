@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "sheets": [
+    {
+      "id": "fallen_ogre",
+      "path": "Assets/Game/Resources/Eternal/Actors/fallen_ogre/poses.png",
+      "source_sha256": "91d468024740394192caa38df76dd223be0e80f6a3d908666318259a761fb93e",
+      "width": 1024,
+      "height": 1024,
+      "format": "BC7",
+      "alpha": true,
+      "minimum_pose_gutters": [
+        73,
+        62,
+        61,
+        91
+      ],
+      "painted_poses": 4,
+      "source_png_unmodified": true
+    },
+    {
+      "id": "fallen_lich",
+      "path": "Assets/Game/Resources/Eternal/Actors/fallen_lich/poses.png",
+      "source_sha256": "792887644c51c6fd2f385b3cc64eaa24e54f3114770bf7773efd8f43372ccbfc",
+      "width": 1024,
+      "height": 1024,
+      "format": "BC7",
+      "alpha": true,
+      "minimum_pose_gutters": [
+        55,
+        65,
+        22,
+        65
+      ],
+      "painted_poses": 4,
+      "source_png_unmodified": true
+    },
+    {
+      "id": "fallen_harpy",
+      "path": "Assets/Game/Resources/Eternal/Actors/fallen_harpy/poses.png",
+      "source_sha256": "124182f38cff74035b9e557f83840510cdb5839511c0f03e15255e888fb43cdc",
+      "width": 1024,
+      "height": 1024,
+      "format": "BC7",
+      "alpha": true,
+      "minimum_pose_gutters": [
+        60,
+        60,
+        11,
+        88
+      ],
+      "painted_poses": 4,
+      "source_png_unmodified": true
+    }
+  ],
+  "mode": "built-in image generation + targeted sprite-gutter edits",
+  "note": "Four painted poses per sheet, foot anchors measured from imported alpha. Procedural full-coverage relief; not rigged 3D motion or thirty hero redraws. Android ASTC authored, not device tested."
+}

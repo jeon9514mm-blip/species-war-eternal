@@ -1,0 +1,259 @@
+{
+  "passed": true,
+  "comparisons": 1552,
+  "waves": [
+    {
+      "stage": 1,
+      "seed": 19,
+      "population": 24,
+      "species": [
+        "fallen_vampire",
+        "fallen_werewolf",
+        "fallen_ogre",
+        "fallen_lich",
+        "fallen_harpy",
+        "fallen_elf",
+        "fallen_dwarf"
+      ]
+    },
+    {
+      "stage": 1,
+      "seed": 9514,
+      "population": 24,
+      "species": [
+        "fallen_vampire",
+        "fallen_werewolf",
+        "fallen_ogre",
+        "fallen_lich",
+        "fallen_harpy",
+        "fallen_elf",
+        "fallen_dwarf"
+      ]
+    },
+    {
+      "stage": 1,
+      "seed": 3107,
+      "population": 24,
+      "species": [
+        "fallen_vampire",
+        "fallen_werewolf",
+        "fallen_ogre",
+        "fallen_lich",
+        "fallen_harpy",
+        "fallen_elf",
+        "fallen_dwarf"
+      ]
+    },
+    {
+      "stage": 499,
+      "seed": 19,
+      "population": 24,
+      "species": [
+        "fallen_vampire",
+        "fallen_werewolf",
+        "fallen_ogre",
+        "fallen_lich",
+        "fallen_harpy",
+        "fallen_elf",
+        "fallen_dwarf"
+      ]
+    },
+    {
+      "stage": 499,
+      "seed": 9514,
+      "population": 24,
+      "species": [
+        "fallen_vampire",
+        "fallen_werewolf",
+        "fallen_ogre",
+        "fallen_lich",
+        "fallen_harpy",
+        "fallen_elf",
+        "fallen_dwarf"
+      ]
+    },
+    {
+      "stage": 499,
+      "seed": 3107,
+      "population": 24,
+      "species": [
+        "fallen_vampire",
+        "fallen_werewolf",
+        "fallen_ogre",
+        "fallen_lich",
+        "fallen_harpy",
+        "fallen_elf",
+        "fallen_dwarf"
+      ]
+    },
+    {
+      "stage": 500,
+      "seed": 19,
+      "population": 28,
+      "species": [
+        "fallen_dwarf",
+        "fallen_werewolf",
+        "fallen_lich",
+        "fallen_elf",
+        "fallen_vampire",
+        "fallen_harpy",
+        "fallen_ogre"
+      ]
+    },
+    {
+      "stage": 500,
+      "seed": 9514,
+      "population": 28,
+      "species": [
+        "fallen_dwarf",
+        "fallen_werewolf",
+        "fallen_lich",
+        "fallen_elf",
+        "fallen_vampire",
+        "fallen_harpy",
+        "fallen_ogre"
+      ]
+    },
+    {
+      "stage": 500,
+      "seed": 3107,
+      "population": 28,
+      "species": [
+        "fallen_dwarf",
+        "fallen_werewolf",
+        "fallen_lich",
+        "fallen_elf",
+        "fallen_vampire",
+        "fallen_harpy",
+        "fallen_ogre"
+      ]
+    },
+    {
+      "stage": 999,
+      "seed": 19,
+      "population": 28,
+      "species": [
+        "fallen_dwarf",
+        "fallen_werewolf",
+        "fallen_lich",
+        "fallen_elf",
+        "fallen_vampire",
+        "fallen_harpy",
+        "fallen_ogre"
+      ]
+    },
+    {
+      "stage": 999,
+      "seed": 9514,
+      "population": 28,
+      "species": [
+        "fallen_dwarf",
+        "fallen_werewolf",
+        "fallen_lich",
+        "fallen_elf",
+        "fallen_vampire",
+        "fallen_harpy",
+        "fallen_ogre"
+      ]
+    },
+    {
+      "stage": 999,
+      "seed": 3107,
+      "population": 28,
+      "species": [
+        "fallen_dwarf",
+        "fallen_werewolf",
+        "fallen_lich",
+        "fallen_elf",
+        "fallen_vampire",
+        "fallen_harpy",
+        "fallen_ogre"
+      ]
+    },
+    {
+      "stage": 1000,
+      "seed": 19,
+      "population": 32,
+      "species": [
+        "fallen_vampire",
+        "fallen_elf",
+        "fallen_werewolf",
+        "fallen_dwarf",
+        "fallen_ogre",
+        "fallen_harpy",
+        "fallen_lich"
+      ]
+    },
+    {
+      "stage": 1000,
+      "seed": 9514,
+      "population": 32,
+      "species": [
+        "fallen_vampire",
+        "fallen_elf",
+        "fallen_werewolf",
+        "fallen_dwarf",
+        "fallen_ogre",
+        "fallen_harpy",
+        "fallen_lich"
+      ]
+    },
+    {
+      "stage": 1000,
+      "seed": 3107,
+      "population": 32,
+      "species": [
+        "fallen_vampire",
+        "fallen_elf",
+        "fallen_werewolf",
+        "fallen_dwarf",
+        "fallen_ogre",
+        "fallen_harpy",
+        "fallen_lich"
+      ]
+    },
+    {
+      "stage": 1500,
+      "seed": 19,
+      "population": 32,
+      "species": [
+        "fallen_vampire",
+        "fallen_werewolf",
+        "fallen_ogre",
+        "fallen_lich",
+        "fallen_harpy",
+        "fallen_elf",
+        "fallen_dwarf"
+      ]
+    },
+    {
+      "stage": 1500,
+      "seed": 9514,
+      "population": 32,
+      "species": [
+        "fallen_vampire",
+        "fallen_werewolf",
+        "fallen_ogre",
+        "fallen_lich",
+        "fallen_harpy",
+        "fallen_elf",
+        "fallen_dwarf"
+      ]
+    },
+    {
+      "stage": 1500,
+      "seed": 3107,
+      "population": 32,
+      "species": [
+        "fallen_vampire",
+        "fallen_werewolf",
+        "fallen_ogre",
+        "fallen_lich",
+        "fallen_harpy",
+        "fallen_elf",
+        "fallen_dwarf"
+      ]
+    }
+  ],
+  "note": "Spawn/body clearance, six seconds of legal movement, stage-band population and actual imported painted assets. This is not a frame-rate benchmark or long-run difficulty certification."
+}
