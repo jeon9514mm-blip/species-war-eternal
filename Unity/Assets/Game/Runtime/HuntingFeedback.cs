@@ -31,6 +31,7 @@ namespace Eternal.UnityMigration
         public bool SuppressCombatPopups;
         public int ActiveSkillEffects=>skillBatch?.ActiveEffects??0;
         public int SkillGeometryQuads=>skillBatch?.Quads??0;
+        public int AccentSkillQuads=>skillBatch?.AccentQuads??0;
         public int PaintedImpactQuads=>skillBatch?.PaintedImpactQuads??0;
         public int PaintedChargeQuads=>skillBatch?.PaintedChargeQuads??0;
         public int PaintedFlightQuads=>skillBatch?.PaintedFlightQuads??0;

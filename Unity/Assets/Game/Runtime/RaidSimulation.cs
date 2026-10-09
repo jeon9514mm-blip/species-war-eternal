@@ -224,6 +224,21 @@ namespace Eternal.UnityMigration
             var candidates=from h in Battle.Heroes where h.Alive&&h.Stun<=0&&(selected==null||selected==h.Id)&&Vector2.Distance(h.Position,Boss.Position)<=13.4f from slot in ultimate?new[]{"ultimate"}:new[]{"a1","a2"} let score=HeroKitExecution.Priority(Battle,h,slot) where score>0 orderby score descending,h.Slot select (h,slot);
             var choice=candidates.FirstOrDefault();if(choice.h==null)return false;bool cast=HeroKitExecution.Cast(Battle,choice.h,choice.slot,Boss);if(!Boss.Alive)Finish("victory");return cast;
         }
+        (Combatant hero,string slot) BreakSkillCandidate()
+        {
+            if(!Running||Paused||CounterPractice||!Boss.Alive||ControlImmunity>0||Warning==null&&SecondWarning==null)return default;
+            return (from h in Battle.Heroes where h.Alive&&h.Stun<=0&&Vector2.Distance(h.Position,Boss.Position)<=13.4f
+                    from slot in new[]{"a1","a2","ultimate"} where Battle.Kits.TryGetValue(h.Id,out var kit)&&kit.Profiles.TryGetValue(slot,out var profile)&&(string)profile["kind"]=="stun"&&HeroKitExecution.CanUse(Battle,h,slot)
+                    orderby LegacyCombatRules.Number(Battle.Kits[h.Id].Profiles[slot],"duration",2) descending,h.Slot select (h,slot)).FirstOrDefault();
+        }
+        public bool BreakSkillReady=>BreakSkillCandidate().hero!=null;
+        public string BreakSkillHint {get{var pick=BreakSkillCandidate();return pick.hero==null?ControlImmunity>0?"제어 면역 중 · 직접 이동으로 회피":"전조 중 사용 가능한 스턴 스킬이 필요합니다.":(string)Catalog.Hero(pick.hero.Id)["name"]+" · "+(string)Battle.Kits[pick.hero.Id].Profiles[pick.slot]["skill"];}}
+        public bool CastBreakSkill()
+        {
+            var pick=BreakSkillCandidate();if(pick.hero==null)return false;
+            if(!HeroKitExecution.Cast(Battle,pick.hero,pick.slot,Boss))return false;intents.Remove(pick.hero.Serial);pick.hero.Windup=-1;skillSpacing=.14;
+            if(!Boss.Alive)Finish("victory");return true;
+        }
         public bool Dodge()
         {
             if(!Running||Paused||DodgeCooldown>0)return false;DodgeCooldown=5;DodgeRemaining=.5;dodgeGoals.Clear();var shape=SecondWarning??Warning;

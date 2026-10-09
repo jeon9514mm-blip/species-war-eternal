@@ -27,6 +27,7 @@ namespace Eternal.UnityMigration
         static float Number(JObject source,string key,float fallback)=>Mathf.Max(.01f,(float?)source[key]??fallback);
         static Color ReadColor(JObject source,string key,Color fallback)=>ColorUtility.TryParseHtmlString((string)source[key]??"",out var value)?value:fallback;
         public float Lifetime=>Mathf.Clamp(Flight+Impact+Tail,.45f,1.4f);
+        public string AccentShape=>Kind=="heal"?"leaf":Kind=="barrier"||Kind=="guard"?"crest":Family switch{0=>"crest",1=>"leaf",2=>"volley",3=>"blade",4=>"ice",5=>"diamond",_=>"star"};
         // Thirty motif families retain their original colors, glyph, symmetry,
         // twist and per-slot seed rather than sharing one radial particle burst.
         public int Family=>Motif switch
@@ -70,6 +71,7 @@ namespace Eternal.UnityMigration
         public int PaintedFlightQuads {get;private set;}
         public int PaintedImpactQuads {get;private set;}
         public int PaintedTailQuads {get;private set;}
+        public int AccentQuads {get;private set;}
         int cursor,effectQuads,paintedEffectQuads;
         public int ActiveEffects {get;private set;}
         public int PresentedSkills {get;private set;}
@@ -118,12 +120,12 @@ namespace Eternal.UnityMigration
         }
         static Combatant Find(CombatEncounter battle,int serial)
         {foreach(var h in battle.Heroes)if(h.Serial==serial)return h;foreach(var e in battle.Enemies)if(e.Serial==serial)return e;return null;}
-        public void Clear(){Array.Clear(effects,0,effects.Length);mesh.Clear();paintedMesh?.Clear();paintedVertices.Clear();ActiveEffects=0;PaintedChargeQuads=PaintedFlightQuads=PaintedImpactQuads=PaintedTailQuads=0;}
+        public void Clear(){Array.Clear(effects,0,effects.Length);mesh.Clear();paintedMesh?.Clear();paintedVertices.Clear();ActiveEffects=0;PaintedChargeQuads=PaintedFlightQuads=PaintedImpactQuads=PaintedTailQuads=AccentQuads=0;}
         public void Advance(float dt,bool warning)
         {
             vertices.Clear();colors.Clear();uvs.Clear();triangles.Clear();ActiveEffects=0;
             paintedVertices.Clear();paintedColors.Clear();paintedUvs.Clear();paintedTriangles.Clear();
-            PaintedChargeQuads=PaintedFlightQuads=PaintedImpactQuads=PaintedTailQuads=0;
+            PaintedChargeQuads=PaintedFlightQuads=PaintedImpactQuads=PaintedTailQuads=AccentQuads=0;
             for(int i=0;i<effects.Length;i++)
             {
                 var e=effects[i];if(e.profile==null)continue;e.age+=Mathf.Max(0,dt);
@@ -229,6 +231,7 @@ namespace Eternal.UnityMigration
             float rotation=p.Twist*e.age+p.Glyph*.13f+p.Seed*.017f;
             float radius=(e.charge?.35f:.65f+Mathf.Min(p.Power,2)*.25f)*(e.charge?.8f+t*.4f:1+Mathf.Sin(t*Mathf.PI)*.3f);
             var center=e.charge?e.from:e.to;
+            DrawAccent(e,warning);
             if(e.charge){Ring(center,radius,rotation,20,.025f,color);Glyph(center,radius*.6f,p.Glyph,rotation,core);return;}
             if(e.recipient){Ring(center,radius*.72f,rotation,20,.018f,color);Glyph(center,radius*.38f,p.Glyph,rotation,core);return;}
             // Flight and its five fading echoes originate from the actual
@@ -263,6 +266,36 @@ namespace Eternal.UnityMigration
             Glyph(center,radius*.5f,p.Glyph,rotation,core);
             if(e.age<.12f)
             {var hit=core;hit.a*=1-e.age/.12f;Line(center-Vector3.right*radius*.35f+Vector3.up*.3f,center+Vector3.right*radius*.35f+Vector3.up*.3f,.065f,hit);Line(center,center+Vector3.up*.65f,.04f,hit);}
+        }
+        void DrawAccent(Effect e,bool warning)
+        {
+            if(e.charge||e.age>.36f)return;
+            var p=e.profile;float t=e.age/.36f;float scale=(p.Slot=="ultimate"?1.3f:1f)*(e.recipient?.55f:1f);
+            var c=Color.Lerp(p.Color,p.Core,.45f);c.a=Mathf.Sin(Mathf.Clamp01(t+.08f)*Mathf.PI)*.78f*(warning?.18f:1);
+            var center=e.to+Vector3.up*(e.recipient?.55f:.85f);var right=camera!=null?camera.transform.right:Vector3.right;var up=camera!=null?camera.transform.up:Vector3.up;
+            var delta=e.to-e.from;float aim=Mathf.Atan2(Vector3.Dot(delta,up),Vector3.Dot(delta,right));
+            var axis=right*Mathf.Cos(aim)+up*Mathf.Sin(aim);var side=-right*Mathf.Sin(aim)+up*Mathf.Cos(aim);
+            void Triangle(Vector3 a,Vector3 b,Vector3 d,Color color)
+            {
+                if(effectQuads++>=QuadsPerEffect)return;int v=vertices.Count;vertices.Add(a);vertices.Add(b);vertices.Add(d);vertices.Add(d);for(int i=0;i<4;i++)colors.Add(color);uvs.Add(Vector2.zero);uvs.Add(Vector2.up);uvs.Add(Vector2.one);uvs.Add(Vector2.one);triangles.Add(v);triangles.Add(v+1);triangles.Add(v+2);AccentQuads++;
+            }
+            switch(p.AccentShape)
+            {
+                case "crest":
+                    for(int i=0;i<4;i++){float a=i*Mathf.PI*.5f+p.Glyph*.08f;var r=right*Mathf.Cos(a)+up*Mathf.Sin(a);var s=-right*Mathf.Sin(a)+up*Mathf.Cos(a);var tip=center+r*(.48f+t*.25f)*scale;Triangle(tip,tip-r*.28f*scale+s*.13f*scale,tip-r*.28f*scale-s*.13f*scale,c);}break;
+                case "leaf":
+                    for(int i=0;i<5;i++){float a=i*Mathf.PI*2/5+p.Twist;var r=right*Mathf.Cos(a)+up*Mathf.Sin(a);var s=-right*Mathf.Sin(a)+up*Mathf.Cos(a);var stem=center+r*(.25f+t*.45f)*scale;Triangle(stem-r*.12f*scale,stem+s*.11f*scale,stem+r*.30f*scale,c);Triangle(stem-r*.12f*scale,stem+r*.30f*scale,stem-s*.11f*scale,c);}break;
+                case "volley":
+                    for(int i=-1;i<=1;i++){var tip=center+side*i*.25f*scale+axis*(t*.75f-.15f)*scale;Triangle(tip+axis*.48f*scale,tip-axis*.18f*scale+side*.09f*scale,tip-axis*.18f*scale-side*.09f*scale,c);}break;
+                case "blade":
+                    for(int i=0;i<11;i++){float a=aim-.95f+i*.14f+t*.65f;var outer=center+(right*Mathf.Cos(a)+up*Mathf.Sin(a))*1.05f*scale;var next=center+(right*Mathf.Cos(a+.14f)+up*Mathf.Sin(a+.14f))*1.05f*scale;var inner=center+(right*Mathf.Cos(a+.07f)+up*Mathf.Sin(a+.07f))*.78f*scale;Triangle(outer,next,inner,c);}break;
+                case "ice":
+                    for(int i=-2;i<=2;i++){var basePoint=center+right*i*.24f*scale-up*.35f*scale;Triangle(basePoint-right*.09f*scale,basePoint+up*(.50f+(2-Mathf.Abs(i))*.19f+t*.22f)*scale,basePoint+right*.09f*scale,c);}break;
+                case "diamond":
+                    Triangle(center-up*.55f*scale,center-right*.27f*scale,center+up*.55f*scale,c);Triangle(center-up*.55f*scale,center+up*.55f*scale,center+right*.27f*scale,c);break;
+                default:
+                    for(int i=0;i<5;i++){float a=i*Mathf.PI*2/5+p.Glyph*.05f+t*.25f;var r=right*Mathf.Cos(a)+up*Mathf.Sin(a);var s=-right*Mathf.Sin(a)+up*Mathf.Cos(a);Triangle(center+r*.70f*scale,center+r*.20f*scale+s*.13f*scale,center+r*.20f*scale-s*.13f*scale,c);}break;
+            }
         }
         static Vector3 Polar(Vector3 center,float radius,float angle)=>center+new Vector3(Mathf.Cos(angle)*radius,0,Mathf.Sin(angle)*radius);
         void Polygon(Vector3 c,float r,float a,int sides,float w,Color color)
