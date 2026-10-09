@@ -25,10 +25,10 @@ namespace Eternal.UnityMigration.Editor
                 Check(state.SettleUnityPack(1,35,100).Ok,"pack reward");Check(state.WalletGold==535&&state.DeployedHeroes().Count==9&&state.Formation=="assault","reward then queued party");
                 Check(deployed.Sum(id=>state.HeroProgress(id).xp)==100&&state.HeroProgress(deployed[9]).xp>0,"old party receives exact XP");
                 long revision=reader.Revision;string before=state.Snapshot().ToString();Check(!state.SettleUnityPack(1,35,100).Ok&&!state.SettleUnityPack(3,35,100).Ok,"duplicate and skipped pack rejected");Check(before==state.Snapshot().ToString()&&reader.Revision==revision,"rejections do not write");
-                Check(state.SetUnityZone("moonrest_forest").Ok,"zone persisted");var attempt=state.ReserveUnityRaid("moonrest_forest");long nonce=(long)attempt.Details["attempt"];
+                Check(!state.SetUnityZone("moonrest_forest").Ok&&state.UnityZone=="gray_meadow","manual travel replaced by stage theme");var attempt=state.ReserveUnityRaid("moonrest_forest");long nonce=(long)attempt.Details["attempt"];
                 Check(attempt.Ok&&!state.SettleUnityRaid("gray_meadow",nonce).Ok,"raid nonce binds region");Check(state.SettleUnityRaid("moonrest_forest",nonce).Ok&&state.WalletGold==2935,"exact native raid reward");Check(!state.SettleUnityRaid("moonrest_forest",nonce).Ok,"raid settles once");
                 var reload=new NativeSessionStore(store.PathName,faction);var restored=reload.Read();Check(restored.Ok&&JToken.DeepEquals(restored.Payload,state.Snapshot()),"all commands survive disk reload");
-                var hunt=new HuntingSimulation(1,9514,state);hunt.RestoreUnityProgress(state.UnityZone,state.UnityPacks);Check(hunt.Zone=="moonrest_forest"&&hunt.PacksCleared==1&&hunt.Battle.Heroes.Count==9,"restored live hunt");
+                var hunt=new HuntingSimulation(1,9514,state);hunt.RestoreUnityProgress(state.UnityZone,state.UnityPacks);Check(hunt.Zone=="gray_meadow"&&hunt.PacksCleared==1&&hunt.Battle.Heroes.Count==9,"restored live hunt");
                 var raid=new RaidSimulation("gray_meadow",1,9514,state.DeployedHeroes(),state);Check(raid.StateBound&&raid.Battle.Heroes.Count==9,"raid uses actual party");
                 Check(!raid.BeginCounterPractice(),"rewarded raid cannot force counter practice");
                 var stale=new NativeSessionStore(store.PathName,faction);var old=stale.Read();Check(reload.Write(restored.Payload),"later revision");Check(!stale.Write(old.Payload),"stale writer rejected");

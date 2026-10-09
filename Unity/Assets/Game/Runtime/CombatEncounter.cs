@@ -12,11 +12,11 @@ namespace Eternal.UnityMigration
         public int Serial, Slot, EnemyRow, Hp, MaxHp, Attack, Defense, Shield, Range=2;
         public bool Elite, Returning;
         public Vector2 Position, PreviousPosition, Velocity;
-        public double Guard, Taunt, ShieldSeconds, Stun, Weaken, Vulnerable, Ultimate;
+        public double Guard, Taunt, ShieldSeconds, Stun, Weaken, Vulnerable, Ultimate,ArmorBreak,Bleed;
         public double AttackIntervalMultiplier=1, UltimateGainMultiplier=1, AttackRemaining, Windup=-1;
         public bool Alive => Hp>0;
         public double HpRatio => (double)Hp/Math.Max(1,MaxHp);
-        public bool Debuffed => Stun>0 || Weaken>0 || Vulnerable>0;
+        public bool Debuffed => Stun>0 || Weaken>0 || Vulnerable>0||ArmorBreak>0||Bleed>0;
         public double Status(string name) => name=="stun"?Stun:name=="weaken"?Weaken:name=="vulnerable"?Vulnerable:0;
         public void ApplyStatus(string name,double duration)
         {
@@ -28,6 +28,7 @@ namespace Eternal.UnityMigration
             Guard=Math.Max(0,Guard-dt);Taunt=Math.Max(0,Taunt-dt);
             ShieldSeconds=Math.Max(0,ShieldSeconds-dt);if(ShieldSeconds<=0 || !Alive)Shield=0;
             Stun=Math.Max(0,Stun-dt);Weaken=Math.Max(0,Weaken-dt);Vulnerable=Math.Max(0,Vulnerable-dt);
+            ArmorBreak=Math.Max(0,ArmorBreak-dt);Bleed=Math.Max(0,Bleed-dt);
             AttackRemaining=Math.Max(0,AttackRemaining-dt);
         }
     }
@@ -110,7 +111,7 @@ namespace Eternal.UnityMigration
         public int DamageHero(Combatant enemy,Combatant hero,int raw)
         {
             if(hero==null || !hero.Alive || raw<=0)return 0;
-            int damage=LegacyCombatRules.IncomingDamage(raw,hero.Defense,enemy.Weaken>0,hero.Guard>0,PartyGuard>0);
+            int damage=LegacyCombatRules.IncomingDamage(raw,Math.Max(0,hero.Defense-(hero.ArmorBreak>0?4:0)),enemy.Weaken>0,hero.Guard>0,PartyGuard>0);
             int absorbed=Math.Min(hero.Shield,damage);hero.Shield-=absorbed;damage-=absorbed;
             int actual=Math.Min(hero.Hp,damage);hero.Hp-=actual;Emit("hero_hit",enemy,"basic",hero,actual);
             if(hero.Alive){int passive=HeroKitExecution.Event(this,hero,"hit",enemy);if(IsRaid&&passive>0)DamageEnemy(hero,Boss,passive,"passive");}

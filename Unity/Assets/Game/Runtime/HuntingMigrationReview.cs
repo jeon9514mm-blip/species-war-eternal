@@ -90,6 +90,7 @@ namespace Eternal.UnityMigration
             sun.transform.SetParent(worldRoot.transform,false);
             var post=new GameObject("Battle bloom and vignette").AddComponent<Volume>();post.transform.SetParent(worldRoot.transform,false);post.isGlobal=true;post.sharedProfile=Resources.Load<VolumeProfile>("Eternal/Materials/BattlePost");
             var floor=GameObject.CreatePrimitive(PrimitiveType.Plane);floor.name="Original stone hunting field";floor.transform.localScale=new Vector3(6,1,4);
+            if(PersistentPlayer)floor.transform.localScale=new Vector3(10,1,8);
             floor.transform.SetParent(worldRoot.transform,false);huntFloor=floor;
             var floorMaterial=Resources.Load<Material>("Eternal/Materials/Stone");
             ownedFloorMaterial=new Material(floorMaterial);
@@ -101,22 +102,23 @@ namespace Eternal.UnityMigration
             var paintedSlabs=Resources.Load<Texture2D>("Eternal/Environment/painted-slabs-v1");
             if(paintedSlabs!=null){ownedFloorMaterial.SetTexture("_PaintedMap",paintedSlabs);ownedFloorMaterial.SetFloat("_PaintedSlabs",1);}
             floor.GetComponent<Renderer>().sharedMaterial=ownedFloorMaterial;
-            huntEnvironment=worldRoot.AddComponent<HuntEnvironmentPresentation>();huntEnvironment.Initialize(BattleCamera,floor.GetComponent<Renderer>(),ownedFloorMaterial,Simulation.Zone);
+            huntEnvironment=worldRoot.AddComponent<HuntEnvironmentPresentation>();huntEnvironment.Initialize(BattleCamera,floor.GetComponent<Renderer>(),ownedFloorMaterial,Simulation.Zone,PersistentPlayer);
             Destroy(floor.GetComponent<Collider>());
-            feedback=new GameObject("Bounded hunting presentation").AddComponent<HuntingFeedback>();feedback.Initialize(BattleCamera);
+            feedback=new GameObject("Bounded hunting presentation").AddComponent<HuntingFeedback>();feedback.Initialize(BattleCamera);feedback.ConfigureExpandedHunt(PersistentPlayer);
             afterImages=new PaintedAfterImages(feedback.transform);
         }
         void Receive(BattleEvent e)
         {
+            if(e.Kind=="pack"&&Raid==null&&huntEnvironment!=null)huntEnvironment.Bind(Simulation.Zone);
             if(e.Kind=="loot"&&Raid==null&&Simulation?.PlayerState!=null)
             {
                 int xp=(int)HuntingSimulation.Canonical["zones"][Simulation.Zone]["xp"];
-                var settled=playerSession!=null?ReviewState.SettleUnityPack(Simulation.PacksCleared,e.Amount,xp):ReviewState.SettleReviewHuntPack(Simulation.PacksCleared,e.Amount,xp);
+                var settled=playerSession!=null?ReviewState.SettleUnityPack(Simulation.PacksCleared,e.Amount,xp,Simulation.Battle.Enemies.Count):ReviewState.SettleReviewHuntPack(Simulation.PacksCleared,e.Amount,xp);
                 huntNotice=settled.Message;huntNoticeUntil=Time.unscaledTime+3;
+                if(settled.Ok&&playerSession!=null)playerPartyRefresh|=!ReviewState.DeployedHeroes().SequenceEqual(Simulation.Battle.Heroes.Select(h=>h.Id))||ReviewState.Formation!=Simulation.Formation;
                 if(settled.Ok)Simulation.RefreshHeroGrowth();
                 if(playerSession!=null)
                 {
-                    playerPartyRefresh|=!ReviewState.DeployedHeroes().SequenceEqual(Simulation.Battle.Heroes.Select(h=>h.Id))||ReviewState.Formation!=Simulation.Formation;
                     PauseForSaveFailure();
                 }
             }
@@ -136,12 +138,12 @@ namespace Eternal.UnityMigration
             if(Simulation==null)return;
             FrameCost.Begin();
             RenderedFrames++;double frame=Math.Min(Time.unscaledDeltaTime,.25f);
-            bool paused=Raid?.Paused??Simulation.Paused;
+            bool paused=(Raid?.Paused??Simulation.Paused)||(Raid==null&&PersistentPlayer&&ReviewState.HasDeferredUnityLoot);
             bool running=Raid?.Running??!Simulation.Defeated;
             if(!paused&&running)accumulator+=frame*speed;
             int steps=0;
-            while(accumulator>=.05&&steps<5){if(Raid!=null)Raid.Step(.05);else Simulation.Step(.05);accumulator-=.05;steps++;if(playerPartyRefresh)break;}
-            if(playerPartyRefresh&&!ReviewState.SavePending){playerPartyRefresh=false;RestartPlayerHunt(true);}
+            while(!paused&&accumulator>=.05&&steps<5){if(Raid!=null)Raid.Step(.05);else Simulation.Step(.05);accumulator-=.05;steps++;if(playerPartyRefresh||Raid==null&&PersistentPlayer&&ReviewState.HasDeferredUnityLoot)break;}
+            if(playerPartyRefresh&&!ReviewState.SavePending&&!ReviewState.HasDeferredUnityLoot){playerPartyRefresh=false;RestartPlayerHunt(true);}
             if(Raid!=null&&launch.pauseAfterSeconds>0&&Raid.Elapsed>=launch.pauseAfterSeconds){Raid.Paused=true;launch.pauseAfterSeconds=0;}
             if(accumulator>=.05){CatchupLimitHits++;accumulator%=.05;}
             float alpha=paused||!running?1:Mathf.Clamp01((float)(accumulator/.05));
@@ -165,6 +167,7 @@ namespace Eternal.UnityMigration
                 if((e.Kind=="damage"||e.Kind=="critical"||e.Kind=="hero_hit")&&actors.TryGetValue(e.TargetSerial,out var victim))victim.HitSeconds=.04f;
                 if(e.Kind=="cast"&&actors.ContainsKey(e.SourceSerial))trails[e.SourceSerial]=(.4f,0);
                 feedback.Observe(e,ActiveBattle);
+                if(e.Kind=="monster_skill")ObserveSkillFeed(e,FallenMonsterCatalog.Skill(e.Source),"monster");
                 ObserveCastPresentation(e);
             }
             UpdateAfterImages((float)frame);
@@ -225,7 +228,7 @@ namespace Eternal.UnityMigration
                 else
                 {
                     painted=new GameObject(actor.Id+" #"+actor.Serial).AddComponent<PaintedActor>();painted.transform.SetParent(worldRoot.transform,false);
-                    painted.Initialize(actor.Id,hero?1.9f:Raid!=null?4.6f:1.35f,BattleCamera,hero);painted.Driven=true;
+                    painted.Initialize(actor.Id,hero?1.9f:Raid!=null?4.6f:FallenMonsterCatalog.Contains(actor.Id)?FallenMonsterCatalog.Height(actor.Id):1.35f,BattleCamera,hero);painted.Driven=true;
                     feedback.AddShadow(painted.transform,hero?.7f:Raid!=null?1.75f:.5f);
                 }
                 painted.name=actor.Id+" #"+actor.Serial;actors[actor.Serial]=painted;
@@ -305,6 +308,7 @@ namespace Eternal.UnityMigration
             BuildCombatReadability();
             BuildChainStrip();
             battleSpace.pickingMode=PickingMode.Position;
+            BuildHuntMapTools(battleSpace);
             battleSpace.RegisterCallback<PointerDownEvent>(e=>
             {
                 if(Raid==null||e.button!=0)return;
@@ -364,12 +368,14 @@ namespace Eternal.UnityMigration
                 huntStageFill.style.width=Length.Percent((Simulation.PacksCleared%5+fraction)*20);
                 fixtureLabel.text+=" · 무리 "+Simulation.PacksCleared%5+"/5";
             }
-            stageLabel.text=Raid!=null?(string)Raid.ZoneData["boss"]+" · PHASE "+Raid.Phase:(playerSession!=null?(string)HuntingSimulation.Canonical["zones"][Simulation.Zone]["name"]:"사냥터 1")+"  ·  "+Simulation.Stage+" 스테이지";
+            stageLabel.text=Raid!=null?(string)Raid.ZoneData["boss"]+" · PHASE "+Raid.Phase:(playerSession!=null?"끝없는 사냥터 · "+HuntStageWorld.Atmosphere(Simulation.Stage):"사냥터 1")+"  ·  "+Simulation.Stage+" 스테이지";
             currencyLabel.text=Raid!=null?"HP "+Raid.Boss.Hp.ToString("N0")+" / "+Raid.Boss.MaxHp.ToString("N0")+" · "+TimeSpan.FromSeconds(Math.Max(0,240-Raid.Elapsed)).ToString(@"mm\:ss"):"◈ 골드 "+ReviewState.WalletGold.ToString("N0")+"   ·   ◆ 젬 "+ReviewState.WalletGems.ToString("N0");
             currencyBadges.style.display=Raid==null?DisplayStyle.Flex:DisplayStyle.None;currencyLabel.style.display=Raid!=null?DisplayStyle.Flex:DisplayStyle.None;
             goldLabel.text=ReviewState.WalletGold.ToString("N0");gemLabel.text=ReviewState.WalletGems.ToString("N0");
             statusLabel.text=Raid!=null?(Raid.Paused?"일시정지":Raid.Running?"레이드 전투":Raid.EventText)+" · 원정대 "+ActiveBattle.Heroes.Count(h=>h.Alive)+"/10 · 피해 "+Raid.DamageDealt.ToString("N0"):(Simulation.Defeated?"원정대 전멸":Simulation.Paused?"일시정지":"자동 사냥")+" · "+Simulation.Battle.Heroes.Count(h=>h.Alive)+"/10  ·  적 "+Simulation.Battle.Enemies.Count(e=>e.Alive)+"  ·  무리 "+Simulation.PacksCleared+"  ·  ×"+speed;
             if(Raid==null&&Time.unscaledTime<huntNoticeUntil)statusLabel.text+=" · "+huntNotice;
+            if(Raid==null&&PersistentPlayer&&ReviewState.HasDeferredUnityLoot)statusLabel.text="장비 보관 대기 · 가방을 정리하고 보관함에서 수령하세요.";
+            RefreshHuntMapTools();
             var chain=Raid?.Chain??Simulation.Chain;
             if(chain.Current is ChainSkill next)
             {
@@ -380,10 +386,11 @@ namespace Eternal.UnityMigration
             foreach(var c in cards)
             {
                 var h=c.actor;var kit=ActiveBattle.Kits[h.Id];
-                string status=h.Stun>0?"기절":h.Weaken>0?"약화":h.Vulnerable>0?"노출":h.Shield>0?"보호":h.Guard>0?"방어":"";
+                string status=h.Stun>0?"기절":h.Bleed>0?"출혈":h.ArmorBreak>0?"방어 파쇄":h.Weaken>0?"약화":h.Vulnerable>0?"노출":h.Shield>0?"보호":h.Guard>0?"방어":"";
                 c.health.text="HP "+(int)(h.HpRatio*100)+"%"+(status.Length>0?" · "+status:"");
                 c.health.style.color=h.Debuffed?new Color(.94f,.53f,.47f):h.Shield>0?new Color(.45f,.78f,.81f):Moss;
                 c.health.tooltip="보호막 "+h.Shield.ToString("N0")+" · 방어 "+h.Guard.ToString("F1")+"초\n기절 "+h.Stun.ToString("F1")+"초 · 약화 "+h.Weaken.ToString("F1")+"초 · 약점 노출 "+h.Vulnerable.ToString("F1")+"초";
+                c.health.tooltip+="\n방어 파쇄 "+h.ArmorBreak.ToString("F1")+"초 · 출혈 "+h.Bleed.ToString("F1")+"초";
                 c.hp.style.width=Length.Percent((float)h.HpRatio*100);c.hp.style.backgroundColor=h.HpRatio<=.25?new Color(.85f,.38f,.33f):Moss;
                 c.skills.text="스킬 "+kit.Cooldowns.GetValueOrDefault("a1").ToString("F1")+"s · 궁극 "+(int)h.Ultimate+"%";c.skills.style.color=h.Ultimate>=100?new Color(.94f,.81f,.57f):Bronze;
             }
@@ -443,7 +450,7 @@ namespace Eternal.UnityMigration
         Sprite InspectionPortrait(string id)
         {
             if(inspectionPortraits.TryGetValue(id,out var found))return found;
-            var f=OriginalCatalog.Atlas(id).attack.frames[0];var texture=Resources.Load<Texture2D>("Eternal/Actors/"+id+"/poses");
+            var f=OriginalCatalog.Atlas(id).attack.frames[0];var texture=OriginalCatalog.Texture(id);
             var sprite=Sprite.Create(texture,new Rect(f.region[0],1024-f.region[1]-f.region[3],f.region[2],f.region[3]),new Vector2(.5f,.5f));inspectionPortraits.Add(id,sprite);return sprite;
         }
         void ShowRoster()

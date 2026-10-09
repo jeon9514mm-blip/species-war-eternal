@@ -67,6 +67,12 @@ namespace Eternal.UnityMigration
             PanelHeader("가방 · 장비");var items=ReviewState.Inventory().Where(i=>i.Count>0).ToList();
             var row=Row(modal);row.style.marginTop=10;row.style.alignItems=Align.Center;Text(row,items.Count+"개 보관",14).style.flexGrow=1;
             GrowthButton(row,"추천 장착",ReviewState.RecommendEquip,ShowInventory,items.Count>0);GrowthNotice(modal);
+            if(PersistentPlayer)
+            {
+                var mail=Button(modal,"보관함 · "+ReviewState.UnityEquipmentMail().Count+"개",ShowUnityEquipmentMail);mail.style.marginLeft=0;mail.style.marginTop=8;
+                if(ReviewState.HasDeferredUnityLoot)Text(modal,"가방·보관함이 가득 차 사냥이 대기 중입니다. 장비를 정리하고 보관함에서 수령하세요.",12).style.whiteSpace=WhiteSpace.Normal;
+                if(ReviewState.Snapshot()["unity_last_loot"] is JObject receipt&&receipt["items"] is JArray last)Text(modal,"최근 무리 · 장비 "+last.Count+"개 획득 · 가방 "+items.Count+" / "+GameStateCommands.UnityBagCapacity,12).style.color=Moss;
+            }
             VisualElement Make()
             {
                 var card=new Button();card.AddToClassList("inventory-card");card.clicked+=()=>{if(card.userData is string id)ShowInventoryItem(id);};
@@ -124,8 +130,20 @@ namespace Eternal.UnityMigration
             var snapshot=ReviewState.Snapshot();long claim=GameStateCommands.Integer(snapshot["unclaimed_gold"],0,0,GameStateCommands.CurrencyCap)+GameStateCommands.Integer(snapshot["idle_chest_gold"],0,0,GameStateCommands.CurrencyCap);
             long claimXp=GameStateCommands.Integer(snapshot["unclaimed_xp"],0,0,GameStateCommands.CurrencyCap)+GameStateCommands.Integer(snapshot["idle_chest_xp"],0,0,GameStateCommands.CurrencyCap);
             GrowthButton(scroll,"보관 보상 수령 · 골드 "+claim.ToString("N0"),ReviewState.ClaimHuntingRewards,ShowStateMenu,claim>0||claimXp>0).style.marginTop=8;
-            Text(scroll,"사냥 연출 검수 · 골드 "+Simulation.Gold.ToString("N0")+" / 경험치 "+Simulation.Xp.ToString("N0"),13).style.marginTop=20;
-            Text(scroll,"독립 검수 기록입니다. 성장·장비·소환 변경은 이번 실행에 유지되며 기존 저장 기록에는 반영되지 않습니다.",13).style.whiteSpace=WhiteSpace.Normal;Text(scroll,"사냥 보상·수호신 전투·콘텐츠 저장 이관은 계속 진행 중입니다.",12).style.whiteSpace=WhiteSpace.Normal;
+            Text(scroll,(PersistentPlayer?"이번 사냥":"사냥 연출 검수")+" · 골드 "+Simulation.Gold.ToString("N0")+" / 경험치 "+Simulation.Xp.ToString("N0"),13).style.marginTop=20;
+            Text(scroll,PersistentPlayer?"성장·장비·소환·편성은 현재 진영의 Unity 기록에 자동 저장됩니다.":"독립 검수 기록입니다. 성장·장비·소환 변경은 이번 실행에 유지되며 기존 저장 기록에는 반영되지 않습니다.",13).style.whiteSpace=WhiteSpace.Normal;Text(scroll,"수호신 전투·추가 콘텐츠 이관은 계속 진행 중입니다.",12).style.whiteSpace=WhiteSpace.Normal;
+        }
+        void ShowUnityEquipmentMail()
+        {
+            PanelHeader("장비 보관함");var items=ReviewState.UnityEquipmentMail();
+            Text(modal,"가방 "+ReviewState.Inventory().Count+" / 200 · 보관함 "+items.Count+" / 3000",14).style.marginTop=10;
+            Text(modal,"가방 초과 장비는 보관함으로 배송됩니다. 수령하면 가방에서 장착할 수 있습니다.",12).style.whiteSpace=WhiteSpace.Normal;
+            GrowthButton(modal,"빈칸만큼 수령",ReviewState.ClaimUnityEquipmentMail,ShowUnityEquipmentMail,items.Count>0||ReviewState.HasDeferredUnityLoot).style.marginTop=8;GrowthNotice(modal);
+            var list=new ScrollView();list.style.flexGrow=1;modal.Add(list);
+            // A bounded preview keeps thousands of retained attachments usable.
+            foreach(var item in items.Take(30))Text(list,item["name"]+" · "+item["rarity"]+" · "+item["set"],12).style.marginTop=8;
+            if(items.Count>30)Text(list,"외 "+(items.Count-30)+"개 · 수령 후 가방에서 확인할 수 있습니다.",12).style.marginTop=10;
+            Button(modal,"가방으로",ShowInventory).style.marginTop=8;
         }
     }
 }

@@ -47,6 +47,11 @@ namespace Eternal.UnityMigration
         readonly GUIContent damageContent=new();
         Vector3 baseCamera;
         float baseSize,shakeUntil,shakePixels,zoomUntil,nextStrongImpact,screenFlash;
+        bool expandedHunt;
+        float huntZoom=1f;
+        public float HuntZoom=>huntZoom;
+        public void ConfigureExpandedHunt(bool enabled){expandedHunt=enabled;}
+        public void SetHuntZoom(float value){if(value!=1&&value!=1.5f&&value!=2&&value!=3)return;huntZoom=value;}
         int sparkCursor,popupCursor,voiceCursor;
         public int ActiveParticles {get;private set;}
         public int EventsPresented {get;private set;}
@@ -146,6 +151,8 @@ namespace Eternal.UnityMigration
                 Burst(position,color,Math.Min(particles,e.Slot=="ultimate"?40:20),e.Slot=="ultimate"?1.8f:.8f,(string)p["motif"]);
                 Play("Skills/"+e.Source+"__"+e.Slot,position,.11f);
             }
+            else if(e.Kind=="monster_skill")
+            {Burst(position,e.Source=="fallen_elf"?new Color(.5f,.75f,.48f):new Color(.84f,.30f,.37f),10,.65f,"spark");Play("sword",position,.09f);}
             else if(e.Kind=="damage"||e.Kind=="critical"||e.Kind=="hero_hit")
             {
                 bool critical=e.Kind=="critical";var color=critical?new Color(1,.84f,0):e.Kind=="hero_hit"?new Color(.86f,.54f,.48f):new Color(.85f,.84f,.8f);
@@ -214,11 +221,12 @@ namespace Eternal.UnityMigration
             }
             particleMesh.vertices=vertices;particleMesh.colors=colors;
             for(int i=0;i<popups.Length;i++){var p=popups[i];p.remaining=Mathf.Max(0,p.remaining-dt);p.position+=Vector3.up*.55f*dt;popups[i]=p;}
-            float unit=baseSize*2/Mathf.Max(1,Screen.height*.72f);
+            float wantedSize=expandedHunt&&!raidMode?baseSize*2f/huntZoom:baseSize;
+            float unit=wantedSize*2/Mathf.Max(1,Screen.height*.72f);
             float breathe=Mathf.Sin(now*Mathf.PI*2/8)*2.5f*unit;
             var shake=now<shakeUntil?new Vector3((Mathf.PerlinNoise(now*41,0)-.5f)*shakePixels*unit,(Mathf.PerlinNoise(0,now*43)-.5f)*shakePixels*unit,0):Vector3.zero;
             cameraView.transform.position=baseCamera+cameraView.transform.up*breathe+shake;
-            cameraView.orthographicSize=Mathf.Lerp(cameraView.orthographicSize,now<zoomUntil?baseSize/1.08f:baseSize,dt*15);
+            cameraView.orthographicSize=Mathf.Lerp(cameraView.orthographicSize,now<zoomUntil?wantedSize/1.08f:wantedSize,dt*15);
             screenFlash=Mathf.Max(0,screenFlash-dt);
             UpdateRunes(now,dt);
             FrameCost.End();

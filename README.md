@@ -1,16 +1,16 @@
 # 종의전쟁: 이터널
 
-가로형 자동사냥 RPG이며 **Unity 6000.6.4f1 / URP로 엔진 전환 작업 중**입니다. Unity에서 `Unity/` 폴더를 열고 `Assets/Scenes/Eternal.unity`를 Play하면 진영 선택부터 시작합니다. 진영별 자동 저장, 사냥 보상·영웅 성장·장비·소환·원정대 편성·스킬 연계·세 지역 레이드를 연결했습니다. 기존 Godot 기록은 시작 화면에서 파일 경로를 지정해 별도 Unity 기록으로 가져올 수 있습니다. 전체 콘텐츠·그래픽 마감·최종 최적화는 진행 중입니다. [검증 범위와 남은 작업](docs/unity-migration/STATUS.md)을 확인하세요.
+가로형 자동사냥 RPG이며 **Unity 6000.6.4f1 / URP로 엔진 전환 작업 중**입니다. Unity에서 `Unity/` 폴더를 열고 `Assets/Scenes/Eternal.unity`를 Play하면 진영 선택부터 시작합니다. 진영별 자동 저장, 스테이지 구간에 따라 분위기·몬스터가 바뀌는 통합 사냥터, 장비 획득·보관함·성장·소환·편성 저장·스킬 연계·세 지역 레이드를 연결했습니다. 기존 Godot 기록은 시작 화면에서 파일 경로를 지정해 별도 Unity 기록으로 가져올 수 있습니다. 전체 콘텐츠·그래픽 마감·최종 최적화는 진행 중입니다. [검증 범위와 남은 작업](docs/unity-migration/STATUS.md)을 확인하세요.
 
 기존 Godot **4.7.2** 프로젝트와 저장 기록은 전환 검증을 위해 보존합니다. 기존 게임은 `project.godot`를 가져온 뒤 **F5**로 실행하며, 시작 장면은 `scenes/PortraitMain.tscn`, 기준 화면은 **1280×720**입니다. 아래 기존 구현 설명은 Godot 버전을 기준으로 합니다.
 
-최신 제작 방향: 기존 UI·UX·그래픽의 세부 구현을 그대로 복제하지 않습니다. 영웅 30명·스킬·성장·재화·사냥·레이드의 핵심 구성을 가져가고, Unity에 맞춰 화면 흐름과 디자인을 새로 만듭니다. 현재 검수 화면에는 한국어 글꼴, 재화 아이콘, 현재 메뉴 표시, 이끼·청동 문양, 분리된 보스 체력·무력화 표시와 패턴·카운터 연습이 들어 있습니다. [초원 사냥](checks/unity-migration-2026-10-08/hunt-meadow-native.png), [광산 사냥](checks/unity-migration-2026-10-08/hunt-mine-native.png), [달빛 숲 사냥](checks/unity-migration-2026-10-08/hunt-forest-native.png), [레이드 대응 안내](checks/unity-migration-2026-10-08/raid-response-counter-native.png)는 실제 실행본 캡처입니다. 마지막 화면은 명시적인 카운터 연습입니다.
+최신 제작 방향: 기존 UI·UX·그래픽의 세부 구현을 그대로 복제하지 않습니다. 영웅 30명·스킬·성장·재화·사냥·레이드의 핵심 구성을 가져가고, Unity에 맞춰 화면 흐름과 디자인을 새로 만듭니다. 현재 검수 화면에는 한국어 글꼴, 재화 아이콘, 현재 메뉴 표시, 이끼·청동 문양, 분리된 보스 체력·무력화 표시와 패턴·카운터 연습이 들어 있습니다. [기본 원거리 화면](checks/unity-migration-2026-10-08/hunt-meadow-cp14.png), [×3 확대](checks/unity-migration-2026-10-08/hunt-zoom-3-cp14.png), [500 스테이지 광맥](checks/unity-migration-2026-10-08/hunt-stage-500-cp14.png), [1000 스테이지 숲](checks/unity-migration-2026-10-08/hunt-stage-1000-cp14.png), [레이드 대응 안내](checks/unity-migration-2026-10-08/raid-response-counter-native.png)는 실제 실행본 캡처입니다. 마지막 화면은 명시적인 카운터 연습입니다.
 
 ## 시작과 개발
 
 Unity에는 8종 원화 스킬 형태, 차징·투사체·타격·여운, 실제 대상의 회복·보호막, 궁극기 원화 컷인, 직접 누르는 6칸 스킬 연계, 영웅 상태 표시·도감 검색, 전용 맵·보스 레이드 카드와 결과·재도전 화면을 적용했습니다. 기능·디자인을 큰 단위로 개발한 뒤 종합 점검하며 프레임 최적화는 마지막에 진행합니다. [Unity 실행과 저장 안내](docs/unity-migration/NATIVE_PLAY_KO.md)를 확인하세요.
 
-이번 제작 묶음에는 초원 유적·광산·달빛 숲의 서로 다른 사냥 배경, 지역 미리보기, 속성별 투사체와 공격 방향을 따르는 베기, 실제 시전 표시, 가장 시급한 레이드 대응 안내와 지역별 연계 저장을 추가했습니다. 훈련 결과의 재도전도 보상 없는 훈련 모드를 유지합니다.
+이번 제작 묶음은 맵을 가로·세로 2배로 넓히고 기본 ×1 원거리 보기와 원형 ×1.5·×2·×3 버튼을 넣었습니다. 드래그는 없습니다. 타락한 엘프·드워프·뱀파이어·늑대인간 원화와 스테이지별 디버프·스킬을 추가하고, 비슷했던 오르윈·카엘룸·카이렌의 원화를 각자 다른 스타일로 바꿨습니다. 진형별 실제 대열·편성 3개 저장·분산 등장·장비 보상을 연결했습니다. [상세 변경과 남은 범위](docs/unity-migration/HUNT_WORLD_CP14_KO.md), [몬스터 도감](checks/unity-migration-2026-10-08/fallen-monsters-cp14.png), [원정대 편성](checks/unity-migration-2026-10-08/party-formation-cp14.png)을 확인하세요.
 
 - [실행·조작·플레이 저장](START_HERE_KO.md)
 - [현재 구현과 남은 작업](CURRENT_DEVELOPMENT.md)

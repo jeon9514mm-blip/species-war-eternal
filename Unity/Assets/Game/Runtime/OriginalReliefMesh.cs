@@ -28,7 +28,9 @@ namespace Eternal.UnityMigration
                 if(loaded.Body!=null&&loaded.Body.vertexCount>0)return loaded;
                 Release(loaded);cache.Remove(id);
             }
-            var asset=Resources.Load<TextAsset>("Eternal/Actors/"+id+"/billboard.glb");if(asset==null)return null;
+            var asset=Resources.Load<TextAsset>("Eternal/Actors/"+id+"/billboard.glb");
+            if(asset==null)
+            {if(!FallenMonsterCatalog.Contains(id))return null;var creature=new Surfaces{Body=PaintedStyleGeometry.Build(id,false),BodyLod=PaintedStyleGeometry.Build(id,false,true)};cache[id]=creature;return creature;}
             byte[] data=asset.bytes;
             if(data.Length<28||BitConverter.ToUInt32(data,0)!=0x46546c67||BitConverter.ToUInt32(data,4)!=2||BitConverter.ToUInt32(data,8)!=data.Length)throw new InvalidOperationException("Invalid original GLB header: "+id);
             JObject root=null;int binaryStart=0,binaryLength=0;
@@ -76,7 +78,10 @@ namespace Eternal.UnityMigration
                 else if(name.Contains("PaintedReliefLOD"))result.BodyLod=Read(m);
                 else if(name.Contains("PaintedRelief"))result.Body=Read(m);
             }
-            if(result.Body==null)throw new InvalidOperationException("Original relief body missing: "+id);cache[id]=result;return result;
+            if(result.Body==null)throw new InvalidOperationException("Original relief body missing: "+id);
+            if(OriginalCatalog.HasStyle(id))
+            {if(Application.isPlaying){UnityEngine.Object.Destroy(result.Body);if(result.BodyLod!=null)UnityEngine.Object.Destroy(result.BodyLod);}else{UnityEngine.Object.DestroyImmediate(result.Body);if(result.BodyLod!=null)UnityEngine.Object.DestroyImmediate(result.BodyLod);}result.Body=PaintedStyleGeometry.Build(id,true);result.BodyLod=PaintedStyleGeometry.Build(id,true,true);}
+            cache[id]=result;return result;
         }
         public static void Clear()
         {foreach(var s in cache.Values)Release(s);cache.Clear();}

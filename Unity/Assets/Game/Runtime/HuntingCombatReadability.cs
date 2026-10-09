@@ -43,13 +43,18 @@ namespace Eternal.UnityMigration
                 responseCue.style.borderTopColor=responseTitle.style.color=responseTimer.style.color=response.Accent;responseFill.style.backgroundColor=response.Accent;
                 responseFill.style.width=Length.Percent(response.Progress*100);
             }
+            if(Raid==null&&!modalOpen)
+            {
+                var warning=Simulation.MonsterWarning;if(!string.IsNullOrEmpty(warning.title))
+                {responseCue.style.display=DisplayStyle.Flex;responseTitle.text=warning.title;responseAction.text="몬스터 스킬 전조 · 보호·회복 스킬을 준비하세요.";responseTimer.text=warning.remaining.ToString("F1")+"초";responseCue.style.borderTopColor=responseTitle.style.color=responseTimer.style.color=new Color(.87f,.46f,.41f);responseFill.style.backgroundColor=new Color(.87f,.46f,.41f);responseFill.style.width=Length.Percent((float)(warning.remaining/.75)*100);}
+            }
             bool hide=modalOpen||feedback.RaidWarningVisible||Raid!=null&&!Raid.Running;
             for(int i=0;i<feedRows.Length;i++)
             {
                 var notice=feedNotices[i];var row=feedRows[i];bool visible=!hide&&notice.until>Time.unscaledTime;
                 row.row.style.display=visible?DisplayStyle.Flex:DisplayStyle.None;if(!visible)continue;
                 string type=notice.kind=="heal"?"회복":notice.kind=="barrier"||notice.kind=="guard"?"보호":notice.kind=="control"?"제어":"시전";
-                row.owner.text=(string)Simulation.Catalog.Hero(notice.hero)["name"]+" · "+type;row.skill.text=notice.skill;
+                row.owner.text=FallenMonsterCatalog.Contains(notice.hero)?FallenMonsterCatalog.Name(notice.hero)+" · 적 스킬":(string)Simulation.Catalog.Hero(notice.hero)["name"]+" · "+type;row.skill.text=notice.skill;
                 row.row.style.opacity=Mathf.Min(1,(notice.until-Time.unscaledTime)/.22f);
             }
         }

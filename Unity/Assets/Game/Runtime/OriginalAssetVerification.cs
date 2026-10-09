@@ -101,7 +101,7 @@ namespace Eternal.UnityMigration
             var template=relief?reliefTemplate:Resources.Load<Material>("Eternal/Materials/OriginalPaint");
             var shader=Shader.Find("Eternal/OriginalPaint") ?? throw new InvalidOperationException("Original paint shader missing");
             var material=template!=null?new Material(template):new Material(shader);
-            material.mainTexture=Resources.Load<Texture2D>("Eternal/Actors/"+id+"/poses") ?? throw new InvalidOperationException("Atlas missing: "+id);
+            material.mainTexture=OriginalCatalog.Texture(id) ?? throw new InvalidOperationException("Atlas missing: "+id);
             meshRenderer.sharedMaterial=material;
             meshRenderer.sortingOrder=1000-Mathf.RoundToInt(transform.position.z*10);
             if(relief)
