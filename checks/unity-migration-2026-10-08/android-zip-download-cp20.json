@@ -1,0 +1,10 @@
+{
+  "file": "EternalUnity-0.1.20-arm64.zip",
+  "bytes": 67158064,
+  "sha256": "0d432bd7a12576a85ddf2fb03f808f6bde88f1edf9bb08b36b312de754705090",
+  "contained_apk_sha256": "2b6ff9a69eae664567b07c7fc5cb78384d750fd3aa011195f8ba9651669df069",
+  "zip_crc_passed": true,
+  "original_signed_apk_preserved": true,
+  "device_download_verified": false,
+  "note": "Direct GitHub APK byte-range download returned HTTP 206 with the APK ZIP header. ZIP is an additional download route; the user's device/browser failure has not been identified."
+}
