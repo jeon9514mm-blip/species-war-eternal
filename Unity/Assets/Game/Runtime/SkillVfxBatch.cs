@@ -114,12 +114,15 @@ namespace Eternal.UnityMigration
                 // never paint a healing bloom or shield on that enemy instead.
                 if(profile.Kind=="heal"||profile.Kind=="barrier"||profile.Kind=="guard")return true;
             }
-            float life=e.Kind=="windup"?.18f:profile.Lifetime;
+            float life=e.Kind=="windup"?.18f:Mathf.Max(profile.Lifetime,FlightDuration(profile,Vector2.Distance(from,to),recipient)+ImpactDuration(profile)+.08f);
             effects[cursor++%Capacity]=new Effect{profile=profile,from=new Vector3(from.x,.065f,from.y),to=new Vector3(to.x,.07f,to.y),lifetime=life,charge=e.Kind=="windup",recipient=recipient,cellOverride=recipient?(e.Kind=="heal"?4:5):-1};
             return true;
         }
         static Combatant Find(CombatEncounter battle,int serial)
         {foreach(var h in battle.Heroes)if(h.Serial==serial)return h;foreach(var e in battle.Enemies)if(e.Serial==serial)return e;return null;}
+        public static float FlightDuration(SkillVfxProfile profile,float distance,bool recipient=false)=>!recipient&&(profile.Family==2||profile.Slot=="ultimate")&&profile.Kind!="heal"&&profile.Kind!="barrier"&&profile.Kind!="guard"&&distance>.4f?Mathf.Clamp(profile.Flight,.08f,.24f):0;
+        public static float ImpactDuration(SkillVfxProfile profile)=>Mathf.Clamp(profile.Impact+.12f,.22f,.40f);
+        static float ImpactAge(Effect e)=>e.age-FlightDuration(e.profile,Vector3.Distance(e.from,e.to),e.recipient);
         public void Clear(){Array.Clear(effects,0,effects.Length);mesh.Clear();paintedMesh?.Clear();paintedVertices.Clear();ActiveEffects=0;PaintedChargeQuads=PaintedFlightQuads=PaintedImpactQuads=PaintedTailQuads=AccentQuads=0;}
         public void Advance(float dt,bool warning)
         {
@@ -155,8 +158,8 @@ namespace Eternal.UnityMigration
             }
             // A confirmed cast already owns its hit. Flight is a short visual
             // explanation of that cast and never postpones simulation damage.
-            float flight=Mathf.Clamp(p.Flight,.08f,.24f);
-            bool travelling=!e.recipient&&(p.Family==2||ultimate)&&p.Kind!="heal"&&p.Kind!="barrier"&&p.Kind!="guard"&&(e.to-e.from).sqrMagnitude>.16f;
+            float flight=FlightDuration(p,Vector3.Distance(e.from,e.to),e.recipient);
+            bool travelling=flight>0;
             if(shapeAtlas&&travelling&&e.age<flight)
             {
                 float t=e.age/flight;
@@ -170,10 +173,11 @@ namespace Eternal.UnityMigration
                     PaintedQuad(center,1.30f-echo*.12f,flightCell==6?.55f:.68f,angle,c,flightCell);PaintedFlightQuads++;
                 }
             }
-            float duration=Mathf.Clamp(p.Impact+.12f,.22f,.40f);
-            if(e.age<duration)
+            float impactAge=e.age-flight,duration=ImpactDuration(p);
+            if(impactAge<0)return;
+            if(impactAge<duration)
             {
-                float t=e.age/duration;float height=(ultimate?3.35f:2.25f)*(.84f+Mathf.Sin(t*Mathf.PI)*.19f);
+                float t=impactAge/duration;float height=(ultimate?3.35f:2.25f)*(.84f+Mathf.Sin(t*Mathf.PI)*.19f);
                 color.a=Mathf.Pow(1-t,1.1f)*(ultimate?.86f:.70f)*attenuation;
                 if(e.recipient)
                 {
@@ -187,9 +191,9 @@ namespace Eternal.UnityMigration
                 float angle=cell==0||cell==7?aim+p.Twist*.4f+Mathf.Sin(t*Mathf.PI)*.22f:cell==3?p.Twist*t*.6f:0;
                 PaintedQuad(e.to+Vector3.up*(height*.36f+.09f),height*cellAspect,height,angle,color,cell);PaintedImpactQuads++;
             }
-            if(shapeAtlas&&e.age>=duration&&e.age<e.lifetime)
+            if(shapeAtlas&&impactAge>=duration&&e.age<e.lifetime)
             {
-                float t=Mathf.InverseLerp(duration,e.lifetime,e.age);
+                float t=Mathf.InverseLerp(flight+duration,e.lifetime,e.age);
                 color.a=(1-t)*.15f*attenuation;
                 float height=cell==4||cell==5?1.65f:1.25f;
                 if(e.recipient){height=cell==5?.9f:1.2f;color.a*=.5f;}
@@ -222,7 +226,7 @@ namespace Eternal.UnityMigration
         }
         void Draw(Effect e,bool warning)
         {
-            var p=e.profile;float t=e.age/e.lifetime;
+            var p=e.profile;float impactAge=ImpactAge(e);float t=e.charge?e.age/e.lifetime:Mathf.Clamp01(impactAge/Mathf.Max(.01f,e.lifetime-e.age+impactAge));
             float fade=e.charge?Mathf.Lerp(.2f,.7f,t):Mathf.Clamp01((1-t)*2.8f);
             if(shapeAtlas)fade*=e.charge?.45f:.26f;
             else if(!e.charge&&paintedMesh!=null&&e.age<.38f)fade*=.48f;
@@ -236,11 +240,12 @@ namespace Eternal.UnityMigration
             if(e.recipient){Ring(center,radius*.72f,rotation,20,.018f,color);Glyph(center,radius*.38f,p.Glyph,rotation,core);return;}
             // Flight and its five fading echoes originate from the actual
             // caster position, while impact starts at the confirmed hit.
-            if(p.Family==2||p.Slot=="ultimate")
+            if(impactAge<0)
             {
-                float flight=Mathf.Clamp01(e.age/Mathf.Min(.24f,p.Flight));
+                float flight=Mathf.Clamp01(e.age/FlightDuration(p,Vector3.Distance(e.from,e.to),false));
                 for(int echo=0;echo<5;echo++)
                 {float progress=Mathf.Clamp01(flight-echo*.09f);var c=color;c.a*=1-echo*.15f;var point=Vector3.Lerp(e.from,e.to,progress)+Vector3.up*Mathf.Sin(progress*Mathf.PI)*.45f;Line(point-Vector3.up*.06f,point+Vector3.up*.12f,.028f,c);}
+                return;
             }
             if(!shapeAtlas||p.Family==0||p.Family==1||p.Family==5)Ring(center,radius,rotation,24,.022f,color);
             if(p.Slot=="ultimate")Ring(center,radius*1.16f,-rotation,24,.016f,core);
@@ -264,13 +269,13 @@ namespace Eternal.UnityMigration
                     for(int k=0;k<p.Symmetry;k++){float a=rotation+k*Mathf.PI*2/p.Symmetry;var orbit=Polar(center,radius*.7f,a);Arc(orbit,radius*.18f,-a+t*3,Mathf.PI*1.4f,4,.025f,k%2==0?core:color);}break;
             }
             Glyph(center,radius*.5f,p.Glyph,rotation,core);
-            if(e.age<.12f)
-            {var hit=core;hit.a*=1-e.age/.12f;Line(center-Vector3.right*radius*.35f+Vector3.up*.3f,center+Vector3.right*radius*.35f+Vector3.up*.3f,.065f,hit);Line(center,center+Vector3.up*.65f,.04f,hit);}
+            if(impactAge<.12f)
+            {var hit=core;hit.a*=1-impactAge/.12f;Line(center-Vector3.right*radius*.35f+Vector3.up*.3f,center+Vector3.right*radius*.35f+Vector3.up*.3f,.065f,hit);Line(center,center+Vector3.up*.65f,.04f,hit);}
         }
         void DrawAccent(Effect e,bool warning)
         {
-            if(e.charge||e.age>.36f)return;
-            var p=e.profile;float t=e.age/.36f;float scale=(p.Slot=="ultimate"?1.3f:1f)*(e.recipient?.55f:1f);
+            float age=ImpactAge(e);if(e.charge||age<0||age>.36f)return;
+            var p=e.profile;float t=age/.36f;float scale=(p.Slot=="ultimate"?1.3f:1f)*(e.recipient?.55f:1f);
             var c=Color.Lerp(p.Color,p.Core,.45f);c.a=Mathf.Sin(Mathf.Clamp01(t+.08f)*Mathf.PI)*.78f*(warning?.18f:1);
             var center=e.to+Vector3.up*(e.recipient?.55f:.85f);var right=camera!=null?camera.transform.right:Vector3.right;var up=camera!=null?camera.transform.up:Vector3.up;
             var delta=e.to-e.from;float aim=Mathf.Atan2(Vector3.Dot(delta,up),Vector3.Dot(delta,right));

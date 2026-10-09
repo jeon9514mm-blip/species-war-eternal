@@ -38,6 +38,7 @@ namespace Eternal.UnityMigration
             bool support=hero.Role=="서포터"||hero.Style=="support",control=hero.Role=="컨트롤러"||hero.Style=="controller"||hero.Style=="control";
             Vector2 roleDirection=melee&&hero.Role=="딜러"&&(hero.Style=="aggressive"||hero.Style=="finisher")?Rotate(away,1.10f*side):melee&&control?Rotate(away,.62f*side):away;
             Vector2 front=-away,lateral=new(-front.y,front.x),best=target.Position+roleDirection*preferred;float bestScore=float.PositiveInfinity;
+            var roleAnchor=HuntExpeditionPlan.ApproachAnchor(hero,center,sim.EngagementHeading);
             var contact=sim.BodyAxes(hero,target);
             // Current and retained positions get a small hysteresis advantage.
             // Eighteen angular candidates leave side lanes around a crowded foe.
@@ -56,6 +57,9 @@ namespace Eternal.UnityMigration
                 float distance=Vector2.Distance(point,target.Position);
                 if(distance>reach*.98f)continue;
                 float score=Mathf.Abs(distance-preferred)*2.5f+Vector2.Distance(point,hero.Position)*.18f;
+                // Common party heading keeps approach lanes stable across
+                // different targets; clear attack stations still hold above.
+                score+=Vector2.Distance(point,roleAnchor)*(support?.38f:control?.28f:.18f);
                 foreach(var ally in sim.Battle.Heroes)
                 {
                     if(ally==hero||!ally.Alive)continue;var axes=sim.BodyAxes(hero,ally);

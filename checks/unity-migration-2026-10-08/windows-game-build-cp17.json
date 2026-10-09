@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "buildId": "build_d4dbfe58cc6e",
+  "result": "Succeeded",
+  "totalErrors": 0,
+  "totalWarnings": 1,
+  "buildTimeMs": 28058,
+  "warnings": [
+    {
+      "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+    }
+  ],
+  "native_assertions": {
+    "feature_focus": 26,
+    "first_process": 34,
+    "reload": 7
+  },
+  "note": "Final Windows Development build of Assets/Scenes/Eternal.unity. One expected Pipeline-disabled-in-player warning. Own batch Editors saved and gracefully closed. Nine actual captures include explicit unrewarded training/paused immune fixtures and read-only skill presentation samples. No FPS/memory benchmark, GUI initialization recovery, mobile acceptance or complete visual finishing claimed."
+}

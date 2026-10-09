@@ -7,7 +7,7 @@ namespace Eternal.UnityMigration
     public sealed partial class HuntingMigrationReview
     {
         VisualElement responseCue,responseFill,skillFeed;
-        Label responseTitle,responseAction,responseTimer;
+        Label responseTitle,responseAction,responseTimer,responseSituation;
         readonly (Label owner,Label skill,VisualElement row)[] feedRows=new (Label,Label,VisualElement)[2];
         readonly (string hero,string skill,string kind,float until)[] feedNotices=new (string,string,string,float)[2];
         public string VisibleRaidResponseKind {get;private set;}="";
@@ -19,6 +19,7 @@ namespace Eternal.UnityMigration
             var heading=Row(responseCue);responseTitle=Text(heading,"",18);responseTitle.style.flexGrow=1;responseTitle.style.minWidth=0;responseTitle.style.whiteSpace=WhiteSpace.NoWrap;responseTitle.style.textOverflow=TextOverflow.Ellipsis;responseTitle.style.overflow=Overflow.Hidden;
             responseTimer=Text(heading,"",16);responseTimer.style.minWidth=65;responseTimer.style.unityTextAlign=TextAnchor.MiddleRight;
             responseAction=Text(responseCue,"",12);responseAction.style.whiteSpace=WhiteSpace.Normal;responseAction.style.marginTop=4;
+            responseSituation=Text(responseCue,"",10);responseSituation.name="raid-response-situation";responseSituation.style.marginTop=3;
             var track=new VisualElement();track.style.height=3;track.style.marginTop=7;track.style.backgroundColor=new Color(.16f,.20f,.23f);responseCue.Add(track);responseFill=new VisualElement();responseFill.style.height=3;track.Add(responseFill);
             foreach(var element in responseCue.Query<VisualElement>().ToList())element.pickingMode=PickingMode.Ignore;
             skillFeed=new VisualElement{name="confirmed-skill-feed",pickingMode=PickingMode.Ignore};skillFeed.style.position=Position.Absolute;skillFeed.style.left=24;skillFeed.style.top=205;skillFeed.style.width=260;root.Add(skillFeed);
@@ -40,13 +41,14 @@ namespace Eternal.UnityMigration
             if(response.Visible)
             {
                 responseTitle.text=response.Title;responseAction.text=response.Action;responseTimer.text=response.Timed?response.Remaining.ToString("F1")+"초":"";
+                responseSituation.style.display=response.InDanger>=0?DisplayStyle.Flex:DisplayStyle.None;responseSituation.text=response.Prompt+" · 범위 안 "+response.InDanger+"명";responseSituation.style.color=response.Accent;
                 responseCue.style.borderTopColor=responseTitle.style.color=responseTimer.style.color=response.Accent;responseFill.style.backgroundColor=response.Accent;
                 responseFill.style.width=Length.Percent(response.Progress*100);
             }
             if(Raid==null&&!modalOpen)
             {
                 var warning=Simulation.MonsterWarning;if(!string.IsNullOrEmpty(warning.title))
-                {responseCue.style.display=DisplayStyle.Flex;responseTitle.text=warning.title;responseAction.text="몬스터 스킬 전조 · 보호·회복 스킬을 준비하세요.";responseTimer.text=warning.remaining.ToString("F1")+"초";responseCue.style.borderTopColor=responseTitle.style.color=responseTimer.style.color=new Color(.87f,.46f,.41f);responseFill.style.backgroundColor=new Color(.87f,.46f,.41f);responseFill.style.width=Length.Percent((float)(warning.remaining/.75)*100);}
+                {responseCue.style.display=DisplayStyle.Flex;responseSituation.style.display=DisplayStyle.None;responseTitle.text=warning.title;responseAction.text="몬스터 스킬 전조 · 보호·회복 스킬을 준비하세요.";responseTimer.text=warning.remaining.ToString("F1")+"초";responseCue.style.borderTopColor=responseTitle.style.color=responseTimer.style.color=new Color(.87f,.46f,.41f);responseFill.style.backgroundColor=new Color(.87f,.46f,.41f);responseFill.style.width=Length.Percent((float)(warning.remaining/.75)*100);}
             }
             bool hide=modalOpen||feedback.RaidWarningVisible||Raid!=null&&!Raid.Running;
             for(int i=0;i<feedRows.Length;i++)
