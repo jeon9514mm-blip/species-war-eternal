@@ -60,13 +60,18 @@ namespace Eternal.UnityMigration
         void Start()
         {
             Application.targetFrameRate=60;
-            var catalog=new OriginalCombatCatalog(OriginalCatalog.Required("hero-catalog").text);ReviewSnapshot=ReviewStateFixture.Create(catalog);
-            var state=new GameStateCommands(catalog,ReviewSnapshot,snapshot=>{ReviewSnapshot=snapshot;return true;});
-            Simulation=new HuntingSimulation(20,9514,state);Simulation.OnEvent=Receive;Simulation.Chain.Enabled=true;
+            var catalog=new OriginalCombatCatalog(OriginalCatalog.Required("hero-catalog").text);
+            if(playerSession!=null)Simulation=CreatePlayerHunt();
+            else
+            {
+                ReviewSnapshot=ReviewStateFixture.Create(catalog);var state=new GameStateCommands(catalog,ReviewSnapshot,snapshot=>{ReviewSnapshot=snapshot;return true;});
+                Simulation=new HuntingSimulation(20,9514,state);Simulation.Chain.Enabled=true;
+            }
+            Simulation.OnEvent=Receive;
             CreateWorld();BuildHud();RebuildActors();BuildParty();
             launch=ReviewLaunchSettings.Load();if(launch.HasRaid)StartRaid(launch.initialRaidZone);
             if(launch.initialPanel=="growth")ShowGrowth("leonhardt");else if(launch.initialPanel=="bag")ShowInventory();else if(launch.initialPanel=="menu")ShowStateMenu();
-            Debug.Log("ETERNAL_HUNT_REVIEW_RUNNING: native hunting, 10 original heroes, isolated Lv20 fixture; player saves untouched.");
+            Debug.Log(playerSession!=null?"ETERNAL_NATIVE_PLAYER_RUNNING: own Unity profile; original Godot save files are never write targets.":"ETERNAL_HUNT_REVIEW_RUNNING: native hunting, 10 original heroes, isolated Lv20 fixture; player saves untouched.");
         }
         void CreateWorld()
         {
@@ -104,10 +109,17 @@ namespace Eternal.UnityMigration
             if(e.Kind=="loot"&&Raid==null&&Simulation?.PlayerState!=null)
             {
                 int xp=(int)HuntingSimulation.Canonical["zones"][Simulation.Zone]["xp"];
-                var settled=ReviewState.SettleReviewHuntPack(Simulation.PacksCleared,e.Amount,xp);
+                var settled=playerSession!=null?ReviewState.SettleUnityPack(Simulation.PacksCleared,e.Amount,xp):ReviewState.SettleReviewHuntPack(Simulation.PacksCleared,e.Amount,xp);
                 huntNotice=settled.Message;huntNoticeUntil=Time.unscaledTime+3;
                 if(settled.Ok)Simulation.RefreshHeroGrowth();
+                if(playerSession!=null)
+                {
+                    playerPartyRefresh|=!ReviewState.DeployedHeroes().SequenceEqual(Simulation.Battle.Heroes.Select(h=>h.Id))||ReviewState.Formation!=Simulation.Formation;
+                    PauseForSaveFailure();
+                }
             }
+            if(e.Kind=="victory"&&playerSession!=null&&Raid!=null&&!playerRaidTraining)
+            {playerRaidReward=ReviewState.SettleUnityRaid(Raid.Zone,playerRaidAttempt);if(playerRaidReward.Ok)Simulation.RefreshHeroGrowth();PauseForSaveFailure();}
             // Events produced after frame setup are presented together. A visual
             // queue never replays simulation actions or carries reward authority.
             if(visualQueue.Count<256)visualQueue.Add(e);
@@ -126,7 +138,8 @@ namespace Eternal.UnityMigration
             bool running=Raid?.Running??!Simulation.Defeated;
             if(!paused&&running)accumulator+=frame*speed;
             int steps=0;
-            while(accumulator>=.05&&steps<5){if(Raid!=null)Raid.Step(.05);else Simulation.Step(.05);accumulator-=.05;steps++;}
+            while(accumulator>=.05&&steps<5){if(Raid!=null)Raid.Step(.05);else Simulation.Step(.05);accumulator-=.05;steps++;if(playerPartyRefresh)break;}
+            if(playerPartyRefresh&&!ReviewState.SavePending){playerPartyRefresh=false;RestartPlayerHunt(true);}
             if(Raid!=null&&launch.pauseAfterSeconds>0&&Raid.Elapsed>=launch.pauseAfterSeconds){Raid.Paused=true;launch.pauseAfterSeconds=0;}
             if(accumulator>=.05){CatchupLimitHits++;accumulator%=.05;}
             float alpha=paused||!running?1:Mathf.Clamp01((float)(accumulator/.05));
@@ -240,8 +253,9 @@ namespace Eternal.UnityMigration
             }
             goldLabel=CurrencyBadge("G",Bronze,true);gemLabel=CurrencyBadge("◆",new Color(.45f,.82f,.82f),false);
             currencyLabel=Text(row,"",17);currencyLabel.style.marginRight=28;
-            Button(row,"일시정지",()=>{if(Raid!=null)Raid.Paused=!Raid.Paused;else Simulation.Paused=!Simulation.Paused;});
+            Button(row,"일시정지",()=>{if(playerSession!=null&&ReviewState.SavePending){PauseForSaveFailure();return;}if(Raid!=null)Raid.Paused=!Raid.Paused;else Simulation.Paused=!Simulation.Paused;});
             Button(row,"속도",()=>speed=speed==1?2:1);
+            if(playerSession!=null)Button(row,"원정대",ShowPlayerParty);
             bossTrack=new VisualElement{name="boss-health-track"};bossTrack.style.height=6;bossTrack.style.flexShrink=0;bossTrack.style.marginBottom=7;bossTrack.style.backgroundColor=new Color(.13f,.18f,.19f);bossTrack.style.display=DisplayStyle.None;top.Add(bossTrack);
             bossBar=new VisualElement{name="boss-health-fill"};bossBar.style.height=6;bossBar.style.backgroundColor=Bronze;bossTrack.Add(bossBar);
             huntStageTrack=new VisualElement{name="hunt-stage-track"};huntStageTrack.style.height=6;huntStageTrack.style.flexShrink=0;huntStageTrack.style.marginBottom=7;huntStageTrack.style.backgroundColor=new Color(.13f,.18f,.19f);top.Add(huntStageTrack);
@@ -258,6 +272,7 @@ namespace Eternal.UnityMigration
             {
                 if(!GrowthAllowed)return;StateCommand(ReviewState.RecommendEquip,()=>{});huntNotice=growthMessage;huntNoticeUntil=Time.unscaledTime+3;RefreshHud();
             });quickGear.style.height=25;quickGear.style.fontSize=12;
+            if(playerSession!=null){var zone=Button(huntActions,"사냥터",ShowPlayerZones);zone.style.height=25;zone.style.fontSize=12;var revive=Button(huntActions,"다시 사냥",()=>RestartPlayerHunt(false));revive.name="hunt-revive";revive.style.height=25;revive.style.fontSize=12;}
             Button(statusRow,"연계 순서",ShowChain).style.height=25;
             chainRow=Row(foot);chainRow.name="party";chainRow.style.height=91;
             var nav=Row(foot);nav.style.flexGrow=1;nav.style.alignItems=Align.Center;
@@ -278,9 +293,9 @@ namespace Eternal.UnityMigration
             autoEvadeButton=Button(commands,"자동 회피 ON",()=>{if(Raid!=null)Raid.AutoEvade=!Raid.AutoEvade;});autoEvadeButton.style.flexGrow=1;
             autoEvadeButton.tooltip="자동 회피를 끄면 지정한 대열과 정면 카운터 위치를 유지합니다. 긴급 회피는 계속 사용할 수 있습니다.";
             dodgeButton=Button(commands,"긴급 회피",()=>Raid?.Dodge());dodgeButton.style.flexGrow=1;
-            trainingButton=Button(commands,"패턴 훈련",()=>{if(Raid!=null)StartRaid(Raid.Zone,Raid.ReviewLevel==100?50:100);});trainingButton.style.flexGrow=1;
+            trainingButton=Button(commands,"패턴 훈련",()=>{if(Raid!=null){if(playerSession!=null)StartRaid(Raid.Zone,50,!playerRaidTraining);else StartRaid(Raid.Zone,Raid.ReviewLevel==100?50:100);}});trainingButton.style.flexGrow=1;
             trainingButton.tooltip="Lv.50 임시 원정대로 같은 보스 패턴을 연습합니다. 현재 전투는 새로 시작하며 저장 기록과 보상은 바뀌지 않습니다.";
-            counterPracticeButton=Button(commands,"카운터 연습",()=>Raid?.BeginCounterPractice());counterPracticeButton.style.flexGrow=1;
+            counterPracticeButton=Button(commands,"카운터 연습",()=>{if(playerSession==null||playerRaidTraining)Raid?.BeginCounterPractice();});counterPracticeButton.style.flexGrow=1;
             counterPracticeButton.tooltip="기존 부채꼴 패턴을 재현합니다. 훈련 동안 평타·자동 스킬을 쉬고 정면 카운터와 회피를 연습하세요.";
             mechanicTrack=new VisualElement{name="raid-mechanic-track"};mechanicTrack.style.height=6;mechanicTrack.style.flexShrink=0;mechanicTrack.style.marginTop=8;mechanicTrack.style.backgroundColor=new Color(.13f,.18f,.19f);raidCommands.Add(mechanicTrack);
             mechanicBar=new VisualElement{name="raid-mechanic-fill"};mechanicBar.style.height=6;mechanicBar.style.backgroundColor=Moss;mechanicTrack.Add(mechanicBar);
@@ -337,6 +352,7 @@ namespace Eternal.UnityMigration
         {
             RefreshChainStrip();
             fixtureLabel.text=Raid!=null?(Raid.ReviewLevel==50?"패턴 훈련":"플레이테스트")+" · Lv"+Raid.ReviewLevel+" 임시 원정대 · 보상은 저장되지 않습니다":"플레이테스트 · Lv20 임시 원정대 · 보상은 저장되지 않습니다";
+            RefreshPlayerStatus();
             huntStageTrack.style.display=huntActions.style.display=Raid==null?DisplayStyle.Flex:DisplayStyle.None;
             if(Raid==null)
             {
@@ -345,7 +361,7 @@ namespace Eternal.UnityMigration
                 huntStageFill.style.width=Length.Percent((Simulation.PacksCleared%5+fraction)*20);
                 fixtureLabel.text+=" · 무리 "+Simulation.PacksCleared%5+"/5";
             }
-            stageLabel.text=Raid!=null?(string)Raid.ZoneData["boss"]+" · PHASE "+Raid.Phase:"사냥터 1  ·  "+Simulation.Stage+" 스테이지";
+            stageLabel.text=Raid!=null?(string)Raid.ZoneData["boss"]+" · PHASE "+Raid.Phase:(playerSession!=null?(string)HuntingSimulation.Canonical["zones"][Simulation.Zone]["name"]:"사냥터 1")+"  ·  "+Simulation.Stage+" 스테이지";
             currencyLabel.text=Raid!=null?"HP "+Raid.Boss.Hp.ToString("N0")+" / "+Raid.Boss.MaxHp.ToString("N0")+" · "+TimeSpan.FromSeconds(Math.Max(0,240-Raid.Elapsed)).ToString(@"mm\:ss"):"◈ 골드 "+ReviewState.WalletGold.ToString("N0")+"   ·   ◆ 젬 "+ReviewState.WalletGems.ToString("N0");
             currencyBadges.style.display=Raid==null?DisplayStyle.Flex:DisplayStyle.None;currencyLabel.style.display=Raid!=null?DisplayStyle.Flex:DisplayStyle.None;
             goldLabel.text=ReviewState.WalletGold.ToString("N0");gemLabel.text=ReviewState.WalletGems.ToString("N0");
@@ -499,7 +515,7 @@ namespace Eternal.UnityMigration
         {
             var chain=Raid?.Chain??Simulation.Chain;
             PanelHeader("원정대 스킬 연계");
-            Button(modal,chain.Enabled?"자동 연계 ON":"자동 연계 OFF",()=>{chain.Enabled=!chain.Enabled;ShowChain();});
+            Button(modal,chain.Enabled?"자동 연계 ON":"자동 연계 OFF",()=>{chain.Enabled=!chain.Enabled;SavePlayerChain();ShowChain();});
             var info=Text(modal,"순서를 바꾸거나 스킬을 교체하세요. 실제 시전이 성공해야 다음 단계로 넘어갑니다. 회복·보호 스킬은 긴급 상황에 먼저 사용합니다.",13);info.style.whiteSpace=WhiteSpace.Normal;info.style.marginTop=12;
             var list=new ScrollView();list.style.flexGrow=1;modal.Add(list);
             for(int i=0;i<chain.Entries.Count;i++)
@@ -507,8 +523,8 @@ namespace Eternal.UnityMigration
                 int index=i;var s=chain.Entries[i];var p=ActiveBattle.Kits[s.Hero].Profiles[s.Slot];
                 var row=Row(list);row.style.marginTop=14;row.style.alignItems=Align.Center;
                 var label=Text(row,(i+1)+". "+(string)p["skill"],16);label.style.flexGrow=1;label.style.color=i==chain.Cursor?Moss:Parchment;
-                var up=Button(row,"↑",()=>{chain.Move(index,-1);ShowChain();});up.style.minWidth=28;up.style.width=28;up.style.paddingLeft=up.style.paddingRight=0;up.SetEnabled(i>0);
-                var down=Button(row,"↓",()=>{chain.Move(index,1);ShowChain();});down.style.minWidth=28;down.style.width=28;down.style.paddingLeft=down.style.paddingRight=0;down.SetEnabled(i<chain.Entries.Count-1);
+                var up=Button(row,"↑",()=>{chain.Move(index,-1);SavePlayerChain();ShowChain();});up.style.minWidth=28;up.style.width=28;up.style.paddingLeft=up.style.paddingRight=0;up.SetEnabled(i>0);
+                var down=Button(row,"↓",()=>{chain.Move(index,1);SavePlayerChain();ShowChain();});down.style.minWidth=28;down.style.width=28;down.style.paddingLeft=down.style.paddingRight=0;down.SetEnabled(i<chain.Entries.Count-1);
                 var replace=Button(list,"교체 · "+(string)Simulation.Catalog.Hero(s.Hero)["name"],()=>ChooseChainSkill(index));replace.style.marginLeft=0;
             }
         }
@@ -520,15 +536,15 @@ namespace Eternal.UnityMigration
             foreach(string slot in new[]{"a1","a2","ultimate"})
             {
                 var selected=new ChainSkill(hero.Id,slot);var p=ActiveBattle.Kits[hero.Id].Profiles[slot];
-                Button(list,(string)Simulation.Catalog.Hero(hero.Id)["name"]+" · "+(string)p["skill"],()=>{chain.Set(index,selected);ShowChain();});
+                Button(list,(string)Simulation.Catalog.Hero(hero.Id)["name"]+" · "+(string)p["skill"],()=>{chain.Set(index,selected);SavePlayerChain();ShowChain();});
             }
         }
-        public void StartRaid(string zone,int reviewLevel=100)
+        public void StartRaid(string zone,int reviewLevel=100,bool training=false)
         {
-            if(Simulation==null)return;if(raidMap!=null)raidMap.gameObject.SetActive(false);
+            if(Simulation==null||!PreparePlayerRaid(zone,ref reviewLevel,training))return;if(raidMap!=null)raidMap.gameObject.SetActive(false);
             ResetSkillPresentation();
             SelectNavigation("도전");
-            Raid=new RaidSimulation(zone,reviewLevel,9514,Simulation.Battle.Heroes.Select(h=>h.Id).ToArray());Raid.OnEvent=Receive;
+            Raid=new RaidSimulation(zone,reviewLevel,9514,Simulation.Battle.Heroes.Select(h=>h.Id).ToArray(),playerSession!=null&&!playerRaidTraining?ReviewState:null);Raid.OnEvent=Receive;
             ResetViews();accumulator=0;visualQueue.Clear();huntFloor.SetActive(false);feedback.SetRaidMode(true);
             if(raidMaps.TryGetValue(zone,out var retained)&&retained!=null){raidMap=retained;raidMap.Rebind(Raid);raidMap.gameObject.SetActive(true);}
             else{raidMap=new GameObject("Dedicated raid arena · "+zone).AddComponent<RaidArenaPresentation>();raidMap.Initialize(Raid,ownedFloorMaterial);raidMaps[zone]=raidMap;}
@@ -544,8 +560,8 @@ namespace Eternal.UnityMigration
         void RefreshRaidActions()
         {
             if(Raid==null)return;
-            trainingButton.text=Raid.ReviewLevel==50?"Lv100 전투":"패턴 훈련";trainingButton.SetEnabled(!Raid.Paused);
-            counterPracticeButton.style.display=Raid.ReviewLevel==50&&Raid.Zone!="forgotten_mine"?DisplayStyle.Flex:DisplayStyle.None;counterPracticeButton.SetEnabled(Raid.Running&&!Raid.Paused&&!Raid.CounterPractice);
+            trainingButton.text=playerSession!=null?(playerRaidTraining?"원정대 전투":"패턴 훈련"):Raid.ReviewLevel==50?"Lv100 전투":"패턴 훈련";trainingButton.SetEnabled(!Raid.Paused);
+            counterPracticeButton.style.display=Raid.ReviewLevel==50&&(playerSession==null||playerRaidTraining)&&Raid.Zone!="forgotten_mine"?DisplayStyle.Flex:DisplayStyle.None;counterPracticeButton.SetEnabled(Raid.Running&&!Raid.Paused&&!Raid.CounterPractice);
             autoEvadeButton.text=Raid.AutoEvade?"자동 회피 ON":"자동 회피 OFF";autoEvadeButton.SetEnabled(Raid.Running&&!Raid.Paused);
             autoEvadeButton.style.color=Raid.AutoEvade?Moss:Bronze;
             dodgeButton.text=Raid.DodgeCooldown>0?"회피 "+Raid.DodgeCooldown.ToString("F1")+"초":"긴급 회피";dodgeButton.SetEnabled(Raid.Running&&!Raid.Paused&&Raid.DodgeCooldown<=0);

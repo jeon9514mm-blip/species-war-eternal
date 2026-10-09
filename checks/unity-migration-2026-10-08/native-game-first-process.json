@@ -1,0 +1,413 @@
+{
+  "passed": true,
+  "phase": "first_process",
+  "error": "",
+  "comparisons": 18,
+  "elapsed_seconds": 26.8051243,
+  "scratch_name": "qa-profiles-ba7df9f7f3d24459aafff1d1748fc89b",
+  "expected": {
+    "save_version": 37,
+    "unity_player_profile": true,
+    "selected_faction": "aurelia",
+    "formation_id": "balanced",
+    "deployed_hero_ids": [
+      "mira",
+      "elisia",
+      "kairen",
+      "orwin",
+      "seria",
+      "astel",
+      "darius",
+      "lunea",
+      "caelum"
+    ],
+    "hero_progress": {
+      "leonhardt": {
+        "level": 1,
+        "xp": 3
+      },
+      "mira": {
+        "level": 1,
+        "xp": 3
+      },
+      "elisia": {
+        "level": 1,
+        "xp": 2
+      },
+      "kairen": {
+        "level": 1,
+        "xp": 2
+      },
+      "orwin": {
+        "level": 1,
+        "xp": 2
+      },
+      "seria": {
+        "level": 1,
+        "xp": 2
+      },
+      "astel": {
+        "level": 1,
+        "xp": 2
+      },
+      "darius": {
+        "level": 1,
+        "xp": 2
+      },
+      "lunea": {
+        "level": 1,
+        "xp": 2
+      },
+      "caelum": {
+        "level": 1,
+        "xp": 2
+      },
+      "adrien": {
+        "level": 1,
+        "xp": 0
+      },
+      "tessa": {
+        "level": 1,
+        "xp": 0
+      },
+      "naia": {
+        "level": 1,
+        "xp": 0
+      },
+      "sael": {
+        "level": 1,
+        "xp": 0
+      },
+      "odelia": {
+        "level": 1,
+        "xp": 0
+      }
+    },
+    "hero_shards": {},
+    "wallet_gold": 360,
+    "wallet_gems": 100,
+    "wallet_xp": 22,
+    "loot_inventory": [],
+    "guardian_equipped": "lumi",
+    "guardian_collection": {
+      "lumi": {
+        "copies": 1
+      }
+    },
+    "unity_pack_total": 1,
+    "unity_hunt_zone": "forgotten_mine",
+    "hero_equipment_items": {
+      "leonhardt": {
+        "weapon": {
+          "id": "legacy_equipped_leonhardt_weapon",
+          "item_type": "equipment",
+          "slot": "weapon",
+          "level": 2,
+          "rarity": "일반",
+          "name": "초보자의 검",
+          "set": "초보자",
+          "zone": "알 수 없는 지역",
+          "origin": "legacy",
+          "source_id": "",
+          "hunt_role": "",
+          "bound": true,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 44
+        }
+      }
+    },
+    "hero_equipment": {
+      "leonhardt": {
+        "weapon": 2,
+        "armor": 1,
+        "accessory": 1
+      }
+    },
+    "hero_equipment_rarity": {
+      "leonhardt": {
+        "weapon": "일반",
+        "armor": "일반",
+        "accessory": "일반"
+      }
+    },
+    "hero_equipment_names": {
+      "leonhardt": {
+        "weapon": "초보자의 검",
+        "armor": "초보자의 가죽갑옷",
+        "accessory": "빛바랜 부적"
+      }
+    },
+    "hero_equipment_sets": {
+      "leonhardt": {
+        "weapon": "초보자",
+        "armor": "초보자",
+        "accessory": "초보자"
+      }
+    },
+    "unity_chain_enabled": false,
+    "unity_raid_attempt": 1,
+    "unity_raid_active": {
+      "zone": "gray_meadow",
+      "attempt": 1
+    }
+  },
+  "trace": [
+    {
+      "check": "real native faction entry",
+      "frame": 47
+    },
+    {
+      "input": "아우렐리아 시작",
+      "frame": 57,
+      "x": 750.000061,
+      "y": 379.999969
+    },
+    {
+      "check": "persistent player excludes review seed",
+      "frame": 86
+    },
+    {
+      "input": "일시정지",
+      "frame": 88,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "hunt paused through pointer",
+      "frame": 93
+    },
+    {
+      "check": "fresh level one party and wallet",
+      "frame": 93
+    },
+    {
+      "input": "빠른 성장",
+      "frame": 95,
+      "x": 1489.0,
+      "y": 189.999985
+    },
+    {
+      "input": "강화 ·",
+      "frame": 114,
+      "x": 1638.00012,
+      "y": 796.999939
+    },
+    {
+      "check": "equipment enhancement spends stored wallet",
+      "frame": 119
+    },
+    {
+      "input": "닫기",
+      "frame": 121,
+      "x": 1818.50012,
+      "y": 907.0
+    },
+    {
+      "input": "연계 순서",
+      "frame": 128,
+      "x": 1844.5,
+      "y": 189.999985
+    },
+    {
+      "input": "자동 연계 ON",
+      "frame": 135,
+      "x": 1654.50012,
+      "y": 851.0
+    },
+    {
+      "check": "chain toggle writes player profile",
+      "frame": 140
+    },
+    {
+      "input": "닫기",
+      "frame": 142,
+      "x": 1818.50012,
+      "y": 907.0
+    },
+    {
+      "input": "원정대",
+      "frame": 149,
+      "x": 1833.50012,
+      "y": 1057.0
+    },
+    {
+      "input": "remove first party hero",
+      "frame": 155,
+      "x": 1641.50012,
+      "y": 695.5
+    },
+    {
+      "input": "편성 저장",
+      "frame": 162,
+      "x": 1654.50012,
+      "y": 295.999969
+    },
+    {
+      "check": "party queued while current wave remains intact",
+      "frame": 167
+    },
+    {
+      "input": "닫기",
+      "frame": 177,
+      "x": 1818.50012,
+      "y": 907.0
+    },
+    {
+      "input": "일시정지",
+      "frame": 184,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "natural wave reward persisted",
+      "frame": 1153
+    },
+    {
+      "input": "일시정지",
+      "frame": 1168,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "queued nine heroes applied to next wave",
+      "frame": 1173
+    },
+    {
+      "check": "actual hunt grants stored XP",
+      "frame": 1173
+    },
+    {
+      "input": "사냥터",
+      "frame": 1183,
+      "x": 1725.50012,
+      "y": 189.999985
+    },
+    {
+      "input": "사냥터 2",
+      "frame": 1190,
+      "x": 1654.50012,
+      "y": 729.0
+    },
+    {
+      "input": "일시정지",
+      "frame": 1197,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "native zone travel",
+      "frame": 1202
+    },
+    {
+      "input": "도전",
+      "frame": 1204,
+      "x": 960.000061,
+      "y": 31.9999542
+    },
+    {
+      "input": "초원왕 그룬",
+      "frame": 1211,
+      "x": 1705.50012,
+      "y": 716.0
+    },
+    {
+      "check": "real raid uses actual party stats",
+      "frame": 1216
+    },
+    {
+      "input": "패턴 훈련",
+      "frame": 1218,
+      "x": 1756.0,
+      "y": 265.0
+    },
+    {
+      "check": "training isolates trial stats",
+      "frame": 1223
+    },
+    {
+      "input": "긴급 회피",
+      "frame": 1225,
+      "x": 1293.00012,
+      "y": 265.0
+    },
+    {
+      "check": "training controls and no wallet reward",
+      "frame": 1230
+    },
+    {
+      "input": "사냥",
+      "frame": 1240,
+      "x": 206.500015,
+      "y": 31.9999542
+    },
+    {
+      "check": "return to retained hunting",
+      "frame": 1245
+    },
+    {
+      "input": "원정대",
+      "frame": 1247,
+      "x": 1833.50012,
+      "y": 1057.0
+    },
+    {
+      "input": "진영 선택 화면",
+      "frame": 1254,
+      "x": 1654.50012,
+      "y": 250.0
+    },
+    {
+      "check": "return to faction entry",
+      "frame": 1277
+    },
+    {
+      "input": "녹스페라 시작",
+      "frame": 1279,
+      "x": 1170.00012,
+      "y": 379.999969
+    },
+    {
+      "input": "일시정지",
+      "frame": 1304,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "separate faction state",
+      "frame": 1309
+    },
+    {
+      "input": "원정대",
+      "frame": 1311,
+      "x": 1833.50012,
+      "y": 1057.0
+    },
+    {
+      "input": "진영 선택 화면",
+      "frame": 1318,
+      "x": 1654.50012,
+      "y": 250.0
+    },
+    {
+      "input": "아우렐리아 이어하기",
+      "frame": 1343,
+      "x": 750.000061,
+      "y": 379.999969
+    },
+    {
+      "input": "일시정지",
+      "frame": 1368,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "on-disk payload equals active player state",
+      "frame": 1373
+    }
+  ],
+  "note": "Development-only scratch profiles. Actual Input System pointer actions and a second process reload; no real user files or performance benchmark."
+}
