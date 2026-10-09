@@ -1,0 +1,14 @@
+{
+  "status": "completed",
+  "buildId": "build_73ca9448e323",
+  "result": "Succeeded",
+  "totalErrors": 0,
+  "totalWarnings": 1,
+  "buildTimeMs": 21358,
+  "native_assertions": {
+    "feature_focus": 17,
+    "reload": 7,
+    "first_process": 34
+  },
+  "note": "Development Windows build, Assets/Scenes/Eternal.unity. One expected Pipeline-disabled-in-player warning. Owned batch Editor saved and gracefully closed. No FPS/memory benchmark, GUI initialization recovery or complete visual-quality acceptance claimed."
+}

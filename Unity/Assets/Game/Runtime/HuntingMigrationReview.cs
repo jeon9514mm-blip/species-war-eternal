@@ -40,7 +40,7 @@ namespace Eternal.UnityMigration
         VisualElement currencyBadges;
         VisualElement huntStageTrack,huntStageFill,huntActions;
         Label raidInfo;
-        Button counterButton,autoEvadeButton,trainingButton,counterPracticeButton;
+        Button counterButton,autoEvadeButton,trainingButton,counterPracticeButton,breakSkillButton;
         Label stageLabel,currencyLabel,goldLabel,gemLabel,statusLabel,chainLabel,fixtureLabel;
         double accumulator,hudTimer;
         float speed=1;
@@ -296,6 +296,7 @@ namespace Eternal.UnityMigration
             Button(commands,"스킬",()=>Raid?.ManualCast(false)).style.flexGrow=1;
             Button(commands,"각성",()=>Raid?.ManualCast(true)).style.flexGrow=1;
             counterButton=Button(commands,"카운터",()=>Raid?.Counter());counterButton.style.flexGrow=1;
+            breakSkillButton=Button(commands,"무력화 지원",()=>Raid?.CastBreakSkill());breakSkillButton.style.flexGrow=1;
             var tactics=Row(raidCommands);tactics.style.alignItems=Align.Center;tactics.style.marginTop=5;
             followButton=Button(tactics,"추적 복귀",()=>Raid?.ResumeFormation());followButton.style.flexGrow=1;
             spreadButton=Button(tactics,"산개 대형",()=>Raid?.SpreadFormation());spreadButton.style.flexGrow=1;spreadButton.tooltip="두 줄로 간격을 벌립니다. 조이스틱을 드래그하면 직접 이동으로 전환합니다.";
@@ -584,6 +585,7 @@ namespace Eternal.UnityMigration
             autoEvadeButton.text=Raid.AutoEvade?"자동 회피 ON":"자동 회피 OFF";autoEvadeButton.SetEnabled(Raid.Running&&!Raid.Paused&&!Raid.ManualMovementActive);
             autoEvadeButton.style.color=Raid.AutoEvade?Moss:Bronze;
             bool ready=Raid.CounterReady;counterButton.SetEnabled(ready);counterButton.style.backgroundColor=ready?new Color(.12f,.36f,.54f):new Color(.10f,.14f,.15f);
+            breakSkillButton.SetEnabled(Raid.BreakSkillReady);breakSkillButton.tooltip=Raid.BreakSkillHint;breakSkillButton.style.color=Raid.BreakSkillReady?Moss:Parchment;
             counterButton.tooltip=ready?"정면 카운터로 보스 공격 차단":Raid.CounterWindowOpen?"보스 정면에 움직일 수 있는 영웅이 필요합니다.":"부채꼴 공격 직전 정면에서 사용";
         }
         void ResetViews(bool dispose=false)

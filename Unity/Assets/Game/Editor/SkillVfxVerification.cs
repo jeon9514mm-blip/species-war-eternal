@@ -20,11 +20,12 @@ namespace Eternal.UnityMigration.Editor
                 var catalog=JObject.Parse(OriginalCatalog.Required("legacy-catalogs").text);
                 if(Resources.Load<Material>("Eternal/Materials/PaintedSkillShapes")==null)throw new InvalidOperationException("Painted skill shapes have not been imported.");
                 batch=new SkillVfxBatch(owner.transform,Resources.Load<Material>("Eternal/Materials/Particles"),(JArray)catalog["skill_vfx"]);
-                var motifs=new HashSet<string>();var identities=new HashSet<string>();var sim=new HuntingSimulation(50);int comparisons=0;
+                var motifs=new HashSet<string>();var identities=new HashSet<string>();var accents=new HashSet<string>();var sim=new HuntingSimulation(50);int comparisons=0;
                 if(batch.Profiles.Count!=120)throw new InvalidOperationException("Missing original VFX profiles.");
                 foreach(var profile in batch.Profiles.Values)
                 {
                     motifs.Add(profile.Motif);identities.Add(profile.Hero+":"+profile.Glyph);
+                    accents.Add(profile.AccentShape);
                     if(!sim.Catalog.HeroIds.Contains(profile.Hero))throw new InvalidOperationException("Unknown VFX hero: "+profile.Hero);
                     if(profile.Lifetime<.45f||profile.Lifetime>1.4f||profile.Family<0||profile.Family>6)throw new InvalidOperationException("Unbounded VFX profile.");comparisons+=3;
                     var hero=new Combatant{Id=profile.Hero,Serial=400,Position=new Vector2(-1,0),Hp=100};
@@ -40,6 +41,7 @@ namespace Eternal.UnityMigration.Editor
                     if(support)batch.Observe(new BattleEvent(profile.Kind=="heal"?"heal":profile.Kind=="barrier"?"shield":"guard",hero,profile.Slot,hero),battle);
                     batch.Observe(new BattleEvent("cast",hero,profile.Slot,target),battle);batch.Advance(.03f,false);
                     if(batch.ActiveEffects!=1||batch.Quads<=0||batch.Quads>SkillVfxBatch.QuadsPerEffect||batch.PaintedImpactQuads!=1||batch.PaintedQuads>SkillVfxBatch.PaintedQuadsPerEffect)throw new InvalidOperationException("Settled VFX geometry exceeds budget or painted impact is missing.");
+                    if(batch.AccentQuads<=0)throw new InvalidOperationException("Missing crisp skill silhouette.");comparisons++;
                     if(support&&(Mathf.Abs(batch.PaintedBounds.center.x-hero.Position.x)>.01f||batch.PaintedFlightQuads!=0))throw new InvalidOperationException("Support painted on its enemy aim instead of actual recipient.");
                     batch.Advance(.4f,false);
                     if(batch.ActiveEffects!=1||batch.PaintedImpactQuads!=0||batch.PaintedFlightQuads!=0||batch.PaintedTailQuads!=1)throw new InvalidOperationException("Tail should retain a restrained shape after its impact and flight expire.");
@@ -47,6 +49,7 @@ namespace Eternal.UnityMigration.Editor
                     comparisons+=2;
                 }
                 if(motifs.Count!=30||identities.Count!=30)throw new InvalidOperationException("Hero VFX identity collapsed.");comparisons+=2;
+                if(accents.Count!=7)throw new InvalidOperationException("Skill silhouettes collapsed.");comparisons++;
                 var source=sim.Battle.Heroes.First(h=>!new[]{"heal","barrier","guard"}.Contains(batch.Profiles[h.Id+":ultimate"].Kind));var victim=sim.Battle.Enemies[0];int hp=victim.Hp;double time=sim.Elapsed;
                 for(int i=0;i<200;i++)batch.Observe(new BattleEvent("cast",source,"ultimate",victim),sim.Battle);
                 batch.Advance(.04f,false);

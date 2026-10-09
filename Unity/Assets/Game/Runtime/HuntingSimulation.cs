@@ -43,6 +43,10 @@ namespace Eternal.UnityMigration
         readonly Dictionary<int,(Combatant target,double lockUntil,Vector2 offset)> movementPlans=new();
         readonly Dictionary<int,Vector2> reservations=new();
         readonly HashSet<int> meleeHeroes=new();
+        readonly HashSet<int> engagementEnemies=new();
+        Vector2 formationOrigin;
+        public Vector2 ExpeditionCenter {get;private set;}
+        public int EngagementEnemyCount=>engagementEnemies.Count;
         readonly Dictionary<int,int> enemyHits=new();
         readonly Dictionary<int,double> enemySkillNext=new();
         readonly Dictionary<int,(Combatant source,Combatant target,double remaining,double next)> bleeds=new();
@@ -89,6 +93,7 @@ namespace Eternal.UnityMigration
                 Battle.Kits[id]=new HeroKitState(Catalog,id,PlayerState?.HeroTree(id).utility??0,origin);
                 Battle.Kits[id].Cooldowns["a1"]=i*.12;Battle.Kits[id].Cooldowns["a2"]=1.2+i*.12;
             }
+            formationOrigin=Vector2.zero;foreach(var hero in Battle.Heroes)formationOrigin+=homes[hero.Id];formationOrigin/=Battle.Heroes.Count;
             Chain=new PartySkillChain(Battle);Chain.ConfigureDefault();
             if(PlayerState!=null){Formation=PlayerState.Formation;Battle.CriticalChance=PlayerState.GuardianBonus("crit");}
         }
@@ -217,6 +222,7 @@ namespace Eternal.UnityMigration
             assignedTargets.Clear();reservations.Clear();Vector2 center=Vector2.zero;int living=0;
             foreach(var hero in Battle.Heroes)if(hero.Alive){center+=hero.PreviousPosition;living++;reservations[hero.Serial]=hero.PreviousPosition;}
             if(living>0)center/=living;
+            ExpeditionCenter=center;HuntExpeditionPlan.Select(Battle,center,engagementEnemies);
             foreach(var h in Battle.Heroes.Where(a=>a.Alive))
             {
                 if(ManualMovementActive)
@@ -227,6 +233,9 @@ namespace Eternal.UnityMigration
                 }
                 if(h.Stun>0||intents.ContainsKey(h.Serial)){h.Velocity=Vector2.zero;continue;}
                 var candidates=CombatTargeting.Rank(Battle,h,null,null,false);
+                // Keep a common front while permitting an already reachable foe
+                // to be finished. Original role scores and firing stations remain.
+                candidates=candidates.Where(e=>engagementEnemies.Contains(e.Serial)||CombatTargeting.CanAttack(Battle,h,e)).ToList();
                 bool retained=movementPlans.TryGetValue(h.Serial,out var plan)&&plan.target.Alive&&candidates.Contains(plan.target);
                 var target=retained&&Elapsed<plan.lockUntil&&CombatTargeting.CanAttack(Battle,h,plan.target)?plan.target:candidates.OrderBy(e=>Vector2.SqrMagnitude(h.Position-e.Position)*.16+CombatTargeting.BaseScore(h,e,e.Slot)+assignedTargets.GetValueOrDefault(e.Serial)*(h.Style=="finisher"?.18:1.25)-(retained && e==plan.target ? .35 : 0)-(CombatTargeting.CanAttack(Battle,h,e)?4:0)).FirstOrDefault();
                 if(target!=null)assignedTargets[target.Serial]=assignedTargets.GetValueOrDefault(target.Serial)+1;
@@ -237,7 +246,8 @@ namespace Eternal.UnityMigration
                     goal=HuntPositionPlanner.Goal(this,h,target,meleeHeroes.Contains(h.Serial),center,reservations,plan.offset,same);
                     movementPlans[h.Serial]=(target,same?plan.lockUntil:Elapsed+.45,goal-target.Position);
                 }
-                else movementPlans.Remove(h.Serial);
+                else {movementPlans.Remove(h.Serial);goal=center+homes[h.Id]-formationOrigin;}
+                if(target==null||!CombatTargeting.CanAttack(Battle,h,target))goal=HuntExpeditionPlan.CohesiveGoal(goal,center);
                 reservations[h.Serial]=goal;Vector2 delta=goal-h.Position;
                 var velocity=delta.magnitude>.10f?delta.normalized*(1.8f*Mathf.Clamp01(delta.magnitude/.72f)):Vector2.zero;
                 velocity+=Separation(h,false);h.Velocity=Vector2.Lerp(h.Velocity,Vector2.ClampMagnitude(velocity,2.2f),dt*8);
