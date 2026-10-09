@@ -1,0 +1,19 @@
+{
+  "runtime_limit": "Pre-existing stripped/unsupported DOF and Panini shaders; these postprocessing effects are not claimed.",
+  "scene": "Assets/Scenes/Eternal.unity",
+  "build_id": "build_943e2b422cd2",
+  "performance_benchmark": false,
+  "errors": 0,
+  "input_acceptance": {
+    "reload": 7,
+    "raid_mechanics": 75,
+    "first_process": 34
+  },
+  "target": "StandaloneWindows64",
+  "result": "Succeeded",
+  "editor_method": "Owned batch Editor saved and closed gracefully; GUI Editor UPM recovery not claimed.",
+  "warning": "Pipeline disabled in Player: expected missing RuntimePipelineConfig",
+  "warnings": 1,
+  "development": true,
+  "acceptance_scope": "Final build verifies joystick/raid input and rendering. First-process/reload passed on the immediately preceding build, before two HUD wording changes."
+}

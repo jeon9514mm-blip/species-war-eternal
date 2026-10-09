@@ -1,0 +1,745 @@
+{
+  "passed": true,
+  "phase": "raid_mechanics_cp15",
+  "error": "",
+  "comparisons": 75,
+  "elapsed_seconds": 15.5855846,
+  "scratch_name": "qa-profiles-b313e4785c374c7a94e708201c436ea6",
+  "expected": {
+    "save_version": 37,
+    "unity_player_profile": true,
+    "selected_faction": "aurelia",
+    "formation_id": "balanced",
+    "deployed_hero_ids": [
+      "leonhardt",
+      "mira",
+      "elisia",
+      "kairen",
+      "orwin",
+      "seria",
+      "astel",
+      "darius",
+      "lunea",
+      "caelum"
+    ],
+    "hero_progress": {
+      "leonhardt": {
+        "level": 1,
+        "xp": 0
+      },
+      "mira": {
+        "level": 1,
+        "xp": 0
+      },
+      "elisia": {
+        "level": 1,
+        "xp": 0
+      },
+      "kairen": {
+        "level": 1,
+        "xp": 0
+      },
+      "orwin": {
+        "level": 1,
+        "xp": 0
+      },
+      "seria": {
+        "level": 1,
+        "xp": 0
+      },
+      "astel": {
+        "level": 1,
+        "xp": 0
+      },
+      "darius": {
+        "level": 1,
+        "xp": 0
+      },
+      "lunea": {
+        "level": 1,
+        "xp": 0
+      },
+      "caelum": {
+        "level": 1,
+        "xp": 0
+      },
+      "adrien": {
+        "level": 1,
+        "xp": 0
+      },
+      "tessa": {
+        "level": 1,
+        "xp": 0
+      },
+      "naia": {
+        "level": 1,
+        "xp": 0
+      },
+      "sael": {
+        "level": 1,
+        "xp": 0
+      },
+      "odelia": {
+        "level": 1,
+        "xp": 0
+      }
+    },
+    "hero_shards": {},
+    "wallet_gold": 500,
+    "wallet_gems": 100,
+    "wallet_xp": 0,
+    "loot_inventory": [],
+    "guardian_equipped": "lumi",
+    "guardian_collection": {
+      "lumi": {
+        "copies": 1
+      }
+    },
+    "unity_pack_total": 0,
+    "unity_hunt_zone": "gray_meadow",
+    "unity_raid_attempt": 3,
+    "unity_raid_active": {
+      "zone": "moonrest_forest",
+      "attempt": 3
+    }
+  },
+  "trace": [
+    {
+      "check": "real native faction entry",
+      "frame": 49
+    },
+    {
+      "input": "아우렐리아 시작",
+      "frame": 59,
+      "x": 750.000061,
+      "y": 379.999969
+    },
+    {
+      "check": "persistent player excludes review seed",
+      "frame": 88
+    },
+    {
+      "input": "일시정지",
+      "frame": 90,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "hunt paused through pointer",
+      "frame": 95
+    },
+    {
+      "input": "일시정지",
+      "frame": 97,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "visible enabled movement joystick",
+      "frame": 102
+    },
+    {
+      "input": "joystick press/drag outside/release",
+      "frame": 134,
+      "direction_x": 1.0,
+      "direction_y": 0.0
+    },
+    {
+      "check": "hunt joystick release holds manual position",
+      "frame": 134
+    },
+    {
+      "check": "hunt drag physically moves expedition",
+      "frame": 134
+    },
+    {
+      "check": "released hunt stick stops movement",
+      "frame": 150
+    },
+    {
+      "check": "hunt drag preserves camera zoom",
+      "frame": 150
+    },
+    {
+      "input": "자동 추적",
+      "frame": 152,
+      "x": 262.0,
+      "y": 436.999969
+    },
+    {
+      "check": "hunt pointer resumes automatic tracking",
+      "frame": 157
+    },
+    {
+      "input": "일시정지",
+      "frame": 159,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "input": "도전",
+      "frame": 166,
+      "x": 960.000061,
+      "y": 31.9999542
+    },
+    {
+      "input": "초원왕 그룬",
+      "frame": 181,
+      "x": 1705.50012,
+      "y": 716.0
+    },
+    {
+      "check": "selected actual regional raid gray_meadow",
+      "frame": 186
+    },
+    {
+      "input": "패턴 훈련",
+      "frame": 188,
+      "x": 1659.00012,
+      "y": 260.999939
+    },
+    {
+      "check": "isolated training gray_meadow",
+      "frame": 193
+    },
+    {
+      "check": "emergency dodge button removed gray_meadow",
+      "frame": 193
+    },
+    {
+      "check": "visible enabled movement joystick",
+      "frame": 193
+    },
+    {
+      "input": "joystick press/drag outside/release",
+      "frame": 222,
+      "direction_x": -1.0,
+      "direction_y": 0.0
+    },
+    {
+      "check": "raid joystick release, no artificial dodge gray_meadow",
+      "frame": 222
+    },
+    {
+      "input": "산개 대형",
+      "frame": 224,
+      "x": 572.5,
+      "y": 260.999939
+    },
+    {
+      "check": "pointer spread order gray_meadow",
+      "frame": 229
+    },
+    {
+      "check": "spread is physical movement, no snap gray_meadow",
+      "frame": 229
+    },
+    {
+      "input": "추적 복귀",
+      "frame": 231,
+      "x": 217.000031,
+      "y": 260.999939
+    },
+    {
+      "check": "pointer returns role movement gray_meadow",
+      "frame": 236
+    },
+    {
+      "input": "산개 대형",
+      "frame": 238,
+      "x": 572.5,
+      "y": 260.999939
+    },
+    {
+      "input": "일시정지",
+      "frame": 245,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "paused spread disabled gray_meadow",
+      "frame": 250
+    },
+    {
+      "check": "native phase mechanic projection gray_meadow2",
+      "frame": 256
+    },
+    {
+      "check": "native mechanic visuals have no collision gray_meadow2",
+      "frame": 256
+    },
+    {
+      "check": "native phase transition banner gray_meadow2",
+      "frame": 256
+    },
+    {
+      "check": "phase banner clears response and skill feed gray_meadow2",
+      "frame": 256
+    },
+    {
+      "check": "native phase mechanic projection gray_meadow3",
+      "frame": 270
+    },
+    {
+      "check": "native mechanic visuals have no collision gray_meadow3",
+      "frame": 270
+    },
+    {
+      "check": "native phase transition banner gray_meadow3",
+      "frame": 270
+    },
+    {
+      "check": "phase banner clears response and skill feed gray_meadow3",
+      "frame": 270
+    },
+    {
+      "check": "phase intro yields to retained mechanic status gray_meadow",
+      "frame": 284
+    },
+    {
+      "check": "warning has priority over phase decoration gray_meadow",
+      "frame": 297
+    },
+    {
+      "check": "warning hides mechanic tag gray_meadow",
+      "frame": 297
+    },
+    {
+      "input": "사냥",
+      "frame": 308,
+      "x": 206.500015,
+      "y": 31.9999542
+    },
+    {
+      "check": "return retains hunt progress gray_meadow",
+      "frame": 313
+    },
+    {
+      "check": "training fixtures grant no rewards gray_meadow",
+      "frame": 313
+    },
+    {
+      "input": "도전",
+      "frame": 315,
+      "x": 960.000061,
+      "y": 31.9999542
+    },
+    {
+      "input": "광맥의 거인 모르굴",
+      "frame": 331,
+      "x": 1705.50012,
+      "y": 233.999939
+    },
+    {
+      "check": "selected actual regional raid forgotten_mine",
+      "frame": 336
+    },
+    {
+      "input": "패턴 훈련",
+      "frame": 338,
+      "x": 1659.00012,
+      "y": 260.999939
+    },
+    {
+      "check": "isolated training forgotten_mine",
+      "frame": 343
+    },
+    {
+      "check": "emergency dodge button removed forgotten_mine",
+      "frame": 343
+    },
+    {
+      "check": "visible enabled movement joystick",
+      "frame": 343
+    },
+    {
+      "input": "joystick press/drag outside/release",
+      "frame": 364,
+      "direction_x": -1.0,
+      "direction_y": 0.0
+    },
+    {
+      "check": "raid joystick release, no artificial dodge forgotten_mine",
+      "frame": 364
+    },
+    {
+      "input": "산개 대형",
+      "frame": 366,
+      "x": 713.0,
+      "y": 260.999939
+    },
+    {
+      "check": "pointer spread order forgotten_mine",
+      "frame": 371
+    },
+    {
+      "check": "spread is physical movement, no snap forgotten_mine",
+      "frame": 371
+    },
+    {
+      "input": "추적 복귀",
+      "frame": 373,
+      "x": 264.000031,
+      "y": 260.999939
+    },
+    {
+      "check": "pointer returns role movement forgotten_mine",
+      "frame": 378
+    },
+    {
+      "input": "산개 대형",
+      "frame": 380,
+      "x": 713.0,
+      "y": 260.999939
+    },
+    {
+      "input": "일시정지",
+      "frame": 387,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "paused spread disabled forgotten_mine",
+      "frame": 392
+    },
+    {
+      "check": "native phase mechanic projection forgotten_mine2",
+      "frame": 398
+    },
+    {
+      "check": "native mechanic visuals have no collision forgotten_mine2",
+      "frame": 398
+    },
+    {
+      "check": "native phase transition banner forgotten_mine2",
+      "frame": 398
+    },
+    {
+      "check": "phase banner clears response and skill feed forgotten_mine2",
+      "frame": 398
+    },
+    {
+      "check": "native phase mechanic projection forgotten_mine3",
+      "frame": 412
+    },
+    {
+      "check": "native mechanic visuals have no collision forgotten_mine3",
+      "frame": 412
+    },
+    {
+      "check": "native phase transition banner forgotten_mine3",
+      "frame": 412
+    },
+    {
+      "check": "phase banner clears response and skill feed forgotten_mine3",
+      "frame": 412
+    },
+    {
+      "check": "phase intro yields to retained mechanic status forgotten_mine",
+      "frame": 426
+    },
+    {
+      "check": "warning has priority over phase decoration forgotten_mine",
+      "frame": 440
+    },
+    {
+      "check": "warning hides mechanic tag forgotten_mine",
+      "frame": 440
+    },
+    {
+      "input": "사냥",
+      "frame": 450,
+      "x": 206.500015,
+      "y": 31.9999542
+    },
+    {
+      "check": "return retains hunt progress forgotten_mine",
+      "frame": 455
+    },
+    {
+      "check": "training fixtures grant no rewards forgotten_mine",
+      "frame": 455
+    },
+    {
+      "input": "도전",
+      "frame": 457,
+      "x": 960.000061,
+      "y": 31.9999542
+    },
+    {
+      "input": "월식의 여왕 셀레네",
+      "frame": 477,
+      "x": 1705.50012,
+      "y": 663.0
+    },
+    {
+      "check": "selected actual regional raid moonrest_forest",
+      "frame": 482
+    },
+    {
+      "input": "패턴 훈련",
+      "frame": 484,
+      "x": 1659.00012,
+      "y": 260.999939
+    },
+    {
+      "check": "isolated training moonrest_forest",
+      "frame": 489
+    },
+    {
+      "check": "emergency dodge button removed moonrest_forest",
+      "frame": 489
+    },
+    {
+      "check": "visible enabled movement joystick",
+      "frame": 489
+    },
+    {
+      "input": "joystick press/drag outside/release",
+      "frame": 510,
+      "direction_x": -1.0,
+      "direction_y": 0.0
+    },
+    {
+      "check": "raid joystick release, no artificial dodge moonrest_forest",
+      "frame": 510
+    },
+    {
+      "input": "산개 대형",
+      "frame": 512,
+      "x": 572.5,
+      "y": 260.999939
+    },
+    {
+      "check": "pointer spread order moonrest_forest",
+      "frame": 517
+    },
+    {
+      "check": "spread is physical movement, no snap moonrest_forest",
+      "frame": 517
+    },
+    {
+      "input": "추적 복귀",
+      "frame": 519,
+      "x": 217.000031,
+      "y": 260.999939
+    },
+    {
+      "check": "pointer returns role movement moonrest_forest",
+      "frame": 524
+    },
+    {
+      "input": "산개 대형",
+      "frame": 526,
+      "x": 572.5,
+      "y": 260.999939
+    },
+    {
+      "input": "일시정지",
+      "frame": 533,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "paused spread disabled moonrest_forest",
+      "frame": 538
+    },
+    {
+      "check": "native phase mechanic projection moonrest_forest2",
+      "frame": 544
+    },
+    {
+      "check": "native mechanic visuals have no collision moonrest_forest2",
+      "frame": 544
+    },
+    {
+      "check": "native phase transition banner moonrest_forest2",
+      "frame": 544
+    },
+    {
+      "check": "phase banner clears response and skill feed moonrest_forest2",
+      "frame": 544
+    },
+    {
+      "check": "native phase mechanic projection moonrest_forest3",
+      "frame": 558
+    },
+    {
+      "check": "native mechanic visuals have no collision moonrest_forest3",
+      "frame": 558
+    },
+    {
+      "check": "native phase transition banner moonrest_forest3",
+      "frame": 558
+    },
+    {
+      "check": "phase banner clears response and skill feed moonrest_forest3",
+      "frame": 558
+    },
+    {
+      "check": "phase intro yields to retained mechanic status moonrest_forest",
+      "frame": 573
+    },
+    {
+      "check": "warning has priority over phase decoration moonrest_forest",
+      "frame": 588
+    },
+    {
+      "check": "warning hides mechanic tag moonrest_forest",
+      "frame": 588
+    },
+    {
+      "input": "사냥",
+      "frame": 598,
+      "x": 206.500015,
+      "y": 31.9999542
+    },
+    {
+      "check": "return retains hunt progress moonrest_forest",
+      "frame": 603
+    },
+    {
+      "check": "training fixtures grant no rewards moonrest_forest",
+      "frame": 603
+    }
+  ],
+  "environments": [
+    {
+      "capture": "hunt-joystick-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-selection-gray_meadow-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-joystick-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-gray_meadow-phase2-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-gray_meadow-phase3-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-gray_meadow-mechanic-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-gray_meadow-warning-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-selection-forgotten_mine-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-forgotten_mine-phase2-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-forgotten_mine-phase3-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-forgotten_mine-mechanic-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-forgotten_mine-warning-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-selection-moonrest_forest-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-moonrest_forest-phase2-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-moonrest_forest-phase3-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-moonrest_forest-mechanic-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "raid-moonrest_forest-warning-native",
+      "zone": "gray_meadow",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    }
+  ],
+  "note": "Development-only scratch profile. Real pointer raid selection, spread/follow controls and returns. Explicit paused level-50 training phase/telegraph fixtures test rendering; not natural phase progression or victory. No real user files or FPS benchmark."
+}

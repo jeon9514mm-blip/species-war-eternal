@@ -37,7 +37,11 @@ namespace Eternal.UnityMigration
         readonly Dictionary<string,Vector2> rallyOffsets=new(),dodgeGoals=new();
         int sequence,bossTurns,rage;
         double bossAttack=.8,addAttack,skillSpacing;
-        bool rallyActive,counterUsed;
+        bool rallyActive,counterUsed,spreadActive,manualActive;
+        Vector2 manualDirection;
+        public bool ManualMovementActive=>manualActive;
+        public Vector2 ManualDirection=>manualDirection;
+        public string MovementOrder=>manualActive?"직접 이동":rallyActive?"집결":spreadActive?"산개":"역할 추적";
         Vector2 rallyGoal;
         Vector2 partyCenter;
         static readonly float[] slideAngles={0f,.35f,-.35f,.7f,-.7f,1.05f,-1.05f,Mathf.PI/2,-Mathf.PI/2};
@@ -263,9 +267,25 @@ namespace Eternal.UnityMigration
         public void Rally(Vector2 destination)
         {
             if(!Running||Paused)return;var alive=Battle.Heroes.Where(h=>h.Alive).ToArray();if(alive.Length==0)return;var center=Vector2.zero;foreach(var h in alive)center+=h.Position;center/=alive.Length;
-            rallyOffsets.Clear();foreach(var h in alive)rallyOffsets[h.Id]=h.Position-center;rallyGoal=RaidFootprint.Clamp(destination);rallyActive=true;
+            rallyOffsets.Clear();foreach(var h in alive)rallyOffsets[h.Id]=h.Position-center;rallyGoal=RaidFootprint.Clamp(destination);rallyActive=true;spreadActive=false;manualActive=false;manualDirection=Vector2.zero;
         }
-        public void ResumeFormation(){rallyActive=false;}
+        public void ResumeFormation(){if(!Running||Paused)return;rallyActive=false;spreadActive=false;manualActive=false;manualDirection=Vector2.zero;}
+        public bool SpreadFormation()
+        {if(!Running||Paused)return false;rallyActive=false;spreadActive=true;manualActive=false;manualDirection=Vector2.zero;return true;}
+        public bool SetManualMovement(Vector2 direction)
+        {
+            if(!Running||Paused||!float.IsFinite(direction.x)||!float.IsFinite(direction.y))return false;
+            manualActive=true;rallyActive=spreadActive=false;manualDirection=Vector2.ClampMagnitude(direction,1);return true;
+        }
+        public void StopManualMovement(){manualDirection=Vector2.zero;}
+        // Two spaced ranks use stable party slots. Orders only change goals;
+        // existing swept movement, attack windups and evasion remain authoritative.
+        public static Vector2 SpreadGoal(Vector2 boss,int slot)
+        {
+            slot=Math.Clamp(slot,0,9);
+            float left=Mathf.Clamp(boss.x-11.5f,RaidFootprint.Floor.xMin+.7f,RaidFootprint.Floor.xMax-8.5f);
+            return RaidFootprint.Clamp(new Vector2(left+slot%5*1.95f,slot<5?-1.55f:1.55f));
+        }
         static float Reaction(Combatant h)=>h.Role=="서포터"||h.Style=="support"?1.05f:h.Role=="컨트롤러"||h.Style=="controller"||h.Style=="control"?.98f:h.Range>=3?.90f:h.Role=="탱커"||h.Style=="protector"?.64f:h.Style=="aggressive"?.58f:.76f;
         static bool CanEvade(Combatant h)=>h.Role=="서포터"||h.Role=="컨트롤러"||h.Style=="support"||h.Style=="controller"||h.Style=="control"||((h.Role=="탱커"||h.Style=="protector")?h.Slot%3!=0:h.Range<=1&&h.Style=="aggressive"?h.Slot%4!=0:h.Slot%3!=0);
         Vector2 RoleGoal(Combatant h)
@@ -328,12 +348,13 @@ namespace Eternal.UnityMigration
             {
                 if(!h.Alive||h.Stun>0){h.Velocity=Vector2.zero;continue;}
                 bool dodging=DodgeRemaining>0&&dodgeGoals.ContainsKey(h.Id);
-                bool react=shape!=null&&AutoEvade&&CanEvade(h)&&remaining<=Reaction(h);
+                bool manual=manualActive&&manualDirection.sqrMagnitude>.0001f;
+                bool react=!manualActive&&shape!=null&&AutoEvade&&CanEvade(h)&&remaining<=Reaction(h);
                 bool escaping=react&&shape.Contains(h.Position);
-                var goal=dodging?dodgeGoals[h.Id]:escaping?shape.Escape(h.Position):rallyActive?RaidFootprint.Clamp(rallyGoal+rallyOffsets.GetValueOrDefault(h.Id)):RoleGoal(h);
-                if(intents.ContainsKey(h.Serial)&&!dodging&&!escaping){h.Velocity=Vector2.zero;continue;}
-                if(escaping||dodging){intents.Remove(h.Serial);h.Windup=-1;}
-                h.Position=Walk(h,goal,dt*(dodging?7.2f:escaping?4.4f:3.2f),dodging?null:react?shape:null);h.Velocity=(h.Position-h.PreviousPosition)/dt;
+                var goal=dodging?dodgeGoals[h.Id]:manualActive?h.Position+manualDirection*4:escaping?shape.Escape(h.Position):rallyActive?RaidFootprint.Clamp(rallyGoal+rallyOffsets.GetValueOrDefault(h.Id)):spreadActive?SpreadGoal(Boss.Position,h.Slot):RoleGoal(h);
+                if(intents.ContainsKey(h.Serial)&&!dodging&&!escaping&&!manual){h.Velocity=Vector2.zero;continue;}
+                if(escaping||dodging||manual){intents.Remove(h.Serial);h.Windup=-1;}
+                h.Position=Walk(h,goal,dt*(dodging?7.2f:manual?4.4f*manualDirection.magnitude:escaping?4.4f:3.2f),dodging?null:react?shape:null);h.Velocity=(h.Position-h.PreviousPosition)/dt;
             }
         }
     }

@@ -13,12 +13,15 @@ namespace Eternal.UnityMigration
         Mesh warningMesh;
         MeshRenderer warningRenderer;
         int shownVersion=-1;
+        RaidMechanicPresentation mechanics;
+        Material paintingMaterial;
+        public RaidMechanicPresentation Mechanics=>mechanics;
         public string PaintedMap {get;private set;}
         public float WarningProgress {get;private set;}
         public void Rebind(RaidSimulation simulation)
         {
             if(raid==null||raid.Zone!=simulation.Zone)throw new System.InvalidOperationException("Arena reuse must preserve its original zone.");
-            raid=simulation;shownVersion=-1;RebuildWarning(null);
+            raid=simulation;shownVersion=-1;RebuildWarning(null);mechanics?.Bind(simulation);
         }
         public void Initialize(RaidSimulation simulation,Material stone)
         {
@@ -29,6 +32,7 @@ namespace Eternal.UnityMigration
             {
                 var material=new Material(Resources.Load<Material>("Eternal/Materials/PaintedArena"));
                 material.SetTexture("_MainTex",art);ownedMaterials.Add(material);PaintedMap=painting;
+                paintingMaterial=material;
                 Primitive(PrimitiveType.Plane,"Original painted raid floor · "+painting,new Vector3(0,-.08f,0),new Vector3(6,1,4),material);
             }
             else
@@ -88,12 +92,14 @@ namespace Eternal.UnityMigration
             var warning=new GameObject("Shared geometry warning fill");warning.transform.SetParent(transform,false);
             warningMesh=new Mesh{name="Frozen raid warning"};warning.AddComponent<MeshFilter>().sharedMesh=warningMesh;warningRenderer=warning.AddComponent<MeshRenderer>();warningRenderer.sharedMaterial=warningMaterial;
             for(int i=0;i<4;i++){var line=new GameObject("Warning footprint "+i).AddComponent<LineRenderer>();line.transform.SetParent(transform,false);line.sharedMaterial=outlineMaterial;line.loop=true;line.useWorldSpace=false;line.widthMultiplier=.065f;warningLines.Add(line);}
+            var mechanicRoot=new GameObject("Live regional raid mechanic");mechanicRoot.transform.SetParent(transform,false);mechanics=mechanicRoot.AddComponent<RaidMechanicPresentation>();mechanics.Initialize(raid);
         }
         GameObject Primitive(PrimitiveType type,string name,Vector3 position,Vector3 scale,Material material)
         {var go=GameObject.CreatePrimitive(type);go.name=name;go.transform.SetParent(transform,false);go.transform.localPosition=position;go.transform.localScale=scale;go.GetComponent<Renderer>().sharedMaterial=material;Destroy(go.GetComponent<Collider>());return go;}
         void LateUpdate()
         {
             if(raid==null)return;
+            if(paintingMaterial!=null){float exposure=(raid.Warning!=null||raid.SecondWarning!=null) ? .86f : 1f;paintingMaterial.SetColor("_Tint",new Color(exposure,exposure,exposure,1));}
             var shape=raid.SecondWarning??raid.Warning;
             if(shownVersion!=raid.WarningVersion){shownVersion=raid.WarningVersion;RebuildWarning(shape);}
             WarningProgress=ReadWarningProgress(raid);

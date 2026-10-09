@@ -26,6 +26,12 @@ namespace Eternal.UnityMigration
                 var identity=Text(copy,meadow?"갑주 파괴 · 정면 카운터":mine?"수정핵 제거 · 낙석 회피":"월식 의식 저지 · 표식 회피",11);identity.style.color=Bronze;identity.style.whiteSpace=WhiteSpace.Normal;identity.style.marginTop=8;
                 Text(copy,meadow?"하늘의 유적":mine?"잊힌 호박빛 채석장":"달빛 성소",11).style.color=Moss;
                 var description=Text(card,(string)design["description"],12);description.style.whiteSpace=WhiteSpace.Normal;description.style.marginTop=10;
+                for(int phase=0;phase<3;phase++)
+                {
+                    var mechanic=design["mechanics"][phase];var pattern=design["phases"][phase];
+                    var line=Text(card,"P"+(phase+1)+" · "+(phase==0?"입장":phase==1?"HP 60%":"HP 30%")+" · "+(string)mechanic["name"],11);line.style.color=Moss;line.style.marginTop=6;line.style.whiteSpace=WhiteSpace.Normal;
+                    var tip=Text(card,(string)pattern["counter"],11);tip.style.color=Parchment;tip.style.whiteSpace=WhiteSpace.Normal;
+                }
                 if(PersistentPlayer)Text(card,"승리 보상 · 골드 "+((long)z["gold"]*20).ToString("N0")+" · 경험치 "+((int)z["xp"]*10).ToString("N0"),12).style.color=Bronze;
             }
         }
