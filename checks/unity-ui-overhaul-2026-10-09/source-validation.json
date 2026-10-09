@@ -1,0 +1,46 @@
+{
+  "checked_at_utc": "2026-10-09T08:09:39.891575+00:00",
+  "scope": "Static C# grammar parsing, partial-class duplicate-signature checks and whitespace validation only. These checks do not establish C# type correctness, Unity compilation, gameplay behavior, visual layout, input handling or performance.",
+  "unity_compile": false,
+  "unity_runtime": false,
+  "native_input_tests_run": false,
+  "screenshots_captured": false,
+  "tooling": {
+    "tree_sitter_python": "0.25.2",
+    "tree_sitter_c_sharp": "0.23.5",
+    "install_location": "scratch-only, not part of game repository"
+  },
+  "source_snapshot_sha256": "16a884c19c7cdb41a211da35fa9b7ba27329516f06c87205c4c52824c40cd5ea",
+  "syntax": {
+    "scope": "C# grammar parsing + duplicate signatures in partial HuntingMigrationReview. No Unity compilation/runtime/layout proof.",
+    "files": 109,
+    "parse_errors": [],
+    "duplicate_partial_members": {}
+  },
+  "git_diff_check": {
+    "executed": true,
+    "exit_code": 0,
+    "output": ""
+  },
+  "acceptance_sources_updated": [
+    "Unity/Assets/Game/Runtime/NativeInputAcceptance.cs",
+    "Unity/Assets/Game/Runtime/StandaloneGameAcceptance.cs"
+  ],
+  "acceptance_source_changes": [
+    "Named bottom-navigation routes with actual pointer close before changing screens behind the modal backdrop.",
+    "Explicit manual-chain expansion and folding before manual input inspection.",
+    "Original hero roster, growth/skills/equipment/ascension tabs, research action, equipment and skill identity targets.",
+    "Godot menu summon/camp and management-panel quick actions.",
+    "Standalone QA dynamic pause/resume, zoom-target disambiguation and party slot/preset/removal targets.",
+    "Named-pointer helpers reject hidden or obstructed targets and still send real Input System press/release events."
+  ],
+  "remaining_validation": [
+    "Unity Editor compilation is required; no Unity/.NET/Mono compiler is available in this environment.",
+    "Run relevant native pointer acceptance in a fresh isolated review/scratch profile, then visually inspect 16:9 and narrow-window UI.",
+    "No actual game screenshot, runtime behavior, performance or commercial quality conclusion was obtained from static source checks."
+  ],
+  "preexisting_qa_risks": [
+    "NativeInputAcceptance still expects the removed emergency-dodge control. The separate StandaloneGameAcceptance raid suite uses joystick movement.",
+    "Default StandaloneGameAcceptance still asserts four monster names, whereas its newer MonsterFocusSuite asserts seven. These unrelated gameplay assertions were not changed by the UI-binding update."
+  ]
+}

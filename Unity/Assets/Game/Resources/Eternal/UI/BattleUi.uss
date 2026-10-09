@@ -13,3 +13,43 @@
 .roster-filter .unity-base-field__input { background-color: rgb(24, 34, 36); color: rgb(216, 213, 204); border-color: rgb(61, 78, 74); border-radius: 4px; }
 .roster-filter .unity-base-popup-field__text { color: rgb(216, 213, 204); }
 .roster-filter .unity-text-field__input { color: rgb(216, 213, 204); }
+
+/* Shared charcoal, bronze and moss chrome, matched to the Godot interface. */
+.eternal-button {
+    color: rgb(226, 224, 215);
+    background-color: rgb(26, 36, 39);
+    border-width: 1px;
+    border-color: rgb(69, 82, 80);
+    border-radius: 7px;
+    font-size: 14px;
+    flex-shrink: 0;
+    -unity-font-style: normal;
+}
+.eternal-button:hover { background-color: rgb(42, 54, 52); border-color: rgb(196, 164, 132); }
+.eternal-button:active { background-color: rgb(60, 69, 60); }
+.eternal-button:focus { border-color: rgb(211, 182, 138); border-width: 2px; }
+.eternal-button:disabled { color: rgb(123, 133, 130); background-color: rgb(24, 31, 33); }
+.inspection-window { border-radius: 12px; border-color: rgb(92, 103, 95); }
+.inspection-header { border-bottom-width: 1px; border-bottom-color: rgb(65, 80, 76); padding-bottom: 8px; }
+.inspection-window .unity-scroll-view { min-height: 0; min-width: 0; }
+.inspection-window .unity-label { -unity-text-overflow-position: end; }
+.inspection-window .unity-text-field__input,
+.inspection-window .unity-base-popup-field__input {
+    background-color: rgb(23, 32, 35); color: rgb(226, 224, 215);
+    border-width: 1px; border-color: rgb(65, 80, 76); border-radius: 6px;
+    padding-left: 8px; padding-right: 8px;
+}
+.inspection-window .unity-base-popup-field__text { color: rgb(226, 224, 215); }
+.inspection-window .unity-base-field__label { color: rgb(168, 184, 158); }
+.hero-showcase-roster-card:hover, .hero-showcase-roster-card:focus { border-color: rgb(196, 164, 132); }
+.hero-showcase-tab { margin-left: 0; margin-right: 5px; }
+.hero-showcase-tab.is-selected { background-color: rgb(196, 164, 132); color: rgb(20, 27, 29); }
+.hero-showcase-section { margin-top: 10px; padding: 12px; border-width: 1px; border-color: rgb(51, 69, 65); border-radius: 8px; }
+.hero-roster-panel, .hero-information-panel { min-width: 0; min-height: 0; }
+.legacy-menu-drawer { border-top-color: rgb(196, 164, 132); }
+.legacy-menu-feature:hover, .legacy-menu-link:hover { border-color: rgb(196, 164, 132); }
+.entry-plate { border-radius: 16px; border-left-width: 1px; border-right-width: 1px; border-left-color: rgb(91, 101, 89); border-right-color: rgb(91, 101, 89); }
+.entry-faction-card { border-radius: 12px; border-width: 1px; border-color: rgb(65, 80, 76); }
+.entry-faction-card:hover { border-color: rgb(196, 164, 132); }
+.entry-screen .unity-foldout__text { color: rgb(168, 184, 158); }
+.entry-screen .unity-text-field__input { color: rgb(226, 224, 215); background-color: rgb(23, 32, 35); }

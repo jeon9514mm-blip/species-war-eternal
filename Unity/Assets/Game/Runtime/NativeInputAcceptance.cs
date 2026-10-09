@@ -50,6 +50,7 @@ namespace Eternal.UnityMigration.Editor
             if(Mouse.current==null&&Application.isBatchMode)qaMouse=InputSystem.AddDevice<Mouse>("Isolated review QA mouse");
             if(Mouse.current==null)throw new InvalidOperationException("An Input System mouse is required.");
             steps.Clear();trace.Clear();raids.Clear();index=delayFrames=checks=0;lastFrame=-1;startFrame=Time.frameCount;started=Time.realtimeSinceStartup;pressed=false;
+            Add("expand manual skill strip through native pointer",()=>ClickName("hunt-chain-expand"));
             Add("verify party labels do not overlap after font import",()=>
             {
                 var ui=review.GetComponent<UnityEngine.UIElements.UIDocument>().rootVisualElement;
@@ -83,13 +84,36 @@ namespace Eternal.UnityMigration.Editor
             }));
             Add("verify exact manual route played an original skill",()=>{Require(review.Simulation.ManualSkillCasts==manualBefore+1,"native manual skill count");Require(review.Simulation.Battle.Kits[manualHero].Casts.GetValueOrDefault(manualSlot)>0,"native original skill execution");});
             Add("capture actual manual skill strip",()=>ScreenCapture.CaptureScreenshot(Path.Combine(Path.GetDirectoryName(ReportPath),"native-chain-strip.png")));
-            Add("open hero navigation",()=>ClickText("영웅"));
-            Add("open original Leonhardt portrait",()=>ClickData("leonhardt"));
-            Add("open growth panel",()=>ClickText("성장 · 장비"));
+            Add("fold manual skill strip through native pointer",()=>ClickName("hunt-chain-expand"));
+            Navigate("open hero navigation","영웅");
+            Add("open original Leonhardt portrait",()=>ClickName("HeroRoster_leonhardt"));
+            Add("open original skills tab",()=>ClickName("HeroTab_skills"));
+            Add("verify original four skill identities",()=>
+            {
+                var ui=review.GetComponent<UIDocument>().rootVisualElement;
+                foreach(var skill in review.Simulation.Catalog.Hero("leonhardt")["skills"])
+                {
+                    var block=ui.Q<VisualElement>("HeroSkill_"+(string)skill["slot"]);
+                    Require(block!=null&&block.Query<Label>().ToList().Any(l=>l.text==(string)skill["skill"]),"original skill identity "+(string)skill["slot"]);
+                }
+            });
+            Add("open equipment tab",()=>ClickName("HeroTab_equipment"));
+            Add("verify all original equipment slots",()=>
+            {
+                var ui=review.GetComponent<UIDocument>().rootVisualElement;
+                foreach(string slot in OriginalEquipmentRules.Slots)Require(ui.Q<VisualElement>("HeroGear_"+slot)!=null,"original equipment slot "+slot);
+            });
+            Add("open ascension tab",()=>ClickName("HeroTab_ascension"));
+            Add("verify original progression actions",()=>
+            {
+                var ui=review.GetComponent<UIDocument>().rootVisualElement;
+                Require(ui.Q<Button>("HeroAscendAction")!=null&&ui.Q<Button>("HeroBreakthroughAction")!=null,"ascension and breakthrough routes present");
+            });
+            Add("open growth tab",()=>ClickName("HeroTab_growth"));
             Add("capture research state",()=>{offense=review.ReviewState.HeroTree("leonhardt").offense;attack=review.Simulation.Battle.Heroes.First(h=>h.Id=="leonhardt").Attack;});
-            Add("research offense through pointer",()=>ClickText("연구 +1",0));
+            Add("research offense through pointer",()=>ClickName("HeroResearch_offense"));
             Add("verify research affects same live actor",()=>{Require(review.ReviewState.HeroTree("leonhardt").offense==offense+1,"research rank");Require(review.Simulation.Battle.Heroes.First(h=>h.Id=="leonhardt").Attack>attack,"live attack growth");});
-            Add("open bag navigation",()=>ClickText("가방"));
+            Navigate("open bag navigation","가방");
             Add("capture bag state",()=>{gold=review.ReviewState.WalletGold;});
             Add("recommended equipment through pointer",()=>ClickText("추천 장착"));
             Add("verify recommendation preserves wallet and protected gear",()=>
@@ -104,6 +128,8 @@ namespace Eternal.UnityMigration.Editor
             Add("verify lock disables decomposition",()=>{Require((bool)Item()["locked"],"gear lock");var b=Buttons().First(x=>((string)x["text"]).StartsWith("분해 ·",StringComparison.Ordinal));Require(!(bool)b["enabled"],"locked salvage disabled");});
             Add("unlock through pointer",()=>ClickText("잠금 해제"));
             Add("verify unlock",()=>Require(!(bool)Item()["locked"],"gear unlock"));
+            Navigate("open menu for chain settings","메뉴");
+            Add("open expedition status",()=>ClickName("PortraitMenu_camp"));
             Add("open skill-chain editor",()=>ClickText("연계 순서"));
             Add("capture chain order",()=>chain=review.Simulation.Chain.Entries.ToArray());
             Add("reorder chain through pointer",()=>ClickText("↓",0));
@@ -112,8 +138,8 @@ namespace Eternal.UnityMigration.Editor
             Add("verify disabled chain",()=>Require(!review.Simulation.Chain.Enabled,"auto chain off"));
             Add("enable auto chain through pointer",()=>ClickText("자동 연계 OFF"));
             Add("verify enabled chain",()=>Require(review.Simulation.Chain.Enabled,"auto chain on"));
-            Add("open state menu",()=>ClickText("메뉴"));
-            Add("open summon panel",()=>ClickText("소환 · 수호신"));
+            Navigate("open state menu","메뉴");
+            Add("open summon panel",()=>ClickName("PortraitMenu_summon"));
             Add("capture free guardian state",()=>{gold=review.ReviewState.WalletGems;guardianCopies=review.ReviewState.OwnedGuardians().Sum(review.ReviewState.GuardianCopies);});
             Add("free guardian summon through pointer",()=>ClickText("첫 무료 수호신 소환"));
             Add("verify free guardian copy and wallet",()=>{Require(!review.ReviewState.GuardianFreeAvailable,"free summon consumed once");Require(review.ReviewState.WalletGems==gold,"free guardian wallet");Require(review.ReviewState.OwnedGuardians().Sum(review.ReviewState.GuardianCopies)==guardianCopies+1,"guardian copy awarded");});
@@ -127,7 +153,7 @@ namespace Eternal.UnityMigration.Editor
             foreach(string zone in new[]{"gray_meadow","forgotten_mine","moonrest_forest"})
             {
                 string current=zone;
-                Add("open raid navigation "+zone,()=>ClickText("도전"));
+                Navigate("open raid navigation "+zone,"도전");
                 Add("capture retained hunt "+zone,()=>huntTicks=review.Simulation.Ticks);
                 Add("enter regional boss "+zone,()=>ClickText((string)zones[current]["boss"]));
                 Add("verify native raid route "+zone,()=>{Require(review.Raid?.Zone==current&&review.Raid.Running,"raid route");Require(review.Simulation.Ticks>=huntTicks,"hunt retained at transition");huntTicks=review.Simulation.Ticks;});
@@ -167,19 +193,21 @@ namespace Eternal.UnityMigration.Editor
                     Add("capture authored counter practice",()=>ScreenCapture.CaptureScreenshot(Path.Combine(Path.GetDirectoryName(ReportPath),"native-counter-practice.png")));
                 }
                 Add("record raid input evidence "+zone,()=>raids.Add(new JObject{{"zone",current},{"dodge_verified",true},{"rally_verified",true},{"native_ticks",review.Raid.Ticks},{"counter_successes",review.Raid.CounterSuccesses},{"counter_input_success_verified",review.Raid.CounterSuccesses>0},{"counter_scope",current=="gray_meadow"?"explicit authored cone practice":"no scripted practice"}}));
-                Add("return to hunting through pointer "+zone,()=>ClickText("사냥"));
+                Navigate("return to hunting through pointer "+zone,"사냥");
                 Add("verify retained hunting "+zone,()=>{Require(review.Raid==null,"return route");Require(review.Simulation.Ticks>=huntTicks,"retained hunt");});
             }
             Add("capture continuing hunt rewards",()=>{rewardPacks=review.Simulation.PacksCleared;rewardGold=review.Simulation.Gold;rewardXp=review.Simulation.Xp;gold=review.ReviewState.WalletGold;walletXp=GameStateCommands.Integer(review.ReviewState.Snapshot()["wallet_xp"],0,0,GameStateCommands.CurrencyCap);waitStarted=Time.realtimeSinceStartup;});
             steps.Add(("observe an actual hunted pack settlement",()=>{if(review.Simulation.PacksCleared>rewardPacks)return true;if(Time.realtimeSinceStartup-waitStarted>45)throw new InvalidOperationException("No live hunted pack reward in 45 seconds.");return false;}));
             Add("verify actual hunt wallet and xp credit",()=>{var snapshot=review.ReviewState.Snapshot();Require((int)snapshot["native_review_settled_pack"]==review.Simulation.PacksCleared,"pack settlement cursor");Require(review.ReviewState.WalletGold==gold+review.Simulation.Gold-rewardGold,"live hunt gold");Require(GameStateCommands.Integer(snapshot["wallet_xp"],0,0,GameStateCommands.CurrencyCap)==walletXp+review.Simulation.Xp-rewardXp,"live hunt xp");});
+            Add("open hunt management through pointer",()=>ClickText("관리"));
             Add("open quick growth through pointer",()=>ClickText("빠른 성장"));
-            Add("verify quick growth destination",()=>Require(Buttons().Any(b=>(string)b["text"]=="연구 +1"),"quick growth research"));
+            Add("verify quick growth destination",()=>Require(review.GetComponent<UIDocument>().rootVisualElement.Q<Button>("HeroResearch_offense")!=null,"quick growth research"));
             Add("close quick growth",()=>ClickText("닫기"));
             Add("capture quick equipment wallet",()=>gold=review.ReviewState.WalletGold);
+            Add("reopen hunt management through pointer",()=>ClickText("관리"));
             Add("quick equipment through pointer",()=>ClickText("장비 추천"));
             Add("verify quick equipment preserves currency",()=>Require(review.ReviewState.WalletGold==gold,"quick equipment wallet"));
-            Add("open a fresh raid for natural result flow",()=>ClickText("도전"));
+            Navigate("open a fresh raid for natural result flow","도전");
             Add("enter original meadow boss for natural victory",()=>ClickText((string)zones["gray_meadow"]["boss"]));
             Add("capture isolated raid wallet and retained hunt",()=>{gold=review.ReviewState.WalletGold;huntTicks=review.Simulation.Ticks;waitStarted=Time.realtimeSinceStartup;});
             steps.Add(("observe natural raid completion",()=>{if(!review.Raid.Running)return true;if(Time.realtimeSinceStartup-waitStarted>45)throw new InvalidOperationException("Natural meadow result did not arrive within 45 seconds.");return false;}));
@@ -187,7 +215,7 @@ namespace Eternal.UnityMigration.Editor
             Add("capture actual native raid result",()=>ScreenCapture.CaptureScreenshot(Path.Combine(Path.GetDirectoryName(ReportPath),"native-raid-result.png")));
             Add("retry natural raid through pointer",()=>ClickText("다시 도전"));
             Add("verify retry clears prior result",()=>{Require(review.Raid.Running&&review.Raid.Elapsed<1.5,"fresh retry encounter");Require(!review.RaidResultVisible,"result cleared on retry");});
-            Add("return to retained hunt after retry",()=>ClickText("사냥"));
+            Navigate("return to retained hunt after retry","사냥");
             Add("verify new route returns to hunting",()=>Require(review.Raid==null,"hunt after result retry"));
             Add("start observing a real ultimate presentation",()=>waitStarted=Time.realtimeSinceStartup);
             steps.Add(("observe confirmed ultimate cut-in during live hunting",()=>
@@ -214,11 +242,38 @@ namespace Eternal.UnityMigration.Editor
         }
         static JObject Item()=>review.ReviewState.Inventory().First(i=>(string)i["id"]==itemId);
         static void Add(string label,Action action)=>steps.Add((label,()=>{action();return true;}));
+        static void Navigate(string label,string route)
+        {
+            Add("close inspection before "+label,()=>
+            {
+                var modal=review.GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("inspection");
+                if(modal!=null&&modal.resolvedStyle.display!=DisplayStyle.None)ClickName("inspection-close");
+            });
+            Add(label,()=>ClickName("navigation-"+route));
+        }
         static void Require(bool condition,string label){checks++;if(!condition)throw new InvalidOperationException("Native input assertion failed: "+label);}
         static IEnumerable<JObject> Buttons()=>((JArray)JObject.Parse(NativeUiVerification.Inspect())["buttons"]).Cast<JObject>();
         static void ClickText(string text,int ordinal=0)=>Click(Buttons().Where(b=>(string)b["text"]==text).Skip(ordinal).FirstOrDefault(),text);
         static void ClickPrefix(string prefix)=>Click(Buttons().FirstOrDefault(b=>((string)b["text"]).StartsWith(prefix,StringComparison.Ordinal)),prefix);
         static void ClickData(string id)=>Click(Buttons().FirstOrDefault(b=>(string)b["data"]==id),id);
+        // Resolve stable UI names to a visible, unobstructed hit location, then
+        // dispatch the same actual Input System press/release as text targets.
+        static void ClickName(string name)
+        {
+            var ui=review.GetComponent<UIDocument>().rootVisualElement;
+            var button=ui.Q<Button>(name);var bounds=button?.worldBound??default;
+            bool visible=button!=null&&button.visible&&button.enabledInHierarchy&&bounds.width>0&&bounds.height>0&&ui.worldBound.Contains(bounds.center);
+            for(VisualElement parent=button;parent!=null;parent=parent.parent)
+            {
+                if(parent.resolvedStyle.display==DisplayStyle.None||parent.resolvedStyle.visibility==Visibility.Hidden)visible=false;
+                if(parent is ScrollView scroll&&!scroll.contentViewport.worldBound.Contains(bounds.center))visible=false;
+            }
+            if(!visible)throw new InvalidOperationException("Visible enabled native button not found: "+name);
+            var picked=ui.panel.Pick(bounds.center);
+            while(picked!=null&&picked!=button)picked=picked.parent;
+            if(picked!=button)throw new InvalidOperationException("Native button is obstructed: "+name);
+            Click(new JObject{{"enabled",true},{"x",(bounds.center.x-ui.worldBound.x)/ui.worldBound.width*Screen.width},{"y",(1-(bounds.center.y-ui.worldBound.y)/ui.worldBound.height)*Screen.height}},name);
+        }
         static void Click(JObject button,string label)
         {
             if(button==null||!(bool)button["enabled"])throw new InvalidOperationException("Visible enabled native button not found: "+label);

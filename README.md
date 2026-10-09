@@ -4,7 +4,9 @@
 
 기존 Godot **4.7.2** 프로젝트와 저장 기록은 전환 검증을 위해 보존합니다. 기존 게임은 `project.godot`를 가져온 뒤 **F5**로 실행하며, 시작 장면은 `scenes/PortraitMain.tscn`, 기준 화면은 **1280×720**입니다. 아래 기존 구현 설명은 Godot 버전을 기준으로 합니다.
 
-최신 제작 방향: 기존 UI·UX·그래픽의 세부 구현을 그대로 복제하지 않습니다. 영웅 30명·스킬·성장·재화·사냥·레이드의 핵심 구성을 가져가고, Unity에 맞춰 화면 흐름과 디자인을 새로 만듭니다. 현재 검수 화면에는 한국어 글꼴, 재화 아이콘, 현재 메뉴 표시, 이끼·청동 문양, 분리된 보스 체력·무력화 표시와 패턴·카운터 연습이 들어 있습니다. [기본 원거리 화면](checks/unity-migration-2026-10-08/hunt-meadow-cp14.png), [×3 확대](checks/unity-migration-2026-10-08/hunt-zoom-3-cp14.png), [500 스테이지 광맥](checks/unity-migration-2026-10-08/hunt-stage-500-cp14.png), [1000 스테이지 숲](checks/unity-migration-2026-10-08/hunt-stage-1000-cp14.png), [레이드 대응 안내](checks/unity-migration-2026-10-08/raid-response-counter-native.png)는 실제 실행본 캡처입니다. 마지막 화면은 명시적인 카운터 연습입니다.
+최신 UI 방향(2026-10-09): 사용자 요청에 따라 **Godot 영웅 화면과 전체 메뉴 구성을 Unity UI Toolkit으로 이식**했습니다. 원본 영웅 그림을 사용하는 목록·대형 초상·성장/스킬/장비/승급 탭, 10인 편성, 사냥 HUD와 하단 메뉴, 공통 창·진영 선택 화면을 개편했습니다. [변경 범위와 검증 기록](docs/unity-migration/UI_OVERHAUL_2026_10_09_KO.md)과 [이미지 미리보기](checks/unity-ui-overhaul-2026-10-09/README.md)를 확인하세요. 이번 변경은 C# 구문 검사까지 완료했으며 **Unity 컴파일·실행 검증은 아직 하지 못했습니다. 미리보기는 실제 Unity 캡처가 아닙니다.**
+
+이전 체크포인트의 [기본 원거리 화면](checks/unity-migration-2026-10-08/hunt-meadow-cp14.png), [×3 확대](checks/unity-migration-2026-10-08/hunt-zoom-3-cp14.png), [500 스테이지 광맥](checks/unity-migration-2026-10-08/hunt-stage-500-cp14.png), [1000 스테이지 숲](checks/unity-migration-2026-10-08/hunt-stage-1000-cp14.png), [레이드 대응 안내](checks/unity-migration-2026-10-08/raid-response-counter-native.png)는 당시 실제 실행본 캡처이며 이번 UI 개편의 실행 증거는 아닙니다. 마지막 화면은 명시적인 카운터 연습입니다.
 
 ## 시작과 개발
 

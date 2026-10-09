@@ -24,18 +24,19 @@ namespace Eternal.UnityMigration
             catalog=new OriginalCombatCatalog(OriginalCatalog.Required("hero-catalog").text);
             panel=ScriptableObject.CreateInstance<PanelSettings>();panel.scaleMode=PanelScaleMode.ScaleWithScreenSize;panel.referenceResolution=new Vector2Int(1600,900);panel.match=.5f;panel.themeStyleSheet=Resources.Load<ThemeStyleSheet>("Eternal/UI/RuntimeTheme");
             var document=gameObject.AddComponent<UIDocument>();document.panelSettings=panel;var root=document.rootVisualElement;
-            root.style.flexGrow=1;root.style.color=Paper;root.style.unityFont=Resources.Load<Font>("Eternal/Fonts/EternalKR-Regular");root.style.alignItems=Align.Center;root.style.justifyContent=Justify.Center;
+            var styles=Resources.Load<StyleSheet>("Eternal/UI/BattleUi");if(styles!=null)root.styleSheets.Add(styles);
+            root.AddToClassList("entry-screen");root.style.flexGrow=1;root.style.color=Paper;root.style.unityFont=Resources.Load<Font>("Eternal/Fonts/EternalKR-Regular");root.style.alignItems=Align.Center;root.style.justifyContent=Justify.Center;
             var background=new Image{image=Resources.Load<Texture2D>("Eternal/Environment/sky-court"),scaleMode=ScaleMode.ScaleAndCrop,pickingMode=PickingMode.Ignore};
             background.style.position=Position.Absolute;background.style.left=background.style.right=background.style.top=background.style.bottom=0;background.style.opacity=.55f;root.Add(background);
-            var plate=new VisualElement();plate.style.width=760;plate.style.paddingLeft=30;plate.style.paddingRight=30;plate.style.paddingTop=28;plate.style.paddingBottom=26;plate.style.backgroundColor=Ink;
+            var plate=new VisualElement();plate.AddToClassList("entry-plate");plate.style.width=940;plate.style.maxWidth=Length.Percent(94);plate.style.maxHeight=Length.Percent(96);plate.style.paddingLeft=30;plate.style.paddingRight=30;plate.style.paddingTop=28;plate.style.paddingBottom=26;plate.style.backgroundColor=Ink;
             plate.style.borderTopWidth=plate.style.borderBottomWidth=1;plate.style.borderTopColor=plate.style.borderBottomColor=Bronze;root.Add(plate);
             Text(plate,"종의전쟁: 이터널",35,Bronze).style.unityTextAlign=TextAnchor.MiddleCenter;
             Text(plate,"30명의 영웅 · 10인 원정대 · 3개의 지역 레이드",14,Moss).style.unityTextAlign=TextAnchor.MiddleCenter;
             var choices=new VisualElement();choices.style.flexDirection=FlexDirection.Row;choices.style.marginTop=22;plate.Add(choices);
             foreach(string faction in new[]{"aurelia","noxfera"})
             {
-                string selected=faction;var card=new VisualElement();card.style.flexGrow=1;card.style.flexBasis=0;card.style.marginLeft=8;card.style.marginRight=8;card.style.paddingLeft=16;card.style.paddingRight=16;card.style.paddingTop=10;card.style.paddingBottom=14;card.style.backgroundColor=new Color(.075f,.105f,.12f);choices.Add(card);
-                string hero=catalog.HeroIds.First(id=>(string)catalog.Hero(id)["faction"]==faction);var art=new Image{sprite=Portrait(hero),scaleMode=ScaleMode.ScaleToFit};art.style.height=172;card.Add(art);
+                string selected=faction;var card=new VisualElement();card.style.flexGrow=1;card.style.flexBasis=0;card.style.marginLeft=8;card.style.marginRight=8;card.style.paddingLeft=16;card.style.paddingRight=16;card.style.paddingTop=10;card.style.paddingBottom=14;card.style.backgroundColor=new Color(.075f,.105f,.12f);card.AddToClassList("entry-faction-card");choices.Add(card);
+                string hero=catalog.HeroIds.First(id=>(string)catalog.Hero(id)["faction"]==faction);var art=new Image{sprite=Portrait(hero),scaleMode=ScaleMode.ScaleToFit};art.style.height=210;art.style.flexShrink=1;card.Add(art);
                 string title=faction=="aurelia"?"아우렐리아":"녹스페라";Text(card,title,22,Bronze).style.unityTextAlign=TextAnchor.MiddleCenter;
                 Text(card,faction=="aurelia"?"빛의 원정대":"그림자의 원정대",13,Moss).style.unityTextAlign=TextAnchor.MiddleCenter;
                 var store=new NativeSessionStore(NativeSessionStore.LatestPath(ProfileDirectory,faction),faction);var saved=store.Read();
@@ -44,15 +45,16 @@ namespace Eternal.UnityMigration
                 var begin=Button(card,title+(saved.Ok?" 이어하기":" 시작"),()=>Begin(selected));begin.name="start-"+selected;begin.SetEnabled(saved.Ok||saved.Status=="missing");
             }
             message=Text(plate,"진영마다 진행 기록을 따로 저장합니다.",13,Moss);message.style.unityTextAlign=TextAnchor.MiddleCenter;message.style.whiteSpace=WhiteSpace.Normal;message.style.marginTop=16;
-            var import=new VisualElement();import.style.flexDirection=FlexDirection.Row;import.style.alignItems=Align.Center;import.style.marginTop=16;plate.Add(import);
+            var importFoldout=new Foldout{text="기존 기록 가져오기",value=false};importFoldout.style.marginTop=12;plate.Add(importFoldout);
+            var import=new VisualElement();import.style.flexDirection=FlexDirection.Row;import.style.alignItems=Align.Center;import.style.marginTop=16;importFoldout.Add(import);
             legacyPath=new TextField("기존 기록 파일");legacyPath.style.flexGrow=1;legacyPath.labelElement.style.minWidth=100;legacyPath.labelElement.style.width=100;import.Add(legacyPath);
             Button(import,"기록 가져오기",ImportLegacy).style.marginLeft=10;
-            Text(plate,"기존 Godot 기록은 읽기만 하며, 가져온 기록은 별도 Unity 파일로 저장합니다.",11,Moss).style.marginTop=8;
+            var importHelp=Text(importFoldout,"기존 기록은 그대로 보존하고 별도 기록으로 가져옵니다.",12,Moss);importHelp.style.whiteSpace=WhiteSpace.Normal;importHelp.style.marginTop=8;
         }
         static Label Text(VisualElement parent,string value,int size,Color color){var label=new Label(value);label.style.fontSize=size;label.style.color=color;parent.Add(label);return label;}
         static Button Button(VisualElement parent,string value,Action action)
         {
-            var b=new Button(action){text=value};b.style.height=38;b.style.marginTop=10;b.style.backgroundColor=new Color(.14f,.21f,.20f);b.style.color=Paper;b.style.borderTopWidth=b.style.borderBottomWidth=b.style.borderLeftWidth=b.style.borderRightWidth=1;b.style.borderTopColor=b.style.borderBottomColor=b.style.borderLeftColor=b.style.borderRightColor=Bronze;parent.Add(b);return b;
+            var b=new Button(action){text=value};b.AddToClassList("eternal-button");b.style.height=44;b.style.marginTop=10;b.style.backgroundColor=new Color(.14f,.21f,.20f);b.style.color=Paper;b.style.borderTopWidth=b.style.borderBottomWidth=b.style.borderLeftWidth=b.style.borderRightWidth=1;b.style.borderTopColor=b.style.borderBottomColor=b.style.borderLeftColor=b.style.borderRightColor=Bronze;parent.Add(b);return b;
         }
         Sprite Portrait(string id)
         {

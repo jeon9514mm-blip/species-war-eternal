@@ -2,6 +2,8 @@
 
 This checkpoint connects native faction startup, separate persistent Unity profiles, hunting rewards and growth, queued party editing, ordered skills, painted relief meshes and real-party regional raids. Full content, visual finishing and final performance work remain incomplete.
 
+Latest source update (2026-10-09): the user now requests the Godot hero panels and menus in Unity. The shared UI overhaul ports their layout and original art, adds the ten-slot party editor and restyles the hunt HUD, entry and inspection windows. **This update has static C# grammar checks only; it has not been compiled or run in Unity.** Its labelled static Canvas review images are not engine screenshots. Earlier build/input passes below apply to their historical checkpoints. See [UI overhaul scope and remaining validation](UI_OVERHAUL_2026_10_09_KO.md).
+
 ## Preserved direction
 
 - Same world, stable hero/save IDs, 30 original painted heroes and 120 existing skill definitions.

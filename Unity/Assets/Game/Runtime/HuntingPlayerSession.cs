@@ -79,68 +79,12 @@ namespace Eternal.UnityMigration
         }
         void ShowPlayerParty()
         {
-            PanelHeader("원정대 · 기록");
-            var message=Text(modal,"편성은 다음 무리부터 적용합니다. 레이드 중에는 편성을 바꿀 수 없습니다.",12);message.style.whiteSpace=WhiteSpace.Normal;message.style.color=Moss;
-            if(ReviewState.SavePending)
-            {
-                Button(modal,"다시 저장",()=>
-                {
-                    if(ReviewState.RetrySave()){if(savePaused){Simulation.Paused=huntWasPaused;if(Raid!=null&&Raid.Running)Raid.Paused=raidWasPaused;}savePaused=false;huntNotice="기록을 저장했습니다.";huntNoticeUntil=Time.unscaledTime+3;}ShowPlayerParty();
-                });
-            }
+            heroShowcaseReturn=null;
             var queued=ReviewState.Snapshot()["unity_next_party"] as JObject;
-            var chosen=queued?["heroes"] is JArray queuedIds?queuedIds.Values<string>().ToList():new List<string>(ReviewState.DeployedHeroes());var formation=(string)queued?["formation"]??ReviewState.Formation;
-            var formations=(JObject)HuntingSimulation.Canonical["catalogs"]["formation"]["data"]["PROFILES"];
-            var keys=formations.Properties().Select(p=>p.Name).ToList();var names=keys.Select(k=>(string)formations[k]["name"]).ToList();
-            var field=new DropdownField("진형",names,Math.Max(0,keys.IndexOf(formation)));field.labelElement.style.minWidth=40;field.labelElement.style.width=40;field.AddToClassList("roster-filter");modal.Add(field);
-            var list=new ScrollView();list.style.flexGrow=1;modal.Add(list);
-            var description=Text(list,HuntFormationLayout.Description(formation),12);description.style.whiteSpace=WhiteSpace.Normal;description.style.color=Moss;
-            var preview=new VisualElement{name="party-layout-preview"};preview.style.height=148;preview.style.flexShrink=0;preview.style.marginTop=8;preview.style.backgroundColor=new Color(.055f,.085f,.08f);list.Add(preview);
-            int selectedOrder=0;
-            var orderLabel=Text(list,"",13);orderLabel.style.color=Bronze;
-            void DrawParty()
-            {
-                preview.Clear();selectedOrder=Math.Clamp(selectedOrder,0,Math.Max(0,chosen.Count-1));description.text=HuntFormationLayout.Description(formation);
-                orderLabel.text=chosen.Count==0?"최소 1명을 선택하세요.":"편성 "+chosen.Count+" / 10 · "+(selectedOrder+1)+"번 "+(string)Simulation.Catalog.Hero(chosen[selectedOrder])["name"];
-                for(int i=0;i<chosen.Count;i++)
-                {
-                    int index=i;var p=HuntFormationLayout.Position(formation,i,chosen.Count);
-                    var slot=new Button(()=>{selectedOrder=index;DrawParty();}){name="party-slot-"+i,tooltip=(i+1)+"번 · "+(string)Simulation.Catalog.Hero(chosen[i])["name"]};
-                    slot.style.position=Position.Absolute;slot.style.left=(p.x+8)*27;slot.style.top=60-p.y*10;slot.style.width=slot.style.height=28;slot.style.paddingLeft=slot.style.paddingRight=0;slot.style.paddingTop=slot.style.paddingBottom=0;
-                    slot.style.borderTopLeftRadius=slot.style.borderTopRightRadius=slot.style.borderBottomLeftRadius=slot.style.borderBottomRightRadius=14;slot.style.overflow=Overflow.Hidden;
-                    slot.style.backgroundColor=i==selectedOrder?Bronze:new Color(.15f,.22f,.21f);slot.style.borderTopColor=slot.style.borderBottomColor=slot.style.borderLeftColor=slot.style.borderRightColor=i==selectedOrder?Bronze:Moss;
-                    var art=new Image{sprite=InspectionPortrait(chosen[i]),scaleMode=ScaleMode.ScaleToFit,pickingMode=PickingMode.Ignore};art.style.width=26;art.style.height=26;slot.Add(art);preview.Add(slot);
-                    var number=Text(preview,(i+1).ToString(),10);number.pickingMode=PickingMode.Ignore;number.style.position=Position.Absolute;number.style.left=(p.x+8)*27+16;number.style.top=60-p.y*10+15;number.style.color=Parchment;
-                }
-            }
-            field.RegisterValueChangedCallback(e=>{formation=keys[names.IndexOf(e.newValue)];DrawParty();});
-            var order=Row(list);
-            Button(order,"앞으로",()=>{if(selectedOrder<=0||chosen.Count==0)return;(chosen[selectedOrder],chosen[selectedOrder-1])=(chosen[selectedOrder-1],chosen[selectedOrder]);selectedOrder--;DrawParty();});
-            Button(order,"뒤로",()=>{if(selectedOrder+1>=chosen.Count)return;(chosen[selectedOrder],chosen[selectedOrder+1])=(chosen[selectedOrder+1],chosen[selectedOrder]);selectedOrder++;DrawParty();});
-            for(int i=0;i<3;i++)
-            {
-                int preset=i;var row=Row(list);row.style.marginTop=6;
-                var save=Button(row,"편성 "+(i+1)+" 저장",()=>{var result=ReviewState.SaveUnityPartyPreset(preset,chosen.ToArray(),formation);message.text=result.Message;PauseForSaveFailure();});save.SetEnabled(Raid==null&&!ReviewState.SavePending);
-                Button(row,"불러오기 "+(i+1),()=>
-                {
-                    if(ReviewState.Snapshot()["unity_party_presets"]?[preset.ToString()] is not JObject stored||stored["heroes"] is not JArray saved){message.text="저장된 편성이 없습니다.";return;}
-                    var ids=saved.Values<string>().ToArray();string f=(string)stored["formation"];
-                    if(ids.Length<1||ids.Length>10||ids.Distinct().Count()!=ids.Length||ids.Any(id=>!ReviewState.IsFactionHero(id))||!keys.Contains(f)){message.text="이 편성을 다시 저장하세요.";return;}
-                    chosen.Clear();chosen.AddRange(ids);formation=f;field.SetValueWithoutNotify(names[keys.IndexOf(f)]);foreach(var toggle in list.Query<Toggle>().ToList())toggle.SetValueWithoutNotify(chosen.Contains((string)toggle.userData));DrawParty();message.text="편성을 불러왔습니다. 편성 저장을 누르면 다음 무리에 적용합니다.";
-                });
-            }
-            foreach(string id in Simulation.Catalog.HeroIds.Where(ReviewState.IsFactionHero))
-            {
-                string selected=id;var toggle=new Toggle((string)Simulation.Catalog.Hero(id)["name"]+" · Lv"+ReviewState.HeroProgress(id).level){value=chosen.Contains(id),userData=id};toggle.style.marginTop=9;list.Add(toggle);
-                toggle.RegisterValueChangedCallback(e=>{if(e.newValue){if(chosen.Count==10){toggle.SetValueWithoutNotify(false);return;}chosen.Add(selected);}else chosen.Remove(selected);DrawParty();});
-            }
-            DrawParty();
-            var apply=Button(modal,"편성 저장",()=>{var result=ReviewState.SetUnityParty(chosen.ToArray(),formation);message.text=result.Message;PauseForSaveFailure();});apply.SetEnabled(Raid==null&&!ReviewState.SavePending);
-            Button(modal,"진영 선택 화면",()=>
-            {
-                if(ReviewState.SavePending){message.text="먼저 다시 저장해 주세요.";return;}
-                new GameObject("Eternal faction selection").AddComponent<EternalBootstrap>();Destroy(gameObject);
-            });
+            var draft=new PartyEditorDraft{Formation=(string)queued?["formation"]??ReviewState.Formation};
+            var ids=queued?["heroes"] is JArray queuedIds?queuedIds.Values<string>():ReviewState.DeployedHeroes();
+            draft.Heroes.AddRange(ids.Where(ReviewState.IsFactionHero).Distinct().Take(10));
+            BuildPlayerPartyEditor(draft);
         }
         void ShowPlayerZones()
         {

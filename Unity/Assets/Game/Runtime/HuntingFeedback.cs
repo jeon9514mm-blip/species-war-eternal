@@ -32,6 +32,17 @@ namespace Eternal.UnityMigration
         public Action<int> HitPresented;
         public int PendingHitFeedback=>hitTimeline?.Count??0;
         public int HeroSigilQuads=>skillBatch?.HeroSigilQuads??0;
+        bool skillEffectsEnabled = true, soundEffectsEnabled = true;
+        public void SetSkillEffects(bool enabled)
+        {
+            skillEffectsEnabled = enabled;
+            if (!enabled) { skillBatch?.Clear(); Array.Clear(sparks, 0, sparks.Length); }
+        }
+        public void SetSoundEffects(bool enabled)
+        {
+            soundEffectsEnabled = enabled;
+            if (!enabled) foreach (var voice in voices) if (voice != null) voice.Stop();
+        }
         public bool RaidWarningVisible;
         public bool SuppressCombatPopups;
         public int ActiveSkillEffects=>skillBatch?.ActiveEffects??0;
@@ -146,7 +157,7 @@ namespace Eternal.UnityMigration
         public void Observe(BattleEvent e,CombatEncounter battle)
         {
             EventsPresented++;
-            skillBatch.Observe(e,battle);
+            if(skillEffectsEnabled)skillBatch.Observe(e,battle);
             var position=new Vector3(e.Position.x,.9f,e.Position.y);
             if(e.Kind=="cast"||e.Kind=="passive")
             {
@@ -204,6 +215,7 @@ namespace Eternal.UnityMigration
         }
         void Burst(Vector3 origin,Color color,int count,float power,string motif)
         {
+            if(!skillEffectsEnabled)return;
             for(int i=0;i<count;i++)
             {
                 double angle=i*Math.PI*2/count+rng.NextDouble()*.16;
@@ -215,6 +227,7 @@ namespace Eternal.UnityMigration
         }
         void Play(string key,Vector3 position,float volume)
         {
+            if(!soundEffectsEnabled)return;
             if(!audio.TryGetValue(key,out var clip)){clip=Resources.Load<AudioClip>("Eternal/Audio/"+key);audio[key]=clip;}
             if(clip==null)return;var voice=voices[voiceCursor++%voices.Length];if(voice.isPlaying)return;
             voice.transform.position=position;voice.pitch=.94f+(float)rng.NextDouble()*.12f;voice.PlayOneShot(clip,volume);
@@ -235,7 +248,7 @@ namespace Eternal.UnityMigration
             particleMesh.vertices=vertices;particleMesh.colors=colors;
             for(int i=0;i<popups.Length;i++){var p=popups[i];p.remaining=Mathf.Max(0,p.remaining-dt);p.position+=Vector3.up*.55f*dt;popups[i]=p;}
             float wantedSize=expandedHunt&&!raidMode?baseSize*2f/huntZoom:baseSize;
-            float unit=wantedSize*2/Mathf.Max(1,Screen.height*.72f);
+            float unit=wantedSize*2/Mathf.Max(1,cameraView.pixelHeight);
             float breathe=Mathf.Sin(now*Mathf.PI*2/10)*3f*unit;
             var shake=now<shakeUntil?new Vector3((Mathf.PerlinNoise(now*41,0)-.5f)*shakePixels*unit,(Mathf.PerlinNoise(0,now*43)-.5f)*shakePixels*unit,0):Vector3.zero;
             // Screen-space drift travels with the map; warnings keep their ground readable.

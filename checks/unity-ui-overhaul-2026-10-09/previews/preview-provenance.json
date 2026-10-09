@@ -1,0 +1,191 @@
+{
+  "type": "source-aligned-html-review-preview",
+  "not_unity_execution_capture": true,
+  "screen": [
+    1600,
+    900
+  ],
+  "disclosure_banner": [
+    1600,
+    56
+  ],
+  "illustrative_only": [
+    "gameplay numbers",
+    "static actor positions",
+    "flat environment artwork"
+  ],
+  "source_files": [
+    "HuntingMigrationReview.cs",
+    "HuntingHudLayout.cs",
+    "HuntingHeroShowcase.cs",
+    "HuntingInspectionChrome.cs",
+    "HuntingLegacyMenu.cs"
+  ],
+  "actors": {
+    "leonhardt": {
+      "source": "assets/mobile25d/leonhardt/poses_1024.png",
+      "region": [
+        6,
+        6,
+        185,
+        208
+      ]
+    },
+    "mira": {
+      "source": "assets/mobile25d/mira/poses_1024.png",
+      "region": [
+        6,
+        6,
+        209,
+        236
+      ]
+    },
+    "elisia": {
+      "source": "assets/mobile25d/elisia/poses_1024.png",
+      "region": [
+        6,
+        6,
+        184,
+        235
+      ]
+    },
+    "kairen": {
+      "source": "Unity/Assets/Game/Resources/Eternal/HeroStyles/kairen/poses.png",
+      "region": [
+        79.0,
+        92.0,
+        363.0,
+        378.0
+      ]
+    },
+    "orwin": {
+      "source": "Unity/Assets/Game/Resources/Eternal/HeroStyles/orwin/poses.png",
+      "region": [
+        109.0,
+        80.0,
+        300.0,
+        388.0
+      ]
+    },
+    "seria": {
+      "source": "assets/mobile25d/seria/poses_1024.png",
+      "region": [
+        6,
+        6,
+        217,
+        229
+      ]
+    },
+    "astel": {
+      "source": "assets/mobile25d/astel/poses_1024.png",
+      "region": [
+        6,
+        6,
+        176,
+        211
+      ]
+    },
+    "darius": {
+      "source": "assets/mobile25d/darius/poses_1024.png",
+      "region": [
+        6,
+        6,
+        206,
+        211
+      ]
+    },
+    "lunea": {
+      "source": "assets/mobile25d/lunea/poses_1024.png",
+      "region": [
+        6,
+        6,
+        150,
+        185
+      ]
+    },
+    "caelum": {
+      "source": "Unity/Assets/Game/Resources/Eternal/HeroStyles/caelum/poses.png",
+      "region": [
+        119.0,
+        158.0,
+        264.0,
+        284.0
+      ]
+    },
+    "adrien": {
+      "source": "assets/mobile25d/adrien/poses_1024.png",
+      "region": [
+        6,
+        6,
+        175,
+        207
+      ]
+    },
+    "tessa": {
+      "source": "assets/mobile25d/tessa/poses_1024.png",
+      "region": [
+        6,
+        6,
+        131,
+        130
+      ]
+    },
+    "naia": {
+      "source": "assets/mobile25d/naia/poses_1024.png",
+      "region": [
+        6,
+        6,
+        145,
+        171
+      ]
+    },
+    "sael": {
+      "source": "assets/mobile25d/sael/poses_1024.png",
+      "region": [
+        6,
+        6,
+        180,
+        165
+      ]
+    },
+    "odelia": {
+      "source": "assets/mobile25d/odelia/poses_1024.png",
+      "region": [
+        6,
+        6,
+        162,
+        153
+      ]
+    },
+    "fallen_werewolf": {
+      "source": "Unity/Assets/Game/Resources/Eternal/Actors/fallen_werewolf/poses.png",
+      "region": [
+        90.0,
+        112.0,
+        302.0,
+        331.0
+      ]
+    },
+    "fallen_ogre": {
+      "source": "Unity/Assets/Game/Resources/Eternal/Actors/fallen_ogre/poses.png",
+      "region": [
+        115.9553451538086,
+        93.09090423583984,
+        273.5566101074219,
+        359.2982482910156
+      ]
+    },
+    "fallen_lich": {
+      "source": "Unity/Assets/Game/Resources/Eternal/Actors/fallen_lich/poses.png",
+      "region": [
+        152.70175170898438,
+        79.20893096923828,
+        211.4960174560547,
+        387.8787841796875
+      ]
+    }
+  },
+  "renderer": "@napi-rs/canvas",
+  "art_import_note": "Original atlas PNG pixels are decoded losslessly. Regions use the Unity importer 1024 grid; raw1254 PNG crops scale by raw texture size /1024.",
+  "visual_review": "All3 rendered PNGs inspected; disclosure visible, original art intact, hero tabs and menu labels readable; static approximation only."
+}

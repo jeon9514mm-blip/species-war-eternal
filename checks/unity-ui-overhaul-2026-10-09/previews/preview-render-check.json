@@ -1,0 +1,39 @@
+{
+  "browser_unavailable": "No local Chromium; download returned Site Unavailable HTML",
+  "method": "Static Canvas UI recreation using source dimensions and original atlas sprite rectangles. Not an engine screenshot or functional test.",
+  "images": [
+    {
+      "view": "hunt",
+      "file": "01-hunt-hud-review.png",
+      "pixels": [
+        1600,
+        956
+      ],
+      "renderer": "@napi-rs/canvas",
+      "unity_execution": false,
+      "disclosure": "UI 검토용 미리보기 · Unity 실행 캡처 아님"
+    },
+    {
+      "view": "hero",
+      "file": "02-hero-showcase-review.png",
+      "pixels": [
+        1600,
+        956
+      ],
+      "renderer": "@napi-rs/canvas",
+      "unity_execution": false,
+      "disclosure": "UI 검토용 미리보기 · Unity 실행 캡처 아님"
+    },
+    {
+      "view": "menu",
+      "file": "03-full-menu-review.png",
+      "pixels": [
+        1600,
+        956
+      ],
+      "renderer": "@napi-rs/canvas",
+      "unity_execution": false,
+      "disclosure": "UI 검토용 미리보기 · Unity 실행 캡처 아님"
+    }
+  ]
+}

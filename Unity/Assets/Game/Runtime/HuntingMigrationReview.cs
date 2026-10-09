@@ -31,7 +31,7 @@ namespace Eternal.UnityMigration
         readonly Dictionary<int,(float remaining,float untilSample)> trails=new();
         readonly List<int> finishedTrails=new();
         PaintedAfterImages afterImages;
-        readonly List<(Combatant actor,Label health,Label skills,VisualElement hp)> cards=new();
+        readonly List<(Combatant actor,Label health,Label skills,VisualElement hp,VisualElement ultimate,Button slot,Image art)> cards=new();
         readonly List<BattleEvent> visualQueue=new();
         readonly List<Sprite> portraits=new();
         readonly Dictionary<string,Sprite> inspectionPortraits=new(StringComparer.Ordinal);
@@ -152,7 +152,7 @@ namespace Eternal.UnityMigration
             RebuildActors();
             feedback.RaidWarningVisible=Raid!=null&&(Raid.Warning!=null||Raid.SecondWarning!=null);
             feedback.Lens.Warning=feedback.RaidWarningVisible;
-            feedback.SuppressCombatPopups=Raid!=null&&!Raid.Running;
+            feedback.SuppressCombatPopups=InspectionIsOpen||Raid!=null&&!Raid.Running;
             var center=Vector2.zero;int alive=0;foreach(var hero in ActiveBattle.Heroes)if(hero.Alive){center+=hero.Position;alive++;}if(alive>0)feedback.SetExpeditionCenter(center/alive);
             foreach(var combatant in drawActors)
             {
@@ -245,53 +245,54 @@ namespace Eternal.UnityMigration
             panel.themeStyleSheet=Resources.Load<ThemeStyleSheet>("Eternal/UI/RuntimeTheme")??throw new InvalidOperationException("Runtime UI theme missing.");
             var document=gameObject.AddComponent<UIDocument>();document.panelSettings=panel;root=document.rootVisualElement;
             var styles=Resources.Load<StyleSheet>("Eternal/UI/BattleUi");if(styles!=null)root.styleSheets.Add(styles);
-            root.style.flexGrow=1;root.style.color=Parchment;root.style.fontSize=16;
+            root.AddToClassList("hunt-hud");root.style.flexGrow=1;root.style.color=Parchment;root.style.fontSize=16;
             korean=Resources.Load<Font>("Eternal/Fonts/EternalKR-Regular");
             if(korean==null){korean=Font.CreateDynamicFontFromOSFont(new[]{"Malgun Gothic","맑은 고딕","Arial"},16);ownsKorean=true;}
             root.style.unityFont=korean;
-            var top=Box(root,"top",Ink);top.style.height=92;top.style.paddingLeft=24;top.style.paddingRight=24;
-            var row=Row(top);row.style.flexGrow=1;row.style.alignItems=Align.Center;
-            stageLabel=Text(row,"사냥터 1",23);stageLabel.style.flexGrow=1;
-            currencyBadges=Row(row);currencyBadges.style.marginRight=20;currencyBadges.style.alignItems=Align.Center;
-            Label CurrencyBadge(string icon,Color accent,bool coin)
+            huntHeader=Box(root,"top",Ink);huntHeader.AddToClassList("hunt-header");huntHeader.style.height=94;huntHeader.style.flexShrink=0;
+            huntHeader.style.paddingLeft=huntHeader.style.paddingRight=20;huntHeader.style.paddingTop=8;huntHeader.style.paddingBottom=7;
+            var row=Row(huntHeader);row.name="hunt-header-main";row.style.height=43;row.style.flexShrink=0;row.style.alignItems=Align.Center;
+            stageLabel=Text(row,"사냥터 1",22);stageLabel.name="hunt-stage-title";stageLabel.style.flexGrow=1;stageLabel.style.minWidth=0;stageLabel.style.marginRight=18;EllipsizeHud(stageLabel);
+            currencyBadges=Row(row);currencyBadges.style.marginRight=12;currencyBadges.style.alignItems=Align.Center;currencyBadges.style.flexShrink=0;
+            Label CurrencyBadge(string icon,Color accent)
             {
-                var badge=Row(currencyBadges);badge.style.alignItems=Align.Center;badge.style.height=35;badge.style.marginRight=8;badge.style.paddingLeft=10;badge.style.paddingRight=12;badge.style.backgroundColor=new Color(.09f,.13f,.14f);badge.style.borderTopLeftRadius=badge.style.borderTopRightRadius=badge.style.borderBottomLeftRadius=badge.style.borderBottomRightRadius=6;
-                var mark=Text(badge,icon,coin?12:18);mark.style.width=20;mark.style.height=20;mark.style.marginRight=7;mark.style.paddingTop=mark.style.paddingBottom=0;mark.style.unityTextAlign=TextAnchor.MiddleCenter;mark.style.color=coin?Ink:accent;
-                if(coin){mark.style.backgroundColor=accent;mark.style.borderTopLeftRadius=mark.style.borderTopRightRadius=mark.style.borderBottomLeftRadius=mark.style.borderBottomRightRadius=10;}
-                return Text(badge,"",14);
+                var badge=Row(currencyBadges);badge.AddToClassList("hunt-currency");badge.style.alignItems=Align.Center;badge.style.height=34;badge.style.marginRight=6;
+                badge.style.paddingLeft=8;badge.style.paddingRight=10;badge.style.backgroundColor=new Color(.09f,.13f,.14f);RoundHud(badge,8);
+                var mark=new GodotHudIcon(icon,accent);mark.style.width=mark.style.height=21;mark.style.marginRight=6;badge.Add(mark);
+                var value=Text(badge,"",14);value.style.marginLeft=value.style.marginRight=0;return value;
             }
-            goldLabel=CurrencyBadge("G",Bronze,true);gemLabel=CurrencyBadge("◆",new Color(.45f,.82f,.82f),false);
-            currencyLabel=Text(row,"",17);currencyLabel.style.marginRight=28;
-            Button(row,"일시정지",()=>{if(playerSession!=null&&ReviewState.SavePending){PauseForSaveFailure();return;}if(Raid!=null)Raid.Paused=!Raid.Paused;else Simulation.Paused=!Simulation.Paused;RefreshHud();});
-            Button(row,"속도",()=>speed=speed==1?2:1);
-            if(playerSession!=null)Button(row,"원정대",ShowPlayerParty);
-            bossTrack=new VisualElement{name="boss-health-track"};bossTrack.style.height=6;bossTrack.style.flexShrink=0;bossTrack.style.marginBottom=7;bossTrack.style.backgroundColor=new Color(.13f,.18f,.19f);bossTrack.style.display=DisplayStyle.None;top.Add(bossTrack);
-            bossBar=new VisualElement{name="boss-health-fill"};bossBar.style.height=6;bossBar.style.backgroundColor=Bronze;bossTrack.Add(bossBar);
-            huntStageTrack=new VisualElement{name="hunt-stage-track"};huntStageTrack.style.height=6;huntStageTrack.style.flexShrink=0;huntStageTrack.style.marginBottom=7;huntStageTrack.style.backgroundColor=new Color(.13f,.18f,.19f);top.Add(huntStageTrack);
-            huntStageFill=new VisualElement{name="hunt-stage-fill"};huntStageFill.style.height=6;huntStageFill.style.backgroundColor=Moss;huntStageTrack.Add(huntStageFill);
-            fixtureLabel=Text(top,"플레이테스트 · 임시 원정대 · 보상은 저장되지 않습니다",12);fixtureLabel.style.color=Moss;fixtureLabel.style.marginBottom=12;
-            var battleSpace=new VisualElement();battleSpace.style.flexGrow=1;battleSpace.pickingMode=PickingMode.Ignore;root.Add(battleSpace);
-            var foot=Box(root,"foot",Ink);foot.style.height=174;foot.style.paddingLeft=14;foot.style.paddingRight=14;
-            var statusRow=Row(foot);statusRow.style.height=29;statusRow.style.alignItems=Align.Center;
-            statusLabel=Text(statusRow,"",13);statusLabel.style.flexGrow=1;
-            chainLabel=Text(statusRow,lastChain,13);chainLabel.style.color=Bronze;
-            huntActions=Row(statusRow);
-            var quickGrowth=Button(huntActions,"빠른 성장",()=>ShowGrowth(Simulation.Battle.Heroes[0].Id));quickGrowth.style.height=25;quickGrowth.style.fontSize=12;
-            var quickGear=Button(huntActions,"장비 추천",()=>
+            goldLabel=CurrencyBadge("coin",Bronze);gemLabel=CurrencyBadge("gem",new Color(.45f,.82f,.82f));
+            currencyLabel=Text(row,"",14);currencyLabel.style.marginRight=12;currencyLabel.style.minWidth=0;EllipsizeHud(currencyLabel);
+            if(playerSession!=null)CompactHudButton(row,"편성",ShowPlayerParty,64);
+            pauseHudButton=CompactHudButton(row,"일시정지",()=>{if(playerSession!=null&&ReviewState.SavePending){PauseForSaveFailure();return;}if(Raid!=null)Raid.Paused=!Raid.Paused;else Simulation.Paused=!Simulation.Paused;RefreshHud();},96);
+            speedHudButton=CompactHudButton(row,"×1",()=>{speed=speed==1?2:1;RefreshHud();},52);speedHudButton.tooltip="사냥 배속 전환 · ×1 / ×2";
+            CompactHudButton(row,"관리",ShowHuntControls,62).tooltip="빠른 성장 · 장비 추천 · 사냥터 · 연계 설정";
+            bossTrack=HudTrack(huntHeader,"boss-health-track",4);bossTrack.style.display=DisplayStyle.None;bossBar=HudFill(bossTrack,"boss-health-fill",Bronze);
+            huntStageTrack=HudTrack(huntHeader,"hunt-stage-track",4);huntStageFill=HudFill(huntStageTrack,"hunt-stage-fill",Bronze);
+            fixtureLabel=Text(huntHeader,"플레이테스트 · 임시 원정대 · 보상은 저장되지 않습니다",12);fixtureLabel.name="hunt-progress-caption";fixtureLabel.style.color=Moss;
+            fixtureLabel.style.height=21;fixtureLabel.style.marginTop=3;fixtureLabel.style.marginBottom=0;EllipsizeHud(fixtureLabel);
+            huntBattleSpace=new VisualElement{name="hunt-battle-space"};huntBattleSpace.style.flexGrow=1;huntBattleSpace.style.minHeight=0;root.Add(huntBattleSpace);
+            huntDock=Box(root,"foot",Ink);huntDock.AddToClassList("hunt-unified-dock");huntDock.style.height=150;huntDock.style.flexShrink=0;
+            huntDock.style.paddingLeft=huntDock.style.paddingRight=14;huntDock.style.paddingTop=4;huntDock.style.paddingBottom=4;
+            var statusRow=Row(huntDock);statusRow.name="hunt-live-status";statusRow.style.height=25;statusRow.style.flexShrink=0;statusRow.style.alignItems=Align.Center;
+            statusLabel=Text(statusRow,"",12);statusLabel.style.flexGrow=1;statusLabel.style.minWidth=0;EllipsizeHud(statusLabel);
+            chainLabel=Text(statusRow,lastChain,11);chainLabel.style.color=Bronze;chainLabel.style.maxWidth=320;chainLabel.style.marginRight=8;EllipsizeHud(chainLabel);
+            huntActions=Row(statusRow);huntActions.style.flexShrink=0;
+            if(playerSession!=null){var revive=CompactHudButton(huntActions,"다시 사냥",()=>RestartPlayerHunt(false),92);revive.name="hunt-revive";revive.style.height=24;}
+            chainHudButton=CompactHudButton(huntActions,"연계 펼치기",ToggleChainDeck,104);chainHudButton.name="hunt-chain-expand";chainHudButton.style.height=24;chainHudButton.style.fontSize=11;chainHudButton.tooltip="수동 스킬 6칸과 연계 순서 설정을 펼칩니다.";
+            chainRow=Row(huntDock);chainRow.name="party";chainRow.AddToClassList("hunt-hero-strip");chainRow.style.height=68;chainRow.style.flexShrink=0;chainRow.style.justifyContent=Justify.Center;chainRow.style.alignItems=Align.Center;
+            var nav=Row(huntDock);nav.name="hunt-bottom-navigation";nav.style.height=45;nav.style.flexShrink=0;nav.style.alignItems=Align.Center;
+            string[] routes={"사냥","영웅","도전","가방","메뉴"},icons={"sword","hero","shield","bag","hamburger"};
+            for(int i=0;i<routes.Length;i++)
             {
-                if(!GrowthAllowed)return;StateCommand(ReviewState.RecommendEquip,()=>{});huntNotice=growthMessage;huntNoticeUntil=Time.unscaledTime+3;RefreshHud();
-            });quickGear.style.height=25;quickGear.style.fontSize=12;
-            if(playerSession!=null){var zone=Button(huntActions,"사냥터",ShowPlayerZones);zone.style.height=25;zone.style.fontSize=12;var revive=Button(huntActions,"다시 사냥",()=>RestartPlayerHunt(false));revive.name="hunt-revive";revive.style.height=25;revive.style.fontSize=12;}
-            Button(statusRow,"연계 순서",ShowChain).style.height=25;
-            chainRow=Row(foot);chainRow.name="party";chainRow.style.height=91;
-            var nav=Row(foot);nav.style.flexGrow=1;nav.style.alignItems=Align.Center;
-            foreach(string name in new[]{"사냥","영웅","도전","가방","메뉴"})
-            {
-                string route=name;var b=Button(nav,name,()=>OpenPanel(route));b.style.flexGrow=1;b.style.marginLeft=5;b.style.marginRight=5;
-                navigation[route]=b;
+                string route=routes[i];var b=Button(nav,"",()=>OpenPanel(route));b.name="navigation-"+route;b.AddToClassList("hunt-nav-button");
+                b.style.flexGrow=1;b.style.flexBasis=0;b.style.minWidth=0;b.style.height=40;b.style.marginLeft=b.style.marginRight=3;
+                b.style.flexDirection=FlexDirection.Row;b.style.alignItems=Align.Center;b.style.justifyContent=Justify.Center;
+                var icon=new GodotHudIcon(icons[i],Parchment,true);icon.style.width=icon.style.height=23;icon.style.marginRight=9;b.Add(icon);
+                var label=Text(b,route,15);label.pickingMode=PickingMode.Ignore;navigation[route]=b;
             }
             SelectNavigation("사냥");
-            modal=Box(root,"inspection",Ink);modal.style.position=Position.Absolute;modal.style.right=18;modal.style.top=108;modal.style.bottom=188;modal.style.width=410;modal.style.display=DisplayStyle.None;modal.style.paddingLeft=18;modal.style.paddingRight=18;modal.style.paddingTop=16;
+            modal=Box(root,"inspection",Ink);modal.style.position=Position.Absolute;modal.style.right=18;modal.style.top=108;modal.style.bottom=166;modal.style.width=410;modal.style.display=DisplayStyle.None;modal.style.paddingLeft=18;modal.style.paddingRight=18;modal.style.paddingTop=16;
             raidCommands=Box(root,"raid-actions",Ink);raidCommands.style.position=Position.Absolute;raidCommands.style.left=18;raidCommands.style.right=18;raidCommands.style.bottom=184;raidCommands.style.height=124;raidCommands.style.display=DisplayStyle.None;raidCommands.style.paddingLeft=12;raidCommands.style.paddingRight=12;
             raidInfo=Text(raidCommands,"",14);raidInfo.style.height=24;raidInfo.style.unityTextAlign=TextAnchor.MiddleCenter;
             var commands=Row(raidCommands);commands.style.alignItems=Align.Center;
@@ -310,20 +311,18 @@ namespace Eternal.UnityMigration
             counterPracticeButton.tooltip="기존 부채꼴 패턴을 재현합니다. 훈련 동안 평타·자동 스킬을 쉬고 정면 카운터와 회피를 연습하세요.";
             mechanicTrack=new VisualElement{name="raid-mechanic-track"};mechanicTrack.style.height=6;mechanicTrack.style.flexShrink=0;mechanicTrack.style.marginTop=8;mechanicTrack.style.backgroundColor=new Color(.13f,.18f,.19f);raidCommands.Add(mechanicTrack);
             mechanicBar=new VisualElement{name="raid-mechanic-fill"};mechanicBar.style.height=6;mechanicBar.style.backgroundColor=Moss;mechanicTrack.Add(mechanicBar);
-            BuildSkillPresentation();
-            BuildCombatReadability();
-            BuildRaidPresentation();
-            BuildMovementJoystick();
-            BuildChainStrip();
-            battleSpace.pickingMode=PickingMode.Position;
-            BuildHuntMapTools(battleSpace);
-            battleSpace.RegisterCallback<PointerDownEvent>(e=>
+            BuildSkillPresentation();BuildCombatReadability();BuildRaidPresentation();BuildMovementJoystick();BuildChainStrip();
+            chainStrip.style.visibility=Visibility.Hidden;
+            BuildHuntMapTools(huntBattleSpace);
+            huntBattleSpace.RegisterCallback<PointerDownEvent>(e=>
             {
                 if(Raid==null||e.button!=0)return;
-                var screen=new Vector3(e.position.x/root.worldBound.width*Screen.width,(1-e.position.y/root.worldBound.height)*Screen.height,0);
+                var bounds=root.worldBound;var screen=new Vector3((e.position.x-bounds.x)/bounds.width*Screen.width,(1-(e.position.y-bounds.y)/bounds.height)*Screen.height,0);
                 var ray=BattleCamera.ScreenPointToRay(screen);var plane=new Plane(Vector3.up,Vector3.zero);
                 if(plane.Raycast(ray,out float distance)){var point=ray.GetPoint(distance);Raid.Rally(new Vector2(point.x,point.z));}
             });
+            BindHuntHudGeometry();
+            PrepareInspectionChrome();
         }
         VisualElement Box(VisualElement parent,string name,Color color)
         {var e=new VisualElement{name=name};e.style.backgroundColor=color;e.style.borderTopWidth=e.style.borderBottomWidth=e.style.borderLeftWidth=e.style.borderRightWidth=1;e.style.borderTopColor=e.style.borderBottomColor=e.style.borderLeftColor=e.style.borderRightColor=new Color(.27f,.32f,.32f);parent.Add(e);return e;}
@@ -331,41 +330,43 @@ namespace Eternal.UnityMigration
         static Label Text(VisualElement parent,string value,int size){var l=new Label(value);l.style.fontSize=size;parent.Add(l);return l;}
         static Button Button(VisualElement parent,string title,Action action)
         {
-            var b=new Button(action){text=title};b.style.height=35;b.style.backgroundColor=new Color(.10f,.14f,.15f);b.style.color=Parchment;
-            b.style.minWidth=86;b.style.marginLeft=8;b.style.paddingLeft=12;b.style.paddingRight=12;b.style.unityTextAlign=TextAnchor.MiddleCenter;
-            b.style.borderTopWidth=b.style.borderBottomWidth=b.style.borderLeftWidth=b.style.borderRightWidth=1;
-            b.style.borderTopColor=b.style.borderBottomColor=b.style.borderLeftColor=b.style.borderRightColor=new Color(.31f,.37f,.37f);b.style.borderTopLeftRadius=b.style.borderTopRightRadius=b.style.borderBottomLeftRadius=b.style.borderBottomRightRadius=6;parent.Add(b);return b;
+            var b=new Button(action){text=title};b.AddToClassList("eternal-button");
+            b.style.height=40;b.style.minWidth=86;b.style.marginLeft=8;
+            b.style.paddingLeft=12;b.style.paddingRight=12;b.style.unityTextAlign=TextAnchor.MiddleCenter;
+            parent.Add(b);return b;
         }
         void BuildParty()
         {
             if(cards.Count==ActiveBattle.Heroes.Count&&cards.Select(c=>c.actor.Id).SequenceEqual(ActiveBattle.Heroes.Select(h=>h.Id)))
-            {for(int i=0;i<cards.Count;i++){var card=cards[i];cards[i]=(ActiveBattle.Heroes[i],card.health,card.skills,card.hp);}return;}
+            {for(int i=0;i<cards.Count;i++){var card=cards[i];cards[i]=(ActiveBattle.Heroes[i],card.health,card.skills,card.hp,card.ultimate,card.slot,card.art);}return;}
             chainRow.Clear();cards.Clear();foreach(var portrait in portraits)Destroy(portrait);portraits.Clear();
+            // Godot LandscapeHuntHud: name, original portrait, level/state,
+            // 3px HP gauge and 2px awakening gauge in one compact 10-hero strip.
             foreach(var h in ActiveBattle.Heroes)
             {
-                var card=new Button(()=>ShowHero(h.Id)){name="party-card-"+h.Id};card.style.flexGrow=1;card.style.flexBasis=0;card.style.marginLeft=3;card.style.marginRight=3;card.style.paddingLeft=8;card.style.paddingRight=5;card.style.backgroundColor=new Color(.09f,.12f,.13f);card.style.color=Parchment;
+                var card=new Button(()=>ShowHero(h.Id)){name="party-card-"+h.Id};card.AddToClassList("hunt-hero-card");
+                card.style.flexGrow=1;card.style.flexBasis=0;card.style.minWidth=0;card.style.maxWidth=180;card.style.height=64;
+                card.style.marginTop=card.style.marginBottom=0;card.style.marginLeft=card.style.marginRight=2;card.style.paddingLeft=card.style.paddingRight=6;card.style.paddingTop=2;card.style.paddingBottom=2;
                 card.style.flexDirection=FlexDirection.Column;card.style.alignItems=Align.Stretch;card.style.justifyContent=Justify.FlexStart;
-                card.style.paddingTop=4;card.style.paddingBottom=4;card.style.borderTopWidth=card.style.borderBottomWidth=card.style.borderLeftWidth=card.style.borderRightWidth=1;
-                card.style.borderTopColor=card.style.borderBottomColor=card.style.borderLeftColor=card.style.borderRightColor=new Color(.25f,.31f,.31f);
-                chainRow.Add(card);string name=(string)Simulation.Catalog.Hero(h.Id)["name"];
-                var header=Row(card);header.style.height=48;header.style.flexShrink=0;var image=new Image();image.style.width=38;image.style.height=43;image.style.flexShrink=0;image.scaleMode=ScaleMode.ScaleToFit;
-                image.sprite=InspectionPortrait(h.Id);header.Add(image);
-                var desc=new VisualElement();header.Add(desc);desc.style.flexGrow=1;desc.style.minWidth=0;
-                Label CardLine(VisualElement parent,string value,int fontSize,int height,string key)
-                {
-                    var label=Text(parent,value,fontSize);label.name=key;label.style.height=height;label.style.flexShrink=0;
-                    label.style.marginTop=label.style.marginBottom=label.style.paddingTop=label.style.paddingBottom=0;
-                    label.style.whiteSpace=WhiteSpace.NoWrap;label.style.overflow=Overflow.Hidden;label.style.textOverflow=TextOverflow.Ellipsis;
-                    label.style.unityTextAlign=TextAnchor.MiddleLeft;return label;
-                }
-                CardLine(desc,name.Split(' ')[0],13,25,"party-name");var hp=CardLine(desc,"Lv."+(Raid?.ReviewLevel??20),10,20,"party-health");hp.style.color=Moss;
-                var skills=CardLine(card,"",10,19,"party-skills");skills.style.color=Bronze;
-                var bar=new VisualElement();bar.style.height=3;bar.style.backgroundColor=Moss;bar.style.marginTop=4;card.Add(bar);cards.Add((h,hp,skills,bar));
+                card.style.backgroundColor=new Color(.09f,.12f,.13f);card.style.color=Parchment;RoundHud(card,7);
+                card.style.borderTopWidth=card.style.borderBottomWidth=card.style.borderLeftWidth=card.style.borderRightWidth=1;
+                card.style.borderTopColor=card.style.borderBottomColor=card.style.borderLeftColor=card.style.borderRightColor=new Color(.25f,.31f,.31f);chainRow.Add(card);
+                var title=Text(card,((string)Simulation.Catalog.Hero(h.Id)["name"]).Split(' ')[0],13);title.name="party-name";title.style.height=16;title.style.flexShrink=0;title.style.marginTop=title.style.marginBottom=title.style.paddingTop=title.style.paddingBottom=0;EllipsizeHud(title);title.pickingMode=PickingMode.Ignore;
+                var body=Row(card);body.style.height=34;body.style.flexShrink=0;body.pickingMode=PickingMode.Ignore;
+                var art=new Image{sprite=InspectionPortrait(h.Id),scaleMode=ScaleMode.ScaleToFit,pickingMode=PickingMode.Ignore};art.AddToClassList("hunt-party-art");art.style.width=42;art.style.height=34;art.style.flexShrink=0;art.style.marginRight=5;body.Add(art);
+                var copy=new VisualElement{pickingMode=PickingMode.Ignore};copy.style.flexGrow=1;copy.style.minWidth=0;body.Add(copy);
+                var level=Text(copy,"",12);level.name="party-health";level.style.height=17;level.style.color=Moss;
+                var skill=Text(copy,"준비",11);skill.name="party-skills";skill.style.height=17;skill.style.color=Bronze;
+                foreach(var line in new[]{level,skill}){line.pickingMode=PickingMode.Ignore;line.style.flexShrink=0;line.style.marginTop=line.style.marginBottom=line.style.paddingTop=line.style.paddingBottom=0;EllipsizeHud(line);}
+                var hpTrack=HudTrack(card,"party-hp-track",3);hpTrack.style.marginTop=1;var hp=HudFill(hpTrack,"party-hp-fill",Moss);
+                var ultTrack=HudTrack(card,"party-ultimate-track",2);ultTrack.style.marginTop=1;var ultimate=HudFill(ultTrack,"party-ultimate-fill",Bronze);
+                cards.Add((h,level,skill,hp,ultimate,card,art));
             }
         }
         void RefreshHud()
         {
             RefreshChainStrip();
+            RefreshHuntHudControls();
             fixtureLabel.text=Raid!=null?(Raid.ReviewLevel==50?"패턴 훈련":"플레이테스트")+" · Lv"+Raid.ReviewLevel+" 임시 원정대 · 보상은 저장되지 않습니다":"플레이테스트 · Lv20 임시 원정대 · 보상은 저장되지 않습니다";
             RefreshPlayerStatus();
             huntStageTrack.style.display=huntActions.style.display=Raid==null?DisplayStyle.Flex:DisplayStyle.None;
@@ -374,7 +375,7 @@ namespace Eternal.UnityMigration
                 int aliveEnemies=Simulation.Battle.Enemies.Count(e=>e.Alive);
                 float fraction=Simulation.NextPack>0?0:1-aliveEnemies/(float)Math.Max(1,Simulation.Battle.Enemies.Count);
                 huntStageFill.style.width=Length.Percent((Simulation.PacksCleared%5+fraction)*20);
-                fixtureLabel.text+=" · 무리 "+Simulation.PacksCleared%5+"/5";
+                fixtureLabel.text+=" · 무리 "+(Simulation.PacksCleared%5)+"/5";
             }
             stageLabel.text=Raid!=null?(string)Raid.ZoneData["boss"]+" · PHASE "+Raid.Phase:(playerSession!=null?"끝없는 사냥터 · "+HuntStageWorld.Atmosphere(Simulation.Stage):"사냥터 1")+"  ·  "+Simulation.Stage+" 스테이지";
             currencyLabel.text=Raid!=null?"HP "+Raid.Boss.Hp.ToString("N0")+" / "+Raid.Boss.MaxHp.ToString("N0")+" · "+TimeSpan.FromSeconds(Math.Max(0,240-Raid.Elapsed)).ToString(@"mm\:ss"):"◈ 골드 "+ReviewState.WalletGold.ToString("N0")+"   ·   ◆ 젬 "+ReviewState.WalletGems.ToString("N0");
@@ -383,6 +384,7 @@ namespace Eternal.UnityMigration
             statusLabel.text=Raid!=null?(Raid.Paused?"일시정지":Raid.Running?"레이드 전투":Raid.EventText)+" · "+Raid.MovementOrder+" · 원정대 "+ActiveBattle.Heroes.Count(h=>h.Alive)+"/"+ActiveBattle.Heroes.Count+" · 피해 "+Raid.DamageDealt.ToString("N0"):(Simulation.Defeated?"원정대 전멸":Simulation.Paused?"일시정지":Simulation.ManualMovementActive?"직접 이동":"자동 사냥")+" · "+Simulation.Battle.Heroes.Count(h=>h.Alive)+"/"+Simulation.Battle.Heroes.Count+"  ·  적 "+Simulation.Battle.Enemies.Count(e=>e.Alive)+"  ·  무리 "+Simulation.PacksCleared+"  ·  ×"+speed;
             if(Raid==null&&Time.unscaledTime<huntNoticeUntil)statusLabel.text+=" · "+huntNotice;
             if(Raid==null&&PersistentPlayer&&ReviewState.HasDeferredUnityLoot)statusLabel.text="장비 보관 대기 · 가방을 정리하고 보관함에서 수령하세요.";
+            statusLabel.tooltip=statusLabel.text;
             RefreshHuntMapTools();
             var chain=Raid?.Chain??Simulation.Chain;
             if(chain.Current is ChainSkill next)
@@ -391,16 +393,25 @@ namespace Eternal.UnityMigration
                 chainLabel.text=(chain.Enabled?"연계 "+(chain.Cursor+1)+"/"+chain.Entries.Count+" · ":"연계 OFF · ")+(string)p["skill"]+" · "+(next.Slot=="ultimate"?"게이지 ":"")+chain.Remaining().ToString("F1")+(next.Slot=="ultimate"?"% 남음":"초");
             }
             else chainLabel.text=lastChain;
+            chainLabel.tooltip=chainLabel.text;
             foreach(var c in cards)
             {
                 var h=c.actor;var kit=ActiveBattle.Kits[h.Id];
                 string status=h.Stun>0?"기절":h.Bleed>0?"출혈":h.ArmorBreak>0?"방어 파쇄":h.Weaken>0?"약화":h.Vulnerable>0?"노출":h.Shield>0?"보호":h.Guard>0?"방어":"";
-                c.health.text="HP "+(int)(h.HpRatio*100)+"%"+(status.Length>0?" · "+status:"");
-                c.health.style.color=h.Debuffed?new Color(.94f,.53f,.47f):h.Shield>0?new Color(.45f,.78f,.81f):Moss;
-                c.health.tooltip="보호막 "+h.Shield.ToString("N0")+" · 방어 "+h.Guard.ToString("F1")+"초\n기절 "+h.Stun.ToString("F1")+"초 · 약화 "+h.Weaken.ToString("F1")+"초 · 약점 노출 "+h.Vulnerable.ToString("F1")+"초";
-                c.health.tooltip+="\n방어 파쇄 "+h.ArmorBreak.ToString("F1")+"초 · 출혈 "+h.Bleed.ToString("F1")+"초";
-                c.hp.style.width=Length.Percent((float)h.HpRatio*100);c.hp.style.backgroundColor=h.HpRatio<=.25?new Color(.85f,.38f,.33f):Moss;
-                c.skills.text="스킬 "+kit.Cooldowns.GetValueOrDefault("a1").ToString("F1")+"s · 궁극 "+(int)h.Ultimate+"%";c.skills.style.color=h.Ultimate>=100?new Color(.94f,.81f,.57f):Bronze;
+                int level=Raid?.ReviewLevel??(ReviewState!=null&&ReviewState.IsFactionHero(h.Id)?ReviewState.HeroProgress(h.Id).level:20);
+                c.health.text="Lv."+level;c.health.style.color=h.Debuffed?new Color(.94f,.53f,.47f):h.Shield>0?new Color(.45f,.78f,.81f):Moss;
+                double a1=kit.Cooldowns.GetValueOrDefault("a1"),a2=kit.Cooldowns.GetValueOrDefault("a2");double cooldown=Math.Min(a1,a2);
+                c.skills.text=!h.Alive?"전투불능":status.Length>0?status:h.Ultimate>=100?"각성":cooldown>0?Math.Ceiling(cooldown)+"초":"준비";
+                c.skills.style.color=!h.Alive?new Color(.90f,.49f,.46f):h.Ultimate>=100?new Color(.98f,.82f,.43f):Bronze;
+                c.hp.style.width=Length.Percent(Mathf.Clamp01((float)h.HpRatio)*100);c.hp.style.backgroundColor=h.HpRatio<=.25?new Color(.94f,.47f,.47f):h.HpRatio<=.5?new Color(.93f,.75f,.40f):new Color(.44f,.84f,.55f);
+                c.ultimate.style.width=Length.Percent(Mathf.Clamp01((float)h.Ultimate/100)*100);c.ultimate.style.backgroundColor=h.Ultimate>=100?new Color(1,.81f,.35f):Bronze;
+                c.art.style.opacity=h.Alive?1:.35f;c.slot.style.opacity=h.Alive?1:.60f;
+                c.slot.tooltip=(string)Simulation.Catalog.Hero(h.Id)["name"]+" · Lv."+level+" · "+(string)Simulation.Catalog.Hero(h.Id)["role_group"]+
+                    "\nHP "+h.Hp.ToString("N0")+" / "+h.MaxHp.ToString("N0")+" · 각성 "+(int)h.Ultimate+"%"+
+                    "\n주력 "+a1.ToString("F1")+"초 · 보조 "+a2.ToString("F1")+"초"+
+                    "\n보호막 "+h.Shield.ToString("N0")+" · 방어 "+h.Guard.ToString("F1")+"초"+
+                    "\n기절 "+h.Stun.ToString("F1")+"초 · 약화 "+h.Weaken.ToString("F1")+"초 · 노출 "+h.Vulnerable.ToString("F1")+"초"+
+                    "\n방어 파쇄 "+h.ArmorBreak.ToString("F1")+"초 · 출혈 "+h.Bleed.ToString("F1")+"초";
             }
             if(Raid!=null)
             {
@@ -429,35 +440,8 @@ namespace Eternal.UnityMigration
             mechanicTrack.style.visibility=mechanic.Length>0?Visibility.Visible:Visibility.Hidden;
             mechanicBar.style.width=Length.Percent(Mathf.Clamp01(progress)*100);mechanicBar.style.backgroundColor=color;
         }
-        void PanelHeader(string title)
-        {modal.Clear();modal.style.display=DisplayStyle.Flex;RefreshChainStrip();var row=Row(modal);var heading=Text(row,title,22);heading.style.flexGrow=1;Button(row,"닫기",()=>modal.style.display=DisplayStyle.None);}
-        void ShowHero(string id)
-        {
-            var h=Simulation.Catalog.Hero(id);PanelHeader((string)h["name"]);
-            var intro=Row(modal);intro.style.alignItems=Align.Center;intro.style.marginTop=10;intro.style.marginBottom=6;
-            var art=new Image{sprite=InspectionPortrait(id),scaleMode=ScaleMode.ScaleToFit};art.style.width=98;art.style.height=128;art.style.marginRight=14;intro.Add(art);
-            var identity=new VisualElement();identity.style.flexGrow=1;intro.Add(identity);
-            Text(identity,(string)h["class"]+" · "+(string)h["role_group"],15).style.whiteSpace=WhiteSpace.Normal;
-            Text(identity,((string)h["faction"]=="aurelia"?"아우렐리아":"녹스페라")+" · "+(string)h["race"]+" · "+((string)h["reach"]=="melee"?"근접":"원거리"),12).style.color=Moss;
-            Text(identity,(string)h["identity_profile"]["trait"],13).style.whiteSpace=WhiteSpace.Normal;
-            var scroll=new ScrollView();scroll.style.flexGrow=1;modal.Add(scroll);
-            if(ReviewState.IsFactionHero(id))
-            {
-                var profile=ReviewState.CombatProfile(id);Text(scroll,"Lv."+ReviewState.HeroProgress(id).level+" · "+ReviewState.Grade(id)+" · 공격 "+profile["attack"]+" · 체력 "+profile["max_hp"],13).style.color=Moss;
-                Button(scroll,"성장 · 장비",()=>ShowGrowth(id)).style.marginLeft=0;
-            }
-            foreach(var skill in h["skills"])
-            {
-                var block=new VisualElement();block.style.marginTop=18;scroll.Add(block);
-                var skillHeader=Row(block);skillHeader.style.alignItems=Align.Center;
-                if(PaintedHeroSigils.TryIcon(id,out var sigil,out var uv))
-                {var icon=new Image{image=sigil,uv=uv,scaleMode=ScaleMode.ScaleToFit};icon.style.width=42;icon.style.height=42;icon.style.marginRight=10;skillHeader.Add(icon);}
-                var title=Text(skillHeader,(string)skill["skill"],18);title.style.color=Bronze;title.style.whiteSpace=WhiteSpace.Normal;title.style.flexShrink=1;
-                var detail=Text(block,(string)skill["effect"],14);detail.style.whiteSpace=WhiteSpace.Normal;
-                string slot=(string)skill["slot"];string label=slot=="passive"?"패시브":slot=="a1"?"주력 스킬":slot=="a2"?"보조 스킬":"궁극기";
-                Text(block,label+" · "+(slot=="passive"?"조건 발동":slot=="ultimate"?"궁극기 게이지 100%":skill["cooldown"]+"초"),12);
-            }
-        }
+        void PanelHeader(string title) => OpenInspection(title);
+        void ShowHero(string id) => ShowHeroShowcase(id);
         Sprite InspectionPortrait(string id)
         {
             if(inspectionPortraits.TryGetValue(id,out var found))return found;
@@ -512,10 +496,10 @@ namespace Eternal.UnityMigration
         void OpenPanel(string route)
         {
             SelectNavigation(route);
-            if(route=="사냥"){EndRaid();modal.style.display=DisplayStyle.None;return;}
+            if(route=="사냥"){EndRaid();CloseInspection();return;}
             if(route=="영웅")
             {
-                ShowRoster();return;
+                OpenHeroManagement();return;
             }
             if(route=="도전")
             {

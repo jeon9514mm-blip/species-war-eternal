@@ -42,42 +42,70 @@ namespace Eternal.UnityMigration
         void Check(bool ok,string label){checks++;if(!ok)throw new InvalidOperationException("Native game input: "+label);trace.Add(new JObject{{"check",label},{"frame",Time.frameCount}});}
         IEnumerator Click(string text,bool prefix=false)
         {
-            yield return null;var ui=UI;Button b=null;
+            if(Game!=null&&!prefix&&new[]{"사냥","영웅","도전","가방","메뉴"}.Contains(text))
+            {
+                yield return CloseInspectionThroughPointer();yield return ClickName("navigation-"+text);yield break;
+            }
+            if(Game!=null&&!prefix&&text=="원정대")
+            {
+                yield return CloseInspectionThroughPointer();text="편성";
+            }
+            if(Game!=null&&!prefix&&new[]{"빠른 성장","장비 추천","연계 순서","사냥터"}.Contains(text)
+                &&!UI.Query<Button>().ToList().Any(b=>b.text==text&&Visible(b)))
+            {
+                yield return CloseInspectionThroughPointer();yield return Click("관리");
+            }
+            if(Game!=null&&!prefix&&text=="일시정지"&&(Game.Raid?.Paused??Game.Simulation.Paused))text="사냥 재개";
+            if(Game!=null&&!prefix&&text.StartsWith("×",StringComparison.Ordinal)&&UI.Q<Button>("hunt-zoom-"+text.Substring(1))!=null)
+            {
+                yield return ClickName("hunt-zoom-"+text.Substring(1));yield break;
+            }
+            yield return Target(()=>UI.Query<Button>().ToList().Where(b=>b.enabledInHierarchy&&(prefix?(b.text??"").StartsWith(text,StringComparison.Ordinal):b.text==text)).ToArray(),text);
+        }
+        IEnumerator CloseInspectionThroughPointer()
+        {
+            var modal=UI.Q<VisualElement>("inspection");
+            if(modal!=null&&modal.resolvedStyle.display!=DisplayStyle.None)yield return ClickName("inspection-close");
+        }
+        IEnumerator ClickName(string name)=>Target(()=>UI.Query<Button>().ToList().Where(b=>b.name==name&&b.enabledInHierarchy).ToArray(),name);
+        IEnumerator Target(Func<Button[]> candidates,string label)
+        {
+            yield return null;Button button=null;
             for(int attempt=0;attempt<14;attempt++)
             {
-                var matches=ui.Query<Button>().ToList().Where(b=>b.enabledInHierarchy&&(prefix?(b.text??"").StartsWith(text,StringComparison.Ordinal):b.text==text)).ToArray();b=matches.FirstOrDefault(Visible);if(b!=null)break;
+                var matches=candidates();button=matches.FirstOrDefault(Visible);if(button!=null)break;
                 var target=matches.FirstOrDefault();var scroll=target?.GetFirstAncestorOfType<ScrollView>();if(scroll==null)break;
-                var center=scroll.contentViewport.worldBound.center;var point=new Vector2(center.x/ui.worldBound.width*Screen.width,(1-center.y/ui.worldBound.height)*Screen.height);
-                using(StateEvent.From(Mouse.current,out var e)){Mouse.current.position.WriteValueIntoEvent(point,e);Mouse.current.scroll.WriteValueIntoEvent(new Vector2(0,-240),e);InputSystem.QueueEvent(e);}InputSystem.Update();
+                var ui=UI;var bounds=scroll.contentViewport.worldBound;var center=bounds.center;
+                var point=new Vector2((center.x-ui.worldBound.x)/ui.worldBound.width*Screen.width,(1-(center.y-ui.worldBound.y)/ui.worldBound.height)*Screen.height);
+                float direction=target.worldBound.center.y<bounds.yMin?240:-240;
+                using(StateEvent.From(Mouse.current,out var e)){Mouse.current.position.WriteValueIntoEvent(point,e);Mouse.current.scroll.WriteValueIntoEvent(new Vector2(0,direction),e);InputSystem.QueueEvent(e);}InputSystem.Update();
                 for(int frame=0;frame<4;frame++)yield return null;
             }
-            if(b==null)throw new InvalidOperationException("Visible enabled button not found: "+text);
-            yield return Pointer(b,text);
+            if(button==null)throw new InvalidOperationException("Visible enabled button not found: "+label);
+            yield return Pointer(button,label);
         }
         bool Visible(VisualElement element)
         {
-            if(!element.visible||element.worldBound.width<=0||element.worldBound.height<=0)return false;
+            if(element==null||!element.visible||element.worldBound.width<=0||element.worldBound.height<=0)return false;
             for(var p=element;p!=null;p=p.parent)if(p.resolvedStyle.display==DisplayStyle.None||p.resolvedStyle.visibility==Visibility.Hidden||p is ScrollView s&&!s.contentViewport.worldBound.Contains(element.worldBound.center))return false;
             return UI.worldBound.Contains(element.worldBound.center);
         }
         IEnumerator Pointer(VisualElement element,string label)
         {
-            var ui=UI;var bound=element.worldBound;var point=new Vector2(bound.center.x/ui.worldBound.width*Screen.width,(1-bound.center.y/ui.worldBound.height)*Screen.height);
+            if(!Visible(element)||!element.enabledInHierarchy)throw new InvalidOperationException("Native pointer target unavailable: "+label);
+            var ui=UI;var bound=element.worldBound;var picked=ui.panel.Pick(bound.center);
+            while(picked!=null&&picked!=element)picked=picked.parent;
+            if(picked!=element)throw new InvalidOperationException("Native pointer target is obstructed: "+label);
+            var point=new Vector2((bound.center.x-ui.worldBound.x)/ui.worldBound.width*Screen.width,(1-(bound.center.y-ui.worldBound.y)/ui.worldBound.height)*Screen.height);
             void Queue(bool down){using(StateEvent.From(Mouse.current,out var e)){Mouse.current.position.WriteValueIntoEvent(point,e);Mouse.current.leftButton.WriteValueIntoEvent(down?1f:0f,e);InputSystem.QueueEvent(e);}InputSystem.Update();}
             Queue(true);yield return null;Queue(false);trace.Add(new JObject{{"input",label},{"frame",Time.frameCount},{"x",point.x},{"y",point.y}});
             for(int i=0;i<5;i++)yield return null;
         }
-        IEnumerator FirstPartyToggle()
+        IEnumerator RemoveFirstPartyHero()
         {
-            for(int attempt=0;attempt<14;attempt++)
-            {
-                var toggle=UI.Query<Toggle>().ToList().FirstOrDefault(t=>Visible(t)&&t.value);
-                if(toggle!=null){yield return Pointer(toggle,"remove first visible party hero");yield break;}
-                var target=UI.Query<Toggle>().ToList().FirstOrDefault(t=>t.value);var scroll=target?.GetFirstAncestorOfType<ScrollView>();if(scroll==null)break;
-                var center=scroll.contentViewport.worldBound.center;var point=new Vector2(center.x/UI.worldBound.width*Screen.width,(1-center.y/UI.worldBound.height)*Screen.height);
-                using(StateEvent.From(Mouse.current,out var e)){Mouse.current.position.WriteValueIntoEvent(point,e);Mouse.current.scroll.WriteValueIntoEvent(new Vector2(0,-240),e);InputSystem.QueueEvent(e);}InputSystem.Update();for(int frame=0;frame<4;frame++)yield return null;
-            }
-            throw new InvalidOperationException("Visible chosen party toggle not found.");
+            var remove=UI.Q<VisualElement>("party-slot-grid")?.Query<Button>().ToList().FirstOrDefault(b=>b.name!=null&&b.name.StartsWith("party-slot-remove-",StringComparison.Ordinal));
+            if(remove==null)throw new InvalidOperationException("Chosen party hero removal button not found.");
+            yield return ClickName(remove.name);
         }
         IEnumerator Capture(string name)
         {
@@ -150,19 +178,22 @@ namespace Eternal.UnityMigration
         {
             long gold=Game.ReviewState.WalletGold;yield return Click("빠른 성장");
             Check(UI.Q("growth-party-selector").Query<Button>().ToList().Count==10,"growth exposes ten current heroes");
-            yield return Pointer(UI.Q<Button>("growth-select-mira"),"growth select Mira");
-            Check(UI.Query<Label>().ToList().Any(l=>l.text==(string)Game.Simulation.Catalog.Hero("mira")["name"]+" · 성장")&&Game.ReviewState.WalletGold==gold,"hero navigation is read-only");
-            Check(Visible(UI.Q("growth-summary"))&&UI.Q("growth-section-research").resolvedStyle.display==DisplayStyle.None,"fixed summary and exclusive gear tab");
-            yield return Click("연구");Check(UI.Q("growth-section-gear").resolvedStyle.display==DisplayStyle.None&&Visible(UI.Q("growth-section-research")),"research tab isolates its controls");yield return Capture("growth-research-native");
-            yield return Click("승급");Check(Visible(UI.Q("growth-section-rank"))&&!UI.Query<Button>().ToList().First(b=>(b.text??"").StartsWith("승급 · Lv.")).enabledInHierarchy&&Game.ReviewState.WalletGold==gold,"low-level ascension remains gated without spending");yield return Capture("growth-rank-native");
-            yield return Pointer(UI.Q<Button>("growth-select-orwin"),"growth select Orwin");Check(Visible(UI.Q("growth-section-rank"))&&Game.ReviewState.WalletGold==gold,"hero switch retains selected growth tab");yield return Pointer(UI.Q<Button>("growth-select-mira"),"growth return Mira");yield return Click("장비");
+            yield return ClickName("growth-select-mira");
+            Check(UI.Q<Label>("HeroIdentityName").text==(string)Game.Simulation.Catalog.Hero("mira")["name"]&&Game.ReviewState.WalletGold==gold,"hero navigation is read-only");
+            Check(Visible(UI.Q("HeroStatGrid"))&&UI.Q("HeroGear_weapon")==null,"growth summary and exclusive growth tab");
+            yield return ClickName("HeroTab_skills");
+            Check(UI.Q("HeroStatGrid")==null&&UI.Q("HeroSkill_a1")!=null,"skills tab isolates original skills");
+            yield return ClickName("HeroTab_growth");
+            Check(Visible(UI.Q("HeroResearchPoints"))&&UI.Q("HeroSkill_a1")==null,"growth tab isolates its research controls");yield return Capture("growth-research-native");
+            yield return ClickName("HeroTab_ascension");Check(Visible(UI.Q("HeroAscendAction"))&&!UI.Q<Button>("HeroAscendAction").enabledInHierarchy&&Game.ReviewState.WalletGold==gold,"low-level ascension remains gated without spending");yield return Capture("growth-rank-native");
+            yield return ClickName("growth-select-orwin");Check(UI.Q<Button>("HeroTab_ascension").ClassListContains("is-selected")&&UI.Q("HeroAscendAction")!=null&&Game.ReviewState.WalletGold==gold,"hero switch retains selected growth tab");yield return ClickName("growth-select-mira");yield return ClickName("HeroTab_equipment");
             int attack=Game.Simulation.Battle.Heroes.First(h=>h.Id=="mira").Attack;
-            Check(Visible(UI.Query<Button>().ToList().First(b=>(b.text??"").StartsWith("강화 ·"))),"weapon enhancement visible without wheel search");
-            yield return Click("강화 ·",true);Check(Game.ReviewState.WalletGold<gold&&Game.Simulation.Battle.Heroes.First(h=>h.Id=="mira").Attack>attack,"selected hero enhancement drives combat profile");
+            Check(Visible(UI.Q<Button>("hero-gear-enhance-weapon")),"weapon enhancement visible without wheel search");
+            yield return ClickName("hero-gear-enhance-weapon");Check(Game.ReviewState.WalletGold<gold&&Game.Simulation.Battle.Heroes.First(h=>h.Id=="mira").Attack>attack,"selected hero enhancement drives combat profile");
             yield return new WaitForSecondsRealtime(.2f);
-            Check(Visible(UI.Q("growth-gear-weapon")),"growth retains gear section after enhancement");
-            yield return Capture("growth-gear-native");yield return Click("스킬 보기");
-            Check(UI.Query<Image>().ToList().Count(i=>i.image!=null&&i.image.name.Contains("aurelia"))==4,"four original skill cards show the hero's painted sigil");
+            Check(Visible(UI.Q("HeroGear_weapon")),"growth retains gear section after enhancement");
+            yield return Capture("growth-gear-native");yield return ClickName("HeroTab_skills");
+            Check(UI.Q("PortraitContentScroll").Query<Image>().ToList().Count(i=>i.image!=null&&i.image.name.Contains("aurelia"))==4,"four original skill cards show the hero's painted sigil");
             Check(Game.Simulation.Catalog.Hero("mira")["skills"].All(s=>UI.Query<Label>().ToList().Any(l=>l.text==(string)s["skill"])),"all four original skill titles retained");
             yield return Capture("hero-skills-mira-native");yield return Click("닫기");
             yield return Click("일시정지");yield return new WaitForSecondsRealtime(2);yield return Capture("hunt-coordinated-native");
@@ -278,11 +309,11 @@ namespace Eternal.UnityMigration
             }
             yield return Click("×1");yield return new WaitForSecondsRealtime(.3f);
             long gold=Game.ReviewState.WalletGold;
-            yield return Click("빠른 성장");yield return Capture("native-growth");yield return Click("강화 ·",true);Check(Game.ReviewState.WalletGold<gold,"equipment enhancement spends stored wallet");yield return Click("닫기");
+            yield return Click("빠른 성장");yield return ClickName("HeroTab_equipment");yield return Capture("native-growth");yield return ClickName("hero-gear-enhance-weapon");Check(Game.ReviewState.WalletGold<gold,"equipment enhancement spends stored wallet");yield return Click("닫기");
             yield return Click("연계 순서");yield return Click("자동 연계 ON");Check(!Game.Simulation.Chain.Enabled,"chain toggle writes player profile");yield return Click("닫기");
-            yield return Click("원정대");yield return Click("뒤로");yield return Click("편성 1 저장");
+            yield return Click("원정대");yield return ClickName("party-slot-select-0");yield return ClickName("party-order-backward");yield return ClickName("party-preset-save");
             Check((string)Game.ReviewState.Snapshot()["unity_party_presets"]?["0"]?["heroes"]?[0]==Game.ReviewState.DeployedHeroes()[1],"party order preset persists");yield return Capture("party-formation-native");
-            yield return FirstPartyToggle();yield return Click("편성 저장");
+            yield return RemoveFirstPartyHero();yield return Click("편성 저장");
             Check(Game.ReviewState.DeployedHeroes().Count==10&&Game.ReviewState.Snapshot()["unity_next_party"]!=null,"party queued while current wave remains intact");yield return Capture("native-party-edit");yield return Click("닫기");
             yield return Click("일시정지");float wait=Time.realtimeSinceStartup;
             while(Game.Simulation.PacksCleared<1&&!Game.Simulation.Defeated){if(Time.realtimeSinceStartup-wait>60)throw new InvalidOperationException("First natural hunt reward exceeded 60 seconds.");yield return null;}
