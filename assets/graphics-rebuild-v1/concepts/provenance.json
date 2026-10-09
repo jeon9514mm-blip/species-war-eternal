@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-10",
+  "kind": "AI-generated modeling and UI concepts; not runtime captures",
+  "engineTarget": "Unity",
+  "mode": "built-in image_gen",
+  "pilotHeroes": [
+    "leonhardt",
+    "elisia",
+    "mira"
+  ],
+  "excludedFromPilot": [
+    "garm"
+  ],
+  "assets": [
+    {
+      "file": "aurelia-three-hero-turnarounds.png",
+      "prompt": "Use case: stylized-concept.\nAsset type: production modeling concept sheet for three original mobile action RPG heroes; this is a design sheet, not a game screenshot.\nInput images 1, 2, 3 are identity references for Leonhardt, Elisia, Mira respectively. Image 4 is ONLY a reference for finished stylized 3D volume, body proportions and tangible material treatment; do not copy that character, UI, symbols or costume.\nCreate a large wide refined character turnaround sheet with three clearly separated rows, one hero per row. Each row has full-body front, three-quarter, side and rear views of the SAME consistent design, and a small detail inset of face and key material. No game interface. Neutral warm grey studio background, subtle ground shadows, consistent scale and light, clean spacious layout. Small exact Latin row labels \"LEONHARDT\", \"ELISIA\", \"MIRA\", and footer \"MODELING CONCEPT\".\nRender as beautifully crafted stylized 3D game characters with real depth, approximately five heads tall, expressive anime faces, readable sculpted hair clumps, subtle bevels, layered clothing, embroidery and believable painted PBR materials. Not two-head chibi toys, not generic capsules or flat paper standees. No gigantic photoreal head.\nLEONHARDT: preserve reference blond swept spiky hair, blue eyes, ivory plated armor with engraved gold trims, rich royal-blue cape and tabard, silver-and-gold sword in his right hand and blue/gold heraldic shield on his left arm. Clearly articulated shoulder armor, gauntlets, knee plates and metal boots. Confident royal knight, no helmet.\nELISIA: preserve pale pink-silver long flowing hair, pointed elf ears, green eyes, ivory/green layered robe dress with gold leaf embroidery, small white flower ornaments and green glowing gem staff. Soft elegant silhouette, readable separate dress layers and natural hair volume. No knight armor or bow.\nMIRA: preserve deep auburn-red high ponytail, red cape with gold ornament, white/gold armored bodice, dark leather shorts and thigh/leg armor, ornate golden bow and quiver. Energetic royal archer; different silhouette, hairstyle, cape and weapon from the other two.\nKeep original palette, identity and weapons faithful in every angle; improve dimensional craft, material separation and fine details. Avoid text clutter, extra heroes, extra limbs, copied competitor assets, oversized blooms or obscuring effects.",
+      "references": [
+        "docs/hero-catalog-2026-10-08/art/leonhardt.png",
+        "docs/hero-catalog-2026-10-08/art/elisia.png",
+        "docs/hero-catalog-2026-10-08/art/mira.png",
+        "https://www.youtube.com/watch?v=wqZ5gTwPbbA&t=270s"
+      ]
+    },
+    {
+      "file": "royal-grove-hunt-hud.png",
+      "prompt": "Use case: ui-mockup / stylized-concept.\nAsset: polished landscape hunting scene concept for an ORIGINAL Unity mobile action RPG, 16:9 landscape. This is a visual design target, NOT a running-game screenshot.\nInput 1 is our original three-hero design sheet: reproduce Leonhardt in ivory/gold armor and blue cape, Elisia in green ivory dress with pale pink-silver hair and a green staff, Mira red ponytail and red cape holding golden bow. Keep characters substantially dimensional, stylized mobile 3D about five heads tall. Input 2 and 3 are references for environmental completeness, depth and restrained HUD hierarchy only; DO NOT copy competitor characters, logos, icons, exact layout, text or geometry.\nCreate an impressive ruined royal grove hunting arena: broad quiet engraved limestone central plaza with bronze-inlaid paths and moss in joints; strong three-dimensional edge blocks and believable wear; curved balustrades, terraces, short stairs, carved stone arches, weathered royal banners, mature trees and small luminous teal crystals at the perimeter. Cool forest ambient, warm sun shafts, coherent diagonal contact/cast shadows; foliage framing depth without obstructing combat. A complete detailed environment with substantial vertical architecture, NOT a flat texture on a plane.\nSlant top-down battle camera, broad far view, central party with space between actors, about 18 corrupted elf/dwarf/werewolf enemy figures approaching in THREE readable packs from perimeter pathways. Clear target silhouettes, defined incoming lanes and open dodging space. A restrained small emerald circular formation motif under party, minimal attack effects so bodies and ground remain readable.\nHUD design: compact top translucent dark slate bar with exact Korean labels \"왕립 수림\", \"154 스테이지\"; subtle bronze trim and small gold/gem icons. Right edge has TEN small readable circular original-style hero portraits in two columns of five; first three portraits correspond to our pilot heroes and remaining seven are neutral inactive silhouette portraits. Bottom right three restrained circular controls labeled \"스킬 1\", \"스킬 2\", \"각성\". Bottom left small thumb movement joystick, intended only for movement/dodge, not camera dragging. Bottom center compact selected-hero HP bar \"레온하르트\". A small round zoom control labeled \"×1\" with compact \"1.5\", \"2\", \"3\" nearby. Slim lower navigation labels \"사냥\", \"영웅\", \"레이드\", \"가방\". Tiny top-right \"AUTO\" and pause. UI stays on edges; world occupies at least 80% of composition.\nKeep sophisticated restrained navy/slate and warm bronze UI, high legibility, tactile round controls, no giant bottom portrait strip, no full-screen magical flashes, no toy capsule models, no copied competitor assets, no Meta/Unity/dev/watermark branding. Small unobtrusive footer \"VISUAL CONCEPT\".",
+      "references": [
+        "aurelia-three-hero-turnarounds.png",
+        "https://www.youtube.com/watch?v=wqZ5gTwPbbA&t=200s",
+        "https://www.youtube.com/watch?v=MlhEOQbIE8c&t=10790s"
+      ]
+    }
+  ],
+  "validation": "Deferred per user request; no device gameplay or model-quality acceptance completed."
+}

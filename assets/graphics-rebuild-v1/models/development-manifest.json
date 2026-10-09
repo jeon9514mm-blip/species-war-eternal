@@ -1,0 +1,51 @@
+{
+  "pipeline": "native Blender mesh/armature to Unity FBX; no sprite substitution",
+  "heroes": [
+    {
+      "hero": "leonhardt",
+      "triangles": 10146,
+      "mesh_parts": 121,
+      "fbx": "Unity/Assets/Game/Resources/Eternal/GraphicsRebuild/Heroes/leonhardt.fbx",
+      "source": "assets/graphics-rebuild-v1/models/leonhardt-volume-pass.blend",
+      "status": "first rigged volume-mesh development pass; concept quality acceptance deferred",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack"
+      ],
+      "hair": "sculpted locks; final hair-card pass pending",
+      "cloth": "five deform bones; final physical simulation pending"
+    },
+    {
+      "hero": "elisia",
+      "triangles": 12068,
+      "mesh_parts": 118,
+      "fbx": "Unity/Assets/Game/Resources/Eternal/GraphicsRebuild/Heroes/elisia.fbx",
+      "source": "assets/graphics-rebuild-v1/models/elisia-volume-pass.blend",
+      "status": "first rigged volume-mesh development pass; concept quality acceptance deferred",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack"
+      ],
+      "hair": "sculpted locks; final hair-card pass pending",
+      "cloth": "five deform bones; final physical simulation pending"
+    },
+    {
+      "hero": "mira",
+      "triangles": 12216,
+      "mesh_parts": 142,
+      "fbx": "Unity/Assets/Game/Resources/Eternal/GraphicsRebuild/Heroes/mira.fbx",
+      "source": "assets/graphics-rebuild-v1/models/mira-volume-pass.blend",
+      "status": "first rigged volume-mesh development pass; concept quality acceptance deferred",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack"
+      ],
+      "hair": "sculpted locks; final hair-card pass pending",
+      "cloth": "five deform bones; final physical simulation pending"
+    }
+  ],
+  "quality_acceptance": "deferred; no claim of final concept equivalence"
+}
