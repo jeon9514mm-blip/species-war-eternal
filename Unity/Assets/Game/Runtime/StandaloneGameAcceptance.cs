@@ -16,7 +16,7 @@ namespace Eternal.UnityMigration
     public sealed class StandaloneGameAcceptance : MonoBehaviour
     {
         static string report,profile;static bool resume;
-        JObject saved;readonly JArray trace=new();int checks;string error="";float started;
+        JObject saved;readonly JArray trace=new(),environments=new();int checks;string error="";float started;
         HuntingMigrationReview Game=>FindAnyObjectByType<HuntingMigrationReview>();
         VisualElement UI=>FindObjectsByType<UIDocument>().First(d=>d.isActiveAndEnabled).rootVisualElement;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -58,7 +58,12 @@ namespace Eternal.UnityMigration
             Queue(true);yield return null;Queue(false);trace.Add(new JObject{{"input",label},{"frame",Time.frameCount},{"x",point.x},{"y",point.y}});
             for(int i=0;i<5;i++)yield return null;
         }
-        IEnumerator Capture(string name){yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot(Path.Combine(Path.GetDirectoryName(report),name+".png"));yield return new WaitForSecondsRealtime(.3f);}
+        IEnumerator Capture(string name)
+        {
+            yield return new WaitForEndOfFrame();var world=FindAnyObjectByType<HuntEnvironmentPresentation>();
+            if(world!=null){var texture=Resources.Load<Texture2D>(world.ArtResource);environments.Add(new JObject{{"capture",name},{"zone",world.Zone},{"painting_active",world.HasPainting},{"width",texture.width},{"height",texture.height},{"runtime_format",texture.format.ToString()}});}
+            ScreenCapture.CaptureScreenshot(Path.Combine(Path.GetDirectoryName(report),name+".png"));yield return new WaitForSecondsRealtime(.3f);
+        }
         IEnumerator Suite()
         {
             Application.runInBackground=true;Application.targetFrameRate=60;AudioListener.volume=0;started=Time.realtimeSinceStartup;
@@ -76,6 +81,7 @@ namespace Eternal.UnityMigration
                 Check(!Game.Simulation.Chain.Enabled,"restored chain toggle");yield return Capture("native-continued-hunt");yield break;
             }
             Check(Game.ReviewState.WalletGold==500&&Game.Simulation.Battle.Heroes.Count==10,"fresh level one party and wallet");
+            Check(FindAnyObjectByType<HuntEnvironmentPresentation>().HasPainting&&FindAnyObjectByType<HuntEnvironmentPresentation>().Zone=="gray_meadow","native meadow painting");yield return Capture("hunt-meadow-native");
             long gold=Game.ReviewState.WalletGold;
             yield return Click("빠른 성장");yield return Capture("native-growth");yield return Click("강화 ·",true);Check(Game.ReviewState.WalletGold<gold,"equipment enhancement spends stored wallet");yield return Click("닫기");
             yield return Click("연계 순서");yield return Click("자동 연계 ON");Check(!Game.Simulation.Chain.Enabled,"chain toggle writes player profile");yield return Click("닫기");
@@ -88,10 +94,24 @@ namespace Eternal.UnityMigration
             Check((int)Game.ReviewState.Snapshot()["wallet_xp"]>=22,"actual hunt grants stored XP");yield return Capture("native-player-hunt");
             yield return Click("사냥터");yield return Click((string)HuntingSimulation.Canonical["zones"]["forgotten_mine"]["name"]);yield return Click("일시정지");
             Check(Game.Simulation.Zone=="forgotten_mine","native zone travel");
+            Check(FindAnyObjectByType<HuntEnvironmentPresentation>().HasPainting&&FindAnyObjectByType<HuntEnvironmentPresentation>().Zone=="forgotten_mine","native mine painting");yield return Capture("hunt-mine-native");
+            yield return Click("사냥터");yield return Click((string)HuntingSimulation.Canonical["zones"]["moonrest_forest"]["name"]);yield return Click("일시정지");
+            Check(FindAnyObjectByType<HuntEnvironmentPresentation>().HasPainting&&FindAnyObjectByType<HuntEnvironmentPresentation>().Zone=="moonrest_forest","native moonlit forest painting");yield return Capture("hunt-forest-native");
             yield return Click("도전");yield return Click((string)HuntingSimulation.Canonical["zones"]["gray_meadow"]["boss"]);
             Check(Game.Raid!=null&&Game.Raid.StateBound&&Game.Raid.Battle.Heroes.Count==9,"real raid uses actual party stats");long balance=Game.ReviewState.WalletGold;
+            yield return Click("일시정지");yield return Click("연계 순서");yield return Click("자동 연계 OFF");yield return Click("↓");
+            Check((bool?)Game.ReviewState.Snapshot()["unity_raid_chains"]?["gray_meadow"]?["enabled"]==true&&Game.Raid.Chain.Enabled&&!Game.Simulation.Chain.Enabled,"regional raid chain persists separately from hunt");
+            yield return Click("닫기");yield return Click("일시정지");
             yield return Click("패턴 훈련");Check(Game.Raid!=null&&!Game.Raid.StateBound&&Game.Raid.ReviewLevel==50,"training isolates trial stats");
+            Check(Game.Raid.Chain.Enabled,"saved regional chain restored on training restart");
             yield return Click("긴급 회피");Check(Game.Raid.DodgeCooldown>0&&Game.ReviewState.WalletGold==balance,"training controls and no wallet reward");
+            yield return Click("자동 회피 ON");yield return Click("카운터 연습");float cueWait=Time.realtimeSinceStartup;
+            while(Game.VisibleRaidResponseKind!="counter"){if(Time.realtimeSinceStartup-cueWait>7)throw new InvalidOperationException("Authored counter response cue did not appear.");yield return null;}
+            Check(Game.Raid.CounterPractice&&Game.Raid.CounterWindowOpen,"cue follows actual authored-practice timer");yield return Capture("raid-response-counter-native");
+            float finishWait=Time.realtimeSinceStartup;
+            while(Game.Raid.Running){if(Time.realtimeSinceStartup-finishWait>40)throw new InvalidOperationException("Natural training result exceeded 40 seconds.");yield return null;}
+            yield return new WaitForSecondsRealtime(.2f);yield return Click("다시 도전");
+            Check(!Game.Raid.StateBound&&Game.Raid.ReviewLevel==50&&Game.ReviewState.WalletGold==balance,"result retry preserves unrewarded training mode");
             yield return Capture("native-player-raid-training");yield return Click("사냥");Check(Game.Raid==null,"return to retained hunting");
             yield return Click("원정대");yield return Click("진영 선택 화면");yield return new WaitForSecondsRealtime(.3f);
             Check(FindAnyObjectByType<EternalBootstrap>()!=null&&Game==null,"return to faction entry");
@@ -112,7 +132,7 @@ namespace Eternal.UnityMigration
                 try{moved=stack.Peek().MoveNext();if(moved)next=stack.Peek().Current;}catch(Exception e){error=e.Message;stack.Clear();break;}
                 if(!moved){stack.Pop();continue;}if(next is IEnumerator nested){stack.Push(nested);continue;}yield return next;
             }
-            var result=new JObject{{"passed",error.Length==0},{"phase",resume?"second_process_reload":"first_process"},{"error",error},{"comparisons",checks},{"elapsed_seconds",Time.realtimeSinceStartup-started},{"scratch_name",Path.GetFileName(profile.TrimEnd(Path.DirectorySeparatorChar))},{"expected",saved},{"trace",trace},{"note","Development-only scratch profiles. Actual Input System pointer actions and a second process reload; no real user files or performance benchmark."}};
+            var result=new JObject{{"passed",error.Length==0},{"phase",resume?"second_process_reload":"first_process"},{"error",error},{"comparisons",checks},{"elapsed_seconds",Time.realtimeSinceStartup-started},{"scratch_name",Path.GetFileName(profile.TrimEnd(Path.DirectorySeparatorChar))},{"expected",saved},{"trace",trace},{"environments",environments},{"note","Development-only scratch profiles. Actual Input System pointer actions, authored counter practice, training-result retry and a second process reload; no real user files or performance benchmark."}};
             File.WriteAllText(report,result.ToString());yield return new WaitForSecondsRealtime(.3f);Application.Quit(error.Length==0?0:1);
         }
     }

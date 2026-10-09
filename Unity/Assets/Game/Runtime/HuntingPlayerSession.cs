@@ -14,6 +14,7 @@ namespace Eternal.UnityMigration
         long playerRaidAttempt;
         StateCommandResult playerRaidReward;
         public bool PersistentPlayer=>playerSession!=null;
+        bool CanEditChain=>playerSession==null||Raid!=null&&playerRaidTraining||ReviewState.MutationError.Length==0;
         public void BindPlayerSession(NativePlayerSession session)
         {if(Simulation!=null||session==null||!session.State.UnityPlayer)throw new InvalidOperationException("Bind a native profile before starting the game.");playerSession=session;}
         int PlayerLevel()=>Math.Max(1,(int)Math.Round(ReviewState.DeployedHeroes().Select(id=>(double)ReviewState.HeroProgress(id).level).DefaultIfEmpty(1).Average()));
@@ -22,7 +23,7 @@ namespace Eternal.UnityMigration
             var state=playerSession.State;var result=new HuntingSimulation(1,9514,state);
             result.RestoreUnityProgress(state.UnityZone,state.UnityPacks);result.Chain.Enabled=(bool?)state.Snapshot()["unity_chain_enabled"]??true;
             if(state.Snapshot()["unity_chain"] is JArray saved)
-                for(int i=0;i<Math.Min(saved.Count,result.Chain.Entries.Count);i++)if(saved[i] is JObject entry)result.Chain.Set(i,new ChainSkill((string)entry["hero"],(string)entry["slot"]));
+                result.Chain.Restore(saved.OfType<JObject>().Select(e=>new ChainSkill((string)e["hero"],(string)e["slot"])).ToArray(),result.Chain.Enabled);
             return result;
         }
         void PauseForSaveFailure()
@@ -34,9 +35,15 @@ namespace Eternal.UnityMigration
         }
         void SavePlayerChain()
         {
-            if(playerSession==null||Raid!=null)return;
-            var result=ReviewState.SetUnityChain(Simulation.Chain.Entries.ToArray(),Simulation.Chain.Enabled);
+            if(playerSession==null||Raid!=null&&playerRaidTraining)return;
+            var result=Raid==null?ReviewState.SetUnityChain(Simulation.Chain.Entries.ToArray(),Simulation.Chain.Enabled):ReviewState.SetUnityRaidChain(Raid.Zone,Raid.Chain.Entries.ToArray(),Raid.Chain.Enabled);
             if(!result.Ok){huntNotice=result.Message;huntNoticeUntil=Time.unscaledTime+3;}PauseForSaveFailure();
+        }
+        void RestoreRaidChain()
+        {
+            if(playerSession==null)return;
+            if(ReviewState.Snapshot()["unity_raid_chains"]?[Raid.Zone] is JObject config&&config["entries"] is JArray saved)
+                Raid.Chain.Restore(saved.OfType<JObject>().Select(e=>new ChainSkill((string)e["hero"],(string)e["slot"])).ToArray(),(bool?)config["enabled"]??false);
         }
         bool PreparePlayerRaid(string zone,ref int level,bool training)
         {
@@ -61,6 +68,7 @@ namespace Eternal.UnityMigration
                 }
             }
             if(Raid!=null)EndRaid();ResetViews();ResetSkillPresentation();Simulation=fresh;Simulation.OnEvent=Receive;accumulator=0;visualQueue.Clear();
+            huntEnvironment.Bind(Simulation.Zone);
             feedback.SetRaidMode(false);modal.style.display=DisplayStyle.None;BuildParty();RebuildActors();RefreshHud();
         }
         void RefreshPlayerStatus()
@@ -104,8 +112,13 @@ namespace Eternal.UnityMigration
             foreach(string zone in new[]{"gray_meadow","forgotten_mine","moonrest_forest"})
             {
                 string selected=zone;var region=HuntingSimulation.Canonical["zones"][zone];
-                var enter=Button(modal,(string)region["name"]??zone,()=>{var result=ReviewState.SetUnityZone(selected);tip.text=result.Message;PauseForSaveFailure();if(result.Ok&&!result.SavePending)RestartPlayerHunt(true);});
-                enter.SetEnabled(Raid==null&&!ReviewState.SavePending&&Simulation.Zone!=zone);Text(modal,"무리 보상 · 골드 "+region["gold"]+" · 경험치 "+region["xp"],12).style.color=Moss;
+                var card=Box(modal,"hunt-zone-"+zone,new Color(.075f,.10f,.11f));card.style.marginTop=13;card.style.paddingLeft=card.style.paddingRight=10;card.style.paddingTop=card.style.paddingBottom=9;
+                var row=Row(card);row.style.alignItems=Align.Center;
+                var preview=new Image{image=Resources.Load<Texture2D>(HuntEnvironmentPresentation.Resource(zone)),scaleMode=ScaleMode.ScaleAndCrop};preview.style.width=100;preview.style.height=72;preview.style.marginRight=10;row.Add(preview);
+                var copy=new VisualElement();copy.style.flexGrow=1;copy.style.minWidth=0;row.Add(copy);
+                var enter=Button(copy,(string)region["name"]??zone,()=>{var result=ReviewState.SetUnityZone(selected);tip.text=result.Message;PauseForSaveFailure();if(result.Ok&&!result.SavePending)RestartPlayerHunt(true);});enter.style.marginLeft=0;
+                enter.SetEnabled(Raid==null&&!ReviewState.SavePending&&Simulation.Zone!=zone);Text(copy,"골드 "+region["gold"]+" · 경험치 "+region["xp"],12).style.color=Moss;
+                if(Simulation.Zone==zone)Text(copy,"현재 사냥터",11).style.color=Bronze;
             }
         }
     }

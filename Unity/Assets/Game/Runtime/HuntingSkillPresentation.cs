@@ -47,13 +47,14 @@ namespace Eternal.UnityMigration
             resultDetails=Text(raidResult,"",15);resultDetails.style.whiteSpace=WhiteSpace.Normal;resultDetails.style.marginTop=18;resultDetails.style.marginBottom=14;resultDetails.style.unityTextAlign=TextAnchor.MiddleCenter;
             resultScope=Text(raidResult,"플레이테스트 전투 기록 · 실제 저장과 보상은 변경되지 않습니다",12);resultScope.style.color=Moss;resultScope.style.whiteSpace=WhiteSpace.Normal;resultScope.style.unityTextAlign=TextAnchor.MiddleCenter;
             var actions=Row(raidResult);actions.style.marginTop=18;
-            Button(actions,"다시 도전",()=>{if(Raid!=null)StartRaid(Raid.Zone,Raid.ReviewLevel);}).style.flexGrow=1;
+            Button(actions,"다시 도전",()=>{if(Raid!=null)StartRaid(Raid.Zone,Raid.ReviewLevel,playerRaidTraining);}).style.flexGrow=1;
             Button(actions,"사냥 복귀",()=>{EndRaid();modal.style.display=DisplayStyle.None;}).style.flexGrow=1;
         }
         void ObserveCastPresentation(BattleEvent e)
         {
             if(e.Kind!="cast"||e.Source==null||!ActiveBattle.Kits.TryGetValue(e.Source,out var kit)||!kit.Profiles.TryGetValue(e.Slot,out var profile))return;
             castHighlights[e.Source]=Time.unscaledTime+.30f;
+            ObserveSkillFeed(e,(string)profile["skill"],(string)profile["kind"]);
             if(e.Slot!="ultimate")return;
             var accent=castAccents.GetValueOrDefault(e.Source+":"+e.Slot,Bronze);
             // No generated hero replacement: the notice uses the actual caster's
@@ -63,6 +64,7 @@ namespace Eternal.UnityMigration
         }
         void RefreshSkillPresentation()
         {
+            RefreshCombatReadability();
             float now=Time.unscaledTime;
             foreach(var c in cards)
             {
@@ -104,6 +106,7 @@ namespace Eternal.UnityMigration
         }
         void ResetSkillPresentation()
         {
+            ResetCombatReadability();
             ultimateNotices.Clear();castHighlights.Clear();castCueUntil=0;shownRaidOutcome="";
             if(castCue!=null)castCue.style.display=DisplayStyle.None;if(raidResult!=null)raidResult.style.display=DisplayStyle.None;
         }

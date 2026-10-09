@@ -1,0 +1,45 @@
+{
+  "mode": "built-in image_gen",
+  "images": [
+    {
+      "key": "meadow",
+      "file": "meadow-hunt-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: production background painting for an ORIGINAL landscape 2.5D fantasy auto-battle RPG. Paint a complete 3:2 landscape background with a strict elevated 45-degree orthographic view, looking down onto a broad flat traversable ground, without horizon or vanishing point. Mature detailed hand-painted fantasy concept art, hand-brushed edges, believable mineral and foliage texture, restrained moss/bronze accents, subtle ambient shadow; not cartoon, not pixel art, not a photographic render. Composition: central 80% is an open, calm, continuous playable surface, darker readable midtones so small painted heroes and damage numbers stand out; keep all tall obstacles and dense decoration within outer 10% perimeter only. Do not place any tree, rock pile, pit, wall, staircase, bridge, railing or raised platform in the interior fighting area. All ground must appear on one level. No characters, monsters, circles, runes, text, UI, logo, watermark or borders. No heavy vignette, glare, explosions, bright lamps or dramatic cast shadows in the center. Ground detail must be small and varied, not giant regular brick tiles. This is game scenery, not a mockup. Scene: an ancient meadow ruin, weathered grey sandstone flagstones blending into quiet olive grass and patches of earth. Deep thin cracks with muted moss, tiny fallen leaves, worn bronze-colored edging only at peripheral collapsed walls; modest pale wildflowers and low bushes at the far edges. Natural soft late-afternoon daylight. Broad unobstructed center, predominantly grey-green stone, painterly warmth and inviting depth.",
+      "mode": "built-in image_gen",
+      "source_image": "exec-c09b12e4-854d-4c69-9e0e-fd655c523445.png",
+      "sha256": "8391e661a3e8313e6a24da97853abe6acadea3f0c6926d782a9d603ff999668f",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "import_max_size": 1024
+    },
+    {
+      "key": "mine",
+      "file": "mine-hunt-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: production background painting for an ORIGINAL landscape 2.5D fantasy auto-battle RPG. Paint a complete 3:2 landscape background with a strict elevated 45-degree orthographic view, looking down onto a broad flat traversable ground, without horizon or vanishing point. Mature detailed hand-painted fantasy concept art, hand-brushed edges, believable mineral and foliage texture, restrained moss/bronze accents, subtle ambient shadow; not cartoon, not pixel art, not a photographic render. Composition: central 80% is an open, calm, continuous playable surface, darker readable midtones so small painted heroes and damage numbers stand out; keep all tall obstacles and dense decoration within outer 10% perimeter only. Do not place any tree, rock pile, pit, wall, staircase, bridge, railing or raised platform in the interior fighting area. All ground must appear on one level. No characters, monsters, circles, runes, text, UI, logo, watermark or borders. No heavy vignette, glare, explosions, bright lamps or dramatic cast shadows in the center. Ground detail must be small and varied, not giant regular brick tiles. This is game scenery, not a mockup. Scene: forgotten subterranean quarry, a broad flat charcoal-slate and desaturated blue-grey rock floor, mineral veins, worn irregular flagstone remnants and a few shallow damp streaks. At the very perimeter, chiseled rocky walls and sparse subdued amber crystals, broken mining tools and aged bronze fragments. Soft indirect cool light balanced with dim warm amber from the perimeter. Quiet charcoal-blue center, avoid orange saturation and pools of lava.",
+      "mode": "built-in image_gen",
+      "source_image": "exec-87c1ac5d-b9f2-48aa-bc85-a167d43dfbc1.png",
+      "sha256": "c14795f6617dacccde56be4417f8507ccc2e0e817b8b0c7c0cd7894323ee4eb3",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "import_max_size": 1024
+    },
+    {
+      "key": "forest",
+      "file": "forest-hunt-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: production background painting for an ORIGINAL landscape 2.5D fantasy auto-battle RPG. Paint a complete 3:2 landscape background with a strict elevated 45-degree orthographic view, looking down onto a broad flat traversable ground, without horizon or vanishing point. Mature detailed hand-painted fantasy concept art, hand-brushed edges, believable mineral and foliage texture, restrained moss/bronze accents, subtle ambient shadow; not cartoon, not pixel art, not a photographic render. Composition: central 80% is an open, calm, continuous playable surface, darker readable midtones so small painted heroes and damage numbers stand out; keep all tall obstacles and dense decoration within outer 10% perimeter only. Do not place any tree, rock pile, pit, wall, staircase, bridge, railing or raised platform in the interior fighting area. All ground must appear on one level. No characters, monsters, circles, runes, text, UI, logo, watermark or borders. No heavy vignette, glare, explosions, bright lamps or dramatic cast shadows in the center. Ground detail must be small and varied, not giant regular brick tiles. This is game scenery, not a mockup. Scene: a moonlit old forest clearing on flat desaturated slate-grey stone and soft dark soil, scattered tiny blue-grey leaves and delicate low moss patches. At the very perimeter only, ancient gnarled roots, low ferns and quiet moonlit flowers, hints of crumbled silver-grey ruins. Restrained blue-violet moonlight, subtle reflected cool light, no pitch black interior. Broad clear calm central fighting area, luminous yet readable painted fantasy detail.",
+      "mode": "built-in image_gen",
+      "source_image": "exec-162c04a5-95b7-4753-afc9-cbf52adeb089.png",
+      "sha256": "bddda6e28bd5275113b66af594c4e50d4a3a509ae3de8069a7b2c07445d3134d",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "import_max_size": 1024
+    }
+  ],
+  "notes": "Unmodified generated paintings; world-anchored projection, not remodeled 3D collision or baked PBR. Original heroes and raid art are preserved."
+}

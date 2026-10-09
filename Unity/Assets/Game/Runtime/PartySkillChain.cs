@@ -44,6 +44,11 @@ namespace Eternal.UnityMigration
             }
         }
         bool Valid(ChainSkill skill)=>battle.Kits.TryGetValue(skill.Hero,out var kit)&&skill.Slot!="passive"&&kit.Profiles.ContainsKey(skill.Slot);
+        public bool Restore(IReadOnlyList<ChainSkill> saved,bool enabled)
+        {
+            if(saved==null||saved.Count<1||saved.Count>6||saved.Distinct().Count()!=saved.Count||saved.Any(s=>s.Hero==null||!Valid(s)))return false;
+            entries.Clear();entries.AddRange(saved);Enabled=enabled;Cursor=CompletedCycles=ConfirmedCasts=0;return true;
+        }
         public bool Set(int index,ChainSkill skill)
         {
             if(index<0||index>=entries.Count||!Valid(skill))return false;

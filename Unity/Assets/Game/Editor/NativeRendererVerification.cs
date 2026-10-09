@@ -43,7 +43,9 @@ namespace Eternal.UnityMigration.Editor
             if(arena!=null)foreach(var renderer in arena.GetComponentsInChildren<Renderer>())
             {var shader=renderer.sharedMaterial?.shader;if(shader==null||!shader.isSupported||ShaderUtil.ShaderHasError(shader))throw new InvalidOperationException("Native raid arena shader unavailable: "+renderer.name);arenaSurfaces++;}
             report["verified_arena_surfaces"]=arenaSurfaces;
-            var floor=GameObject.Find("Original stone hunting field")?.GetComponent<Renderer>();var floorMaterial=floor?.sharedMaterial;var slabs=floorMaterial?.GetTexture("_PaintedMap") as Texture2D;
+            var floor=GameObject.Find("Original stone hunting field")?.GetComponent<Renderer>();var floorMaterial=floor?.sharedMaterial;var slabs=floorMaterial!=null&&floorMaterial.HasProperty("_PaintedMap")?floorMaterial.GetTexture("_PaintedMap") as Texture2D:null;
+            var hunt=UnityEngine.Object.FindAnyObjectByType<HuntEnvironmentPresentation>();
+            if(hunt!=null)report["hunting_painting"]=new JObject{{"zone",hunt.Zone},{"resource",hunt.ArtResource},{"active",hunt.HasPainting},{"world_anchored",floorMaterial?.HasProperty("_WorldAnchored")==true&&floorMaterial.GetFloat("_WorldAnchored")>.5f}};
             if(slabs!=null)report["painted_slabs"]=new JObject{{"active",floorMaterial.GetFloat("_PaintedSlabs")>.5f},{"width",slabs.width},{"height",slabs.height},{"format",slabs.format.ToString()},{"wrap_mode",slabs.wrapMode.ToString()},{"runtime_texture_bytes",UnityEngine.Profiling.Profiler.GetRuntimeMemorySizeLong(slabs)},{"shader_supported",floorMaterial.shader.isSupported},{"shader_errors",ShaderUtil.ShaderHasError(floorMaterial.shader)}};
             var ui=review?.GetComponent<UIDocument>()?.rootVisualElement;var modal=ui?.Q("inspection");
             if(modal!=null)report["inspection_panel"]=new JObject{{"visible",modal.resolvedStyle.display==DisplayStyle.Flex},{"bounds",modal.worldBound.ToString()}};
