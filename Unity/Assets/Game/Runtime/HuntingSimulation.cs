@@ -104,6 +104,11 @@ namespace Eternal.UnityMigration
             if(!HeroKitExecution.Cast(Battle,hero,slot,target))return false;
             intents.Remove(hero.Serial);hero.Windup=-1;hero.AttackRemaining=Math.Max(hero.AttackRemaining,.24);ManualSkillCasts++;return true;
         }
+        public void RestoreUnityProgress(string zone,int packs)
+        {
+            if(Ticks!=0||PacksCleared!=0||!new[]{"gray_meadow","forgotten_mine","moonrest_forest"}.Contains(zone))throw new InvalidOperationException("Progress restores only a new native hunt.");
+            Zone=zone;PacksCleared=Math.Clamp(packs,0,int.MaxValue-1);Stage=1+PacksCleared/5;Battle.Enemies.Clear();SpawnPack();
+        }
         void HandleEvent(BattleEvent e)
         {
             if(e.Kind=="death"&&Battle.Enemies.Any(a=>a.Serial==e.TargetSerial))Kills++;

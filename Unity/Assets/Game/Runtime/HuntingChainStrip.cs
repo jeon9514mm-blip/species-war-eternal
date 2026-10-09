@@ -17,7 +17,7 @@ namespace Eternal.UnityMigration
             chainStrip.style.position=Position.Absolute;chainStrip.style.left=24;chainStrip.style.right=24;chainStrip.style.bottom=183;
             chainStrip.style.height=58;chainStrip.style.flexDirection=FlexDirection.Row;chainStrip.style.alignItems=Align.Center;
             chainStrip.style.paddingLeft=10;chainStrip.style.paddingRight=10;
-            chainToggle=Button(chainStrip,"연계 ON",()=>Simulation.Chain.Enabled=!Simulation.Chain.Enabled);chainToggle.style.width=87;chainToggle.style.minWidth=0;chainToggle.style.marginLeft=0;chainToggle.style.marginRight=6;chainToggle.style.fontSize=12;
+            chainToggle=Button(chainStrip,"연계 ON",()=>{Simulation.Chain.Enabled=!Simulation.Chain.Enabled;SavePlayerChain();});chainToggle.style.width=87;chainToggle.style.minWidth=0;chainToggle.style.marginLeft=0;chainToggle.style.marginRight=6;chainToggle.style.fontSize=12;
             chainToggle.tooltip="자동 연계를 켜거나 끕니다. 준비된 스킬 카드를 누르면 해당 스킬을 직접 시전합니다.";
             for(int i=0;i<6;i++)
             {

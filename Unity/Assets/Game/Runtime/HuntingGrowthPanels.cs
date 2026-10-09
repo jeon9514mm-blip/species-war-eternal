@@ -15,7 +15,7 @@ namespace Eternal.UnityMigration
         {
             if(!GrowthAllowed){growthMessage=Raid!=null?"레이드를 마친 뒤 성장을 변경하세요.":ReviewState.MutationError;refresh();return;}
             var result=command();growthMessage=result.Message+(result.SavePending?" · 저장 대기":"");
-            if(result.Ok)Simulation.RefreshHeroGrowth();refresh();RefreshHud();
+            if(result.Ok)Simulation.RefreshHeroGrowth();PauseForSaveFailure();refresh();RefreshHud();
         }
         void GrowthNotice(VisualElement parent)
         {

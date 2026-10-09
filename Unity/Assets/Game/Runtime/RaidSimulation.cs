@@ -14,6 +14,7 @@ namespace Eternal.UnityMigration
         public readonly OriginalCombatCatalog Catalog;
         public readonly string Zone;
         public readonly int ReviewLevel;
+        public readonly bool StateBound;
         public readonly JObject Design,ZoneData;
         public readonly PartySkillChain Chain;
         public Combatant Boss=>Battle.Enemies[0];
@@ -41,10 +42,11 @@ namespace Eternal.UnityMigration
         Vector2 partyCenter;
         static readonly float[] slideAngles={0f,.35f,-.35f,.7f,-.7f,1.05f,-1.05f,Mathf.PI/2,-Mathf.PI/2};
         static readonly float[] slideFractions={1f,.5f,.25f};
-        public RaidSimulation(string zone="gray_meadow",int reviewLevel=50,int seed=9514,IReadOnlyList<string> party=null)
+        public RaidSimulation(string zone="gray_meadow",int reviewLevel=50,int seed=9514,IReadOnlyList<string> party=null,GameStateCommands playerState=null)
         {
             ReviewLevel=reviewLevel;
-            var source=new HuntingSimulation(reviewLevel,seed);
+            StateBound=playerState!=null;
+            var source=new HuntingSimulation(reviewLevel,seed,playerState);
             if(party!=null)source.SetParty(party);
             Battle=source.Battle;Catalog=source.Catalog;Chain=source.Chain;Battle.Enemies.Clear();Battle.IsRaid=true;
             var legacy=HuntingSimulation.Canonical;Zone=zone;
@@ -237,7 +239,7 @@ namespace Eternal.UnityMigration
         public bool CounterReady=>CounterCandidate()!=null;
         public bool BeginCounterPractice()
         {
-            if(ReviewLevel!=50||!Running||Paused||CounterPractice)return false;
+            if(StateBound||ReviewLevel!=50||!Running||Paused||CounterPractice)return false;
             JObject profile=null;
             foreach(JObject phase in Design["phases"])
             {

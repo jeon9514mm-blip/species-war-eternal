@@ -14,7 +14,7 @@ namespace Eternal.UnityMigration
         readonly List<string> endedHighlights=new(10);
         VisualElement castCue,raidResult;
         Image castPortrait;
-        Label castHero,castSkill,castType,resultTitle,resultDetails;
+        Label castHero,castSkill,castType,resultTitle,resultDetails,resultScope;
         float castCueUntil;
         string shownRaidOutcome="";
         public int UltimatePresentations {get;private set;}
@@ -45,7 +45,7 @@ namespace Eternal.UnityMigration
             raidResult.style.top=Length.Percent(27);raidResult.style.width=470;raidResult.style.paddingLeft=24;raidResult.style.paddingRight=24;raidResult.style.paddingTop=22;raidResult.style.paddingBottom=22;raidResult.style.display=DisplayStyle.None;
             resultTitle=Text(raidResult,"",27);resultTitle.style.color=Bronze;resultTitle.style.unityTextAlign=TextAnchor.MiddleCenter;
             resultDetails=Text(raidResult,"",15);resultDetails.style.whiteSpace=WhiteSpace.Normal;resultDetails.style.marginTop=18;resultDetails.style.marginBottom=14;resultDetails.style.unityTextAlign=TextAnchor.MiddleCenter;
-            var scope=Text(raidResult,"플레이테스트 전투 기록 · 실제 저장과 보상은 변경되지 않습니다",12);scope.style.color=Moss;scope.style.whiteSpace=WhiteSpace.Normal;scope.style.unityTextAlign=TextAnchor.MiddleCenter;
+            resultScope=Text(raidResult,"플레이테스트 전투 기록 · 실제 저장과 보상은 변경되지 않습니다",12);resultScope.style.color=Moss;resultScope.style.whiteSpace=WhiteSpace.Normal;resultScope.style.unityTextAlign=TextAnchor.MiddleCenter;
             var actions=Row(raidResult);actions.style.marginTop=18;
             Button(actions,"다시 도전",()=>{if(Raid!=null)StartRaid(Raid.Zone,Raid.ReviewLevel);}).style.flexGrow=1;
             Button(actions,"사냥 복귀",()=>{EndRaid();modal.style.display=DisplayStyle.None;}).style.flexGrow=1;
@@ -97,6 +97,7 @@ namespace Eternal.UnityMigration
             {
                 RefreshHud();
                 shownRaidOutcome=Raid.Outcome;resultTitle.text=Raid.Outcome=="victory"?"레이드 성공":Raid.Outcome=="timeout"?"제한 시간 종료":"원정대 전멸";
+                resultScope.text=playerSession==null?"플레이테스트 전투 기록 · 실제 저장과 보상은 변경되지 않습니다":playerRaidTraining?"패턴 훈련 · 실제 원정대 보상 없음":playerRaidReward?.Message??"전투 종료 · 사냥 성장으로 다시 준비하세요.";
                 resultDetails.text=(string)Raid.ZoneData["boss"]+" · Lv"+Raid.ReviewLevel+"\n"+TimeSpan.FromSeconds(Raid.Elapsed).ToString(@"mm\:ss")+" · 총 피해 "+Raid.DamageDealt.ToString("N0")+"\n생존 "+ActiveBattle.Heroes.FindAll(h=>h.Alive).Count+"/10 · 카운터 "+Raid.CounterSuccesses+" · 무력화 "+Raid.Interrupts;
                 raidResult.style.display=DisplayStyle.Flex;
             }

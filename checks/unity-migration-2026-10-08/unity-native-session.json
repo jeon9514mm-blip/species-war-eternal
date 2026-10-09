@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "comparisons": 63,
+  "synthetic_disk_profiles": true,
+  "real_user_profiles_read": false,
+  "note": "Native Unity persistence, queued party/XP, exact pack and raid nonces, original stage/zone import, corruption/future/stale writer protection. No performance benchmark."
+}
