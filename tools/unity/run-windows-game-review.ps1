@@ -1,14 +1,17 @@
-param([int]$TimeoutSeconds=130,[int]$Width=1920,[int]$Height=1080)
+param([int]$TimeoutSeconds=130,[int]$Width=1920,[int]$Height=1080,[string]$BuildDirectory='WindowsPlay',[switch]$RaidMechanics,[switch]$SkipBandBoundaries)
 $ErrorActionPreference='Stop'
 $gameRepo=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../..')).Path
-$gameBuild=(Resolve-Path -LiteralPath (Join-Path $gameRepo 'Unity/Builds/WindowsPlay')).Path
+if($BuildDirectory -notmatch '^WindowsPlay[A-Za-z0-9]*$'){throw 'Expected a WindowsPlay build folder name.'}
+$gameBuild=(Resolve-Path -LiteralPath (Join-Path $gameRepo ('Unity/Builds/'+$BuildDirectory))).Path
 $gameExe=Join-Path $gameBuild 'EternalUnity.exe'
 $gameReport=Join-Path $gameBuild 'native-game-input.json'
-foreach($gamePhase in @('first','resume','band499','band999')) {
+$gamePhases=if($RaidMechanics){@('raid-mechanics')}elseif($SkipBandBoundaries){@('first','resume')}else{@('first','resume','band499','band999')}
+foreach($gamePhase in $gamePhases) {
     $gameStarted=[DateTime]::UtcNow
     $gameLog=Join-Path $gameBuild ('player-game-'+$gamePhase+'.log')
     $gameArguments=@('--eternal-game-qa',"`"$gameReport`"",'-screen-width',$Width,'-screen-height',$Height,'-screen-fullscreen','0','-logFile',"`"$gameLog`"")
     if($gamePhase -eq 'resume'){$gameArguments+= '--qa-resume'}
+    if($gamePhase -eq 'raid-mechanics'){$gameArguments+= '--qa-raid-mechanics'}
     if($gamePhase -eq 'band499'){$gameArguments+= @('--qa-band-start','499')}
     if($gamePhase -eq 'band999'){$gameArguments+= @('--qa-band-start','999')}
     # Visible interactive player is required for actual rendered captures.
@@ -24,4 +27,5 @@ foreach($gamePhase in @('first','resume','band499','band999')) {
     if($gamePhase -eq 'first'){Copy-Item -LiteralPath $gameReport -Destination (Join-Path $gameBuild 'native-game-first-process.json')}
     if($gamePhase -eq 'resume'){Copy-Item -LiteralPath $gameReport -Destination (Join-Path $gameBuild 'native-game-reload-process.json')}
     if($gamePhase.StartsWith('band')){Copy-Item -LiteralPath $gameReport -Destination (Join-Path $gameBuild ('native-game-'+$gamePhase+'-process.json'))}
+    if($gamePhase -eq 'raid-mechanics'){Copy-Item -LiteralPath $gameReport -Destination (Join-Path $gameBuild 'native-game-raid-mechanics-process.json')}
 }

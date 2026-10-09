@@ -23,6 +23,15 @@ namespace Eternal.UnityMigration
         public double Elapsed, NextPack;
         public string Zone="gray_meadow",Formation="balanced";
         public bool Paused, Defeated;
+        public bool ManualMovementActive {get;private set;}
+        public Vector2 ManualDirection {get;private set;}
+        public bool SetManualMovement(Vector2 direction)
+        {
+            if(Paused||Defeated||PlayerState?.UnityPlayer==true&&PlayerState.HasDeferredUnityLoot||!float.IsFinite(direction.x)||!float.IsFinite(direction.y))return false;
+            ManualMovementActive=true;ManualDirection=Vector2.ClampMagnitude(direction,1);return true;
+        }
+        public void StopManualMovement(){ManualDirection=Vector2.zero;}
+        public void ResumeMovement(){if(Paused||Defeated)return;ManualMovementActive=false;ManualDirection=Vector2.zero;}
         public readonly int ReviewLevel;
         readonly JObject legacy;
         readonly List<Combatant> bodies=new();
@@ -210,6 +219,12 @@ namespace Eternal.UnityMigration
             if(living>0)center/=living;
             foreach(var h in Battle.Heroes.Where(a=>a.Alive))
             {
+                if(ManualMovementActive)
+                {
+                    if(h.Stun>0){h.Velocity=Vector2.zero;continue;}
+                    if(ManualDirection.sqrMagnitude>.0001f){intents.Remove(h.Serial);h.Windup=-1;}
+                    h.Position=MoveManualLegally(h,ManualDirection*(4.4f*dt));h.Velocity=(h.Position-h.PreviousPosition)/dt;reservations[h.Serial]=h.Position;continue;
+                }
                 if(h.Stun>0||intents.ContainsKey(h.Serial)){h.Velocity=Vector2.zero;continue;}
                 var candidates=CombatTargeting.Rank(Battle,h,null,null,false);
                 bool retained=movementPlans.TryGetValue(h.Serial,out var plan)&&plan.target.Alive&&candidates.Contains(plan.target);
@@ -334,6 +349,24 @@ namespace Eternal.UnityMigration
                 if(new Vector2(delta.x/axes.x,delta.y/axes.y).sqrMagnitude<.999f)return false;
             }
             return true;
+        }
+        Vector2 MoveManualLegally(Combatant actor,Vector2 step)
+        {
+            if(step.sqrMagnitude<.00000001f)return actor.Position;
+            foreach(float angle in slideAngles)
+            {
+                float c=Mathf.Cos(angle),s=Mathf.Sin(angle);var goal=Clamp(actor.Position+new Vector2(step.x*c-step.y*s,step.x*s+step.y*c));
+                if(!ClearAt(actor,goal))continue;bool clear=true;
+                foreach(var other in bodies)
+                {
+                    if(other==actor||!other.Alive)continue;var axes=BodyAxes(actor,other);var start=actor.Position-other.Position;var delta=goal-actor.Position;
+                    start=new Vector2(start.x/axes.x,start.y/axes.y);delta=new Vector2(delta.x/axes.x,delta.y/axes.y);
+                    float t=delta.sqrMagnitude<.000001f?0:Mathf.Clamp01(-Vector2.Dot(start,delta)/delta.sqrMagnitude);
+                    if((start+delta*t).sqrMagnitude<.999f){clear=false;break;}
+                }
+                if(clear)return goal;
+            }
+            return actor.Position;
         }
         Vector2 MoveLegally(Combatant actor,Vector2 step)
         {

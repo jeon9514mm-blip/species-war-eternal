@@ -1,5 +1,20 @@
 # Four-game adaptation checklist
 
+## Current user direction — 2026-10-09
+
+The latest clarification replaces the hunting reference with **세븐나이츠 키우기**. Keep earlier observations below as research history, rather than treating CookieRun as the current primary hunting target.
+
+| Current reference | Assigned role | Current scope / remaining work |
+|---|---|---|
+| 세븐나이츠 키우기 | Ten-member hunting, party composition and distributed combat | Original ten-member expedition and ordered formations are connected. The [official game page](https://skidle.netmarble.com/ko/game), checked on 2026-10-09, confirms a ten-hero deck and hero-specific combinations. This update is a page-based structure check, not a new claim of watching Seven Knights footage or reproducing its entire AI. |
+| 픽셀법사 키우기 | Skill effect quality, readable cast/impact silhouettes and feedback | Current painterly elemental families and original skill timings are a partial foundation. All 120 individual effects and the requested quality target remain unfinished. Preserve original painted heroes rather than changing them to pixels. |
+| 소울스트라이크 | Graphics direction and simple, clear growth/UI/UX | Painted hunting/raid backgrounds, differentiated hero styles, growth/gear routes and readable controls are being refined. Full art/UI quality matching remains incomplete. |
+| 로스트아크 | Phase, ground warning, counter/stagger and mechanic response | Existing three raids plus CP15 phase/aggregate mechanic presentation, spread and direct movement. Not a full Lost Ark-style encounter or individually targetable add system. |
+
+The user additionally requests a drag joystick in both hunting and raids, and removal of the emergency-dodge button. Direct movement overrides automatic avoidance while active, release holds position, and explicit follow resumes automatic movement. Hunt zoom stays centered with no camera drag.
+
+## Earlier observations
+
 User clarification: **all four requested games must inform the implementation**, alongside the prior graphics/combat requirements. Keep this game's original world, original painted 30 heroes, 120 skill identities and ten-member expedition. None of the rows below is marked implemented merely because research was completed.
 
 | Reference | Source and actual review | Adapt to this game | Implementation / acceptance |

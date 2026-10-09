@@ -15,7 +15,7 @@ namespace Eternal.UnityMigration
     // All player actions are real pointer down/up events across native frames.
     public sealed class StandaloneGameAcceptance : MonoBehaviour
     {
-        static string report,profile;static bool resume;static int bandStart;
+        static string report,profile;static bool resume,raidMechanics;static int bandStart;
         JObject saved;readonly JArray trace=new(),environments=new();int checks;string error="";float started;
         HuntingMigrationReview Game=>FindAnyObjectByType<HuntingMigrationReview>();
         VisualElement UI=>FindObjectsByType<UIDocument>().First(d=>d.isActiveAndEnabled).rootVisualElement;
@@ -25,7 +25,7 @@ namespace Eternal.UnityMigration
             if(!Debug.isDebugBuild)return;var args=Environment.GetCommandLineArgs();int flag=Array.IndexOf(args,"--eternal-game-qa");if(flag<0||flag+1>=args.Length)return;
             string build=Path.GetFullPath(Path.Combine(Application.dataPath,".."))+Path.DirectorySeparatorChar;report=Path.GetFullPath(args[flag+1]);
             if(!report.StartsWith(build,StringComparison.OrdinalIgnoreCase))throw new InvalidOperationException("Game QA output must stay inside the build.");
-            resume=args.Contains("--qa-resume");string folder=resume?(string)JObject.Parse(File.ReadAllText(report))["scratch_name"]:"qa-profiles-"+Guid.NewGuid().ToString("N");
+            resume=args.Contains("--qa-resume");raidMechanics=args.Contains("--qa-raid-mechanics");string folder=resume?(string)JObject.Parse(File.ReadAllText(report))["scratch_name"]:"qa-profiles-"+Guid.NewGuid().ToString("N");
             if(folder==null||folder.Length!=44||!folder.StartsWith("qa-profiles-",StringComparison.Ordinal)||!Guid.TryParseExact(folder[12..],"N",out _))throw new InvalidOperationException("Invalid isolated profile folder.");
             profile=Path.Combine(build,folder);EternalBootstrap.ProfileDirectoryOverride=profile;
             int bandFlag=Array.IndexOf(args,"--qa-band-start");
@@ -85,6 +85,67 @@ namespace Eternal.UnityMigration
             if(world!=null){var texture=Resources.Load<Texture2D>(world.ArtResource);environments.Add(new JObject{{"capture",name},{"zone",world.Zone},{"painting_active",world.HasPainting},{"width",texture.width},{"height",texture.height},{"runtime_format",texture.format.ToString()}});}
             ScreenCapture.CaptureScreenshot(Path.Combine(Path.GetDirectoryName(report),name+".png"));yield return new WaitForSecondsRealtime(.3f);
         }
+        IEnumerator DragStick(Vector2 direction,float hold,string capture="")
+        {
+            var stick=UI.Q("movement-stick");Check(Visible(stick)&&stick.enabledInHierarchy,"visible enabled movement joystick");
+            var center=stick.worldBound.center;var target=center+direction*stick.worldBound.width*.75f;
+            void Queue(Vector2 p,bool down){var screen=new Vector2(p.x/UI.worldBound.width*Screen.width,(1-p.y/UI.worldBound.height)*Screen.height);using(StateEvent.From(Mouse.current,out var e)){Mouse.current.position.WriteValueIntoEvent(screen,e);Mouse.current.leftButton.WriteValueIntoEvent(down?1f:0f,e);InputSystem.QueueEvent(e);}InputSystem.Update();}
+            Queue(center,true);yield return null;Queue(target,true);yield return new WaitForSecondsRealtime(hold);
+            if(capture.Length>0)yield return Capture(capture);
+            Queue(target,false);for(int i=0;i<5;i++)yield return null;
+            trace.Add(new JObject{{"input","joystick press/drag outside/release"},{"frame",Time.frameCount},{"direction_x",direction.x},{"direction_y",direction.y}});
+        }
+        IEnumerator RaidMechanicsSuite()
+        {
+            long gold=Game.ReviewState.WalletGold;int packs=Game.Simulation.PacksCleared;
+            yield return Click("일시정지");var huntBefore=Game.Simulation.Battle.Heroes.Select(h=>h.Position).ToArray();
+            yield return DragStick(Vector2.right,.3f,"hunt-joystick-native");
+            Check(Game.Simulation.ManualMovementActive&&Game.Simulation.ManualDirection==Vector2.zero,"hunt joystick release holds manual position");
+            Check(Game.Simulation.Battle.Heroes.Select((h,i)=>Vector2.Distance(h.Position,huntBefore[i])).Average()>.1f,"hunt drag physically moves expedition");
+            var held=Game.Simulation.Battle.Heroes.Select(h=>h.Position).ToArray();yield return new WaitForSecondsRealtime(.25f);
+            Check(Game.Simulation.Battle.Heroes.Select((h,i)=>Vector2.Distance(h.Position,held[i])).All(d=>d<.001f),"released hunt stick stops movement");
+            Check(FindAnyObjectByType<HuntingFeedback>().HuntZoom==1,"hunt drag preserves camera zoom");
+            yield return Click("자동 추적");Check(!Game.Simulation.ManualMovementActive,"hunt pointer resumes automatic tracking");yield return Click("일시정지");
+            foreach(string zone in new[]{"gray_meadow","forgotten_mine","moonrest_forest"})
+            {
+                yield return Click("도전");yield return Capture("raid-selection-"+zone+"-native");
+                yield return Click((string)HuntingSimulation.Canonical["zones"][zone]["boss"]);
+                Check(Game.Raid!=null&&Game.Raid.Zone==zone&&Game.Raid.StateBound,"selected actual regional raid "+zone);
+                yield return Click("패턴 훈련");Check(!Game.Raid.StateBound&&Game.Raid.ReviewLevel==50,"isolated training "+zone);
+                Check(!UI.Query<Button>().ToList().Any(b=>(b.text??"").StartsWith("긴급 회피")),"emergency dodge button removed "+zone);
+                yield return DragStick(Vector2.left,.25f,zone=="gray_meadow"?"raid-joystick-native":"");
+                Check(Game.Raid.ManualMovementActive&&Game.Raid.ManualDirection==Vector2.zero&&Game.Raid.DodgeCooldown==0,"raid joystick release, no artificial dodge "+zone);
+                var before=Game.Raid.Battle.Heroes.Select(h=>h.Position).ToArray();yield return Click("산개 대형");
+                Check(Game.Raid.MovementOrder=="산개","pointer spread order "+zone);
+                Check(Game.Raid.Battle.Heroes.Select((h,i)=>Vector2.Distance(h.Position,before[i])).All(d=>d<1.2f),"spread is physical movement, no snap "+zone);
+                yield return Click("추적 복귀");Check(Game.Raid.MovementOrder=="역할 추적","pointer returns role movement "+zone);
+                yield return Click("산개 대형");yield return Click("일시정지");
+                Check(Game.Raid.Paused&&!UI.Query<Button>().ToList().First(b=>b.text=="산개 대형").enabledInHierarchy,"paused spread disabled "+zone);
+                var raid=Game.Raid;raid.Boss.Attack=0;foreach(var hero in raid.Battle.Heroes){hero.AttackRemaining=1000;hero.Windup=-1;}
+                foreach(int phase in new[]{2,3})
+                {
+                    raid.Boss.Hp=(int)(raid.Boss.MaxHp*(phase==2?.59:.29));raid.AdvancePhase();
+                    for(int frame=0;frame<6;frame++)yield return null;
+                    string kind=zone=="gray_meadow"?"armor":zone=="forgotten_mine"?"crystal":"ritual";
+                    var mechanics=FindAnyObjectByType<RaidMechanicPresentation>();
+                    Check(Game.VisibleRaidMechanic==kind&&mechanics.VisibleNodes==RaidMechanicView.Read(raid).Count,"native phase mechanic projection "+zone+phase);
+                    Check(mechanics.GetComponentsInChildren<Collider>(true).Length==0,"native mechanic visuals have no collision "+zone+phase);
+                    Check(Game.RaidPhaseBannerVisible,"native phase transition banner "+zone+phase);
+                    Check(!UI.Q("raid-phase-transition").worldBound.Overlaps(UI.Q("raid-response").worldBound)&&!UI.Q("raid-phase-transition").worldBound.Overlaps(UI.Q("confirmed-skill-feed").worldBound),"phase banner clears response and skill feed "+zone+phase);
+                    yield return Capture("raid-"+zone+"-phase"+phase+"-native");
+                }
+                // Explicit paused rendering fixture advances only its inspection clock.
+                raid.Elapsed+=2;for(int frame=0;frame<6;frame++)yield return null;
+                Check(Visible(UI.Q("raid-world-mechanic"))&&!Game.RaidPhaseBannerVisible,"phase intro yields to retained mechanic status "+zone);
+                yield return Capture("raid-"+zone+"-mechanic-native");
+                raid.StartWarning((JObject)raid.Design["phases"][2]);for(int frame=0;frame<6;frame++)yield return null;
+                Check(!Game.RaidPhaseBannerVisible&&FindAnyObjectByType<RaidMechanicPresentation>().View.Muted,"warning has priority over phase decoration "+zone);
+                Check(!Visible(UI.Q("raid-world-mechanic")),"warning hides mechanic tag "+zone);
+                yield return Capture("raid-"+zone+"-warning-native");
+                yield return Click("사냥");Check(Game.Raid==null&&Game.Simulation.PacksCleared==packs,"return retains hunt progress "+zone);
+                Check(Game.ReviewState.WalletGold==gold,"training fixtures grant no rewards "+zone);
+            }
+        }
         IEnumerator Suite()
         {
             Application.runInBackground=true;Application.targetFrameRate=60;AudioListener.volume=0;started=Time.realtimeSinceStartup;
@@ -93,6 +154,7 @@ namespace Eternal.UnityMigration
             yield return Click("아우렐리아"+(resume||bandStart>0?" 이어하기":" 시작"));yield return new WaitForSecondsRealtime(.4f);
             Check(Game!=null&&Game.PersistentPlayer&&(bool?)Game.ReviewState.Snapshot()["native_review_fixture"]!=true,"persistent player excludes review seed");
             yield return Click("일시정지");Check(Game.Simulation.Paused,"hunt paused through pointer");
+            if(raidMechanics){yield return RaidMechanicsSuite();saved=Game.ReviewState.Snapshot();yield break;}
             if(bandStart>0)
             {
                 Check(Game.Simulation.Stage==bandStart&&Game.Simulation.Zone==HuntStageWorld.Zone(bandStart),"scratch previous-band runtime");yield return Capture("hunt-stage-"+bandStart+"-native");
@@ -148,7 +210,7 @@ namespace Eternal.UnityMigration
             yield return Click("닫기");yield return Click("일시정지");
             yield return Click("패턴 훈련");Check(Game.Raid!=null&&!Game.Raid.StateBound&&Game.Raid.ReviewLevel==50,"training isolates trial stats");
             Check(Game.Raid.Chain.Enabled,"saved regional chain restored on training restart");
-            yield return Click("긴급 회피");Check(Game.Raid.DodgeCooldown>0&&Game.ReviewState.WalletGold==balance,"training controls and no wallet reward");
+            yield return DragStick(Vector2.left,.2f);Check(Game.Raid.ManualMovementActive&&Game.Raid.DodgeCooldown==0&&Game.ReviewState.WalletGold==balance,"training joystick and no wallet reward");yield return Click("추적 복귀");
             yield return Click("자동 회피 ON");yield return Click("카운터 연습");float cueWait=Time.realtimeSinceStartup;
             while(Game.VisibleRaidResponseKind!="counter"){if(Time.realtimeSinceStartup-cueWait>7)throw new InvalidOperationException("Authored counter response cue did not appear.");yield return null;}
             Check(Game.Raid.CounterPractice&&Game.Raid.CounterWindowOpen,"cue follows actual authored-practice timer");yield return Capture("raid-response-counter-native");
@@ -176,7 +238,7 @@ namespace Eternal.UnityMigration
                 try{moved=stack.Peek().MoveNext();if(moved)next=stack.Peek().Current;}catch(Exception e){error=e.Message;stack.Clear();break;}
                 if(!moved){stack.Pop();continue;}if(next is IEnumerator nested){stack.Push(nested);continue;}yield return next;
             }
-            var result=new JObject{{"passed",error.Length==0},{"phase",bandStart>0?"stage_boundary_"+bandStart:resume?"second_process_reload":"first_process"},{"error",error},{"comparisons",checks},{"elapsed_seconds",Time.realtimeSinceStartup-started},{"scratch_name",Path.GetFileName(profile.TrimEnd(Path.DirectorySeparatorChar))},{"expected",saved},{"trace",trace},{"environments",environments},{"note","Development-only scratch profiles. Actual pointer zoom, ordered party preset, natural monster drops, naturally cleared 499/999 boundary waves, authored counter practice and a second process reload; no real user files or performance benchmark."}};
+            var result=new JObject{{"passed",error.Length==0},{"phase",raidMechanics?"raid_mechanics_cp15":bandStart>0?"stage_boundary_"+bandStart:resume?"second_process_reload":"first_process"},{"error",error},{"comparisons",checks},{"elapsed_seconds",Time.realtimeSinceStartup-started},{"scratch_name",Path.GetFileName(profile.TrimEnd(Path.DirectorySeparatorChar))},{"expected",saved},{"trace",trace},{"environments",environments},{"note",raidMechanics?"Development-only scratch profile. Real pointer raid selection, spread/follow controls and returns. Explicit paused level-50 training phase/telegraph fixtures test rendering; not natural phase progression or victory. No real user files or FPS benchmark.":"Development-only scratch profiles. Actual pointer zoom, ordered party preset, natural monster drops, naturally cleared 499/999 boundary waves, authored counter practice and a second process reload; no real user files or performance benchmark."}};
             File.WriteAllText(report,result.ToString());yield return new WaitForSecondsRealtime(.3f);Application.Quit(error.Length==0?0:1);
         }
     }

@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "comparisons": 69372,
+  "maximum_tick_movement": 0.220000356,
+  "minimum_body_clearance": 0.999516547,
+  "cases": [
+    {
+      "zone": "gray_meadow",
+      "phase": 2,
+      "mechanic": "armor",
+      "nodes": 6,
+      "fixture": "explicit paused phase, not natural victory"
+    },
+    {
+      "zone": "gray_meadow",
+      "phase": 3,
+      "mechanic": "armor",
+      "nodes": 6,
+      "fixture": "explicit paused phase, not natural victory"
+    },
+    {
+      "zone": "forgotten_mine",
+      "phase": 2,
+      "mechanic": "crystal",
+      "nodes": 2,
+      "fixture": "explicit paused phase, not natural victory"
+    },
+    {
+      "zone": "forgotten_mine",
+      "phase": 3,
+      "mechanic": "crystal",
+      "nodes": 3,
+      "fixture": "explicit paused phase, not natural victory"
+    },
+    {
+      "zone": "moonrest_forest",
+      "phase": 2,
+      "mechanic": "ritual",
+      "nodes": 3,
+      "fixture": "explicit paused phase, not natural victory"
+    },
+    {
+      "zone": "moonrest_forest",
+      "phase": 3,
+      "mechanic": "ritual",
+      "nodes": 3,
+      "fixture": "explicit paused phase, not natural victory"
+    }
+  ],
+  "note": "Read-only aggregate mechanic visuals, paused state, warning precedence and swept spread movement. No new damage pools or FPS measurement."
+}

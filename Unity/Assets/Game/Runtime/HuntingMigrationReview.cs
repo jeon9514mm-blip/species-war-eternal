@@ -40,7 +40,7 @@ namespace Eternal.UnityMigration
         VisualElement currencyBadges;
         VisualElement huntStageTrack,huntStageFill,huntActions;
         Label raidInfo;
-        Button dodgeButton,counterButton,autoEvadeButton,trainingButton,counterPracticeButton;
+        Button counterButton,autoEvadeButton,trainingButton,counterPracticeButton;
         Label stageLabel,currencyLabel,goldLabel,gemLabel,statusLabel,chainLabel,fixtureLabel;
         double accumulator,hudTimer;
         float speed=1;
@@ -176,6 +176,8 @@ namespace Eternal.UnityMigration
             // actionable buttons current on every rendered frame.
             if(Raid!=null)RefreshRaidActions();
             RefreshSkillPresentation();
+            RefreshRaidPresentation();
+            RefreshMovementJoystick();
             FrameCost.End();
         }
         void UpdateAfterImages(float dt)
@@ -288,24 +290,27 @@ namespace Eternal.UnityMigration
             }
             SelectNavigation("사냥");
             modal=Box(root,"inspection",Ink);modal.style.position=Position.Absolute;modal.style.right=18;modal.style.top=108;modal.style.bottom=188;modal.style.width=410;modal.style.display=DisplayStyle.None;modal.style.paddingLeft=18;modal.style.paddingRight=18;modal.style.paddingTop=16;
-            raidCommands=Box(root,"raid-actions",Ink);raidCommands.style.position=Position.Absolute;raidCommands.style.left=18;raidCommands.style.right=18;raidCommands.style.bottom=184;raidCommands.style.height=87;raidCommands.style.display=DisplayStyle.None;raidCommands.style.paddingLeft=12;raidCommands.style.paddingRight=12;
+            raidCommands=Box(root,"raid-actions",Ink);raidCommands.style.position=Position.Absolute;raidCommands.style.left=18;raidCommands.style.right=18;raidCommands.style.bottom=184;raidCommands.style.height=124;raidCommands.style.display=DisplayStyle.None;raidCommands.style.paddingLeft=12;raidCommands.style.paddingRight=12;
             raidInfo=Text(raidCommands,"",14);raidInfo.style.height=24;raidInfo.style.unityTextAlign=TextAnchor.MiddleCenter;
             var commands=Row(raidCommands);commands.style.alignItems=Align.Center;
-            Button(commands,"추적 복귀",()=>Raid?.ResumeFormation()).style.flexGrow=1;
             Button(commands,"스킬",()=>Raid?.ManualCast(false)).style.flexGrow=1;
             Button(commands,"각성",()=>Raid?.ManualCast(true)).style.flexGrow=1;
             counterButton=Button(commands,"카운터",()=>Raid?.Counter());counterButton.style.flexGrow=1;
-            autoEvadeButton=Button(commands,"자동 회피 ON",()=>{if(Raid!=null)Raid.AutoEvade=!Raid.AutoEvade;});autoEvadeButton.style.flexGrow=1;
-            autoEvadeButton.tooltip="자동 회피를 끄면 지정한 대열과 정면 카운터 위치를 유지합니다. 긴급 회피는 계속 사용할 수 있습니다.";
-            dodgeButton=Button(commands,"긴급 회피",()=>Raid?.Dodge());dodgeButton.style.flexGrow=1;
-            trainingButton=Button(commands,"패턴 훈련",()=>{if(Raid!=null){if(playerSession!=null)StartRaid(Raid.Zone,50,!playerRaidTraining);else StartRaid(Raid.Zone,Raid.ReviewLevel==100?50:100);}});trainingButton.style.flexGrow=1;
+            var tactics=Row(raidCommands);tactics.style.alignItems=Align.Center;tactics.style.marginTop=5;
+            followButton=Button(tactics,"추적 복귀",()=>Raid?.ResumeFormation());followButton.style.flexGrow=1;
+            spreadButton=Button(tactics,"산개 대형",()=>Raid?.SpreadFormation());spreadButton.style.flexGrow=1;spreadButton.tooltip="두 줄로 간격을 벌립니다. 조이스틱을 드래그하면 직접 이동으로 전환합니다.";
+            autoEvadeButton=Button(tactics,"자동 회피 ON",()=>{if(Raid!=null)Raid.AutoEvade=!Raid.AutoEvade;});autoEvadeButton.style.flexGrow=1;
+            autoEvadeButton.tooltip="자동 대열의 회피를 설정합니다. 조이스틱 직접 이동 중에는 자동 회피가 개입하지 않습니다.";
+            trainingButton=Button(tactics,"패턴 훈련",()=>{if(Raid!=null){if(playerSession!=null)StartRaid(Raid.Zone,50,!playerRaidTraining);else StartRaid(Raid.Zone,Raid.ReviewLevel==100?50:100);}});trainingButton.style.flexGrow=1;
             trainingButton.tooltip="Lv.50 임시 원정대로 같은 보스 패턴을 연습합니다. 현재 전투는 새로 시작하며 저장 기록과 보상은 바뀌지 않습니다.";
-            counterPracticeButton=Button(commands,"카운터 연습",()=>{if(playerSession==null||playerRaidTraining)Raid?.BeginCounterPractice();});counterPracticeButton.style.flexGrow=1;
+            counterPracticeButton=Button(tactics,"카운터 연습",()=>{if(playerSession==null||playerRaidTraining)Raid?.BeginCounterPractice();});counterPracticeButton.style.flexGrow=1;
             counterPracticeButton.tooltip="기존 부채꼴 패턴을 재현합니다. 훈련 동안 평타·자동 스킬을 쉬고 정면 카운터와 회피를 연습하세요.";
             mechanicTrack=new VisualElement{name="raid-mechanic-track"};mechanicTrack.style.height=6;mechanicTrack.style.flexShrink=0;mechanicTrack.style.marginTop=8;mechanicTrack.style.backgroundColor=new Color(.13f,.18f,.19f);raidCommands.Add(mechanicTrack);
             mechanicBar=new VisualElement{name="raid-mechanic-fill"};mechanicBar.style.height=6;mechanicBar.style.backgroundColor=Moss;mechanicTrack.Add(mechanicBar);
             BuildSkillPresentation();
             BuildCombatReadability();
+            BuildRaidPresentation();
+            BuildMovementJoystick();
             BuildChainStrip();
             battleSpace.pickingMode=PickingMode.Position;
             BuildHuntMapTools(battleSpace);
@@ -372,7 +377,7 @@ namespace Eternal.UnityMigration
             currencyLabel.text=Raid!=null?"HP "+Raid.Boss.Hp.ToString("N0")+" / "+Raid.Boss.MaxHp.ToString("N0")+" · "+TimeSpan.FromSeconds(Math.Max(0,240-Raid.Elapsed)).ToString(@"mm\:ss"):"◈ 골드 "+ReviewState.WalletGold.ToString("N0")+"   ·   ◆ 젬 "+ReviewState.WalletGems.ToString("N0");
             currencyBadges.style.display=Raid==null?DisplayStyle.Flex:DisplayStyle.None;currencyLabel.style.display=Raid!=null?DisplayStyle.Flex:DisplayStyle.None;
             goldLabel.text=ReviewState.WalletGold.ToString("N0");gemLabel.text=ReviewState.WalletGems.ToString("N0");
-            statusLabel.text=Raid!=null?(Raid.Paused?"일시정지":Raid.Running?"레이드 전투":Raid.EventText)+" · 원정대 "+ActiveBattle.Heroes.Count(h=>h.Alive)+"/10 · 피해 "+Raid.DamageDealt.ToString("N0"):(Simulation.Defeated?"원정대 전멸":Simulation.Paused?"일시정지":"자동 사냥")+" · "+Simulation.Battle.Heroes.Count(h=>h.Alive)+"/10  ·  적 "+Simulation.Battle.Enemies.Count(e=>e.Alive)+"  ·  무리 "+Simulation.PacksCleared+"  ·  ×"+speed;
+            statusLabel.text=Raid!=null?(Raid.Paused?"일시정지":Raid.Running?"레이드 전투":Raid.EventText)+" · "+Raid.MovementOrder+" · 원정대 "+ActiveBattle.Heroes.Count(h=>h.Alive)+"/"+ActiveBattle.Heroes.Count+" · 피해 "+Raid.DamageDealt.ToString("N0"):(Simulation.Defeated?"원정대 전멸":Simulation.Paused?"일시정지":Simulation.ManualMovementActive?"직접 이동":"자동 사냥")+" · "+Simulation.Battle.Heroes.Count(h=>h.Alive)+"/"+Simulation.Battle.Heroes.Count+"  ·  적 "+Simulation.Battle.Enemies.Count(e=>e.Alive)+"  ·  무리 "+Simulation.PacksCleared+"  ·  ×"+speed;
             if(Raid==null&&Time.unscaledTime<huntNoticeUntil)statusLabel.text+=" · "+huntNotice;
             if(Raid==null&&PersistentPlayer&&ReviewState.HasDeferredUnityLoot)statusLabel.text="장비 보관 대기 · 가방을 정리하고 보관함에서 수령하세요.";
             RefreshHuntMapTools();
@@ -571,11 +576,13 @@ namespace Eternal.UnityMigration
         void RefreshRaidActions()
         {
             if(Raid==null)return;
+            bool active=Raid.Running&&!Raid.Paused;
+            spreadButton.SetEnabled(active);followButton.SetEnabled(active);
+            spreadButton.style.color=Raid.MovementOrder=="산개"?Bronze:Parchment;followButton.style.color=Raid.MovementOrder=="역할 추적"?Bronze:Parchment;
             trainingButton.text=playerSession!=null?(playerRaidTraining?"원정대 전투":"패턴 훈련"):Raid.ReviewLevel==50?"Lv100 전투":"패턴 훈련";trainingButton.SetEnabled(!Raid.Paused);
             counterPracticeButton.style.display=Raid.ReviewLevel==50&&(playerSession==null||playerRaidTraining)&&Raid.Zone!="forgotten_mine"?DisplayStyle.Flex:DisplayStyle.None;counterPracticeButton.SetEnabled(Raid.Running&&!Raid.Paused&&!Raid.CounterPractice);
-            autoEvadeButton.text=Raid.AutoEvade?"자동 회피 ON":"자동 회피 OFF";autoEvadeButton.SetEnabled(Raid.Running&&!Raid.Paused);
+            autoEvadeButton.text=Raid.AutoEvade?"자동 회피 ON":"자동 회피 OFF";autoEvadeButton.SetEnabled(Raid.Running&&!Raid.Paused&&!Raid.ManualMovementActive);
             autoEvadeButton.style.color=Raid.AutoEvade?Moss:Bronze;
-            dodgeButton.text=Raid.DodgeCooldown>0?"회피 "+Raid.DodgeCooldown.ToString("F1")+"초":"긴급 회피";dodgeButton.SetEnabled(Raid.Running&&!Raid.Paused&&Raid.DodgeCooldown<=0);
             bool ready=Raid.CounterReady;counterButton.SetEnabled(ready);counterButton.style.backgroundColor=ready?new Color(.12f,.36f,.54f):new Color(.10f,.14f,.15f);
             counterButton.tooltip=ready?"정면 카운터로 보스 공격 차단":Raid.CounterWindowOpen?"보스 정면에 움직일 수 있는 영웅이 필요합니다.":"부채꼴 공격 직전 정면에서 사용";
         }

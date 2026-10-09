@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "comparisons": 72210,
+  "max_tick_movement": 0.220000267,
+  "minimum_clearance": 0.9995211,
+  "note": "Four-direction real simulation movement, clamping, collisions, hold/release, pause and resumed automatic tracking. No dodge teleport or invulnerability; not a performance benchmark."
+}

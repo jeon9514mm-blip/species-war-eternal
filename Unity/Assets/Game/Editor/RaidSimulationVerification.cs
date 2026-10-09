@@ -91,7 +91,7 @@ namespace Eternal.UnityMigration.Editor
             int heroMeshes=0;foreach(var entry in OriginalCatalog.Actors.entries)
             {
                 var mesh=OriginalReliefMesh.Load(entry.id);if(mesh==null)throw new InvalidOperationException("Original relief could not load: "+entry.id);
-                comparisons++;if(entry.hero){Equal("hero body triangles",mesh.Body.triangles.Length/3,6000);Equal("hero hair cards",mesh.Hair.triangles.Length/6,600);heroMeshes++;}
+                comparisons++;if(entry.hero){Equal("hero body triangles",mesh.Body.triangles.Length/3,OriginalCatalog.HasStyle(entry.id)?6144:6000);Equal("hero hair cards",mesh.Hair.triangles.Length/6,600);heroMeshes++;}
                 if(entry.hero&&mesh.BodyLod==null)throw new InvalidOperationException("Hero relief LOD missing: "+entry.id);
             }
             var cape=new CapeChainMotion();for(int i=0;i<600;i++){cape.Advance(1/60f,i/60f,.8f,.4f);foreach(var point in cape.Points){comparisons++;if(!float.IsFinite(point.x)||!float.IsFinite(point.y)||point.magnitude>2.6001f)throw new InvalidOperationException("Cape chain diverged.");}Equal("cape pinned root",cape.Points[0].magnitude,0);}
