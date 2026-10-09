@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "comparisons": 21,
+  "actual_user_saves_read": false,
+  "note": "Three painting resources, earliest-warning/actual counter cues are read-only; separate regional chain storage and atomic exact-length restoration. No FPS benchmark."
+}

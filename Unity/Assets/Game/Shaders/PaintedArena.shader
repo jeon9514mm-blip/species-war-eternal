@@ -1,6 +1,6 @@
 Shader "Eternal/PaintedArena"
 {
-    Properties { _MainTex("Original arena painting",2D)="white" {} _Tint("Paint exposure",Color)=(1,1,1,1) }
+    Properties { _MainTex("Original arena painting",2D)="white" {} _Tint("Paint exposure",Color)=(1,1,1,1) _WorldAnchored("World anchored painting",Float)=0 }
     SubShader
     {
         Tags { "RenderPipeline"="UniversalPipeline" "Queue"="Geometry" "RenderType"="Opaque" }
@@ -18,6 +18,7 @@ Shader "Eternal/PaintedArena"
             TEXTURE2D(_MainTex);SAMPLER(sampler_MainTex);
             CBUFFER_START(UnityPerMaterial)
             float4 _Tint;float4 _MainTex_TexelSize;
+            float _WorldAnchored;float4 _PaintingCenter;float4 _PaintingRight;float4 _PaintingUp;
             CBUFFER_END
             struct A {float4 positionOS:POSITION;};
             struct V {float4 positionCS:SV_POSITION;float4 screen:TEXCOORD0;float3 world:TEXCOORD1;};
@@ -29,7 +30,12 @@ Shader "Eternal/PaintedArena"
                 float2 uv=v.screen.xy/v.screen.w;
                 float viewAspect=unity_OrthoParams.x/unity_OrthoParams.y;
                 float artAspect=_MainTex_TexelSize.z/_MainTex_TexelSize.w;
-                if(viewAspect>artAspect)uv.y=(uv.y-.5)*(artAspect/viewAspect)+.5;
+                if(_WorldAnchored>.5)
+                {
+                    float3 delta=v.world-_PaintingCenter.xyz;
+                    uv=float2(dot(delta,_PaintingRight.xyz)/max(.01,_PaintingRight.w),dot(delta,_PaintingUp.xyz)/max(.01,_PaintingUp.w))+.5;
+                }
+                else if(viewAspect>artAspect)uv.y=(uv.y-.5)*(artAspect/viewAspect)+.5;
                 else uv.x=(uv.x-.5)*(viewAspect/artAspect)+.5;
                 half3 paint=SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,uv).rgb*_Tint.rgb;
                 Light sun=GetMainLight(TransformWorldToShadowCoord(v.world));

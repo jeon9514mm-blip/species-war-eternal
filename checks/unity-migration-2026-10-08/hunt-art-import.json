@@ -1,0 +1,40 @@
+{
+  "paintings": [
+    {
+      "zone": "gray_meadow",
+      "path": "Assets/Game/Resources/Eternal/Environment/Hunt/meadow-hunt-v1.png",
+      "width": 1024,
+      "height": 683,
+      "editor_format": "RGBA32",
+      "authored_standalone_format": "BC7",
+      "authored_android_format": "ASTC_6x6",
+      "shader_supported": true,
+      "shader_errors": false
+    },
+    {
+      "zone": "forgotten_mine",
+      "path": "Assets/Game/Resources/Eternal/Environment/Hunt/mine-hunt-v1.png",
+      "width": 1024,
+      "height": 683,
+      "editor_format": "RGBA32",
+      "authored_standalone_format": "BC7",
+      "authored_android_format": "ASTC_6x6",
+      "shader_supported": true,
+      "shader_errors": false
+    },
+    {
+      "zone": "moonrest_forest",
+      "path": "Assets/Game/Resources/Eternal/Environment/Hunt/forest-hunt-v1.png",
+      "width": 1024,
+      "height": 683,
+      "editor_format": "RGBA32",
+      "authored_standalone_format": "BC7",
+      "authored_android_format": "ASTC_6x6",
+      "shader_supported": true,
+      "shader_errors": false
+    }
+  ],
+  "native_import": true,
+  "android_device_verified": false,
+  "note": "Built-in source PNGs retained unchanged; max-size 1024 paintings. BC7/ASTC6x6 are authored settings; observed texture format is recorded separately. World projection does not add remodeled collision or baked PBR."
+}

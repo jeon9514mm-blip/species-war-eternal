@@ -9,7 +9,7 @@ namespace Eternal.UnityMigration
         {
             PanelHeader("지역 레이드");
             Text(modal,"원정대 10인 · 3단계 보스 · 제한 시간 4분",12).style.color=Moss;
-            var scope=Text(modal,"Lv100 임시 원정대로 도전합니다. 패턴 훈련은 입장 후 선택할 수 있습니다.",12);scope.style.whiteSpace=WhiteSpace.Normal;scope.style.marginTop=8;
+            var scope=Text(modal,PersistentPlayer?"현재 원정대 "+ReviewState.DeployedHeroes().Count+"인 · 평균 Lv"+PlayerLevel()+"로 도전합니다. 입장 후 보상 없는 패턴 훈련을 선택할 수 있습니다.":"Lv100 임시 원정대로 도전합니다. 패턴 훈련은 입장 후 선택할 수 있습니다.",12);scope.style.whiteSpace=WhiteSpace.Normal;scope.style.marginTop=8;
             var list=new ScrollView();list.style.flexGrow=1;list.style.marginTop=8;modal.Add(list);
             foreach(string zone in new[]{"gray_meadow","forgotten_mine","moonrest_forest"})
             {
@@ -26,6 +26,7 @@ namespace Eternal.UnityMigration
                 var identity=Text(copy,meadow?"갑주 파괴 · 정면 카운터":mine?"수정핵 제거 · 낙석 회피":"월식 의식 저지 · 표식 회피",11);identity.style.color=Bronze;identity.style.whiteSpace=WhiteSpace.Normal;identity.style.marginTop=8;
                 Text(copy,meadow?"하늘의 유적":mine?"잊힌 호박빛 채석장":"달빛 성소",11).style.color=Moss;
                 var description=Text(card,(string)design["description"],12);description.style.whiteSpace=WhiteSpace.Normal;description.style.marginTop=10;
+                if(PersistentPlayer)Text(card,"승리 보상 · 골드 "+((long)z["gold"]*20).ToString("N0")+" · 경험치 "+((int)z["xp"]*10).ToString("N0"),12).style.color=Bronze;
             }
         }
     }

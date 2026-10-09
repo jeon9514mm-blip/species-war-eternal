@@ -52,6 +52,7 @@ namespace Eternal.UnityMigration
             chainStrip.style.display=Raid==null&&modal.style.display.value==DisplayStyle.None?DisplayStyle.Flex:DisplayStyle.None;
             if(Raid!=null)return;var chain=Simulation.Chain;
             chainToggle.text=chain.Enabled?"연계 ON":"연계 OFF";chainToggle.style.color=chain.Enabled?Moss:Bronze;
+            chainToggle.SetEnabled(CanEditChain);
             for(int i=0;i<chainTiles.Count;i++)
             {
                 var tile=chainTiles[i];if(i>=chain.Entries.Count){tile.card.style.display=DisplayStyle.None;continue;}

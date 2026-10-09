@@ -164,7 +164,8 @@ namespace Eternal.UnityMigration
                 {
                     var c=color;c.a=(1-echo*.28f)*.64f*attenuation;
                     var center=Vector3.Lerp(e.from,e.to,Mathf.Clamp01(t-echo*.14f))+Vector3.up*.86f;
-                    PaintedQuad(center,1.45f-echo*.12f,.72f,angle,c,6);PaintedFlightQuads++;
+                    int flightCell=cell>=0&&cell<=3?cell:6;
+                    PaintedQuad(center,1.30f-echo*.12f,flightCell==6?.55f:.68f,angle,c,flightCell);PaintedFlightQuads++;
                 }
             }
             float duration=Mathf.Clamp(p.Impact+.12f,.22f,.40f);
@@ -179,7 +180,9 @@ namespace Eternal.UnityMigration
                     height=(cell==5?(ultimate?1.25f:1.0f):(ultimate?1.95f:1.55f))*(.9f+Mathf.Sin(t*Mathf.PI)*.1f);
                     color.a=Mathf.Pow(1-t,1.1f)*(cell==5?.28f:.36f)*attenuation;
                 }
-                float angle=cell==0||cell==7?p.Twist*.4f+p.Glyph*.017f:0;
+                var direction=e.to-e.from;var right=camera!=null?camera.transform.right:Vector3.right;var up=camera!=null?camera.transform.up:Vector3.up;
+                float aim=Mathf.Atan2(Vector3.Dot(direction,up),Vector3.Dot(direction,right));
+                float angle=cell==0||cell==7?aim+p.Twist*.4f+Mathf.Sin(t*Mathf.PI)*.22f:cell==3?p.Twist*t*.6f:0;
                 PaintedQuad(e.to+Vector3.up*(height*.36f+.09f),height*cellAspect,height,angle,color,cell);PaintedImpactQuads++;
             }
             if(shapeAtlas&&e.age>=duration&&e.age<e.lifetime)

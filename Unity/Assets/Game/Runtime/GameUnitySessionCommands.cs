@@ -40,6 +40,13 @@ namespace Eternal.UnityMigration
             state["unity_raid_active"]=new JObject{{"zone",zone},{"attempt",attempt}};
             var result=StateCommandResult.Success("레이드 도전");result.Details["attempt"]=attempt;return result;
         });
+        public StateCommandResult SetUnityRaidChain(string zone,ChainSkill[] entries,bool enabled)=>Commit(state=>
+        {
+            var deployed=DeployedHeroes();
+            if(!UnityPlayer||zone==null||!new[]{"gray_meadow","forgotten_mine","moonrest_forest"}.Contains(zone)||entries==null||entries.Length<1||entries.Length>6||entries.Distinct().Count()!=entries.Length||entries.Any(s=>!deployed.Contains(s.Hero)||s.Slot!="a1"&&s.Slot!="a2"&&s.Slot!="ultimate"))return StateCommandResult.Fail("레이드 스킬 연계를 확인하세요.");
+            Map(state,"unity_raid_chains")[zone]=new JObject{{"enabled",enabled},{"entries",new JArray(entries.Select(s=>new JObject{{"hero",s.Hero},{"slot",s.Slot}}))}};
+            return StateCommandResult.Success("이 지역의 레이드 연계가 저장되었습니다.");
+        });
         public StateCommandResult SettleUnityRaid(string zone,long attempt)=>Commit(state=>
         {
             var active=state["unity_raid_active"] as JObject;
