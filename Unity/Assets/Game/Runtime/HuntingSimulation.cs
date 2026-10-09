@@ -147,7 +147,8 @@ namespace Eternal.UnityMigration
             string[] ids=Zone=="gray_meadow"?new[]{"goblin","wild_dog","bristle_boar","wind_crow"}:Zone=="forgotten_mine"?new[]{"mine_orc","iron_mole","crystal_spider","lava_bat"}:new[]{"moon_wolf","forest_wraith","mushroom","night_raven","frost_deer"};
             if(PlayerState?.UnityPlayer==true)ids=FallenMonsterCatalog.Wave(Zone);
             var roles=(JArray)zone["wave_pattern"];
-            for(int i=0;i<12;i++)
+            bool expanded=PlayerState?.UnityPlayer==true;int population=expanded?FallenMonsterCatalog.Population(Stage):12;
+            for(int i=0;i<population;i++)
             {
                 string role=(string)roles[(i+Battle.EncounterSerial)%roles.Count];
                 string monster=ids[(i+Battle.EncounterSerial)%ids.Length];bool fallen=FallenMonsterCatalog.Contains(monster);
@@ -158,7 +159,10 @@ namespace Eternal.UnityMigration
                 if(role=="ranged")attack=(int)(attack*1.1);else if(role=="assassin")attack=(int)(attack*(Zone=="moonrest_forest"?1.22:1.18));
                 if(role=="brute"&&Zone=="forgotten_mine")hp=(int)(hp*1.18);else if(role=="support"&&Zone=="forgotten_mine")attack=(int)(attack*.82);
                 if(monster=="fallen_dwarf")hp=(int)(hp*1.12);
-                var position=HuntFormationLayout.Entrance(i,Battle.EncounterSerial)*(PlayerState?.UnityPlayer==true?1.8f:1f);
+                if(monster=="fallen_ogre")hp=(int)(hp*1.2);
+                // More targets without doubling the first-stage damage wall.
+                if(expanded){hp=Math.Max(40,(int)(hp*.8));attack=Math.Max(4,(int)(attack*.8));}
+                var position=expanded?HuntFormationLayout.ExpandedEntrance(i,Battle.EncounterSerial,population):HuntFormationLayout.Entrance(i,Battle.EncounterSerial);
                 var probe=new Combatant{Id=monster,Position=position};
                 // Choose a clear entrance before the actor is visible. Never
                 // spawn inside the expedition or teleport an active combatant.
@@ -175,7 +179,7 @@ namespace Eternal.UnityMigration
                     }
                     if(!found)break;
                 }
-                Battle.Enemies.Add(new Combatant{Id=monster,Serial=++serial,Slot=i,Hp=hp,MaxHp=hp,Attack=attack,Defense=monster=="fallen_dwarf"?4:0,EnemyRow=role=="brute"||role=="skirmisher"?0:role=="assassin"?1:2,Archetype=role,Elite=elite,Position=position,PreviousPosition=position,AttackRemaining=.6+i*.08});
+                Battle.Enemies.Add(new Combatant{Id=monster,Serial=++serial,Slot=i,Hp=hp,MaxHp=hp,Attack=attack,Defense=monster=="fallen_dwarf"?4:monster=="fallen_ogre"?6:0,EnemyRow=role=="brute"||role=="skirmisher"?0:role=="assassin"?1:2,Archetype=role,Elite=elite,Position=position,PreviousPosition=position,AttackRemaining=.6+i*.08});
                 behaviorRemaining[serial]=1+Battle.Random.NextDouble()*7;personalities[serial]=Battle.Random.Next(4);
             }
             OnEvent?.Invoke(new BattleEvent("pack",null,"",null));
@@ -265,7 +269,7 @@ namespace Eternal.UnityMigration
             if(pool.Count==0)pool=alive;
             return pool.FirstOrDefault(h=>h.Id==e.TargetId)??pool.OrderBy(h=>Vector2.SqrMagnitude(h.Position-e.Position)).First();
         }
-        static double EnemyReach(Combatant e)=>e.Id=="fallen_elf"?3.2:e.Archetype=="ranged"?1.65:e.Archetype=="support"?1.8:e.Archetype=="assassin"?.82:.92;
+        static double EnemyReach(Combatant e)=>e.Id=="fallen_lich"?3.6:e.Id=="fallen_elf"?3.2:e.Id=="fallen_ogre"?1.25:e.Archetype=="ranged"?1.65:e.Archetype=="support"?1.8:e.Archetype=="assassin"?.82:.92;
         void MoveEnemies(float dt)
         {
             foreach(var e in Battle.Enemies.Where(a=>a.Alive))
@@ -273,7 +277,7 @@ namespace Eternal.UnityMigration
                 if(e.Stun>0||intents.ContainsKey(e.Serial)){e.Velocity=Vector2.zero;continue;}
                 var target=EnemyTarget(e,false);e.TargetId=target?.Id??"";if(target==null)continue;
                 behaviorRemaining[e.Serial]-=dt;if(behaviorRemaining[e.Serial]<=0){behaviorRemaining[e.Serial]=1+Battle.Random.NextDouble()*7;personalities[e.Serial]=Battle.Random.Next(4);}
-                float moveSpeed=e.Id=="fallen_werewolf"?1.9f:e.Id=="fallen_dwarf"?.95f:1.25f;
+                float moveSpeed=e.Id=="fallen_harpy"?2f:e.Id=="fallen_werewolf"?1.9f:e.Id=="fallen_ogre"?.82f:e.Id=="fallen_lich"?1f:e.Id=="fallen_dwarf"?.95f:1.25f;
                 Vector2 delta=target.Position-e.Position,velocity=delta.magnitude>EnemyReach(e)*.9?delta.normalized*moveSpeed:Vector2.zero;
                 var alignment=Vector2.zero;var center=Vector2.zero;int nearby=0;
                 foreach(var other in Battle.Enemies)if(other!=e&&other.Alive&&Vector2.Distance(e.PreviousPosition,other.PreviousPosition)<3){alignment+=other.Velocity;center+=other.PreviousPosition;nearby++;}
@@ -282,7 +286,7 @@ namespace Eternal.UnityMigration
                 if(personality==0&&e.HpRatio<.3&&delta.magnitude<2)velocity-=delta.normalized*.6f;
                 else if(personality==2)velocity*=.7f;
                 else if(personality==3&&delta.magnitude>EnemyReach(e))velocity+=new Vector2(-delta.y,delta.x).normalized*Mathf.Sin((float)Elapsed+e.Serial)*.18f;
-                velocity+=Separation(e,false);e.Velocity=Vector2.Lerp(e.Velocity,Vector2.ClampMagnitude(velocity,e.Id=="fallen_werewolf"?2.2f:1.8f),dt*8);e.Position=MoveLegally(e,e.Velocity*dt);
+                velocity+=Separation(e,false);e.Velocity=Vector2.Lerp(e.Velocity,Vector2.ClampMagnitude(velocity,e.Id=="fallen_werewolf"||e.Id=="fallen_harpy"?2.2f:1.8f),dt*8);e.Position=MoveLegally(e,e.Velocity*dt);
             }
         }
         void AdvanceHero(Combatant h,double dt)
@@ -320,12 +324,12 @@ namespace Eternal.UnityMigration
                     enemySkillNext[e.Serial]=Elapsed+8;
                     if(actual>0&&intent.target.Alive){ApplyMonsterSkill(e,intent.target);MonsterSkills++;Battle.Emit("monster_skill",e,intent.action,intent.target,actual);}
                 }
-                e.AttackRemaining=e.Id=="fallen_dwarf"?1.65:e.Id=="fallen_werewolf"?1.0:1.2;e.Windup=-1;return;
+                e.AttackRemaining=e.Id=="fallen_ogre"?1.9:e.Id=="fallen_lich"?1.6:e.Id=="fallen_dwarf"?1.65:e.Id=="fallen_werewolf"?1.0:1.2;e.Windup=-1;return;
             }
             if(e.AttackRemaining>0)return;var target=EnemyTarget(e,true);if(target==null)return;
             bool skill=PlayerState?.UnityPlayer==true&&Stage>=100&&FallenMonsterCatalog.Contains(e.Id)&&enemyHits.GetValueOrDefault(e.Serial)>=2&&Elapsed>=enemySkillNext.GetValueOrDefault(e.Serial);
             string action=skill?FallenMonsterCatalog.Skill(e.Id):"basic";
-            intents[e.Serial]=(target,action);e.Windup=skill?.75:e.Id=="fallen_dwarf"?.38:e.Id=="fallen_werewolf"?.32:.22;Battle.Emit("windup",e,action,target);
+            intents[e.Serial]=(target,action);e.Windup=skill?(e.Id=="fallen_ogre"?1.05:.75):e.Id=="fallen_dwarf"||e.Id=="fallen_ogre"?.38:e.Id=="fallen_werewolf"?.32:.22;Battle.Emit("windup",e,action,target);
         }
         void ApplyMonsterSkill(Combatant enemy,Combatant hero)
         {
@@ -335,6 +339,13 @@ namespace Eternal.UnityMigration
             else if(enemy.Id=="fallen_vampire"){hero.ApplyStatus("weaken",duration);Battle.Heal(enemy,enemy,Math.Max(1,enemy.Attack/2),"siphon");}
             else if(enemy.Id=="fallen_werewolf")
             {if(Stage>=250){hero.Bleed=3;bleeds[hero.Serial]=(enemy,hero,3,1);}else hero.ApplyStatus("weaken",duration);}
+            else if(enemy.Id=="fallen_ogre"){hero.ApplyStatus("weaken",duration);if(Stage>=250)hero.ApplyStatus("stun",.5);}
+            else if(enemy.Id=="fallen_lich")
+            {
+                hero.ApplyStatus("weaken",duration);
+                if(Stage>=500){var ally=Battle.Enemies.Where(e=>e.Alive&&e!=enemy&&Vector2.Distance(e.Position,enemy.Position)<4).OrderBy(e=>e.Hp/(double)e.MaxHp).FirstOrDefault();if(ally!=null)Battle.Heal(enemy,ally,Math.Max(1,enemy.Attack/2),"spectral_mend");}
+            }
+            else if(enemy.Id=="fallen_harpy"){hero.ApplyStatus("weaken",duration);if(Stage>=250){hero.Bleed=3;bleeds[hero.Serial]=(enemy,hero,3,1);}}
         }
         void TickMonsterBleeds(double dt)
         {
@@ -351,6 +362,8 @@ namespace Eternal.UnityMigration
         public Vector2 BodyAxes(Combatant left,Combatant right)
         {
             bool a=IsHero(left),b=IsHero(right);
+            if(left.Id=="fallen_ogre"||right.Id=="fallen_ogre")return new Vector2(1.1f,1.65f);
+            if(left.Id=="fallen_harpy"||right.Id=="fallen_harpy")return new Vector2(.9f,1.25f);
             return a&&b?new Vector2(1.50f,2.65f):a||b?new Vector2(.68f,1.15f):new Vector2(.62f,1.05f);
         }
         public bool ClearAt(Combatant actor,Vector2 position)

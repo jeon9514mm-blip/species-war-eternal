@@ -20,7 +20,7 @@ namespace Eternal.UnityMigration
         });
         public StateCommandResult SettleUnityPack(int pack,long gold,int xp,int defeats=12)=>Commit(state=>
         {
-            if(!UnityPlayer||HasDeferredUnityLoot||pack!=Integer(state["unity_pack_total"],0,0,int.MaxValue-1)+1||gold<0||gold>CurrencyCap||xp<0||xp>100000000||defeats<1||defeats>12)return StateCommandResult.Fail("중복되거나 잘못된 사냥 보상입니다.");
+            if(!UnityPlayer||HasDeferredUnityLoot||pack!=Integer(state["unity_pack_total"],0,0,int.MaxValue-1)+1||gold<0||gold>CurrencyCap||xp<0||xp>100000000||defeats<1||defeats>FallenMonsterCatalog.Population(1+(pack-1)/5))return StateCommandResult.Fail("중복되거나 잘못된 사냥 보상입니다.");
             // Award the defeated wave's theme, before stage/party advancement.
             string zone=HuntStageWorld.Zone(1+(pack-1)/5);
             var drops=AwardUnityHuntLoot(state,zone,pack,defeats);

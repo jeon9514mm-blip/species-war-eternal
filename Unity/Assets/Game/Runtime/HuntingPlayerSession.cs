@@ -157,13 +157,14 @@ namespace Eternal.UnityMigration
                 var copy=new VisualElement();copy.style.flexGrow=1;copy.style.minWidth=0;row.Add(copy);
                 Text(copy,HuntStageWorld.Start(stage)+"~"+HuntStageWorld.End(stage)+" · "+HuntStageWorld.Atmosphere(stage),14).style.color=Bronze;
                 Text(copy,"골드 "+region["gold"]+" · 경험치 "+region["xp"],12).style.color=Moss;
+                Text(copy,"한 무리 "+FallenMonsterCatalog.Population(stage)+"마리 · 타락한 몬스터 7종",12).style.color=Parchment;
             }
             Text(list,"1500부터 세 분위기가 500 스테이지마다 순환합니다. 레이드는 별도 전용 맵에서 진행합니다.",12).style.whiteSpace=WhiteSpace.Normal;
         }
         void ShowFallenMonsters()
         {
             PanelHeader("타락한 몬스터");var scroll=new ScrollView();scroll.style.flexGrow=1;modal.Add(scroll);
-            Text(scroll,"100부터 특수 공격 · 250부터 방어 파쇄·출혈 · 500부터 저주 기절 · 1000부터 망치 기절",12).style.whiteSpace=WhiteSpace.Normal;
+            Text(scroll,"원화 몬스터 7종 · 한 무리 24~32마리\n100부터 특수 공격 · 250부터 파쇄·출혈·오우거 기절 · 500부터 리치 회복·엘프 기절 · 1000부터 드워프 기절",12).style.whiteSpace=WhiteSpace.Normal;
             foreach(string id in FallenMonsterCatalog.Ids)
             {
                 var card=Box(scroll,"monster-card-"+id,new Color(.075f,.10f,.11f));card.style.marginTop=10;card.style.paddingTop=card.style.paddingBottom=10;

@@ -26,7 +26,7 @@ namespace Eternal.UnityMigration.Editor
                 var payload=NativePlayerSession.NewPayload(catalog,"aurelia");foreach(var p in ((JObject)payload["hero_progress"]).Properties())p.Value["level"]=50;payload["formation_id"]=formation;
                 var state=new GameStateCommands(catalog,payload,_=>true);var sim=new HuntingSimulation(1,9514,state);
                 Check(sim.Formation==formation&&sim.Battle.Heroes[0].Position==HuntFormationLayout.Position(formation,0,10),"saved formation creates actual bodies "+formation);
-                Check(sim.Battle.Enemies.Count==12&&sim.Battle.Enemies.Where(e=>e.Position.x>0).Count()>=3&&sim.Battle.Enemies.Where(e=>e.Position.x<0).Count()>=3,"distributed twelve entrances "+formation);
+                Check(sim.Battle.Enemies.Count==FallenMonsterCatalog.Population(sim.Stage)&&sim.Battle.Enemies.Where(e=>e.Position.x>0).Count()>=6&&sim.Battle.Enemies.Where(e=>e.Position.x<0).Count()>=6,"distributed expanded entrances "+formation);
                 for(int tick=0;tick<1600&&!sim.Defeated;tick++)
                 {
                     sim.Step(.05);var actors=sim.Battle.Heroes.Concat(sim.Battle.Enemies).Where(a=>a.Alive).ToArray();
@@ -59,7 +59,7 @@ namespace Eternal.UnityMigration.Editor
             var reloaded=new GameStateCommands(catalog,blocked.Snapshot(),_=>true);Check(!reloaded.HasDeferredUnityLoot&&JToken.DeepEquals(reloaded.Snapshot(),blocked.Snapshot()),"mail and receipts survive reload");
             var party=reloaded.DeployedHeroes().Reverse().Take(9).ToArray();Check(reloaded.SaveUnityPartyPreset(2,party,"volley").Ok,"ordered party preset save");string presetBefore=reloaded.Snapshot().ToString();Check(!reloaded.SaveUnityPartyPreset(3,party,"volley").Ok&&presetBefore==reloaded.Snapshot().ToString(),"invalid preset is atomic");
             var report=new JObject{{"passed",true},{"comparisons",checks},{"formations",scenarios},{"source_drop_policy","Godot EquipmentRules + Main rarity thresholds; one roll per defeated monster, settled with the wave nonce"},{"note","Synthetic domain verification, not a performance benchmark or proof of bespoke map art."}};
-            File.WriteAllText("../checks/unity-migration-2026-10-08/hunt-world-cp14.json",report.ToString());return report.ToString();
+            File.WriteAllText("../checks/unity-migration-2026-10-08/hunt-world-cp19.json",report.ToString());return report.ToString();
         }
     }
 }

@@ -1,0 +1,373 @@
+{
+  "passed": true,
+  "comparisons": 1913,
+  "scenarios": [
+    {
+      "id": "fallen_elf",
+      "stage": 99,
+      "confirmed_special_attacks": 0,
+      "warning_observed": false,
+      "weakness": false,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_elf",
+      "stage": 100,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_elf",
+      "stage": 250,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_elf",
+      "stage": 500,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": true
+    },
+    {
+      "id": "fallen_elf",
+      "stage": 1000,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": true
+    },
+    {
+      "id": "fallen_dwarf",
+      "stage": 99,
+      "confirmed_special_attacks": 0,
+      "warning_observed": false,
+      "weakness": false,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_dwarf",
+      "stage": 100,
+      "confirmed_special_attacks": 3,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_dwarf",
+      "stage": 250,
+      "confirmed_special_attacks": 3,
+      "warning_observed": true,
+      "weakness": false,
+      "armor_break": true,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_dwarf",
+      "stage": 500,
+      "confirmed_special_attacks": 3,
+      "warning_observed": true,
+      "weakness": false,
+      "armor_break": true,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_dwarf",
+      "stage": 1000,
+      "confirmed_special_attacks": 3,
+      "warning_observed": true,
+      "weakness": false,
+      "armor_break": true,
+      "bleed": false,
+      "stun": true
+    },
+    {
+      "id": "fallen_vampire",
+      "stage": 99,
+      "confirmed_special_attacks": 0,
+      "warning_observed": false,
+      "weakness": false,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_vampire",
+      "stage": 100,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_vampire",
+      "stage": 250,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_vampire",
+      "stage": 500,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_vampire",
+      "stage": 1000,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_werewolf",
+      "stage": 99,
+      "confirmed_special_attacks": 0,
+      "warning_observed": false,
+      "weakness": false,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_werewolf",
+      "stage": 100,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_werewolf",
+      "stage": 250,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": false,
+      "armor_break": false,
+      "bleed": true,
+      "stun": false
+    },
+    {
+      "id": "fallen_werewolf",
+      "stage": 500,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": false,
+      "armor_break": false,
+      "bleed": true,
+      "stun": false
+    },
+    {
+      "id": "fallen_werewolf",
+      "stage": 1000,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": false,
+      "armor_break": false,
+      "bleed": true,
+      "stun": false
+    },
+    {
+      "id": "fallen_ogre",
+      "stage": 99,
+      "confirmed_special_attacks": 0,
+      "warning_observed": false,
+      "weakness": false,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_ogre",
+      "stage": 100,
+      "confirmed_special_attacks": 3,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_ogre",
+      "stage": 250,
+      "confirmed_special_attacks": 3,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": true
+    },
+    {
+      "id": "fallen_ogre",
+      "stage": 500,
+      "confirmed_special_attacks": 3,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": true
+    },
+    {
+      "id": "fallen_ogre",
+      "stage": 1000,
+      "confirmed_special_attacks": 3,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": true
+    },
+    {
+      "id": "fallen_lich",
+      "stage": 99,
+      "confirmed_special_attacks": 0,
+      "warning_observed": false,
+      "weakness": false,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_lich",
+      "stage": 100,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_lich",
+      "stage": 250,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_lich",
+      "stage": 500,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_lich",
+      "stage": 1000,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_harpy",
+      "stage": 99,
+      "confirmed_special_attacks": 0,
+      "warning_observed": false,
+      "weakness": false,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_harpy",
+      "stage": 100,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": false,
+      "stun": false
+    },
+    {
+      "id": "fallen_harpy",
+      "stage": 250,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": true,
+      "stun": false
+    },
+    {
+      "id": "fallen_harpy",
+      "stage": 500,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": true,
+      "stun": false
+    },
+    {
+      "id": "fallen_harpy",
+      "stage": 1000,
+      "confirmed_special_attacks": 4,
+      "warning_observed": true,
+      "weakness": true,
+      "armor_break": false,
+      "bleed": true,
+      "stun": false
+    },
+    {
+      "id": "fallen_lich",
+      "stage": 499,
+      "ally_hp_before": 50000,
+      "ally_hp_after": 47058,
+      "confirmed_ally_healing": 0,
+      "scenario": "nearby ally recovery amid hero passives"
+    },
+    {
+      "id": "fallen_lich",
+      "stage": 500,
+      "ally_hp_before": 50000,
+      "ally_hp_after": 47258,
+      "confirmed_ally_healing": 200,
+      "scenario": "nearby ally recovery amid hero passives"
+    }
+  ],
+  "note": "Controlled contact scenarios exercise source combat, warning timing, cooldowns, mitigation, vampire and lich healing, stage gates and paused damage clocks. Full encounter difficulty balance remains to tune; not a performance benchmark."
+}

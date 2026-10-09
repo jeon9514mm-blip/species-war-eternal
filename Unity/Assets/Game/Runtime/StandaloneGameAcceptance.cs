@@ -15,7 +15,7 @@ namespace Eternal.UnityMigration
     // All player actions are real pointer down/up events across native frames.
     public sealed class StandaloneGameAcceptance : MonoBehaviour
     {
-        static string report,profile;static bool resume,raidMechanics,featureFocus;static int bandStart;
+        static string report,profile;static bool resume,raidMechanics,featureFocus,monsterFocus;static int bandStart;
         JObject saved;readonly JArray trace=new(),environments=new();int checks;string error="";float started;
         HuntingMigrationReview Game=>FindAnyObjectByType<HuntingMigrationReview>();
         VisualElement UI=>FindObjectsByType<UIDocument>().First(d=>d.isActiveAndEnabled).rootVisualElement;
@@ -25,7 +25,7 @@ namespace Eternal.UnityMigration
             if(!Debug.isDebugBuild)return;var args=Environment.GetCommandLineArgs();int flag=Array.IndexOf(args,"--eternal-game-qa");if(flag<0||flag+1>=args.Length)return;
             string build=Path.GetFullPath(Path.Combine(Application.dataPath,".."))+Path.DirectorySeparatorChar;report=Path.GetFullPath(args[flag+1]);
             if(!report.StartsWith(build,StringComparison.OrdinalIgnoreCase))throw new InvalidOperationException("Game QA output must stay inside the build.");
-            resume=args.Contains("--qa-resume");raidMechanics=args.Contains("--qa-raid-mechanics");featureFocus=args.Contains("--qa-feature-focus");string folder=resume?(string)JObject.Parse(File.ReadAllText(report))["scratch_name"]:"qa-profiles-"+Guid.NewGuid().ToString("N");
+            resume=args.Contains("--qa-resume");raidMechanics=args.Contains("--qa-raid-mechanics");featureFocus=args.Contains("--qa-feature-focus");monsterFocus=args.Contains("--qa-monster-focus");string folder=resume?(string)JObject.Parse(File.ReadAllText(report))["scratch_name"]:"qa-profiles-"+Guid.NewGuid().ToString("N");
             if(folder==null||folder.Length!=44||!folder.StartsWith("qa-profiles-",StringComparison.Ordinal)||!Guid.TryParseExact(folder[12..],"N",out _))throw new InvalidOperationException("Invalid isolated profile folder.");
             profile=Path.Combine(build,folder);EternalBootstrap.ProfileDirectoryOverride=profile;
             int bandFlag=Array.IndexOf(args,"--qa-band-start");
@@ -214,6 +214,26 @@ namespace Eternal.UnityMigration
             Check(Time.timeScale==1&&raid.Paused,"lens sample preserves the simulation clock and time scale");yield return Capture("camera-deep-lens-native");
             yield return Click("사냥");Check(Game.Raid==null&&Game.ReviewState.WalletGold==gold,"return retains stored state");
         }
+        IEnumerator MonsterFocusSuite()
+        {
+            Check(Game.Simulation.Battle.Enemies.Count==24,"native initial wave has 24 enemies");
+            var actors=FindObjectsByType<PaintedActor>();
+            foreach(string id in FallenMonsterCatalog.Ids)Check(actors.Any(a=>a.ActorId==id&&a.UsesRelief&&a.gameObject.activeInHierarchy),"native painted monster instantiated "+id);
+            yield return Capture("hunt-monsters-expanded-native");
+            yield return Click("사냥터");yield return Click("몬스터 도감");
+            Check(FallenMonsterCatalog.Ids.All(id=>UI.Q("monster-card-"+id)?.Q<Image>()?.sprite!=null),"seven monster codex portraits loaded");
+            UI.Q("monster-card-fallen_harpy").GetFirstAncestorOfType<ScrollView>().ScrollTo(UI.Q("monster-card-fallen_harpy"));yield return new WaitForSecondsRealtime(.2f);yield return Capture("monster-codex-new-species-native");yield return Click("닫기");
+            long gold=Game.ReviewState.WalletGold;int packs=Game.Simulation.PacksCleared;
+            yield return Click("일시정지");yield return new WaitForSecondsRealtime(8);yield return Click("일시정지");
+            foreach(var enemy in Game.Simulation.Battle.Enemies.Where(e=>e.Alive))Check(Game.Simulation.ClearAt(enemy,enemy.Position),"native approach retains body clearance");
+            FindAnyObjectByType<HuntingFeedback>().SetHuntZoom(2);yield return new WaitForSecondsRealtime(.3f);yield return Capture("hunt-monsters-combat-native");
+            FindAnyObjectByType<HuntingFeedback>().SetHuntZoom(1);yield return Click("일시정지");
+            float deadline=Time.realtimeSinceStartup+100;
+            while(Game.Simulation.PacksCleared==packs){if(Time.realtimeSinceStartup>deadline||Game.Simulation.Defeated)throw new InvalidOperationException("Expanded wave did not naturally settle.");yield return null;}
+            yield return Click("일시정지");
+            Check(Game.ReviewState.WalletGold==gold+(int)HuntingSimulation.Canonical["zones"]["gray_meadow"]["gold"]&&!Game.ReviewState.SavePending,"expanded wave reward saved exactly once");
+            yield return Capture("hunt-monsters-reward-native");
+        }
         IEnumerator Suite()
         {
             Application.runInBackground=true;Application.targetFrameRate=60;AudioListener.volume=0;started=Time.realtimeSinceStartup;
@@ -222,6 +242,7 @@ namespace Eternal.UnityMigration
             yield return Click("아우렐리아"+(resume||bandStart>0?" 이어하기":" 시작"));yield return new WaitForSecondsRealtime(.4f);
             Check(Game!=null&&Game.PersistentPlayer&&(bool?)Game.ReviewState.Snapshot()["native_review_fixture"]!=true,"persistent player excludes review seed");
             yield return Click("일시정지");Check(Game.Simulation.Paused,"hunt paused through pointer");
+            if(monsterFocus){yield return MonsterFocusSuite();saved=Game.ReviewState.Snapshot();yield break;}
             if(featureFocus){yield return FeatureFocusSuite();saved=Game.ReviewState.Snapshot();yield break;}
             if(raidMechanics){yield return RaidMechanicsSuite();saved=Game.ReviewState.Snapshot();yield break;}
             if(bandStart>0)
@@ -307,7 +328,7 @@ namespace Eternal.UnityMigration
                 try{moved=stack.Peek().MoveNext();if(moved)next=stack.Peek().Current;}catch(Exception e){error=e.Message;stack.Clear();break;}
                 if(!moved){stack.Pop();continue;}if(next is IEnumerator nested){stack.Push(nested);continue;}yield return next;
             }
-            var result=new JObject{{"passed",error.Length==0},{"phase",featureFocus?"four_reference_cp18":raidMechanics?"raid_mechanics_cp15":bandStart>0?"stage_boundary_"+bandStart:resume?"second_process_reload":"first_process"},{"error",error},{"comparisons",checks},{"elapsed_seconds",Time.realtimeSinceStartup-started},{"scratch_name",Path.GetFileName(profile.TrimEnd(Path.DirectorySeparatorChar))},{"expected",saved},{"trace",trace},{"environments",environments},{"note",featureFocus?"Scratch-only real pointer hero selection, exclusive growth tabs, actual enhancement and natural hunt reward. Explicit unrewarded training warning/resources test original-skill stagger and paused immune guidance. Paused VFX samples separately show flight and impact without modifying combat; not gameplay casts or 120-skill visual acceptance. No FPS benchmark.":raidMechanics?"Development-only scratch profile. Real pointer raid selection, spread/follow controls and returns. Explicit paused level-50 training phase/telegraph fixtures test rendering; not natural phase progression or victory. No real user files or FPS benchmark.":"Development-only scratch profiles. Actual pointer zoom, ordered party preset, natural monster drops, naturally cleared 499/999 boundary waves, authored counter practice and a second process reload; no real user files or performance benchmark."}};
+            var result=new JObject{{"passed",error.Length==0},{"phase",monsterFocus?"monster_expansion_cp19":featureFocus?"four_reference_cp18":raidMechanics?"raid_mechanics_cp15":bandStart>0?"stage_boundary_"+bandStart:resume?"second_process_reload":"first_process"},{"error",error},{"comparisons",checks},{"elapsed_seconds",Time.realtimeSinceStartup-started},{"scratch_name",Path.GetFileName(profile.TrimEnd(Path.DirectorySeparatorChar))},{"expected",saved},{"trace",trace},{"environments",environments},{"note",monsterFocus?"Development scratch profile: seven actual painted species, 24 arrivals, legal approach and a naturally cleared wave with exactly-once stored reward. No FPS benchmark.":featureFocus?"Scratch-only real pointer hero selection, exclusive growth tabs, actual enhancement and natural hunt reward. Explicit unrewarded training warning/resources test original-skill stagger and paused immune guidance. Paused VFX samples separately show flight and impact without modifying combat; not gameplay casts or 120-skill visual acceptance. No FPS benchmark.":raidMechanics?"Development-only scratch profile. Real pointer raid selection, spread/follow controls and returns. Explicit paused level-50 training phase/telegraph fixtures test rendering; not natural phase progression or victory. No real user files or FPS benchmark.":"Development-only scratch profiles. Actual pointer zoom, ordered party preset, natural monster drops, naturally cleared 499/999 boundary waves, authored counter practice and a second process reload; no real user files or performance benchmark."}};
             File.WriteAllText(report,result.ToString());yield return new WaitForSecondsRealtime(.3f);Application.Quit(error.Length==0?0:1);
         }
     }

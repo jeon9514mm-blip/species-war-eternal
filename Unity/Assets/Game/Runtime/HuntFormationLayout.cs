@@ -34,5 +34,13 @@ namespace Eternal.UnityMigration
             double angle=(slot+.5)*Math.PI*2/12+(encounter%6)*.19;
             return new Vector2((float)Math.Cos(angle)*10.6f,(float)Math.Sin(angle)*6.1f);
         }
+        public static Vector2 ExpandedEntrance(int slot,int encounter,int count)
+        {
+            // Two staggered perimeter rings keep 24–32 arrivals spread across
+            // the full map instead of reusing the twelve original entrances.
+            int ring=slot%2,index=slot/2,slots=(count+1-ring)/2;
+            double angle=(index+.5+ring*.5)*Math.PI*2/slots+(encounter%6)*.19;
+            return new Vector2((float)Math.Cos(angle)*(ring==0?20.8f:17.8f),(float)Math.Sin(angle)*(ring==0?11.6f:9.1f));
+        }
     }
 }
