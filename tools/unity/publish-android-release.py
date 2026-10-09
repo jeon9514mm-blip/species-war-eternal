@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 import urllib.error
 import urllib.request
+import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
 PARTS = ROOT / 'releases/android/cp20'
@@ -48,8 +49,27 @@ def reconstruct():
     print(json.dumps({'reconstructed': True, 'bytes': len(content), 'sha256': digest(content)}))
     return manifest
 
+def make_zip():
+    manifest = json.loads((PARTS / 'manifest.json').read_text(encoding='utf-8'))
+    data = OUTPUT.read_bytes()
+    assert len(data) == manifest['bytes'] and digest(data) == manifest['sha256']
+    archive = OUTPUT.with_suffix('.zip')
+    # Fixed entry metadata makes the local and CI archive byte-identical.
+    entry = zipfile.ZipInfo(OUTPUT.name, date_time=(1980, 1, 1, 0, 0, 0))
+    with zipfile.ZipFile(archive, 'w') as package:
+        package.writestr(entry, data, compress_type=zipfile.ZIP_DEFLATED, compresslevel=6)
+    with zipfile.ZipFile(archive) as package:
+        assert package.namelist() == [OUTPUT.name] and package.testzip() is None
+        assert digest(package.read(OUTPUT.name)) == manifest['sha256']
+    result = {'file': archive.name, 'bytes': archive.stat().st_size,
+              'sha256': digest(archive.read_bytes()), 'contained_apk_sha256': manifest['sha256'],
+              'zip_crc_passed': True, 'original_signed_apk_preserved': True}
+    print(json.dumps(result))
+    return archive, result
+
 def publish():
     manifest = reconstruct()
+    archive, zip_manifest = make_zip()
     assert os.environ.get('GITHUB_ACTIONS') == 'true', 'Publication runs in GitHub Actions only'
     assert os.environ.get('GITHUB_REPOSITORY') == REPOSITORY
     assert os.environ.get('GITHUB_REF') == 'refs/heads/' + BRANCH
@@ -57,12 +77,12 @@ def publish():
     assert re.fullmatch('[0-9a-f]{40}', sha)
     token = os.environ['GITHUB_TOKEN']
 
-    def request(url, method='GET', payload=None, binary=False):
+    def request(url, method='GET', payload=None, binary=False, content_type='application/vnd.android.package-archive'):
         body = payload if binary else (json.dumps(payload).encode() if payload is not None else None)
         headers = {'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json',
                    'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'SpeciesWar-APK-CP20'}
         if body is not None:
-            headers['Content-Type'] = 'application/vnd.android.package-archive' if binary else 'application/json'
+            headers['Content-Type'] = content_type if binary else 'application/json'
         req = urllib.request.Request(url, data=body, headers=headers, method=method)
         with urllib.request.urlopen(req, timeout=240) as response:
             return json.load(response)
@@ -77,26 +97,30 @@ def publish():
             'tag_name': TAG, 'target_commitish': sha, 'name': '종의전쟁 Unity Android APK 0.1.20 · CP20',
             'body': 'Android 8.0+ / ARM64 테스트 APK. 기본 디버그 서명. 서명·ZIP CRC·16KB ELF 정렬 검수 완료. 실제 Android 기기 플레이는 아직 검수하지 않았습니다.\n\nSHA-256: `' + manifest['sha256'] + '`',
             'draft': False, 'prerelease': True})
-    existing = next((a for a in release['assets'] if a['name'] == manifest['file']), None)
-    if existing:
-        assert existing['size'] == manifest['bytes'] and existing.get('digest') == 'sha256:' + manifest['sha256'], 'Existing release APK differs; refusing to replace it'
-        asset = existing
-    else:
-        upload = release['upload_url'].split('{', 1)[0] + '?name=' + manifest['file']
-        assert upload.startswith('https://uploads.github.com/repos/' + REPOSITORY + '/releases/')
-        asset = request(upload, 'POST', OUTPUT.read_bytes(), binary=True)
-        assert asset['size'] == manifest['bytes']
-        assert asset.get('digest') == 'sha256:' + manifest['sha256'], 'Uploaded APK digest mismatch'
-    print(json.dumps({'release': release['html_url'], 'download': asset['browser_download_url'], 'bytes': asset['size'], 'digest': asset.get('digest')}))
+    for file, metadata, mime in [(OUTPUT, manifest, 'application/vnd.android.package-archive'),
+                                 (archive, zip_manifest, 'application/zip')]:
+        existing = next((a for a in release['assets'] if a['name'] == metadata['file']), None)
+        if existing:
+            assert existing['size'] == metadata['bytes'] and existing.get('digest') == 'sha256:' + metadata['sha256'], 'Existing release asset differs; refusing to replace it'
+            asset = existing
+        else:
+            upload = release['upload_url'].split('{', 1)[0] + '?name=' + metadata['file']
+            assert upload.startswith('https://uploads.github.com/repos/' + REPOSITORY + '/releases/')
+            asset = request(upload, 'POST', file.read_bytes(), binary=True, content_type=mime)
+            assert asset['size'] == metadata['bytes']
+            assert asset.get('digest') == 'sha256:' + metadata['sha256'], 'Uploaded asset digest mismatch'
+        print(json.dumps({'release': release['html_url'], 'download': asset['browser_download_url'], 'bytes': asset['size'], 'digest': asset.get('digest')}))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('mode', choices=['prepare', 'reconstruct', 'publish'])
+    parser.add_argument('mode', choices=['prepare', 'reconstruct', 'zip', 'publish'])
     parser.add_argument('source', nargs='?', default=str(OUTPUT))
     args = parser.parse_args()
     if args.mode == 'prepare':
         prepare(args.source)
     elif args.mode == 'reconstruct':
         reconstruct()
+    elif args.mode == 'zip':
+        make_zip()
     else:
         publish()

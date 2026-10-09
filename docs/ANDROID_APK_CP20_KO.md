@@ -28,6 +28,7 @@ Unity 메뉴 `Eternal > Android > Build signed test APK`, 또는 Editor의 배�
 - 전송 도구의 64MiB 요청 제한 때문에 `releases/android/cp20`에 검증 가능한 3개 부분 파일과 manifest를 보관한다. 이는 설치 파일 형식을 변경하지 않는다.
 - 기본 브랜치 반영 시 `.github/workflows/android-apk-cp20.yml`이 원본 APK를 복원하고 SHA-256을 확인한 뒤 테스트 GitHub Release에 올린다. Unity를 클라우드에서 다시 빌드하지 않는다.
 - [APK 다운로드](https://github.com/jeon9514mm-blip/species-war-eternal/releases/download/android-v0.1.20-cp20/EternalUnity-0.1.20-arm64.apk), [Release 페이지](https://github.com/jeon9514mm-blip/species-war-eternal/releases/tag/android-v0.1.20-cp20).
+- APK 직접 다운로드가 막히면 [ZIP 다운로드](https://github.com/jeon9514mm-blip/species-war-eternal/releases/download/android-v0.1.20-cp20/EternalUnity-0.1.20-arm64.zip)를 사용한다. ZIP을 압축 해제하고 안에 있는 APK를 설치한다. 앱 내 브라우저에서 링크가 열리지 않으면 주소를 Chrome 등 외부 브라우저에서 연다. ZIP에는 같은 서명과 SHA-256을 가진 원본 APK 하나만 포함된다.
 - 로컬 복원이 필요하면 `python tools/unity/publish-android-release.py reconstruct`를 실행한다. 복원한 APK의 해시와 서명 검수도 통과했다.
 
 ## 설치와 확인 범위
