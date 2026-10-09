@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "comparisons": 285036,
+  "formations": [
+    {
+      "formation": "balanced",
+      "packs": 7,
+      "seconds": 79.9999999999976
+    },
+    {
+      "formation": "assault",
+      "packs": 6,
+      "seconds": 79.9999999999976
+    },
+    {
+      "formation": "bulwark",
+      "packs": 7,
+      "seconds": 79.9999999999976
+    },
+    {
+      "formation": "volley",
+      "packs": 7,
+      "seconds": 79.9999999999976
+    }
+  ],
+  "source_drop_policy": "Godot EquipmentRules + Main rarity thresholds; one roll per defeated monster, settled with the wave nonce",
+  "note": "Synthetic domain verification, not a performance benchmark or proof of bespoke map art."
+}

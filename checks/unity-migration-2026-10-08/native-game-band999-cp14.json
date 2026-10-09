@@ -1,0 +1,662 @@
+{
+  "passed": true,
+  "phase": "stage_boundary_999",
+  "error": "",
+  "comparisons": 7,
+  "elapsed_seconds": 18.7222919,
+  "scratch_name": "qa-profiles-16803043a35e423497412c426eb7bc24",
+  "expected": {
+    "save_version": 37,
+    "unity_player_profile": true,
+    "selected_faction": "aurelia",
+    "formation_id": "balanced",
+    "deployed_hero_ids": [
+      "leonhardt",
+      "mira",
+      "elisia",
+      "kairen",
+      "orwin",
+      "seria",
+      "astel",
+      "darius",
+      "lunea",
+      "caelum"
+    ],
+    "hero_progress": {
+      "leonhardt": {
+        "level": 50,
+        "xp": 5
+      },
+      "mira": {
+        "level": 50,
+        "xp": 5
+      },
+      "elisia": {
+        "level": 50,
+        "xp": 5
+      },
+      "kairen": {
+        "level": 50,
+        "xp": 5
+      },
+      "orwin": {
+        "level": 50,
+        "xp": 5
+      },
+      "seria": {
+        "level": 50,
+        "xp": 5
+      },
+      "astel": {
+        "level": 50,
+        "xp": 5
+      },
+      "darius": {
+        "level": 50,
+        "xp": 5
+      },
+      "lunea": {
+        "level": 50,
+        "xp": 4
+      },
+      "caelum": {
+        "level": 50,
+        "xp": 4
+      },
+      "adrien": {
+        "level": 50,
+        "xp": 0
+      },
+      "tessa": {
+        "level": 50,
+        "xp": 0
+      },
+      "naia": {
+        "level": 50,
+        "xp": 0
+      },
+      "sael": {
+        "level": 50,
+        "xp": 0
+      },
+      "odelia": {
+        "level": 50,
+        "xp": 0
+      }
+    },
+    "hero_shards": {},
+    "wallet_gold": 570,
+    "wallet_gems": 100,
+    "wallet_xp": 48,
+    "loot_inventory": [
+      {
+        "id": "unity_hunt_native-boundary-999_4995_0",
+        "item_type": "equipment",
+        "slot": "armor",
+        "level": 1,
+        "rarity": "일반",
+        "name": "광맥 딜러 가죽갑옷",
+        "set": "강철",
+        "zone": "사냥터 2",
+        "origin": "hunt",
+        "source_id": "forgotten_mine",
+        "hunt_role": "dealer",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 16
+      },
+      {
+        "id": "unity_hunt_native-boundary-999_4995_1",
+        "item_type": "equipment",
+        "slot": "weapon",
+        "level": 1,
+        "rarity": "희귀",
+        "name": "광맥 보조 별의 활",
+        "set": "강철",
+        "zone": "사냥터 2",
+        "origin": "hunt",
+        "source_id": "forgotten_mine",
+        "hunt_role": "support",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [
+          {
+            "stat": "ultimate_pct",
+            "value": 4
+          }
+        ],
+        "focus": 0,
+        "proposal": {},
+        "power": 31
+      },
+      {
+        "id": "unity_hunt_native-boundary-999_4995_2",
+        "item_type": "equipment",
+        "slot": "accessory",
+        "level": 1,
+        "rarity": "일반",
+        "name": "광맥 보조 부적",
+        "set": "강철",
+        "zone": "사냥터 2",
+        "origin": "hunt",
+        "source_id": "forgotten_mine",
+        "hunt_role": "support",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 12
+      },
+      {
+        "id": "unity_hunt_native-boundary-999_4995_3",
+        "item_type": "equipment",
+        "slot": "weapon",
+        "level": 1,
+        "rarity": "희귀",
+        "name": "광맥 방어 별의 활",
+        "set": "강철",
+        "zone": "사냥터 2",
+        "origin": "hunt",
+        "source_id": "forgotten_mine",
+        "hunt_role": "defender",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [
+          {
+            "stat": "hp_pct",
+            "value": 4
+          }
+        ],
+        "focus": 0,
+        "proposal": {},
+        "power": 31
+      },
+      {
+        "id": "unity_hunt_native-boundary-999_4995_4",
+        "item_type": "equipment",
+        "slot": "accessory",
+        "level": 1,
+        "rarity": "일반",
+        "name": "광맥 방어 부적",
+        "set": "강철",
+        "zone": "사냥터 2",
+        "origin": "hunt",
+        "source_id": "forgotten_mine",
+        "hunt_role": "defender",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 12
+      },
+      {
+        "id": "unity_hunt_native-boundary-999_4995_5",
+        "item_type": "equipment",
+        "slot": "accessory",
+        "level": 1,
+        "rarity": "전설",
+        "name": "광맥 방어 심장석",
+        "set": "강철",
+        "zone": "사냥터 2",
+        "origin": "hunt",
+        "source_id": "forgotten_mine",
+        "hunt_role": "defender",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [
+          {
+            "stat": "hp_pct",
+            "value": 8
+          }
+        ],
+        "focus": 0,
+        "proposal": {},
+        "power": 26
+      },
+      {
+        "id": "unity_hunt_native-boundary-999_4995_6",
+        "item_type": "equipment",
+        "slot": "weapon",
+        "level": 1,
+        "rarity": "일반",
+        "name": "광맥 방어 사냥검",
+        "set": "강철",
+        "zone": "사냥터 2",
+        "origin": "hunt",
+        "source_id": "forgotten_mine",
+        "hunt_role": "defender",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 22
+      },
+      {
+        "id": "unity_hunt_native-boundary-999_4995_7",
+        "item_type": "equipment",
+        "slot": "armor",
+        "level": 1,
+        "rarity": "일반",
+        "name": "광맥 방어 가죽갑옷",
+        "set": "강철",
+        "zone": "사냥터 2",
+        "origin": "hunt",
+        "source_id": "forgotten_mine",
+        "hunt_role": "defender",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 16
+      },
+      {
+        "id": "unity_hunt_native-boundary-999_4995_8",
+        "item_type": "equipment",
+        "slot": "weapon",
+        "level": 1,
+        "rarity": "희귀",
+        "name": "광맥 보조 별의 활",
+        "set": "강철",
+        "zone": "사냥터 2",
+        "origin": "hunt",
+        "source_id": "forgotten_mine",
+        "hunt_role": "support",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [
+          {
+            "stat": "ultimate_pct",
+            "value": 5
+          }
+        ],
+        "focus": 0,
+        "proposal": {},
+        "power": 31
+      },
+      {
+        "id": "unity_hunt_native-boundary-999_4995_10",
+        "item_type": "equipment",
+        "slot": "armor",
+        "level": 1,
+        "rarity": "일반",
+        "name": "광맥 보조 가죽갑옷",
+        "set": "강철",
+        "zone": "사냥터 2",
+        "origin": "hunt",
+        "source_id": "forgotten_mine",
+        "hunt_role": "support",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 16
+      },
+      {
+        "id": "unity_hunt_native-boundary-999_4995_11",
+        "item_type": "equipment",
+        "slot": "armor",
+        "level": 1,
+        "rarity": "일반",
+        "name": "광맥 딜러 가죽갑옷",
+        "set": "강철",
+        "zone": "사냥터 2",
+        "origin": "hunt",
+        "source_id": "forgotten_mine",
+        "hunt_role": "dealer",
+        "bound": false,
+        "locked": false,
+        "trade_count": 0,
+        "affixes": [],
+        "focus": 0,
+        "proposal": {},
+        "power": 16
+      }
+    ],
+    "guardian_equipped": "lumi",
+    "guardian_collection": {
+      "lumi": {
+        "copies": 1
+      }
+    },
+    "unity_pack_total": 4995,
+    "unity_hunt_zone": "moonrest_forest",
+    "unity_loot_salt": "native-boundary-999",
+    "unity_last_loot": {
+      "pack": 4995,
+      "zone": "forgotten_mine",
+      "items": [
+        {
+          "id": "unity_hunt_native-boundary-999_4995_0",
+          "item_type": "equipment",
+          "slot": "armor",
+          "level": 1,
+          "rarity": "일반",
+          "name": "광맥 딜러 가죽갑옷",
+          "set": "강철",
+          "zone": "사냥터 2",
+          "origin": "hunt",
+          "source_id": "forgotten_mine",
+          "hunt_role": "dealer",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 16
+        },
+        {
+          "id": "unity_hunt_native-boundary-999_4995_1",
+          "item_type": "equipment",
+          "slot": "weapon",
+          "level": 1,
+          "rarity": "희귀",
+          "name": "광맥 보조 별의 활",
+          "set": "강철",
+          "zone": "사냥터 2",
+          "origin": "hunt",
+          "source_id": "forgotten_mine",
+          "hunt_role": "support",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [
+            {
+              "stat": "ultimate_pct",
+              "value": 4
+            }
+          ],
+          "focus": 0,
+          "proposal": {},
+          "power": 31
+        },
+        {
+          "id": "unity_hunt_native-boundary-999_4995_2",
+          "item_type": "equipment",
+          "slot": "accessory",
+          "level": 1,
+          "rarity": "일반",
+          "name": "광맥 보조 부적",
+          "set": "강철",
+          "zone": "사냥터 2",
+          "origin": "hunt",
+          "source_id": "forgotten_mine",
+          "hunt_role": "support",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 12
+        },
+        {
+          "id": "unity_hunt_native-boundary-999_4995_3",
+          "item_type": "equipment",
+          "slot": "weapon",
+          "level": 1,
+          "rarity": "희귀",
+          "name": "광맥 방어 별의 활",
+          "set": "강철",
+          "zone": "사냥터 2",
+          "origin": "hunt",
+          "source_id": "forgotten_mine",
+          "hunt_role": "defender",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [
+            {
+              "stat": "hp_pct",
+              "value": 4
+            }
+          ],
+          "focus": 0,
+          "proposal": {},
+          "power": 31
+        },
+        {
+          "id": "unity_hunt_native-boundary-999_4995_4",
+          "item_type": "equipment",
+          "slot": "accessory",
+          "level": 1,
+          "rarity": "일반",
+          "name": "광맥 방어 부적",
+          "set": "강철",
+          "zone": "사냥터 2",
+          "origin": "hunt",
+          "source_id": "forgotten_mine",
+          "hunt_role": "defender",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 12
+        },
+        {
+          "id": "unity_hunt_native-boundary-999_4995_5",
+          "item_type": "equipment",
+          "slot": "accessory",
+          "level": 1,
+          "rarity": "전설",
+          "name": "광맥 방어 심장석",
+          "set": "강철",
+          "zone": "사냥터 2",
+          "origin": "hunt",
+          "source_id": "forgotten_mine",
+          "hunt_role": "defender",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [
+            {
+              "stat": "hp_pct",
+              "value": 8
+            }
+          ],
+          "focus": 0,
+          "proposal": {},
+          "power": 26
+        },
+        {
+          "id": "unity_hunt_native-boundary-999_4995_6",
+          "item_type": "equipment",
+          "slot": "weapon",
+          "level": 1,
+          "rarity": "일반",
+          "name": "광맥 방어 사냥검",
+          "set": "강철",
+          "zone": "사냥터 2",
+          "origin": "hunt",
+          "source_id": "forgotten_mine",
+          "hunt_role": "defender",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 22
+        },
+        {
+          "id": "unity_hunt_native-boundary-999_4995_7",
+          "item_type": "equipment",
+          "slot": "armor",
+          "level": 1,
+          "rarity": "일반",
+          "name": "광맥 방어 가죽갑옷",
+          "set": "강철",
+          "zone": "사냥터 2",
+          "origin": "hunt",
+          "source_id": "forgotten_mine",
+          "hunt_role": "defender",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 16
+        },
+        {
+          "id": "unity_hunt_native-boundary-999_4995_8",
+          "item_type": "equipment",
+          "slot": "weapon",
+          "level": 1,
+          "rarity": "희귀",
+          "name": "광맥 보조 별의 활",
+          "set": "강철",
+          "zone": "사냥터 2",
+          "origin": "hunt",
+          "source_id": "forgotten_mine",
+          "hunt_role": "support",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [
+            {
+              "stat": "ultimate_pct",
+              "value": 5
+            }
+          ],
+          "focus": 0,
+          "proposal": {},
+          "power": 31
+        },
+        {
+          "id": "unity_hunt_native-boundary-999_4995_10",
+          "item_type": "equipment",
+          "slot": "armor",
+          "level": 1,
+          "rarity": "일반",
+          "name": "광맥 보조 가죽갑옷",
+          "set": "강철",
+          "zone": "사냥터 2",
+          "origin": "hunt",
+          "source_id": "forgotten_mine",
+          "hunt_role": "support",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 16
+        },
+        {
+          "id": "unity_hunt_native-boundary-999_4995_11",
+          "item_type": "equipment",
+          "slot": "armor",
+          "level": 1,
+          "rarity": "일반",
+          "name": "광맥 딜러 가죽갑옷",
+          "set": "강철",
+          "zone": "사냥터 2",
+          "origin": "hunt",
+          "source_id": "forgotten_mine",
+          "hunt_role": "dealer",
+          "bound": false,
+          "locked": false,
+          "trade_count": 0,
+          "affixes": [],
+          "focus": 0,
+          "proposal": {},
+          "power": 16
+        }
+      ]
+    }
+  },
+  "trace": [
+    {
+      "check": "real native faction entry",
+      "frame": 42
+    },
+    {
+      "input": "아우렐리아 이어하기",
+      "frame": 52,
+      "x": 750.000061,
+      "y": 379.999969
+    },
+    {
+      "check": "persistent player excludes review seed",
+      "frame": 81
+    },
+    {
+      "input": "일시정지",
+      "frame": 83,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "hunt paused through pointer",
+      "frame": 88
+    },
+    {
+      "check": "scratch previous-band runtime",
+      "frame": 88
+    },
+    {
+      "input": "일시정지",
+      "frame": 93,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "input": "일시정지",
+      "frame": 919,
+      "x": 1597.0,
+      "y": 1057.0
+    },
+    {
+      "check": "natural stage boundary changes monster theme",
+      "frame": 924
+    },
+    {
+      "check": "natural stage boundary changes map atmosphere",
+      "frame": 924
+    },
+    {
+      "check": "previous band rewards settled exactly once",
+      "frame": 924
+    }
+  ],
+  "environments": [
+    {
+      "capture": "hunt-stage-999-native",
+      "zone": "forgotten_mine",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    },
+    {
+      "capture": "hunt-stage-1000-native",
+      "zone": "moonrest_forest",
+      "painting_active": true,
+      "width": 1024,
+      "height": 683,
+      "runtime_format": "RGBA32"
+    }
+  ],
+  "note": "Development-only scratch profiles. Actual pointer zoom, ordered party preset, natural monster drops, naturally cleared 499/999 boundary waves, authored counter practice and a second process reload; no real user files or performance benchmark."
+}

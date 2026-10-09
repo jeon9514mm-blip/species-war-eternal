@@ -67,7 +67,7 @@ namespace Eternal.UnityMigration.Editor
                 if(heals==0||healer.Hp<=500||batch.PaintedImpactQuads==0||batch.PaintedBounds.max.x>=0||enemy.Hp!=10000)throw new InvalidOperationException("Real support settlement did not keep healing art on its recipients.");comparisons+=5;
                 echoes=new PaintedAfterImages(owner.transform);
                 var atlas=OriginalCatalog.Atlas(source.Id);var pose=atlas.attack.frames[0];
-                var snapshot=new PaintedPoseSnapshot(Resources.Load<Texture2D>("Eternal/Actors/"+source.Id+"/poses"),owner.transform,pose,1.9f/atlas.attack.native_height,1000);
+                var snapshot=new PaintedPoseSnapshot(OriginalCatalog.Texture(source.Id),owner.transform,pose,1.9f/atlas.attack.native_height,1000);
                 for(int i=0;i<250;i++)echoes.Capture(snapshot);echoes.Advance(.01f);
                 if(echoes.ActiveCount!=50)throw new InvalidOperationException("Afterimage pool exceeded or lost its 50-slot capacity.");comparisons++;
                 echoes.Advance(.4f);if(echoes.ActiveCount!=0)throw new InvalidOperationException("Afterimage pool leaked expired poses.");comparisons++;

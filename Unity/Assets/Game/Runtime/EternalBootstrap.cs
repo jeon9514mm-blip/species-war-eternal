@@ -56,7 +56,7 @@ namespace Eternal.UnityMigration
         }
         Sprite Portrait(string id)
         {
-            var f=OriginalCatalog.Atlas(id).attack.frames[0];var texture=Resources.Load<Texture2D>("Eternal/Actors/"+id+"/poses");
+            var f=OriginalCatalog.Atlas(id).attack.frames[0];var texture=OriginalCatalog.Texture(id);
             var sprite=Sprite.Create(texture,new Rect(f.region[0],1024-f.region[1]-f.region[3],f.region[2],f.region[3]),new Vector2(.5f,.5f));portraits.Add(sprite);return sprite;
         }
         void Begin(string faction)

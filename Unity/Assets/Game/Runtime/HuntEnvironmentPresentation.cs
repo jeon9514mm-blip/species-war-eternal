@@ -21,7 +21,7 @@ namespace Eternal.UnityMigration
         public bool HasPainting=>painting!=null&&surface.sharedMaterial==painting;
         public static string Resource(string zone)=>zone switch
         {"gray_meadow"=>"Eternal/Environment/Hunt/meadow-hunt-v1","forgotten_mine"=>"Eternal/Environment/Hunt/mine-hunt-v1","moonrest_forest"=>"Eternal/Environment/Hunt/forest-hunt-v1",_=>throw new ArgumentException("Unknown hunting region.")};
-        public void Initialize(Camera camera,Renderer floor,Material stone,string zone)
+        public void Initialize(Camera camera,Renderer floor,Material stone,string zone,bool expanded=false)
         {
             surface=floor;fallback=stone;view=camera;painting=new Material(Resources.Load<Material>("Eternal/Materials/PaintedArena"));
             painting.name="Owned world-anchored hunt painting";painting.SetFloat("_WorldAnchored",1);
@@ -30,8 +30,9 @@ namespace Eternal.UnityMigration
             var ray=camera.ViewportPointToRay(new Vector3(.5f,.5f));var plane=new Plane(Vector3.up,Vector3.zero);
             Vector3 center=plane.Raycast(ray,out float distance)?ray.GetPoint(distance):Vector3.zero;
             painting.SetVector("_PaintingCenter",center);var right=camera.transform.right;var up=camera.transform.up;
-            painting.SetVector("_PaintingRight",new Vector4(right.x,right.y,right.z,camera.orthographicSize*2*camera.aspect));
-            painting.SetVector("_PaintingUp",new Vector4(up.x,up.y,up.z,camera.orthographicSize*2));Bind(zone);
+            float scale=expanded?2f:1;
+            painting.SetVector("_PaintingRight",new Vector4(right.x,right.y,right.z,camera.orthographicSize*2*camera.aspect*scale));
+            painting.SetVector("_PaintingUp",new Vector4(up.x,up.y,up.z,camera.orthographicSize*2*scale));Bind(zone);
             motes=new Mesh{name="Twelve regional atmosphere motes"};motes.MarkDynamic();var uv=new Vector2[48];var indices=new int[72];
             for(int i=0;i<12;i++){int v=i*4,t=i*6;uv[v]=Vector2.zero;uv[v+1]=Vector2.up;uv[v+2]=Vector2.one;uv[v+3]=Vector2.right;indices[t]=v;indices[t+1]=v+1;indices[t+2]=v+2;indices[t+3]=v;indices[t+4]=v+2;indices[t+5]=v+3;}
             motes.vertices=moteVertices;motes.colors=moteColors;motes.uv=uv;motes.triangles=indices;motes.bounds=new Bounds(Vector3.zero,new Vector3(40,8,30));

@@ -26,7 +26,9 @@ namespace Eternal.UnityMigration
     {
         public static HeroCatalog Heroes => JsonUtility.FromJson<HeroCatalog>(Required("hero-catalog").text);
         public static ActorCatalog Actors => JsonUtility.FromJson<ActorCatalog>(Required("actor-catalog").text);
-        public static AtlasDefinition Atlas(string id) => JsonUtility.FromJson<AtlasDefinition>(Required("Actors/" + id + "/frames").text);
+        public static bool HasStyle(string id)=>Resources.Load<TextAsset>("Eternal/HeroStyles/"+id+"/frames")!=null;
+        public static AtlasDefinition Atlas(string id) => JsonUtility.FromJson<AtlasDefinition>((HasStyle(id)?Resources.Load<TextAsset>("Eternal/HeroStyles/"+id+"/frames"):Required("Actors/" + id + "/frames")).text);
+        public static Texture2D Texture(string id)=>Resources.Load<Texture2D>(HasStyle(id)?"Eternal/HeroStyles/"+id+"/poses":"Eternal/Actors/"+id+"/poses");
         public static TextAsset Required(string path) => Resources.Load<TextAsset>("Eternal/" + path)
             ?? throw new InvalidOperationException("Missing original data: " + path + ". Run Eternal > Import original assets.");
     }

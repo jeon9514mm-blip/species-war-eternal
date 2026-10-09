@@ -1,0 +1,126 @@
+{
+  "passed": true,
+  "sheets": [
+    {
+      "id": "fallen_elf",
+      "path": "Assets/Game/Resources/Eternal/Actors/fallen_elf/poses.png",
+      "source_sha256": "3ee5b77df2d6234a09dcbd3650c2a126e75f0de29a400c6b3737a11103e74302",
+      "width": 1024,
+      "height": 1024,
+      "format": "BC7",
+      "alpha": true,
+      "minimum_pose_gutters": [
+        40,
+        42,
+        49,
+        77
+      ],
+      "painted_poses": 4,
+      "source_png_unmodified": true
+    },
+    {
+      "id": "fallen_dwarf",
+      "path": "Assets/Game/Resources/Eternal/Actors/fallen_dwarf/poses.png",
+      "source_sha256": "db5b541e716c5be9baf1c11533e3dfb2e9eb693e1ea1aaed0c8d31e440026ed5",
+      "width": 1024,
+      "height": 1024,
+      "format": "BC7",
+      "alpha": true,
+      "minimum_pose_gutters": [
+        62,
+        59,
+        44,
+        104
+      ],
+      "painted_poses": 4,
+      "source_png_unmodified": true
+    },
+    {
+      "id": "fallen_vampire",
+      "path": "Assets/Game/Resources/Eternal/Actors/fallen_vampire/poses.png",
+      "source_sha256": "f2c0b7f1fea1e6940a6b511130fc0c3b26cb054f76e7b40531c0ca075dbadcac",
+      "width": 1024,
+      "height": 1024,
+      "format": "BC7",
+      "alpha": true,
+      "minimum_pose_gutters": [
+        57,
+        71,
+        9,
+        72
+      ],
+      "painted_poses": 4,
+      "source_png_unmodified": true
+    },
+    {
+      "id": "fallen_werewolf",
+      "path": "Assets/Game/Resources/Eternal/Actors/fallen_werewolf/poses.png",
+      "source_sha256": "4d0e1269183f768e9bd49d7fd8b1491539eda7a15e214246de409b73e0238157",
+      "width": 1024,
+      "height": 1024,
+      "format": "BC7",
+      "alpha": true,
+      "minimum_pose_gutters": [
+        69,
+        71,
+        25,
+        77
+      ],
+      "painted_poses": 4,
+      "source_png_unmodified": true
+    },
+    {
+      "id": "orwin",
+      "path": "Assets/Game/Resources/Eternal/HeroStyles/orwin/poses.png",
+      "source_sha256": "978e5c106af31b20a4547f630754822c49a4a388aca042eee852a7bfb1a9b692",
+      "width": 1024,
+      "height": 1024,
+      "format": "BC7",
+      "alpha": true,
+      "minimum_pose_gutters": [
+        44,
+        45,
+        9,
+        64
+      ],
+      "painted_poses": 4,
+      "source_png_unmodified": true
+    },
+    {
+      "id": "caelum",
+      "path": "Assets/Game/Resources/Eternal/HeroStyles/caelum/poses.png",
+      "source_sha256": "1fb3b44556d4609b952265042fa3725c90be7c6bf96b2fa253ff7b13541a0fa8",
+      "width": 1024,
+      "height": 1024,
+      "format": "BC7",
+      "alpha": true,
+      "minimum_pose_gutters": [
+        70,
+        76,
+        76,
+        113
+      ],
+      "painted_poses": 4,
+      "source_png_unmodified": true
+    },
+    {
+      "id": "kairen",
+      "path": "Assets/Game/Resources/Eternal/HeroStyles/kairen/poses.png",
+      "source_sha256": "b917ed5951d8f9a15bee40397a466717fec8403c56ea8fc7a74807480f5f5fd6",
+      "width": 1024,
+      "height": 1024,
+      "format": "BC7",
+      "alpha": true,
+      "minimum_pose_gutters": [
+        42,
+        41,
+        18,
+        70
+      ],
+      "painted_poses": 4,
+      "source_png_unmodified": true
+    }
+  ],
+  "mode": "built-in image generation + targeted sprite-gutter edits",
+  "note": "Four painted poses per sheet, foot anchors measured from imported alpha. Procedural full-coverage relief; not rigged 3D motion or thirty hero redraws. Android ASTC authored, not device tested."
+}

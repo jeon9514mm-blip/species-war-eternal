@@ -21,7 +21,7 @@ namespace Eternal.UnityMigration
             bool free=ReviewState.GuardianFreeAvailable;
             GrowthButton(scroll,free?"첫 무료 수호신 소환":"수호신 소환 · 젬 80",()=>ReviewState.SummonGuardian(reviewSummonRandom),ShowSummons,free||ReviewState.WalletGems>=80).style.marginTop=8;
             Button(scroll,"보유 수호신",ShowGuardians).style.marginLeft=0;
-            Text(scroll,"독립 검수 상태의 소환입니다. 재실행하면 초기화됩니다.",12).style.marginTop=22;Text(scroll,"수호신 장착 보너스는 사냥 영웅 능력치에 적용됩니다. 수호신의 별도 공격 연출은 이관 중입니다.",12).style.whiteSpace=WhiteSpace.Normal;
+            Text(scroll,PersistentPlayer?"소환 결과는 현재 진영의 Unity 기록에 자동 저장됩니다.":"독립 검수 상태의 소환입니다. 재실행하면 초기화됩니다.",12).style.marginTop=22;Text(scroll,"수호신 장착 보너스는 사냥 영웅 능력치에 적용됩니다. 수호신의 별도 공격 연출은 이관 중입니다.",12).style.whiteSpace=WhiteSpace.Normal;
         }
         void ShowGuardians()
         {

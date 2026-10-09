@@ -51,7 +51,7 @@ namespace Eternal.UnityMigration
                     var offset=Rotate(roleDirection,i*Mathf.PI*2/18)*preferred;
                     float ellipse=new Vector2(offset.x/contact.x,offset.y/contact.y).magnitude;
                     if(ellipse<1.05f)offset*=1.05f/Mathf.Max(.001f,ellipse);
-                    point=Clamp(target.Position+offset);
+                    point=sim.PlayerState?.UnityPlayer==true?HuntStageWorld.Clamp(target.Position+offset):Clamp(target.Position+offset);
                 }
                 float distance=Vector2.Distance(point,target.Position);
                 if(distance>reach*.98f)continue;

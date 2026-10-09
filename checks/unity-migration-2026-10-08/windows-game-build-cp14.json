@@ -1,0 +1,17 @@
+{
+  "result": "Succeeded",
+  "warnings": 1,
+  "scene": "Assets/Scenes/Eternal.unity",
+  "build_id": "build_82a9e230b286",
+  "errors": 0,
+  "performance_benchmark": false,
+  "warning": "Pipeline disabled in Player: expected missing RuntimePipelineConfig",
+  "target": "StandaloneWindows64",
+  "development": true,
+  "input_acceptance": {
+    "stage_999_to_1000": 7,
+    "reload": 7,
+    "stage_499_to_500": 7,
+    "first_process": 33
+  }
+}
