@@ -63,6 +63,8 @@ namespace Eternal.UnityMigration
 
     public sealed class CombatEncounter
     {
+        public bool HuntAuto=true;
+        public bool AutomaticActionAllowed(string action)=>action=="basic"?HuntAuto:action=="ultimate"?UltimateAuto:SkillsAuto;
         public readonly List<Combatant> Heroes=new(),Enemies=new();
         public readonly Dictionary<string,HeroKitState> Kits=new(StringComparer.Ordinal);
         public bool IsRaid, RaidControlWindow, BossTelegraph, SkillsAuto=true, UltimateAuto=true;

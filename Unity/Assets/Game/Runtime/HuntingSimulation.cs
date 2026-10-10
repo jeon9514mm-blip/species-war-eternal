@@ -33,6 +33,7 @@ namespace Eternal.UnityMigration
             ManualMovementActive=true;ManualDirection=Vector2.ClampMagnitude(direction,1);return true;
         }
         public void StopManualMovement(){ManualDirection=Vector2.zero;}
+        public void SetAutomaticHunt(bool enabled){Battle.HuntAuto=enabled;if(enabled){ManualMovementActive=false;ManualDirection=Vector2.zero;}}
         public void ResumeMovement(){if(Paused||Defeated)return;ManualMovementActive=false;ManualDirection=Vector2.zero;}
         public readonly int ReviewLevel;
         readonly JObject legacy;
@@ -72,7 +73,7 @@ namespace Eternal.UnityMigration
             var party=playerState?.DeployedHeroes();
             SetParty(party!=null&&party.Count>0?party:playerState!=null?Catalog.HeroIds.Where(playerState.IsFactionHero).Take(3).ToArray():Catalog.HeroIds.Take(10).ToArray());
             SpawnPack();
-            if(PlayerState!=null){var options=PlayerState.Snapshot();Battle.SkillsAuto=options["skill_auto"]?.Type!=JTokenType.Boolean||(bool)options["skill_auto"];Battle.UltimateAuto=options["ultimate_auto"]?.Type!=JTokenType.Boolean||(bool)options["ultimate_auto"];}
+            if(PlayerState!=null){var options=PlayerState.Snapshot();Battle.HuntAuto=PlayerState.HuntAuto;Battle.SkillsAuto=options["skill_auto"]?.Type!=JTokenType.Boolean||(bool)options["skill_auto"];Battle.UltimateAuto=options["ultimate_auto"]?.Type!=JTokenType.Boolean||(bool)options["ultimate_auto"];}
         }
         public void SetParty(IReadOnlyList<string> ids)
         {
@@ -111,7 +112,7 @@ namespace Eternal.UnityMigration
                 foreach(string slot in new[]{"a1","a2","ultimate"})kit.Profiles[slot]=Catalog.AdjustedSkill(actor.Id,slot,kit.Utility);
             }
             Formation=PlayerState.Formation;Battle.CriticalChance=PlayerState.GuardianBonus("crit");
-            var options=PlayerState.Snapshot();Battle.SkillsAuto=options["skill_auto"]?.Type!=JTokenType.Boolean||(bool)options["skill_auto"];Battle.UltimateAuto=options["ultimate_auto"]?.Type!=JTokenType.Boolean||(bool)options["ultimate_auto"];
+            var options=PlayerState.Snapshot();Battle.HuntAuto=PlayerState.HuntAuto;Battle.SkillsAuto=options["skill_auto"]?.Type!=JTokenType.Boolean||(bool)options["skill_auto"];Battle.UltimateAuto=options["ultimate_auto"]?.Type!=JTokenType.Boolean||(bool)options["ultimate_auto"];
         }
         public bool CanManualCast(string heroId,string slot)=>ManualContext(heroId,slot,out _,out _);
         bool ManualContext(string heroId,string slot,out Combatant hero,out Combatant target)
@@ -251,7 +252,7 @@ namespace Eternal.UnityMigration
                     if(ManualDirection.sqrMagnitude>.0001f){intents.Remove(h.Serial);h.Windup=-1;}
                     h.Position=MoveManualLegally(h,ManualDirection*(4.4f*dt));h.Velocity=(h.Position-h.PreviousPosition)/dt;reservations[h.Serial]=h.Position;continue;
                 }
-                if(h.Stun>0||intents.ContainsKey(h.Serial)){h.Velocity=Vector2.zero;continue;}
+                if(!Battle.HuntAuto||h.Stun>0||intents.ContainsKey(h.Serial)){h.Velocity=Vector2.zero;continue;}
                 var candidates=CombatTargeting.Rank(Battle,h,null,null,false);
                 // Keep a common front while permitting an already reachable foe
                 // to be finished. Original role scores and firing stations remain.
@@ -308,6 +309,7 @@ namespace Eternal.UnityMigration
             if(h.Stun>0){intents.Remove(h.Serial);h.Windup=-1;h.AttackRemaining=Math.Max(h.AttackRemaining,.18);return;}
             if(intents.TryGetValue(h.Serial,out var intent))
             {
+                if(!Battle.AutomaticActionAllowed(intent.action)){intents.Remove(h.Serial);h.Windup=-1;return;}
                 h.Windup-=dt;if(h.Windup>0)return;intents.Remove(h.Serial);
                 if(intent.action=="basic")
                 {
@@ -319,6 +321,7 @@ namespace Eternal.UnityMigration
             }
             if(h.AttackRemaining>0)return;
             string action=Chain.Choose(h,HeroKitExecution.PreferredSlot(Battle,h));var p=action=="basic"?null:Battle.Kits[h.Id].Profiles[action];
+            if(!Battle.AutomaticActionAllowed(action))return;
             var target=CombatTargeting.Rank(Battle,h,p).FirstOrDefault();
             if(target==null&&(action=="basic"||LegacyCombatRules.NeedsEnemy(p)))return;
             intents[h.Serial]=(target,action);h.Windup=.18;Battle.Emit("windup",h,action,target);

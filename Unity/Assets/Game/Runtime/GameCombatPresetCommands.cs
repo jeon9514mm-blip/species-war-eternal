@@ -21,6 +21,12 @@ namespace Eternal.UnityMigration
         }
         public StateCommandResult SetCombatOptions(bool skillAuto,bool ultimateAuto,double battleSpeed)=>Commit(state=>
         {if(!double.IsFinite(battleSpeed)||!new[]{1d,2d,3d}.Contains(battleSpeed))return StateCommandResult.Fail("전투 배율을 확인하세요.");state["skill_auto"]=skillAuto;state["ultimate_auto"]=ultimateAuto;state["battle_speed"]=battleSpeed;return StateCommandResult.Success("자동 전투 설정 저장");});
+        public bool HuntAuto=>data["unity_hunt_auto"]?.Type!=JTokenType.Boolean||(bool)data["unity_hunt_auto"];
+        public StateCommandResult SetAutomationOption(string channel,bool enabled)=>Commit(state=>
+        {
+            string key=channel=="skills"?"skill_auto":channel=="ultimate"?"ultimate_auto":channel=="hunt"?"unity_hunt_auto":"";
+            if(key.Length==0)return StateCommandResult.Fail("자동 전투 설정을 확인하세요.");state[key]=enabled;return StateCommandResult.Success("자동 전투 설정 저장");
+        });
         public StateCommandResult SetLootOptions(bool automatic,string salvage)=>Commit(state=>{if(!OriginalEquipmentRules.Rarities.Contains(salvage))return StateCommandResult.Fail("분해 등급을 확인하세요.");state["gear_auto_equip"]=automatic;state["auto_salvage_min_rarity"]=salvage;return StateCommandResult.Success("장비 자동 설정 저장");});
         public JObject CombatPreset(int index)
         {var bank=L.Array(data["combat_presets"]?[Faction]);return index>=0&&index<3&&index<bank.Count?(JObject)L.Object(bank[index]).DeepClone():new JObject();}

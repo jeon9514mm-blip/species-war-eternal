@@ -12,5 +12,7 @@ namespace Eternal.UnityMigration
         public Func<string> Stage, Progress;
         public Action<string> Navigate;
         public Action Manage;
+        public Func<bool> AutomationAllowed;
+        public Action<string,bool> SetAutomation;
     }
 }

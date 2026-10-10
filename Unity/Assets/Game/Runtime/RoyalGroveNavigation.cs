@@ -100,7 +100,7 @@ namespace Eternal.UnityMigration
             var show=(native!=null?!native.OverlayBlocking.Invoke():navigationRoute=="사냥")?DisplayStyle.Flex:DisplayStyle.None;
             if(native!=null){navigationSheet.style.display=DisplayStyle.None;defeat.style.display=show==DisplayStyle.Flex&&PartyDefeated?DisplayStyle.Flex:DisplayStyle.None;}
             foreach(var element in new[]{identity,skillRow,zoomRow,stick,stickCaption,rail})element.style.display=show;
-            if(native?.ZoomVisible!=null&&!native.ZoomVisible())zoomRow.style.display=DisplayStyle.None;
+            if(zoomButton!=null)zoomButton.style.display=native?.ZoomVisible!=null&&!native.ZoomVisible()?DisplayStyle.None:DisplayStyle.Flex;
         }
         void LayoutNavigation(float width)
         {

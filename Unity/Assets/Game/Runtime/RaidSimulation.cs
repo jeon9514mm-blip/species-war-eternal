@@ -206,6 +206,7 @@ namespace Eternal.UnityMigration
             if(h.Stun>0){intents.Remove(h.Serial);h.Windup=-1;return;}
             if(intents.TryGetValue(h.Serial,out var intent))
             {
+                if(!Battle.AutomaticActionAllowed(intent.action)){intents.Remove(h.Serial);h.Windup=-1;return;}
                 h.Windup-=dt;if(h.Windup>0)return;intents.Remove(h.Serial);h.Windup=-1;
                 if(Boss.Alive&&Vector2.Distance(h.Position,Boss.Position)<=13.4f)
                 {
@@ -216,6 +217,7 @@ namespace Eternal.UnityMigration
             }
             if(h.AttackRemaining>0||Vector2.Distance(h.Position,Boss.Position)>13.4f)return;
             string action=skillSpacing>0?"basic":Chain.Choose(h,HeroKitExecution.PreferredSlot(Battle,h));
+            if(!Battle.AutomaticActionAllowed(action))return;
             intents[h.Serial]=(Boss,action);h.Windup=.18;Battle.Emit("windup",h,action,Boss);
         }
         public bool CanManualCastSlot(string id,string slot)
@@ -306,6 +308,7 @@ namespace Eternal.UnityMigration
             manualActive=true;rallyActive=spreadActive=false;manualDirection=Vector2.ClampMagnitude(direction,1);return true;
         }
         public void StopManualMovement(){manualDirection=Vector2.zero;}
+        public void SetAutomaticHunt(bool enabled){Battle.HuntAuto=enabled;if(enabled){rallyActive=spreadActive=manualActive=false;manualDirection=Vector2.zero;}}
         // Two spaced ranks use stable party slots. Orders only change goals;
         // existing swept movement, attack windups and evasion remain authoritative.
         public static Vector2 SpreadGoal(Vector2 boss,int slot)
@@ -375,6 +378,7 @@ namespace Eternal.UnityMigration
             foreach(var h in Battle.Heroes.OrderByDescending(h=>Vector2.Dot(h.Position-Boss.Position,Vector2.left)).ThenBy(h=>h.Slot))
             {
                 if(!h.Alive||h.Stun>0){h.Velocity=Vector2.zero;continue;}
+                if(!Battle.HuntAuto&&!manualActive&&!rallyActive&&!spreadActive){h.Velocity=Vector2.zero;continue;}
                 bool dodging=DodgeRemaining>0&&dodgeGoals.ContainsKey(h.Id);
                 bool manual=manualActive&&manualDirection.sqrMagnitude>.0001f;
                 bool react=!manualActive&&shape!=null&&AutoEvade&&CanEvade(h)&&remaining<=Reaction(h);

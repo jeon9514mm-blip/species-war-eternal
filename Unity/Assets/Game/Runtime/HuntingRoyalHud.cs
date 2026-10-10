@@ -27,6 +27,8 @@ namespace Eternal.UnityMigration
                 ManualMovement=()=>Raid?.ManualMovementActive??Simulation.ManualMovementActive,
                 OverlayBlocking=()=>InspectionIsOpen,ZoomVisible=()=>Raid==null,
                 InputAllowed=()=>MovementInputEnabled()&&!ReviewState.SavePending,
+                AutomationAllowed=()=>!InspectionIsOpen&&!ReviewState.SavePending&&(Raid!=null?Raid.Running:!Simulation.Defeated),
+                SetAutomation=SetRoyalAutomation,
                 CanCast=(id,slot)=>!InspectionIsOpen&&!ReviewState.SavePending&&
                     (Raid!=null?Raid.CanManualCastSlot(id,slot):Simulation.CanManualCast(id,slot)),
                 Stage=()=>Raid!=null?(string)HuntingSimulation.Canonical["zones"][Raid.Zone]["boss"]:
@@ -55,6 +57,19 @@ namespace Eternal.UnityMigration
             if(Raid!=null)Raid.SetManualMovement(world);else Simulation.SetManualMovement(world);
         }
         void StopRoyalMovement(){Raid?.StopManualMovement();Simulation?.StopManualMovement();}
+        void SetRoyalAutomation(string channel,bool enabled)
+        {
+            if(InspectionIsOpen||ReviewState.SavePending)return;
+            if(PersistentPlayer&&!playerRaidTraining&&!ReviewState.PracticeActive)
+            {
+                var result=ReviewState.SetAutomationOption(channel,enabled);
+                if(!result.Ok){huntNotice=result.Message;huntNoticeUntil=Time.unscaledTime+3;PauseForSaveFailure();return;}
+            }
+            if(channel=="skills")ActiveBattle.SkillsAuto=enabled;
+            else if(channel=="ultimate")ActiveBattle.UltimateAuto=enabled;
+            else if(channel=="hunt"){if(Raid!=null)Raid.SetAutomaticHunt(enabled);else Simulation.SetAutomaticHunt(enabled);}
+            PauseForSaveFailure();RefreshRoyalHud();
+        }
         void ResumeRoyalMovement(){if(!MovementInputEnabled())return;if(Raid!=null)Raid.ResumeFormation();else Simulation.ResumeMovement();}
         void ToggleRoyalPause()
         {if(ReviewState.SavePending){PauseForSaveFailure();return;}StopRoyalMovement();if(Raid!=null)Raid.Paused=!Raid.Paused;else Simulation.Paused=!Simulation.Paused;RefreshHud();}

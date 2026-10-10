@@ -15,7 +15,7 @@ namespace Eternal.UnityMigration
         static readonly string[] Slots={"a1","a2","ultimate"};
         readonly Dictionary<string,HeroTile> heroes=new();
         readonly Dictionary<string,SkillTile> skills=new();
-        readonly Dictionary<float,Button> zoomButtons=new();
+        readonly Dictionary<string,(Button button,Label state)> automationButtons=new();
         HuntingSimulation simulation;
         RoyalHudBindings native;
         string partyKey="";
@@ -38,7 +38,7 @@ namespace Eternal.UnityMigration
         UIDocument document;
         VisualElement root,safe,header,rail,identity,healthFill,ultimateFill,stick,knob,defeat,gemBadge,skillRow,zoomRow;
         Label stage,progress,gold,gems,heroName,hp,ultimate,noticeText,stickCaption,identityRole;
-        Button pauseButton,autoButton;
+        Button pauseButton,zoomButton;
         Label identityInitial;
         Label identityLevel;
         Sigil pauseIcon,identityCrest;
@@ -107,8 +107,6 @@ namespace Eternal.UnityMigration
             gold=Currency(actions,"coin",Bronze,out _);gems=Currency(actions,"gem",Blue,out gemBadge);
             var chest=ActionButton(actions,"",()=>Navigate("가방"));chest.name="grove-top-bag";chest.style.width=50;
             var chestIcon=new GodotHudIcon("bag",Bronze);chestIcon.style.width=chestIcon.style.height=28;chest.Add(chestIcon);chest.tooltip="가방";
-            autoButton=ActionButton(actions,"AUTO",()=>{ReleaseStick();this.resumeMovement?.Invoke();Refresh(selected);});
-            autoButton.name="grove-resume-auto";autoButton.style.width=91;autoButton.style.fontSize=17;autoButton.tooltip="직접 이동을 끝내고 자동 추적을 재개합니다.";
             pauseButton=ActionButton(actions,"일시정지",()=>{ReleaseStick();this.togglePause?.Invoke();Refresh(selected);});
             pauseButton.name="grove-pause";pauseButton.style.width=54;pauseButton.text="";
             var manage=ActionButton(actions,"≡",()=>{if(native?.Manage!=null)native.Manage();else Navigate("영웅");});manage.name="grove-manage";manage.style.width=38;manage.tooltip="원정대 메뉴";
@@ -221,13 +219,29 @@ namespace Eternal.UnityMigration
         void BuildZoom()
         {
             var row=Row(safe,"grove-zoom");zoomRow=row;row.style.position=Position.Absolute;row.style.right=369;row.style.bottom=118;
-            foreach(float factor in new[]{1f,1.5f,2f,3f})
+            foreach(var item in new[]{("hunt","자동사냥"),("ultimate","각성기"),("skills","스킬")})
             {
-                float value=factor;var button=new Button(()=>{currentZoom=value;zoom?.Invoke(value);RefreshZoom();}){text="×"+value.ToString("0.#",CultureInfo.InvariantCulture),name="grove-zoom-"+value.ToString("0.#",CultureInfo.InvariantCulture)};
-                CleanButton(button);Round(button,45);Border(button,Bronze,1);button.style.backgroundColor=Ink;button.style.marginLeft=8;button.style.fontSize=16;row.Add(button);
-                button.tooltip=value==1?"넓게 보기":"현재 중심에서 "+value.ToString("0.#",CultureInfo.InvariantCulture)+"배 확대";zoomButtons[value]=button;
+                string channel=item.Item1;var button=new Button(()=>ToggleAutomation(channel)){name="grove-auto-"+channel};
+                CleanButton(button);button.style.width=90;button.style.height=45;button.style.marginLeft=7;button.style.backgroundColor=Ink;RoundCorners(button,9);button.AddToClassList("royal-action");
+                var title=Text(button,item.Item2,12);title.style.unityFontStyleAndWeight=FontStyle.Bold;
+                var state=Text(button,"AUTO ON",11);state.style.marginTop=2;row.Add(button);automationButtons[channel]=(button,state);
             }
+            zoomButton=new Button(CycleZoom){name="grove-zoom-cycle"};CleanButton(zoomButton);Round(zoomButton,45);Border(zoomButton,Bronze,1.5f);zoomButton.style.backgroundColor=Ink;zoomButton.style.marginLeft=8;zoomButton.style.fontSize=16;zoomButton.AddToClassList("royal-action");row.Add(zoomButton);
             RefreshZoom();
+        }
+        public void CycleZoom(){float[] factors={1f,1.5f,2f,3f};int index=Array.IndexOf(factors,currentZoom);SelectZoom(factors[(index+1)%factors.Length]);}
+        public bool AutomationEnabled(string channel)=>channel=="skills"?CurrentBattle.SkillsAuto:channel=="ultimate"?CurrentBattle.UltimateAuto:CurrentBattle.HuntAuto&&!ManualMoving;
+        public void ToggleAutomation(string channel)
+        {
+            if(!automationButtons.ContainsKey(channel)||!(native?.AutomationAllowed?.Invoke()??(!CombatFinished&&navigationRoute=="사냥")))return;
+            bool enabled=!AutomationEnabled(channel);if(channel=="hunt")ReleaseStick();
+            if(native?.SetAutomation!=null)native.SetAutomation(channel,enabled);
+            else
+            {
+                if(simulation.PlayerState?.UnityPlayer==true&&!simulation.PlayerState.SetAutomationOption(channel,enabled).Ok)return;
+                if(channel=="skills")CurrentBattle.SkillsAuto=enabled;else if(channel=="ultimate")CurrentBattle.UltimateAuto=enabled;else simulation.SetAutomaticHunt(enabled);
+            }
+            Refresh(selected);
         }
 
         void BuildOutcome()
@@ -253,8 +267,12 @@ namespace Eternal.UnityMigration
             gemBadge.style.display=simulation.PlayerState==null?DisplayStyle.None:DisplayStyle.Flex;
             if(simulation.PlayerState!=null)gems.text=simulation.PlayerState.WalletGems.ToString("N0",CultureInfo.InvariantCulture);
             pauseButton.tooltip=CombatPaused?"계속 사냥":"일시정지";pauseIcon.Set(CombatPaused?"play":"pause",Pale);pauseButton.SetEnabled(!CombatFinished&&InputAvailable);
-            autoButton.text=ManualMoving?"FOLLOW":"AUTO";autoButton.SetEnabled(!CombatPaused&&!CombatFinished&&InputAvailable);
-            autoButton.style.borderBottomColor=autoButton.style.borderTopColor=autoButton.style.borderLeftColor=autoButton.style.borderRightColor=ManualMoving?Bronze:new Color(.28f,.42f,.35f);
+            foreach(var item in automationButtons)
+            {
+                bool on=AutomationEnabled(item.Key);item.Value.state.text=on?"AUTO ON":"AUTO OFF";item.Value.state.style.color=on?Moss:Muted;
+                Border(item.Value.button,on?Bronze:new Color(.36f,.41f,.43f),on?1.5f:1);item.Value.button.SetEnabled(native?.AutomationAllowed?.Invoke()??(!CombatFinished&&navigationRoute=="사냥"));
+                item.Value.button.tooltip=(item.Key=="skills"?"일반 스킬":item.Key=="ultimate"?"각성기":"자동 추적·일반 공격")+" 자동 사용 "+(on?"켜짐":"꺼짐");
+            }
             noticeText.text=notice??"";noticeText.style.display=string.IsNullOrWhiteSpace(notice)?DisplayStyle.None:DisplayStyle.Flex;
             defeat.style.display=PartyDefeated?DisplayStyle.Flex:DisplayStyle.None;
             foreach(var hero in CurrentBattle.Heroes)
@@ -328,10 +346,15 @@ namespace Eternal.UnityMigration
             if(stick!=null&&captured>=0&&stick.HasPointerCapture(captured))stick.ReleasePointer(captured);
             if(knob!=null)knob.style.left=knob.style.top=(stickSize-66)/2;
         }
+        public void SelectZoom(float value)
+        {
+            if(value!=1&&value!=1.5f&&value!=2&&value!=3)return;
+            currentZoom=value;zoom?.Invoke(value);RefreshZoom();
+        }
         void RefreshZoom()
         {
-            foreach(var pair in zoomButtons)
-            {bool active=Mathf.Approximately(pair.Key,currentZoom);pair.Value.style.color=active?Pale:Muted;Border(pair.Value,active?Bronze:new Color(.36f,.41f,.43f),active?2:1);}
+            if(zoomButton==null)return;zoomButton.text="×"+currentZoom.ToString("0.#",CultureInfo.InvariantCulture);zoomButton.style.color=Pale;
+            zoomButton.tooltip="현재 "+zoomButton.text+" · 누를 때마다 ×1 → ×1.5 → ×2 → ×3 순환";
         }
         void LayoutSafeArea()
         {
@@ -343,6 +366,7 @@ namespace Eternal.UnityMigration
             bool narrow=rect.width*sx<1260;header.style.width=narrow?352:455;stage.style.fontSize=narrow?18:23;
             identity.style.width=narrow?310:410;identity.style.left=Length.Percent(narrow?23:28);
             stickSize=narrow?160:184;Round(stick,stickSize);if(pointer<0)ReleaseStick();
+            zoomRow.style.bottom=rect.width*sx<1560?195:118;
             LayoutNavigation(rect.width*sx);
         }
         string HeroName(string id)=>(string)simulation.Catalog.Hero(id)["name"]??id;
