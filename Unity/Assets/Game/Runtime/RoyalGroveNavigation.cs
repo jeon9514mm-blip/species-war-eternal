@@ -23,8 +23,8 @@ namespace Eternal.UnityMigration
             dock.style.height=76;dock.Add(new RoyalHudSurface(false,true));safe.Add(dock);
             navigationItems=Row(dock,"grove-navigation-items");navigationItems.style.height=76;
             navigationItems.style.alignSelf=Align.Center;navigationItems.style.alignItems=Align.Center;
-            string[] routes={"사냥","영웅","레이드","던전","가방"};
-            string[] icons={"sword","hero","raid","dungeon","bag"};
+            string[] routes={"사냥","영웅","레이드","던전","진영전","가방"};
+            string[] icons={"sword","hero","raid","dungeon","war","bag"};
             for(int i=0;i<routes.Length;i++)
             {
                 string route=routes[i];
@@ -76,6 +76,7 @@ namespace Eternal.UnityMigration
                 navigationTitle.text=route;navigationContent.Clear();
                 if(route=="영웅")BuildHeroNavigation();
                 else if(route=="레이드")BuildRaidNavigation();
+                else if(route=="진영전")FactionWarOverview.Populate(navigationContent,simulation.PlayerState?.Snapshot());
                 else if(route=="가방")BuildBagNavigation();
                 else BuildDungeonNavigation();
             }

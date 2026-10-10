@@ -284,7 +284,7 @@ namespace Eternal.UnityMigration
             var nav=Row(huntDock);nav.name="hunt-bottom-navigation";nav.style.height=45;nav.style.flexShrink=0;nav.style.alignItems=Align.Center;
             nav.Insert(0,new RoyalHudSurface());nav.style.position=Position.Relative;
             var royalStyle=Resources.Load<StyleSheet>("Eternal/UI/RoyalHunt");if(royalStyle!=null)root.styleSheets.Add(royalStyle);
-            string[] routes={"사냥","영웅","레이드","던전","가방"},icons={"sword","hero","raid","dungeon","bag"};
+            string[] routes={"사냥","영웅","레이드","던전","진영전","가방"},icons={"sword","hero","raid","dungeon","war","bag"};
             for(int i=0;i<routes.Length;i++)
             {
                 string route=routes[i];var b=Button(nav,"",()=>OpenPanel(route));b.name="navigation-"+route;b.AddToClassList("hunt-nav-button");
@@ -507,6 +507,11 @@ namespace Eternal.UnityMigration
             {
                 ShowRaidSelection();
                 return;
+            }
+            if(route=="진영전")
+            {
+                PanelHeader("진영전");var scroll=new ScrollView{name="faction-war-overview"};scroll.style.flexGrow=1;modal.Add(scroll);
+                FactionWarOverview.Populate(scroll,ReviewState.Snapshot());return;
             }
             if(route=="던전")ShowLegacyGrowthHub();else if(route=="가방")ShowInventory();else ShowStateMenu();
         }

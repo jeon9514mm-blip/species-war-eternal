@@ -29,7 +29,7 @@ namespace Eternal.UnityMigration
 
             var cards=Row(scroll);cards.name="MenuFeaturedCards";cards.AddToClassList("legacy-menu-features");
             cards.style.height=250;cards.style.flexShrink=0;cards.style.marginBottom=16;
-            var war=LegacyFeature(cards,"war","종의 전쟁","진영 전투","",null,"전쟁 기능 이관 중");
+            var war=LegacyFeature(cards,"war","진영전","종의 전쟁","",()=>OpenPanel("진영전"));
             war.style.width=Length.Percent(18);war.style.marginRight=10;
             var right=new VisualElement();right.style.flexGrow=1;right.style.flexBasis=0;right.style.minWidth=0;cards.Add(right);
             var upper=Row(right);upper.style.height=120;upper.style.flexShrink=0;
