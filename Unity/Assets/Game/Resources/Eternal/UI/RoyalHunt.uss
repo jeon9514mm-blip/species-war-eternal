@@ -1,0 +1,24 @@
+.royal-nav-button {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    color: rgb(159, 165, 167);
+    -unity-font-style: bold;
+}
+.royal-nav-button:hover { color: rgb(242, 219, 173); background-color: rgba(191, 150, 78, 0.08); }
+.royal-nav-button.selected { color: rgb(250, 221, 160); background-color: rgba(167, 125, 63, 0.08); }
+.royal-action:hover { background-color: rgba(182, 151, 93, 0.16); border-color: rgb(231, 198, 141); }
+.royal-sheet-card {
+    background-color: rgba(29, 37, 42, 0.94);
+    border-color: rgba(166, 139, 87, 0.45);
+    border-width: 1px;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 10px;
+}
+.royal-sheet-card:hover { background-color: rgba(44, 51, 53, 0.97); border-color: rgb(202, 167, 100); }
+#grove-selected-hp-value {
+    -unity-font-style: bold;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgba(11, 21, 20, 0.9);
+}
+.hunt-nav-button { border-radius: 0; background-color: rgba(0, 0, 0, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; }

@@ -282,7 +282,9 @@ namespace Eternal.UnityMigration
             chainHudButton=CompactHudButton(huntActions,"연계 펼치기",ToggleChainDeck,104);chainHudButton.name="hunt-chain-expand";chainHudButton.style.height=24;chainHudButton.style.fontSize=11;chainHudButton.tooltip="수동 스킬 6칸과 연계 순서 설정을 펼칩니다.";
             chainRow=Row(huntDock);chainRow.name="party";chainRow.AddToClassList("hunt-hero-strip");chainRow.style.height=68;chainRow.style.flexShrink=0;chainRow.style.justifyContent=Justify.Center;chainRow.style.alignItems=Align.Center;
             var nav=Row(huntDock);nav.name="hunt-bottom-navigation";nav.style.height=45;nav.style.flexShrink=0;nav.style.alignItems=Align.Center;
-            string[] routes={"사냥","영웅","도전","가방","메뉴"},icons={"sword","hero","shield","bag","hamburger"};
+            nav.Insert(0,new RoyalHudSurface());nav.style.position=Position.Relative;
+            var royalStyle=Resources.Load<StyleSheet>("Eternal/UI/RoyalHunt");if(royalStyle!=null)root.styleSheets.Add(royalStyle);
+            string[] routes={"사냥","영웅","레이드","던전","가방"},icons={"sword","hero","raid","dungeon","bag"};
             for(int i=0;i<routes.Length;i++)
             {
                 string route=routes[i];var b=Button(nav,"",()=>OpenPanel(route));b.name="navigation-"+route;b.AddToClassList("hunt-nav-button");
@@ -501,18 +503,18 @@ namespace Eternal.UnityMigration
             {
                 OpenHeroManagement();return;
             }
-            if(route=="도전")
+            if(route=="도전"||route=="레이드")
             {
                 ShowRaidSelection();
                 return;
             }
-            if(route=="가방")ShowInventory();else ShowStateMenu();
+            if(route=="던전")ShowLegacyGrowthHub();else if(route=="가방")ShowInventory();else ShowStateMenu();
         }
         void SelectNavigation(string route)
         {
             foreach(var tab in navigation)
             {
-                bool active=tab.Key==route;tab.Value.style.backgroundColor=active?new Color(.17f,.23f,.20f):new Color(.10f,.14f,.15f);tab.Value.style.color=active?Moss:Parchment;
+                bool active=tab.Key==(route=="도전"?"레이드":route);tab.Value.style.backgroundColor=active?new Color(.29f,.23f,.13f,.22f):Color.clear;tab.Value.style.color=active?new Color(1,.86f,.57f):Parchment;
                 tab.Value.style.borderBottomWidth=active?3:1;tab.Value.style.borderBottomColor=active?Bronze:new Color(.31f,.37f,.37f);
             }
         }

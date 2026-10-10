@@ -77,6 +77,7 @@ namespace Eternal.UnityMigration
                 if(Simulation.Defeated)AddControl("다시 사냥","현재 사냥터에서 원정대 재정비",()=>RestartPlayerHunt(false));
             }
             AddControl("연계 순서","기존 자동 연계 순서 · 스킬 설정",ShowChain);
+            AddControl("전체 메뉴","기록 · 보상 · 게임 설정",ShowStateMenu);
             var message=Text(scroll,growthMessage??"",12);message.style.color=Bronze;message.style.whiteSpace=WhiteSpace.Normal;
         }
         void BindHuntHudGeometry()
@@ -156,6 +157,8 @@ namespace Eternal.UnityMigration
                 case "hero":Arc(12,7.5f,3.5f);Arc(12,20,7,180,360);Line(5,20,19,20);Line(8.8f,3.7f,9.5f,1.8f,12,3.3f,14.5f,1.8f,15.2f,3.7f);break;
                 case "shield":Line(12,3,20,6,19,14,16,18,12,21,8,18,5,14,4,6,12,3);Line(12,7,12,16);Line(8,11,16,11);break;
                 case "bag":Line(5,8,19,8,20,20,4,20,5,8);Arc(12,8,4,180,360);Line(8,12,8,13);Line(16,12,16,13);Arc(12,13,4,8.6f,171.4f);break;
+                case "raid":Line(3,3,18,18);Line(3,6,6,3);Line(2,18,18,2);Line(3,21,21,3);Line(2,14,9,21);Line(15,14,21,20);Line(14,17,17,14);break;
+                case "dungeon":Line(3,21,3,8,7,8,7,3,17,3,17,8,21,8,21,21,3,21);Arc(12,14,4,180,360);Line(8,14,8,21);Line(16,14,16,21);Line(10,5,10,7);Line(14,5,14,7);break;
                 case "hamburger":Line(3,5,21,5);Line(3,12,21,12);Line(3,19,21,19);break;
                 case "coin":Arc(12,12,9);Arc(12,12,6);Line(12,7,15,12,12,17,9,12,12,7);break;
                 case "gem":Line(6,4,18,4,22,9,12,21,2,9,6,4);Line(2,9,22,9);Line(8,4,7,9,12,21,17,9,16,4);break;
