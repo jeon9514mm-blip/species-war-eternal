@@ -19,7 +19,7 @@ namespace Eternal.UnityMigration
     public sealed class NativeSessionStore
     {
         public const string Format="species-war-unity";
-        public const int Version=1;
+        public const int Version=2;
         readonly string faction;
         public readonly string PathName;
         public long Revision {get;private set;}
@@ -41,6 +41,12 @@ namespace Eternal.UnityMigration
             }
             return Path.Combine(directory,faction+".json");
         }
+        bool MatchesFaction(JObject payload)
+        {
+            string selected=(string)payload?["selected_faction"];
+            return selected==faction||new[]{"aurelia","noxfera"}.Contains(selected)&&
+                (bool?)payload?["unity_linked_factions"]==true&&(string)payload?["unity_account_origin_faction"]==faction;
+        }
         NativeSessionRead Candidate(string path)
         {
             if(!File.Exists(path))return new NativeSessionRead();
@@ -55,11 +61,11 @@ namespace Eternal.UnityMigration
                 if(envelope==null||(string)envelope["format"]!=Format)return new NativeSessionRead{Status="invalid_format"};
                 long version=GameStateCommands.Integer(envelope["version"],0,0,int.MaxValue);
                 if(version>Version)return new NativeSessionRead{Status="unsupported_version",Unsupported=true};
-                if(version!=Version||envelope["payload"] is not JObject payload)return new NativeSessionRead{Status="invalid_payload"};
+                if(version<1||envelope["payload"] is not JObject payload)return new NativeSessionRead{Status="invalid_payload"};
                 string digest=(string)envelope["sha256"];envelope.Remove("sha256");
                 if(digest==null||digest!=LegacySaveCodec.Hash(envelope.ToString(Formatting.None)))return new NativeSessionRead{Status="checksum_mismatch"};
                 if(GameStateCommands.Integer(payload["save_version"],1,1,int.MaxValue)>LegacySaveCodec.Version)return new NativeSessionRead{Status="unsupported_payload",Unsupported=true};
-                if((string)payload["selected_faction"]!=faction||(bool?)payload["unity_player_profile"]!=true)return new NativeSessionRead{Status="invalid_profile"};
+                if(!MatchesFaction(payload)||(bool?)payload["unity_player_profile"]!=true)return new NativeSessionRead{Status="invalid_profile"};
                 return new NativeSessionRead{Ok=true,Status="loaded",Revision=GameStateCommands.Integer(envelope["revision"],0,0,GameStateCommands.CurrencyCap),Payload=(JObject)payload.DeepClone()};
             }
             catch(Exception e)when(e is IOException||e is UnauthorizedAccessException||e is JsonException||e is DecoderFallbackException||e is InvalidCastException||e is FormatException)
@@ -79,7 +85,7 @@ namespace Eternal.UnityMigration
         public bool Write(JObject payload)
         {
             LastWriteSucceeded=false;
-            if((bool?)payload?["unity_player_profile"]!=true||(string)payload["selected_faction"]!=faction||GameStateCommands.Integer(payload["save_version"],1,1,int.MaxValue)>LegacySaveCodec.Version)return false;
+            if((bool?)payload?["unity_player_profile"]!=true||!MatchesFaction(payload)||GameStateCommands.Integer(payload["save_version"],1,1,int.MaxValue)>LegacySaveCodec.Version)return false;
             try
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(PathName));

@@ -68,7 +68,9 @@ namespace Eternal.UnityMigration
             else if(saved.Status=="missing")
             {payload=NativePlayerSession.NewPayload(catalog,faction);if(!store.Write(payload)){message.text="기록을 저장하지 못했습니다. 저장 위치와 권한을 확인해 주세요.";return;}}
             else{message.text="기록을 읽지 못했습니다. 기존 파일은 보존되어 있습니다.";return;}
-            StartSession(new NativePlayerSession(catalog,payload,store));
+            var session=new NativePlayerSession(catalog,payload,store);
+            if(session.State.Faction!=faction){var switched=session.State.SwitchAccountFaction(faction);if(!switched.Ok||switched.SavePending){message.text=switched.Message;return;}}
+            StartSession(session);
         }
         void ImportLegacy()
         {
@@ -84,6 +86,7 @@ namespace Eternal.UnityMigration
         }
         void StartSession(NativePlayerSession session)
         {
+            session.State.CalculateOffline();
             var game=new GameObject("Eternal native player session").AddComponent<HuntingMigrationReview>();game.BindPlayerSession(session);Destroy(gameObject);
         }
         void OnDestroy(){foreach(var sprite in portraits)if(sprite!=null)Destroy(sprite);if(panel!=null)Destroy(panel);}

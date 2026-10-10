@@ -18,7 +18,7 @@ namespace Eternal.UnityMigration
             public int Selected=-1,Preset;
             public Vector2 Scroll;
         }
-        bool PartyEditorCanEdit=>PersistentPlayer&&Raid==null&&ReviewState.MutationError.Length==0;
+        bool PartyEditorCanEdit=>PersistentPlayer&&Raid==null&&!ChallengeActive&&ReviewState.MutationError.Length==0;
         static readonly Color PartyBlue=new Color(.20f,.48f,.78f);
         static readonly Color PartySurface=new Color(.075f,.12f,.19f);
         static readonly Color PartyEdge=new Color(.22f,.31f,.43f);

@@ -7,6 +7,7 @@ namespace Eternal.UnityMigration
 {
     public sealed partial class GameStateCommands
     {
+        public int PracticeMatchedLevel;
         public bool IsFactionHero(string id)=>ValidHero(data,id);
         public IReadOnlyList<string> DeployedHeroes()
         {
@@ -75,7 +76,7 @@ namespace Eternal.UnityMigration
         {
             if(!ValidHero(data,id)||slot<0||slot>=10)return new JObject();
             var hero=catalog.Hero(id);var identity=(JObject)hero["identity_profile"];string role=(string)hero["role_group"];
-            int level=HeroProgress(id).level;var tree=HeroTree(id);var equipment=Snapshot();int power=GearPower(equipment,id);var set=GearProfile(equipment,id);
+            int level=PracticeActive&&PracticeMatchedLevel>0?Math.Clamp(PracticeMatchedLevel,1,100):HeroProgress(id).level;var tree=HeroTree(id);var equipment=Snapshot();int power=GearPower(equipment,id);var set=GearProfile(equipment,id);
             int baseHp=role=="탱커"?560:role=="서포터"?405:role=="컨트롤러"?390:360,defense=role=="탱커"?18:role=="서포터"?9:role=="컨트롤러"?8:6;
             double grade=Grade(id) switch{"SR"=>1.08,"SSR"=>1.18,"UR"=>1.32,_=>1},partyHp=(double)PartySynergy(party)["hp_multiplier"];
             double N(JObject o,string key,double fallback=0)=>LegacyCombatRules.Number(o,key,fallback);

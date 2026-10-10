@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using L=Eternal.UnityMigration.LegacyFeatureCatalog;
 
 namespace Eternal.UnityMigration
 {
@@ -68,8 +69,8 @@ namespace Eternal.UnityMigration
                 ReviewSnapshot=ReviewStateFixture.Create(catalog);var state=new GameStateCommands(catalog,ReviewSnapshot,snapshot=>{ReviewSnapshot=snapshot;return true;});
                 Simulation=new HuntingSimulation(20,9514,state);Simulation.Chain.Enabled=true;
             }
-            Simulation.OnEvent=Receive;
-            CreateWorld();BuildHud();RebuildActors();BuildParty();
+            Simulation.OnEvent=Receive;speed=(float)L.F(ReviewState.Snapshot()["battle_speed"],1);
+            CreateWorld();BuildHud();RebuildActors();BuildParty();InstallRoyalHud();
             launch=ReviewLaunchSettings.Load();if(launch.HasRaid)StartRaid(launch.initialRaidZone);
             if(launch.initialPanel=="growth")ShowGrowth("leonhardt");else if(launch.initialPanel=="bag")ShowInventory();else if(launch.initialPanel=="menu")ShowStateMenu();
             Debug.Log(playerSession!=null?"ETERNAL_NATIVE_PLAYER_RUNNING: own Unity profile; original Godot save files are never write targets.":"ETERNAL_HUNT_REVIEW_RUNNING: native hunting, 10 original heroes, isolated Lv20 fixture; player saves untouched.");
@@ -78,6 +79,9 @@ namespace Eternal.UnityMigration
         {
             var cameraObject=new GameObject("Hunting 45 degree camera");BattleCamera=cameraObject.AddComponent<Camera>();
             worldRoot=new GameObject("Owned battle environment");cameraObject.transform.SetParent(worldRoot.transform,false);
+            // The battle camera clears only its inset viewport. Clear the full
+            // display first so translucent HUD panels cannot retain old glyphs.
+            var backing=new GameObject("Full display HUD clear").AddComponent<Camera>();backing.transform.SetParent(worldRoot.transform,false);backing.depth=-100;backing.cullingMask=0;backing.clearFlags=CameraClearFlags.SolidColor;backing.backgroundColor=new Color(.025f,.035f,.038f,1);backing.allowHDR=false;backing.allowMSAA=false;
             // At the 1600x900 reference, the 648px battle viewport displays
             // normalized 1.9m originals at 86.4px: 1.9*648/(2*7.125).
             BattleCamera.orthographic=true;BattleCamera.orthographicSize=9.2625f/1.3f;
@@ -121,11 +125,12 @@ namespace Eternal.UnityMigration
                 if(settled.Ok){Simulation.RefreshHeroGrowth();foreach(var hero in Simulation.Battle.Heroes)if(ReviewState.HeroProgress(hero.Id).level>levels[hero.Id]&&visualQueue.Count<256)visualQueue.Add(new BattleEvent("level_up",hero,"progress",hero));}
                 if(playerSession!=null)
                 {
+                    if(settled.Ok&&!settled.SavePending&&++productivityPacks>=12){ReviewState.RecordHuntProductivity(productivitySeconds,productivityPacks);productivityPacks=0;productivitySeconds=0;}
                     PauseForSaveFailure();
                 }
             }
             if(e.Kind=="victory"&&playerSession!=null&&Raid!=null&&!playerRaidTraining)
-            {playerRaidReward=ReviewState.SettleUnityRaid(Raid.Zone,playerRaidAttempt);if(playerRaidReward.Ok)Simulation.RefreshHeroGrowth();PauseForSaveFailure();}
+            {playerRaidReward=ReviewState.SettleUnityRaid(Raid.Zone,playerRaidAttempt,Math.Min(12,Raid.GuardBreaks*2+Raid.AddWaves*2+Raid.DpsPassed*3+Math.Min(3,Raid.Interrupts)));if(playerRaidReward.Ok)Simulation.RefreshHeroGrowth();PauseForSaveFailure();}
             // Events produced after frame setup are presented together. A visual
             // queue never replays simulation actions or carries reward authority.
             if(visualQueue.Count<256)visualQueue.Add(e);
@@ -140,14 +145,17 @@ namespace Eternal.UnityMigration
             if(Simulation==null)return;
             FrameCost.Begin();
             RenderedFrames++;double frame=Math.Min(Time.unscaledDeltaTime,.25f);
-            bool paused=(Raid?.Paused??Simulation.Paused)||(Raid==null&&PersistentPlayer&&ReviewState.HasDeferredUnityLoot);
+            bool paused=(Raid?.Paused??Simulation.Paused)||(Raid==null&&!ChallengeActive&&PersistentPlayer&&ReviewState.HasDeferredUnityLoot);
             bool running=Raid?.Running??!Simulation.Defeated;
-            if(!paused&&running)accumulator+=frame*speed;
+            if(!paused&&running){accumulator+=frame*speed;if(PersistentPlayer&&Raid==null&&!ChallengeActive)productivitySeconds+=frame;}
             int steps=0;
-            while(!paused&&accumulator>=.05&&steps<5){if(Raid!=null)Raid.Step(.05);else Simulation.Step(.05);accumulator-=.05;steps++;if(playerPartyRefresh||Raid==null&&PersistentPlayer&&ReviewState.HasDeferredUnityLoot)break;}
+            while(!paused&&accumulator>=.05&&steps<5){if(Raid!=null)Raid.Step(.05);else Simulation.Step(.05);accumulator-=.05;steps++;if(playerPartyRefresh||Raid==null&&!ChallengeActive&&PersistentPlayer&&ReviewState.HasDeferredUnityLoot)break;}
             if(playerPartyRefresh&&!ReviewState.SavePending&&!ReviewState.HasDeferredUnityLoot){playerPartyRefresh=false;RestartPlayerHunt(true);}
             if(Raid!=null&&launch.pauseAfterSeconds>0&&Raid.Elapsed>=launch.pauseAfterSeconds){Raid.Paused=true;launch.pauseAfterSeconds=0;}
             if(accumulator>=.05){CatchupLimitHits++;accumulator%=.05;}
+            UpdateChallenge();
+            TickLegacyWorld();
+            StampActivity();
             float alpha=paused||!running?1:Mathf.Clamp01((float)(accumulator/.05));
             RebuildActors();
             feedback.RaidWarningVisible=Raid!=null&&(Raid.Warning!=null||Raid.SecondWarning!=null);
@@ -180,6 +188,7 @@ namespace Eternal.UnityMigration
             RefreshSkillPresentation();
             RefreshRaidPresentation();
             RefreshMovementJoystick();
+            ApplyRoyalHudLayout();
             FrameCost.End();
         }
         void UpdateAfterImages(float dt)
@@ -367,6 +376,7 @@ namespace Eternal.UnityMigration
         }
         void RefreshHud()
         {
+            RefreshRoyalHud();
             RefreshChainStrip();
             RefreshHuntHudControls();
             fixtureLabel.text=Raid!=null?(Raid.ReviewLevel==50?"패턴 훈련":"플레이테스트")+" · Lv"+Raid.ReviewLevel+" 임시 원정대 · 보상은 저장되지 않습니다":"플레이테스트 · Lv20 임시 원정대 · 보상은 저장되지 않습니다";
@@ -385,8 +395,9 @@ namespace Eternal.UnityMigration
             goldLabel.text=ReviewState.WalletGold.ToString("N0");gemLabel.text=ReviewState.WalletGems.ToString("N0");
             statusLabel.text=Raid!=null?(Raid.Paused?"일시정지":Raid.Running?"레이드 전투":Raid.EventText)+" · "+Raid.MovementOrder+" · 원정대 "+ActiveBattle.Heroes.Count(h=>h.Alive)+"/"+ActiveBattle.Heroes.Count+" · 피해 "+Raid.DamageDealt.ToString("N0"):(Simulation.Defeated?"원정대 전멸":Simulation.Paused?"일시정지":Simulation.ManualMovementActive?"직접 이동":"자동 사냥")+" · "+Simulation.Battle.Heroes.Count(h=>h.Alive)+"/"+Simulation.Battle.Heroes.Count+"  ·  적 "+Simulation.Battle.Enemies.Count(e=>e.Alive)+"  ·  무리 "+Simulation.PacksCleared+"  ·  ×"+speed;
             if(Raid==null&&Time.unscaledTime<huntNoticeUntil)statusLabel.text+=" · "+huntNotice;
-            if(Raid==null&&PersistentPlayer&&ReviewState.HasDeferredUnityLoot)statusLabel.text="장비 보관 대기 · 가방을 정리하고 보관함에서 수령하세요.";
+            if(Raid==null&&!ChallengeActive&&PersistentPlayer&&ReviewState.HasDeferredUnityLoot)statusLabel.text="장비 보관 대기 · 가방을 정리하고 보관함에서 수령하세요.";
             statusLabel.tooltip=statusLabel.text;
+            if(ChallengeActive){stageLabel.text=(L.Flag(activeChallenge.Entry["practice"])?"[연습] ":"")+activeChallenge.Title;statusLabel.text="원정대 "+ActiveBattle.Heroes.Count(h=>h.Alive)+" / "+ActiveBattle.Heroes.Count+" · 적 "+ActiveBattle.Enemies.Count(e=>e.Alive)+" · "+Math.Max(0,activeChallenge.Limit-activeChallenge.Elapsed).ToString("F1")+"초 · 피해 "+activeChallenge.Damage;}
             RefreshHuntMapTools();
             var chain=Raid?.Chain??Simulation.Chain;
             if(chain.Current is ChainSkill next)
@@ -497,6 +508,7 @@ namespace Eternal.UnityMigration
         }
         void OpenPanel(string route)
         {
+            if(ChallengeActive)FinishActiveChallenge(true);
             SelectNavigation(route);
             if(route=="사냥"){EndRaid();CloseInspection();return;}
             if(route=="영웅")
@@ -510,13 +522,13 @@ namespace Eternal.UnityMigration
             }
             if(route=="진영전")
             {
-                PanelHeader("진영전");var scroll=new ScrollView{name="faction-war-overview"};scroll.style.flexGrow=1;modal.Add(scroll);
-                FactionWarOverview.Populate(scroll,ReviewState.Snapshot());return;
+                ShowFactionWar();return;
             }
-            if(route=="던전")ShowLegacyGrowthHub();else if(route=="가방")ShowInventory();else ShowStateMenu();
+            if(route=="던전")ShowDungeons();else if(route=="가방")ShowInventory();else ShowStateMenu();
         }
         void SelectNavigation(string route)
         {
+            RoyalHud?.SyncRoute(route);
             foreach(var tab in navigation)
             {
                 bool active=tab.Key==(route=="도전"?"레이드":route);tab.Value.style.backgroundColor=active?new Color(.29f,.23f,.13f,.22f):Color.clear;tab.Value.style.color=active?new Color(1,.86f,.57f):Parchment;

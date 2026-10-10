@@ -1,4 +1,5 @@
 using System;
+using L=Eternal.UnityMigration.LegacyFeatureCatalog;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -16,7 +17,7 @@ namespace Eternal.UnityMigration
             modal.AddToClassList("legacy-menu-drawer");
 
             var header=modal.ElementAt(0);
-            var quests=LegacyQuickAction(header,"quest","목표 · 업적",null,"목표·업적 기능 이관 중");
+            var quests=LegacyQuickAction(header,"quest","목표 · 업적",()=>ShowGoals());
             quests.name="MenuQuickQuests";
             var rewards=LegacyQuickAction(header,"gift","보상 센터",ShowLegacyRewards);
             rewards.name="MenuQuickRewards";
@@ -53,9 +54,9 @@ namespace Eternal.UnityMigration
             LegacyMenuLink(links,"codex","영웅 도감","journal",ShowRoster);
             LegacyMenuLink(links,"training","성장 연구","growth",ShowLegacyResearch);
             LegacyMenuLink(links,"rewards","보상 센터","gift",ShowLegacyRewards);
-            LegacyMenuLink(links,"quests","목표 · 업적","quest",null,"목표·업적 기능 이관 중");
-            LegacyMenuLink(links,"market","거래소","coin",null,"거래 기능 이관 중");
-            LegacyMenuLink(links,"faction","진영 선택","war",ReturnToLegacyEntry);
+            LegacyMenuLink(links,"quests","목표 · 업적","quest",()=>ShowGoals());
+            LegacyMenuLink(links,"market","거래소","coin",ShowMarket);
+            LegacyMenuLink(links,"faction","진영 선택","war",ShowAccountFaction);
             LegacyMenuLink(links,"guide","가이드","compass",ShowLegacyGuide);
             LegacyMenuLink(links,"settings","설정","settings",ShowLegacySettings);
 
@@ -160,8 +161,8 @@ namespace Eternal.UnityMigration
             LegacySection(scroll,"영웅 성장","연구 포인트 · 장비 강화 · 승급과 돌파");
             Button(scroll,"성장 연구",ShowLegacyResearch).style.marginLeft=0;
             Button(scroll,"수호신",ShowGuardians).style.marginLeft=0;
-            LegacySection(scroll,"던전 도전","일일 던전 · 시련의 탑 · 주간 도전은 기능 이관 중입니다.");
-            var pending=Button(scroll,"던전 도전 · 이관 중",null);pending.style.marginLeft=0;pending.SetEnabled(false);
+            LegacySection(scroll,"던전 도전","일일 던전 · 무한탑 · 주간 심연");
+            Button(scroll,"던전 도전",ShowDungeons).style.marginLeft=0;
             LegacySection(scroll,"레이드","보스 선택과 패턴 훈련을 이용할 수 있습니다.");
             Button(scroll,"레이드 입장",()=>OpenPanel("도전")).style.marginLeft=0;
         }
@@ -171,7 +172,7 @@ namespace Eternal.UnityMigration
             PanelHeader("보상 센터");var scroll=new ScrollView();scroll.style.flexGrow=1;modal.Add(scroll);
             LegacySection(scroll,"보유 재화","골드 "+ReviewState.WalletGold.ToString("N0")+" · 젬 "+ReviewState.WalletGems.ToString("N0"));
             GrowthNotice(scroll);
-            var daily=GrowthButton(scroll,"일일 보상 · 젬 30 / 골드 100",()=>ReviewState.ClaimDaily(DateTime.Now.ToString("yyyy-MM-dd")),ShowLegacyRewards);
+            var daily=GrowthButton(scroll,"일일 보상 · 젬 30 / 골드 100",()=>ReviewState.ClaimDaily(L.Day(L.Now)),ShowLegacyRewards);
             daily.name="legacy-daily-reward";daily.style.marginTop=10;
             var snapshot=ReviewState.Snapshot();
             long gold=GameStateCommands.Integer(snapshot["unclaimed_gold"],0,0,GameStateCommands.CurrencyCap)+GameStateCommands.Integer(snapshot["idle_chest_gold"],0,0,GameStateCommands.CurrencyCap);
@@ -212,7 +213,7 @@ namespace Eternal.UnityMigration
 
         void ShowLegacyGuide()
         {
-            PanelHeader("가이드");var scroll=new ScrollView();scroll.style.flexGrow=1;modal.Add(scroll);
+            PanelHeader("가이드");var scroll=new ScrollView();scroll.style.flexGrow=1;modal.Add(scroll);var guide=ReviewState.TutorialStatus();LegacySection(scroll,"첫 원정 · "+guide["step"]+" / 6",(string)guide["text"]);
             LegacySection(scroll,"사냥","원정대가 자동으로 이동하며 전투합니다. 영웅칸을 누르면 영웅 성장·스킬·장비를 확인할 수 있습니다.");
             LegacySection(scroll,"파티 편성","같은 진영의 영웅을 최대 10명 편성합니다. 편성과 전투 진형 변경은 다음 무리부터 적용됩니다.");
             LegacySection(scroll,"도전","레이드에서 조이스틱으로 이동하고 카운터·무력화 지원을 사용하세요. 패턴 훈련은 임시 원정대로 진행하며 보상은 없습니다.");
@@ -226,6 +227,14 @@ namespace Eternal.UnityMigration
             PanelHeader("설정");var scroll=new ScrollView();scroll.style.flexGrow=1;modal.Add(scroll);
             LegacySection(scroll,"전투 연출과 소리","스킬의 장식 효과와 효과음을 설정합니다. 피해 숫자와 보스 위험 표시는 유지됩니다.");
             var preferences=Row(scroll);preferences.style.flexWrap=Wrap.Wrap;BuildLegacyPreferenceToggles(preferences);
+            GrowthNotice(scroll);var snapshot=ReviewState.Snapshot();bool skills=snapshot["skill_auto"]?.Type!=Newtonsoft.Json.Linq.JTokenType.Boolean||(bool)snapshot["skill_auto"],ultimates=snapshot["ultimate_auto"]?.Type!=Newtonsoft.Json.Linq.JTokenType.Boolean||(bool)snapshot["ultimate_auto"];
+            GrowthButton(scroll,skills?"자동 스킬 ON":"자동 스킬 OFF",()=>ReviewState.SetCombatOptions(!skills,ultimates,speed),ShowLegacySettings);
+            GrowthButton(scroll,ultimates?"자동 궁극기 ON":"자동 궁극기 OFF",()=>ReviewState.SetCombatOptions(skills,!ultimates,speed),ShowLegacySettings);
+            Button(scroll,"통합 전투 프리셋",ShowCombatPresets);Button(scroll,"전투 연습실",ShowPractice);
+            bool autoGear=snapshot["gear_auto_equip"]?.Type!=Newtonsoft.Json.Linq.JTokenType.Boolean||(bool)snapshot["gear_auto_equip"];string salvage=(string)snapshot["auto_salvage_min_rarity"]??"일반";
+            GrowthButton(scroll,autoGear?"자동 장착 ON":"자동 장착 OFF",()=>ReviewState.SetLootOptions(!autoGear,salvage),ShowLegacySettings);
+            foreach(string rarity in OriginalEquipmentRules.Rarities){string choice=rarity;GrowthButton(scroll,"자동 분해 · "+rarity+" 미만",()=>ReviewState.SetLootOptions(autoGear,choice),ShowLegacySettings);}
+            foreach(float multiplier in new[]{1f,2f,3f}){float value=multiplier;GrowthButton(scroll,"전투 속도 ×"+value,()=>ReviewState.SetCombatOptions(skills,ultimates,value),()=>{speed=value;ShowLegacySettings();});}
             LegacySection(scroll,"스킬 연계","자동 연계 사용 여부와 스킬 순서를 바꿀 수 있습니다.");
             Button(scroll,"연계 순서",ShowChain).style.marginLeft=0;
             LegacySection(scroll,"진행 기록",ReviewState.SavePending?"저장 대기 중입니다. 기록을 다시 저장한 뒤 시작 화면으로 이동하세요.":PersistentPlayer?"진영별로 진행 기록을 자동 저장합니다.":"플레이테스트 기록은 이번 실행에서만 유지됩니다.");

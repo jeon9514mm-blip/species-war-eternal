@@ -30,7 +30,7 @@ namespace Eternal.UnityMigration
             movementStick.RegisterCallback<PointerCancelEvent>(e=>{if(e.pointerId==stickPointer)ReleaseMovementStick();});
             movementStick.RegisterCallback<PointerCaptureOutEvent>(e=>{if(e.pointerId==stickPointer)ReleaseMovementStick();});
         }
-        bool MovementInputEnabled()=>Simulation!=null&&modal.style.display.value==DisplayStyle.None&&(Raid!=null?Raid.Running&&!Raid.Paused:!Simulation.Paused&&!Simulation.Defeated&&!(ReviewState?.HasDeferredUnityLoot??false));
+        bool MovementInputEnabled()=>Simulation!=null&&modal.style.display.value==DisplayStyle.None&&(Raid!=null?Raid.Running&&!Raid.Paused:!Simulation.Paused&&!Simulation.Defeated&&(ChallengeActive||!(ReviewState?.HasDeferredUnityLoot??false)));
         void ReadMovementStick(Vector2 local)
         {
             if(stickRaid!=Raid||stickHunt!=Simulation||!MovementInputEnabled()){ReleaseMovementStick();return;}
@@ -56,7 +56,8 @@ namespace Eternal.UnityMigration
             bool manual=Raid!=null?Raid.ManualMovementActive:Simulation?.ManualMovementActive==true;stickLabel.text=manual?"직접 이동 · 손 떼면 정지":"드래그 이동";
             huntFollowButton.style.display=visible&&Raid==null&&manual?DisplayStyle.Flex:DisplayStyle.None;huntFollowButton.SetEnabled(MovementInputEnabled());
         }
-        void OnApplicationFocus(bool focused){if(!focused)ReleaseMovementStick();}
+        void OnApplicationFocus(bool focused){if(!focused){ReleaseMovementStick();if(PersistentPlayer&&ReviewState!=null&&ReviewState.MutationError.Length==0)ReviewState.StampIdleTime();}}
+        void OnApplicationPause(bool paused){if(paused){ReleaseMovementStick();if(PersistentPlayer&&ReviewState!=null&&ReviewState.MutationError.Length==0)ReviewState.StampIdleTime();}}
         void OnDisable(){ReleaseMovementStick();}
     }
 }

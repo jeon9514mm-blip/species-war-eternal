@@ -1,0 +1,274 @@
+{
+  "passed": true,
+  "count": 67,
+  "checks": [
+    {
+      "name": "all 83 original save fields copied without discarding values",
+      "passed": true
+    },
+    {
+      "name": "actual Godot BFS/march oracle 18:10",
+      "passed": true
+    },
+    {
+      "name": "actual Godot BFS/march oracle 3:10",
+      "passed": true
+    },
+    {
+      "name": "actual Godot BFS/march oracle 3:9",
+      "passed": true
+    },
+    {
+      "name": "actual Godot BFS/march oracle 4:5",
+      "passed": true
+    },
+    {
+      "name": "original definitions: 100 guide, 6 daily, 6 weekly, 18 achievements",
+      "passed": true
+    },
+    {
+      "name": "native hunt receipt 1",
+      "passed": true
+    },
+    {
+      "name": "native hunt receipt 2",
+      "passed": true
+    },
+    {
+      "name": "native hunt receipt 3",
+      "passed": true
+    },
+    {
+      "name": "native hunt receipt 4",
+      "passed": true
+    },
+    {
+      "name": "native hunt receipt 5",
+      "passed": true
+    },
+    {
+      "name": "claim sequential guide",
+      "passed": true
+    },
+    {
+      "name": "duplicate goal cannot mint currency",
+      "passed": true
+    },
+    {
+      "name": "locked guide cannot skip chapters",
+      "passed": true
+    },
+    {
+      "name": "wave objective earns a native runtime receipt",
+      "passed": true
+    },
+    {
+      "name": "daily reward schedule and completion quota",
+      "passed": true
+    },
+    {
+      "name": "duplicate dungeon settlement rejected",
+      "passed": true
+    },
+    {
+      "name": "unproven tier cannot sweep",
+      "passed": true
+    },
+    {
+      "name": "proven same faction/mode/tier unlocks next-day sweep",
+      "passed": true
+    },
+    {
+      "name": "clock rollback cannot refill dungeon",
+      "passed": true
+    },
+    {
+      "name": "tower clear advances once",
+      "passed": true
+    },
+    {
+      "name": "weekly counts new HP loss only, not repeats/healing",
+      "passed": true
+    },
+    {
+      "name": "weekly actual damage settlement",
+      "passed": true
+    },
+    {
+      "name": "initialize exact original 1600-cell world",
+      "passed": true
+    },
+    {
+      "name": "BFS own-route and original 8-rations-per-tile",
+      "passed": true
+    },
+    {
+      "name": "march persists without instant capture",
+      "passed": true
+    },
+    {
+      "name": "arrival commits ownership once",
+      "passed": true
+    },
+    {
+      "name": "repeated arrival cannot double capture",
+      "passed": true
+    },
+    {
+      "name": "enemy sanctuary cannot be attacked",
+      "passed": true
+    },
+    {
+      "name": "season contribution reward available only after active period",
+      "passed": true
+    },
+    {
+      "name": "season reward once",
+      "passed": true
+    },
+    {
+      "name": "real inventory escrow listing",
+      "passed": true
+    },
+    {
+      "name": "self purchase rejected",
+      "passed": true
+    },
+    {
+      "name": "cancel returns to delivery, not duplicate bag",
+      "passed": true
+    },
+    {
+      "name": "claim delivery once",
+      "passed": true
+    },
+    {
+      "name": "workshop proposal escrow",
+      "passed": true
+    },
+    {
+      "name": "workshop choose and extract",
+      "passed": true
+    },
+    {
+      "name": "crystal implant consumes exactly one item",
+      "passed": true
+    },
+    {
+      "name": "save complete combat preset",
+      "passed": true
+    },
+    {
+      "name": "apply preset references existing gear without currency mint",
+      "passed": true
+    },
+    {
+      "name": "offline reward bounded to 8h / 5 stages / 32 rolls",
+      "passed": true
+    },
+    {
+      "name": "repeat offline calculation cannot replay rewards",
+      "passed": true
+    },
+    {
+      "name": "failed write retains one candidate and blocks mutations",
+      "passed": true
+    },
+    {
+      "name": "practice blocks all progression commands",
+      "passed": true
+    },
+    {
+      "name": "unknown Godot payload data retained",
+      "passed": true
+    },
+    {
+      "name": "actual native 10-hero dungeon runs to victory without field rewards",
+      "passed": true
+    },
+    {
+      "name": "ten actor ledger credits only settled HP loss",
+      "passed": true
+    },
+    {
+      "name": "same-account faction switch keeps wallets and selects ten own heroes",
+      "passed": true
+    },
+    {
+      "name": "faction world bank restores territory and stance",
+      "passed": true
+    },
+    {
+      "name": "world command replay cannot repeat revision or resource cost",
+      "passed": true
+    },
+    {
+      "name": "world receipt rejects payload substitution",
+      "passed": true
+    },
+    {
+      "name": "disconnect blocks world commands and catch-up",
+      "passed": true
+    },
+    {
+      "name": "local reconnect restores authority without cached world replacement",
+      "passed": true
+    },
+    {
+      "name": "source clock correction limit 0.75 and warning above eight seconds",
+      "passed": true
+    },
+    {
+      "name": "native v2 initial profile persists",
+      "passed": true
+    },
+    {
+      "name": "linked faction persists under its original account path",
+      "passed": true
+    },
+    {
+      "name": "linked account can round-trip after reload without new wallet",
+      "passed": true
+    },
+    {
+      "name": "native v1 profiles remain readable",
+      "passed": true
+    },
+    {
+      "name": "passive hunt XP cannot fake deliberate tutorial growth",
+      "passed": true
+    },
+    {
+      "name": "deliberate research advances tutorial",
+      "passed": true
+    },
+    {
+      "name": "actual raid reservation completes opening guide",
+      "passed": true
+    },
+    {
+      "name": "named raid skill control casts a2 instead of substituting a1",
+      "passed": true
+    },
+    {
+      "name": "malformed escrow item fails without crashing",
+      "passed": true
+    },
+    {
+      "name": "world attack queue rejects duplicate forces",
+      "passed": true
+    },
+    {
+      "name": "imported queued NPC attack resolves real defending squads",
+      "passed": true
+    },
+    {
+      "name": "world FIFO queue bounded to original eight forces",
+      "passed": true
+    },
+    {
+      "name": "challenge clock and movement ignore field equipment delivery pause",
+      "passed": true
+    }
+  ]
+}

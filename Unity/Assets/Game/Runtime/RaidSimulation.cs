@@ -218,6 +218,19 @@ namespace Eternal.UnityMigration
             string action=skillSpacing>0?"basic":Chain.Choose(h,HeroKitExecution.PreferredSlot(Battle,h));
             intents[h.Serial]=(Boss,action);h.Windup=.18;Battle.Emit("windup",h,action,Boss);
         }
+        public bool CanManualCastSlot(string id,string slot)
+        {
+            if(!Running||Paused||!Boss.Alive||slot!="a1"&&slot!="a2"&&slot!="ultimate")return false;
+            var hero=Battle.Heroes.Find(h=>h.Id==id);
+            return hero!=null&&hero.Alive&&hero.Stun<=0&&Vector2.Distance(hero.Position,Boss.Position)<=13.4f&&HeroKitExecution.CanUse(Battle,hero,slot);
+        }
+        public bool ManualCastSlot(string id,string slot)
+        {
+            if(!CanManualCastSlot(id,slot))return false;var hero=Battle.Heroes.Find(h=>h.Id==id);
+            bool result=HeroKitExecution.Cast(Battle,hero,slot,Boss);
+            if(result){intents.Remove(hero.Serial);hero.Windup=-1;skillSpacing=slot=="ultimate"?.16:.14;}
+            if(!Boss.Alive)Finish("victory");return result;
+        }
         public bool ManualCast(bool ultimate,string selected=null)
         {
             if(!Running||Paused||!Boss.Alive)return false;

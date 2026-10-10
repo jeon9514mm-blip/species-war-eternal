@@ -113,6 +113,7 @@ namespace Eternal.UnityMigration
             if(hero==null || !hero.Alive || raw<=0)return 0;
             int damage=LegacyCombatRules.IncomingDamage(raw,Math.Max(0,hero.Defense-(hero.ArmorBreak>0?4:0)),enemy.Weaken>0,hero.Guard>0,PartyGuard>0);
             int absorbed=Math.Min(hero.Shield,damage);hero.Shield-=absorbed;damage-=absorbed;
+            if(absorbed>0)Emit("absorb",enemy,"basic",hero,absorbed);
             int actual=Math.Min(hero.Hp,damage);hero.Hp-=actual;Emit("hero_hit",enemy,"basic",hero,actual);
             if(hero.Alive){int passive=HeroKitExecution.Event(this,hero,"hit",enemy);if(IsRaid&&passive>0)DamageEnemy(hero,Boss,passive,"passive");}
             if(!hero.Alive)Emit("death",enemy,"basic",hero);return actual;

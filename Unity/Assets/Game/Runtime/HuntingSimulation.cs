@@ -8,7 +8,7 @@ namespace Eternal.UnityMigration
 {
     // Native hunting integration fixture. No player persistence or original save
     // mutation. A single simulation remains alive when inspecting other panels.
-    public sealed class HuntingSimulation
+    public sealed partial class HuntingSimulation
     {
         static readonly Lazy<OriginalCombatCatalog> catalogCache=new(()=>new OriginalCombatCatalog(OriginalCatalog.Required("hero-catalog").text));
         static readonly Lazy<JObject> legacyCache=new(()=>JObject.Parse(OriginalCatalog.Required("legacy-catalogs").text));
@@ -29,7 +29,7 @@ namespace Eternal.UnityMigration
         public Vector2 ManualDirection {get;private set;}
         public bool SetManualMovement(Vector2 direction)
         {
-            if(Paused||Defeated||PlayerState?.UnityPlayer==true&&PlayerState.HasDeferredUnityLoot||!float.IsFinite(direction.x)||!float.IsFinite(direction.y))return false;
+            if(Paused||Defeated||Challenge==null&&PlayerState?.UnityPlayer==true&&PlayerState.HasDeferredUnityLoot||!float.IsFinite(direction.x)||!float.IsFinite(direction.y))return false;
             ManualMovementActive=true;ManualDirection=Vector2.ClampMagnitude(direction,1);return true;
         }
         public void StopManualMovement(){ManualDirection=Vector2.zero;}
@@ -72,6 +72,7 @@ namespace Eternal.UnityMigration
             var party=playerState?.DeployedHeroes();
             SetParty(party!=null&&party.Count>0?party:playerState!=null?Catalog.HeroIds.Where(playerState.IsFactionHero).Take(3).ToArray():Catalog.HeroIds.Take(10).ToArray());
             SpawnPack();
+            if(PlayerState!=null){var options=PlayerState.Snapshot();Battle.SkillsAuto=options["skill_auto"]?.Type!=JTokenType.Boolean||(bool)options["skill_auto"];Battle.UltimateAuto=options["ultimate_auto"]?.Type!=JTokenType.Boolean||(bool)options["ultimate_auto"];}
         }
         public void SetParty(IReadOnlyList<string> ids)
         {
@@ -110,12 +111,13 @@ namespace Eternal.UnityMigration
                 foreach(string slot in new[]{"a1","a2","ultimate"})kit.Profiles[slot]=Catalog.AdjustedSkill(actor.Id,slot,kit.Utility);
             }
             Formation=PlayerState.Formation;Battle.CriticalChance=PlayerState.GuardianBonus("crit");
+            var options=PlayerState.Snapshot();Battle.SkillsAuto=options["skill_auto"]?.Type!=JTokenType.Boolean||(bool)options["skill_auto"];Battle.UltimateAuto=options["ultimate_auto"]?.Type!=JTokenType.Boolean||(bool)options["ultimate_auto"];
         }
         public bool CanManualCast(string heroId,string slot)=>ManualContext(heroId,slot,out _,out _);
         bool ManualContext(string heroId,string slot,out Combatant hero,out Combatant target)
         {
             hero=null;target=null;
-            if(Paused||Defeated||PlayerState?.UnityPlayer==true&&PlayerState.HasDeferredUnityLoot||slot!="a1"&&slot!="a2"&&slot!="ultimate")return false;
+            if(Paused||Defeated||Challenge==null&&PlayerState?.UnityPlayer==true&&PlayerState.HasDeferredUnityLoot||slot!="a1"&&slot!="a2"&&slot!="ultimate")return false;
             hero=Battle.Heroes.FirstOrDefault(h=>h.Id==heroId&&h.Alive&&h.Stun<=0);
             if(hero==null||!HeroKitExecution.CanUse(Battle,hero,slot))return false;
             var profile=Battle.Kits[hero.Id].Profiles[slot];target=CombatTargeting.Rank(Battle,hero,profile).FirstOrDefault();
@@ -137,6 +139,7 @@ namespace Eternal.UnityMigration
         }
         void HandleEvent(BattleEvent e)
         {
+            ObserveChallengeEvent(e);
             if(e.Kind=="death"&&Battle.Enemies.Any(a=>a.Serial==e.TargetSerial))Kills++;
             Chain?.Observe(e);
             OnEvent?.Invoke(e);
@@ -190,7 +193,7 @@ namespace Eternal.UnityMigration
         }
         public void Step(double dt)
         {
-            if(Paused||Defeated||PlayerState?.UnityPlayer==true&&PlayerState.HasDeferredUnityLoot||dt<=0||!double.IsFinite(dt))return;
+            if(Paused||Defeated||Challenge!=null&&!Challenge.Running||Challenge==null&&PlayerState?.UnityPlayer==true&&PlayerState.HasDeferredUnityLoot||dt<=0||!double.IsFinite(dt))return;
             dt=Math.Min(dt,.05);Ticks++;Elapsed+=dt;Battle.TickStatuses(dt);
             TickMonsterBleeds(dt);
             bodies.Clear();bodies.AddRange(Battle.Heroes.Where(a=>a.Alive));bodies.AddRange(Battle.Enemies.Where(a=>a.Alive));
@@ -198,6 +201,13 @@ namespace Eternal.UnityMigration
             MoveHeroes((float)dt);MoveEnemies((float)dt);
             foreach(var h in Battle.Heroes.Where(a=>a.Alive))AdvanceHero(h,dt);
             foreach(var e in Battle.Enemies.Where(a=>a.Alive))AdvanceEnemy(e,dt);
+            if(Challenge!=null)
+            {
+                Challenge.Advance(dt,Battle.Heroes.Count(a=>a.Alive));
+                if(!Challenge.Running)return;
+                if(!Battle.Enemies.Any(a=>a.Alive)){Challenge.CompleteWave(0,Battle.Heroes.Count(a=>a.Alive));if(Challenge.Running)SpawnChallengeWave();}
+                return;
+            }
             if(!Battle.Heroes.Any(a=>a.Alive)){Defeated=true;OnEvent?.Invoke(new BattleEvent("defeat",null,"",null));return;}
             if(!Battle.Enemies.Any(a=>a.Alive))
             {
@@ -315,6 +325,7 @@ namespace Eternal.UnityMigration
         }
         void AdvanceEnemy(Combatant e,double dt)
         {
+            if(AdvanceChallengePattern(e,dt))return;
             if(e.Stun>0){intents.Remove(e.Serial);e.Windup=-1;e.AttackRemaining=Math.Max(e.AttackRemaining,.22);return;}
             if(intents.TryGetValue(e.Serial,out var intent))
             {
@@ -328,7 +339,7 @@ namespace Eternal.UnityMigration
                     enemySkillNext[e.Serial]=Elapsed+8;
                     if(actual>0&&intent.target.Alive){ApplyMonsterSkill(e,intent.target);MonsterSkills++;Battle.Emit("monster_skill",e,intent.action,intent.target,actual);}
                 }
-                e.AttackRemaining=e.Id=="fallen_ogre"?1.9:e.Id=="fallen_lich"?1.6:e.Id=="fallen_dwarf"?1.65:e.Id=="fallen_werewolf"?1.0:1.2;e.Windup=-1;return;
+                e.AttackRemaining=(e.Id=="fallen_ogre"?1.9:e.Id=="fallen_lich"?1.6:e.Id=="fallen_dwarf"?1.65:e.Id=="fallen_werewolf"?1.0:1.2)*(Challenge!=null?e.AttackIntervalMultiplier:1);e.Windup=-1;return;
             }
             if(e.AttackRemaining>0)return;var target=EnemyTarget(e,true);if(target==null)return;
             bool skill=ExpandedWorld&&Stage>=100&&FallenMonsterCatalog.Contains(e.Id)&&enemyHits.GetValueOrDefault(e.Serial)>=2&&Elapsed>=enemySkillNext.GetValueOrDefault(e.Serial);

@@ -17,6 +17,18 @@ namespace Eternal.UnityMigration
         readonly Dictionary<string,SkillTile> skills=new();
         readonly Dictionary<float,Button> zoomButtons=new();
         HuntingSimulation simulation;
+        RoyalHudBindings native;
+        string partyKey="";
+        CombatEncounter CurrentBattle=>native?.Battle?.Invoke()??simulation.Battle;
+        bool CombatPaused=>native?.Paused?.Invoke()??simulation.Paused;
+        bool PartyDefeated=>native?.Defeated?.Invoke()??simulation.Defeated;
+        bool CombatFinished=>native?.Finished?.Invoke()??simulation.Defeated;
+        bool ManualMoving=>native?.ManualMovement?.Invoke()??simulation.ManualMovementActive;
+        bool InputAvailable=>native?.InputAllowed?.Invoke()??navigationRoute=="사냥";
+        bool CanCast(string id,string slot)=>native?.CanCast?.Invoke(id,slot)??simulation.CanManualCast(id,slot);
+        public void UseNativeBindings(RoyalHudBindings bindings){native=bindings??throw new ArgumentNullException(nameof(bindings));Refresh(selected);}
+        public void SyncRoute(string route){navigationRoute=route=="도전"?"레이드":route;RefreshNavigation();}
+
         Action<string> select,cast;
         Action<Vector2> movement;
         Action stopMovement,resumeMovement,togglePause,restart;
@@ -73,7 +85,7 @@ namespace Eternal.UnityMigration
             noticeText.style.top=84;noticeText.style.left=Length.Percent(28);noticeText.style.right=178;
             noticeText.style.unityTextAlign=TextAnchor.MiddleCenter;noticeText.style.whiteSpace=WhiteSpace.Normal;
             root.RegisterCallback<GeometryChangedEvent>(_=>LayoutSafeArea());
-            initialized=true;Refresh(simulation.Battle.Heroes.Count>0?simulation.Battle.Heroes[0].Id:"");
+            initialized=true;Refresh(CurrentBattle.Heroes.Count>0?CurrentBattle.Heroes[0].Id:"");
         }
 
         void BuildHeader()
@@ -99,6 +111,7 @@ namespace Eternal.UnityMigration
             autoButton.name="grove-resume-auto";autoButton.style.width=91;autoButton.style.fontSize=17;autoButton.tooltip="직접 이동을 끝내고 자동 추적을 재개합니다.";
             pauseButton=ActionButton(actions,"일시정지",()=>{ReleaseStick();this.togglePause?.Invoke();Refresh(selected);});
             pauseButton.name="grove-pause";pauseButton.style.width=54;pauseButton.text="";
+            var manage=ActionButton(actions,"≡",()=>{if(native?.Manage!=null)native.Manage();else Navigate("영웅");});manage.name="grove-manage";manage.style.width=38;manage.tooltip="원정대 메뉴";
             pauseIcon=new Sigil("pause",Pale);pauseIcon.style.width=pauseIcon.style.height=26;pauseButton.Add(pauseIcon);
         }
 
@@ -112,11 +125,13 @@ namespace Eternal.UnityMigration
 
         void BuildHeroes()
         {
+            if(rail!=null){rail.RemoveFromHierarchy();heroes.Clear();}
+            partyKey=string.Join("|",CurrentBattle.Heroes.ConvertAll(h=>h.Id));
             rail=Row(safe,"grove-hero-rail");rail.style.position=Position.Absolute;rail.style.right=18;rail.style.top=92;
             rail.style.width=164;rail.style.flexWrap=Wrap.Wrap;
             for(int i=0;i<10;i++)
             {
-                string id=i<simulation.Battle.Heroes.Count?simulation.Battle.Heroes[i].Id:null;
+                string id=i<CurrentBattle.Heroes.Count?CurrentBattle.Heroes[i].Id:null;
                 var container=new VisualElement{name="grove-hero-cell-"+i,pickingMode=PickingMode.Ignore};container.style.width=82;container.style.height=91;rail.Add(container);
                 var button=new Button(()=>{if(id!=null){select?.Invoke(id);Refresh(id);}}){name="grove-hero-"+(id??"inactive-"+i)};
                 CleanButton(button);Round(button,72);Border(button,Bronze,1.5f);button.style.backgroundColor=Ink;button.style.overflow=Overflow.Hidden;
@@ -166,7 +181,7 @@ namespace Eternal.UnityMigration
             foreach(string slot in Slots)
             {
                 string captured=slot;var column=new VisualElement{pickingMode=PickingMode.Ignore};column.style.width=108;column.style.alignItems=Align.Center;row.Add(column);
-                var button=new Button(()=>{if(simulation.CanManualCast(selected,captured))cast?.Invoke(captured);Refresh(selected);}){name="grove-cast-"+slot};
+                var button=new Button(()=>{if(CanCast(selected,captured))cast?.Invoke(captured);Refresh(selected);}){name="grove-cast-"+slot};
                 CleanButton(button);Round(button,98);Border(button,Bronze,1);button.style.backgroundColor=Ink;button.style.overflow=Overflow.Hidden;
                 button.Add(new RoyalHudSurface(true,true,slot=="a1"?new Color(.72f,.79f,.86f):Bronze));column.Add(button);
                 var inner=new VisualElement{pickingMode=PickingMode.Ignore};Absolute(inner,5,5,5,5);RoundCorners(inner,35);Border(inner,new Color(.50f,.58f,.60f,.5f),1);button.Add(inner);
@@ -227,21 +242,22 @@ namespace Eternal.UnityMigration
         public void Refresh(string selectedHeroId,string notice="")
         {
             if(!initialized)return;
-            Combatant actor=null;foreach(var hero in simulation.Battle.Heroes)if(hero.Id==selectedHeroId){actor=hero;break;}
-            if(actor==null&&simulation.Battle.Heroes.Count>0)actor=simulation.Battle.Heroes[0];
+            if(partyKey!=string.Join("|",CurrentBattle.Heroes.ConvertAll(h=>h.Id)))BuildHeroes();
+            Combatant actor=null;foreach(var hero in CurrentBattle.Heroes)if(hero.Id==selectedHeroId){actor=hero;break;}
+            if(actor==null&&CurrentBattle.Heroes.Count>0)actor=CurrentBattle.Heroes[0];
             selected=actor?.Id??"";
-            int alive=0;foreach(var enemy in simulation.Battle.Enemies)if(enemy.Alive)alive++;
-            stage.text="왕립 수림   ·   "+simulation.Stage+" 스테이지";
-            progress.text="무리 "+(simulation.PacksCleared+1)+"  ·  남은 적 "+alive+(simulation.Paused?"  ·  일시정지":simulation.NextPack>0?"  ·  다음 무리 진입":"  ·  교전 중");
+            int alive=0;foreach(var enemy in CurrentBattle.Enemies)if(enemy.Alive)alive++;
+            stage.text=native?.Stage?.Invoke()??"왕립 수림   ·   "+simulation.Stage+" 스테이지";
+            progress.text=native?.Progress?.Invoke()??"무리 "+(simulation.PacksCleared+1)+"  ·  남은 적 "+alive+(CombatPaused?"  ·  일시정지":simulation.NextPack>0?"  ·  다음 무리 진입":"  ·  교전 중");
             gold.text=(simulation.PlayerState?.WalletGold??simulation.Gold).ToString("N0",CultureInfo.InvariantCulture);
             gemBadge.style.display=simulation.PlayerState==null?DisplayStyle.None:DisplayStyle.Flex;
             if(simulation.PlayerState!=null)gems.text=simulation.PlayerState.WalletGems.ToString("N0",CultureInfo.InvariantCulture);
-            pauseButton.tooltip=simulation.Paused?"계속 사냥":"일시정지";pauseIcon.Set(simulation.Paused?"play":"pause",Pale);pauseButton.SetEnabled(!simulation.Defeated&&navigationRoute=="사냥");
-            autoButton.text=simulation.ManualMovementActive?"FOLLOW":"AUTO";autoButton.SetEnabled(!simulation.Paused&&!simulation.Defeated&&navigationRoute=="사냥");
-            autoButton.style.borderBottomColor=autoButton.style.borderTopColor=autoButton.style.borderLeftColor=autoButton.style.borderRightColor=simulation.ManualMovementActive?Bronze:new Color(.28f,.42f,.35f);
+            pauseButton.tooltip=CombatPaused?"계속 사냥":"일시정지";pauseIcon.Set(CombatPaused?"play":"pause",Pale);pauseButton.SetEnabled(!CombatFinished&&InputAvailable);
+            autoButton.text=ManualMoving?"FOLLOW":"AUTO";autoButton.SetEnabled(!CombatPaused&&!CombatFinished&&InputAvailable);
+            autoButton.style.borderBottomColor=autoButton.style.borderTopColor=autoButton.style.borderLeftColor=autoButton.style.borderRightColor=ManualMoving?Bronze:new Color(.28f,.42f,.35f);
             noticeText.text=notice??"";noticeText.style.display=string.IsNullOrWhiteSpace(notice)?DisplayStyle.None:DisplayStyle.Flex;
-            defeat.style.display=simulation.Defeated?DisplayStyle.Flex:DisplayStyle.None;
-            foreach(var hero in simulation.Battle.Heroes)
+            defeat.style.display=PartyDefeated?DisplayStyle.Flex:DisplayStyle.None;
+            foreach(var hero in CurrentBattle.Heroes)
             {
                 if(!heroes.TryGetValue(hero.Id,out var tile))continue;
                 tile.Selection.style.display=hero.Id==selected?DisplayStyle.Flex:DisplayStyle.None;
@@ -264,35 +280,36 @@ namespace Eternal.UnityMigration
             }
             foreach(string slot in Slots)RefreshSkill(actor,slot);
             bool moveEnabled=MovementEnabled();if(!moveEnabled)ReleaseStick();stick.SetEnabled(moveEnabled);stick.style.opacity=moveEnabled?1:.4f;
-            stickCaption.text=simulation.ManualMovementActive?"직접 이동 · 놓으면 정지":"드래그 이동";
+            stickCaption.text=ManualMoving?"직접 이동 · 놓으면 정지":"드래그 이동";
             SetCombatVisibility();
         }
 
         public void BindSimulation(HuntingSimulation next)
         {
             if(next==null)throw new ArgumentNullException(nameof(next));
+            if(ReferenceEquals(simulation,next))return;
             ReleaseStick();simulation=next;
-            Refresh(selected);
+            if(initialized&&partyKey!=string.Join("|",CurrentBattle.Heroes.ConvertAll(h=>h.Id)))BuildHeroes();
         }
 
         void RefreshSkill(Combatant actor,string slot)
         {
             var tile=skills[slot];
-            if(actor==null||!simulation.Battle.Kits.TryGetValue(actor.Id,out var kit)||!kit.Profiles.TryGetValue(slot,out var profile))
+            if(actor==null||!CurrentBattle.Kits.TryGetValue(actor.Id,out var kit)||!kit.Profiles.TryGetValue(slot,out var profile))
             {tile.Button.SetEnabled(false);tile.Title.text="";tile.State.text="—";return;}
             string name=(string)profile["skill"]??(slot=="ultimate"?"각성":slot=="a1"?"스킬 1":"스킬 2");
             double cooldown=kit.Cooldowns.TryGetValue(slot,out var remaining)?Math.Max(0,remaining):0;
-            bool awakening=slot=="ultimate",ready=simulation.CanManualCast(actor.Id,slot);
+            bool awakening=slot=="ultimate",ready=CanCast(actor.Id,slot);
             float completion=awakening?Mathf.Clamp01((float)actor.Ultimate/100):1-Mathf.Clamp01((float)(cooldown/Math.Max(.01,LegacyCombatRules.Number(profile,"cooldown",7))));
             tile.Button.SetEnabled(ready);tile.Button.style.opacity=!actor.Alive?.45f:1;
             tile.Title.text=awakening?"각성":slot=="a1"?"스킬 1":"스킬 2";tile.Button.tooltip=name+(awakening?" · 각성 게이지 100%":" · 재사용 "+LegacyCombatRules.Number(profile,"cooldown",7).ToString("0.#")+"초");
             tile.Icon.Set(actor.Id+"-"+slot,actor.Id=="elisia"?Moss:actor.Id=="mira"?new Color(.95f,.60f,.40f):awakening?Bronze:Blue);
             tile.Fill.style.width=Length.Percent(completion*100);tile.Shade.style.height=Length.Percent((1-completion)*100);
-            tile.State.text=!actor.Alive?"불능":simulation.Paused?"정지":actor.Stun>0?"기절":ready?"":awakening&&actor.Ultimate<100?((int)actor.Ultimate)+"%":cooldown>0?cooldown.ToString("0.0"):"대기";
+            tile.State.text=!actor.Alive?"불능":CombatPaused?"정지":actor.Stun>0?"기절":ready?"":awakening&&actor.Ultimate<100?((int)actor.Ultimate)+"%":cooldown>0?cooldown.ToString("0.0"):"대기";
             Border(tile.Button,ready?new Color(.94f,.78f,.44f):new Color(.42f,.44f,.44f),ready?2:1.5f);
         }
 
-        bool MovementEnabled()=>simulation!=null&&!simulation.Paused&&!simulation.Defeated&&battleCamera!=null;
+        bool MovementEnabled()=>simulation!=null&&!CombatPaused&&!CombatFinished&&battleCamera!=null&&InputAvailable;
         void ReadStick(Vector2 local)
         {
             if(!MovementEnabled()){ReleaseStick();return;}

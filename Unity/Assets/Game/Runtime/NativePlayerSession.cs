@@ -17,7 +17,8 @@ namespace Eternal.UnityMigration
             var payload=(JObject)original.DeepClone();payload.Remove("native_review_fixture");payload.Remove("native_review_settled_pack");payload["unity_player_profile"]=true;payload["save_version"]=LegacySaveCodec.Version;
             if(payload["deployed_hero_ids"] is not JArray deployed||!deployed.Any(t=>t.Type==JTokenType.String&&catalog.HeroIds.Contains((string)t)&&(string)catalog.Hero((string)t)["faction"]==faction))
                 payload["deployed_hero_ids"]=new JArray(catalog.HeroIds.Where(id=>(string)catalog.Hero(id)["faction"]==faction).Take(10));
-            int stage=(int)GameStateCommands.Integer(payload["idle_stage"],1,1,1000000);payload["unity_pack_total"]=(stage-1)*5;
+            int stage=(int)GameStateCommands.Integer(payload["idle_stage"],1,1,1000000);long target=GameStateCommands.Integer(payload["idle_stage_target"],10,1,1000000),partial=GameStateCommands.Integer(payload["idle_stage_kills"],0,0,target-1);
+            payload["unity_pack_total"]=(stage-1)*5+(int)(partial*5/target);payload["unity_imported_stage_fraction"]=partial/(double)target;
             string zone=(string)payload["current_zone_id"];payload["unity_hunt_zone"]=new[]{"gray_meadow","forgotten_mine","moonrest_forest"}.Contains(zone)?zone:"gray_meadow";
             return payload;
         }

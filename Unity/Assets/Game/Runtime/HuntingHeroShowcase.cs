@@ -224,6 +224,7 @@ namespace Eternal.UnityMigration
                 var name=ShowcaseText(block,"",14,Parchment);var detail=ShowcaseText(block,"",12,Moss);
                 var enhance=ShowcaseAction(block,"",id,()=>{var item=ReviewState.EquippedItem(id,selected);return ReviewState.EnhanceGear((string)item["id"],id,selected);},()=>{var item=ReviewState.EquippedItem(id,selected);int level=(int)item["level"];return level<10&&ReviewState.WalletGold>=LegacyGrowthEconomy.EquipmentCost(selected,level);},bindings);
                 enhance.name="hero-gear-enhance-"+slot;
+                Button(block,"장착 장비 공방",()=>{var item=ReviewState.EquippedItem(id,selected);ShowWorkshop((string)item["id"],id,selected);}).style.marginTop=6;
                 bindings.Add(()=>{var item=ReviewState.EquippedItem(id,selected);int level=(int)item["level"];name.text=SlotName(selected)+" · "+item["name"]+" +"+level;detail.text=item["rarity"]+" · "+item["set"]+" · 전투력 "+item["power"];enhance.text=level>=10?"최대 강화":"강화 · "+LegacyGrowthEconomy.EquipmentCost(selected,level).ToString("N0")+" 골드";});
             }
             var sets=ShowcaseText(parent,"",12,Moss);bindings.Add(()=>sets.text=(string)ReviewState.EquipmentProfile(id)["summary"]);

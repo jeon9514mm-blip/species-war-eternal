@@ -24,8 +24,8 @@ namespace Eternal.UnityMigration
             // Award the defeated wave's theme, before stage/party advancement.
             string zone=HuntStageWorld.Zone(1+(pack-1)/5);
             var drops=AwardUnityHuntLoot(state,zone,pack,defeats);
-            state["unity_pack_total"]=pack;AddCurrency(state,"wallet_gold",gold);AddCurrency(state,"wallet_xp",xp);int assigned=DistributeXp(state,xp);
-            state["unity_hunt_zone"]=HuntStageWorld.Zone(1+pack/5);
+            state["combat_kills"]=LegacyFeatureCatalog.N(state["combat_kills"])+defeats;state["unity_pack_total"]=pack;AddCurrency(state,"wallet_gold",gold);AddCurrency(state,"wallet_xp",xp);int assigned=DistributeXp(state,xp);
+            state["unity_hunt_zone"]=HuntStageWorld.Zone(1+pack/5);state["idle_stage"]=Math.Max(LegacyFeatureCatalog.N(state["idle_stage"],1),1+pack/5);GoalRecord(state,"hunt_packs");
             if(state["unity_next_party"] is JObject next&&next["heroes"] is JArray heroes)
             {state["deployed_hero_ids"]=heroes.DeepClone();state["formation_id"]=next["formation"]?.DeepClone()??new JValue("balanced");state.Remove("unity_next_party");state.Remove("unity_chain");}
             var result=StateCommandResult.Success("무리 격파 · 골드 +"+gold+" · 경험치 +"+assigned+(drops.Count>0?" · 장비 "+drops.Count+"개":""),gold,assigned);result.Details["drops"]=drops;return result;
@@ -50,12 +50,14 @@ namespace Eternal.UnityMigration
             Map(state,"unity_raid_chains")[zone]=new JObject{{"enabled",enabled},{"entries",new JArray(entries.Select(s=>new JObject{{"hero",s.Hero},{"slot",s.Slot}}))}};
             return StateCommandResult.Success("이 지역의 레이드 연계가 저장되었습니다.");
         });
-        public StateCommandResult SettleUnityRaid(string zone,long attempt)=>Commit(state=>
+        public StateCommandResult SettleUnityRaid(string zone,long attempt,int performance=0)=>Commit(state=>
         {
             var active=state["unity_raid_active"] as JObject;
             if(!UnityPlayer||active==null||(string)active["zone"]!=zone||Integer(active["attempt"],0,0,CurrencyCap)!=attempt)return StateCommandResult.Fail("이미 처리했거나 유효하지 않은 레이드입니다.");
             var region=HuntingSimulation.Canonical["zones"][zone];long gold=20*Integer(region["gold"],0,0,CurrencyCap/20);int xp=10*(int)Integer(region["xp"],0,0,10000000);
             state.Remove("unity_raid_active");var wins=Map(state,"unity_raid_wins");wins[zone]=Integer(wins[zone],0,0,CurrencyCap-1)+1;
+            var originalWins=Map(state,"raid_clears");originalWins[zone]=Integer(originalWins[zone],0,0,CurrencyCap-1)+1;GoalRecord(state,"raid_clear");
+            AwardRaidGear(state,zone,(int)Integer(region["difficulty"],1,1,3),Integer(originalWins[zone],1,1,CurrencyCap),performance);
             AddCurrency(state,"wallet_gold",gold);AddCurrency(state,"wallet_xp",xp);int assigned=DistributeXp(state,xp);
             return StateCommandResult.Success("레이드 보상 · 골드 +"+gold+" · 영웅 경험치 +"+assigned,gold,assigned);
         });

@@ -9,7 +9,7 @@ namespace Eternal.UnityMigration
     public sealed partial class HuntingMigrationReview
     {
         string growthMessage="",growthSection="장비";
-        bool GrowthAllowed=>Raid==null&&ReviewState.MutationError.Length==0;
+        bool GrowthAllowed=>Raid==null&&!ChallengeActive&&ReviewState.MutationError.Length==0;
         static string SlotName(string slot)=>slot=="weapon"?"무기":slot=="armor"?"갑옷":"장신구";
         void StateCommand(Func<StateCommandResult> command,Action refresh)
         {
@@ -67,6 +67,7 @@ namespace Eternal.UnityMigration
             GrowthButton(scroll,level>=10?"최대 강화":"강화 · "+cost.ToString("N0")+" 골드",()=>ReviewState.EnhanceGear(id),()=>ShowInventoryItem(id),equipment&&level<10&&ReviewState.WalletGold>=cost).style.marginTop=8;
             GrowthButton(scroll,(bool)item["locked"]?"잠금 해제":"장비 잠금",()=>ReviewState.ToggleGearLock(id),()=>ShowInventoryItem(id)).style.marginTop=8;
             bool canSalvage=equipment&&!(bool)item["locked"]&&!pending;
+            if(equipment)Button(scroll,"공방 · 옵션 조율 / 추출 / 이식",()=>ShowWorkshop(id)).style.marginTop=8;
             var salvage=Button(scroll,"분해 · 골드 "+OriginalEquipmentRules.SalvageValue(item),()=>
             {
                 if(OriginalEquipmentRules.Protected(item)&&!confirmSalvage){ShowInventoryItem(id,true);return;}

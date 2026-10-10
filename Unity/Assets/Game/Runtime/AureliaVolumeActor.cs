@@ -20,7 +20,7 @@ namespace Eternal.UnityMigration
         AnimationPlayableOutput output;
         AnimationClip active;
         Renderer[] renderers;
-        readonly MaterialPropertyBlock highlight=new();
+        MaterialPropertyBlock highlight;
         float actionRemaining,blendTime,hitRemaining,deathTime;
         bool dead;
         public string HeroId {get;private set;}
@@ -28,6 +28,7 @@ namespace Eternal.UnityMigration
         public bool IsMonster {get;private set;}
         public void Initialize(string id,bool monster=false)
         {
+            highlight??=new MaterialPropertyBlock();
             if(HasVolume)throw new InvalidOperationException("Volume actor already initialized.");
             HeroId=id;IsMonster=monster;string path="Eternal/GraphicsRebuild/"+(monster?"Monsters/":"Heroes/")+id;
             var imported=Resources.Load<GameObject>(path);

@@ -46,8 +46,22 @@ namespace Eternal.UnityMigration
             }
             state["unity_last_loot"]=new JObject{{"pack",pack},{"zone",zone},{"items",awarded.DeepClone()}};return awarded;
         }
-        static void StoreUnityLoot(JObject state,JObject item)
+        void StoreUnityLoot(JObject state,JObject item)
         {
+            bool automatic=state["gear_auto_equip"]?.Type==JTokenType.Boolean&&(bool)state["gear_auto_equip"];
+            string target=automatic?BestEquipmentTarget(state,item,EquipmentParty(state)):"";
+            if(target.Length>0)
+            {
+                var inventory=Bag(state);int index=inventory.Count;inventory.Add(item);
+                if(EquipDraft(state,(string)item["id"],target).Ok){var displaced=(JObject)inventory[index].DeepClone();inventory.RemoveAt(index);StoreUnityLootUnassigned(state,displaced);return;}
+                inventory.RemoveAt(index);
+            }
+            StoreUnityLootUnassigned(state,item);
+        }
+        static void StoreUnityLootUnassigned(JObject state,JObject item)
+        {
+            string threshold=(string)state["auto_salvage_min_rarity"]??"일반";
+            if(!OriginalEquipmentRules.Protected(item)&&OriginalEquipmentRules.RarityRank((string)item["rarity"])<OriginalEquipmentRules.RarityRank(threshold)){AddCurrency(state,"wallet_gold",OriginalEquipmentRules.SalvageValue(item));return;}
             var bag=Bag(state);if(bag.Count<UnityBagCapacity){bag.Add(item);return;}
             var mail=LootArray(state,"equipment_overflow");
             if(mail.Count<UnityMailCapacity)
@@ -70,13 +84,16 @@ namespace Eternal.UnityMigration
             }
             var pending=LootArray(state,"unity_pending_loot");var waiting=pending.OfType<JObject>().Select(i=>(JObject)i.DeepClone()).ToArray();pending.Clear();
             foreach(var item in waiting)StoreUnityLoot(state,item);
-            if(received==0&&waiting.Length==0)return StateCommandResult.Fail("가방의 빈칸을 확보한 뒤 수령하세요.");
+            DeliverPendingOriginalLoot(state);
+            if(received==0&&waiting.Length==0&&LootArray(state,"equipment_overflow").Count==0&&LacksPendingOriginal(state))return StateCommandResult.Fail("가방의 빈칸을 확보한 뒤 수령하세요.");
             return StateCommandResult.Success("보관 장비 "+received+"개 수령"+(pending.Count>0?" · 장비 보관 대기":""));
         });
         public StateCommandResult SaveUnityPartyPreset(int index,string[] heroes,string formation)=>Commit(state=>
         {
             if(!UnityPlayer||index<0||index>2||heroes==null||heroes.Length<1||heroes.Length>10||heroes.Distinct().Count()!=heroes.Length||heroes.Any(id=>!ValidHero(state,id))||formation==null||FormationProfiles[formation]==null)return StateCommandResult.Fail("편성과 진형을 확인하세요.");
-            Map(state,"unity_party_presets")[index.ToString()]=new JObject{{"heroes",new JArray(heroes)},{"formation",formation}};return StateCommandResult.Success("편성 "+(index+1)+"을 저장했습니다.");
+            Map(state,"unity_party_presets")[index.ToString()]=new JObject{{"heroes",new JArray(heroes)},{"formation",formation}};
+            var bank=LootArray(state,"party_presets");while(bank.Count<3)bank.Add(new JArray());bank[index]=new JArray(heroes);Map(state,"faction_party_presets")[Faction]=bank.DeepClone();return StateCommandResult.Success("편성 "+(index+1)+"을 저장했습니다.");
         });
+        static bool LacksPendingOriginal(JObject state)=>(state["pending_equipment_rolls"] as JObject??new JObject()).Properties().All(p=>Integer(p.Value,0,0,CurrencyCap)==0);
     }
 }

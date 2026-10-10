@@ -67,6 +67,7 @@ namespace Eternal.UnityMigration
         {
             if(!navigation.ContainsKey(route))throw new ArgumentException("Unknown hunting navigation route.",nameof(route));
             ReleaseStick();
+            if(native?.Navigate!=null){navigationRoute=route;native.Navigate(route);RefreshNavigation();Refresh(selected);return;}
             bool opening=navigationRoute=="사냥"&&route!="사냥";
             if(opening){pausedBeforeSheet=simulation.Paused;simulation.Paused=true;}
             if(route=="사냥"&&navigationRoute!="사냥")simulation.Paused=pausedBeforeSheet;
@@ -96,8 +97,10 @@ namespace Eternal.UnityMigration
         void SetCombatVisibility()
         {
             if(navigationSheet==null)return;
-            var show=navigationRoute=="사냥"?DisplayStyle.Flex:DisplayStyle.None;
+            var show=(native!=null?!native.OverlayBlocking.Invoke():navigationRoute=="사냥")?DisplayStyle.Flex:DisplayStyle.None;
+            if(native!=null){navigationSheet.style.display=DisplayStyle.None;defeat.style.display=show==DisplayStyle.Flex&&PartyDefeated?DisplayStyle.Flex:DisplayStyle.None;}
             foreach(var element in new[]{identity,skillRow,zoomRow,stick,stickCaption,rail})element.style.display=show;
+            if(native?.ZoomVisible!=null&&!native.ZoomVisible())zoomRow.style.display=DisplayStyle.None;
         }
         void LayoutNavigation(float width)
         {

@@ -42,6 +42,7 @@ namespace Eternal.UnityMigration
             // Keep unknown fields and do not create records for unrelated heroes.
             if(data["hero_skill_tree"] is JObject trees)
                 foreach(var property in trees.Properties().ToArray())if(ValidHero(data,property.Name)&&property.Value is JObject)Tree(data,property.Name);
+            NormalizeMigrationLinks();NormalizeWorldGateway();
         }
         public JObject Snapshot()=>(JObject)data.DeepClone();
         public long WalletGold=>Integer(data["wallet_gold"],0,0,CurrencyCap);
@@ -56,11 +57,11 @@ namespace Eternal.UnityMigration
             catch(System.IO.IOException){LastSaveStatus="save_failed";}
             catch(UnauthorizedAccessException){LastSaveStatus="save_failed";}
         }
-        StateCommandResult Commit(Func<JObject,StateCommandResult> operation)
+        StateCommandResult Commit(Func<JObject,StateCommandResult> operation,[System.Runtime.CompilerServices.CallerMemberName]string command="")
         {
             if(MutationError.Length>0)return StateCommandResult.Fail(MutationError);
             var draft=Snapshot();var result=operation(draft);if(!result.Ok)return result;
-            data=draft;Save();result.SavePending=SavePending;return result;
+            RefreshTutorial(draft,command);data=draft;Save();result.SavePending=SavePending;return result;
         }
         bool ValidHero(JObject state,string id)=>id!=null&&heroFactions.TryGetValue(id,out var faction)&&state["selected_faction"]?.Type==JTokenType.String&&faction==(string)state["selected_faction"];
         static JObject Map(JObject root,string key){if(root[key] is JObject map)return map;map=new JObject();root[key]=map;return map;}
@@ -150,7 +151,7 @@ namespace Eternal.UnityMigration
             long xp=Integer(state["unclaimed_xp"],0,0,CurrencyCap)+Integer(state["idle_chest_xp"],0,0,CurrencyCap);
             if(gold==0&&xp==0)return StateCommandResult.Fail("받을 보상이 없습니다.");
             AddCurrency(state,"wallet_gold",gold);AddCurrency(state,"wallet_xp",xp);
-            foreach(string key in new[]{"unclaimed_gold","unclaimed_xp","idle_chest_gold","idle_chest_xp"})state[key]=0;
+            foreach(string key in new[]{"unclaimed_gold","unclaimed_xp","idle_chest_gold","idle_chest_xp","offline_pending_gold","offline_pending_xp","offline_pending_chest_gold","offline_pending_chest_xp"})state[key]=0;
             return StateCommandResult.Success("사냥 보상을 수령했습니다.",gold,xp);
         });
         public StateCommandResult AwardHeroXp(int amount)=>Commit(state=>
