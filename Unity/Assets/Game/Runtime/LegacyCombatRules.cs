@@ -87,7 +87,7 @@ namespace Eternal.UnityMigration
         public static int EquipmentCost(string slot,int level)
         {
             level=Math.Max(1,Math.Min(10,level));int late=Math.Max(0,level-4);
-            int multiplier=slot=="armor"?2:slot=="accessory"?3:1;
+            int multiplier=NativeEquipmentLayout.CostSlot(slot)=="armor"?2:NativeEquipmentLayout.CostSlot(slot)=="accessory"?3:1;
             return (int)((100+level*75)*(1+late*late*1.5))*multiplier;
         }
         public static (int gold,int xp,int rations) StageChest(int stage)

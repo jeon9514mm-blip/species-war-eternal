@@ -10,7 +10,7 @@ namespace Eternal.UnityMigration
     {
         string growthMessage="",growthSection="장비";
         bool GrowthAllowed=>Raid==null&&!ChallengeActive&&ReviewState.MutationError.Length==0;
-        static string SlotName(string slot)=>slot=="weapon"?"무기":slot=="armor"?"갑옷":"장신구";
+        static string SlotName(string slot)=>NativeEquipmentLayout.Label(slot);
         void StateCommand(Func<StateCommandResult> command,Action refresh)
         {
             if(!GrowthAllowed){growthMessage=Raid!=null?"레이드를 마친 뒤 성장을 변경하세요.":ReviewState.MutationError;refresh();return;}
@@ -28,6 +28,10 @@ namespace Eternal.UnityMigration
             ShowHeroShowcase(id);
         }
         void ShowInventory()
+        {
+            ShowRoyalInventory();
+        }
+        void ShowLegacyInventory()
         {
             PanelHeader("가방 · 장비");var items=ReviewState.Inventory().Where(i=>i.Count>0).ToList();
             var row=Row(modal);row.style.marginTop=10;row.style.alignItems=Align.Center;Text(row,items.Count+"개 보관",14).style.flexGrow=1;
@@ -82,8 +86,8 @@ namespace Eternal.UnityMigration
             PanelHeader("장착할 영웅");var list=new ScrollView();list.style.flexGrow=1;modal.Add(list);
             foreach(string hero in ReviewState.DeployedHeroes())
             {
-                string selected=hero;var h=Simulation.Catalog.Hero(hero);var old=ReviewState.EquippedItem(hero,(string)item["slot"]);
-                var b=GrowthButton(list,(string)h["name"]+" · "+old["power"]+" → "+item["power"],()=>ReviewState.EquipGear(id,selected),()=>ShowGrowth(selected));b.style.marginTop=8;
+                string selected=hero;var h=Simulation.Catalog.Hero(hero);string position=ReviewState.EquipmentPositionFor(item,hero);var old=ReviewState.EquippedItem(hero,position);
+                var b=GrowthButton(list,(string)h["name"]+" · "+((int?)old["power"]??0)+" → "+item["power"],()=>ReviewState.EquipGear(id,selected,position),()=>ShowGrowth(selected),position.Length>0);b.style.marginTop=8;
             }
             Button(list,"장비로",()=>ShowInventoryItem(id)).style.marginLeft=0;
         }

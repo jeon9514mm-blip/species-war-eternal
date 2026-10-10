@@ -39,9 +39,10 @@ namespace Eternal.UnityMigration
             {
                 string nonce=Faction+"/"+pack+"/"+kill;double Draw(int d)=>LootDraw(salt,nonce,d);
                 string rarity=UnityDropRarity(difficulty,Draw(0),GuardianBonus("item_drop"));if(rarity.Length==0)continue;
-                int slot=(int)(Draw(1)*3),role=(int)(Draw(2)*3),rank=OriginalEquipmentRules.RarityRank(rarity)-1;var affixes=new JArray();
+                int slot=(int)(Draw(1)*NativeEquipmentLayout.ItemSlots.Length),role=(int)(Draw(2)*3),rank=OriginalEquipmentRules.RarityRank(rarity)-1;var affixes=new JArray();
                 if(rank>0){int low=role==1?3:2,high=role==0?6:role==1?8:5;if(rank==2)low=Math.Max(low,high-2);affixes.Add(new JObject{{"stat",stats[role]},{"value",low+(int)(Draw(3)*(high-low+1))}});}
-                var item=OriginalEquipmentRules.Normalize(new JObject{{"id","unity_hunt_"+salt+"_"+pack+"_"+kill},{"slot",OriginalEquipmentRules.Slots[slot]},{"rarity",rarity},{"level",1},{"name",prefix+" "+roleNames[role]+" "+names[slot][rank]},{"set",set},{"zone",(string)region["name"]},{"origin","hunt"},{"source_id",zone},{"hunt_role",roles[role]},{"affixes",affixes}});
+                string slotId=NativeEquipmentLayout.ItemSlots[slot],label=slotId=="weapon"?names[0][rank]:slotId=="armor"?names[1][rank]:slotId=="accessory"?names[2][rank]:NativeEquipmentLayout.Label(slotId);
+                var item=OriginalEquipmentRules.Normalize(new JObject{{"id","unity_hunt_"+salt+"_"+pack+"_"+kill},{"slot",slotId},{"rarity",rarity},{"level",1},{"name",prefix+" "+roleNames[role]+" "+label},{"set",set},{"zone",(string)region["name"]},{"origin","hunt"},{"source_id",zone},{"hunt_role",roles[role]},{"affixes",affixes}});
                 StoreUnityLoot(state,item);awarded.Add(item.DeepClone());
             }
             state["unity_last_loot"]=new JObject{{"pack",pack},{"zone",zone},{"items",awarded.DeepClone()}};return awarded;
@@ -53,7 +54,7 @@ namespace Eternal.UnityMigration
             if(target.Length>0)
             {
                 var inventory=Bag(state);int index=inventory.Count;inventory.Add(item);
-                if(EquipDraft(state,(string)item["id"],target).Ok){var displaced=(JObject)inventory[index].DeepClone();inventory.RemoveAt(index);StoreUnityLootUnassigned(state,displaced);return;}
+                if(EquipDraft(state,(string)item["id"],target).Ok){if(index<inventory.Count){var displaced=(JObject)inventory[index].DeepClone();inventory.RemoveAt(index);StoreUnityLootUnassigned(state,displaced);}return;}
                 inventory.RemoveAt(index);
             }
             StoreUnityLootUnassigned(state,item);

@@ -29,6 +29,7 @@ namespace Eternal.UnityMigration
             var bindings=new List<Action>();
             PanelHeader("영웅 · "+(faction=="aurelia"?"아우렐리아":"녹스페라"));
             ConfigureInspection(InspectionLayout.Wide);
+            ArmoryChrome();
             modal.AddToClassList("hero-showcase");
 
             var toolbar=Row(modal);toolbar.name="hero-showcase-toolbar";toolbar.style.flexShrink=0;toolbar.style.alignItems=Align.Center;toolbar.style.marginTop=4;toolbar.style.marginBottom=8;
@@ -70,6 +71,7 @@ namespace Eternal.UnityMigration
             bindings.Add(()=>grade.text=owned?ReviewState.Grade(id):"영웅 도감");
             var identity=ShowcaseText(artPanel,(string)hero["identity"]??(string)hero["class"],12,Moss);identity.style.flexShrink=0;
             var painting=new Image{name="HeroShowcaseActor",sprite=InspectionPortrait(id),scaleMode=ScaleMode.ScaleToFit,pickingMode=PickingMode.Ignore};painting.style.flexGrow=1;painting.style.minHeight=0;painting.style.width=Length.Percent(100);artPanel.Add(painting);
+            AddPortraitEquipment(artPanel,painting,id,bindings);
             var deployment=ShowcaseText(artPanel,"",13,Moss);deployment.name="HeroDeploymentState";deployment.style.unityTextAlign=TextAnchor.MiddleCenter;deployment.style.flexShrink=0;
             bindings.Add(()=>{int slot=ReviewState.DeployedHeroes().ToList().IndexOf(id);deployment.text=!owned?"다른 진영의 영웅":slot>=0?"출전 · "+(slot+1)+"번 자리":"미편성";});
 
@@ -218,9 +220,10 @@ namespace Eternal.UnityMigration
         void ShowcaseEquipment(VisualElement parent,string id,List<Action> bindings)
         {
             ShowcaseText(parent,"장착 중인 장비",17,Parchment).style.marginBottom=8;
-            foreach(string slot in OriginalEquipmentRules.Slots)
+            foreach(string slot in NativeEquipmentLayout.Positions)
             {
                 string selected=slot;var block=ShowcasePanel(parent,"HeroGear_"+slot);block.AddToClassList("growth-gear-card");block.style.marginBottom=10;
+                if(ReviewState.EquippedItem(id,slot).Count==0){ShowcaseText(block,SlotName(slot)+" · 미장착",14,Moss);var choose=Button(block,"장비 선택",()=>OpenEquipmentSlot(id,selected));ArmoryButton(choose);continue;}
                 var name=ShowcaseText(block,"",14,Parchment);var detail=ShowcaseText(block,"",12,Moss);
                 var enhance=ShowcaseAction(block,"",id,()=>{var item=ReviewState.EquippedItem(id,selected);return ReviewState.EnhanceGear((string)item["id"],id,selected);},()=>{var item=ReviewState.EquippedItem(id,selected);int level=(int)item["level"];return level<10&&ReviewState.WalletGold>=LegacyGrowthEconomy.EquipmentCost(selected,level);},bindings);
                 enhance.name="hero-gear-enhance-"+slot;
@@ -255,8 +258,8 @@ namespace Eternal.UnityMigration
         }
         static VisualElement ShowcasePanel(VisualElement parent,string name)
         {
-            var panel=new VisualElement{name=name};panel.style.backgroundColor=new Color(.075f,.105f,.105f,.96f);panel.style.paddingLeft=panel.style.paddingRight=10;panel.style.paddingTop=panel.style.paddingBottom=10;
-            panel.style.borderTopLeftRadius=panel.style.borderTopRightRadius=panel.style.borderBottomLeftRadius=panel.style.borderBottomRightRadius=10;parent.Add(panel);return panel;
+            var panel=new VisualElement{name=name};panel.style.position=Position.Relative;panel.style.backgroundColor=new Color(.035f,.05f,.064f,.96f);panel.style.paddingLeft=panel.style.paddingRight=10;panel.style.paddingTop=panel.style.paddingBottom=10;
+            panel.style.borderTopLeftRadius=panel.style.borderTopRightRadius=panel.style.borderBottomLeftRadius=panel.style.borderBottomRightRadius=4;panel.Add(new RoyalHudSurface(ornate:true,accent:GearGold));parent.Add(panel);return panel;
         }
         static Label ShowcaseText(VisualElement parent,string value,int size,Color color)
         {

@@ -12,7 +12,7 @@ namespace Eternal.UnityMigration
         static JObject Levels(JObject state,string hero)
         {
             var levels=SlotsMap(state,"hero_equipment",hero,new JObject{{"weapon",1},{"armor",1},{"accessory",1}});
-            foreach(string slot in OriginalEquipmentRules.Slots)levels[slot]=Integer(levels[slot],1,1,10);return levels;
+            foreach(string slot in NativeEquipmentLayout.Positions){int minimum=OriginalEquipmentRules.Slots.Contains(slot)?1:0;levels[slot]=Integer(levels[slot],minimum,minimum,10);}return levels;
         }
         static JObject RaritiesMap(JObject state,string hero)
         {
@@ -35,12 +35,19 @@ namespace Eternal.UnityMigration
         {
             var entries=Entry(state,"hero_equipment_items",hero);
             var item=entries[slot] is JObject saved?(JObject)saved.DeepClone():new JObject();
+            if(!OriginalEquipmentRules.Slots.Contains(slot)&&item.Count==0)return new JObject();
             if(item.Count==0)item=new JObject{{"id","legacy_equipped_"+hero+"_"+slot},{"origin","legacy"},{"bound",true}};
-            item["slot"]=slot;item["level"]=Levels(state,hero)[slot].DeepClone();item["rarity"]=RaritiesMap(state,hero)[slot].DeepClone();
-            item["name"]=NamesMap(state,hero)[slot].DeepClone();item["set"]=SetsMap(state,hero)[slot].DeepClone();item["bound"]=true;
+            item["slot"]=NativeEquipmentLayout.ItemSlot(slot);item["level"]=Levels(state,hero)[slot].DeepClone();item["rarity"]=RaritiesMap(state,hero)[slot]?.DeepClone()??item["rarity"]?.DeepClone()??new JValue("일반");
+            item["name"]=NamesMap(state,hero)[slot]?.DeepClone()??item["name"]?.DeepClone()??new JValue(NativeEquipmentLayout.Label(slot));item["set"]=SetsMap(state,hero)[slot]?.DeepClone()??item["set"]?.DeepClone()??new JValue("초보자");item["bound"]=true;
             item=OriginalEquipmentRules.Normalize(item);entries[slot]=item.DeepClone();return item;
         }
-        public JObject EquippedItem(string hero,string slot)=>!ValidHero(data,hero)||!OriginalEquipmentRules.Slots.Contains(slot)?new JObject():Equipped(Snapshot(),hero,slot);
+        public JObject EquippedItem(string hero,string slot)=>!ValidHero(data,hero)||!NativeEquipmentLayout.Position(slot)?new JObject():Equipped(Snapshot(),hero,slot);
+        static void WriteEquipped(JObject state,string hero,string slot,JObject item)
+        {
+            var entries=Entry(state,"hero_equipment_items",hero);
+            if(item.Count==0){entries.Remove(slot);Levels(state,hero)[slot]=0;NamesMap(state,hero)[slot]="";SetsMap(state,hero)[slot]="";RaritiesMap(state,hero)[slot]="일반";return;}
+            entries[slot]=item.DeepClone();Levels(state,hero)[slot]=item["level"].DeepClone();RaritiesMap(state,hero)[slot]=item["rarity"].DeepClone();NamesMap(state,hero)[slot]=item["name"].DeepClone();SetsMap(state,hero)[slot]=item["set"].DeepClone();
+        }
         public IReadOnlyList<JObject> Inventory()
         {var result=new List<JObject>();if(data["loot_inventory"] is JArray inventory)foreach(var token in inventory)if(token is JObject item)result.Add(OriginalEquipmentRules.Normalize(item));return result;}
         static JArray Bag(JObject state){if(state["loot_inventory"] is JArray inventory)return inventory;inventory=new JArray();state["loot_inventory"]=inventory;return inventory;}
@@ -53,14 +60,14 @@ namespace Eternal.UnityMigration
         int GearPower(JObject state,string hero)
         {
             var levels=Levels(state,hero);var rarities=RaritiesMap(state,hero);double power=0;
-            foreach(string slot in OriginalEquipmentRules.Slots)power+=(int)levels[slot]*OriginalEquipmentRules.SlotBase(slot)*OriginalEquipmentRules.RarityMultiplier((string)rarities[slot]);
+            foreach(string slot in NativeEquipmentLayout.Positions)power+=(int)levels[slot]*OriginalEquipmentRules.SlotBase(NativeEquipmentLayout.ItemSlot(slot))*OriginalEquipmentRules.RarityMultiplier((string)rarities[slot]);
             return (int)power;
         }
         public int EquipmentPower(string hero)=>ValidHero(data,hero)?GearPower(Snapshot(),hero):0;
         static JObject GearProfile(JObject state,string hero,JObject replacementSets=null)
         {
             var profile=OriginalEquipmentRules.SetProfile(replacementSets??SetsMap(state,hero));
-            var options=OriginalEquipmentRules.AffixProfile(OriginalEquipmentRules.Slots.Select(slot=>Equipped(state,hero,slot)));
+            var options=OriginalEquipmentRules.AffixProfile(NativeEquipmentLayout.Positions.Select(slot=>Equipped(state,hero,slot)));
             profile["attack_mult"]=(double)profile["attack_mult"]*(1+(double)options["attack_pct"]/100);
             profile["hp_mult"]=(double)profile["hp_mult"]*(1+(double)options["hp_pct"]/100);
             profile["defense_bonus"]=(int)profile["defense_bonus"]+(int)options["defense"];
@@ -68,23 +75,31 @@ namespace Eternal.UnityMigration
             profile["ultimate_pct"]=Math.Min(26,(double)profile["ultimate_pct"]+(double)options["ultimate_pct"]);return profile;
         }
         public JObject EquipmentProfile(string hero)=>ValidHero(data,hero)?GearProfile(Snapshot(),hero):OriginalEquipmentRules.SetProfile(new JObject());
-        public StateCommandResult EquipGear(string itemId,string hero)=>Commit(state=>EquipDraft(state,itemId,hero));
-        StateCommandResult EquipDraft(JObject state,string itemId,string hero)
+        public JObject CompareEquipment(string itemId,string hero,string position="")
+        {
+            var before=CombatProfile(hero);if(before.Count==0)return new JObject();
+            var draft=Snapshot();if(!EquipDraft(draft,itemId,hero,position).Ok)return new JObject();
+            var temporary=new GameStateCommands(catalog,draft,_=>false);
+            return new JObject{{"before",before},{"after",temporary.CombatProfile(hero)}};
+        }
+        public StateCommandResult EquipGear(string itemId,string hero,string position="")=>Commit(state=>EquipDraft(state,itemId,hero,position));
+        StateCommandResult EquipDraft(JObject state,string itemId,string hero,string position="")
         {
             var bag=Bag(state);int index=ItemIndex(bag,itemId);
             if(index<0||!ValidHero(state,hero))return StateCommandResult.Fail("장비나 영웅을 다시 선택해 주세요.");
             var item=OriginalEquipmentRules.Normalize(bag[index] as JObject);
             if(item.Count==0||(string)item["item_type"]!="equipment"||!RoleMatches(item,hero))return StateCommandResult.Fail("현재 영웅에게 장착할 수 없는 물품입니다.");
             if(((JObject)item["proposal"]).Count>0)return StateCommandResult.Fail("조율 후보를 선택하거나 포기한 뒤 장착하세요.");
-            string slot=(string)item["slot"];var old=Equipped(state,hero,slot);item["bound"]=true;
-            Entry(state,"hero_equipment_items",hero)[slot]=item;Levels(state,hero)[slot]=item["level"].DeepClone();RaritiesMap(state,hero)[slot]=item["rarity"].DeepClone();
-            NamesMap(state,hero)[slot]=item["name"].DeepClone();SetsMap(state,hero)[slot]=item["set"].DeepClone();bag[index]=old;
+            string slot=position.Length>0?position:BestEquipmentPosition(state,item,hero);
+            if(!NativeEquipmentLayout.Fits((string)item["slot"],slot))return StateCommandResult.Fail("장비 부위를 확인하세요.");
+            var old=Equipped(state,hero,slot);if(old.Count>0&&((JObject)old["proposal"]).Count>0)return StateCommandResult.Fail("장착 장비의 옵션 후보를 먼저 결정하세요.");item["bound"]=true;
+            WriteEquipped(state,hero,slot,item);if(old.Count>0)bag[index]=old;else bag.RemoveAt(index);
             return StateCommandResult.Success("장비를 장착했습니다.");
         }
         public StateCommandResult EnhanceGear(string itemId,string hero="",string slot="")=>Commit(state=>
         {
             bool equipped=hero.Length>0;var bag=Bag(state);int index=equipped?-1:ItemIndex(bag,itemId);
-            if(equipped&&(!ValidHero(state,hero)||!OriginalEquipmentRules.Slots.Contains(slot))||!equipped&&index<0)return StateCommandResult.Fail("장비가 이동했습니다. 다시 선택해 주세요.");
+            if(equipped&&(!ValidHero(state,hero)||!NativeEquipmentLayout.Position(slot))||!equipped&&index<0)return StateCommandResult.Fail("장비가 이동했습니다. 다시 선택해 주세요.");
             var item=equipped?Equipped(state,hero,slot):OriginalEquipmentRules.Normalize(bag[index] as JObject);
             if(item.Count==0||(string)item["item_type"]!="equipment"||equipped&&itemId.Length>0&&(string)item["id"]!=itemId)return StateCommandResult.Fail("장비를 다시 선택해 주세요.");
             int level=(int)item["level"];if(level>=10)return StateCommandResult.Fail("이미 최대 강화 단계(+10)입니다.");

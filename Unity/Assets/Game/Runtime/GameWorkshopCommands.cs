@@ -11,7 +11,7 @@ namespace Eternal.UnityMigration
         public StateCommandResult Workshop(string itemId,string action,int index=-1,string family="",string hero="",string slot="",string crystalId="",JObject expectedOption=null)=>Commit(state=>
         {
             var bag=Bag(state);bool equipped=hero.Length>0;
-            var raw=equipped?ValidHero(state,hero)&&OriginalEquipmentRules.Slots.Contains(slot)?Equipped(state,hero,slot):null:bag.OfType<JObject>().FirstOrDefault(i=>(string)i["id"]==itemId);
+            var raw=equipped?ValidHero(state,hero)&&NativeEquipmentLayout.Position(slot)?Equipped(state,hero,slot):null:bag.OfType<JObject>().FirstOrDefault(i=>(string)i["id"]==itemId);
             if(raw==null||equipped&&(string)raw["id"]!=itemId)return StateCommandResult.Fail("장비가 이동했습니다. 다시 선택하세요.");var item=OriginalEquipmentRules.Normalize(raw);if(item.Count==0||(string)item["item_type"]!="equipment")return StateCommandResult.Fail("장비에서 공방을 이용하세요.");
             var options=L.Array(item["affixes"]);var proposal=L.Object(item["proposal"]);long balance=L.N(state["raid_crystals"],0,CurrencyCap),cost=0;
             if(action=="preview")

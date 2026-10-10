@@ -24,7 +24,7 @@ namespace Eternal.UnityMigration
         static bool Bool(JToken token)=>token?.Type==JTokenType.Boolean&&token.Value<bool>();
         public static int RarityRank(string rarity)=>rarity=="전설"?3:rarity=="희귀"?2:1;
         public static double RarityMultiplier(string rarity)=>rarity=="전설"?2.2:rarity=="희귀"?1.45:1;
-        public static int SlotBase(string slot)=>slot=="weapon"?22:slot=="armor"?16:slot=="accessory"?12:0;
+        public static int SlotBase(string slot)=>slot=="weapon"?22:slot=="armor"?16:slot=="accessory"?12:slot=="helmet"?8:slot=="gloves"||slot=="boots"?6:slot=="belt"||slot=="bracelet"||slot=="ring"?4:0;
         public static int OptionCapacity(JObject item)=>(string)item?["item_type"]=="option_crystal"?0:RarityRank((string)item?["rarity"]);
         public static JObject Affix(JToken raw)
         {
@@ -39,7 +39,7 @@ namespace Eternal.UnityMigration
             if(raw==null)return new JObject();
             string type=Text(raw["item_type"]??new JValue("equipment"),"");
             if(type!="equipment"&&type!="option_crystal")return new JObject();
-            string slot=Text(raw["slot"]??new JValue("weapon"),"");if(!Slots.Contains(slot))return new JObject();
+            string slot=Text(raw["slot"]??new JValue("weapon"),"");if(!NativeEquipmentLayout.ItemSlots.Contains(slot))return new JObject();
             string rarity=Text(raw["rarity"],"일반");if(!Rarities.Contains(rarity))rarity="일반";
             string set=Text(raw["set"],"초보자");if(!Sets.Contains(set))set="초보자";
             string origin=Text(raw["origin"],"legacy");if(origin!="legacy"&&origin!="hunt"&&origin!="raid")origin="legacy";
@@ -71,7 +71,7 @@ namespace Eternal.UnityMigration
         public static JObject SetProfile(JObject sets)
         {
             var counts=new Dictionary<string,int>(StringComparer.Ordinal);
-            foreach(string slot in Slots){string set=Text(sets?[slot],"초보자");counts[set]=counts.GetValueOrDefault(set)+1;}
+            foreach(string slot in NativeEquipmentLayout.Positions){if(!Slots.Contains(slot)&&sets?[slot]==null)continue;string set=Text(sets?[slot],"초보자");if(set.Length>0)counts[set]=counts.GetValueOrDefault(set)+1;}
             double attack=1,hp=1;int defense=0,haste=0,ultimate=0;var labels=new List<string>();
             bool Count(string set,int number)=>counts.GetValueOrDefault(set)>=number;
             if(Count("개척자",2)){attack+=.05;labels.Add("개척자 2세트 ATK+5%");}

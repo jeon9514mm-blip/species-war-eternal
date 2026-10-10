@@ -458,6 +458,8 @@ namespace Eternal.UnityMigration
         Sprite InspectionPortrait(string id)
         {
             if(inspectionPortraits.TryGetValue(id,out var found))return found;
+            var portraitTexture=Resources.Load<Texture2D>("Eternal/UI/HeroPortraits/"+id);
+            if(portraitTexture!=null){var original=Sprite.Create(portraitTexture,new Rect(0,0,portraitTexture.width,portraitTexture.height),new Vector2(.5f,.5f));inspectionPortraits.Add(id,original);return original;}
             var f=OriginalCatalog.Atlas(id).attack.frames[0];var texture=OriginalCatalog.Texture(id);
             var sprite=Sprite.Create(texture,new Rect(f.region[0],1024-f.region[1]-f.region[3],f.region[2],f.region[3]),new Vector2(.5f,.5f));inspectionPortraits.Add(id,sprite);return sprite;
         }
